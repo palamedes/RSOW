@@ -1,0 +1,45 @@
+title: Random String of Words
+description: Jason Ellis — Developer, Hobbyist, Opinionated Human
+url: https://rsow.com
+baseurl: ""
+
+permalink: /post/:title/
+
+# Build
+markdown: kramdown
+sass:
+  style: compressed
+
+# Pagination
+pagination:
+  enabled: true
+  per_page: 12
+  permalink: "/page/:num/"
+  sort_reverse: true
+
+# Archives (replaces old category/tag index generators)
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive
+    tag: archive
+  permalinks:
+    category: /category/:name/
+    tag: /tag/:name/
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-archives
+  - jekyll-paginate-v2
+
+# Exclude from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor

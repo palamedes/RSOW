@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rsow.com/sitemap.xml

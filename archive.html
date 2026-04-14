@@ -1,0 +1,72 @@
+---
+layout: default
+title: Blog
+permalink: /archive/
+full_width: true
+---
+<div class="archive-page">
+  <div class="site-wrapper">
+    <div class="archive-filters">
+      <nav class="filter-categories">
+        <a href="#" class="filter-btn active" data-filter="all">All Posts</a>
+        <a href="#" class="filter-btn" data-filter="Rant">Rant</a>
+        <a href="#" class="filter-btn" data-filter="RV-10">RV-10</a>
+        <a href="#" class="filter-btn" data-filter="Software">Software</a>
+        <a href="#" class="filter-btn" data-filter="Political">Political</a>
+        <a href="#" class="filter-btn" data-filter="Bicolline">Bicolline</a>
+      </nav>
+      <div class="filter-search">
+        <input type="text" id="post-search" placeholder="Search posts...">
+      </div>
+    </div>
+
+    <div class="post-grid" id="archive-grid">
+      {% for post in site.posts %}
+      <a class="post-card" href="{{ post.url | relative_url }}" data-categories="{{ post.categories | join: ',' }}" data-title="{{ post.title | strip_html | escape | downcase }}" data-search="{{ post.title | strip_html | escape | downcase }} {{ post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
+        {% if post.image %}
+          <img class="card-image" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+        {% else %}
+          <div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>
+        {% endif %}
+        <div class="card-body">
+          <span class="card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var cards = document.querySelectorAll('#archive-grid .post-card');
+  var buttons = document.querySelectorAll('.filter-btn');
+  var search = document.getElementById('post-search');
+  var activeFilter = 'all';
+
+  function filterCards(){
+    var query = search.value.toLowerCase();
+    cards.forEach(function(card){
+      var cats = card.dataset.categories || '';
+      var searchText = card.dataset.search || card.dataset.title || '';
+      var matchCat = activeFilter === 'all' || cats.split(',').indexOf(activeFilter) !== -1;
+      var matchSearch = !query || searchText.indexOf(query) !== -1;
+      card.style.display = (matchCat && matchSearch) ? '' : 'none';
+    });
+  }
+
+  buttons.forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      buttons.forEach(function(b){ b.classList.remove('active'); });
+      this.classList.add('active');
+      activeFilter = this.dataset.filter;
+      filterCards();
+    });
+  });
+
+  search.addEventListener('input', filterCards);
+})();
+</script>

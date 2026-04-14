@@ -1,0 +1,55 @@
+---
+layout: default
+pagination:
+  enabled: true
+full_width: true
+---
+<div class="home">
+  <section class="home-hero">
+    <div class="hero-inner">
+      <img class="profile-image" src="{{ '/assets/images/profile.png' | relative_url }}" alt="Jason Ellis">
+      <div class="hero-text">
+        <h1 class="hero-name">Jason Ellis</h1>
+        <p class="hero-site-name">RandomStringOfWords.com</p>
+        <p class="hero-tagline">a space for sharing ideas, reflections, and the occasional strong opinion. If you're here, you're probably curious about something I've built, said, or am working on. Either way, I'm glad you found your way here.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="sub-hero">
+    <div class="site-wrapper sub-hero-inner">
+      <span class="sub-hero-label">Most Recent Blog Posts:</span>
+      <nav class="sub-hero-nav">
+        <a href="{{ '/about/' | relative_url }}">About Me</a>
+        <a href="{{ '/archive/' | relative_url }}">Blog</a>
+        <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
+        <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
+        <a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store</a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="site-wrapper">
+    <div class="post-grid">
+      {% for post in paginator.posts %}
+      <a class="post-card" href="{{ post.url | relative_url }}">
+        {% if post.image %}
+          <img class="card-image" src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+        {% else %}
+          <div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>
+        {% endif %}
+        <div class="card-body">
+          <span class="card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+          <h2 class="card-title">{{ post.title }}</h2>
+          <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+
+    <div class="view-more">
+      <a href="{{ '/archive/' | relative_url }}">View More</a>
+    </div>
+
+  </div>
+</div>
