@@ -41,32 +41,76 @@ full_width: true
 
 <script>
 (function(){
-  var cards = document.querySelectorAll('#archive-grid .post-card');
+  var cards = Array.from(document.querySelectorAll('#archive-grid .post-card'));
   var buttons = document.querySelectorAll('.filter-btn');
   var search = document.getElementById('post-search');
   var activeFilter = 'all';
+  var batchSize = 4;
+  var initialLoad = 16;
+  var visibleCount = 0;
+  var loading = false;
 
-  function filterCards(){
+  function getFilteredCards(){
     var query = search.value.toLowerCase();
-    cards.forEach(function(card){
+    return cards.filter(function(card){
       var cats = card.dataset.categories || '';
       var searchText = card.dataset.search || card.dataset.title || '';
       var matchCat = activeFilter === 'all' || cats.split(',').indexOf(activeFilter) !== -1;
       var matchSearch = !query || searchText.indexOf(query) !== -1;
-      card.style.display = (matchCat && matchSearch) ? '' : 'none';
+      return matchCat && matchSearch;
     });
   }
 
+  function renderCards(count){
+    var filtered = getFilteredCards();
+    cards.forEach(function(card){ card.style.display = 'none'; });
+    visibleCount = Math.min(count, filtered.length);
+    for(var i = 0; i < visibleCount; i++){
+      filtered[i].style.display = '';
+    }
+  }
+
+  function loadMore(){
+    if(loading) return;
+    var filtered = getFilteredCards();
+    if(visibleCount >= filtered.length) return;
+    loading = true;
+    var newCount = Math.min(visibleCount + batchSize, filtered.length);
+    for(var i = visibleCount; i < newCount; i++){
+      filtered[i].style.display = '';
+    }
+    visibleCount = newCount;
+    loading = false;
+  }
+
+  function resetAndRender(){
+    renderCards(initialLoad);
+  }
+
+  // Infinite scroll
+  window.addEventListener('scroll', function(){
+    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 400)){
+      loadMore();
+    }
+  });
+
+  // Filter buttons
   buttons.forEach(function(btn){
     btn.addEventListener('click', function(e){
       e.preventDefault();
       buttons.forEach(function(b){ b.classList.remove('active'); });
       this.classList.add('active');
       activeFilter = this.dataset.filter;
-      filterCards();
+      resetAndRender();
     });
   });
 
-  search.addEventListener('input', filterCards);
+  // Search
+  search.addEventListener('input', function(){
+    resetAndRender();
+  });
+
+  // Initial load
+  resetAndRender();
 })();
 </script>
