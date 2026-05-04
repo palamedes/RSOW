@@ -1,7 +1,15 @@
 ---
 layout: page
-title: "404 — Not Found"
+title: "404 — Page Not Found"
 permalink: /404.html
+hide_title: true
+full_width: true
 ---
 
-The page you're looking for doesn't exist. [Head home]({{ '/' | relative_url }}).
+<section class="error-404">
+  <img class="error-404-image" src="{{ '/assets/images/404.jpg' | relative_url }}" alt="404 — Page Not Found">
+  <div class="error-404-actions">
+    <a class="error-404-btn" href="{{ '/' | relative_url }}">Head Home</a>
+    <a class="error-404-btn error-404-btn-secondary" href="{{ '/archive/' | relative_url }}">Browse the Blog</a>
+  </div>
+</section>
