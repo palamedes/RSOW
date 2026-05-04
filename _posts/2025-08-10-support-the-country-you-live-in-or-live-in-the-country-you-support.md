@@ -3,7 +3,9 @@ title: "Support the Country You Live In or Live in the Country You Support"
 layout: post
 image: /assets/images/posts/2025/support-country.png
 date: 2025-08-10
-categories: [Rant, Political]
+categories:
+- Rant
+- Political
 tags: []
 description: "Nearly 11 million unauthorized border encounters in five years. History shows what happens when borders stop mattering — nations stop existing."
 excerpt: "A country without borders is no country. This isn't a far-right rant — it's historical pattern recognition from Rome to Sweden."

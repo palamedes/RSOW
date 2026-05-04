@@ -3,7 +3,9 @@ title: "They Shot the Messenger. Now We Are the Message."
 layout: post
 image: /assets/images/posts/2025/they-shot-the-messenger.png
 date: 2025-09-12
-categories: [Rant, Political]
+categories:
+- Rant
+- Political
 tags: []
 description: "Charlie Kirk was assassinated for speaking his mind. Politicians booed his moment of silence. When you martyr a man, you don't end the message — you amplify it."
 excerpt: "They killed a man who debated with civility and changed minds without violence. Then they cheered. That tells you everything about who the real extremists are."

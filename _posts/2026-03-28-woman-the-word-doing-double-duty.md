@@ -3,7 +3,9 @@ title: "Woman: The Word Doing Double Duty"
 layout: post
 image: /assets/images/posts/2026/woman-the-word.jpg
 date: 2026-03-28
-categories: [Rant, Political]
+categories:
+- Rant
+- Political
 tags: []
 description: "The word 'woman' is carrying two incompatible definitions at once. That's not language evolving — it's a collision we refuse to name."
 excerpt: "For basically all of recorded history, \"woman\" meant an adult human female. It wasn't ideological. It wasn't a stance. It was descriptive. What's happening now is that the same word is being asked to carry two incompatible meanings at once ... and instead of creating new language to handle a new concept, we just crammed both meanings into the same word and started screaming at each other when the confusion kicked in. That's not evolution of language. That's collision."

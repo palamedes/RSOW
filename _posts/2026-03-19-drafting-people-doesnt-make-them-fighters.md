@@ -3,7 +3,9 @@ title: "Drafting People Doesn't Make Them Fighters"
 layout: post
 image: /assets/images/posts/2026/drafting.jpg
 date: 2026-03-19
-categories: [Rant, Political]
+categories:
+- Rant
+- Political
 tags: []
 description: "Conscription fills uniforms, not fighters. From Roman legions to the Gulf War, volunteer forces consistently outperform drafted armies."
 excerpt: "Forcing people to fight doesn't make them good at it. It makes them present. The U.S. military is what it is because every person in it chose to be there."

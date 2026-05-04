@@ -3,7 +3,8 @@ title: "A Gen-X Work Ethic Obituary"
 layout: post
 image: /assets/images/posts/2026/gen-x-work-ethic.jpg
 date: 2026-03-21
-categories: [Rant]
+categories:
+- Rant
 tags: []
 description: "A blunt look at Gen X work ethic, why it held everything together, and what could happen when the generation that just showed up finally retires."
 excerpt: "Gen X never asked for recognition. We just showed up, did the work, and kept everything running while nobody was paying attention. Now we’re aging out, and the uncomfortable question is this: what happens when the last generation that treated showing up like a baseline expectation finally walks away?"

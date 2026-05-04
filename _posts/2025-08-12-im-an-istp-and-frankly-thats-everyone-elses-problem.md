@@ -3,7 +3,8 @@ title: "I'm an ISTP and Frankly That's Everyone Else's Problem"
 layout: post
 image: /assets/images/posts/2025/istp.jpg
 date: 2025-08-12
-categories: [Rant]
+categories:
+- Rant
 tags: []
 description: "ISTP personality type: competence over attention, fixing things while everyone else is still talking about them. Low-maintenance, high-output."
 excerpt: "I didn't set out to be the quiet analytical badass who watches the room fall apart and then fixes it while everyone's still talking. But here we are."
