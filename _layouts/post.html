@@ -17,9 +17,8 @@ layout: default
   </header>
 
   <div class="post-content">
-    {% if page.image %}
-    <img class="post-featured-image" src="{{ page.image | relative_url }}" alt="{{ page.title }}">
-    {% endif %}
+    {% assign featured_image = page.image | default: site.default_image %}
+    <img class="post-featured-image" src="{{ featured_image | relative_url }}" alt="{{ page.title }}">
     {{ content }}
   </div>
 
@@ -57,7 +56,7 @@ layout: default
       {% endfor %}
       {% if newer1 %}
       <a class="post-card" href="{{ newer1.url | relative_url }}">
-        {% if newer1.image %}<img class="card-image" src="{{ newer1.image | relative_url }}" alt="{{ newer1.title }}">{% else %}<div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>{% endif %}
+        {% assign card_img = newer1.image | default: site.default_image %}<img class="card-image" src="{{ card_img | relative_url }}" alt="{{ newer1.title }}">
         <div class="card-body">
           <span class="card-date">{{ newer1.date | date: "%B %-d, %Y" }}</span>
           <h2 class="card-title">{{ newer1.title }}</h2>
@@ -67,7 +66,7 @@ layout: default
       {% endif %}
       {% if older1 %}
       <a class="post-card" href="{{ older1.url | relative_url }}">
-        {% if older1.image %}<img class="card-image" src="{{ older1.image | relative_url }}" alt="{{ older1.title }}">{% else %}<div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>{% endif %}
+        {% assign card_img = older1.image | default: site.default_image %}<img class="card-image" src="{{ card_img | relative_url }}" alt="{{ older1.title }}">
         <div class="card-body">
           <span class="card-date">{{ older1.date | date: "%B %-d, %Y" }}</span>
           <h2 class="card-title">{{ older1.title }}</h2>
@@ -77,7 +76,7 @@ layout: default
       {% endif %}
       {% if older2 %}
       <a class="post-card" href="{{ older2.url | relative_url }}">
-        {% if older2.image %}<img class="card-image" src="{{ older2.image | relative_url }}" alt="{{ older2.title }}">{% else %}<div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>{% endif %}
+        {% assign card_img = older2.image | default: site.default_image %}<img class="card-image" src="{{ card_img | relative_url }}" alt="{{ older2.title }}">
         <div class="card-body">
           <span class="card-date">{{ older2.date | date: "%B %-d, %Y" }}</span>
           <h2 class="card-title">{{ older2.title }}</h2>
@@ -87,7 +86,7 @@ layout: default
       {% endif %}
       {% if newer1 == nil and older3 %}
       <a class="post-card" href="{{ older3.url | relative_url }}">
-        {% if older3.image %}<img class="card-image" src="{{ older3.image | relative_url }}" alt="{{ older3.title }}">{% else %}<div class="card-image" style="display:flex;align-items:center;justify-content:center;color:#ccc;font-size:2rem;">&#9998;</div>{% endif %}
+        {% assign card_img = older3.image | default: site.default_image %}<img class="card-image" src="{{ card_img | relative_url }}" alt="{{ older3.title }}">
         <div class="card-body">
           <span class="card-date">{{ older3.date | date: "%B %-d, %Y" }}</span>
           <h2 class="card-title">{{ older3.title }}</h2>

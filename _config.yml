@@ -5,6 +5,9 @@ baseurl: ""
 
 permalink: /post/:title/
 
+# Fallback image for posts without a featured image
+default_image: /assets/images/rsow-default.jpg
+
 # Build
 markdown: kramdown
 sass:
