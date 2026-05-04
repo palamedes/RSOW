@@ -10,7 +10,7 @@ excerpt: "I tried to cancel Wix. First they said I couldn't because I had domain
 
 I'm writing this in real time. I am currently on hold with Wix support, trying to do something that should take exactly one click: cancel my account.
 
-It has not taken one click. It has taken four attempts, two hours, and I'm now being transferred to billing because apparently the support person who was "guiding me through the cancellation process" also can't cancel it.
+It has not taken one click. It has taken four attempts, one hour, and I'm now being transferred to billing because apparently the support person who was "guiding me through the cancellation process" also can't cancel it.
 
 Let me walk you through this.
 
@@ -48,7 +48,7 @@ Every step of this process was engineered to make me give up. The domain blocker
 
 Most people do. That's the business model.
 
-The FTC's "click to cancel" rule says cancellation has to be as easy as signup. I signed up for Wix in about three minutes. I've now spent over two hours trying to leave and I'm still not done.
+The FTC's "click to cancel" rule says cancellation has to be as easy as signup. I signed up for Wix in about three minutes. I've now spent over an hour trying to leave and I'm still not done.
 
 ## The Irony
 
