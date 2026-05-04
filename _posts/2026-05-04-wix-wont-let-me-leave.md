@@ -36,9 +36,9 @@ I clicked through all of it. And it still didn't cancel. Some vague error. No ex
 
 ## Attempt 4: Call Support
 
-I got on with a support rep. Very nice person. She wanted to "guide me through the cancellation process." Great. Except she also couldn't do it. Something about needing to transfer me to billing.
+I got on a live chat session with a support rep. Very nice person. She wanted to "guide me through the cancellation process." Great. Except she also couldn't do it. Something about needing to transfer me to billing.
 
-So now I'm on hold. Waiting for billing. To cancel a website builder account. In 2026.
+So now I'm sitting in a chat queue. Waiting for billing. To cancel a website builder account. In 2026.
 
 ## This Is a Dark Pattern
 
@@ -62,7 +62,7 @@ Meanwhile, Wix wants to talk to me about my billing cycle.
 
 ## Update: It Gets Worse
 
-So after being bounced from support to billing, here's the resolution: nothing. Absolutely nothing can be done.
+So after being bounced from support to billing in the chat, here's the resolution: nothing. Absolutely nothing can be done.
 
 They "aren't allowed" to close the account until the subscription expires. Let that sink in. I can't cancel my account. I can't delete my account. I can't remove my content. I can't do anything. I have to sit here and wait for a subscription I don't want, for a service I'm not using, on a platform I've already left, to expire on its own terms and its own timeline.
 
@@ -92,7 +92,7 @@ They just don't want to. Because every month I'm technically still subscribed, I
 
 ## The FTC Should Be All Over This
 
-The FTC's "click to cancel" rule is supposed to prevent exactly this. Cancellation must be as easy as signup. I signed up in three minutes on a web form. Cancelling has taken over an hour, a phone call, a transfer to billing, and the final answer is "you can't."
+The FTC's "click to cancel" rule is supposed to prevent exactly this. Cancellation must be as easy as signup. I signed up in three minutes on a web form. Cancelling has taken over an hour, a live chat session, a transfer to billing, and the final answer is "you can't."
 
 That's not compliance. That's contempt.
 
