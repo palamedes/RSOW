@@ -5,8 +5,8 @@ image: /assets/images/posts/2026/no-kings.jpg
 date: 2026-03-27
 categories: [Rant, Political]
 tags: []
-description: "The No Kings rallies sound revolutionary but say nothing. Slogans without substance aren't democracy — they're content."
-excerpt: "I'm for peaceful protest, full stop. But the No Kings rallies aren't a message — they're a bumper sticker pretending to be a thought."
+description: "The \"No Kings\" rallies are all noise and no signal. No specific demands, no actionable solutions, just performative outrage dressed up in revolutionary language. Here's why vague slogans hurt more than they help."
+excerpt: "I'm for peaceful protest, full stop. But the \"No Kings\" rallies aren't a message, they're a bumper sticker pretending to be a thought. No specific demand, no clear solution, no follow-through. Just vibes, virtue signaling, and a catchy slogan that means almost nothing."
 ---
 
 I'm for peaceful protest, full stop. If people want to gather, hold signs, and make their voices heard, that's part of the deal. That's baked into the system and I have no issue with it.

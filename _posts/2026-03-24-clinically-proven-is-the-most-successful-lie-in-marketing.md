@@ -5,8 +5,8 @@ image: /assets/images/posts/2026/clinically-proven.jpg
 date: 2026-03-24
 categories: [Rant]
 tags: []
-description: "'Clinically proven' is unregulated marketing language dressed in a lab coat. Here's the hierarchy of scientific legitimacy they hope you never learn."
-excerpt: "Two words that sound like science but operate like a magic spell. 'Clinically proven' requires basically nothing — and that's exactly how they like it."
+description: "\"Clinically proven\" is an unregulated phrase. No governing body checks it. No standard exists. Here's what it actually means and how to read the fine print."
+excerpt: "Two words that sound like science but operate like a magic spell. Designed to make you stop thinking and start buying. Unlike \"FDA-approved,\" which requires surviving years of rigorous trials, independent review, and public data disclosure ... \"clinically proven\" requires basically nothing. Here's the full spectrum, from legitimate peer-reviewed research to pure marketing theater."
 ---
 
 You've seen it on everything. The toothpaste. The wrinkle cream. The supplement that promises to make your brain work like it did in college. The shampoo that will apparently repair your hair at the molecular level.

@@ -5,8 +5,8 @@ image: /assets/images/posts/2026/gen-x-work-ethic.jpg
 date: 2026-03-21
 categories: [Rant]
 tags: []
-description: "Gen-X showed up sick, broke, and tired — and held civilization together anyway. Nobody's talking about what happens when we age out."
-excerpt: "I got a house key on a shoelace and a frozen pizza with instructions. And somehow I turned into the most dependable generation this country ever accidentally produced."
+description: "A blunt look at Gen X work ethic, why it held everything together, and what could happen when the generation that just showed up finally retires."
+excerpt: "Gen X never asked for recognition. We just showed up, did the work, and kept everything running while nobody was paying attention. Now we’re aging out, and the uncomfortable question is this: what happens when the last generation that treated showing up like a baseline expectation finally walks away?"
 ---
 
 Look, I'm not here to win a popularity contest. I'm Gen-X. I didn't get participation trophies. I got a house key on a shoelace around my neck and a frozen pizza with instructions taped to the microwave. And somehow, against all odds, I turned into the most dependable, hardest-working, quietly-holding-civilization-together generation this country has ever accidentally produced.
