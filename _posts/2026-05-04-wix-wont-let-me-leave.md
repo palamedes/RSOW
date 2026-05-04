@@ -60,6 +60,50 @@ The new site that I built in a day. That costs nothing to host. That I have comp
 
 Meanwhile, Wix wants to talk to me about my billing cycle.
 
-## Update
+## Update: It Gets Worse
 
-*I'll update this post when they finally let me go. If they let me go.*
+So after being bounced from support to billing, here's the resolution: nothing. Absolutely nothing can be done.
+
+They "aren't allowed" to close the account until the subscription expires. Let that sink in. I can't cancel my account. I can't delete my account. I can't remove my content. I can't do anything. I have to sit here and wait for a subscription I don't want, for a service I'm not using, on a platform I've already left, to expire on its own terms and its own timeline.
+
+But here's the part that should make your blood boil.
+
+They can't close my account. They can't process a cancellation. They can't override the system. They "aren't allowed." The technology simply doesn't permit it. Their hands are tied. So sorry. Nothing we can do.
+
+But they CAN offer me 50% off if I stay.
+
+Read that again.
+
+The same system that is supposedly incapable of closing my account is fully capable of modifying my subscription, applying a discount, and processing a new billing arrangement on the spot. The "close account" button doesn't work, but the "give us less money and stay" button works just fine.
+
+That's not a technical limitation. That's a business decision. They built the system this way on purpose. The path to leaving is broken by design. The path to staying is greased and ready.
+
+"We can't let you go, but we can make it cheaper to stay." That's not customer service. That's a trap with a payment plan.
+
+This is the digital equivalent of a hotel telling you that checkout doesn't exist but they'll upgrade your room if you just stop asking to leave. The door locks from the outside, but room service still works great.
+
+## Let's Talk About What "Can't" Means
+
+When a company says they "can't" do something, what they mean is they "won't." Every piece of software ever written can be modified. Every database record can be deleted. Every account can be closed. There is no technical reality in which a web platform built by engineers cannot delete an account. They are choosing not to, and hiding that choice behind the word "can't."
+
+If tomorrow Wix got a court order to delete my account, do you think the response would be "sorry, Your Honor, we aren't allowed to until the subscription expires"? Of course not. They'd delete it in thirty seconds. Because they can. They always could.
+
+They just don't want to. Because every month I'm technically still subscribed, I'm still a number on their books. Still a "subscriber." Still revenue they can report. And if they can wear me down with enough friction, maybe I'll just stop trying and let it auto-renew. That's the play. That's always been the play.
+
+## The FTC Should Be All Over This
+
+The FTC's "click to cancel" rule is supposed to prevent exactly this. Cancellation must be as easy as signup. I signed up in three minutes on a web form. Cancelling has taken over an hour, a phone call, a transfer to billing, and the final answer is "you can't."
+
+That's not compliance. That's contempt.
+
+If any federal regulator is reading this — and I know you're not, but just in case — this is what it looks like on the ground. This is what consumers actually experience. Not in theory. Not in a policy paper. Right now. Today. A company that will happily take your money in seconds but won't let you stop giving it to them until they're good and ready.
+
+## So Here We Are
+
+My new site is live. It's hosted for free on GitHub Pages. I own every file. I can delete it, move it, or burn it to the ground whenever I want because it's mine. No subscription. No billing department. No support agent reading from a script about how they "aren't allowed" to let me control my own digital life.
+
+And Wix? Wix is over there, holding onto a subscription to a service I will never use again, counting down the days until it expires, hoping maybe I'll click that 50% off button and come crawling back.
+
+I won't.
+
+But they'll keep the light on. Because apparently, turning it off is the one thing they can't do.
