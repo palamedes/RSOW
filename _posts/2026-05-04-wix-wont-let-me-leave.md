@@ -2,6 +2,7 @@
 title: "Wix Won't Let Me Leave"
 layout: post
 date: 2026-05-04
+image: /assets/images/posts/2026/wix-wont-let-me-leave.png
 categories: [Rant, Software]
 tags: []
 description: "I tried to cancel my Wix account. Four times. They blocked me at every turn. This is what dark patterns look like in the wild."
