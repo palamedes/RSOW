@@ -6,7 +6,6 @@ date: 2025-08-10
 categories:
 - Rant
 - Political
-tags: []
 description: "Nearly 11 million unauthorized border encounters in five years. History shows what happens when borders stop mattering — nations stop existing."
 excerpt: "A country without borders is no country. This isn't a far-right rant — it's historical pattern recognition from Rome to Sweden."
 ---

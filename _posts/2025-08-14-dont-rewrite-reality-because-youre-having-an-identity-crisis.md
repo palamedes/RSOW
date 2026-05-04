@@ -5,7 +5,6 @@ image: /assets/images/posts/2025/rewrite-reality.png
 date: 2025-08-14
 categories:
 - Rant
-tags: []
 description: "Words have meaning and language doesn't bend on command. Demanding linguistic compliance isn't inclusion — it's control with a thesaurus."
 excerpt: "You don't get to roll into the conversation with your own definitions like it's a Build-a-Word workshop and then act shocked when nobody plays along."
 ---
