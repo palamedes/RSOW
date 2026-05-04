@@ -2,6 +2,7 @@
 published: true
 type: post
 title: A bots route to localhost
+description: "A bot hit my server 50,000 times in 24 hours. Instead of just blocking it, we routed it back to localhost. Amuses the hell out of me."
 excerpt: Recently my server came under what I can only describe as an attack.  Clearly some poorly written bot was trying to slurp emails or some such and was sucking up bandwidth by repeatedly loading the same loop of pages.
 layout: post
 tags:

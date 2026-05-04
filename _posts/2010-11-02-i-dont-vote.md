@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I don't vote...
+description: "I don't vote and it's my right. Voting in ignorance is worse than not voting at all. The system is broken and one vote changes nothing."
 excerpt: So as a general rule, I don't vote.  I don't vote, and it's my right to do so.  Leave me alone.  Stop harassing me with mindless slogans and social pressure.  I choose, to not choose.
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: false
 type: post
 title: I must make.
+description: "As a software engineer I produce nothing physical. That's why I have a compulsion to build things with my hands -- I must make."
 excerpt: I must make -- and I don't mean I have to go to the bathroom really badly either.  Rather, I mean that I have a need to create things.
 layout: post
 tags:

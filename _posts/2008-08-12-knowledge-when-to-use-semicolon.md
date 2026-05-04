@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Knowledge: When to use semicolon.'
+description: "Two simple rules for using semicolons correctly: connecting independent clauses and serving as a super-comma in complex lists."
 excerpt: The semicolon is a simple piece of punctuation, much easier to work with than the comma because it follows fairly clear rules.  If you learn the two simple rules explained here, you'll rarely go wrong.  It has two main uses, which are both easy to identify.
 layout: post
 tags:

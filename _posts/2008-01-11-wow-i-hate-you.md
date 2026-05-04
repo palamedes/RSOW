@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Wow, I hate you!
+description: "World of Warcraft does almost everything right, but the game looks like it was built with Lego blocks. It's 2008 -- fix the graphics already."
 excerpt:  Warcraft, I hate you!   Okay I don't actually.. In fact, I think the game play is pretty good.  The social aspect is pretty good, the combat is pretty good, raiding can be fun, and it's a nice mindless game to play with your friends and loved ones..  In fact, just about everything is pretty good.
 layout: post
 tags:

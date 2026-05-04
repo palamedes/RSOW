@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I hate people...
+description: "Online gaming communities are full of anonymous cowards who act like jerks because nobody can stop them. A true test of character, and most fail it."
 excerpt: Acting obnoxiously on the internet is not only rude, but it's a cowardly act and you're pathetic if you behave that way.. How about you try something new for once..  Be nice..
 layout: post
 tags:

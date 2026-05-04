@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: GRID'
+description: "Codemasters GRID is a fantastic PC racing game with realistic damage and great multiplayer. Just make sure you have a wheel."
 excerpt: So, I have always liked racing games. Grand Turismo was always my favorite franchise on the PS2 because the game was absolutely beautiful and fun to play.  However, I hated always being tied to the PS2.
 layout: post
 tags:

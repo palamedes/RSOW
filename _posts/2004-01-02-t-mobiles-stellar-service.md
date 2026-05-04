@@ -2,6 +2,7 @@
 published: true
 type: post
 title: T-Mobile's Stellar Service
+description: "T-Mobile killed my internet access, lied about why it takes 48 hours to reconnect, and four support reps later I still have nothing."
 excerpt: T-Mobile used to be a damn good mobile carrier, but their service is starting to suck. Their customer service people lie, are generally rude, and talk down to you.
 layout: post
 tags:

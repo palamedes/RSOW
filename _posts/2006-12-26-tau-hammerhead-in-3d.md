@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Tau Hammerhead in 3D
+description: "Modeling a Warhammer 40k Tau Hammerhead in 3D, documented in 4-hour work blocks from rough mesh to textured model in Modo."
 excerpt:
 layout: post
 tags:

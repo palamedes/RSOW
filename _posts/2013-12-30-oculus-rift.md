@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Hardware Review: Oculus Rift'
+description: "First 48 hours with the Oculus Rift dev kit. Holy crap, it's awesome. Not perfect, but impressive as hell for a developer kit."
 excerpt: After my first 48 hours with the Oculus Rift;  Holy crap.  It's awesome.  Not perfect by any stretch of the meaning, but as developer kits go it's impressive as hell.  Once the final consumer version comes out, you should get one.
 layout: post
 tags:

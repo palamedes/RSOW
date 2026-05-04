@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Can't talk... playing Rock Band!
+description: "Rock Band 2 is like crack. My wife plays drums and I can't stop. They just need more Journey songs."
 excerpt: So I haven't updated my blog in a while because all my spare time has been spent playing Rockband 2.. It's like crack..
 layout: post
 tags:

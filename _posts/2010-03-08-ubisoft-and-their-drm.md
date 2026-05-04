@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Ubisoft and their DRM
+description: "Ubisoft's always-online DRM only punishes paying customers. Hackers cracked it in 24 hours. The pirates play fine while we can't."
 excerpt: When will companies learn that their draconian efforts to prevent piracy only serves to hurt their paying customers which directly affects their bottom line!!
 layout: post
 tags:

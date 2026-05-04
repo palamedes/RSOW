@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Software Development Costs
+description: "Every client wants the sky, the moon, and stars for free. Here's why custom software costs what it does -- you get what you pay for."
 excerpt: You get what you pay for and people some how refuse to learn that lesson with software.
 layout: post
 tags:

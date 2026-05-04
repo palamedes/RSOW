@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Games should be fun
+description: "Eve Online's new player experience is terrible and its PVE is nearly nonexistent. Games should be fun for the majority, not just a niche."
 excerpt: I fear that so many new games that are being created by small developers, like Infinity Earth, are so against creating what they call a "WoW clone" that they aren't willing to even look at some of the stuff that WoW did right.
 layout: post
 tags:

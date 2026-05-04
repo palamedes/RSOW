@@ -2,6 +2,7 @@
 published: true
 type: post
 title: PVP and Star Trek Online
+description: "Star Trek Online's opt-in PVP system might actually work. Here's why open-world PVP fails and why the griefers demanding it are wrong."
 excerpt: Firstly, I was really worried when I found out the end game for STO would be PVP-centric.  That just doesn't really work normally for any number of reasons which I wont go into just yet..
 layout: post
 tags:

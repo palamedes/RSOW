@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Polyester Resin Pens
+description: "Making pens from polyester resin instead of wood blanks. It's cheap, easy, and the results look great on a lathe."
 excerpt:
 layout: post
 tags:

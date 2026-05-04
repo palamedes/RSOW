@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Mercedes-Benz CLK350
+description: "Went window shopping for a Mitsubishi Eclipse, came home with a used 2007 Mercedes CLK350 at a pricing mistake. Best impulse buy ever."
 excerpt: So I have been in a the market for a new car for a while now.  I haven't really pushed for it with my wife because neither one of us really wanted a car payment and my truck, while almost 10 years old, worked just fine.
 layout: post
 tags:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Electoral college versus popular vote
+description: "Breaking down how the electoral college works versus the popular vote and why both systems have real trade-offs worth understanding."
 tags:
 - Voting
 categories:

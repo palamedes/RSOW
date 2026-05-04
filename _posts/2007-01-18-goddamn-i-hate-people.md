@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Goddamn I hate people..
+description: "Doing the speed limit on icy roads at night and some road-raging jackass brake-checks me after passing. If I'm doing the limit, I'm golden."
 excerpt: Some redneck jackass gets in behind me and is flashing his lights while tailgating..  Clearly I'm not going fast enough for him.
 layout: post
 tags:

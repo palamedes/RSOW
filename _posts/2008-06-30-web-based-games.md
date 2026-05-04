@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Web based games
+description: "Playing bad web games and realizing I could build something better. I'm a web developer -- why not make a browser-based space game?"
 excerpt: So I find I have been playing quite a few web based games of late.  And just about all of them has brought to the fore of my mind the glaring fact that there is nothing they have done that I can't do.   Seriously.
 layout: post
 tags:

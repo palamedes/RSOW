@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Earth to jason...
+description: "Haven't posted in a while because work is killing me. Playing Eve Online and Warhammer Online in what little spare time I have."
 excerpt: Someone asked me the other day why I hadn't posted a new ramble in a while..  I don't really have a good excuse other than to say, work is killing me..
 layout: post
 tags:

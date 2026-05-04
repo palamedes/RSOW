@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Replacing my cars computer with my own...
+description: "The Mercedes COMAND system in my CLK 350 sucks. I explored replacing it with a mini car computer and a custom dashboard touchscreen."
 excerpt: I have a Mercedes CLK 350 and it's a pretty good car.   I'm fairly happy with it, but frankly I feel that the Mercedes COMAND system sucks and has to go..  Okay maybe "has to go" is a bit harsh, but it's sub par to be sure.
 layout: post
 tags:

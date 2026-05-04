@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Happy Halloween 2009
+description: "Won best costume as the Wolf in grandmother's clothing at the annual Halloween bash. Melissa was a killer Little Red Riding Hood."
 excerpt: The annual Halloween bash that my friend and his wife put on was a success!   Every year my friend Calvin and his wife go NUTS with Halloween.. 
 layout: post
 tags:

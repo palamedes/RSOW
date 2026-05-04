@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Tipping is a gratuity!
+description: "Our waitress chased us to the parking lot to complain about a 10% tip after two hours of terrible service. Tipping should be earned, not demanded."
 excerpt: I really hate how in America today, and most likely the world wide, tipping is required.   Tipping is no longer a gratuity...
 layout: post
 tags:

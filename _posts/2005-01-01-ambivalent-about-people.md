@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Ambivalent about people
+description: "Sometimes I want to be a lone space trader where nobody gets in. Then some guy smacks me in a movie theater and proves my point."
 excerpt: Sometimes I wish I were alone, out in space.. A lone trader.. Just trying to make a living.. Not bothering anyone.. More to the point, not being bothered..
 layout: post
 tags:

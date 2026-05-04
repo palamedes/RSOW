@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Empire: Total War'
+description: "Empire Total War is good but the AI is appallingly bad. It just masses troops in a blob and marches straight at you. Fix it, patch it."
 excerpt: So I have long been a fan of the Total War franchise created by Creative Assembly..  Their games have always been pretty fun -- but most of them have been fairly buggy..
 layout: post
 tags:

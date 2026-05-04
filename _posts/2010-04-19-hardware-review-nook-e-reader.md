@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Hardware Review: Nook e-reader'
+description: "The Barnes & Noble Nook is well-built, runs Android, and has a solid book ecosystem. Minor gripes with page speed and the touchscreen."
 excerpt: So I have been in the market for an e-reader for a while.  I do a lot of reading and thought it would be darn handy to have a single device that could carry multiple books, and have the ability to order new books at any time, anywhere.
 layout: post
 tags:

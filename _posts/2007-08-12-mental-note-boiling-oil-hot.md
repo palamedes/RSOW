@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Mental Note:  Boiling oil = HOT!'
+description: "Tried making falafel. Splashed boiling oil on my fingers and took the skin clean off. Mental note: boiling oil is hot."
 excerpt: So I got it into my head today that I'd like to make some falafel.. my finger didn't thank me.
 layout: post
 tags:

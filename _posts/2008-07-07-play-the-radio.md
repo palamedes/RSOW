@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I can play the radio...
+description: "I need a new hobby that isn't programming or gaming. The Chapman Stick might be the instrument that finally speaks to me."
 excerpt: ... and that's about it.  When I was in middle and high school I was in band and played everything from the trombone to the baritone and tuba but my musical aspirations sorta died there.  So it's not that I don't have skill, or that I can't learn -- I just haven't.
 layout: post
 tags:

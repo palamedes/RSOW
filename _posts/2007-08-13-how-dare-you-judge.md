@@ -2,6 +2,7 @@
 published: true
 type: post
 title: How dare you judge!
+description: "College kids protesting Planned Parenthood from their BMWs, judging people in situations they've never been in. How dare they."
 excerpt:
 layout: post
 tags:

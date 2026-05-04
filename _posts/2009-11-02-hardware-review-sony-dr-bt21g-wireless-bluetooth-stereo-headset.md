@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Hardware Review:  Sony DR-BT21G Wireless Bluetooth Stereo Headset'
+description: "The Sony DR-BT21G Bluetooth stereo headset works great with my Mac Mini for music and Ventrilo. Light, comfortable, solid battery life."
 excerpt: In 1994 Jaap Haartsen and Sven Mattisson has a stroke of genius when they invented the personal area networking (PAN) protocol known today as Bluetooth for Ericsson phones.   By the year 2000 it was pretty widely known that Bluetooth was something hot!
 layout: post
 tags:

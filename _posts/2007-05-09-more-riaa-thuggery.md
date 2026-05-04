@@ -2,6 +2,7 @@
 published: true
 type: post
 title: More RIAA Thuggery
+description: "The RIAA pushed through royalty rates that would kill internet radio, charging webcasters 100-500% of revenue. They're burning the candle at both ends."
 excerpt: I maintain that the RIAA are a bunch of thugs and bullies with nothing better to do than harass not only you the consumer, but the artists themselves by using litigious threats and terrorist tactics to get their way.
 layout: post
 tags:

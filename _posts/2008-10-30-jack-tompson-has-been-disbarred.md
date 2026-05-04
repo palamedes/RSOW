@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Jack Tompson has been disbarred
+description: "Anti-gaming crusader Jack Thompson got permanently disbarred by the Florida Supreme Court. Headshot."
 excerpt: So, the infamous anti-gaming crusader Jack Thompson has finally met his match in the form of the Florida Supreme Court who this week permanently disbarred him while in the background the announcer yelled "headshot" for all to see his shame..
 layout: post
 tags:

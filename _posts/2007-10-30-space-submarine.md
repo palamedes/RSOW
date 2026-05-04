@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Space Submarine!
+description: "Playing Silent Hunter 3 got me thinking: future space combat would look more like submarine warfare than dogfighting. Stealth, sensors, and long-range weapons."
 excerpt: I have been playing the hell out of Silent Hunter 3 recently.  I have always enjoyed good submarine games, which can be tough to do in an age of few good submarine games heh..    The Silent Hunter games are excellent however, and I very much look forward to getting Silent Hunter 4 -- which is out already, but I've been forbidden to purchase since Christmas is coming up..
 layout: post
 tags:

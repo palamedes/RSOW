@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Fry's strikes again!
+description: "Fry's keeps reselling returned broken products as new. Every single thing I've bought there has been defective. Never again."
 excerpt: I'd rather have higher prices on products that actually work, rather than deal with your shit Fry's..
 layout: post
 tags:

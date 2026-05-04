@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Programming, and Me
+description: "From hand-assembling 6502 opcodes on a Vic-20 to PHP at IBM, this is how I became a programmer. You have to be brain damaged to like it."
 excerpt: I first started programming on the Commodore Vic-20.. That was back in the days of hand assembling 6502 opcodes and calculating branch offsets in my head.. And I wonder why I'm brain damaged..
 layout: post
 tags:

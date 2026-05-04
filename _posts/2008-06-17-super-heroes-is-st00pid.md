@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Super Heroes is st00pid
+description: "Back in City of Heroes again, discovering hidden depth -- and making 2 million INF flipping items because super heroes are stupid."
 excerpt: City of Heroes (and thus City of Villains) is one of those sleeper games that has a lot of hidden depth.  I played CoH for almost a year starting back in Feb. 2005 when it first came out.  I like to refer to it as MMO Lite.
 layout: post
 tags:

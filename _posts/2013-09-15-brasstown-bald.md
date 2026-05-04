@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Brasstown Bald, the highest natural point in Georgia.
+description: "Photos from hiking Brasstown Bald, Georgia's highest point at 4,784 feet. We hiked up and the views were worth every step."
 excerpt: Brasstown bald is the highest natural point in the state of Georgia with a summit elevation of 4,784 feet above mean sea level .. and we hiked up it.
 layout: post
 tags:

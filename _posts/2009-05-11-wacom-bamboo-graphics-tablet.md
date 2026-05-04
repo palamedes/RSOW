@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Wacom Bamboo Graphics Tablet
+description: "Picked up a $69 Wacom Bamboo tablet for 3D texturing in Modo. Painting directly on models is a game changer."
 excerpt: I have been getting back into 3D modeling lately and ran into my old nemesis -- texturing!  For whatever reason, I had never really been very good at texturing.  I think a lot of that was due to the way Lightwave did textures.
 layout: post
 tags:

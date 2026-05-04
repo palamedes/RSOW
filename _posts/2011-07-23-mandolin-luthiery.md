@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Mandolin Luthiery -- Making and playing the Mandolin
+description: "Combining my love of woodworking and music by building a mandolin from scratch. Bought an Ibanez to learn on while I figure out luthiery."
 excerpt: I decided to try my hand at becoming a hobby luthier (a maker of stringed instruments) and make myself something to play..    I went back and forth considering all the options and decided that for my first instrument I'd like to make a Mandolin.  
 layout: post
 tags:

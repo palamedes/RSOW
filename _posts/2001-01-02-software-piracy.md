@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Software Piracy
+description: "Software piracy isn't victimless. As a programmer who makes his living writing code, the real cost goes way beyond bits on a hard drive."
 excerpt: I got into another Software Piracy debate today.. People just don't get it. As a programmer that makes his living off the software that he writes; Its a tough thing to be stolen from in that manner.
 layout: post
 tags:

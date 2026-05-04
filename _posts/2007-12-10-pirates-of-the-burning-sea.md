@@ -2,6 +2,7 @@
 published: false
 type: post
 title: Pirates of the Burning Sea
+description: "Pirates of the Burning Sea beta has promise in ship combat but Sony will probably rush it out broken, because that's what they do."
 excerpt: I think PotBS could be a good game, but right now it's really really rough.  I fear it's gonna be yet another example of a game released before it was ready.  Sony is at the helm so of course this is to be expected.
 layout: post
 tags:

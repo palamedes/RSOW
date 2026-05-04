@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Greed Corp'
+description: "A review of Greed Corp, a modern turn-based strategy game with a clever land-collapsing mechanic that focuses on gameplay over graphics."
 excerpt: I have always liked turn based strategy games.. They used to be "the" game genre, but over the years as time and technology has marched forward they have largely started to decline in  favor of more real time strategy games and first person shooters.
 layout: post
 tags:

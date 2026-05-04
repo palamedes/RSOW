@@ -2,6 +2,7 @@
 published: true
 type: post
 title: The RIAA .. Pissing on the masses
+description: "The RIAA is suing XM for letting people record songs off satellite radio, which is 100% legal. Greedy, outdated, and signing their own death warrant."
 excerpt: So.. yet again the RIAA has decided to sue someone.. I know, shocking..   The RIAA, is suing XM for offering a device that allows people to record songs off the XM satellite service.
 layout: post
 tags:

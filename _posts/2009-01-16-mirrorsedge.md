@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Mirrors Edge'
+description: "Mirror's Edge has a great concept ruined by frustrating gameplay. The puzzle elements are fun -- the forced combat and instant deaths are not."
 excerpt: Mirrors Edge for the PC is a first person action-adventure puzzle game with an extremely compelling story line and quite possibly the most frustrating game play known to man.
 layout: post
 tags:

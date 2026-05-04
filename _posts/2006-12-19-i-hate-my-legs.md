@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I hate my legs
+description: "Severe restless leg syndrome means 3 hours of sleep a night and charley horses at 4am. I've tried everything. Nothing works."
 excerpt: I absolutely hate my legs.  Not in the typical woman, "my legs are fat" or "I have tube legs" sort of way, but rather in the "I have severe restless leg syndrome (active leg syndrome) and I think they are trying to kill me" sort of way..
 layout: post
 tags:

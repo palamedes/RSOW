@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Play the radio 2
+description: "Still can't play an instrument and I hate it. Thinking about learning violin or viola, maybe even building an electric violin."
 excerpt: So I had said previously that my musical talent ended pretty much at the ability to play the radio, and that I hated that..  I wrote that entry back in July of '08 and I still hate it..
 layout: post
 tags:

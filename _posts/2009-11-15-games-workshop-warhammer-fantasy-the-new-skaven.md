@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Games Workshop -- Warhammer Fantasy: The new Skaven'
+description: "The new Skaven army book brings back the Doomwheel and the self-destructive chaos I love. New plastic kits are fantastic."
 excerpt: I have been a Skaven player since the early 1990's.  They were the second fantasy army I got into after Orcs &amp; Goblins.  Once I found the blessing of the horned rat however, my love of all things green didn't last very long..   The Skaven were here to stay!
 layout: post
 tags:

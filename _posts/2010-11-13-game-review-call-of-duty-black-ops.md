@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Call of Duty Black Ops'
+description: "Call of Duty Black Ops shipped broken on PC. Unoptimized, crashes constantly, loses save games. Zero day patch culture has gone too far."
 excerpt: I really do enjoy the Call of Duty franchise..  It started out as a PC shooter back in 2003 and was pretty much heralded as the game to be or beat..  They continued with expansion after expansion and broadened their horizons to other machines.
 layout: post
 tags:

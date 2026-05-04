@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Dragon Age II'
+description: "Dragon Age II is a decent game on its own, but rushed out in 8 months it can't hold a candle to Origins. Reused dungeons get old fast."
 excerpt: So in my original Dragon Age review I began by asking "Can Bioware do no wrong?"   Apparently the answer is "Yes."
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 1055 Miles, on two wheels
+description: "Hauled a tractor to Tennessee by truck, rode my motorcycle 1055 miles home through the rain. $58 in gas and a sore back."
 excerpt: So my father turned 68 this year.  I thought it would be a nice gift to give him my tractor lawn mower and a few other items that I knew he could use that I simply no longer needed.   The main issue was getting the tractor to him..
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Vegas Baby!
+description: "Vegas has gone to hell. Overcrowded, porn flappers every five feet, and turbulent flights. But Cirque du Soleil's Ka was worth the trip."
 excerpt: Well we just got back from a three day in Vegas.. It was really only about 48 hours all together and I must admit, I'm glad to be home.
 layout: post
 tags:

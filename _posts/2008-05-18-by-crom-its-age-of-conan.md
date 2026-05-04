@@ -2,6 +2,7 @@
 published: true
 type: post
 title: By Crom, it's Age of Conan!
+description: "Age of Conan early access impressions -- 12 hours straight on day one. Funcom nailed the launch despite the forum doomsayers."
 excerpt: It's interesting.. I pride myself on beta testing just about every MMO that has ever been.. So I was a little sad when for whatever reason, the gods decided to not let me into the Age of Conan beta. 
 layout: post
 tags:

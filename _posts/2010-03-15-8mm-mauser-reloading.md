@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 8mm Mauser Reloading
+description: "Started reloading 8mm Mauser brass to get back into shooting. Cuts my cost per round in half. Now I just need a new rifle."
 excerpt: I really enjoy shooting..  I always have..  In the military I would go to the range every weekend and throw some rounds down range just for the pure joy of it..  And while I would sometimes shoot my pistols, I prefer rifles.. 
 layout: post
 tags:

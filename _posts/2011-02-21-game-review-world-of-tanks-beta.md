@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: World of Tanks (Beta)'
+description: "A review of World of Tanks beta. It's a lot of fun with tons of tanks to choose from, but it has some real flaws worth worrying about."
 excerpt: When I heard a buddy of mine tell me that he was playing a game called "World of Tanks" I thought he was kidding.. I thought he was making some reference to "tanking" in World of Warcraft or something..  But no, he was serious..
 layout: post
 tags:

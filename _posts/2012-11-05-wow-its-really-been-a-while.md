@@ -1,6 +1,7 @@
 ---
 layout: post
 title: wow it's really been a while
+description: "Life update: still building blog software in Ruby, planning to move from Texas to Georgia, and fighting a 7-year foundation battle with David Weekly."
 tags:
 categories:
 - Rant

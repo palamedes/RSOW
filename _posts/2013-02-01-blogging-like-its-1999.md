@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Blogging like its 1999!
+description: "I ditched WordPress for Jekyll and couldn't be happier. Static site generation in Ruby -- fast, secure, and no more constant exploits."
 excerpt: I have officially adopted Jekyll as my blogging solution, holy crap.. I love it.
 layout: post
 tags:

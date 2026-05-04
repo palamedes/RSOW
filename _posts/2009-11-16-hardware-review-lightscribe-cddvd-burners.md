@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Hardware Review: Lightscribe CD/DVD Burners'
+description: "LightScribe disc label burning is a cool idea but painfully slow, faded, and the labels can degrade over time. Close but not great."
 excerpt: Back in 2004 Hewlett-Packard engineer Daryl Anderson had the notion that if you can burn data on to a disc, why couldn't use use that same technology to burn the label?  And thus the LightScribe burner was born..
 layout: post
 tags:

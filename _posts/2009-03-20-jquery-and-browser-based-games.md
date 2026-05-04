@@ -2,6 +2,7 @@
 published: true
 type: post
 title: jQuery and Browser based games
+description: "jQuery's animate function could power browser-based games. Imagine a Masters of Orion remake running in your web browser."
 excerpt: I have been playing with the jQuery animate functionality a bit today and it occurred to me that jQuery would likely be the perfect library to build a browser based game on top of..
 layout: post
 tags:

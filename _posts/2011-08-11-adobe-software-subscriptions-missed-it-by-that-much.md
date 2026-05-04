@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Adobe software subscriptions -- Missed it by "that much"!
+description: "Adobe's subscription pricing is a great idea but they blew the execution. The price still alienates casual users and encourages piracy."
 excerpt: Recently Adobe announced that they would be offering their software at rental subscription prices and I was excited!   What a great idea!!  But did they do it right?  I don't think so.. but they are so close!
 layout: post
 tags:

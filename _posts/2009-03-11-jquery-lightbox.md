@@ -2,6 +2,7 @@
 published: true
 type: post
 title: jQuery Lightbox
+description: "Building my own lightbox plugin with jQuery. Any link with rel=\"lightbox\" opens a proper overlay -- and it was shockingly easy."
 excerpt: I have been playing with the javascript library jQuery for a couple days now.. My intent is to learn the ins and out's of it for a project at work.  So far I like what I am seeing.
 layout: post
 tags:

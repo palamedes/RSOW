@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Dr. Horrible's Sing-Along Blog
+description: "Joss Whedon's Dr. Horrible is a fantastic musical mini-series. Neil Patrick Harris steals the show and I want to join the Evil League of Evil."
 excerpt: Dr. Horrible's Sing-Along Blog is LEGEN-DARY!  (er.. sorry.. wrong show)..  Joss Whedon put together this little internet mini-series during the writers strike and its really very good.
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: The Sonic Infusion
+description: "The Sonic Infusion is a free podcast of skillfully mixed progressive house and trance. 120 episodes deep and it's my daily work soundtrack."
 excerpt: My music tastes range far and wide, but when it comes to some tunes to play in the background while working I find that good techno, house, or trance serve me the best.  I can really get into a groove when listening to this music.. 
 layout: post
 tags:

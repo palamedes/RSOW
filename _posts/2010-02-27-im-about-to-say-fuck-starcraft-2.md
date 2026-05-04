@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I'm about to say fuck Starcraft 2
+description: "Starcraft 2 beta has toxic players and terrible balance. Two Zerg couldn't beat one Terran in a 2v1. Done with this game."
 excerpt: So I have been playing in the Starcraft 2 beta and to be honest, I'm not overly impressed.  It's basically the same game brought forward with some refinement..  Fine.. Those who love it can play it..
 layout: post
 tags:

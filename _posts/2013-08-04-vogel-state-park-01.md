@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Vogel State Park
+description: "Photos from our first visit to Vogel State Park in Georgia. Fishing, hiking, boating, cabins -- a great spot to walk the dogs and unwind."
 excerpt: We decided to take a break from the unboxing/unpacking routine and ride the motorcycle to a local state park.
 layout: post
 tags:

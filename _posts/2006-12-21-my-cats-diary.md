@@ -2,6 +2,7 @@
 published: true
 type: post
 title: My Cats Diary
+description: "A cat's secret diary documenting life as a captive, from plotting escape to decapitating mice and vomiting on furniture as psychological warfare."
 excerpt:
 layout: post
 tags:

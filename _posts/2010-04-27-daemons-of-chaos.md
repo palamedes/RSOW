@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Games Workshop -- Warhammer: Daemons of Chaos'
+description: "Starting a Daemons of Chaos army for Warhammer Fantasy, going all Slaanesh. Plus a magnet trick for swapping square and round bases."
 excerpt: So I prefer Warhammer Fantasy to 40k..  I just think the rules are better, and the game as a whole has a lot of tactics and strategy to it, where as 40k is written more for the kids to be a fast paced shoot'em'up style game.  I still play 40k, but I prefer fantasy..
 layout: post
 tags:

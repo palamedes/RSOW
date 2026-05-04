@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Eve being bad and tools
+description: "Created a combat alt in Eve Online to gate camp, steal ore, and generally misbehave. Best advice: stop fearing death, it's just a game."
 excerpt: So as some of you know I have been playing the hell out of Eve..  I am really enjoying the game and things are going nicely.   I have created a baby combat alt on a second account that I use to PVP and generally misbehave and I'm enjoying it very much.
 layout: post
 tags:

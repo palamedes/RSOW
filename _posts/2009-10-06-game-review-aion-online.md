@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Aion Online'
+description: "Aion Online surprised me. Beautiful, deep, and the flight system is genuinely great. First MMO in a long time to hold up to my yardstick."
 excerpt: I have played a lot of MMO's in my time.. I feel I have a pretty good handle on the genre and have a very good idea of what makes a game good
 layout: post
 tags:

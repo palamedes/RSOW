@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Napoleon Total War'
+description: "Napoleon Total War is the most polished Total War yet, but the AI is still dreadful after six iterations. Drop-in battles are a great addition."
 excerpt: I have always been a fan of the Total War franchise, but in my opinion none of them have been all that great.  Good and fun in most cases, sure..
 layout: post
 tags:

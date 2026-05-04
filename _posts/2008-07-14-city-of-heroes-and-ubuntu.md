@@ -2,6 +2,7 @@
 published: true
 type: post
 title: City of Heroes and Ubuntu
+description: "City of Heroes has way more depth than I realized. Also got it running on Ubuntu with Wine -- works great."
 excerpt: I have been playing the hell out of City of Heroes over the last month or two. I have enjoyed it but will be happy to move on to something else..  City of heroes is one of my "stand by" games.  I find that I always come back to it simply because its quite mindless.. Good but simple..
 layout: post
 tags:

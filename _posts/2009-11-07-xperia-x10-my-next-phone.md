@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Xperia X10: My next phone?'
+description: "Apple crippled my first-gen iPhone on purpose. Now the Sony Ericsson Xperia X10 with Android and a 1GHz processor looks like my next phone."
 excerpt: On June 27th, 2007 (shortly after I got married) the iPhone came out.. I sort of waffled back and forth as to whether or not to get the iPhone or the N95.. 
 layout: post
 tags:

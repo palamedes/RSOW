@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Homebrew Rapid Prototyping
+description: "I want a 3D printer at home to make Warhammer 40k miniatures. The tech exists but costs $20k. Somebody make a $1,000 version already."
 excerpt: In the words of a friend.. "Santa clause machines are cool.."  and I can't agree more.
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Javascript Obfuscation
+description: "Don't obfuscate your JavaScript. You learned from view source -- hiding your code is a slap in the face to the community."
 excerpt: Code obfuscators will strip out the unnecessary characters like white space, tabs, newlines and comments.. but that's not all.
 layout: post
 tags:

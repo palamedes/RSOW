@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I want to go soaring
+description: "Powered flight is astronomically expensive so I'm looking at gliders instead. More fun, safer, and way cheaper than general aviation."
 excerpt: I can suffer flying commercial to go back and forth to Texas when I need to go because it's only $300 round trip, but to have fun in the sky I can use a glider.  It's more fun, safer and far cheaper that general aviation.
 layout: post
 tags:

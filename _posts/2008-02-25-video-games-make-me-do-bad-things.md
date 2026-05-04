@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Video games make me do bad things!
+description: "Blaming video games for school shootings is as crazy as saying God made me do it. People are responsible for their own actions."
 excerpt: So yet another campus shooting is in the headlines.  And yet again people are yelling that video games are the problem!  What a complete crock of shit..
 layout: post
 tags:

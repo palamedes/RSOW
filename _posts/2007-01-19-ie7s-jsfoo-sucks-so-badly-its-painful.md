@@ -2,6 +2,7 @@
 published: true
 type: post
 title: IE7's JSFoo sucks so badly it's painful!
+description: "IE7's JavaScript engine is slower than IE6, which was already slow as hell. The event model is broken and fromElement is unreliable garbage."
 excerpt: Since I work for IBM, I can't officially say that IE sucks in my code comments -- someone complained..
 layout: post
 tags:

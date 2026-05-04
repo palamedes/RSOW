@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Faith is a contradiction
+description: "Faith is the refuge of fools. A contradiction cannot exist in reality, and believing in one means abandoning your rational mind."
 excerpt: Faith is a device of self delusion, a slight of hands done with words and emotions founded on any irrational notion that can be dreamed up.  Faith is the attempt to coerce truth to surrender to whim.
 layout: post
 tags:

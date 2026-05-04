@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I'm a software guy...
+description: "Replaced my dead Ubuntu box with a Mac Mini. Leopard is fantastic, everything just works, and I'm never going to Vista. Long-time Windows user says so."
 excerpt: I have discovered as I have gotten older, and more experienced in the ways of computing that I just don't care what operating system I use.   I'm a software guy...
 layout: post
 tags:

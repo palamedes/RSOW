@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I kill a lot of harddrives
+description: "Another hard drive dead. My house is where HDDs go to die. Switching to SSDs because I'm tired of 1950s technology failing on me."
 excerpt: I swear every 5 or 6 months, I have another dead harddrive. It's not like I hate them or anything. I just can't keep them alive. 
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: It's been a year already?!
+description: "One year married, same anniversary card from different stores, and a meat hangover from Fogo de Chao. Life is good."
 excerpt: So I can't believe I have been married for a year already! A whole year has gone by in the blink of an eye! It must be magic, cause it really went by fast and everything is still peachy..
 layout: post
 tags:

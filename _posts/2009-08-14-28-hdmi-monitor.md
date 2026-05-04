@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 28" HDMI Monitor
+description: "Upgraded from a 20-inch to a 28-inch widescreen HDMI monitor for $279. I have to turn my head to see the whole screen in games."
 excerpt: So Tigerdirect was having a hell of a deal on something I have sorta wanted for  a while...   I have been playing games, programming, and generally tooling around on a 20" wide screen monitor for years now.
 layout: post
 tags:

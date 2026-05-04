@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Dawn of War 2'
+description: "Dawn of War 2 looks great but the NAT error bug from 2006 still isn't fixed. If Relic won't fix their netcode, don't buy their game."
 excerpt: I love Warhammer.  I have played Warhammer table top war game both fantasy and 40k pretty much since they came out.  I also have the Warhammer fantasy role playing game, the more recent Warhammer 40k role playing game and gave the Warhammer fantasy MMO a spin.
 layout: post
 tags:

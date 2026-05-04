@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Flip-top Workbench
+description: "Built a flip-top workbench to maximize tool space in my tiny garage workshop. No room for a proper shop, so you improvise."
 excerpt: Both of my grandfathers were darn good carpenters, and my father is too though he wont much admit it.  Well apparently I do alright myself!
 layout: post
 tags:

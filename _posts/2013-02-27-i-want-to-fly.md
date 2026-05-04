@@ -2,6 +2,7 @@
 published: true
 type: post
 title: So, I think I want to fly..
+description: "I've wanted to fly since my military days in a Cessna 152. Now I'm finally looking at getting my pilot's license and eyeing a Diamond DA42."
 excerpt: Something I have always wanted to do was learn to fly. When I was in the military in 1991 I had an opportunity through the USO to take advantage of a small flight training program ... Unfortunately I could not afford it.
 layout: post
 tags:

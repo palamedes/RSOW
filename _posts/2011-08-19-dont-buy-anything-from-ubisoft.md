@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Don't buy anything from Ubisoft...
+description: "Ubisoft treats paying customers like criminals with brutal DRM and no-return policies. If their software doesn't work, you're just out the money."
 excerpt: If you buy just about any product and have an issue with that product, you have a reasonable expectation of being able to take that product back and get a replacement.  Not with software.
 layout: post
 tags:

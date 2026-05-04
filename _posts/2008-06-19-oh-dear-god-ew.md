@@ -2,6 +2,7 @@
 published: true
 type: post
 title: OH dear god.. EW!
+description: "Found a Bud Light Chelada can on my walk. Beer and clamato juice in the same can. The last thing I want in my beer is shellfish."
 excerpt: I go on a lot of walks here in my neighborhood in order to unwind for the day.  I also like to delude myself and say its exercise but lets be honest, 3 miles every other day aint going to do much.
 layout: post
 tags:

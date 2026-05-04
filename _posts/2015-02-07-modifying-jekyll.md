@@ -2,6 +2,7 @@
 published: true
 type: post
 title: "Modifying Jekyll to track my RV-10 Build Log! Sorta..."
+description: "I wanted a build-log post type in Jekyll for my RV-10 project. Rewriting Jekyll wasn't going to fly, so I found a clever workaround."
 excerpt:  I started writing a special custom plugin that would allow me to have a new post type but the more I got into it the more I realized it would take a massive rewrite of the entire jekyll stack to make this happen.. So I cheated.. 
 layout: post
 tags:

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: My latest trip to TN and Dads new store
+description: "Visiting my father's new wood turning shop at Turkey Creek Market in Tennessee. The store looks great and the vendor community is solid."
 tags:
 - Wood Working
 categories:

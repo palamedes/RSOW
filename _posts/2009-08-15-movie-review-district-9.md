@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Movie Review: District 9'
+description: "District 9 is a heavy-handed apartheid allegory with gaping plot holes and underdeveloped characters, but damn if the CG mech porn isn't incredible."
 excerpt: My initial reaction to District 9, upon the movie ending was to say -- and I quote; "What the fuck was that?!"  I sort of felt like my soul had just been raped, and I was just beginning to feel the crush of information as I processed the movie I had just watched..
 layout: post
 tags:

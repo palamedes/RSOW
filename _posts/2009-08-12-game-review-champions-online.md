@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Champions Online'
+description: "Champions Online closed beta impressions. It's basically City of Heroes 2 with a better character creator. Pretty good, not groundbreaking."
 excerpt: Okay I know I'm not supposed to talk about this yet, but it's near enough to open beta that I feel I can safely talk about the game without giving anything important away -- or at the very least I think I'm safe from being sued..  (Please don't sue me..)
 layout: post
 tags:

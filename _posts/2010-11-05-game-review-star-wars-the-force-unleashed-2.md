@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Star Wars The Force Unleashed 2'
+description: "Force Unleashed 2 is gorgeous but the broken camera system and cheap quicktime events make it nearly unplayable. I uninstalled it mid-boss fight."
 excerpt: I never played the first Force Unleashed game and I sorta regretted it as I knew several folks who said it was a pretty good game..  So I was really excited when they announced a Force Unleashed 2 for the PC... Now I'm not sure why -- it's shit.
 layout: post
 tags:

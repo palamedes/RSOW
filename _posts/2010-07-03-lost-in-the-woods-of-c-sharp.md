@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Lost in the woods of C#
+description: "Trying to learn C# and nobody on the internet wants to help. The programming community gatekeeps knowledge like it's a secret club."
 excerpt: I'm really kind of frustrated at the general lack of helpful input from other people on the internet when it comes to trying to learn a new programming language.. 
 layout: post
 tags:

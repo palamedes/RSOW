@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Cryptic Studios
+description: "Cryptic dropped City of Heroes for Champions Online, then announced Star Trek Online too. Two major MMOs at once seems like a recipe for disaster."
 excerpt: Shooting themselves in the foot?  Mmm maybe..   I'm an avid MMO player and ever since Cryptic first announced City of Heroes back in 2002 I was in love with the idea of a super hero MMO.
 layout: post
 tags:

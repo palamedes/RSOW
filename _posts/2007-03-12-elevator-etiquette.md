@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Elevator Etiquette
+description: "Basic elevator rules that apparently nobody follows. Don't block the door, don't hammer the button, and for the love of god don't put on hairspray."
 excerpt: For anyone who has ever in their life previously, or may at some point in the future, use a vertical assention device - a.k.a. an Elevator.. This rant is for you!
 layout: post
 tags:

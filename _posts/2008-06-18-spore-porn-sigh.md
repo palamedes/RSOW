@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Spore Porn *sigh*
+description: "Give people an easy and powerful creature creator and of course someone makes Spore porn. People are asshats."
 excerpt: Spore is a multi-genre massively single-player online game designed by Will Wright and has drawn quite a lot of attention due to its massive scope and open ended game play.
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Hardware Review: Razer Mamba -- What a piece of shit!'
+description: "The Razer Mamba is the worst mouse I've ever used. Terrible battery life, constant sleep deaths, and their firmware update bricked it."
 excerpt: Let me be clear here -- this mouse is the biggest piece of shit, I have ever.. and I mean.. EVER used..
 layout: post
 tags:

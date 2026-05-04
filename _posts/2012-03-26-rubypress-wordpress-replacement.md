@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RubyPress Wordpress Replacement
+description: "Building my own open-source WordPress replacement in Ruby on Rails. PHP had its run, time to move on to something better."
 tags:
 - Ruby
 - Ruby on Rails

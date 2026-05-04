@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Out of time, Site Future Plans, Life Goals, Etc..
+description: "Sold my half of the software company and still figuring out what's next. Twenty years in software makes a clean break feel impossible."
 excerpt: Well, it's that time again.  Time for me to talk about how I never post any more and how I have no time.  Life is super busy, I'm doing too many things, I need to find time. etc.. Feh.. These are all lies. 
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: I hate commercial airplanes
+description: "I hate flying commercial -- 150 people crammed in a metal tube. But then the copilot let me sit in the 737 cockpit for 30 minutes."
 excerpt: I used to think I hated traveling in general, but the more I ponder it the more I realize that I like to travel. ... I just don't like to fly commercial.
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Night Sky'
+description: "NightSky is a $9 indie gem on Steam with elegant physics puzzles and depth that big-budget games wish they had. My only gripe is the resolution."
 excerpt: So in a fit of boredom last night I downloaded an indy game off Steam called "NightSky" for the low price of $9. What a great game!
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Assassins Creed
+description: "Assassins Creed PC review -- a smart, stealthy game with impressive mechanics, held back by unintuitive console-port controls."
 excerpt: Another console to PC port that's been out since April, Assassins Creed is a third person sneaker created by Ubisoft in which the player repeatedly delves into his genetic memory in order to assume the role of a 12th century assassin...
 layout: post
 tags:

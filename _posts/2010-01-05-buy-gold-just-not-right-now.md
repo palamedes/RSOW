@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Buy gold!!!  (Just not right now.. )
+description: "Gold is at an all-time high of $1120/oz. That means now is the worst time to buy. The sellers get rich, you take the hit when it crashes."
 excerpt: So there are a lot of people, some famous, trying to get you to buy gold..  While I was in the car dealership the other day in the waiting area they had the TV playing and there was something like 10 different gold resellers trying to convince us that NOW is the time to buy gold..
 layout: post
 tags:

@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Software Review: Windows 7 Beta'
+description: "Windows 7 is what Vista should have been. It's basically a Vista refactor with a rebrand, and honestly, I kind of like it."
 excerpt: I'm generally slow to change operating systems..  When it comes to making one of those sweeping changes, traditionally I was the equivalent of an old man on his porch yelling for "you kids to get off my lawn!"   I was a curmudgeon and quite often would refuse to budge.
 layout: post
 tags:

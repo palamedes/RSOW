@@ -2,6 +2,7 @@
 published: true
 type: post
 title: 'Game Review: Left 4 Dead'
+description: "Left 4 Dead gets 4.5 out of 5. The versus mode is incredible and the AI director makes every playthrough different."
 excerpt: I have to admit that I'm not a huge fan of zombie thrillers, so I was hesitant about picking up the latest game from Valve; Left 4 Dead.  I just don't really get why people like zombies so much..
 layout: post
 tags:

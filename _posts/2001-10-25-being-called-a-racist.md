@@ -2,6 +2,7 @@
 published: true
 type: post
 title: Being called a racist...
+description: "I refused to judge people by race during a police board interview and got failed for it. Apparently not being racist makes you inadequate."
 excerpt: I refused to judge a person based on their race.. but in turn was judged and called a racist.
 layout: post
 tags:
