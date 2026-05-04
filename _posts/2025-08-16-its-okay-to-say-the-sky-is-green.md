@@ -5,6 +5,7 @@ image: /assets/images/posts/2025/sky-is-green.png
 date: 2025-08-16
 categories:
 - Rant
+tags:
 description: "Corporate America fires people for opinions now. We went from 'agree to disagree' to 'agree or be unemployed.' That's not culture — it's cowardice."
 excerpt: "No company worth a damn would fire you for having an opinion. If your entire HR strategy is 'don't get yelled at on Twitter,' you're not a business — you're a wet nap."
 ---
