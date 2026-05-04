@@ -7,7 +7,7 @@ layout: post
 tags:
 - Experience
 categories:
-- Software Development
+- Software
 image:
 ribbon:
 tile_size: 1x1

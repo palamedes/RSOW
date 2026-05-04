@@ -6,7 +6,7 @@ excerpt: I really hate how in America today, and most likely the world wide, tip
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

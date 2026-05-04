@@ -7,7 +7,7 @@ layout: post
 tags:
 - Experience
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

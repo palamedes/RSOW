@@ -6,7 +6,7 @@ excerpt: I have a Mercedes CLK 350 and it's a pretty good car.   I'm fairly hap
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2011/04/DSH-039-2.jpg
 ribbon:
 private: false

@@ -7,7 +7,7 @@ layout: post
 tags:
  - Software
 categories:
- - RandomStrings
+ - Rant
 image: /assets/images/2014/03/Litecoin.jpg
 gallery:
 ribbon:

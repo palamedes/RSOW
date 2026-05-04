@@ -7,8 +7,8 @@ layout: post
 tags:
 - Review
 categories:
-- Rants!
-- RandomStrings
+- Rant
+- Rant
 image: /assets/images/2009/10/razer-mamba-150x150.jpg
 ribbon:
 private: false

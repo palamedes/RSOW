@@ -7,7 +7,7 @@ layout: post
 tags:
 - RIAA
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

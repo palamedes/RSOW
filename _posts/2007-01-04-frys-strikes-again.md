@@ -6,7 +6,7 @@ excerpt: I'd rather have higher prices on products that actually work, rather th
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/08/district9-poster-200x300.jpg
 ribbon:
 private: false

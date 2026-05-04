@@ -6,7 +6,7 @@ excerpt: I absolutely hate my legs.  Not in the typical woman, "my legs are fat"
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

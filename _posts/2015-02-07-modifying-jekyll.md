@@ -8,7 +8,7 @@ tags:
  - Ruby
  - Jekyll
 categories:
- - Software Development
+ - Software
 image: /assets/images/2015/02/build-log.png
 gallery:
 ribbon:

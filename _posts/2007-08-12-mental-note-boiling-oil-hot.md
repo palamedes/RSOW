@@ -6,7 +6,7 @@ excerpt: So I got it into my head today that I'd like to make some falafel.. my 
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2007/08/owwie.jpg
 ribbon:
 tile_size: 1x1

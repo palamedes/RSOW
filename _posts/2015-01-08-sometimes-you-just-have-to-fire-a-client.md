@@ -7,7 +7,7 @@ layout: post
 tags:
  - Business
 categories:
- - Software Development
+ - Software
 image: /assets/images/2015/01/fired-image-web.jpg
 gallery:
 ribbon:

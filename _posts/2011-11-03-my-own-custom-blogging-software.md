@@ -6,7 +6,7 @@ excerpt: As many of you know, I am very much my own special kind of nerd.  I en
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2011/11/iframe.jpg
 ribbon:
 private: false

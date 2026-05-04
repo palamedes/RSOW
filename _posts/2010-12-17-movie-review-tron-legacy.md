@@ -8,7 +8,7 @@ tags:
 - Movie
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/12/Tron-Legacy-Poster.jpg
 ribbon:
 tile_size: 1x2

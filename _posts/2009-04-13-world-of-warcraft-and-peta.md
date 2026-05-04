@@ -6,7 +6,7 @@ excerpt: So, on Saturday the 11th of April, PETA (People for the Ethical Treatme
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2009/04/sealclub.jpg
 ribbon:
 private: false

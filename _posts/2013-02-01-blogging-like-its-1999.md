@@ -7,7 +7,7 @@ layout: post
 tags:
 - Ruby
 categories:
-- Software Development
+- Software
 image: /assets/images/2013/01/jekyll.png
 gallery:
 ribbon:

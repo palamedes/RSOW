@@ -6,7 +6,7 @@ excerpt: Since I work for IBM, I can't officially say that IE sucks in my code c
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

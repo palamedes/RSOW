@@ -6,7 +6,7 @@ excerpt: Most gamers typically play games online, download expansions or other f
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/04/netneutrality-150x150.jpg
 ribbon:
 private: false

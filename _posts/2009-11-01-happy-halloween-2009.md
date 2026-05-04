@@ -7,7 +7,7 @@ layout: post
 tags:
 - Melissa
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/11/littleredridinghoodpluswolf.jpg
 ribbon:
 private: false

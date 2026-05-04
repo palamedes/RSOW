@@ -6,7 +6,7 @@ excerpt: I'm really kind of frustrated at the general lack of helpful input from
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2010/07/csharpquestion.jpg
 ribbon:
 private: false

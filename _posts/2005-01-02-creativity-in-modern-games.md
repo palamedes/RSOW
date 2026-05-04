@@ -6,7 +6,7 @@ excerpt: One of the main issues with games today is that they are all striving v
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

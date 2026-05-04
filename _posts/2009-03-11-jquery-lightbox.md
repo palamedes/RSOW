@@ -6,7 +6,7 @@ excerpt: I have been playing with the javascript library jQuery for a couple day
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2009/03/rocky-mountains-poster.jpg
 ribbon:
 private: false

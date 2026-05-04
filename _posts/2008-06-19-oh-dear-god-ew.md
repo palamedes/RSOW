@@ -6,7 +6,7 @@ excerpt: I go on a lot of walks here in my neighborhood in order to unwind for t
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2008/06/blclamato.jpg
 ribbon:
 private: false

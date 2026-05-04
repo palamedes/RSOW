@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/11/592px-CDLabelLightScribe_WikipediaLogo.jpg
 ribbon:
 private: false

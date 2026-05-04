@@ -7,7 +7,7 @@ layout: post
 tags:
 - Subluxation
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 private: false

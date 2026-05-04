@@ -6,7 +6,7 @@ excerpt: At work I use just about nothing but Linux.  Even my IBM issued laptop
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

@@ -6,7 +6,7 @@ excerpt: Well we just got back from a three day in Vegas.. It was really only ab
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

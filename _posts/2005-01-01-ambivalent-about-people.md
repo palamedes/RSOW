@@ -6,7 +6,7 @@ excerpt: Sometimes I wish I were alone, out in space.. A lone trader.. Just tryi
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

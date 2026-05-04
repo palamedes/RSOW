@@ -6,7 +6,7 @@ excerpt: So I wasn't terribly shocked to find a brand new penny in my hand upon 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2009/04/2009pennyuncobvthumb.jpg
 ribbon:
 private: false

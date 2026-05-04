@@ -6,7 +6,7 @@ excerpt: I have moved my hosting off Hostgator because frankly, they suck.   My
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2011/06/hostgator_sucks.jpg
 ribbon:
 private: false

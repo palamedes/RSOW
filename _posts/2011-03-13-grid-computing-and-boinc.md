@@ -8,7 +8,7 @@ tags:
 - Boinc
 categories:
 - Hobbies
-- Software Development
+- Software
 image: http://www.boincstats.com/signature/user_238192.gif
 ribbon:
 private: false

@@ -9,7 +9,7 @@ tags:
 - DRM
 categories:
 - Games
-- Rants!
+- Rant
 image: /assets/images/2010/03/drm.jpg
 ribbon:
 private: false

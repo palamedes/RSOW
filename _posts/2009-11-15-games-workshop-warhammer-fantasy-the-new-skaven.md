@@ -7,7 +7,7 @@ layout: post
 tags:
 - Warhammer
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/11/skaven-head.jpg
 ribbon:
 private: false

@@ -6,7 +6,7 @@ excerpt: Everywhere I turn.. Advertising! It's everywhere! Right now, thanks to 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

@@ -6,7 +6,7 @@ excerpt: Recently I decided it was time to upgrade both my blogging software, an
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

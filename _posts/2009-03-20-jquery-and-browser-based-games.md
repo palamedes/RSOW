@@ -6,7 +6,7 @@ excerpt: I have been playing with the jQuery animate functionality a bit today a
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2009/03/t-and-c-surf-designs.png
 ribbon:
 private: false

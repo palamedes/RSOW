@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/09/30652075.jpg
 ribbon:
 private: false

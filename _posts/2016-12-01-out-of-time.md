@@ -6,7 +6,7 @@ excerpt: Well, it's that time again.  Time for me to talk about how I never post
 layout: post
 tags:
 categories:
- - Rants!
+ - Rant
 image: /assets/images/2016/out-of-time.jpg
 gallery:
 ribbon:

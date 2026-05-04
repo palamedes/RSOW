@@ -6,7 +6,7 @@ excerpt: What has been solved today? Oh yeah.. You sure showed us.. What was the
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

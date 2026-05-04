@@ -10,7 +10,7 @@ tags:
 - Piracy
 - Ubisoft
 categories:
-- Rants!
+- Rant
 image: /assets/images/2011/08/ubisoft-no.jpg
 ribbon:
 private: false

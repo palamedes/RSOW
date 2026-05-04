@@ -6,7 +6,7 @@ excerpt: On June 27th, 2007 (shortly after I got married) the iPhone came out.. 
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/11/X10-overview-top.jpg
 ribbon:
 private: false

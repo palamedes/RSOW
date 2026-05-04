@@ -6,7 +6,7 @@ excerpt: I used to think I hated traveling in general, but the more I ponder it 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2008/08/airplanecockpit-150x150.jpg
 ribbon:
 private: false

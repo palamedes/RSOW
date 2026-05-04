@@ -7,7 +7,7 @@ layout: post
 tags:
 categories:
 - Games
-- Rants!
+- Rant
 image: /assets/images/2008/06/claymore.jpg
 ribbon:
 private: false

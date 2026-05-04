@@ -7,7 +7,7 @@ layout: post
 tags:
 - Marriage
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2008/06/samecards.jpg
 ribbon:
 private: false

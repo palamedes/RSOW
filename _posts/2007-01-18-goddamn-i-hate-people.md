@@ -6,7 +6,7 @@ excerpt: Some redneck jackass gets in behind me and is flashing his lights while
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

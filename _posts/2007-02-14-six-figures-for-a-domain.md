@@ -6,7 +6,7 @@ excerpt: As some of you know, I was the creator of Palavista.com
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

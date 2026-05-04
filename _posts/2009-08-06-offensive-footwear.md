@@ -6,7 +6,7 @@ excerpt: So a co-worker of mine showed up wearing what, at the time, I could onl
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2009/08/feets-150x150.png
 ribbon:
 private: false

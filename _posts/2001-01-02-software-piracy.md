@@ -6,7 +6,7 @@ excerpt: I got into another Software Piracy debate today.. People just don't get
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

@@ -6,7 +6,7 @@ excerpt: I swear every 5 or 6 months, I have another dead harddrive. It's not li
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/09/hard-drive-Logo.jpg
 ribbon:
 private: false

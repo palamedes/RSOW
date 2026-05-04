@@ -7,7 +7,7 @@ layout: post
 tags:
 categories:
 - Hobbies
-- RandomStrings
+- Rant
 image: /assets/images/2008/07/sticks.jpg
 ribbon:
 private: false

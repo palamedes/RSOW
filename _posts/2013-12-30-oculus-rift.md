@@ -8,7 +8,7 @@ tags:
 - Review
 - Hardware
 categories:
-- Software Development
+- Software
 - Hobbies
 image: /assets/images/2013/12/oculus.jpg
 gallery:

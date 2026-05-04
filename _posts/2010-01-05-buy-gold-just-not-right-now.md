@@ -6,7 +6,7 @@ excerpt: So there are a lot of people, some famous, trying to get you to buy gol
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2010/01/gold-150x150.jpg
 ribbon:
 private: false

@@ -6,7 +6,7 @@ excerpt: So I have been in a the market for a new car for a while now.  I haven
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/03/mb1-150x150.jpg
 ribbon:
 private: false

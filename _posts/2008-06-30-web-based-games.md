@@ -7,7 +7,7 @@ layout: post
 tags:
 categories:
 - Games
-- Software Development
+- Software
 image:
 ribbon:
 private: false

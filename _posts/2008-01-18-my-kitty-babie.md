@@ -7,7 +7,7 @@ layout: post
 tags:
 - Babie
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2008/01/babieandme.jpg
 ribbon:
 private: false

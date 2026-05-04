@@ -7,7 +7,7 @@ layout: post
 tags:
 - Voting
 categories:
-- Rants!
+- Rant
 image: /assets/images/2010/11/votingprocess.jpg
 ribbon:
 tile_size: 2x2

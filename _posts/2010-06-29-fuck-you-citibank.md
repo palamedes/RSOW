@@ -6,7 +6,7 @@ excerpt: Well the other day I went to pay off my card and I noticed that they bu
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2010/06/citibank_logo.jpg
 ribbon:
 private: false

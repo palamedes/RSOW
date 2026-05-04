@@ -6,7 +6,7 @@ excerpt: I am far from a linux "fanboi", in fact until recently I didn't really 
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 - Hobbies
 image: /assets/images/2008/01/ubuntulogo.png
 ribbon:

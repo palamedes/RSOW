@@ -7,7 +7,7 @@ layout: post
 tags:
  - Business
 categories:
- - Software Development
+ - Software
 image: /assets/images/2015/08/greed.jpg
 gallery:
 ribbon:

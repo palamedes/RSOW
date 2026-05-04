@@ -6,7 +6,7 @@ excerpt: I am not financial wiz-kid here. Infact, ever since my girl friend move
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

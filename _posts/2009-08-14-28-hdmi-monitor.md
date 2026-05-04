@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/08/monitor-150x150.jpg
 ribbon:
 private: false

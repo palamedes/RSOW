@@ -6,7 +6,7 @@ tags:
 - Ruby on Rails
 - WordPress
 categories:
-- Software Development
+- Software
 excerpt: So a while back I had thought my WordPress install was getting exploited through some bug and decided I wanted to write my own replacement...
 published: true
 type: post

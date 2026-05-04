@@ -4,7 +4,7 @@ title: Electoral college versus popular vote
 tags:
 - Voting
 categories:
-- RandomStrings
+- Rant
 excerpt: So, with the 2012 presidential election finally over, I'd like to discuss some of the things that I saw during the whole shebang...
 published: true
 type: post

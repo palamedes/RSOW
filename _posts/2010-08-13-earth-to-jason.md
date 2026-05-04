@@ -6,7 +6,7 @@ excerpt: Someone asked me the other day why I hadn't posted a new ramble in a wh
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 private: false

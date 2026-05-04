@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/04/nook_angle-view.jpg
 ribbon:
 private: false

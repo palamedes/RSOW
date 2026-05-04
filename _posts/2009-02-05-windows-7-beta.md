@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/02/vista_7_1-150x150.jpg
 ribbon:
 private: false

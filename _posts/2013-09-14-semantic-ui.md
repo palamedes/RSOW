@@ -7,7 +7,7 @@ layout: post
 tags:
 - UX
 categories:
-- Software Development
+- Software
 image: /assets/images/2013/09/semanticui01.jpg
 gallery:
 ribbon:

@@ -7,7 +7,7 @@ layout: post
 tags:
 - Review
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/10/logitech_illuminated_keyboard.jpg
 ribbon:
 private: false

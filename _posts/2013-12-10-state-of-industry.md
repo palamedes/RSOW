@@ -6,7 +6,7 @@ excerpt: When your software goes from 'magic' to just another tool in your toolb
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2013/12/cliff.jpg
 gallery:
 ribbon:

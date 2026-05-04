@@ -6,7 +6,7 @@ excerpt: For anyone who has ever in their life previously, or may at some point 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

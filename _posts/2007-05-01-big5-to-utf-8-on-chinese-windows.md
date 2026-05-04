@@ -6,7 +6,7 @@ excerpt: Microsoft has yet again been a source of pain for me.. And let me say t
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image:
 ribbon:
 tile_size: 1x1

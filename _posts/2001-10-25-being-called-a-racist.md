@@ -6,7 +6,7 @@ excerpt: I refused to judge a person based on their race.. but in turn was judge
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

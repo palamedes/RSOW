@@ -6,7 +6,7 @@ excerpt: Dr. Horrible's Sing-Along Blog is LEGEN-DARY!  (er.. sorry.. wrong show
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2008/07/drhorriblesvertical.gif
 ribbon:
 private: false

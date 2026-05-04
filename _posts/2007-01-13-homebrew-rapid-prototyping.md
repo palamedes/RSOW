@@ -6,7 +6,7 @@ excerpt: In the words of a friend.. "Santa clause machines are cool.."  and I ca
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 tile_size: 1x1

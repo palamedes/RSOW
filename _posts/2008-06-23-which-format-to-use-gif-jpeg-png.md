@@ -6,7 +6,7 @@ excerpt: I was asked today what my professional opinion was with regards to whic
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2008/06/pngdemo.png
 ribbon:
 private: false

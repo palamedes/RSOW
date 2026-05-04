@@ -9,7 +9,7 @@ tags:
 - Piracy
 - Software
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2011/08/adobe-logo-150x150.png
 ribbon:
 private: false

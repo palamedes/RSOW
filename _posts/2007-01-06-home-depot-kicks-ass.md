@@ -6,7 +6,7 @@ excerpt: Home Depot kicks ass - they make things simple and good, even when they
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 - Hobbies
 image:
 ribbon:

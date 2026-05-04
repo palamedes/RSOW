@@ -7,7 +7,7 @@ layout: post
 tags:
 - Costs
 categories:
-- Software Development
+- Software
 image: /assets/images/2013/12/software-development-costs.jpg
 gallery:
 ribbon:

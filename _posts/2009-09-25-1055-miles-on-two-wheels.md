@@ -8,7 +8,7 @@ tags:
 - Roadtrip
 - Motorcycle
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/09/Motorcycle-Pic-2.JPG
 ribbon:
 private: false

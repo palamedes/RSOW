@@ -6,7 +6,7 @@ excerpt: Well the wife and I are back from Blizzcon..  I have to admit she had 
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/08/blizzcon-logo.png
 ribbon:
 private: false

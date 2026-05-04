@@ -3,7 +3,7 @@ layout: post
 title: wow it's really been a while
 tags:
 categories:
-- RandomStrings
+- Rant
 excerpt: Hey guys, I'm went dark for quite some time apparently and I didn't really mean to let this much time passed since my last post..
 published: true
 type: post

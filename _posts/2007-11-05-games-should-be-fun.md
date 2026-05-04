@@ -7,7 +7,7 @@ layout: post
 tags:
 categories:
 - Games
-- Rants!
+- Rant
 image:
 ribbon:
 private: false

@@ -6,7 +6,7 @@ excerpt: Today I found that if you have the developer tools open and click / hol
 layout: post
 tags:
 categories:
-- Software Development
+- Software
 image: /assets/images/2013/04/google-chrome-hard-refresh.png
 gallery:
 ribbon:

@@ -6,7 +6,7 @@ excerpt: I understand brand loyalty, but Apple fanatics take it to extremes..  
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2010/02/apple_fanboy.jpg
 ribbon:
 tile_size: 2x2

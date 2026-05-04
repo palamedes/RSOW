@@ -7,7 +7,7 @@ layout: post
 tags:
 - Javascript
 categories:
-- Software Development
+- Software
 image:
 ribbon:
 private: false

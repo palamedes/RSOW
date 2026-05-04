@@ -6,7 +6,7 @@ excerpt: Recently my server came under what I can only describe as an attack.  C
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image:
 ribbon:
 private: false

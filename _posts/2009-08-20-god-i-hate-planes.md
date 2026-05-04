@@ -6,7 +6,7 @@ excerpt: Dear god but I hate flying on major airlines.  It's just not happy fun 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 private: false

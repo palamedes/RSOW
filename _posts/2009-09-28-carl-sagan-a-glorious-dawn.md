@@ -6,7 +6,7 @@ excerpt: The following is a wonderful and fitting tribute to Carl Sagan created 
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/09/carl.jpg
 ribbon:
 private: false

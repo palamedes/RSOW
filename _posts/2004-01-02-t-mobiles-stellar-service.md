@@ -6,7 +6,7 @@ excerpt: T-Mobile used to be a damn good mobile carrier, but their service is st
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1

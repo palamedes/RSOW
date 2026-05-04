@@ -6,7 +6,7 @@ excerpt:  "Updates are ready for your computer.  Click here to download these 
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2008/09/software.png
 ribbon:
 private: false

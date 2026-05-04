@@ -7,7 +7,7 @@ layout: post
 tags:
 - Warhammer
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/06/10minork.jpg
 ribbon:
 tile_size: 2x1

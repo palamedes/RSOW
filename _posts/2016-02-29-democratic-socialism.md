@@ -7,7 +7,7 @@ layout: post
 tags:
  - Democratic Socialism
 categories:
- - Rants!
+ - Rant
 image: /assets/images/2016/socialism.png
 gallery:
 ribbon:

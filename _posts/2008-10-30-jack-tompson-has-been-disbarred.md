@@ -6,7 +6,7 @@ excerpt: So, the infamous anti-gaming crusader Jack Thompson has finally met his
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 private: false

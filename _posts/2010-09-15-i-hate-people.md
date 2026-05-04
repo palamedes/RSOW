@@ -6,7 +6,7 @@ excerpt: Acting obnoxiously on the internet is not only rude, but it's a cowardl
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image: /assets/images/2010/09/internet_dickwad_theory.gif
 ribbon:
 private: false

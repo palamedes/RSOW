@@ -7,7 +7,7 @@ layout: post
 tags:
 - Educational
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2009/08/124211417018024.jpg
 ribbon:
 tile_size: 1x2

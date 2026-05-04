@@ -6,7 +6,7 @@ excerpt: I want one.. So I have gone above and beyond out of my way to avoid lea
 layout: post
 tags:
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/04/troncycle01.jpg
 ribbon:
 tile_size: 1x2

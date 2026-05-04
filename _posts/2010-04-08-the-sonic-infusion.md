@@ -7,7 +7,7 @@ layout: post
 tags:
 - Media
 categories:
-- RandomStrings
+- Rant
 image: /assets/images/2010/04/si-150x150.jpg
 ribbon:
 private: true

@@ -6,7 +6,7 @@ excerpt: Faith is a device of self delusion, a slight of hands done with words a
 layout: post
 tags:
 categories:
-- Rants!
+- Rant
 image:
 ribbon:
 tile_size: 1x1
