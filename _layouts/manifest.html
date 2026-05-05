@@ -1,0 +1,16 @@
+---
+---
+{
+  "id": {{ page.game_id | jsonify }},
+  "title": {{ page.title | jsonify }},
+  "author": {{ page.author | jsonify }},
+  "credits": {{ page.credits | jsonify }},
+  "intro": {{ page.intro | jsonify }},
+  "start_room": {{ page.start_room | jsonify }},
+  "treasure_room": {{ page.treasure_room | jsonify }},
+  "treasure_count": {{ page.treasure_count | default: 0 | jsonify }},
+  "lamp_turns": {{ page.lamp_turns | default: 60 | jsonify }},
+  "items": {{ page.items | jsonify }},
+  "verbs": {{ page.verbs | jsonify }},
+  "triggers": {{ page.triggers | jsonify }}
+}

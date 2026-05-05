@@ -1,0 +1,10 @@
+---
+---
+{% assign exits = page.exits | default: empty %}
+{
+  "id": {{ page.room_id | jsonify }},
+  "name": {{ page.name | jsonify }},
+  "exits": {{ exits | jsonify }},
+  "dark": {{ page.dark | default: false | jsonify }},
+  "description": {{ content | strip_html | strip | jsonify }}
+}

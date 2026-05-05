@@ -1,0 +1,20 @@
+<div id="adventure-modal" class="adv-modal" aria-hidden="true">
+  <div class="adv-modal-backdrop" data-adv-close></div>
+  <div class="adv-modal-window" role="dialog" aria-labelledby="adv-modal-title">
+    <header class="adv-modal-bar">
+      <span id="adv-modal-title" class="adv-modal-title">ADVENTURE</span>
+      <span class="adv-modal-controls">
+        <button type="button" class="adv-modal-btn" data-adv-action="credits" title="Credits">?</button>
+        <button type="button" class="adv-modal-btn" data-adv-close title="Close">&times;</button>
+      </span>
+    </header>
+    <div class="adv-modal-screen">
+      <div id="adv-output" class="adv-output" aria-live="polite"></div>
+      <form id="adv-form" class="adv-input-line" autocomplete="off">
+        <span class="adv-prompt">&gt;</span>
+        <input id="adv-input" type="text" class="adv-input" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="80" />
+      </form>
+    </div>
+  </div>
+</div>
+<script src="{{ '/assets/js/adventure.js' | relative_url }}" defer></script>

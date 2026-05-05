@@ -32,6 +32,18 @@ jekyll-archives:
     category: /category/:name/
     tag: /tag/:name/
 
+# Collections
+collections:
+  games:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: games
+    values:
+      layout: room
+
 # Plugins
 plugins:
   - jekyll-feed
@@ -46,3 +58,4 @@ exclude:
   - Gemfile.lock
   - README.md
   - vendor
+  - image-prompts.md
