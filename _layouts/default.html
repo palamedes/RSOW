@@ -91,42 +91,44 @@
     {% include adventure-modal.html %}
 
     <script>
-    document.querySelectorAll('.gallery-thumb').forEach(function(img){
-      img.style.cursor='pointer';
-      img.addEventListener('click',function(){
-        var modal=document.getElementById('gallery-modal');
-        document.getElementById('gallery-modal-img').src=this.dataset.full||this.src;
-        modal.classList.add('active');
-      });
-    });
-    document.querySelectorAll('.post-content img').forEach(function(img){
-      if(img.classList.contains('gallery-thumb')) return;
-      img.style.cursor='pointer';
-      var parent=img.parentElement;
-      if(parent.tagName==='A'){
-        parent.addEventListener('click',function(e){
-          e.preventDefault();
-          var modal=document.getElementById('gallery-modal');
-          document.getElementById('gallery-modal-img').src=this.href;
-          modal.classList.add('active');
-        });
-      } else {
+    document.addEventListener('DOMContentLoaded', function(){
+      document.querySelectorAll('.gallery-thumb').forEach(function(img){
+        img.style.cursor='pointer';
         img.addEventListener('click',function(){
           var modal=document.getElementById('gallery-modal');
-          document.getElementById('gallery-modal-img').src=this.src;
+          document.getElementById('gallery-modal-img').src=this.dataset.full||this.src;
           modal.classList.add('active');
         });
-      }
-    });
-    document.addEventListener('keydown',function(e){
-      if(e.key==='Escape') document.getElementById('gallery-modal').classList.remove('active');
+      });
+      document.querySelectorAll('.post-content img').forEach(function(img){
+        if(img.classList.contains('gallery-thumb')) return;
+        img.style.cursor='pointer';
+        var parent=img.parentElement;
+        if(parent.tagName==='A'){
+          parent.addEventListener('click',function(e){
+            e.preventDefault();
+            var modal=document.getElementById('gallery-modal');
+            document.getElementById('gallery-modal-img').src=this.href;
+            modal.classList.add('active');
+          });
+        } else {
+          img.addEventListener('click',function(){
+            var modal=document.getElementById('gallery-modal');
+            document.getElementById('gallery-modal-img').src=this.src;
+            modal.classList.add('active');
+          });
+        }
+      });
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape') document.getElementById('gallery-modal').classList.remove('active');
+      });
     });
     </script>
 
     <div class="footer-main">
       <div class="site-wrapper">
         <div class="footer-about">
-          <img class="footer-about-img" src="{{ '/assets/images/footer-profile.jpg' | relative_url }}" alt="Jason Ellis">
+          <img class="footer-about-img gallery-thumb" src="{{ '/assets/images/footer-profile.jpg' | relative_url }}" alt="Jason Ellis" data-full="{{ '/assets/images/footer-profile.jpg' | relative_url }}">
           <div class="footer-about-text">
             <h3>About Me</h3>
             <p>Hey everyone! Glad to see you here. Welcome to my peripheral brain on the internet, the virtual oubliette of crap where I store my thoughts, feelings and opinions. Lots to read if you're so inclined.</p>

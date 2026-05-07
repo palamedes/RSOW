@@ -4,7 +4,7 @@ layout: page
 permalink: /about/
 ---
 
-<img class="about-float-left" src="/assets/images/about-profile.jpg" alt="Jason Ellis">
+<img class="about-float-left gallery-thumb" src="/assets/images/jason-2026.png" alt="Jason Ellis" data-full="/assets/images/jason-2026.png">
 
 RandomStringOfWords.com or RSoW.com is my very own virtual oubliette that has been actively serving content since February 2000.
 
