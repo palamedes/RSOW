@@ -1,0 +1,33 @@
+{%- comment -%}
+Lightbox-aware image. Caption is the source of truth — alt is auto-derived.
+
+Usage:
+  {% include img.html src="/assets/images/foo.jpg" caption="<strong>Outside the Statesman</strong>, summer of 2003" %}
+
+Params:
+  src       — image path (required)
+  caption   — rich HTML caption shown in the modal; stripped to plain text for alt
+  alt       — optional explicit alt override (rare; only if you want different text than caption)
+  class     — extra classes to add alongside `gallery-thumb`
+  style     — inline style passthrough (e.g. "width:220px;clear:right;")
+  width     — width attribute
+  height    — height attribute
+  title     — title attribute
+  data_full — full-size image path (defaults to src)
+
+Caption tip: use real Unicode characters in captions (— ’ … é) rather than HTML
+entities (&mdash; &rsquo; etc.). Entities in the caption survive strip_html and end
+up literally in the alt attribute, which screen readers will pronounce as gibberish.
+{%- endcomment -%}
+{%- assign img_src = include.src | relative_url -%}
+{%- assign img_full = include.data_full | default: include.src | relative_url -%}
+{%- if include.alt -%}
+  {%- assign img_alt = include.alt -%}
+{%- elsif include.caption -%}
+  {%- assign img_alt = include.caption | strip_html | normalize_whitespace | strip -%}
+{%- else -%}
+  {%- assign img_alt = "" -%}
+{%- endif -%}
+{%- assign img_class = "gallery-thumb" -%}
+{%- if include.class -%}{%- assign img_class = img_class | append: " " | append: include.class -%}{%- endif -%}
+<img class="{{ img_class }}" src="{{ img_src }}" alt="{{ img_alt | escape }}" data-full="{{ img_full }}"{% if include.caption %} data-caption="{{ include.caption | escape }}"{% endif %}{% if include.style %} style="{{ include.style }}"{% endif %}{% if include.width %} width="{{ include.width }}"{% endif %}{% if include.height %} height="{{ include.height }}"{% endif %}{% if include.title %} title="{{ include.title | escape }}"{% endif %}>

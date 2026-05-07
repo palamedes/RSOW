@@ -11,7 +11,7 @@ hide_title: true
   <a href="http://www.linkedin.com/in/jasonellis"><img src="/assets/images/linkedin.png" alt="View my profile on LinkedIn" style="border:0;vertical-align:middle;"></a>
   <a href="https://github.com/palamedes"><img src="/assets/images/github.png" alt="Find me on GitHub" style="border:0;vertical-align:middle;"></a>
 </div>
-<img class="about-float-right gallery-thumb" src="/assets/images/jason-2026.png" alt="Jason Ellis" data-full="/assets/images/jason-2026.png" style="width:200px;clear:right;">
+{% include img.html src="/assets/images/jason-2026.png" class="about-float-right" style="width:200px;clear:right;" caption="<strong>Jason Ellis</strong> — <em>2026</em>" %}
 
 # Jason Ellis - Resume
 

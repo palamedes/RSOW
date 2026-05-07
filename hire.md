@@ -10,7 +10,7 @@ excerpt: Head of Development with 25+ years building, shipping, and scaling prod
   <a href="https://github.com/palamedes"><img src="/assets/images/github.png" alt="GitHub" style="border:0;vertical-align:middle;"></a>
 </div>
 
-<img class="about-float-right gallery-thumb" src="/assets/images/jason-2026.png" alt="Jason Ellis" data-full="/assets/images/jason-2026.png" style="width:220px;clear:right;">
+{% include img.html src="/assets/images/jason-2026.png" class="about-float-right" style="width:220px;clear:right;" caption="<strong>Jason Ellis</strong> — <em>2026</em>" %}
 
 ## Jason Ellis — Software Engineer, Rubyist, Lifelong Tinkerer
 

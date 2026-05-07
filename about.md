@@ -4,7 +4,7 @@ layout: page
 permalink: /about/
 ---
 
-<img class="about-float-left gallery-thumb" src="/assets/images/jason-2026.png" alt="Jason Ellis" data-full="/assets/images/jason-2026.png">
+{% include img.html src="/assets/images/jason-2026.png" class="about-float-left" caption="<strong>Jason Ellis</strong> — <em>2026</em>" %}
 
 RandomStringOfWords.com or RSoW.com is my very own virtual oubliette that has been actively serving content since February 2000.
 
@@ -28,7 +28,7 @@ All three names I have come to identify with, and were you to call out using one
 
 ## Jason Ellis - [Resume](/resume/)
 
-<img class="about-float-right gallery-thumb" src="/assets/images/about-jamaica-bird.jpg" alt="Jason Ellis" data-full="/assets/images/about-jamaica-bird.jpg">
+{% include img.html src="/assets/images/about-jamaica-bird.jpg" class="about-float-right" title="A Parrot in Jamaica" caption="<p>A parrot I met on a trip to Jamaica. A local woman tossed him up on my shoulder, I shot a pile of photos, and we both had a pretty good time.</p>" %}
 
 My real name is Jason Ellis. I'm a 50+ year old software engineer and small business owner with over 20 years in the field.
 
@@ -52,7 +52,7 @@ I used to be an extreme paintball player and by extreme I mean I played a lot. I
 
 ## US Army
 
-<img class="about-float-right gallery-thumb" src="/assets/images/about-paintball.jpg" alt="Paintball ~ 1993" data-full="/assets/images/about-paintball.jpg">
+{% include img.html src="/assets/images/about-paintball.jpg" class="about-float-right" title="Paintball at Stu's, 1992" caption="<p>Paintball at Stu's in California in 1992. I don't remember being this young and thin... (that's me top right.)</p>" %}
 
 Right after high school my father got remarried, so I decided it was time for me to get out of the house so that he and his new wife could have a life together without me in the way..
 
@@ -72,7 +72,7 @@ After 2 years of development I ended up selling Palavista to a company in New Yo
 
 ## Law Enforcement
 
-<img class="about-float-left gallery-thumb" src="/assets/images/gallery/gallery-01.jpg" alt="Law Enforcement" data-full="/assets/images/gallery/gallery-01.jpg">
+{% include img.html src="/assets/images/gallery/gallery-01.jpg" class="about-float-left" title="End of Shift, in Uniform" caption="<p>One of the few photos of me in my LEO uniform — taken after a long shift. I was tired.</p>" %}
 
 After my early retirement (read: once I got bored) I decided to go into law enforcement. I worked for several years as a police officer in two different cities in central Texas before I realized it just wasn't for me.
 

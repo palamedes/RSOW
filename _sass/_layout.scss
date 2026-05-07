@@ -462,34 +462,100 @@
 .gallery-modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
+  inset: 0;
+  background: rgba(0,0,0,0.5);
   z-index: 9999;
   align-items: center;
   justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 
-  &.active {
+  &.active { display: flex; }
+
+  .gallery-modal-card {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    max-width: 90vw;
+    max-height: 90vh;
     display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .gallery-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    background: #f8f9fa;
+  }
+
+  &.active .gallery-modal-card.no-title .gallery-modal-header {
+    justify-content: flex-end;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 0;
+    background: transparent;
+  }
+
+  .gallery-modal-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #212529;
+    line-height: 1.3;
+
+    &:empty { display: none; }
+  }
+
+  .gallery-modal-body {
+    padding: 0 1rem 1rem;
+    overflow: auto;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
   }
 
   img {
-    max-width: 90vw;
-    max-height: 90vh;
+    max-width: 100%;
+    max-height: 70vh;
     object-fit: contain;
+    display: block;
+    border: 3px solid #000;
+    background: #000;
+  }
+
+  .gallery-modal-footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #dee2e6;
+    background: #f8f9fa;
+    color: #495057;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-height: 18vh;
+    overflow-y: auto;
+
+    &[hidden] { display: none; }
+
+    a { color: #0d6efd; }
+    p { margin: 0 0 0.5em; &:last-child { margin-bottom: 0; } }
   }
 
   .gallery-modal-close {
-    position: absolute;
-    top: 1rem;
-    right: 1.5rem;
-    color: #fff;
-    font-size: 2.5rem;
-    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: #6c757d;
+    font-size: 1.75rem;
     line-height: 1;
-    &:hover { color: #ccc; }
+    cursor: pointer;
+    padding: 0 0.25rem;
+
+    &:hover { color: #212529; }
   }
 }
 

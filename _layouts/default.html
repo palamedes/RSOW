@@ -84,20 +84,51 @@
     </div>
 
     <div id="gallery-modal" class="gallery-modal" onclick="if(event.target===this)this.classList.remove('active')">
-      <span class="gallery-modal-close" onclick="this.parentElement.classList.remove('active')">&times;</span>
-      <img id="gallery-modal-img" src="" alt="">
+      <div id="gallery-modal-card" class="gallery-modal-card">
+        <div class="gallery-modal-header">
+          <h3 id="gallery-modal-title" class="gallery-modal-title"></h3>
+          <button type="button" class="gallery-modal-close" aria-label="Close" onclick="document.getElementById('gallery-modal').classList.remove('active')">&times;</button>
+        </div>
+        <div class="gallery-modal-body">
+          <img id="gallery-modal-img" src="" alt="">
+        </div>
+        <div id="gallery-modal-footer" class="gallery-modal-footer" hidden></div>
+      </div>
     </div>
 
     {% include adventure-modal.html %}
 
     <script>
     document.addEventListener('DOMContentLoaded', function(){
+      function openModal(src, title, captionHtml){
+        var modal = document.getElementById('gallery-modal');
+        document.getElementById('gallery-modal-img').src = src;
+
+        var card = document.getElementById('gallery-modal-card');
+        var titleEl = document.getElementById('gallery-modal-title');
+        if (title) {
+          titleEl.textContent = title;
+          card.classList.remove('no-title');
+        } else {
+          titleEl.textContent = '';
+          card.classList.add('no-title');
+        }
+
+        var footerEl = document.getElementById('gallery-modal-footer');
+        if (captionHtml) {
+          footerEl.innerHTML = captionHtml;
+          footerEl.hidden = false;
+        } else {
+          footerEl.innerHTML = '';
+          footerEl.hidden = true;
+        }
+
+        modal.classList.add('active');
+      }
       document.querySelectorAll('.gallery-thumb').forEach(function(img){
         img.style.cursor='pointer';
         img.addEventListener('click',function(){
-          var modal=document.getElementById('gallery-modal');
-          document.getElementById('gallery-modal-img').src=this.dataset.full||this.src;
-          modal.classList.add('active');
+          openModal(this.dataset.full || this.src, this.title || '', this.dataset.caption || '');
         });
       });
       document.querySelectorAll('.post-content img').forEach(function(img){
@@ -107,15 +138,11 @@
         if(parent.tagName==='A'){
           parent.addEventListener('click',function(e){
             e.preventDefault();
-            var modal=document.getElementById('gallery-modal');
-            document.getElementById('gallery-modal-img').src=this.href;
-            modal.classList.add('active');
+            openModal(this.href, img.title || '', img.dataset.caption || '');
           });
         } else {
           img.addEventListener('click',function(){
-            var modal=document.getElementById('gallery-modal');
-            document.getElementById('gallery-modal-img').src=this.src;
-            modal.classList.add('active');
+            openModal(this.src, this.title || '', this.dataset.caption || '');
           });
         }
       });
