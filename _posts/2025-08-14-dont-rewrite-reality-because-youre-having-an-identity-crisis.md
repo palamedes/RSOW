@@ -24,7 +24,7 @@ You don't get to define your pronouns like you're naming your Xbox avatar. That'
 
 And you absolutely do not get to demand I refer to you with your preferred third-person terms when you're not even in the conversation.  That's not inclusion. That's narcissism with a thesaurus.
 
-You can't live in your own little narrative bubble and expect the rest of society to orbit around it. That's not how reality works. You're not the protagonist in everyone else's story. You don't get to manufacture a version of yourself in your head and then enforce a speech code so the rest of us don't "break immersion."
+**You can't live in your own little narrative bubble and expect the rest of society to orbit around it. That's not how reality works. You're not the protagonist in everyone else's story. You don't get to manufacture a version of yourself in your head and then enforce a speech code so the rest of us don't "break immersion."**
 
 If I'm talking about you, not to you, and I say "he" or "she" because that's what reality provided when you entered the chat ... that's not me "misgendering" you.  That's describing you with a common term.
 
