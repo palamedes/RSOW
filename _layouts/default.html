@@ -23,6 +23,7 @@
             <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
             <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
           </nav>
+          <button type="button" id="adv-resume-btn" class="adv-resume-btn" data-game="adventureland" hidden>Continue Adventureland</button>
           <div class="social-icons">
             {% include social-icons.html %}
           </div>
@@ -30,6 +31,19 @@
       </div>
     </header>
   </div>
+
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem("rsow.adv.save.adventureland._auto");
+        if (!raw) return;
+        var save = JSON.parse(raw);
+        if (!save || !save.turns || save.turns < 1) return;
+        var btn = document.getElementById("adv-resume-btn");
+        if (btn) btn.hidden = false;
+      } catch (e) {}
+    })();
+  </script>
 
   <main class="site-content">
     {% if page.full_width %}
@@ -73,6 +87,8 @@
       <span class="gallery-modal-close" onclick="this.parentElement.classList.remove('active')">&times;</span>
       <img id="gallery-modal-img" src="" alt="">
     </div>
+
+    {% include adventure-modal.html %}
 
     <script>
     document.querySelectorAll('.gallery-thumb').forEach(function(img){

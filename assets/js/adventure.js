@@ -568,7 +568,7 @@
     print("---------------", "adv-system");
   }
 
-  document.querySelectorAll(".game-play-btn").forEach(function (btn) {
+  document.querySelectorAll("[data-game]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       const id = btn.getAttribute("data-game");
       if (id) openModal(id);

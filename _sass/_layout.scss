@@ -59,6 +59,21 @@
       &:hover { color: #2673da; }
     }
   }
+
+  .adv-resume-btn {
+    background: revert;
+    color: grey;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    padding: 0.3rem 0.65rem;
+    font: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
 }
 
 // ── Main content ────────────────────────────────────────

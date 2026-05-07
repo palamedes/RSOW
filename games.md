@@ -2,7 +2,6 @@
 title: Games
 layout: page
 permalink: /games/
-adventure_modal: true
 ---
 
 A small collection of classic text adventures, faithfully recreated to play right here in your browser. No downloads, no logins, no servers — just type and explore. Saves are kept in your browser only.
@@ -15,5 +14,3 @@ A small collection of classic text adventures, faithfully recreated to play righ
     <button class="game-play-btn" data-game="adventureland">Play Adventureland</button>
   </article>
 </div>
-
-{% include adventure-modal.html %}
