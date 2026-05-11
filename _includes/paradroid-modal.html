@@ -1,0 +1,20 @@
+<div id="paradroid-modal" class="pd-modal" aria-hidden="true">
+  <div class="pd-modal-backdrop" data-pd-close></div>
+  <div class="pd-modal-window" role="dialog" aria-labelledby="pd-modal-title">
+    <header class="pd-modal-bar">
+      <span id="pd-modal-title" class="pd-modal-title">PARADROID</span>
+      <span class="pd-modal-controls">
+        <button type="button" class="pd-modal-btn" data-pd-close title="Close">&times;</button>
+      </span>
+    </header>
+
+    <div class="pd-stage">
+      <canvas id="pd-canvas" class="pd-canvas" width="320" height="200"></canvas>
+    </div>
+
+    <div class="pd-hint">
+      <kbd>Space</kbd> start / toggle &middot; <kbd>Esc</kbd> close
+    </div>
+  </div>
+</div>
+<script src="{{ '/assets/js/paradroid.js' | relative_url }}" defer></script>

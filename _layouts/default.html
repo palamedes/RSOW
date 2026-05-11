@@ -66,6 +66,21 @@
         }
       } catch (e) {}
 
+      try {
+        var raw3 = localStorage.getItem("rsow.paradroid.save");
+        if (raw3) {
+          var save3 = JSON.parse(raw3);
+          if (save3 && save3.currentDeck) {
+            resumable.push({
+              name: "Paradroid",
+              detail: "Deck " + save3.currentDeck,
+              attr: "data-canvas-game",
+              val: "paradroid"
+            });
+          }
+        }
+      } catch (e) {}
+
       var slot = document.getElementById("resume-slot");
       if (!slot || resumable.length === 0) return;
 
@@ -176,6 +191,7 @@
 
     {% include adventure-modal.html %}
     {% include scorched-modal.html %}
+    {% include paradroid-modal.html %}
 
     <script>
     document.addEventListener('DOMContentLoaded', function(){

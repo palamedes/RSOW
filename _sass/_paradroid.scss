@@ -1,0 +1,98 @@
+.pd-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 9999;
+  font-family: "Nunito Sans", system-ui, sans-serif;
+
+  &.active { display: block; }
+}
+
+.pd-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(2px);
+}
+
+.pd-modal-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(1024px, 96vw);
+  max-height: 94vh;
+  background: #0a0a14;
+  color: #cfe4ff;
+  border-radius: 6px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pd-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+  background: linear-gradient(#1a1a2a, #10101c);
+  border-bottom: 1px solid #2a2a3f;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+}
+
+.pd-modal-title { font-weight: 700; color: #cfe4ff; }
+.pd-modal-controls { display: flex; gap: 0.35rem; }
+
+.pd-modal-btn {
+  background: transparent;
+  color: #cfe4ff;
+  border: 1px solid #2a3a55;
+  border-radius: 4px;
+  width: 30px;
+  height: 26px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  &:hover { background: #1c2a40; }
+}
+
+.pd-stage {
+  position: relative;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pd-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 320 / 200;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  background: #40318d; // C64 default blue while JS loads
+}
+
+.pd-hint {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.75rem;
+  color: #7e8aa0;
+  background: #10101c;
+  border-top: 1px solid #2a2a3f;
+  letter-spacing: 0.05em;
+
+  kbd {
+    background: #1c2a40;
+    border: 1px solid #2a3a55;
+    border-radius: 3px;
+    padding: 0 0.3rem;
+    color: #cfe4ff;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pd-modal-window { width: 100vw; max-height: 100vh; border-radius: 0; }
+}
