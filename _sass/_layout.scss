@@ -74,6 +74,65 @@
     white-space: nowrap;
     &[hidden] { display: none; }
   }
+
+  .resume-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .resume-dropdown {
+    position: relative;
+  }
+
+  .resume-trigger {
+    .resume-caret {
+      display: inline-block;
+      margin-left: 0.25rem;
+      transition: transform 0.15s ease;
+    }
+    &[aria-expanded="true"] .resume-caret { transform: rotate(180deg); }
+  }
+
+  .resume-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 220px;
+    background: #fff;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    z-index: 1000;
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    &[hidden] { display: none; }
+  }
+
+  .resume-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: transparent;
+    color: #333;
+    border: 0;
+    border-radius: 3px;
+    padding: 0.4rem 0.6rem;
+    font: inherit;
+    font-size: 0.78rem;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover { background: #f3f5f8; color: #2673da; }
+
+    .resume-item-name   { font-weight: 600; }
+    .resume-item-detail { color: #888; font-weight: 400; font-size: 0.72rem; }
+  }
 }
 
 // ── Main content ────────────────────────────────────────

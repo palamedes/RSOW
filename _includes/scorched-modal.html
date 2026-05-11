@@ -1,0 +1,153 @@
+<div id="scorched-modal" class="sc-modal" aria-hidden="true">
+  <div class="sc-modal-backdrop" data-sc-close></div>
+  <div class="sc-modal-window" role="dialog" aria-labelledby="sc-modal-title">
+    <header class="sc-modal-bar">
+      <span id="sc-modal-title" class="sc-modal-title">SCORCHED EARTH</span>
+      <span class="sc-modal-controls">
+        <button type="button" class="sc-modal-btn" data-sc-action="new" title="New game">&#x21bb;</button>
+        <button type="button" class="sc-modal-btn" data-sc-close title="Close">&times;</button>
+      </span>
+    </header>
+
+    <div class="sc-stage">
+      <canvas id="sc-canvas" class="sc-canvas" width="1200" height="600"></canvas>
+
+      <div id="sc-shop" class="sc-shop" hidden>
+        <div class="sc-shop-card">
+          <header class="sc-shop-header">
+            <h2 id="sc-shop-title">Shop</h2>
+            <span class="sc-shop-cash" id="sc-shop-cash">$0</span>
+          </header>
+          <div class="sc-shop-body">
+            <section class="sc-shop-section">
+              <h3>Weapons</h3>
+              <ul class="sc-shop-list" id="sc-shop-weapons"></ul>
+            </section>
+            <section class="sc-shop-section">
+              <h3>Defenses</h3>
+              <ul class="sc-shop-list" id="sc-shop-defenses"></ul>
+            </section>
+          </div>
+          <footer class="sc-shop-footer">
+            <span class="sc-shop-hint" id="sc-shop-hint">Spend wisely. Baby Missile is free and unlimited.</span>
+            <button type="button" class="sc-overlay-btn" id="sc-shop-done">Done</button>
+          </footer>
+        </div>
+      </div>
+
+      <div id="sc-overlay" class="sc-overlay" hidden>
+        <div class="sc-overlay-card">
+          <h2 id="sc-overlay-title">Scorched Earth</h2>
+          <p id="sc-overlay-msg">Pick your matchup, soldier.</p>
+          <div class="sc-overlay-settings">
+            <label class="sc-opt-row">
+              <span class="sc-opt-label">Players</span>
+              <select id="sc-opt-players">
+                <option value="1">1 player vs. CPU</option>
+                <option value="2">2 players (hot-seat)</option>
+              </select>
+            </label>
+            <label class="sc-opt-row sc-opt-difficulty-row">
+              <span class="sc-opt-label">CPU</span>
+              <select id="sc-opt-difficulty">
+                <option value="shooter">Shooter &mdash; fumbles, walks in</option>
+                <option value="pyro">Pyro &mdash; quick to dial in</option>
+                <option value="lobber">Lobber &mdash; loves high arcs</option>
+                <option value="cyborg">Cyborg &mdash; analytic, deadly</option>
+              </select>
+            </label>
+            <label class="sc-opt-row">
+              <span class="sc-opt-label">Match</span>
+              <select id="sc-opt-match-length">
+                <option value="1">1 round</option>
+                <option value="3" selected>Best of 3</option>
+                <option value="5">Best of 5</option>
+                <option value="7">Best of 7</option>
+              </select>
+            </label>
+          </div>
+          <div class="sc-overlay-actions">
+            <button type="button" class="sc-overlay-btn" data-sc-action="start">Start</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sc-hud">
+      <div class="sc-hud-row sc-hud-status">
+        <span class="sc-chip" id="sc-turn-chip">Player 1</span>
+        <span class="sc-chip sc-chip-round" id="sc-round-chip">Round 1 of 3</span>
+        <span class="sc-chip sc-chip-wind" id="sc-wind-chip">Wind: 0</span>
+        <span class="sc-chip sc-chip-cash" id="sc-cash-chip">$0</span>
+        <span class="sc-hp" id="sc-hp-p1">
+          <label>P1</label>
+          <span class="sc-bars">
+            <span class="sc-bar"><i style="width:100%"></i></span>
+            <span class="sc-bar sc-bar-shield"><i style="width:0%"></i></span>
+          </span>
+          <span class="sc-hp-num">100</span>
+        </span>
+        <span class="sc-hp" id="sc-hp-p2">
+          <label>CPU</label>
+          <span class="sc-bars">
+            <span class="sc-bar"><i style="width:100%"></i></span>
+            <span class="sc-bar sc-bar-shield"><i style="width:0%"></i></span>
+          </span>
+          <span class="sc-hp-num">100</span>
+        </span>
+      </div>
+
+      <div class="sc-hud-row sc-hud-controls">
+        <label class="sc-ctrl">
+          <span class="sc-ctrl-label">Angle</span>
+          <input type="range" id="sc-angle" min="0" max="180" step="1" value="45">
+          <span class="sc-ctrl-val" id="sc-angle-val">45&deg;</span>
+        </label>
+        <label class="sc-ctrl">
+          <span class="sc-ctrl-label">Power</span>
+          <input type="range" id="sc-power" min="10" max="100" step="1" value="55">
+          <span class="sc-ctrl-val" id="sc-power-val">55</span>
+        </label>
+        <label class="sc-ctrl sc-ctrl-weapon">
+          <span class="sc-ctrl-label">Weapon</span>
+          <select id="sc-weapon">
+            <optgroup label="Standard">
+              <option value="baby">Baby Missile</option>
+              <option value="missile">Missile</option>
+              <option value="babyNuke">Baby Nuke</option>
+              <option value="nuke">Nuke</option>
+              <option value="plastique">Plastique</option>
+            </optgroup>
+            <optgroup label="Multi-warhead">
+              <option value="mirv">MIRV</option>
+              <option value="deathsHead">Death&rsquo;s Head</option>
+              <option value="funkyBomb">Funky Bomb</option>
+            </optgroup>
+            <optgroup label="Rollers">
+              <option value="babyRoller">Baby Roller</option>
+              <option value="roller">Roller</option>
+              <option value="heavyRoller">Heavy Roller</option>
+            </optgroup>
+            <optgroup label="Special">
+              <option value="leapfrog">Leapfrog</option>
+              <option value="tunneler">Tunneler</option>
+              <option value="napalm">Napalm</option>
+            </optgroup>
+            <optgroup label="Utility">
+              <option value="tracer">Tracer</option>
+              <option value="dirtClod">Dirt Clod</option>
+              <option value="liquidDirt">Liquid Dirt</option>
+              <option value="sandbag">Sandbag</option>
+            </optgroup>
+          </select>
+        </label>
+        <button type="button" id="sc-fire" class="sc-fire-btn">Fire</button>
+      </div>
+
+      <div class="sc-hint" id="sc-hint">
+        Arrows adjust angle/power (hold Shift for &times;5). <kbd>Tab</kbd> cycles weapons. <kbd>Space</kbd> to fire.
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{{ '/assets/js/scorched.js' | relative_url }}" defer></script>

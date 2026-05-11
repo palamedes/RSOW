@@ -23,7 +23,7 @@
             <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
             <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
           </nav>
-          <button type="button" id="adv-resume-btn" class="adv-resume-btn" data-game="adventureland" hidden>Continue Adventureland</button>
+          <div id="resume-slot" class="resume-slot"></div>
           <div class="social-icons">
             {% include social-icons.html %}
           </div>
@@ -34,14 +34,92 @@
 
   <script>
     (function () {
+      var resumable = [];
+
       try {
         var raw = localStorage.getItem("rsow.adv.save.adventureland._auto");
-        if (!raw) return;
-        var save = JSON.parse(raw);
-        if (!save || !save.turns || save.turns < 1) return;
-        var btn = document.getElementById("adv-resume-btn");
-        if (btn) btn.hidden = false;
+        if (raw) {
+          var save = JSON.parse(raw);
+          if (save && save.turns && save.turns >= 1) {
+            resumable.push({
+              name: "Adventureland",
+              detail: save.turns + " turns",
+              attr: "data-game",
+              val: "adventureland"
+            });
+          }
+        }
       } catch (e) {}
+
+      try {
+        var raw2 = localStorage.getItem("rsow.scorched.bank");
+        if (raw2) {
+          var n = parseInt(raw2, 10);
+          if (isFinite(n) && n > 0) {
+            resumable.push({
+              name: "Scorched Earth",
+              detail: "$" + n.toLocaleString(),
+              attr: "data-canvas-game",
+              val: "scorched"
+            });
+          }
+        }
+      } catch (e) {}
+
+      var slot = document.getElementById("resume-slot");
+      if (!slot || resumable.length === 0) return;
+
+      if (resumable.length === 1) {
+        var g = resumable[0];
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "adv-resume-btn";
+        btn.setAttribute(g.attr, g.val);
+        btn.textContent = "Continue " + g.name + " (" + g.detail + ")";
+        slot.appendChild(btn);
+        return;
+      }
+
+      var wrap = document.createElement("div");
+      wrap.className = "resume-dropdown";
+      var trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "adv-resume-btn resume-trigger";
+      trigger.setAttribute("aria-haspopup", "true");
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.innerHTML = "Continue game <span class=\"resume-caret\">▾</span>";
+      var menu = document.createElement("div");
+      menu.className = "resume-menu";
+      menu.hidden = true;
+      resumable.forEach(function (g) {
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "resume-item";
+        item.setAttribute(g.attr, g.val);
+        item.innerHTML = "<span class=\"resume-item-name\">" + g.name + "</span><span class=\"resume-item-detail\">" + g.detail + "</span>";
+        menu.appendChild(item);
+      });
+      wrap.appendChild(trigger);
+      wrap.appendChild(menu);
+      slot.appendChild(wrap);
+
+      function close() {
+        trigger.setAttribute("aria-expanded", "false");
+        menu.hidden = true;
+      }
+      trigger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        var open = trigger.getAttribute("aria-expanded") === "true";
+        trigger.setAttribute("aria-expanded", open ? "false" : "true");
+        menu.hidden = open;
+      });
+      menu.addEventListener("click", function () { close(); });
+      document.addEventListener("click", function (e) {
+        if (!wrap.contains(e.target)) close();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") close();
+      });
     })();
   </script>
 
@@ -97,6 +175,7 @@
     </div>
 
     {% include adventure-modal.html %}
+    {% include scorched-modal.html %}
 
     <script>
     document.addEventListener('DOMContentLoaded', function(){
