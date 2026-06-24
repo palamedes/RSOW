@@ -46,6 +46,39 @@
   if (Object.keys(cheats).length) console.info("[paradroid] cheats:", cheats);
 
   // ─────────────────────────────────────────────────────────────
+  // Droid + weapon stats (Milestone 4).
+  //
+  // Charges = unified resource pool (HP in-deck, ammo in transfer game).
+  // Speed is the design-doc "feel" rating (3–6) mapped to px/frame via
+  // BASE_SPEED at rating-4 (the 001 default). Tier — derived from the
+  // class number — drives AI smartness in the transfer mini-game.
+  // Only the droids that can appear on Deck 1 are wired up here; the
+  // table grows as later decks land. Unknown class → fall back to 001.
+  // ─────────────────────────────────────────────────────────────
+  const WEAPONS = {
+    none:        { damage: 0, cooldown: 0,  bulletSpeed: 0   },
+    weakLaser:   { damage: 1, cooldown: 20, bulletSpeed: 3.0 },
+    laser:       { damage: 2, cooldown: 18, bulletSpeed: 3.4 },
+    strongLaser: { damage: 3, cooldown: 22, bulletSpeed: 3.4 },
+    laserRifle:  { damage: 3, cooldown: 24, bulletSpeed: 4.0 }
+  };
+  const DROID_STATS = {
+    "001": { charges: 4,  speed: 4, weapon: "weakLaser"   },
+    "123": { charges: 8,  speed: 3, weapon: "none"        },
+    "139": { charges: 9,  speed: 3, weapon: "none"        },
+    "247": { charges: 10, speed: 4, weapon: "none"        },
+    "302": { charges: 12, speed: 5, weapon: "none"        },
+    "476": { charges: 15, speed: 4, weapon: "strongLaser" }
+  };
+  const BASE_SPEED = 1.4;     // px/frame at speed-rating 4 (001 baseline)
+  function droidSpeed(rating) { return BASE_SPEED * rating / 4; }
+  function getDroidStats(num) { return DROID_STATS[num] || DROID_STATS["001"]; }
+  function droidTier(num) {
+    const n = parseInt(num, 10);
+    return Math.max(1, Math.min(10, Math.floor(n / 100) + 1));
+  }
+
+  // ─────────────────────────────────────────────────────────────
   // 5x7 pixel font — placeholder for Milestone 0. Will be replaced
   // by a proper C64 character set in a later milestone.
   // ─────────────────────────────────────────────────────────────
@@ -259,27 +292,34 @@
   // ─────────────────────────────────────────────────────────────
   // Enemies (just 123 Disposal for Milestone 2)
   // ─────────────────────────────────────────────────────────────
-  function spawnEnemy(num, x, y, charges, speed) {
+  function spawnEnemy(num, x, y) {
+    const s = getDroidStats(num);
     return {
       num: num,
       x: x, y: y,
-      charges: charges, maxCharges: charges,
-      speed: speed,
+      charges: s.charges, maxCharges: s.charges,
+      // Patrol pace runs slower than the chassis' top speed so enemies
+      // feel like patrols rather than chasers — tuned per Milestone 2.
+      speed: droidSpeed(s.speed) * 0.6,
+      weapon: s.weapon,
       halfSize: 8,                       // ~1 macro: matches droid silhouette
-      currentWP: -1,                     // initialized after spawn
-      prevWP: -1,
-      targetWP: -1,
-      stuckFrames: 0
+      currentWP: -1, prevWP: -1, targetWP: -1,
+      stuckFrames: 0,
+      // Per-bot randomized "yield" timer (~0.3–0.8s @ 60fps). When two
+      // bots wedge head-on, whichever's timer expires first turns
+      // around. Re-rolled each time so repeated bumps stagger anew.
+      unstickThreshold: 18 + Math.floor(Math.random() * 30),
+      grappling: false                   // true while a transfer grapple is held
     };
   }
 
-  function fireBullet(x, y, dirX, dirY) {
+  function fireBullet(x, y, dirX, dirY, damage, speed) {
     const len = Math.hypot(dirX, dirY) || 1;
     bullets.push({
       x: x, y: y,
-      vx: (dirX / len) * BULLET_SPEED,
-      vy: (dirY / len) * BULLET_SPEED,
-      damage: WEAK_LASER_DAMAGE,
+      vx: (dirX / len) * speed,
+      vy: (dirY / len) * speed,
+      damage: damage,
       life: BULLET_LIFE
     });
   }
@@ -291,14 +331,43 @@
   let frame = 0;
   let state = "title";          // "title" | "playing"
   let currentDeck = null;
+  // Player's "chassis" — initialized via applyChassis() at game start
+  // and after a successful transfer. Speed / weapon come from
+  // DROID_STATS so a 001 feels different to drive than a 476.
   const player = {
     x: 0, y: 0, vx: 0, vy: 0,
     facingX: 0, facingY: -1,         // default facing up
     halfSize: 8,                     // ~1 macro: matches droid silhouette
-    charges: 4, maxCharges: 4,       // 001 Influence Device has 4 charges
     num: "001",
+    charges: 4, maxCharges: 4,
+    speed: BASE_SPEED,
+    weapon: "weakLaser",
+    weaponDamage: 1,
+    weaponCooldown: 20,
+    weaponBulletSpeed: 3.0,
     fireCooldown: 0
   };
+  // Grapple — Shift-held contact with an enemy fills a short meter,
+  // then the transfer mini-game opens against that specific droid.
+  let grappleTarget = null;
+  let grappleFrames = 0;
+  const GRAPPLE_FRAMES = 30;          // ~0.5s at 60 fps
+  const GRAPPLE_RANGE = 6;            // extra px beyond chassis radii
+
+  function applyChassis(num) {
+    const s = getDroidStats(num);
+    const w = WEAPONS[s.weapon] || WEAPONS.none;
+    player.num = num;
+    player.maxCharges = s.charges;
+    player.charges = s.charges;
+    player.speed = droidSpeed(s.speed);
+    player.weapon = s.weapon;
+    player.weaponDamage = w.damage;
+    player.weaponCooldown = w.cooldown;
+    player.weaponBulletSpeed = w.bulletSpeed;
+    player.fireCooldown = 0;
+  }
+
   const enemies = [];                 // hostile droids on current deck
   const bullets = [];                 // active projectiles
   const keys = {};
@@ -306,15 +375,11 @@
   // Movement tuning — small accel/decel for a "weighty" feel without
   // sluggishness. ACCEL of 0.18 reaches ~95% of target in ~16 frames
   // (~0.27s at 60 fps). DRAG_STOP nudges tiny residual velocity to 0.
-  const MAX_SPEED = 1.4;
+  // Per-droid top speed and weapon stats come from DROID_STATS /
+  // WEAPONS via applyChassis().
   const ACCEL = 0.18;
   const DRAG_STOP = 0.05;
-
-  // Weapon tuning
-  const BULLET_SPEED = 3.0;           // px/frame
   const BULLET_LIFE = 90;             // frames before auto-fade
-  const WEAK_LASER_COOLDOWN = 20;     // frames between shots
-  const WEAK_LASER_DAMAGE = 1;
 
   // ─────────────────────────────────────────────────────────────
   // Transfer mini-game (Milestone 3 — circuit-board duel)
@@ -390,7 +455,9 @@
     rightEnergy: [],
     leftEnergyExpiry: [],          // [frameNumber | Infinity] — when flow stops
     rightEnergyExpiry: [],
-    pendingFlips: [],              // [{pin, color, atFrame}] — pin colors waiting for travel
+    leftEnergyFireFrame: [],       // [frameNumber] — when this wire was last fired
+    rightEnergyFireFrame: [],
+    lastFireFrame: 0,              // any side's most recent fire
     pins: [],                      // [{color: "yellow"|"purple"}]
     cursor: 0,                     // player wire 0..WIRES-1
     oppCursor: 0,
@@ -400,7 +467,8 @@
     timer: 0,
     result: null,
     resultHoldFrame: 0,
-    deadlocked: false
+    deadlocked: false,
+    targetEnemy: null              // reference back to the enemy on the deck
   };
 
   // PRNG seeded per transfer — also handy for the chip-swap feature.
@@ -647,10 +715,11 @@
     ctx.fillStyle = C64.BLACK;
     ctx.fillRect(0, 0, W, 9);
     drawText("DECK 1", 4, 1, 1, C64.LIGHT_GREY);
-    drawText("CHARGES " + player.charges + "/" + player.maxCharges, 50, 1, 1,
+    drawText("#" + player.num, 50, 1, 1, C64.YELLOW);
+    drawText("CHARGES " + player.charges + "/" + player.maxCharges, 90, 1, 1,
              player.charges === 0 ? C64.LIGHT_RED : C64.WHITE);
-    drawText("DROIDS " + enemies.length, 168, 1, 1, C64.CYAN);
-    drawText("CARGO HOLDS", 222, 1, 1, C64.LIGHT_GREY);
+    drawText("DROIDS " + enemies.length, 178, 1, 1, C64.CYAN);
+    drawText("CARGO HOLDS", 232, 1, 1, C64.LIGHT_GREY);
   }
 
   function drawBullet(b, cam) {
@@ -665,14 +734,16 @@
     const cam = getCamera(currentDeck);
     drawDeck(currentDeck, cam);
 
-    // Enemies first, then bullets, then player on top
+    // Enemies first, then bullets, then player on top. Grappling
+    // droids flash blue (both you and the target) for the brief
+    // window before the transfer mini-game opens.
     for (let i = 0; i < enemies.length; i++) {
       const e = enemies[i];
       drawDroidCell(
         Math.floor(e.x - cam.x),
         Math.floor(e.y - cam.y),
         e.num,
-        C64.BLACK
+        e.grappling ? C64.LIGHT_BLUE : C64.BLACK
       );
     }
     for (let i = 0; i < bullets.length; i++) drawBullet(bullets[i], cam);
@@ -681,7 +752,7 @@
       Math.floor(player.x - cam.x),
       Math.floor(player.y - cam.y),
       player.num,
-      C64.WHITE
+      grappleTarget ? C64.LIGHT_BLUE : C64.WHITE
     );
     drawHUD();
   }
@@ -701,8 +772,11 @@
   // wire enters at entryY (for splitters that's the centre of the
   // bridge bar; otherwise the primary pin row). Spark then jogs
   // vertically to the target pin Y and runs out to the chip.
+  // `s.side` is the rail side ("left"/"right") — NOT the energy
+  // color. Earlier drafts keyed off "yellow" here, which broke for
+  // color-locked wires whose flow color diverges from their side.
   function computeSparkPos(s, t) {
-    const isLeft = (s.side === "yellow");
+    const isLeft = (s.side === "left");
     const eY = wireEntryY(s.wireIndex, isLeft);
     const xStart = isLeft ? TR.LEFT_RAIL_X + 2 : TR.RIGHT_RAIL_X - 2;
     const xEnd   = isLeft ? TR.LEFT_WIRE_END  : TR.RIGHT_WIRE_START;
@@ -744,7 +818,12 @@
       ctx.fillStyle = fillColor;
       const targets = w.pins.length > 0 ? w.pins : [-1];
       for (let p = 0; p < targets.length; p++) {
-        const fake = { side: color, wireIndex: wireIndex, targetPin: targets[p] };
+        // side = "left"/"right" (rail). color = "yellow"/"purple"
+        // (post-lock flow color). They diverge whenever a wire's
+        // color-lock flips the firer's color — so pass side here,
+        // not color, or AI-fired yellow-locked right wires render
+        // their flow on the LEFT rail.
+        const fake = { side: side, wireIndex: wireIndex, targetPin: targets[p] };
         for (let k = 0; k < FLOW_DASHES; k++) {
           const tt = (baseT + k * DASH_PHASE) % 1;
           // Skip dashes that would land past dead-end terminator
@@ -753,18 +832,18 @@
           ctx.fillRect(Math.floor(pos.x) - 2, Math.floor(pos.y) - 1, 4, 2);
         }
       }
-      // Voltage arrow at the rail end of the wire (at entry Y)
+      // Voltage indicator at the rail end of the wire — a colored
+      // "plug" overlaid on the rail (a rectangle, not a triangle) so
+      // it can't be confused with the static `>` diode markers along
+      // the wire. The plug sits on the rail at the wire's entry Y
+      // with a 1-px black halo and overrides the rail color there.
       const isLeft = (side === "left");
       const eY = wireEntryY(wireIndex, isLeft);
-      const ax = isLeft ? TR.LEFT_RAIL_X + 4 : TR.RIGHT_RAIL_X - 4;
-      const dir = isLeft ? 1 : -1;
+      const plugX = isLeft ? TR.LEFT_RAIL_X - 3 : TR.RIGHT_RAIL_X - 1;
+      ctx.fillStyle = "#000000";
+      ctx.fillRect(plugX - 1, eY - 4, 6, 8);
       ctx.fillStyle = fillColor;
-      ctx.beginPath();
-      ctx.moveTo(ax, eY - 3);
-      ctx.lineTo(ax + 5 * dir, eY);
-      ctx.lineTo(ax, eY + 3);
-      ctx.closePath();
-      ctx.fill();
+      ctx.fillRect(plugX, eY - 3, 4, 6);
     }
 
     for (let i = 0; i < TR.WIRES; i++) {
@@ -1056,7 +1135,49 @@
     return true;
   }
 
+  // Closest enemy within grapple range (chassis radii + a few px slack).
+  function findGrappleTarget() {
+    let best = null;
+    let bestD = Infinity;
+    for (let i = 0; i < enemies.length; i++) {
+      const e = enemies[i];
+      const reach = e.halfSize + player.halfSize + GRAPPLE_RANGE;
+      const d = Math.hypot(e.x - player.x, e.y - player.y);
+      if (d <= reach && d < bestD) { bestD = d; best = e; }
+    }
+    return best;
+  }
+
   function updatePlayer() {
+    // Grapple — Shift + contact with an enemy holds both droids in
+    // place for ~30 frames (they flash blue), then the transfer
+    // mini-game opens against that specific droid.
+    const shiftHeld = !!keys["Shift"];
+    const candidate = shiftHeld ? findGrappleTarget() : null;
+    if (candidate) {
+      if (grappleTarget !== candidate) {
+        if (grappleTarget) grappleTarget.grappling = false;
+        grappleTarget = candidate;
+        grappleFrames = 0;
+      }
+      grappleTarget.grappling = true;
+      grappleFrames++;
+      player.vx = 0; player.vy = 0;
+      if (grappleFrames >= GRAPPLE_FRAMES) {
+        const t = grappleTarget;
+        grappleTarget.grappling = false;
+        grappleTarget = null;
+        grappleFrames = 0;
+        enterTransfer(t);
+        return;
+      }
+      return;                         // no movement / no fire during grapple
+    } else if (grappleTarget) {
+      grappleTarget.grappling = false;
+      grappleTarget = null;
+      grappleFrames = 0;
+    }
+
     let dx = 0, dy = 0;
     if (keys["ArrowLeft"]  || keys["a"]) dx -= 1;
     if (keys["ArrowRight"] || keys["d"]) dx += 1;
@@ -1068,8 +1189,8 @@
       player.facingY = dy;
     }
 
-    let tvx = dx * MAX_SPEED;
-    let tvy = dy * MAX_SPEED;
+    let tvx = dx * player.speed;
+    let tvy = dy * player.speed;
     if (dx !== 0 && dy !== 0) { tvx *= 0.71; tvy *= 0.71; }
 
     player.vx += (tvx - player.vx) * ACCEL;
@@ -1086,12 +1207,15 @@
       else player.vy = 0;
     }
 
-    // Firing — each shot drains 1 charge. No charges, no shot.
+    // Firing — drains 1 charge per shot. Unarmed chassis (weapon "none")
+    // cannot fire; transfer into something with a laser to shoot.
     if (player.fireCooldown > 0) player.fireCooldown--;
-    if (keys[" "] && player.fireCooldown === 0 && player.charges > 0) {
-      fireBullet(player.x, player.y, player.facingX, player.facingY);
+    if (keys[" "] && player.fireCooldown === 0 &&
+        player.charges > 0 && player.weaponDamage > 0) {
+      fireBullet(player.x, player.y, player.facingX, player.facingY,
+                 player.weaponDamage, player.weaponBulletSpeed);
       player.charges--;
-      player.fireCooldown = WEAK_LASER_COOLDOWN;
+      player.fireCooldown = player.weaponCooldown;
     }
   }
 
@@ -1107,6 +1231,10 @@
   }
 
   function updateEnemy(enemy) {
+    // Frozen while a transfer grapple is held — otherwise the target
+    // can drift out of GRAPPLE_RANGE before the mini-game opens.
+    if (enemy.grappling) return;
+
     const deck = currentDeck;
     if (enemy.currentWP < 0) enemy.currentWP = nearestWaypoint(deck, enemy.x, enemy.y);
     if (enemy.targetWP < 0) enemy.targetWP = pickNextWaypoint(enemy, deck);
@@ -1127,16 +1255,35 @@
     const step = Math.min(enemy.speed, dist);
     const mx = (dx / dist) * step;
     const my = (dy / dist) * step;
+    // Axis-aligned targets (dy=0 in a horizontal corridor, dx=0 in a
+    // vertical run) zero out one axis — guard against the zero-motion
+    // axis trivially "succeeding" (canStandAt at current position is
+    // always true), which would mask a wedge as movement and prevent
+    // stuckFrames from accumulating.
     let moved = false;
-    if (canStandAt(enemy.x + mx, enemy.y, enemy.halfSize, enemy)) { enemy.x += mx; moved = true; }
-    if (canStandAt(enemy.x, enemy.y + my, enemy.halfSize, enemy)) { enemy.y += my; moved = true; }
+    if (mx !== 0 && canStandAt(enemy.x + mx, enemy.y, enemy.halfSize, enemy)) { enemy.x += mx; moved = true; }
+    if (my !== 0 && canStandAt(enemy.x, enemy.y + my, enemy.halfSize, enemy)) { enemy.y += my; moved = true; }
 
-    // If wedged for too long (likely blocked by another droid), abandon this leg
-    if (!moved) enemy.stuckFrames++;
-    else        enemy.stuckFrames = 0;
-    if (enemy.stuckFrames > 60) {
+    if (moved) {
+      enemy.stuckFrames = 0;
+      return;
+    }
+    enemy.stuckFrames++;
+
+    // Haven't physically moved for a while — reverse course. Swap
+    // currentWP ↔ prevWP so the next leg heads back the way we came;
+    // pickNextWaypoint then filters out the direction we just came
+    // from. Per-bot jitter on the threshold so head-on pairs don't
+    // flip on the same frame and immediately re-wedge.
+    if (enemy.stuckFrames >= enemy.unstickThreshold) {
+      if (enemy.prevWP >= 0) {
+        const tmp = enemy.currentWP;
+        enemy.currentWP = enemy.prevWP;
+        enemy.prevWP = tmp;
+      }
       enemy.targetWP = -1;
       enemy.stuckFrames = 0;
+      enemy.unstickThreshold = 30 + Math.floor(Math.random() * 30);
     }
   }
 
@@ -1182,15 +1329,17 @@
   // ─────────────────────────────────────────────────────────────
   // Transfer mini-game logic
   // ─────────────────────────────────────────────────────────────
-  function enterTransfer(targetNum, targetTier) {
+  function enterTransfer(targetEnemy) {
+    const targetNum = (targetEnemy && targetEnemy.num) || "123";
+    const s = getDroidStats(targetNum);
+    transfer.targetEnemy = targetEnemy || null;
     transfer.playerNum = player.num;
     transfer.playerCharges = player.maxCharges;
     transfer.playerMaxCharges = player.maxCharges;
-    transfer.oppNum = targetNum || "123";
-    transfer.oppTier = targetTier || 1;
-    // 123 = 8 charges per Jason's roster; later we'll look up by num.
-    transfer.oppCharges = 8;
-    transfer.oppMaxCharges = 8;
+    transfer.oppNum = targetNum;
+    transfer.oppTier = droidTier(targetNum);
+    transfer.oppCharges = s.charges;
+    transfer.oppMaxCharges = s.charges;
     const c = generateCircuit();
     transfer.leftWires = c.leftWires;
     transfer.rightWires = c.rightWires;
@@ -1198,7 +1347,9 @@
     transfer.rightEnergy = new Array(TR.WIRES).fill(null);
     transfer.leftEnergyExpiry = new Array(TR.WIRES).fill(0);
     transfer.rightEnergyExpiry = new Array(TR.WIRES).fill(0);
-    transfer.pendingFlips = [];
+    transfer.leftEnergyFireFrame = new Array(TR.WIRES).fill(-Infinity);
+    transfer.rightEnergyFireFrame = new Array(TR.WIRES).fill(-Infinity);
+    transfer.lastFireFrame = -Infinity;
     // Initial pin colors — half yellow, half purple, randomly placed
     transfer.pins = [];
     const colors = [];
@@ -1237,6 +1388,33 @@
   }
 
   function leaveTransfer() {
+    const target = transfer.targetEnemy;
+    const result = transfer.result;
+    if (result === "win" && target) {
+      // Take the chassis — remove target from the deck, adopt its stats.
+      const idx = enemies.indexOf(target);
+      if (idx >= 0) enemies.splice(idx, 1);
+      applyChassis(target.num);
+    } else if (result === "loss") {
+      // 50% damage to the current chassis. If it dies, drop a tier:
+      // higher chassis → bare 001; 001 → game over (back to title).
+      const damage = Math.max(1, Math.ceil(player.maxCharges * 0.5));
+      player.charges = Math.max(0, player.charges - damage);
+      if (target) target.grappling = false;
+      if (player.charges <= 0) {
+        if (player.num === "001") {
+          transfer.targetEnemy = null;
+          for (const k in keys) keys[k] = false;
+          state = "title";
+          return;
+        }
+        applyChassis("001");
+      }
+    } else {
+      // Tie or aborted (Esc): just clear the target's grapple flag.
+      if (target) target.grappling = false;
+    }
+    transfer.targetEnemy = null;
     for (const k in keys) keys[k] = false;
     state = currentDeck ? "playing" : "title";
   }
@@ -1261,16 +1439,14 @@
     const wires = isLeft ? transfer.leftWires : transfer.rightWires;
     const energy = isLeft ? transfer.leftEnergy : transfer.rightEnergy;
     const expiry = isLeft ? transfer.leftEnergyExpiry : transfer.rightEnergyExpiry;
+    const fireFrames = isLeft ? transfer.leftEnergyFireFrame : transfer.rightEnergyFireFrame;
     const w = wires[wireIndex];
     if (!w) return false;
     const color = w.colorLock || side;
     energy[wireIndex] = color;
     expiry[wireIndex] = wireHasDiode(w) ? Infinity : (frame + TEMP_ENERGY_FRAMES);
-    for (let i = 0; i < w.pins.length; i++) {
-      transfer.pendingFlips.push({
-        pin: w.pins[i], color: color, atFrame: frame + FLIP_DELAY
-      });
-    }
+    fireFrames[wireIndex] = frame;
+    transfer.lastFireFrame = frame;
     return true;
   }
 
@@ -1331,15 +1507,9 @@
       }
     }
 
-    // Process pending pin flips (travel delay)
-    for (let i = transfer.pendingFlips.length - 1; i >= 0; i--) {
-      const f = transfer.pendingFlips[i];
-      if (frame >= f.atFrame) {
-        transfer.pins[f.pin].color = f.color;
-        transfer.pendingFlips.splice(i, 1);
-      }
-    }
-    // De-energize wires whose temporary pulse has expired
+    // De-energize wires whose temporary pulse has expired. A wire
+    // with a `>` diode has expiry = Infinity, so it stays energized
+    // and keeps claiming its pins for the rest of the round.
     for (let i = 0; i < TR.WIRES; i++) {
       if (transfer.leftEnergy[i]  && frame >= transfer.leftEnergyExpiry[i]) {
         transfer.leftEnergy[i] = null;
@@ -1349,11 +1519,48 @@
       }
     }
 
-    // End conditions — both sides spent + no flips still queued
+    // Pin colors are continuously claimed by currently-energized
+    // wires. A wire's claim activates FLIP_DELAY frames after fire
+    // (matches the visible spark-travel time). Among active claims
+    // on a pin, the most recent fireFrame wins — so re-firing
+    // refreshes your claim, permanent (`>`) pulses beat temp pulses
+    // once the temp expires, and two permanent claims resolve by
+    // recency rather than by random end-of-round timing.
+    for (let pin = 0; pin < TR.PINS; pin++) {
+      let bestColor = null, bestFrame = -Infinity;
+      for (let i = 0; i < TR.WIRES; i++) {
+        if (transfer.leftEnergy[i]) {
+          const lw = transfer.leftWires[i];
+          if (lw.pins.indexOf(pin) >= 0) {
+            const ff = transfer.leftEnergyFireFrame[i];
+            if (frame >= ff + FLIP_DELAY && ff > bestFrame) {
+              bestFrame = ff; bestColor = transfer.leftEnergy[i];
+            }
+          }
+        }
+        if (transfer.rightEnergy[i]) {
+          const rw = transfer.rightWires[i];
+          if (rw.pins.indexOf(pin) >= 0) {
+            const ff = transfer.rightEnergyFireFrame[i];
+            if (frame >= ff + FLIP_DELAY && ff > bestFrame) {
+              bestFrame = ff; bestColor = transfer.rightEnergy[i];
+            }
+          }
+        }
+      }
+      if (bestColor) transfer.pins[pin].color = bestColor;
+    }
+
+    // End conditions — both sides spent (or timer expired) AND the
+    // last fire's temp pulse has fully played out. Without the
+    // settle wait, a temp pulse fired on the last frame could win
+    // a pin and the match would end before the temp expired and
+    // gave the permanent counter-claim its turn back.
     transfer.timer--;
-    const bothEmpty = transfer.playerCharges === 0 && transfer.oppCharges === 0 &&
-                       transfer.pendingFlips.length === 0;
-    if (transfer.timer <= 0 || bothEmpty) {
+    const wantsToEnd = transfer.timer <= 0 ||
+                       (transfer.playerCharges === 0 && transfer.oppCharges === 0);
+    const settled = frame >= transfer.lastFireFrame + TEMP_ENERGY_FRAMES;
+    if (wantsToEnd && settled) {
       const pc = playerColorStr();
       const oc = oppColorStr();
       let pCount = 0, oCount = 0;
@@ -1382,13 +1589,22 @@
     player.y = currentDeck.playerStart.y;
     player.vx = 0; player.vy = 0;
     player.facingX = 0; player.facingY = -1;
-    player.charges = player.maxCharges;
-    player.fireCooldown = 0;
+    applyChassis("001");              // start bare; Shift-grapple to upgrade
     bullets.length = 0;
     enemies.length = 0;
+    grappleTarget = null;
+    grappleFrames = 0;
 
-    // Milestone 2: one 123 Disposal droid (8 charges) in the top-middle room.
-    enemies.push(spawnEnemy("123", 228, 48, 8, 0.8));
+    // Deck 1 mix — three top rooms + two bottom bays. Class numbers
+    // are canonical 100s–200s for Deck 1; the 476 in the bottom-right
+    // bay is a stowaway Maintenance droid for Milestone-4 testing
+    // (it's the only armed target on this deck — wear it to gain a
+    // strong laser; redistribute properly when Deck 4 lands).
+    enemies.push(spawnEnemy("123",  84,  48));   // top-left room
+    enemies.push(spawnEnemy("139", 228,  48));   // top-middle room
+    enemies.push(spawnEnemy("247", 348,  48));   // top-right room
+    enemies.push(spawnEnemy("302", 128, 192));   // bottom-left bay
+    enemies.push(spawnEnemy("476", 360, 192));   // bottom-right bay (armed)
 
     for (const k in keys) keys[k] = false;
     state = "playing";
@@ -1415,7 +1631,7 @@
   // ─────────────────────────────────────────────────────────────
   // Input
   // ─────────────────────────────────────────────────────────────
-  const MOVE_KEYS = ["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","a","d","w","s","A","D","W","S"," "];
+  const MOVE_KEYS = ["ArrowLeft","ArrowRight","ArrowUp","ArrowDown","a","d","w","s","A","D","W","S"," ","Shift"];
 
   function onKeyDown(e) {
     if (!modal.classList.contains("active")) return;
@@ -1432,9 +1648,16 @@
       return;
     }
     // Debug hook: T during gameplay opens the transfer mini-game
-    // standalone against a 123. Real wiring lands in Milestone 4.
+    // against the closest enemy droid (Shift-grapple is the in-fiction
+    // trigger — T is a dev shortcut that skips the 0.5s grapple).
     if (state === "playing" && (e.key === "t" || e.key === "T")) {
-      enterTransfer("123", 1);
+      let nearest = null, bestD = Infinity;
+      for (let i = 0; i < enemies.length; i++) {
+        const en = enemies[i];
+        const d = Math.hypot(en.x - player.x, en.y - player.y);
+        if (d < bestD) { bestD = d; nearest = en; }
+      }
+      if (nearest) enterTransfer(nearest);
       e.preventDefault();
       return;
     }
@@ -1472,8 +1695,11 @@
         return;
       }
       if (e.key === " ") {
-        // Discrete press — fires one charge along the cursor's wire
-        // on the player's chosen side.
+        // Discrete press — one charge per tap. `e.repeat` filters OS
+        // keyboard auto-repeat (Space held even briefly fires extra
+        // keydown events; without this guard, one tap can drain 2–3
+        // charges and put voltage on wires the player never chose).
+        if (e.repeat) { e.preventDefault(); return; }
         if (transfer.playerCharges > 0) {
           if (fireWire(playerColorStr(), transfer.cursor)) {
             transfer.playerCharges--;
