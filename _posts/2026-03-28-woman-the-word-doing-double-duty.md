@@ -1,7 +1,7 @@
 ---
 title: "Woman: The Word Doing Double Duty"
 layout: post
-image: /assets/images/posts/2026/woman-the-word.jpg
+image: /assets/images/2026/woman-the-word.jpg
 date: 2026-03-28
 categories:
 - Rant

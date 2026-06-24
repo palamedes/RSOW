@@ -1,7 +1,7 @@
 ---
 title: "They Shot the Messenger. Now We Are the Message."
 layout: post
-image: /assets/images/posts/2025/they-shot-the-messenger.png
+image: /assets/images/2025/they-shot-the-messenger.png
 date: 2025-09-12
 categories:
 - Rant

@@ -1,7 +1,7 @@
 ---
 title: "Somebody Has to Keep the Lights On"
 layout: post
-image: /assets/images/posts/2026/keep-lights-on.jpg
+image: /assets/images/2026/keep-lights-on.jpg
 date: 2026-03-20
 categories:
 - Rant

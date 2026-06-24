@@ -1,7 +1,7 @@
 ---
 title: "Don't Rewrite Reality Because You're Having an Identity Crisis"
 layout: post
-image: /assets/images/posts/2025/rewrite-reality.png
+image: /assets/images/2025/rewrite-reality.png
 date: 2025-08-14
 categories:
 - Rant

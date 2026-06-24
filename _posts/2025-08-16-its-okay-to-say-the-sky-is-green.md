@@ -1,7 +1,7 @@
 ---
 title: "It's Okay to Say the Sky Is Green"
 layout: post
-image: /assets/images/posts/2025/sky-is-green.png
+image: /assets/images/2025/sky-is-green.png
 date: 2025-08-16
 categories:
 - Rant

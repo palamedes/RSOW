@@ -1,7 +1,7 @@
 ---
 title: "I'm an ISTP and Frankly That's Everyone Else's Problem"
 layout: post
-image: /assets/images/posts/2025/istp.jpg
+image: /assets/images/2025/istp.jpg
 date: 2025-08-12
 categories:
 - Rant

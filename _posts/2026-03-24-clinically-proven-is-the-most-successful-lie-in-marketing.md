@@ -1,7 +1,7 @@
 ---
 title: "\"Clinically Proven\" Is the Most Successful Lie in Marketing"
 layout: post
-image: /assets/images/posts/2026/clinically-proven.jpg
+image: /assets/images/2026/clinically-proven.jpg
 date: 2026-03-24
 categories:
 - Rant

@@ -1,7 +1,7 @@
 ---
 title: "Support the Country You Live In or Live in the Country You Support"
 layout: post
-image: /assets/images/posts/2025/support-country.png
+image: /assets/images/2025/support-country.png
 date: 2025-08-10
 categories:
 - Rant

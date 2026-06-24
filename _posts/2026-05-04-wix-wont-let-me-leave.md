@@ -2,7 +2,7 @@
 title: "Wix Won't Let Me Leave"
 layout: post
 date: 2026-05-04
-image: /assets/images/posts/2026/wix-wont-let-me-leave.png
+image: /assets/images/2026/wix-wont-let-me-leave.png
 categories:
 - Rant
 - Software

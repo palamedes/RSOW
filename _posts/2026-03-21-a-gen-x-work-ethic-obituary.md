@@ -1,7 +1,7 @@
 ---
 title: "A Gen-X Work Ethic Obituary"
 layout: post
-image: /assets/images/posts/2026/gen-x-work-ethic.jpg
+image: /assets/images/2026/gen-x-work-ethic.jpg
 date: 2026-03-21
 categories:
 - Rant

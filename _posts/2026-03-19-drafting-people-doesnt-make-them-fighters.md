@@ -1,7 +1,7 @@
 ---
 title: "Drafting People Doesn't Make Them Fighters"
 layout: post
-image: /assets/images/posts/2026/drafting.jpg
+image: /assets/images/2026/drafting.jpg
 date: 2026-03-19
 categories:
 - Rant

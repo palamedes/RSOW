@@ -2,7 +2,7 @@
 title: "I Built a Shock Collar for the Internet"
 layout: post
 date: 2026-06-24
-image: /assets/images/posts/2026/shock-collar.png
+image: /assets/images/2026/shock-collar.png
 categories:
 - Rant
 tags:

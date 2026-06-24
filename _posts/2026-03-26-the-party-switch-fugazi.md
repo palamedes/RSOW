@@ -1,7 +1,7 @@
 ---
 title: "The Party Switch Fugazi"
 layout: post
-image: /assets/images/posts/2026/party-switch.jpg
+image: /assets/images/2026/party-switch.jpg
 date: 2026-03-26
 categories:
 - Rant

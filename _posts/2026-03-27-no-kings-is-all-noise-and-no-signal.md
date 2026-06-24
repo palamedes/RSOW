@@ -1,7 +1,7 @@
 ---
 title: "No Kings Is All Noise and No Signal"
 layout: post
-image: /assets/images/posts/2026/no-kings.jpg
+image: /assets/images/2026/no-kings.jpg
 date: 2026-03-27
 categories:
 - Rant
