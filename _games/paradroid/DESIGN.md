@@ -7,16 +7,23 @@ published: false
 
 # Paradroid (RSOW edition) — Design Document
 
-**Status:** draft v0.4 — Milestones 0-3 complete; ready to begin Milestone 4 (wire transfer into gameplay).
+**Status:** draft v0.6 — Milestones 0-4 complete + post-launch bug pass on AI pathing and transfer pin resolution; ready to begin Milestone 5 (full Deck 1 droid mix + lift to Deck 2).
 
-## Current implementation state (as of v0.4)
+## Current implementation state (as of v0.6)
 
 ✅ **Milestone 0** — modal, game card, canvas + C64 palette scaffold landed.
 ✅ **Milestone 1** — Deck 1 procedurally generated (60×30 cells, 20×10 macros) with thick walls, 3-tile doors, 3×3 lift. Player movement with acceleration/deceleration. Camera follows. Wall + entity collision (both axes, slide-along-walls).
 ✅ **Milestone 2** — 123 Disposal droid spawned in top-middle room, navigates via per-deck **waypoint graph** (rooms, doors, corridor segments). Player + droid each have **charges** (001=4, 123=8). Player fires weak laser with Space. Bullets collide with walls and droids. Both walls + entities block movement.
 ✅ **Milestone 3** — Full circuit-board transfer mini-game (see §6, rewritten). Accessible via `T` in deck (debug hook). Side selection, random topology, all element types except combiners, charge pool, color-locks, splitters routing through bar center, persistent vs 6-second pulse, last-spark-wins, winner indicator, AI scaling.
+✅ **Milestone 4** — Transfer wired into gameplay. `DROID_STATS` + `WEAPONS` tables drive per-chassis charges / speed / weapon. Deck 1 now spawns a mix (123, 139, 247, 302 + a stowaway 476 for armed-transfer testing). Holding **Shift** in contact with an enemy starts a grapple — both droids flash blue for ~0.5s, then the transfer mini-game opens against that specific target. **Win** = remove target, `applyChassis(target.num)` swaps the player's number / charges / speed / weapon (a 476 yields a strong laser). **Loss** = 50% damage to the current chassis; if it dies, drop to bare 001, or game-over from 001. **Tie** = no transfer, no damage. HUD now shows the worn chassis number. Debug `T` retargets to the nearest enemy.
+✅ **Post-M4 bug pass (v0.6)** — Five fixes from playtesting:
+  1. **AI pathing / bot-bot deadlock.** When two enemies wedge, the bot probes one body-length ahead and — if blocked by another droid (not a wall) — yields on a per-bot randomized timer (~18–47 frames). Yielding swaps `currentWP ↔ prevWP`, sending the bot back the way it came. The per-bot random threshold staggers head-on encounters so both bots don't flip on the same frame and immediately re-wedge. Geometry wedges keep the original 60-frame reroute. Enemies also freeze (`grappling=true` skips `updateEnemy`) so a target can't drift out of grapple range mid-lock.
+  2. **Phantom-fire from OS key-repeat.** `e.repeat` guard on the Space handler in transfer phase — a quick Space tap was producing 2–3 keydown events at the OS level and draining extra charges. One fire per real tap now.
+  3. **Voltage indicator vs diode markers.** The original `>` voltage arrow at the rail end looked identical to the static `>` diode markers on the wire (same color, same shape, ~15 px apart). Replaced with a colored "plug" rectangle overlaid on the rail itself — different shape, different position, unambiguous.
+  4. **Color-locked flow rendered on the wrong rail.** `computeSparkPos` keyed off `s.side === "yellow"` to pick which rail to start from, and `drawFlow` was passing the *energy color* (post-lock) as `s.side`. When the AI fired a yellow-locked right wire, the flow color became yellow and the dashes rendered from the **left** rail — looked like phantom player fires. Fixed by passing the actual rail (`"left"`/`"right"`) and keying `computeSparkPos` off `"left"`.
+  5. **Claim-based pin resolution.** Replaced one-shot `pendingFlips` with a per-frame recompute. Each energized wire continuously "claims" its connected pins with its `fireFrame` as strength (active `FLIP_DELAY` frames after fire, matching spark travel time). Among active claims on a pin, the highest fireFrame wins. Result: permanent (`>`) pulses beat temp pulses once the temp expires, two permanent claims resolve **deterministically by recency** (no more end-of-round coin flip), and re-firing your wire refreshes your claim. Match-end also now waits `TEMP_ENERGY_FRAMES` (6s) past the last fire so temp pulses fully expire and permanent counter-claims get their final say before pins are tallied.
 
-🚧 **Milestone 4 (NEXT)** — Wire the transfer game into actual gameplay: walk into a droid + press transfer button → mini-game starts against that specific droid → win = wear new chassis (with its charges/speed/weapon), lose = current chassis takes damage.
+🚧 **Milestone 5 (NEXT)** — Full Deck 1 droid mix at proper densities, enemy combat behaviors (Wanderer / Civilian / Patroller flee + engage), lift menu UI, ~70%-cleared gate before the lift unlocks Deck 2. See §10 for the full milestone runway.
 
 Deferred for future milestones: combiners (N→1 elements), chip swap (re-roll topology), real-time damage flash, SFX, sprite-art polish pass, all 8 decks, all 23 droids.
 **Source game:** Paradroid, Andrew Braybrook / Hewson Consultants / Graftgold, 1985 (Commodore 64).
@@ -250,16 +257,19 @@ Each droid type has a fixed **charge pool**. The player's 001 has **4**. A 123 h
 When fired:
 
 1. The fired wire becomes **energized** with the firing side's color (modified by any color-lock).
-2. A **voltage arrow** appears at the rail end of the wire.
+2. A bright **voltage plug** appears overlaid on the rail at the wire's entry Y (rectangle, not a triangle — visually distinct from the static `>` diode markers along the wire).
 3. **Yellow/purple dashes flow** continuously along the wire from rail to pin in a chase pattern.
-4. After ~50-frame travel delay (≈0.8s), the chip pin(s) flip to the spark's final color.
+4. After ~50-frame travel delay (≈0.8s), the wire's "claim" on its connected pin(s) activates and the pin flips to the energy's final color.
 5. Through a splitter, the spark enters the bar at center then jogs out to each pin.
-6. **Last spark wins** — multiple flips on the same pin override in arrival order.
-7. **Without a `>`**, the wire de-energizes after 6 seconds. **With a `>`**, it pulses forever.
+6. **Claim-based resolution** (v0.6 rewrite of "last spark wins"): each energized wire continuously claims its pins as long as it stays energized. Among active claims on a pin, the one with the most recent **fireFrame** wins. Re-firing the same wire bumps its fireFrame, refreshing your claim. So:
+   - Temp vs permanent (`>`) → permanent wins once the temp expires (the temp's claim disappears and the permanent's is the only one left).
+   - Permanent vs permanent → whichever was fired *later* holds the pin. Deterministic and skill-based — fire your diode after the opponent fires theirs to lock it in.
+   - Refresh tactic: spend a charge re-firing a wire you already own to bump your fireFrame above any future opponent fire.
+7. **Without a `>`**, the wire de-energizes after 6 seconds and stops claiming. **With a `>`**, it claims forever.
 
 ### 6.7 Win condition
 
-After 30 seconds (or both sides spent with no flips pending), count pins:
+The match ends when **(timer ≤ 0 OR both sides spent)** AND **at least 6 seconds (`TEMP_ENERGY_FRAMES`) have passed since the most recent fire** — the settle wait ensures any temp pulse from the last few seconds has fully expired and permanent counter-claims have had their final say before pins are tallied. Then:
 
 - More pins of your color than opponent's → **TRANSFER SUCCESS** (wear the new chassis).
 - Fewer → **TRANSFER FAILED** (current chassis takes 50% damage).
@@ -284,7 +294,7 @@ Higher tier also fires slightly faster (less "think" time).
 - Purple color: `#9F7AC9` (lavender — lighter than Pepto's PURPLE to read on brown)
 - Wires: pure black lines, 2px thick
 - Chip body: pure black with colored pin segments
-- Voltage indicators: yellow/purple per side
+- Voltage indicators: colored "plug" rectangle on the rail (4×6 px) with a 1-px black halo, in the firing side's color. Rectangle (not triangle) so it can't be confused with diode markers.
 - **No purple text anywhere** — it's hard to read on brown. Use yellow / white / light-red.
 
 ### 6.10 Deferred for future iteration
@@ -292,7 +302,7 @@ Higher tier also fires slightly faster (less "think" time).
 - **Combiners** (N wires merging into 1 output). Iconic Paradroid element, not yet generated.
 - **Chip swap** — re-roll topology mid-match if unfavorable.
 - **More wire-element variety** — e.g., amplifiers, multi-pin splitter chains.
-- **Wiring into actual gameplay** — Milestone 4.
+- ~~**Wiring into actual gameplay**~~ — landed in Milestone 4.
 
 ---
 
@@ -434,14 +444,52 @@ Rough sequencing. Each milestone is a working, playable slice — never a half-f
 | 1 | Tilemap renderer + player movement         | ✅ done | Walk a 001 around Deck 1 (no enemies)                     |
 | 2 | One enemy with AI + shooting               | ✅ done | Kill a 123 with the weak laser                            |
 | 3 | Transfer mini-game (standalone)            | ✅ done | Press T in deck; play the circuit-board duel              |
-| 4 | Transfer integrated; multiple droid types  | 🚧 next | Walk up, transfer, wear new chassis, shoot with new gun   |
-| 5 | Full Deck 1 with mixed droids + lift       |        | Clear Deck 1, ride lift to Deck 2                         |
+| 4 | Transfer integrated; multiple droid types  | ✅ done | Walk up, transfer, wear new chassis, shoot with new gun   |
+| 5 | Full Deck 1 with mixed droids + lift       | 🚧 next | Clear Deck 1, ride lift to Deck 2                         |
 | 6 | All 8 decks + all 23 droids                |        | Play the whole campaign                                   |
 | 7 | Save/load + hiscore + polish               |        | Quit mid-game, come back, resume                          |
 | 8 | SFX, juice, screen shake, particles        |        | Feels good                                                |
 | 9 | Sprite art final pass                      |        | Looks good                                                |
 
 Realistic effort: **multi-week**, working in evenings. Milestones 0–4 are the meat — once transfer works, everything else is content + polish.
+
+### 10.1 Restart cheat-sheet — Milestone 5 entry checklist
+
+If you're picking this up in a fresh chat, here's the state of play and what's next:
+
+**Where the code lives:**
+- `_games/paradroid/DESIGN.md` — this file (spec; source of truth for design intent).
+- `assets/js/paradroid.js` — single-file ES module (~1,700 lines, no submodules yet — split out if it crosses ~2,000).
+- `_includes/paradroid-modal.html` — game container (canvas + close button).
+- `_sass/_paradroid.scss` — modal styles.
+- `games.md` — the listing card.
+
+**Milestone 5 work, in suggested order:**
+
+1. **Deck-1 droid roster at proper densities.** Replace the test mix (currently 123 / 139 / 247 / 302 + a stowaway 476) with ~8–10 droids drawn only from the 100s–200s tier per the §3.1 deck plan. The 476 was a Milestone-4 testing concession for armed-transfer; it should leave Deck 1 once the player has a credible reason to climb to Deck 4.
+
+2. **Enemy AI behaviors per §4.2.**
+   - **Wanderer** (Disposal 123/139) — already random-walks; add **flee on sight of armed droid** (LOS check, run toward farthest waypoint from the threat).
+   - **Civilian** (Servant 247/249/296, Crew, Messenger) — patrol fixed route; flee combat; never attack.
+   - **Patroller** (Maintenance 420/476/493) — fixed route; armed ones shoot if engaged.
+   - Sentry / Hunter / Boss come with Decks 3+.
+   - All behaviors share the current waypoint graph and the bot-bot yield rules from the v0.6 pass.
+
+3. **Lift menu + deck gating.**
+   - Walking onto a `LIFT` tile + pressing `E` opens a small menu overlay listing reachable decks (current + any unlocked).
+   - Lock condition: ≥70% of the current deck's spawned droids removed (shot or transferred). Tracked as `decksCleared` and `deckProgress` in the save format (§9.3).
+   - Lift menu uses the same modal canvas; arrow keys + Enter to select.
+
+4. **Deck 2 stub.** Build a second `buildDeckN()` in the deck-builder style (or move to JSON in `_games/paradroid/decks/deck-N.json` as §9.4 plans). One playable deck with 200s–300s droids is enough to prove the lift loop.
+
+5. **HUD updates.** "DECK N" should reflect the current deck. Add a small "CLEARED N%" readout when on the lift tile so the player knows whether the lift will unlock.
+
+**Known small follow-ups outside Milestone 5:**
+- Combiners in the transfer game (deferred since v0.4 — needed for visual parity with the original, not for win/loss math).
+- Real-time damage flash on the worn chassis (the HUD shows charges but the chassis itself doesn't react visually to bullet hits).
+- Energy regeneration / Energizer tiles — the energizer tile renders but doesn't yet refill charges on contact.
+- Hatch tile is rendered but has no behavior yet (one-way drop to lower deck).
+- SFX (intentionally deferred to Milestone 8).
 
 ---
 
