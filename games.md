@@ -4,6 +4,16 @@ layout: page
 permalink: /games/
 ---
 
+I am an avid gamer. Like most people I have been playing games in one form or another since I was a child.  My favorite games are of course on the computer.
+
+### My current "go to" games
+This is the short list of games that I typically fall back into playing after I try something for a while.   Feel free to look me up if you want to play.
+- **World of Warships** _as Toiletduck_
+- **World of Tanks: HEAT** _as Toiletduck_
+- **Star Citizen** _as Vihr_
+- **Path of Exile 2** _as Toiletduck_
+
+### Loved games recreated
 A small collection of classic games from my childhood — ones I loved and have tried to faithfully recreate so you can play them right here in your browser. No downloads, no logins, no servers; saves live in your browser only.
 
 <div class="games-grid">

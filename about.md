@@ -20,7 +20,7 @@ Tescht Vihravendrel Ambjuri'Belshiva is a fantasy character name that I have use
 
 ## Toiletduck
 
-When playing first person shooters or arcade style games, I generally play under this moniker. Coined back in 1999 when TFC was first released, I chose this name when I became an administrator on some servers that were real toilets and were in desperate need of cleaning..  "[Toilet Duck](http://en.wikipedia.org/wiki/Toilet_Duck)" was a toilet bowl cleaner back in the 80's.
+When playing first-person shooters or arcade style games, I generally play under this moniker. Coined back in 1999 when TFC was first released, I chose this name when I became an administrator on some servers that were real toilets and were in desperate need of cleaning..  "[Toilet Duck](http://en.wikipedia.org/wiki/Toilet_Duck)" was a toilet bowl cleaner back in the 80's.
 
 ---
 
@@ -68,21 +68,21 @@ Things are always better when you look back at them. Sometimes I can't believe h
 
 After I got out of the military I started my own business on the world wide web. I created the very first digital music metacrawler that searched the internet for MP3s. It did very well and really got me back into programming after my military hiatus.
 
-After 2 years of development I ended up selling Palavista to a company in New York (ChangeMusic inc.) for $330k. And proceeded to retire for a couple years. It's a shame, they did nothing with it.  But then that's because about 2 weeks after I sold it, napster came out and it was all over for them.. I got out just in time..
+After 2 years of development I ended up selling Palavista to a company in New York (ChangeMusic inc.) for $330k. And proceeded to retire for a couple of years. It's a shame, they did nothing with it.  But then that's because about 2 weeks after I sold it, napster came out and it was all over for them.. I got out just in time..
 
 ## Law Enforcement
 
 {% include img.html src="/assets/images/gallery/gallery-01.jpg" class="about-float-left" title="End of Shift, in Uniform" caption="<p>One of the few photos of me in my LEO uniform — taken after a long shift. I was tired.</p>" %}
 
-After my early retirement (read: once I got bored) I decided to go into law enforcement. I worked for several years as a police officer in two different cities in central Texas before I realized it just wasn't for me.
+After my early retirement (read: once I got bored) I decided to go into law enforcement. I worked for several years as a police officer in two different municipalities in central Texas before I realized it just wasn't for me.  
 
 Part of me misses it because it had the camaraderie of the military and a very minor sense of celebrity in that it felt like you were doing something important. I later rejoined law enforcement in Georgia to give back to the community, but eventually departed due to night shift impacts on my marriage, prioritizing my relationship with my wife.
 
-I spent approximately 15 years in public service through law enforcement.
+I realistically spent approximately 6 years in public service through law enforcement.
 
 ---
 
-That's me in a nut shell - of course there is a lot more to know but you'll have to read the rest of the site to get it. This site is as much a peripheral part of my brain as it is anything else. I write this stuff for my own pleasure, and not for you. If you find any enjoyment out of any of my ramblings then fantastic, but I did it for me.
+That's me in a nutshell - of course there is a lot more to know but you'll have to read the rest of the site to get it. This site is as much a peripheral part of my brain as it is anything else. I write this stuff for my own pleasure, and not for you. If you find any enjoyment out of any of my ramblings then fantastic, but I did it for me.
 
 One thing you may notice, I don't use spell checker, and I really should. Sorry about that - please forgive any typos.
 
