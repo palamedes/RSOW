@@ -73,6 +73,18 @@ p, ul, ol {
   margin-bottom: 1rem;
 }
 
+strong, b {
+  font-weight: 800;
+}
+
+// The global `* { padding: 0 }` reset kills list indentation; restore it
+// for body content so bullets/numbers sit indented under their text.
+.page, .post-content {
+  ul, ol {
+    padding-left: 1.5rem;
+  }
+}
+
 .mb-0 { margin-bottom: 0 !important; }
 .mt-0 { margin-top: 0 !important; }
 .ml-4 { margin-left: 2rem !important; }

@@ -36,6 +36,11 @@ jekyll-archives:
 collections:
   games:
     output: true
+  pages:
+    output: true
+    # Keep page URLs at the site root (e.g. /hire/) instead of /pages/hire/.
+    # Per-page `permalink:` front matter still overrides this.
+    permalink: /:path/
 
 defaults:
   - scope:
