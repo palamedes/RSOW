@@ -79,8 +79,10 @@ strong, b {
 
 // The global `* { padding: 0 }` reset kills list indentation; restore it
 // for body content so bullets/numbers sit indented under their text.
+// Skip lists that already opt into an explicit indent (e.g. .ml-4 on the
+// resume), otherwise the padding stacks on top of their margin.
 .page, .post-content {
-  ul, ol {
+  ul:not(.ml-4), ol:not(.ml-4) {
     padding-left: 1.5rem;
   }
 }
