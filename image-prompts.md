@@ -111,3 +111,5 @@ dark moody tones with bold imagery. No text in the image.
 53. **wot-icons** — A World War II tank seen through a targeting reticle, military contour icon style, clean vector aesthetic
 
 54. **i-must-make** — Hands covered in sawdust working on a woodworking project, shavings flying, maker's passion
+
+55. **windows-is-dead-to-me** — A cracked Windows-style logo on a glowing monitor dissolving into pixels, a small penguin silhouette walking away into clean light, dark moody tones, the end of an era
