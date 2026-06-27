@@ -34,7 +34,7 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   .abt-section { padding: 3.75rem 0; }
 
   .abt-section-head {
-    max-width: 60ch;
+    width: 100%;
     margin: 0 0 2.25rem;
   }
   .abt-kicker {
@@ -165,7 +165,6 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     -webkit-text-fill-color: transparent;
   }
   .abt-lede {
-    max-width: 56ch;
     font-size: 1.08rem;
     line-height: 1.65;
     color: rgba(255,255,255,0.82);
@@ -184,9 +183,8 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   .abt-stat-row {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0.75rem;
-    @media (max-width: 860px) { grid-template-columns: repeat(3, 1fr); }
     @media (max-width: 520px) { grid-template-columns: repeat(2, 1fr); }
   }
   .abt-kpi {
@@ -484,7 +482,6 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     border-top: 3px solid $abt-accent;
   }
   .abt-outro-inner {
-    max-width: 760px;
     text-align: center;
     .abt-kicker-light { color: $abt-accent-2; }
     h2 {
@@ -498,7 +495,6 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       line-height: 1.75;
       color: rgba(255,255,255,0.82);
       margin: 0 auto 1rem;
-      max-width: 64ch;
     }
   }
   .abt-outro-note {
