@@ -367,23 +367,45 @@
       if (typeof h.price === 'number') paintLive(h.ticker, { c: h.price, dp: h.todayPct }, '');
     });
   }
-  function initLive() {
-    if (!FINNHUB_KEY) { setLiveStatus('live prices off — showing snapshot', false); return; }
-    if (!('fetch' in window)) return;
-    setLiveStatus('fetching live prices…', false);
+  // Auto-refresh cadence (ms). Override with window.DRIP_REFRESH_MS; default 3 min.
+  var REFRESH_MS = (typeof window.DRIP_REFRESH_MS === 'number' && window.DRIP_REFRESH_MS > 0) ? window.DRIP_REFRESH_MS : 180000;
+  var liveLast = null, liveOk = 0, liveN = 0;
+
+  function relTime(d) {
+    var s = Math.max(0, Math.round((Date.now() - d.getTime()) / 1000));
+    if (s < 45) return 'just now';
+    var m = Math.round(s / 60);
+    return m < 60 ? m + 'm ago' : Math.round(m / 60) + 'h ago';
+  }
+  function renderLiveStatus() {
+    if (!liveLast) return;
+    var t = liveLast.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    setLiveStatus('live · ' + liveOk + '/' + liveN + ' · refreshed ' + t + ' (' + relTime(liveLast) + ')', true);
+  }
+  function fetchLive() {
+    if (document.hidden) return; // don't burn API calls on a backgrounded tab
     var tickers = H.map(function (h) { return h.ticker; });
+    liveN = tickers.length;
     var ok = 0;
     Promise.allSettled(tickers.map(function (t) {
       return fetch('https://finnhub.io/api/v1/quote?symbol=' + encodeURIComponent(t) + '&token=' + FINNHUB_KEY)
         .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
         .then(function (q) { paintLive(t, q, 'today'); if (q && q.c > 0) ok++; });
     })).then(function () {
-      if (ok > 0) {
-        var now = new Date();
-        setLiveStatus('live · ' + ok + '/' + tickers.length + ' updated ' + now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }), true);
-      } else {
-        setLiveStatus('live feed unavailable — showing snapshot', false);
-      }
+      if (ok > 0) { liveOk = ok; liveLast = new Date(); renderLiveStatus(); }
+      else if (!liveLast) { setLiveStatus('live feed unavailable — showing snapshot', false); }
+      // a failed refresh after a prior success keeps the last-good status untouched
+    });
+  }
+  function initLive() {
+    if (!FINNHUB_KEY) { setLiveStatus('live prices off — showing snapshot', false); return; }
+    if (!('fetch' in window)) return;
+    setLiveStatus('fetching live prices…', false);
+    fetchLive();
+    setInterval(fetchLive, REFRESH_MS);                                   // re-fetch every few minutes
+    setInterval(function () { if (liveLast) renderLiveStatus(); }, 30000); // keep "(Xm ago)" ticking
+    document.addEventListener('visibilitychange', function () {           // catch up when the tab returns
+      if (!document.hidden && (!liveLast || Date.now() - liveLast.getTime() > REFRESH_MS)) fetchLive();
     });
   }
 
