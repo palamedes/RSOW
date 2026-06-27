@@ -724,49 +724,7 @@
   &:hover { color: #333; }
 }
 
-// ── Archive page ────────────────────────────────────────
-.archive-page {
-  padding-top: 1.5rem;
-}
-
-.archive-filters {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.filter-categories {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.85rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  color: #555;
-  background: #fff;
-  cursor: pointer;
-  &:hover { border-color: #999; color: #222; text-decoration: none; }
-  &.active { background: #2673da; color: #fff; border-color: #2673da; }
-}
-
-.filter-search {
-  input {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    width: 200px;
-    font-family: inherit;
-    &:focus { outline: none; border-color: #2673da; }
-  }
-}
+// ── Archive page lives in _sass/_archive.scss (scoped under .arc) ──
 
 // ── Resume page ─────────────────────────────────────────
 .resume-links-row {

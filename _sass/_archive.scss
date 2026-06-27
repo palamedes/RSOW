@@ -1,0 +1,281 @@
+// ════════════════════════════════════════════════════════════════
+//  Blog archive — /archive
+//  Scoped under `.arc`. The post cards reuse the shared global
+//  .post-grid / .post-card (unchanged); only the chrome around them
+//  lives here. Palette inherits the site: #2673da accent, Nunito Sans.
+// ════════════════════════════════════════════════════════════════
+
+$arc-accent:  #2673da;
+$arc-accent-2:#4a9aff;
+$arc-ink:     #1c2330;
+$arc-body:    #3a3f4b;
+$arc-muted:   #6b7280;
+$arc-faint:   #9aa1ad;
+$arc-line:    #e3e6ea;
+$arc-bg:      #f2f2f2;
+$arc-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+.arc {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .arc-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  // ════════════════ HERO ════════════════
+  .arc-hero {
+    position: relative;
+    background: radial-gradient(120% 150% at 82% -20%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+    color: #fff;
+    padding: 2.6rem 0 2.3rem;
+    overflow: hidden;
+    border-bottom: 3px solid $arc-accent;
+  }
+  .arc-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 60% at 10% 15%, rgba(38,115,218,0.30) 0%, transparent 60%),
+      radial-gradient(34% 50% at 96% 100%, rgba(74,154,255,0.20) 0%, transparent 60%);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 78%);
+    }
+  }
+  .arc-hero-inner { position: relative; }
+  .arc-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.62);
+    margin: 0 0 0.5rem;
+  }
+  .arc-hero h1 {
+    font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.6rem;
+    color: #fff;
+    background: linear-gradient(180deg, #ffffff 0%, #cdd9f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .arc-sub {
+    font-size: 1.02rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 1.4rem;
+  }
+  .arc-stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.75rem;
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      position: relative;
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -0.9rem;
+        top: 0.25rem;
+        bottom: 0.25rem;
+        width: 1px;
+        background: rgba(255,255,255,0.16);
+      }
+    }
+    strong {
+      font-family: $arc-mono;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+    }
+  }
+
+  // ════════════════ STICKY TOOLBAR ════════════════
+  .arc-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(247,248,250,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid $arc-line;
+    transition: box-shadow 0.2s ease;
+    &.is-stuck { box-shadow: 0 6px 22px rgba(18,22,34,0.08); }
+  }
+  .arc-toolbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 2rem;
+    flex-wrap: wrap;
+  }
+  .arc-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .arc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $arc-body;
+    background: #fff;
+    border: 1px solid $arc-line;
+    border-radius: 999px;
+    padding: 0.32rem 0.55rem 0.32rem 0.8rem;
+    cursor: pointer;
+    line-height: 1.4;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+    &:hover { border-color: rgba(38,115,218,0.5); color: $arc-accent; }
+    &:active { transform: translateY(1px); }
+    &.is-active {
+      background: $arc-accent;
+      border-color: $arc-accent;
+      color: #fff;
+    }
+  }
+  .arc-pill-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.4rem;
+    font-family: $arc-mono;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1;
+    color: $arc-muted;
+    background: #eef1f5;
+    border-radius: 999px;
+    // top-heavy padding offsets the mono font's empty descent so the digit
+    // sits at the optical centre of the bubble rather than riding high
+    padding: 0.38rem 0.45rem 0.14rem;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .arc-pill:hover .arc-pill-count { background: #e4ebf7; color: $arc-accent; }
+  .arc-pill.is-active .arc-pill-count { background: rgba(255,255,255,0.22); color: #fff; }
+
+  .arc-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 0 1 250px;
+  }
+  .arc-search-ico {
+    position: absolute;
+    left: 0.7rem;
+    color: $arc-faint;
+    pointer-events: none;
+  }
+  .arc-search input {
+    width: 100%;
+    font: inherit;
+    font-size: 0.85rem;
+    color: $arc-ink;
+    padding: 0.45rem 1.9rem 0.45rem 2.1rem;
+    border: 1px solid $arc-line;
+    border-radius: 999px;
+    background: #fff;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    &::placeholder { color: $arc-faint; }
+    &:focus {
+      outline: none;
+      border-color: $arc-accent;
+      box-shadow: 0 0 0 3px rgba(38,115,218,0.15);
+    }
+  }
+  .arc-search-clear {
+    position: absolute;
+    right: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 0;
+    border-radius: 50%;
+    background: #e7eaef;
+    color: $arc-muted;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+    &:hover { background: $arc-accent; color: #fff; }
+    &[hidden] { display: none; }
+  }
+
+  // ════════════════ RESULTS ════════════════
+  .arc-grid-wrap { padding-top: 0.25rem; }
+  .arc-meta {
+    font-size: 0.78rem;
+    color: $arc-muted;
+    margin: 1rem 0 0;
+    padding-bottom: 0.25rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  // the shared .post-grid already paints the cards; just tighten the top gap
+  #archive-grid { padding-top: 0.75rem; }
+
+  // ════════════════ EMPTY STATE ════════════════
+  .arc-empty {
+    text-align: center;
+    padding: 3.5rem 1rem 4rem;
+    &[hidden] { display: none; }
+    .arc-empty-ico { display: block; margin: 0 auto 0.7rem; color: $arc-faint; }
+    h2 { font-size: 1.3rem; color: $arc-ink; margin: 0 0 0.4rem; }
+    p { color: $arc-muted; margin: 0 0 1.25rem; }
+  }
+  .arc-empty-reset {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+    background: $arc-accent;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.55rem 1.4rem;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.12s ease;
+    &:hover { background: #1a5ab8; }
+    &:active { transform: translateY(1px); }
+  }
+}
+
+@media (max-width: 620px) {
+  .arc .arc-toolbar-inner { gap: 0.6rem; }
+  .arc .arc-search { flex-basis: 100%; order: 2; }
+  .arc .arc-pills { order: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc *, .arc-toolbar { transition: none !important; scroll-behavior: auto !important; }
+}
