@@ -1,0 +1,425 @@
+---
+layout: default
+title: "The Drip Fund — a live dividend portfolio you can play with"
+description: "A real, self-directed dividend-income portfolio shown as an interactive game: live holdings, charts, the strategy behind every position, and a forecast simulator. For learning only — not financial advice."
+permalink: /investments/
+full_width: true
+---
+{% assign d = site.data.drip %}
+{% assign tierOrder = "build,hold,monitor" | split: "," %}
+<div class="inv" id="inv-app">
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="inv-hero">
+    <div class="inv-wrap">
+      <p class="inv-eyebrow">A real, self-directed dividend experiment · run on {{ d.meta.broker }}</p>
+      <h1>{{ d.meta.name }}</h1>
+      <p class="inv-sub">{{ d.meta.tagline }}</p>
+
+      <div class="inv-stat-row">
+        <div class="inv-kpi">
+          <span class="inv-kpi-val" id="kpi-value">${% include inv-num.html n=d.meta.totalValue %}</span>
+          <span class="inv-kpi-label">Portfolio value</span>
+        </div>
+        <div class="inv-kpi">
+          <span class="inv-kpi-val">${% include inv-num.html n=d.meta.estAnnualIncome %}<span class="inv-kpi-sub">/yr</span></span>
+          <span class="inv-kpi-label">Est. dividend income</span>
+        </div>
+        <div class="inv-kpi">
+          <span class="inv-kpi-val">{{ d.meta.positionCount }}</span>
+          <span class="inv-kpi-label">Positions held</span>
+        </div>
+        <div class="inv-kpi">
+          <span class="inv-kpi-val">+{{ d.meta.return2025 }}%</span>
+          <span class="inv-kpi-label">2025 return<span class="inv-kpi-note">(self-managed)</span></span>
+        </div>
+        <div class="inv-kpi">
+          <span class="inv-kpi-val">~$100<span class="inv-kpi-sub">/mo</span></span>
+          <span class="inv-kpi-label">Added monthly<span class="inv-kpi-note">(when I remember)</span></span>
+        </div>
+      </div>
+
+      <p class="inv-asof" id="inv-asof">
+        <span class="inv-asof-left"><span class="inv-live-dot"></span>Snapshot as of June 27, 2026 · <span id="inv-live-status">prices as of this snapshot · live off</span></span>
+        <button type="button" class="inv-asof-link" id="inv-observer-open">To the keen observer</button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ MANIFESTO ══════════════ -->
+  <button type="button" class="inv-manifesto-show" hidden>▸ Show the intro</button>
+  <section class="inv-manifesto">
+    <div class="inv-wrap inv-manifesto-inner">
+      <button type="button" class="inv-manifesto-hide" aria-label="Hide the intro">Hide intro ✕</button>
+      <p class="inv-manifesto-eyebrow">Why this exists</p>
+      <h2 class="inv-manifesto-head">Turning a tiny seed into something real.</h2>
+      <p class="inv-lead">I started The Drip Fund with a small stake — somewhere around <strong>$5,000</strong>, honestly I don't remember the exact number — and I feed it maybe <strong>$100 a month</strong> when I remember to, for one reason: to find out, with <em>real</em> money in an account I can actually log into, whether the slow magic of dividend reinvestment truly works. Not in a spreadsheet. For real.</p>
+      <p>Let me be clear about one thing up front: <strong>this isn't my retirement plan, and it isn't my only investment.</strong> The serious, boring heavy-lifting happens elsewhere — a 401(k) and a Roth IRA, where it belongs. The Drip Fund is the <em>sandbox</em>: a small pot of real money I play with out in the open, on purpose, just to illustrate the point and show anyone who'll look how powerful this quiet little engine really is.</p>
+      <p>Here's the beautiful part. Every dividend these holdings pay never touches my pocket — it instantly buys more shares. Those shares pay their own dividends, which buy more shares again. It compounds quietly in the background while I sleep, while I work, while I forget it even exists. Water wearing down stone.</p>
+      <p>And this is the part that gets me: the dollars in here are modest, but the <em>engine</em> is the exact same one that builds serious wealth. If these were bigger numbers — or if I'd simply started at eighteen instead of in my fifties — that same machine, handed thirty or forty years, doesn't just <em>supplement</em> a retirement. It lets you walk away from work early and never look back. This little account is a proof of concept for a very big idea.</p>
+      <div class="inv-manifesto-cta">
+        <strong>If you're young, this is the whole message:</strong> start <em>now</em>. Not “once I have money” — now, with whatever you've got, even ten dollars a week. Time is the single ingredient you can never buy more of, and it's the one that matters most here. A dollar invested at 18 does work a dollar invested at 50 simply cannot. The best day to plant this tree was years ago. The second best day is today. Go open the account.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TABS ══════════════ -->
+  <nav class="inv-tabs">
+    <div class="inv-tabs-inner" role="tablist" aria-label="Drip Fund views">
+      <button class="inv-tab" role="tab" aria-selected="true"  id="tab-dashboard" aria-controls="panel-dashboard" data-tab="dashboard"><span class="inv-tab-ico">▤</span>Dashboard</button>
+      <button class="inv-tab" role="tab" aria-selected="false" id="tab-forecast"  aria-controls="panel-forecast"  data-tab="forecast"><span class="inv-tab-ico">◷</span>Forecast</button>
+      <button class="inv-tab" role="tab" aria-selected="false" id="tab-story"     aria-controls="panel-story"     data-tab="story"><span class="inv-tab-ico">❧</span>The Strategy</button>
+    </div>
+  </nav>
+
+  <div class="inv-wrap">
+
+    <!-- ════════ PANEL: DASHBOARD ════════ -->
+    <section class="inv-panel" data-panel="dashboard" id="panel-dashboard" role="tabpanel" aria-labelledby="tab-dashboard">
+
+      <div class="inv-callout info">
+        <h4>One account, one job</h4>
+        <p>{{ d.meta.oneJob }}</p>
+      </div>
+
+      <!-- charts: switchable views -->
+      <div class="inv-chartswitch">
+        <div class="inv-cs-tabs" role="tablist" aria-label="Chart view">
+          <button type="button" class="inv-cs-tab" data-csview="overview" aria-selected="true">Where it sits &amp; who pays</button>
+          <button type="button" class="inv-cs-tab" data-csview="gl" aria-selected="false">Winners &amp; laggards</button>
+        </div>
+
+        <div class="inv-cs-panel" data-csview="overview">
+          <div class="inv-grid-2">
+            <div class="inv-chart-card">
+              <h3>Where the money sits</h3>
+              <p class="inv-chart-note">Allocation by position · colored by tier</p>
+              <div class="inv-canvas-wrap"><canvas id="chart-alloc"></canvas></div>
+            </div>
+            <div class="inv-chart-card">
+              <h3>Who actually pays the bills</h3>
+              <p class="inv-chart-note">Estimated annual dividend income by position</p>
+              <div class="inv-canvas-wrap"><canvas id="chart-income"></canvas></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="inv-cs-panel" data-csview="gl" hidden>
+          <div class="inv-chart-card">
+            <h3>Winners &amp; laggards</h3>
+            <p class="inv-chart-note">Unrealized gain / loss in dollars — the cost of patience and the reward for it</p>
+            <div class="inv-canvas-wrap tall"><canvas id="chart-gl"></canvas></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Three -->
+      <div class="inv-section-head">
+        <h2>The Core Three</h2>
+        <p>{{ d.coreThree.note }}</p>
+      </div>
+      <div class="inv-core3">
+        {% for m in d.coreThree.members %}
+        <div class="inv-core3-item">
+          <div class="inv-core3-tick">{{ m.ticker }}</div>
+          <div class="inv-core3-val">${% include inv-num.html n=m.value %} · {{ m.pct }}%</div>
+          <div class="inv-core3-bar"><span style="width:{{ m.pct | times: 5 }}%"></span></div>
+          <div class="inv-core3-note">{% if m.note != "" %}{{ m.note }}{% else %}&nbsp;{% endif %}</div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="inv-callout info" style="margin-top:0.9rem;">
+        <p><strong>Contribution rule:</strong> {{ d.coreThree.contribution.split }} Minimum ${{ d.coreThree.contribution.minimum }}/mo, targeting ${{ d.coreThree.contribution.target }}. <em>{{ d.coreThree.contribution.tip }}</em></p>
+      </div>
+
+      <!-- Holdings by tier -->
+      <div class="inv-section-head">
+        <h2>Every position, on its own sheet</h2>
+        <p>Thirteen holdings, sorted into three tiers: <strong>Build</strong> (new money goes here), <strong>Hold</strong> (let it DRIP), and <strong>Monitor</strong> (watch, maybe trim).</p>
+      </div>
+
+      {% for tk in tierOrder %}
+        {% assign tier = d.tiers[tk] %}
+        {% assign group = d.holdings | where: "tier", tk %}
+        <div class="inv-tier-head" data-tier="{{ tk }}">
+          <h3>{{ tier.name }}</h3>
+          <span class="inv-tier-sub">— {{ tier.subtitle }}</span>
+          <span class="inv-tier-count">{{ group | size }} position{% if group.size != 1 %}s{% endif %}</span>
+        </div>
+        <p class="inv-tier-desc">{{ tier.desc }}</p>
+        <div class="inv-sheets">
+          {% for h in group %}
+          <article class="inv-sheet" data-tier="{{ h.tier }}" data-ticker="{{ h.ticker }}">
+            <div class="inv-sheet-top">
+              <div>
+                <div class="inv-ticker">{{ h.ticker }}{% if h.monthly %}<span class="inv-monthly" title="Pays monthly">●</span>{% endif %}</div>
+                <div class="inv-name">{{ h.name }}</div>
+                <div class="inv-role">{{ h.role }}</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.45rem;">
+                <span class="inv-tier-badge">{{ tk | capitalize }}</span>
+                <div class="inv-live" data-live="{{ h.ticker }}"><span class="inv-live-flat">snapshot</span></div>
+              </div>
+            </div>
+
+            <div class="inv-stat-grid">
+              <div class="inv-stat"><span class="inv-stat-label">Value</span><span class="inv-stat-val">${% include inv-num.html n=h.value %}</span></div>
+              <div class="inv-stat"><span class="inv-stat-label">% of acct</span><span class="inv-stat-val">{{ h.pct }}%</span></div>
+              <div class="inv-stat"><span class="inv-stat-label">Cost basis</span><span class="inv-stat-val">${% include inv-num.html n=h.costBasis %}</span></div>
+              <div class="inv-stat">
+                <span class="inv-stat-label">Gain / loss</span>
+                <span class="inv-stat-val {% if h.gain >= 0 %}up{% else %}down{% endif %}">{% if h.gain >= 0 %}+{% endif %}${% include inv-num.html n=h.gain %} <span style="font-size:0.72rem;opacity:0.8;">({{ h.gainPct }}%)</span></span>
+              </div>
+              <div class="inv-stat"><span class="inv-stat-label">Income / yr</span><span class="inv-stat-val">${% include inv-num.html n=h.annualIncome %}</span></div>
+              <div class="inv-stat"><span class="inv-stat-label">Yield</span><span class="inv-stat-val">{{ h.targetYield }}</span></div>
+            </div>
+
+            {% assign barw = h.gainPct | abs | at_most: 100 %}
+            <div class="inv-gl-bar"><span class="inv-gl-fill {% if h.gain >= 0 %}up{% else %}down{% endif %}" style="width:{{ barw }}%"></span></div>
+
+            <p class="inv-why">{{ h.why }}</p>
+            {% if h.risk != "" %}<div class="inv-risk">⚠ {{ h.risk }}</div>{% endif %}
+          </article>
+          {% endfor %}
+        </div>
+      {% endfor %}
+
+      <!-- Concentration notes -->
+      <div class="inv-section-head">
+        <h2>Known risks, eyes open</h2>
+        <p>No portfolio is perfect. These are the parts being watched on purpose.</p>
+      </div>
+      {% for note in d.concentrationNotes %}
+      <div class="inv-callout warn">
+        <h4>{{ note.title }}</h4>
+        <p>{{ note.body }}</p>
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- ════════ PANEL: FORECAST ════════ -->
+    <section class="inv-panel" data-panel="forecast" id="panel-forecast" role="tabpanel" aria-labelledby="tab-forecast" hidden>
+      <div class="inv-section-head">
+        <h2>The snowball, ten years out</h2>
+        <p>Drag the dials and watch the DRIP compound. Honest warning: <strong>the future is a guess.</strong> That's why you can flip to a <em>range of outcomes</em> instead of one confident line — markets don't move in straight lines, and neither should a forecast.</p>
+      </div>
+
+      <div class="inv-sim">
+        <!-- controls -->
+        <form class="inv-controls" id="sim-controls" onsubmit="return false;">
+          <div class="inv-control">
+            <div class="inv-control-top"><label for="sim-start">Starting value</label><span class="inv-control-val" id="out-start">$21,963</span></div>
+            <input type="range" id="sim-start" min="5000" max="100000" step="100" value="21963">
+            <div class="inv-control-hint">Today's Drip Fund balance.</div>
+          </div>
+          <div class="inv-control">
+            <div class="inv-control-top"><label for="sim-contrib">Monthly contribution</label><span class="inv-control-val" id="out-contrib">$300</span></div>
+            <input type="range" id="sim-contrib" min="0" max="1500" step="25" value="300">
+            <div class="inv-control-hint">New cash added every month (split across the Core Three).</div>
+          </div>
+          <div class="inv-control">
+            <div class="inv-control-top"><label for="sim-return">Total annual return</label><span class="inv-control-val" id="out-return">9.0%</span></div>
+            <input type="range" id="sim-return" min="0" max="15" step="0.5" value="9">
+            <div class="inv-control-hint">Price growth + reinvested dividends combined.</div>
+          </div>
+          <div class="inv-control">
+            <div class="inv-control-top"><label for="sim-yield">Blended dividend yield</label><span class="inv-control-val" id="out-yield">6.0%</span></div>
+            <input type="range" id="sim-yield" min="2" max="10" step="0.25" value="6">
+            <div class="inv-control-hint">Drives the income number (not the value).</div>
+          </div>
+          <div class="inv-control">
+            <div class="inv-control-top"><label for="sim-years">Years to project</label><span class="inv-control-val" id="out-years">10</span></div>
+            <input type="range" id="sim-years" min="1" max="30" step="1" value="10">
+          </div>
+
+          <div class="inv-control" style="border-top:1px solid #eee;padding-top:0.9rem;">
+            <div class="inv-switch-row">
+              <input type="checkbox" id="sim-mortgage">
+              <label for="sim-mortgage">Model the mortgage payoff bump</label>
+            </div>
+            <div class="inv-control-hint">When the house is paid off, contributions jump.</div>
+          </div>
+          <div id="sim-mortgage-opts" hidden>
+            <div class="inv-control">
+              <div class="inv-control-top"><label for="sim-payoff-year">Payoff in year</label><span class="inv-control-val" id="out-payoff-year">5</span></div>
+              <input type="range" id="sim-payoff-year" min="1" max="15" step="1" value="5">
+            </div>
+            <div class="inv-control">
+              <div class="inv-control-top"><label for="sim-payoff-contrib">New monthly contribution</label><span class="inv-control-val" id="out-payoff-contrib">$750</span></div>
+              <input type="range" id="sim-payoff-contrib" min="200" max="2000" step="50" value="750">
+            </div>
+          </div>
+
+          <div class="inv-control" style="border-top:1px solid #eee;padding-top:0.9rem;margin-bottom:0;">
+            <label style="display:block;margin-bottom:0.4rem;">Forecast style</label>
+            <div class="inv-toggle-row" role="group" aria-label="Forecast style">
+              <button type="button" class="inv-seg" data-mode="line" aria-pressed="true">Single line</button>
+              <button type="button" class="inv-seg" data-mode="range" aria-pressed="false">Range of outcomes</button>
+            </div>
+            <div class="inv-control-hint">“Range” runs many randomized markets and shows the good / expected / rough spread.</div>
+          </div>
+        </form>
+
+        <!-- output -->
+        <div>
+          <div class="inv-chart-card">
+            <h3 id="sim-chart-title">Projected value &amp; monthly income</h3>
+            <p class="inv-chart-note" id="sim-chart-note">Reinvested dividends compounding over time</p>
+            <div class="inv-canvas-wrap tall"><canvas id="chart-forecast"></canvas></div>
+          </div>
+
+          <div class="inv-sim-out">
+            <div class="inv-out-tile"><span class="inv-out-val accent" id="out-final-value">—</span><span class="inv-out-label">Projected value <span id="out-final-year"></span></span></div>
+            <div class="inv-out-tile"><span class="inv-out-val" id="out-final-monthly">—</span><span class="inv-out-label">Projected monthly income</span></div>
+            <div class="inv-out-tile"><span class="inv-out-val" id="out-final-annual">—</span><span class="inv-out-label">Projected annual income</span></div>
+            <div class="inv-out-tile"><span class="inv-out-val" id="out-contributed">—</span><span class="inv-out-label">Of which you contributed</span></div>
+          </div>
+
+          <div class="inv-callout warn" style="margin-top:0.9rem;">
+            <h4>Read this before you get excited</h4>
+            <p>{{ d.projections.caveat }} A covered-call-heavy portfolio trades upside for income, so in a roaring bull market this will likely <em>trail</em> a plain index fund on price — by design. The forecast assumes a steady average; real life arrives in lumps.</p>
+          </div>
+
+          <div class="inv-chart-card" style="margin-top:0.9rem;">
+            <h3>The document's own table</h3>
+            <p class="inv-chart-note">{{ d.projections.assumptions }} — for comparison against the sim above.</p>
+            <div style="overflow-x:auto;">
+              <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+                <thead>
+                  <tr style="text-align:left;color:#666;border-bottom:1px solid #ddd;">
+                    <th style="padding:0.4rem 0.5rem;">Monthly</th><th style="padding:0.4rem 0.5rem;">Year 3</th><th style="padding:0.4rem 0.5rem;">Year 5</th><th style="padding:0.4rem 0.5rem;">Year 10</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for r in d.projections.rows %}
+                  <tr style="border-bottom:1px solid #f0f0f0;font-family:'SFMono-Regular',Consolas,monospace;">
+                    <td style="padding:0.4rem 0.5rem;font-weight:700;">${{ r.contribution }}/mo</td>
+                    <td style="padding:0.4rem 0.5rem;">${% include inv-num.html n=r.y3 %}/yr</td>
+                    <td style="padding:0.4rem 0.5rem;">${% include inv-num.html n=r.y5 %}/yr</td>
+                    <td style="padding:0.4rem 0.5rem;color:#15915b;font-weight:700;">${% include inv-num.html n=r.y10 %}/yr</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════ PANEL: STORY ════════ -->
+    <section class="inv-panel" data-panel="story" id="panel-story" role="tabpanel" aria-labelledby="tab-story" hidden>
+
+      <div class="inv-section-head"><h2>The theory</h2></div>
+      <div class="inv-callout info">
+        <p style="font-size:1rem;">{{ d.meta.tagline }}</p>
+      </div>
+      <p style="color:#444;max-width:75ch;">{{ d.meta.oneJob }}</p>
+
+      <div class="inv-section-head"><h2>The rules that never change</h2><p>Nine commandments. They exist mostly to stop the investor from doing something clever.</p></div>
+      <div class="inv-rules-wrap">
+        <div class="inv-rules">
+          {% for rule in d.strategyRules %}
+          <div class="inv-rule">
+            <div class="inv-rule-t">{{ rule.title }}</div>
+            <div class="inv-rule-b">{{ rule.body }}</div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="inv-section-head"><h2>The yield trap</h2><p>The single most expensive lesson in the whole account — learned, thankfully, on a small position.</p></div>
+      <div class="inv-yieldtrap">
+        <h3>QYLG: 19.44% that wasn't real</h3>
+        <p>{{ d.yieldTrap.secLesson }}</p>
+        <div class="inv-yt-bars">
+          <div class="inv-yt-row">
+            <div class="inv-yt-lab"><span>Distribution yield (what it advertised)</span><span>{{ d.yieldTrap.case.distributionYield }}%</span></div>
+            <div class="inv-yt-track dist"><span data-w="{{ d.yieldTrap.case.distributionYield | times: 5 }}" style="width:{{ d.yieldTrap.case.distributionYield | times: 5 }}%"></span></div>
+          </div>
+          <div class="inv-yt-row">
+            <div class="inv-yt-lab"><span>SEC yield (what it actually earned)</span><span>{{ d.yieldTrap.case.secYield }}%</span></div>
+            <div class="inv-yt-track sec"><span data-w="{{ d.yieldTrap.case.secYield | times: 5 }}" style="width:{{ d.yieldTrap.case.secYield | times: 5 }}%"></span></div>
+          </div>
+        </div>
+        <p class="inv-yt-verdict">The gap between those two bars <em>is</em> your own capital being handed back to you and called income. {{ d.yieldTrap.warning }} <strong>{{ d.yieldTrap.examples }}</strong></p>
+      </div>
+
+      <div class="inv-section-head"><h2>Cleanup days</h2><p>Two deliberate restructurings turned a cluttered 19-position grab-bag into a focused 13-position income machine.</p></div>
+      <div class="inv-timeline">
+        {% for day in d.cleanupDays %}
+        <div class="inv-tl-item">
+          <div class="inv-tl-date">{{ day.date }}</div>
+          <div class="inv-tl-title">{{ day.title }} <span style="color:#999;font-weight:400;font-family:'SFMono-Regular',monospace;font-size:0.8rem;">· {{ day.from }} → {{ day.to }} positions</span></div>
+          <p class="inv-tl-body">{{ day.summary }}</p>
+          <div class="inv-chips" style="margin-bottom:0.45rem;">
+            {% for s in day.sold %}<span class="inv-chip sell" title="{{ s.note }}">SELL {{ s.ticker }}</span>{% endfor %}
+          </div>
+          <div class="inv-chips">
+            {% for b in day.bought %}<span class="inv-chip buy" title="{{ b.note }}">BUY {{ b.ticker }}{% if b.shares %} ×{{ b.shares }}{% endif %}{% if b.price %} @${{ b.price }}{% endif %}</span>{% endfor %}
+          </div>
+          {% if day.taxNote %}<div class="inv-tl-tax">🧾 {{ day.taxNote }}</div>{% endif %}
+          <div class="inv-tl-result">{{ day.result }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="inv-section-head"><h2>The graveyard</h2><p>Sold and not coming back. Each one taught something.</p></div>
+      <div class="inv-grave">
+        {% for x in d.exited %}
+        <div class="inv-grave-item">
+          <div class="inv-grave-tick">{{ x.ticker }}</div>
+          <div class="inv-grave-why">{{ x.reason }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="inv-section-head"><h2>The plan from here</h2></div>
+      <div class="inv-grid-3">
+        <div class="inv-card">
+          <h4 style="margin-top:0;color:#1f9d6b;">Every month</h4>
+          <ul style="padding-left:1.1rem;margin:0;font-size:0.85rem;color:#555;">
+            {% for item in d.planForward.monthly %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+        <div class="inv-card">
+          <h4 style="margin-top:0;color:#2673da;">Every quarter</h4>
+          <ul style="padding-left:1.1rem;margin:0;font-size:0.85rem;color:#555;">
+            {% for item in d.planForward.quarterly %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+        <div class="inv-card">
+          <h4 style="margin-top:0;color:#c8861d;">When the mortgage dies</h4>
+          <ul style="padding-left:1.1rem;margin:0;font-size:0.85rem;color:#555;">
+            {% for item in d.planForward.mortgagePayoff %}<li>{{ item }}</li>{% endfor %}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <p class="inv-disclaimer">{{ d.disclaimer }}</p>
+
+  <!-- ══════════════ "Keen observer" modal ══════════════ -->
+  <div class="inv-modal" id="inv-observer-modal" hidden>
+    <div class="inv-modal-backdrop" data-close></div>
+    <div class="inv-modal-card" role="dialog" aria-modal="true" aria-labelledby="inv-observer-title">
+      <button type="button" class="inv-modal-x" data-close aria-label="Close">&times;</button>
+      <h3 id="inv-observer-title">To the keen observer 👀</h3>
+      <div class="inv-modal-body">
+        <p>You noticed it, didn't you. The fund throws off about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %} a year</strong> in dividends — and I shovel in roughly <strong>$100 a month</strong>, call it <strong>$1,200 a year</strong>. So right now the dividends barely match what I add by hand. “Aha,” you think, “the compounding isn't really doing much yet — he's basically paying himself.”</p>
+        <p>You're sharp to catch it, and you're not wrong about <em>today</em>. But here's what that snapshot misses.</p>
+        <p><strong>The two lines are on completely different trajectories.</strong> My contributions are flat — a hundred-ish bucks a month — and honestly they'll <em>stop</em> once the mortgage is gone. The dividend income is a curve that bends upward: every dividend buys more shares, those shares pay more dividends, and the companies themselves keep <em>raising</em> their payouts. One line is a straight road; the other is a snowball rolling downhill.</p>
+        <p><strong>When I started, this gap was enormous.</strong> A ~$5,000 seed paying maybe a couple hundred dollars a year, dwarfed by what I was adding. Today the dividends have climbed to about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %}</strong> and all but caught up. That isn't a failure — it's the exact milestone you want: the moment the account starts pulling its own weight.</p>
+        <p><strong>The crossover is the whole point.</strong> Soon the dividends out-earn my contributions, then double them, then make them irrelevant. Stop adding money entirely and the dividend line just keeps climbing on its own.</p>
+        <p>So yes — today it looks like I'm only feeding a piggy bank. Give it a few years, and the piggy bank starts feeding <em>me.</em> <button type="button" class="inv-modal-inline-link" data-goforecast>Watch it happen on the Forecast →</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- data + libs -->
+<script>window.DRIP = {{ d | jsonify }};</script>
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script defer src="{{ '/assets/js/investments.js' | relative_url }}"></script>
