@@ -11,9 +11,7 @@ description: "Microsoft didn't lose me in one disaster. It lost me one small ins
 excerpt: "Microsoft didn't lose me in one giant disaster. It lost me the way companies usually lose customers: one small insult at a time. A nag here, a forced account there, a Start menu that feels more like a billboard than a tool. Steam and Proton killed the last excuse, so I left for CachyOS."
 ---
 
-Microsoft didn't lose me in one giant disaster.
-
-It lost me the way companies usually lose customers: one small insult at a time.
+Microsoft didn't lose me in one giant disaster. It lost me the way companies usually lose customers: one small insult at a time.
 
 A nag here. A forced account there. A Start menu that feels less like a tool and more like a billboard. A "feature" nobody asked for. Another AI button. Another privacy concern. Another reminder that the operating system I paid for doesn't really feel like mine anymore.
 
@@ -27,7 +25,7 @@ Sure, Linux was cleaner. Sure, it was lighter. Sure, it respected the user and d
 
 Well, that deal is over.
 
-Steam and Proton changed the math. The Steam Deck changed the expectations. Linux gaming went from "technically possible if you hate yourself" to "honestly, this just works more often than I expected." It's not perfect — some anti-cheat garbage is still a problem, and some games still need tinkering. But the old excuse is dead.
+Steam and Proton changed the math. The Steam Deck changed the expectations. Linux gaming went from "technically possible if you hate yourself" to "honestly, this just works more often than I expected." It's not perfect ... some anti-cheat garbage is still a problem, and some games still need tinkering. But the old excuse is dead.
 
 Windows is no longer the gatekeeper of PC gaming. And once that wall fell, I had to ask the obvious question: why am I still putting up with this?
 
@@ -37,7 +35,7 @@ Windows 11 took an OS people already tolerated more than loved, then made the up
 
 Instead of making Windows feel fast, clean, private, and user-controlled, Microsoft decided the future was ads, nags, AI branding, and pretending every desktop needs to become a subscription-flavored assistant platform.
 
-Copilot everywhere. Recall. Recommended apps. Microsoft account pressure. Hardware requirements that turned perfectly useful machines into "unsupported" machines. Search that forgot its job was to search *your* computer.
+Copilot everywhere. Recommended apps. Microsoft account pressure. Hardware requirements that turned perfectly useful machines into "unsupported" machines. Search that forgot its job was to search *your* computer... The list goes on.
 
 The whole thing feels less like an operating system now and more like a shopping mall with a kernel.
 
@@ -49,11 +47,11 @@ Windows has become the cover charge to use your own hardware.
 
 ## The Hardware Lockout
 
-Windows 11 has minimum system requirements. Not "this might run poorly on old hardware" requirements — actual gates. TPM. Secure Boot. Supported CPUs. Enough of Microsoft's blessing to decide whether your perfectly usable computer is worthy of continuing to exist.
+Windows 11 has minimum system requirements. Not "this might run poorly on old hardware" requirements but actual gates. TPM. Secure Boot. Supported CPUs. Enough of Microsoft's blessing to decide whether your perfectly usable computer is worthy of continuing to exist.
 
-Linux doesn't treat old hardware like garbage by default. Will every distro run beautifully on a museum piece? No — modern Ubuntu with a heavy desktop is not magic. But Linux gives you choices. Mint, XFCE, LXQt, Debian, Arch, antiX, Puppy, and a pile of lightweight distros can keep machines useful long after Microsoft has decided they belong in a landfill.
+Linux can run on a potato.  It doesn't treat old hardware like garbage by default. Will every distro run beautifully on a museum piece? No, modern Ubuntu with a heavy desktop is not magic. But Linux gives you choices. Mint, XFCE, LXQt, Debian, Arch, antiX, Puppy, and a pile of lightweight distros can keep machines useful long after Microsoft has decided they belong in a landfill.
 
-That's the difference. Microsoft says, "Buy a new machine." Linux says, "Let's see what this thing can still do."
+That's the difference. Microsoft says, "Buy a new machine." Linux says, "Let's see what this thing can still do."  And that's huge!
 
 ## Doing More *Around* Me, Not *For* Me
 
@@ -75,13 +73,13 @@ When a fresh install immediately sends people to Google searching for "things to
 
 There should not be a whole cottage industry of articles explaining how to turn off the ads, the tracking, the recommendations, the telemetry, the cloud nags, the AI junk, the Start menu clutter, and the various little "helpful" features Microsoft sprinkled around like glitter on a crime scene.
 
-I should not have to spend the first hour after installing an OS making it less annoying, less invasive, and less Microsoft. That's not a quirk. That's hostile design.
+I should not have to spend the first hour after installing an OS making it less annoying, less invasive, and less Microsoft. That's not a quirk. That's hostile by design.
 
 And it tells you exactly what Microsoft thinks Windows is now. Not a clean tool. Not a stable platform. Not a trusted layer between you and your machine. It's a funnel. A funnel into Microsoft services, into AI, into subscriptions, into data collection, into whatever quarterly strategy meeting decided the desktop needed more engagement metrics.
 
 Windows used to feel like a platform. Now it feels like a negotiation.
 
-A negotiation over my privacy. Over my hardware. Over my defaults. Over my attention. Over whether the machine in front of me is actually mine. I'm tired of negotiating with my own computer.
+A negotiation over my privacy. Over my hardware. Over my defaults. Over my attention. Over whether the machine in front of me is actually mine. I'm tired of negotiating with my own computer.  You want a good laugh, look at how they rebranded the computer from "My Computer" to "This Computer" in the last OS.  Yeah.. We noticed.
 
 ## Momentum Is Not Love
 
@@ -89,20 +87,16 @@ Microsoft will be fine for a while. Of course it will. Windows has decades of mo
 
 Momentum is real. But momentum is not love. It's not trust. It's not loyalty. Momentum is just the distance something travels after it stops steering. Even icebergs eventually come to a stop.
 
-That's where Windows is for me now. Not dead in the market-share sense — dead in the personal sense. Dead as something I recommend. Dead as something I enjoy. Dead as something I trust to stay out of my way.
+That's where Windows is for me now. Not dead in the market-share sense but completely dead in the personal sense. Dead as something I recommend. Dead as something I enjoy. Dead as something I trust to stay out of my way.
 
 ## So I Moved to CachyOS
 
 Not because Linux is perfect. It isn't. I know I'm going to hit weird driver issues. I know some things will need command-line archaeology. I know there will be moments where I mutter, "This would have taken thirty seconds on Windows."
 
-Fine.
-
-At least when CachyOS annoys me, it's usually because something is genuinely complicated. Windows annoys me because a trillion-dollar company *made a choice*.
+Fine. At least when CachyOS annoys me, it's usually because something is genuinely complicated. Windows annoys me because a trillion-dollar company *made a choice*.
 
 That's the difference. One is friction. The other is contempt.
 
 I'd rather fight with a system that respects me than be smoothly guided through a system that sees me as a product, a target, a metric, or a captive audience.
 
-So that's it. Windows can keep its Copilot buttons. It can keep its ads, its nags, its artificial requirements. It can keep trying to turn a computer I own into a terminal I rent.
-
-I'm done. Windows is dead to me.
+So that's it. Windows can keep its Copilot buttons. It can keep its ads, its nags, its artificial requirements. It can keep trying to turn a computer I own into a terminal I rent, but at this point it has failed.  Because I'm done. Windows is dead to me.
