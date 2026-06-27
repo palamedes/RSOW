@@ -420,6 +420,11 @@ full_width: true
 </div>
 
 <!-- data + libs -->
-<script>window.DRIP = {{ d | jsonify }};</script>
+<script>
+  window.DRIP = {{ d | jsonify }};
+  // Free Finnhub quote key (read-only market data). Public by design — it can
+  // only fetch quotes, and the page degrades to the snapshot if it ever fails.
+  window.DRIP_FINNHUB_KEY = 'd904do1r01qk8bfirpkgd904do1r01qk8bfirpl0';
+</script>
 <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script defer src="{{ '/assets/js/investments.js' | relative_url }}"></script>
