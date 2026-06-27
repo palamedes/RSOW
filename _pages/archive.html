@@ -193,6 +193,16 @@ full_width: true
     reset({ correct: true });
   });
 
+  // deep link: /archive/#Software pre-selects that topic (used by post pages)
+  function applyHash(){
+    var h = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim().toLowerCase();
+    if(!h) return;
+    var match = pills.filter(function(p){ return p.dataset.filter.toLowerCase() === h; })[0];
+    if(match && !match.classList.contains('is-active')) match.click();
+  }
+  window.addEventListener('hashchange', applyHash);
+
   reset();
+  applyHash();
 })();
 </script>

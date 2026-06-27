@@ -1,35 +1,55 @@
 ---
 layout: default
 ---
-<article class="post-single">
-  <header class="post-header">
-    <h1>{{ page.title }}</h1>
-    <div class="post-meta">
-      <span class="post-author">Jason Ellis</span>
-      <span class="post-meta-sep">&middot;</span>
-      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
-      {% assign words = content | number_of_words %}
-      {% assign minutes = words | divided_by: 250 %}
-      {% if minutes < 1 %}{% assign minutes = 1 %}{% endif %}
-      <span class="post-meta-sep">&middot;</span>
-      <span>{{ minutes }} min read</span>
+{%- assign featured_image = page.image | default: site.default_image -%}
+{%- assign words = content | number_of_words -%}
+{%- assign minutes = words | divided_by: 250 -%}
+{%- if minutes < 1 %}{%- assign minutes = 1 -%}{%- endif -%}
+
+<div class="post">
+  <header class="post-hero">
+    <div class="post-hero-bg" aria-hidden="true"></div>
+    <div class="post-hero-inner">
+      <div class="post-hero-text">
+        {% if page.categories.size > 0 %}
+        <div class="post-hero-cats">
+          {% for cat in page.categories %}
+          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <h1 class="post-hero-title">{{ page.title }}</h1>
+        <div class="post-hero-meta">
+          <span class="post-hero-author">Jason Ellis</span>
+          <span class="post-hero-dot">&middot;</span>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+          <span class="post-hero-dot">&middot;</span>
+          <span>{{ minutes }} min read</span>
+        </div>
+      </div>
+      <div class="post-hero-img">
+        <img src="{{ featured_image | relative_url }}" alt="{{ page.title | escape }}">
+      </div>
     </div>
   </header>
 
-  <div class="post-content">
-    {% assign featured_image = page.image | default: site.default_image %}
-    <img class="post-featured-image" src="{{ featured_image | relative_url }}" alt="{{ page.title }}">
-    {{ content }}
-  </div>
+  <div class="site-wrapper">
+    <article class="post-article">
+      <div class="post-content">
+        {{ content }}
+      </div>
 
-  {% if page.categories.size > 0 %}
-  <footer class="post-footer-tags">
-    {% for cat in page.categories %}
-      <a href="{{ '/archive/' | relative_url }}">{{ cat }}</a>
-    {% endfor %}
-  </footer>
-  {% endif %}
-</article>
+      {% if page.categories.size > 0 %}
+      <footer class="post-tags">
+        <span class="post-tags-label">Filed under</span>
+        {% for cat in page.categories %}
+        <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
+        {% endfor %}
+      </footer>
+      {% endif %}
+    </article>
+  </div>
+</div>
 
 <section class="recent-posts">
   <div class="site-wrapper">

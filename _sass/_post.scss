@@ -1,0 +1,156 @@
+// ════════════════════════════════════════════════════════════════
+//  Single post — split hero + article, scoped under `.post`.
+//  The body still uses the shared .post-content / .recent-posts rules;
+//  this file owns the hero band, the article card, and the tag pills.
+// ════════════════════════════════════════════════════════════════
+
+$po-accent:  #2673da;
+$po-accent-2:#4a9aff;
+$po-ink:     #1c2330;
+$po-line:    #ddd;
+
+.post {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // ════════════════ SPLIT HERO ════════════════
+  .post-hero {
+    position: relative;
+    background: radial-gradient(120% 150% at 82% -20%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+    color: #fff;
+    overflow: hidden;
+    border-bottom: 3px solid $po-accent;
+    padding: 2.6rem 0;
+  }
+  .post-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(38% 60% at 10% 15%, rgba(38,115,218,0.30) 0%, transparent 60%),
+      radial-gradient(34% 50% at 96% 100%, rgba(74,154,255,0.20) 0%, transparent 60%);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 78%);
+    }
+  }
+  .post-hero-inner {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    @media (max-width: 760px) {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      gap: 1.4rem;
+    }
+  }
+  .post-hero-text { flex: 1; min-width: 0; }
+  .post-hero-img {
+    flex: 0 0 400px;
+    @media (max-width: 760px) { flex-basis: auto; width: 100%; }
+    img {
+      width: 100%;
+      aspect-ratio: 3 / 2;           // native cover ratio — no cropping
+      object-fit: cover;
+      border-radius: 14px;
+      box-shadow: 0 20px 44px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: block;
+    }
+  }
+
+  .post-hero-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.7rem;
+    a {
+      font-size: 0.66rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      background: rgba(38,115,218,0.85);
+      padding: 0.22rem 0.65rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+      &:hover { background: $po-accent; }
+    }
+  }
+  .post-hero-title {
+    font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.9rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.7rem;
+    color: #fff;
+    background: linear-gradient(180deg, #ffffff 0%, #cdd9f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .post-hero-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    .post-hero-author { color: #fff; font-weight: 600; }
+    .post-hero-dot { opacity: 0.5; }
+  }
+
+  // ════════════════ ARTICLE CARD ════════════════
+  .post-article {
+    background: #fff;
+    border: 1px solid $po-line;
+    border-radius: 2px;
+    max-width: 1000px;
+    margin: 1.5rem auto 0;
+    padding: 2.5rem;
+    @media (max-width: 600px) { padding: 1.5rem; }
+  }
+  // first heading/paragraph shouldn't add extra top space inside the card
+  .post-content > :first-child { margin-top: 0; }
+
+  // ════════════════ TAG PILLS ════════════════
+  .post-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #eee;
+    .post-tags-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #999;
+      margin-right: 0.15rem;
+    }
+    a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $po-accent;
+      background: #eef3fb;
+      border: 1px solid #dbe6f7;
+      padding: 0.26rem 0.8rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      &:hover { background: $po-accent; color: #fff; border-color: $po-accent; }
+    }
+  }
+}
