@@ -1,26 +1,63 @@
 ---
 layout: default
 title: Blog
+description: "Everything I've rambled about — 200+ posts of rants, builds, games, and strong opinions, archived since 2000."
 permalink: /archive/
 full_width: true
 ---
-<div class="archive-page">
-  <div class="site-wrapper">
-    <div class="archive-filters">
-      <nav class="filter-categories">
-        <a href="#" class="filter-btn active" data-filter="all">All Posts</a>
-        <a href="#" class="filter-btn" data-filter="Rant">Rant</a>
-        <a href="#" class="filter-btn" data-filter="Games">Games</a>
-        <a href="#" class="filter-btn" data-filter="Hobbies">Hobbies</a>
-        <a href="#" class="filter-btn" data-filter="Software">Software</a>
-        <a href="#" class="filter-btn" data-filter="Political">Political</a>
-        <a href="#" class="filter-btn" data-filter="Photography">Photography</a>
-        <a href="#" class="filter-btn" data-filter="Aviation">Aviation</a>
+{%- comment -%} category pills in display order; counts pulled live from site.categories {%- endcomment -%}
+{%- assign cats = "Rant,Games,Hobbies,Software,Political,Photography,Aviation,Comedy" | split: "," -%}
+{%- assign oldest = site.posts | last -%}
+<div class="arc" id="arc">
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="arc-hero">
+    <div class="arc-hero-bg" aria-hidden="true"></div>
+    <div class="arc-wrap arc-hero-inner">
+      <p class="arc-eyebrow">The oubliette · est. {{ oldest.date | date: "%Y" }}</p>
+      <h1>Everything I've rambled about</h1>
+      <p class="arc-sub">
+        Two decades and change of rants, builds, games, and the occasional strong opinion —
+        all in one place. Filter by topic, search for a thread, and dig in.
+      </p>
+      <ul class="arc-stats">
+        <li><strong>{{ site.posts.size }}</strong><span>posts</span></li>
+        <li><strong>{{ oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
+        <li><strong>{{ cats.size }}</strong><span>topics</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══════════════ STICKY TOOLBAR ══════════════ -->
+  <div class="arc-toolbar" id="arc-toolbar">
+    <div class="arc-wrap arc-toolbar-inner">
+      <nav class="arc-pills" aria-label="Filter posts by topic">
+        <button type="button" class="arc-pill is-active" data-filter="all" aria-pressed="true">
+          All <span class="arc-pill-count">{{ site.posts.size }}</span>
+        </button>
+        {% for cat in cats %}
+        {% assign n = site.categories[cat] | size %}
+        {% if n > 0 %}
+        <button type="button" class="arc-pill" data-filter="{{ cat }}" aria-pressed="false">
+          {{ cat }} <span class="arc-pill-count">{{ n }}</span>
+        </button>
+        {% endif %}
+        {% endfor %}
       </nav>
-      <div class="filter-search">
-        <input type="text" id="post-search" placeholder="Search posts...">
+
+      <div class="arc-search">
+        <svg class="arc-search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="post-search" placeholder="Search posts…" autocomplete="off" aria-label="Search posts">
+        <button type="button" class="arc-search-clear" id="arc-search-clear" aria-label="Clear search" hidden>&times;</button>
       </div>
     </div>
+  </div>
+
+  <!-- ══════════════ RESULTS ══════════════ -->
+  <div class="arc-wrap arc-grid-wrap">
+    <p class="arc-meta" id="archive-count">Showing all {{ site.posts.size }} posts</p>
 
     <div class="post-grid" id="archive-grid">
       {% for post in site.posts %}
@@ -35,81 +72,137 @@ full_width: true
       </a>
       {% endfor %}
     </div>
+
+    <div class="arc-empty" id="archive-empty" hidden>
+      <svg class="arc-empty-ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="21 8 21 21 3 21 3 8"></polyline>
+        <rect x="1" y="3" width="22" height="5"></rect>
+        <line x1="10" y1="12" x2="14" y2="12"></line>
+      </svg>
+      <h2>Nothing in this drawer</h2>
+      <p>No posts match that topic or search. Try a different angle.</p>
+      <button type="button" class="arc-empty-reset" id="arc-empty-reset">Clear filters</button>
+    </div>
   </div>
 </div>
 
 <script>
 (function(){
-  var cards = Array.from(document.querySelectorAll('#archive-grid .post-card'));
-  var buttons = document.querySelectorAll('.filter-btn');
+  var root = document.getElementById('arc');
+  var grid = document.getElementById('archive-grid');
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.arc-pill'));
   var search = document.getElementById('post-search');
+  var clearBtn = document.getElementById('arc-search-clear');
+  var countEl = document.getElementById('archive-count');
+  var emptyEl = document.getElementById('archive-empty');
+  var emptyReset = document.getElementById('arc-empty-reset');
+  var toolbar = document.getElementById('arc-toolbar');
+  var gridWrap = grid.parentElement;
+
+  var total = cards.length;
   var activeFilter = 'all';
-  var batchSize = 4;
+  var batchSize = 8;
   var initialLoad = 16;
   var visibleCount = 0;
-  var loading = false;
 
-  function getFilteredCards(){
-    var query = search.value.toLowerCase();
+  function getFiltered(){
+    var q = search.value.trim().toLowerCase();
     return cards.filter(function(card){
       var cats = card.dataset.categories || '';
-      var searchText = card.dataset.search || card.dataset.title || '';
+      var text = card.dataset.search || '';
       var matchCat = activeFilter === 'all' || cats.split(',').indexOf(activeFilter) !== -1;
-      var matchSearch = !query || searchText.indexOf(query) !== -1;
+      var matchSearch = !q || text.indexOf(q) !== -1;
       return matchCat && matchSearch;
     });
   }
 
-  function renderCards(count){
-    var filtered = getFilteredCards();
-    cards.forEach(function(card){ card.style.display = 'none'; });
+  function updateMeta(shown){
+    var q = search.value.trim();
+    var pristine = activeFilter === 'all' && !q;
+    countEl.textContent = pristine
+      ? 'Showing all ' + total + ' posts'
+      : 'Showing ' + shown + ' of ' + total + ' post' + (total === 1 ? '' : 's');
+    if(clearBtn) clearBtn.hidden = !q;
+    emptyEl.hidden = shown !== 0;
+    grid.style.display = shown === 0 ? 'none' : '';
+  }
+
+  function render(count){
+    var filtered = getFiltered();
+    cards.forEach(function(c){ c.style.display = 'none'; });
     visibleCount = Math.min(count, filtered.length);
-    for(var i = 0; i < visibleCount; i++){
-      filtered[i].style.display = '';
-    }
+    for(var i = 0; i < visibleCount; i++){ filtered[i].style.display = ''; }
+    updateMeta(filtered.length);
   }
 
   function loadMore(){
-    if(loading) return;
-    var filtered = getFilteredCards();
+    var filtered = getFiltered();
     if(visibleCount >= filtered.length) return;
-    loading = true;
-    var newCount = Math.min(visibleCount + batchSize, filtered.length);
-    for(var i = visibleCount; i < newCount; i++){
-      filtered[i].style.display = '';
+    var next = Math.min(visibleCount + batchSize, filtered.length);
+    for(var i = visibleCount; i < next; i++){ filtered[i].style.display = ''; }
+    visibleCount = next;
+  }
+
+  // when filtering/clearing while scrolled into the grid, pull the view back
+  // up to the results so you're not left staring at empty space.
+  function correctScroll(){
+    var top = gridWrap.getBoundingClientRect().top;
+    var th = toolbar.offsetHeight + 12;
+    if(top < th){
+      window.scrollTo({ top: window.scrollY + top - th, behavior: 'smooth' });
     }
-    visibleCount = newCount;
-    loading = false;
   }
 
-  function resetAndRender(){
-    renderCards(initialLoad);
+  function reset(opts){
+    render(initialLoad);
+    if(opts && opts.correct) correctScroll();
   }
 
-  // Infinite scroll
+  // infinite scroll + sticky shadow
+  var toolbarTop = 0;
+  function measure(){ toolbarTop = toolbar.getBoundingClientRect().top + window.scrollY; }
+  measure();
+  window.addEventListener('resize', measure);
   window.addEventListener('scroll', function(){
-    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 400)){
-      loadMore();
-    }
-  });
+    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500)) loadMore();
+    toolbar.classList.toggle('is-stuck', window.scrollY > toolbarTop);
+  }, { passive: true });
 
-  // Filter buttons
-  buttons.forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.preventDefault();
-      buttons.forEach(function(b){ b.classList.remove('active'); });
-      this.classList.add('active');
+  pills.forEach(function(p){
+    p.addEventListener('click', function(){
+      pills.forEach(function(b){ b.classList.remove('is-active'); b.setAttribute('aria-pressed', 'false'); });
+      this.classList.add('is-active');
+      this.setAttribute('aria-pressed', 'true');
       activeFilter = this.dataset.filter;
-      resetAndRender();
+      reset({ correct: true });
     });
   });
 
-  // Search
-  search.addEventListener('input', function(){
-    resetAndRender();
+  search.addEventListener('input', function(){ reset({ correct: true }); });
+  if(clearBtn) clearBtn.addEventListener('click', function(){ search.value = ''; search.focus(); reset(); });
+
+  if(emptyReset) emptyReset.addEventListener('click', function(){
+    search.value = '';
+    activeFilter = 'all';
+    pills.forEach(function(b){
+      var on = b.dataset.filter === 'all';
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    reset({ correct: true });
   });
 
-  // Initial load
-  resetAndRender();
+  // deep link: /archive/#Software pre-selects that topic (used by post pages)
+  function applyHash(){
+    var h = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim().toLowerCase();
+    if(!h) return;
+    var match = pills.filter(function(p){ return p.dataset.filter.toLowerCase() === h; })[0];
+    if(match && !match.classList.contains('is-active')) match.click();
+  }
+  window.addEventListener('hashchange', applyHash);
+
+  reset();
+  applyHash();
 })();
 </script>

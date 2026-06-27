@@ -348,51 +348,8 @@
 }
 
 // ── Single post ─────────────────────────────────────────
-.post-single {
-  background: #fff;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 2.5rem;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-}
-
-.post-header {
-  margin-bottom: 1.5rem;
-
-  h1 {
-    font-size: 1.8rem;
-    margin: 0 0 0.5rem;
-    line-height: 1.25;
-    color: #222;
-  }
-
-  .post-meta {
-    font-size: 0.85rem;
-    color: #999;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-  }
-
-  .post-author {
-    color: #555;
-    font-weight: 500;
-  }
-
-  .post-meta-sep {
-    color: #ccc;
-  }
-}
-
-.post-featured-image {
-  float: right;
-  width: 50%;
-  margin: 0 0 1rem 1.5rem;
-  border-radius: 4px;
-}
-
+// The post hero + article card live in _sass/_post.scss (scoped .post).
+// The shared body type styles stay here as .post-content.
 .post-content {
   font-size: 1.05rem;
   line-height: 1.8;
@@ -409,22 +366,6 @@
 
   blockquote {
     border-left: 3px solid #2673da;
-  }
-}
-
-.post-footer-tags {
-  padding-top: 1rem;
-  border-top: 1px solid #eee;
-
-  a {
-    display: inline-block;
-    background: #f0f0f0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 3px;
-    font-size: 0.8rem;
-    margin: 0.2rem;
-    color: #555;
-    &:hover { background: #2673da; color: #fff; }
   }
 }
 
@@ -724,49 +665,7 @@
   &:hover { color: #333; }
 }
 
-// ── Archive page ────────────────────────────────────────
-.archive-page {
-  padding-top: 1.5rem;
-}
-
-.archive-filters {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.filter-categories {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  font-size: 0.8rem;
-  padding: 0.35rem 0.85rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  color: #555;
-  background: #fff;
-  cursor: pointer;
-  &:hover { border-color: #999; color: #222; text-decoration: none; }
-  &.active { background: #2673da; color: #fff; border-color: #2673da; }
-}
-
-.filter-search {
-  input {
-    font-size: 0.85rem;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    width: 200px;
-    font-family: inherit;
-    &:focus { outline: none; border-color: #2673da; }
-  }
-}
+// ── Archive page lives in _sass/_archive.scss (scoped under .arc) ──
 
 // ── Resume page ─────────────────────────────────────────
 .resume-links-row {

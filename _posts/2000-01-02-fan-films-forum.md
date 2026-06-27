@@ -5,6 +5,7 @@ title: Fan Films Forum
 description: "A farewell to the Fan Films Forum, the small online community I ran for years that brought together amateur filmmakers worldwide."
 excerpt: Amateur / Fan Films Forum was created in back in early 2000  and was made up of a small community of amateur and fan film enthusiasts.. 
 layout: page
+full_width: false
 tags:
 categories:
 image: /assets/images/2009/10/fff.png

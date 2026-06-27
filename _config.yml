@@ -48,6 +48,12 @@ defaults:
       type: games
     values:
       layout: room
+  # Posts manage their own wrappers (full-bleed hero + contained body)
+  - scope:
+      path: ""
+      type: posts
+    values:
+      full_width: true
 
 # Plugins
 plugins:
