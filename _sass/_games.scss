@@ -1,0 +1,237 @@
+// ════════════════════════════════════════════════════════════════
+//  Games — /games
+//  Modern showcase header to match /about, /investments and single
+//  posts. Everything is scoped under `.gam`. The arcade itself still
+//  uses the shared global .games-grid / .game-card rules from
+//  _adventure.scss — this file owns the hero band + the surrounding
+//  section chrome only.
+// ════════════════════════════════════════════════════════════════
+
+$gam-accent:  #2673da;
+$gam-accent-2:#4a9aff;
+$gam-ink:     #1c2330;
+$gam-body:    #3a3f4b;
+$gam-muted:   #6b7280;
+$gam-line:    #e3e6ea;
+$gam-card:    #ffffff;
+$gam-bg:      #f2f2f2;
+$gam-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+.gam {
+  color: $gam-body;
+  background: $gam-bg;
+  overflow-x: clip;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .gam-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  // ── shared section scaffolding ───────────────────────
+  .gam-section { padding: 3.25rem 0; }
+
+  .gam-section-head {
+    width: 100%;
+    margin: 0 0 1.9rem;
+  }
+  .gam-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: $gam-accent;
+    margin: 0 0 0.5rem;
+  }
+  .gam-section-head h2 {
+    font-size: clamp(1.6rem, 1rem + 2vw, 2.2rem);
+    line-height: 1.1;
+    color: $gam-ink;
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .gam-section-sub {
+    font-size: 1.05rem;
+    color: $gam-muted;
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  // ── shared buttons ───────────────────────────────────
+  .gam-btn {
+    display: inline-block;
+    padding: 0.62rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    &:hover { transform: translateY(-2px); text-decoration: none; }
+  }
+  .gam-btn-primary {
+    background: $gam-accent;
+    border-color: $gam-accent;
+    color: #fff;
+    &:hover { background: #1a5ab8; border-color: #1a5ab8; color: #fff; }
+  }
+  .gam-hero .gam-btn:not(.gam-btn-primary):hover {
+    background: rgba(255,255,255,0.12);
+    border-color: #fff;
+  }
+
+  // ════════════════ HERO ════════════════
+  .gam-hero {
+    position: relative;
+    background: radial-gradient(120% 120% at 80% 0%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+    color: #fff;
+    padding: 3.5rem 0 2.5rem;
+    overflow: hidden;
+    border-bottom: 3px solid $gam-accent;
+  }
+  // subtle glow + grid texture
+  .gam-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(40% 60% at 12% 20%, rgba(38,115,218,0.35) 0%, transparent 60%),
+      radial-gradient(35% 50% at 95% 90%, rgba(74,154,255,0.22) 0%, transparent 60%);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 75%);
+    }
+  }
+
+  .gam-hero-inner {
+    position: relative;
+    margin-bottom: 2.25rem;
+  }
+  .gam-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.62);
+    margin: 0 0 0.55rem;
+  }
+  .gam-title {
+    font-size: clamp(2.6rem, 1.5rem + 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 0.98;
+    margin: 0 0 0.85rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+    background: linear-gradient(180deg, #ffffff 0%, #cdd9f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .gam-lede {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 1.5rem;
+    max-width: 52rem;            // keep the line length readable (mirrors /about's lede column)
+    strong { color: #fff; font-weight: 700; }
+  }
+  .gam-hero-cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  // hero stat tiles
+  .gam-stat-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    @media (max-width: 520px) { grid-template-columns: repeat(2, 1fr); }
+  }
+  .gam-kpi {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px;
+    padding: 0.95rem 0.85rem;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba(74,154,255,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+    .gam-kpi-val {
+      display: block;
+      font-family: $gam-mono;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+    }
+    .gam-kpi-sub { color: $gam-accent-2; font-size: 0.9rem; }
+    .gam-kpi-label {
+      display: block;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.4rem;
+    }
+  }
+
+  // ════════════════ CURRENT GO-TO GAMES ════════════════
+  .gam-goto-section { background: $gam-card; }
+  .gam-goto-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    @media (max-width: 760px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 460px) { grid-template-columns: 1fr; }
+  }
+  .gam-goto-card {
+    background: #fbfcfe;
+    border: 1px solid $gam-line;
+    border-radius: 14px;
+    padding: 1.15rem 1.2rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(28,35,48,0.12);
+      border-color: rgba(38,115,218,0.4);
+    }
+    .gam-goto-title {
+      display: block;
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: $gam-ink;
+      letter-spacing: -0.01em;
+    }
+    .gam-goto-handle {
+      display: block;
+      margin-top: 0.3rem;
+      font-family: $gam-mono;
+      font-size: 0.78rem;
+      color: $gam-accent;
+    }
+  }
+
+  // ════════════════ THE ARCADE ════════════════
+  // The grid itself is the shared global .games-grid; just neutralise
+  // the default top margin so it sits flush under the section head.
+  .games-grid { margin: 0; }
+}

@@ -19,9 +19,9 @@ $arc-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   *, *::before, *::after { box-sizing: border-box; }
 
   .arc-wrap {
-    max-width: 1000px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
   }
 
   // ════════════════ HERO ════════════════
@@ -131,7 +131,7 @@ $arc-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 0.7rem 2rem;
+    padding: 0.7rem 1.5rem;
     flex-wrap: wrap;
   }
   .arc-pills {
