@@ -39,7 +39,7 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   .inv-wrap {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 0 1.25rem;
+    padding: 0 1.5rem;
   }
 
   // ── Hero ─────────────────────────────────────────────
@@ -247,7 +247,7 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   .inv-tabs-inner {
     max-width: 1120px;
     margin: 0 auto;
-    padding: 0.55rem 1.25rem;
+    padding: 0.55rem 1.5rem;
     display: flex;
     gap: 0.4rem;
     flex-wrap: wrap;
@@ -646,7 +646,7 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 
   .inv-disclaimer {
-    max-width: 1120px; margin: 2.5rem auto 0; padding: 1rem 1.25rem 0;
+    max-width: 1120px; margin: 2.5rem auto 0; padding: 1rem 1.5rem 0;
     font-size: 0.74rem; color: $inv-faint; border-top: 1px solid $inv-line; line-height: 1.6;
   }
 

@@ -1,7 +1,7 @@
 .site-wrapper {
-  max-width: 1000px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
 }
 
 // ── Dark header wrap ────────────────────────────────────
@@ -155,8 +155,9 @@
   padding: 0;
 
   .hero-inner {
-    max-width: 1000px;
+    max-width: 1120px;
     margin: 0 auto;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     gap: 2rem;

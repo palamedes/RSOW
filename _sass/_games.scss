@@ -116,7 +116,6 @@ $gam-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   .gam-hero-inner {
     position: relative;
     margin-bottom: 2.25rem;
-    max-width: 820px;
   }
   .gam-eyebrow {
     text-transform: uppercase;
@@ -143,6 +142,7 @@ $gam-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     line-height: 1.65;
     color: rgba(255,255,255,0.82);
     margin: 0 0 1.5rem;
+    max-width: 52rem;            // keep the line length readable (mirrors /about's lede column)
     strong { color: #fff; font-weight: 700; }
   }
   .gam-hero-cta {

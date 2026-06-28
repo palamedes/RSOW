@@ -41,9 +41,9 @@ $po-line:    #ddd;
   }
   .post-hero-inner {
     position: relative;
-    max-width: 1000px;
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     gap: 2.5rem;
@@ -111,12 +111,19 @@ $po-line:    #ddd;
   }
 
   // ════════════════ ARTICLE CARD ════════════════
+  // Same geometry as .post-hero-inner so the card edges line up
+  // exactly under the hero title (the global 1000px .site-wrapper
+  // would otherwise clamp the article narrower than the title).
+  .post-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
   .post-article {
     background: #fff;
     border: 1px solid $po-line;
     border-radius: 2px;
-    max-width: 1000px;
-    margin: 1.5rem auto 0;
+    margin: 1.5rem 0 0;
     padding: 2.5rem;
     @media (max-width: 600px) { padding: 1.5rem; }
   }
