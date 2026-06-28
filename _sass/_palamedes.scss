@@ -1,0 +1,522 @@
+// ════════════════════════════════════════════════════════════════
+//  Palamedes — /palamedes-historical-reference
+//  Scoped under `.pal` so nothing leaks site-wide. Shares the site's
+//  "modern showcase" language (cinematic dark hero, #2673da accent,
+//  glassy KPI tiles, white cards, vertical timeline) used by /about
+//  and /investments — with a quiet bronze antiquity accent of its own.
+// ════════════════════════════════════════════════════════════════
+
+$pal-accent:   #2673da;
+$pal-accent-2: #4a9aff;
+$pal-bronze:   #c8a45c;
+$pal-ink:      #1c2330;
+$pal-body:     #3a3f4b;
+$pal-muted:    #6b7280;
+$pal-faint:    #9aa1ad;
+$pal-line:     #e3e6ea;
+$pal-card:     #ffffff;
+$pal-bg:       #f2f2f2;
+$pal-mono:     "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+$pal-serif:    Georgia, "Times New Roman", serif;
+
+.pal {
+  color: $pal-body;
+  background: $pal-bg;
+  overflow-x: clip;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .pal-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  // ── shared section scaffolding ───────────────────────
+  .pal-section { padding: 3.75rem 0; }
+  .pal-section-head {
+    width: 100%;
+    margin: 0 0 2.25rem;
+  }
+  .pal-kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: $pal-accent;
+    margin: 0 0 0.5rem;
+  }
+  .pal-section-head h2 {
+    font-size: clamp(1.6rem, 1rem + 2vw, 2.2rem);
+    line-height: 1.1;
+    color: $pal-ink;
+    margin: 0 0 0.6rem;
+    letter-spacing: -0.01em;
+  }
+  .pal-section-sub {
+    font-size: 1.05rem;
+    color: $pal-muted;
+    margin: 0;
+  }
+
+  // ── shared buttons ───────────────────────────────────
+  .pal-btn {
+    display: inline-block;
+    padding: 0.62rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    &:hover { transform: translateY(-2px); text-decoration: none; }
+  }
+  .pal-btn-primary {
+    background: $pal-accent;
+    border-color: $pal-accent;
+    color: #fff;
+    &:hover { background: #1a5ab8; border-color: #1a5ab8; color: #fff; }
+  }
+  .pal-hero .pal-btn:not(.pal-btn-primary):hover {
+    background: rgba(255,255,255,0.12);
+    border-color: #fff;
+  }
+  .pal-btn-ghost {
+    background: transparent;
+    border-color: rgba(255,255,255,0.35);
+    &:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+  }
+
+  // ════════════════ HERO ════════════════
+  .pal-hero {
+    position: relative;
+    background: radial-gradient(120% 120% at 80% 0%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+    color: #fff;
+    padding: 3.5rem 0 2.5rem;
+    overflow: hidden;
+    border-bottom: 3px solid $pal-accent;
+  }
+  .pal-hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(40% 60% at 12% 20%, rgba(38,115,218,0.35) 0%, transparent 60%),
+      radial-gradient(35% 50% at 95% 90%, rgba(200,164,92,0.16) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .pal-hero-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at 50% 30%, #000 0%, transparent 75%);
+  }
+
+  .pal-hero-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+    margin-bottom: 2.25rem;
+    @media (max-width: 760px) {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+    }
+  }
+
+  // statue portrait — tall marble, framed
+  .pal-portrait-frame {
+    flex-shrink: 0;
+    width: 220px;
+    border-radius: 22px;
+    padding: 5px;
+    background: linear-gradient(150deg, $pal-bronze, $pal-accent 55%, transparent 85%);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    @media (max-width: 760px) { width: 180px; }
+    .pal-portrait {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: 50% 18%;
+      border-radius: 18px;
+      display: block;
+      cursor: pointer;
+    }
+  }
+
+  .pal-hero-text { flex: 1; min-width: 0; }
+  .pal-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.62);
+    margin: 0 0 0.55rem;
+  }
+  .pal-name {
+    font-size: clamp(2.6rem, 1.5rem + 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 0.98;
+    margin: 0 0 0.5rem;
+    color: #fff;
+    letter-spacing: -0.02em;
+    background: linear-gradient(180deg, #ffffff 0%, #e7d6ad 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .pal-sub {
+    font-size: 0.92rem;
+    font-style: italic;
+    color: rgba(231,214,173,0.9);
+    margin: 0 0 1rem;
+    @media (max-width: 760px) { margin-left: auto; margin-right: auto; }
+  }
+  .pal-lede {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.82);
+    margin: 0 0 1.5rem;
+    em { color: #fff; font-style: italic; }
+    @media (max-width: 760px) { margin-left: auto; margin-right: auto; }
+  }
+  .pal-hero-cta {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    @media (max-width: 760px) { justify-content: center; }
+  }
+
+  // hero stat tiles
+  .pal-stat-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    @media (max-width: 520px) { grid-template-columns: repeat(2, 1fr); }
+  }
+  .pal-kpi {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px;
+    padding: 0.95rem 0.85rem;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    &:hover {
+      transform: translateY(-3px);
+      border-color: rgba(200,164,92,0.6);
+      background: rgba(255,255,255,0.1);
+    }
+    .pal-kpi-val {
+      display: block;
+      font-family: $pal-mono;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.05;
+    }
+    .pal-kpi-sub { color: $pal-bronze; font-size: 0.9rem; }
+    .pal-kpi-label {
+      display: block;
+      font-size: 0.66rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.4rem;
+    }
+  }
+
+  // ════════════════ WHO WAS HE ════════════════
+  .pal-who-section { background: $pal-card; }
+  .pal-who-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 1.25rem;
+    @media (max-width: 820px) { grid-template-columns: 1fr; }
+  }
+  .pal-tldr-card {
+    position: relative;
+    background: linear-gradient(160deg, #1e3a6b 0%, #141a2b 70%);
+    border-radius: 18px;
+    padding: 2rem 1.9rem;
+    color: rgba(255,255,255,0.9);
+    box-shadow: 0 16px 40px rgba(20,26,43,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    p {
+      position: relative;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin: 0;
+      strong { color: #fff; font-weight: 700; }
+    }
+    // oversized opening quote that deliberately overhangs the top-left corner
+    .pal-card-mark {
+      position: absolute;
+      top: -3.5rem;
+      left: -2rem;
+      font-family: $pal-serif;
+      font-size: 14rem;
+      line-height: 1;
+      color: $pal-bronze;
+      opacity: 0.85;
+      text-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      pointer-events: none;
+      user-select: none;
+      z-index: 2;
+      @media (max-width: 520px) {
+        font-size: 10rem;
+        top: -2.6rem;
+        left: -0.9rem;
+      }
+    }
+  }
+  .pal-fact-card {
+    background: #fbfcfe;
+    border: 1px solid $pal-line;
+    border-radius: 18px;
+    padding: 1.75rem 1.6rem;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 34px rgba(28,35,48,0.1);
+      border-color: rgba(38,115,218,0.4);
+    }
+    h3 {
+      font-size: 1.35rem;
+      color: $pal-ink;
+      margin: 0.1rem 0 0.7rem;
+      letter-spacing: -0.01em;
+    }
+    p {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: $pal-body;
+      margin: 0 0 1.1rem;
+      strong { color: $pal-ink; font-weight: 700; }
+    }
+  }
+  .pal-card-role {
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $pal-accent;
+    background: rgba(38,115,218,0.09);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    margin: 0 0 0.2rem;
+  }
+  .pal-chip-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .pal-chip {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: $pal-muted;
+    background: #eef1f5;
+    border: 1px solid $pal-line;
+    padding: 0.26rem 0.66rem;
+    border-radius: 999px;
+    transition: border-color 0.15s ease;
+    .pal-fact-card:hover & { border-color: rgba(38,115,218,0.25); }
+  }
+
+  // ════════════════ PULL QUOTE BAND ════════════════
+  .pal-quote-band {
+    position: relative;
+    background: radial-gradient(120% 130% at 50% 0%, #20283a 0%, #12161f 70%);
+    color: #fff;
+    padding: 3.5rem 0;
+    border-top: 3px solid $pal-bronze;
+    border-bottom: 3px solid $pal-bronze;
+  }
+  .pal-quote-inner {
+    text-align: center;
+    max-width: 860px;
+    .pal-quote-mark {
+      display: block;
+      font-family: $pal-serif;
+      font-size: 3rem;
+      line-height: 1;
+      color: $pal-bronze;
+      margin-bottom: 0.5rem;
+    }
+    blockquote {
+      margin: 0 0 1.1rem;
+      border: 0;
+      padding: 0;
+      font-family: $pal-serif;
+      font-size: clamp(1.35rem, 1rem + 1.6vw, 1.95rem);
+      line-height: 1.45;
+      font-weight: 500;
+      color: #fff;
+    }
+    .pal-quote-note {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto;
+      max-width: 60ch;
+    }
+  }
+
+  // ════════════════ STORY / TIMELINE ════════════════
+  .pal-story-section { background: $pal-bg; }
+  .pal-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(180deg, $pal-accent, rgba(200,164,92,0.5) 60%, rgba(200,164,92,0.15));
+    }
+  }
+  .pal-tl-item {
+    position: relative;
+    padding: 0 0 1.5rem 3.25rem;
+    &:last-child { padding-bottom: 0; }
+    @media (max-width: 600px) { padding-left: 2.75rem; }
+  }
+  .pal-tl-dot {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: $pal-accent;
+    border: 3px solid $pal-bg;
+    box-shadow: 0 0 0 3px rgba(38,115,218,0.22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 600px) { width: 28px; height: 28px; }
+  }
+  .pal-tl-num {
+    font-family: $pal-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.01em;
+  }
+  .pal-tl-body {
+    background: $pal-card;
+    border: 1px solid $pal-line;
+    border-radius: 14px;
+    padding: 1.25rem 1.45rem;
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    .pal-tl-item:hover & {
+      box-shadow: 0 10px 26px rgba(28,35,48,0.09);
+      border-color: rgba(38,115,218,0.3);
+    }
+    h3 {
+      font-size: 1.2rem;
+      color: $pal-ink;
+      margin: 0.15rem 0 0.55rem;
+      line-height: 1.25;
+    }
+    > p {
+      font-size: 0.97rem;
+      line-height: 1.7;
+      color: $pal-body;
+      margin: 0;
+      em { font-style: italic; color: $pal-ink; }
+    }
+  }
+  .pal-tl-era {
+    display: inline-block;
+    font-family: $pal-mono;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: $pal-bronze;
+  }
+  .pal-tl-quote {
+    margin: 0.9rem 0 0;
+    padding: 0.85rem 0 0.85rem 1.1rem;
+    border-left: 3px solid $pal-bronze;
+    background: linear-gradient(90deg, rgba(200,164,92,0.07), transparent);
+    border-radius: 0 8px 8px 0;
+    font-family: $pal-serif;
+    font-size: 1.02rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: $pal-ink;
+    cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: $pal-mono;
+      font-size: 0.72rem;
+      font-style: normal;
+      color: $pal-muted;
+    }
+  }
+
+  // ════════════════ OUTRO ════════════════
+  .pal-outro {
+    position: relative;
+    background: radial-gradient(120% 120% at 20% 0%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+    color: #fff;
+    padding: 3.75rem 0 4rem;
+    border-top: 3px solid $pal-accent;
+  }
+  .pal-outro-inner {
+    text-align: center;
+    max-width: 760px;
+    .pal-kicker-light { color: $pal-bronze; }
+    h2 {
+      font-size: clamp(1.8rem, 1.2rem + 2.5vw, 2.6rem);
+      color: #fff;
+      margin: 0 0 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    p {
+      font-size: 1.04rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.82);
+      margin: 0 auto 1rem;
+    }
+  }
+  .pal-outro-cta {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+  }
+
+  // ── scroll-reveal (only active once JS opts in) ──────
+  &.pal-js .pal-reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+    &.is-in { opacity: 1; transform: none; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pal * { transition: none !important; animation: none !important; }
+}

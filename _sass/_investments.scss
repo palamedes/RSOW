@@ -44,10 +44,10 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 
   // ── Hero ─────────────────────────────────────────────
   .inv-hero {
-    background: linear-gradient(160deg, #1b2a44 0%, #223a63 55%, #2673da 130%);
+    background: radial-gradient(120% 120% at 80% 0%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
     color: #fff;
     padding: 2.6rem 0 2.2rem;
-    border-bottom: 3px solid #1f5fb8;
+    border-bottom: 3px solid #2673da;
   }
   .inv-eyebrow {
     text-transform: uppercase;
