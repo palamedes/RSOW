@@ -217,40 +217,30 @@
   }
 }
 
-// ── Sub-hero bar ────────────────────────────────────────
+// ── Sub-hero accent bar ─────────────────────────────────
+// A thin blue rule that separates the dark hero from the content.
+// (Nav moved up into the site header; the posts heading sits below.)
 .sub-hero {
+  height: 6px;
   background: #2673da;
-  padding: 0.5rem 0;
+}
 
-  .sub-hero-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+// ── "Most Recent Blog Posts" heading ────────────────────
+.recent-posts-heading {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #333;
+  margin: 1.6rem 0 0.25rem;
+  letter-spacing: -0.01em;
 
-  .sub-hero-label {
-    font-size: 20px;
-    font-weight: 200;
-    color: #fff;
-    white-space: nowrap;
-  }
-
-  .sub-hero-nav {
-    display: flex;
-    gap: 0.4rem;
-    flex-wrap: wrap;
-
-    a {
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: #fff;
-      padding: 0.25rem 0.65rem;
-      border: 1px solid rgba(255,255,255,0.5);
-      border-radius: 3px;
-      &:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
-    }
+  &::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin-top: 0.5rem;
+    background: #2673da;
+    border-radius: 2px;
   }
 }
 
@@ -427,27 +417,7 @@
 // ── Footer ──────────────────────────────────────────────
 .site-footer {
   margin-top: 0;
-}
-
-.footer-social-bar {
-  background: #2673da;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  padding: 0.75rem 1rem;
-  flex-wrap: wrap;
-
-  a {
-    color: #fff;
-    font-size: 0.85rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    &:hover { color: #e0e0e0; text-decoration: none; }
-
-    svg { fill: currentColor; }
-  }
+  border-top: 6px solid #2673da;
 }
 
 .footer-photo-strip {
@@ -622,6 +592,24 @@
       &:hover { color: #4a9aff; }
     }
   }
+
+  .footer-about-social {
+    display: flex;
+    gap: 0.55rem;
+    margin-top: 0.9rem;
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      transition: background 0.15s ease, transform 0.15s ease;
+      &:hover { background: #2673da; transform: translateY(-2px); }
+
+      svg { width: 15px; height: 15px; }
+    }
+  }
 }
 
 .footer-bottom {
@@ -646,20 +634,6 @@
     color: #999;
     font-size: 1rem;
     &:hover { color: #fff; text-decoration: none; }
-  }
-
-  .footer-bottom-social {
-    display: flex;
-    gap: 0.5rem;
-
-    .social-icon {
-      color: #999;
-      width: 22px;
-      height: 22px;
-      &:hover { color: #fff; }
-
-      svg { width: 14px; height: 14px; }
-    }
   }
 }
 

@@ -16,22 +16,10 @@ full_width: true
     </div>
   </section>
 
-  <div class="sub-hero">
-    <div class="site-wrapper sub-hero-inner">
-      <span class="sub-hero-label">Most Recent Blog Posts:</span>
-      <nav class="sub-hero-nav">
-        <a href="{{ '/about/' | relative_url }}">About Me</a>
-        <a href="{{ '/archive/' | relative_url }}">Blog</a>
-        <a href="{{ '/games/' | relative_url }}">Games</a>
-        <a href="{{ '/investments/' | relative_url }}">Investments</a>
-        <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
-        <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
-        <a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store</a>
-      </nav>
-    </div>
-  </div>
+  <div class="sub-hero" aria-hidden="true"></div>
 
   <div class="site-wrapper">
+    <h2 class="recent-posts-heading">Most Recent Blog Posts</h2>
     <div class="post-grid">
       {% for post in paginator.posts %}
       <a class="post-card" href="{{ post.url | relative_url }}">
