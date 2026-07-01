@@ -113,3 +113,5 @@ dark moody tones with bold imagery. No text in the image.
 54. **i-must-make** — Hands covered in sawdust working on a woodworking project, shavings flying, maker's passion
 
 55. **windows-is-dead-to-me** — A cracked Windows-style logo on a glowing monitor dissolving into pixels, a small penguin silhouette walking away into clean light, dark moody tones, the end of an era
+
+56. **ai-slop-killing-youtube** — A glowing TV or monitor displaying a generic faceless YouTube video, its screen oozing gray sludge that spills out over a parking lot at night; crumpled fast-food wrappers and identical thumbnail rectangles blow across the asphalt like litter, a single robotic mouth/speaker icon glowing in the dark, dark moody tones, editorial, the death of human creativity
