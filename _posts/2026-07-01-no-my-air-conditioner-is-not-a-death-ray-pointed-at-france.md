@@ -14,31 +14,29 @@ excerpt: "Some people are now floating the idea that American air conditioning i
 
 Some people are now floating the idea that American air conditioning is somehow responsible for Europeans roasting during a heat wave.
 
-**And I have to say: what a beautiful pile of sanctimonious horseshit.**
+**I have to say: what a beautiful pile of sanctimonious horseshit.**
 
 Not because climate change is fake.
 Not because the United States has no emissions problem.
 Not because Americans are flawless stewards of energy.
 
-But because this argument takes a complicated global industrial problem and turns it into a cartoon where some guy in the Florida Everglades setting his thermostat to 72°F is apparently firing a climate laser across the Atlantic and melting Paris.
+But because this argument takes a complicated global industrial problem and turns it into a cartoon where some guy in the Florida Everglades setting his thermostat to 72 degrees Fahrenheit is apparently firing a climate laser across the Atlantic and melting Paris.
 
-It is the kind of argument that sounds profound only when nobody is allowed to do math.
+It's the kind of argument that sounds profound only when nobody is allowed to do math.
 
 So let's do some.
 
 According to EDGAR's 2025 greenhouse-gas report, 2024 total greenhouse-gas emissions, excluding land use and forestry, were about 5.91 billion metric tons CO₂e for the United States, 378 million for France and Monaco, 3.16 billion for the EU27, and 15.54 billion for China. EDGAR also lists China, the United States, India, the EU27, Russia, and Indonesia as the world's largest emitters in 2024.
 
-At first glance, yes, America emits a lot. Nobody serious should deny that.
+At first glance, yes, America emits a lot and nobody seriously discussing this topic should deny that.
 
-The United States is a massive industrial economy with more than 300 million people, enormous agricultural, logistics, manufacturing, and military infrastructure, and huge transportation distances. It is not a cute little museum country where half the population can take a train ten minutes to buy a baguette.
+But the United States is a massive industrial economy with more than 300 million people, enormous agriculturally, with logistics, manufacturing, and military infrastructure to boot, not to mention huge transportation distances. It is not a cute little museum country where half the population can take a train ten minutes to buy a baguette.  Keep in mind, France is smaller than Texas.
 
-France is smaller than Texas.
+In comparison, the U.S. is enormous, and in this argument, that matters.
 
-The U.S. is enormous, and in this argument, that matters.
+Using World Bank land-area figures, and keeping things in kilometers instead of freedom units because this argument apparently started in France, the United States is about 9.15 million square kilometers, France is about 540 thousand, the EU is about 4 million, and China is about 9.4 million.
 
-Using World Bank land-area figures, and keeping things in kilometers instead of freedom units because this argument apparently started in France, the United States is about 9.15 million square kilometers, France is about 539,000 square kilometers, the EU is about 4.0 million square kilometers, and China is about 9.39 million square kilometers.
-
-Now flatten the comparison by land area.
+But now flatten the comparison by land area.
 
 <aside class="emit-band">
   <span class="emit-eyebrow">2024 greenhouse-gas emissions, flattened by land area</span>
@@ -83,86 +81,75 @@ Now flatten the comparison by land area.
   <span class="emit-source">Sources: EDGAR 2025 GHG report · World Bank land area</span>
 </aside>
 
-Well, would you look at that.
-
-Suddenly the picture changes a little.
+Well, would you look at that.  Suddenly the picture changes a little.
 
 When you compare emissions to the physical size of the country, France is not some pristine little climate monastery being murdered by Bubba's window unit. France emits more greenhouse gas per square kilometer than the United States. The EU does too. And China absolutely blows everyone off the chart.
 
-That does not mean America is "clean." It means the lazy moral framing is garbage.
+That doesn't mean America is "clean." It means the lazy moral framing is garbage.
 
 **The U.S. emits about 15 times what France emits, but the U.S. is about 17 times the land area. That is a pretty important detail to leave out when you are wagging your finger across the ocean.**
 
-And then there is China, which emits about 2.5 times as much as the United States while being roughly comparable in land area. If the goal is to discuss global emissions honestly, China is not a footnote. It is the elephant sitting in the room, eating the curtains, while everyone argues about whether Americans are allowed to sleep without sweating through their sheets.
+And then there's China, which emits about 2.5 times as much as the United States while being roughly comparable in land area. If the goal is to discuss global emissions honestly, China is not a footnote. It's the elephant sitting in the room, eating the curtains, while everyone argues about whether Americans are allowed to sleep without sweating through their sheets.
 
-But of course, "China emits 15.5 billion tons" is not as emotionally satisfying as "Americans like air conditioning, therefore Europe is dying."
+But of course, saying "China emits 15.5 billion tons" is not as emotionally satisfying as saying "Americans like air conditioning, therefore Europe is dying."
 
-And that is the problem with this entire line of argument.
+And that's the problem with this entire line of argument.
 
-**It is not analysis. It is theater.**
+**It's not analysis, it's theater.**
 
-It is climate blame packaged for social media. A moral performance for people who want a villain more than they want a solution. And conveniently, the villain is always the same: Americans.
+It's climate blame packaged for social media. A moral performance for people who want a villain more than they want a solution. And conveniently, the villain is always the same: Americans.
 
-Americans drive too much. Americans cool their houses too much. Americans eat wrong. Americans live wrong. Americans are the reason your train was late, your wine was warm, your radiator doesn't work, and your government spent decades pretending summers would remain polite forever.
+"Americans drive too much, they cool their houses too much, they eat wrong, they live wrong. Americans are the reason your train was late, your wine was warm, your radiator doesn't work, and your government spent decades pretending summers would remain polite forever.
 
 Sorry, but no.
 
-Europe has its own choices. France has its own policies. Paris has its own infrastructure. If a wealthy modern city is getting hit with dangerous heat and large numbers of homes, hospitals, schools, and public spaces are not adequately cooled, that is not simply an American emissions problem.
+Europe has its own choices, France has its own policies, Paris has its own infrastructure. If a wealthy modern city is getting hit with dangerous heat and large numbers of homes, hospitals, schools, and public spaces are not adequately cooled, that's not an American emissions problem.
 
-That is an adaptation problem.
+It's an adaptation problem.
+It's a planning problem.
+It's a "we treated air conditioning like vulgar American barbarism until the weather stopped cooperating" problem.
 
-That is a planning problem.
-
-That is a "we treated air conditioning like vulgar American barbarism until the weather stopped cooperating" problem.
-
-And this is not some brand-new lesson France just discovered. In 2003, France suffered one of the deadliest modern heat disasters in Europe, with roughly 15,000 excess deaths during a brutal August heat wave. Many victims were elderly. Many were alone. Many were in homes and facilities that were simply not prepared for sustained extreme heat.
+And this isn't some brand-new lesson France just discovered. In 2003, France suffered one of the deadliest modern heat disasters in Europe, with roughly 15,000 excess deaths during a brutal August heat wave. Many victims were elderly. Many were alone. Many were in homes and facilities that were simply not prepared for sustained extreme heat.
 
 That was more than twenty years ago.
 
 So when the same basic problem comes back around and people still want to frame it as "American air conditioning did this," sorry, but that dog don't hunt.
 
-You do not get to sneer at air conditioning for decades, refuse to build around the reality of hotter summers, and then turn around and blame the people who installed the machines that keep their elderly from dying indoors.
+You don't get to sneer at air conditioning for decades, refuse to build around the reality of hotter summers, and then turn around and blame the people who installed the machines that keep their elderly from dying indoors.
 
-That is not moral superiority.
+That's not moral superiority.  That's bad planning served with wine and cheese.
 
-That is bad planning served with wine and cheese.
+And yes, before someone gets their organic linen pants in a decorative twist, per-capita emissions are a real counterpoint. On a per-person basis, the United States is high. Higher than France and higher than the EU. That matters and it's a fair criticism.
 
-And yes, before someone gets their organic linen pants in a decorative twist, per-capita emissions are a real counterpoint. On a per-person basis, the United States is high. Higher than France and higher than the EU. That matters. It is a fair criticism.
+Americans consume a lot of energy, they live spread out, drive a lot, cool large homes, and often behave like energy is cheap because, for a long time, it was.
 
-Americans consume a lot of energy. They live spread out. They drive a lot. They cool large homes. They often behave like energy is cheap because, for a long time, it was.
+Put that in the argument.
 
-Fine. Put that in the argument.
+But don't pretend one metric is the entire truth while every other metric is a rude interruption.
 
-But do not pretend one metric is the entire truth while every other metric is a rude interruption.
-
-Total emissions matter. Per-capita emissions matter. Industrial output matters. Energy mix matters. Imports matter. Geography, density, weather, adaptation, nuclear power, grid reliability, and urban design all matter.
+Total emissions matter, per-capita emissions matter, industrial output, energy mix, imports, geography, density, weather, adaptation, nuclear power, grid reliability, and urban design all matter.
 
 And yes, whether your country built homes to retain heat in winter but not survive brutal summer nights also matters.
 
-**Air conditioning is not just some frivolous luxury. It is lifesaving infrastructure.**
+**Air conditioning is not just some frivolous luxury. It's lifesaving infrastructure.**
 
 **Heat kills people. Especially the elderly, the sick, the poor, and people trapped in dense urban heat islands. A fan and a damp towel are not a climate policy. They are what you do when the adults failed to prepare.**
 
-The answer to hotter summers is not to shame people for cooling buildings.
+The answer to hotter summers isn't to shame people for cooling buildings.
 
 The answer is to produce cleaner energy, build better grids, use efficient heat pumps, improve insulation, harden cities against heat, plant shade, reduce waste, and stop pretending that suffering through dangerous temperatures is a virtue.
 
-Because that is the truly deranged part of this debate: some people have managed to turn not dying of heat stroke into a character flaw.
+Because that's the truly deranged part of this debate: some people have managed to turn not dying of heat stroke into a character flaw.
 
-Apparently being comfortable in your own home is decadence now. Protecting grandma from a 100-degree apartment is colonial arrogance. The moral high ground is sweating in a brick oven while congratulating yourself for not being American.
+Apparently being comfortable in your own home is decadence now and protecting grandma from a 100-degree apartment is colonial arrogance. The moral high ground is sweating in a brick oven while congratulating yourself for not being American? That's ridiculous.
 
-That is ridiculous.
+America has plenty to criticize. We waste energy. We build stupidly. We drive too much. We often overcool buildings. And we have houses the size of minor European villages. There is a serious version of this conversation where the United States takes responsibility for its emissions and invests harder in cleaner power, better homes, better transportation, and more efficient cooling.
 
-America has plenty to criticize. We waste energy. We build stupidly. We drive too much. We often overcool buildings. We have houses the size of minor European villages. There is a serious version of this conversation where the United States takes responsibility for its emissions and invests harder in cleaner power, better homes, better transportation, and more efficient cooling.
+**But "your A/C is killing Europeans" is not a remotely serious argument. It's a bumper sticker for smug people.**
 
-**But "your A/C is killing Europeans" is not a remotely serious argument.**
-
-**It is a bumper sticker for smug people.**
-
-It is the climate debate reduced to finger-pointing and vibes. It is what happens when people would rather blame an American thermostat than admit that their own governments, cities, and cultural assumptions may not be ready for the world they now live in.
+It's the climate debate reduced to finger-pointing and vibes. It's what happens when people would rather blame an American thermostat than admit that their own governments, cities, and cultural assumptions may not be ready for the world they now live in.
 
 So no, my air conditioner is not personally assassinating Europeans.
 
-And if your climate argument requires pretending it is, your argument is not brave or sophisticated.
-
-It is just dumb with a passport.
+And if your climate argument requires pretending that it is then your argument is not brave or sophisticated.  
+It's just dumb with a passport.
