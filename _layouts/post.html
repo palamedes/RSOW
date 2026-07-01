@@ -27,15 +27,13 @@ layout: default
           <span>{{ minutes }} min read</span>
         </div>
       </div>
-      <div class="post-hero-img">
-        <img src="{{ featured_image | relative_url }}" alt="{{ page.title | escape }}">
-      </div>
     </div>
   </header>
 
   <div class="post-wrap">
     <article class="post-article">
       <div class="post-content">
+        <img class="post-body-img" src="{{ featured_image | relative_url }}" alt="{{ page.title | escape }}">
         {{ content }}
       </div>
 

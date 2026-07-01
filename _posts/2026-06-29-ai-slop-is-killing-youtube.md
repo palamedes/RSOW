@@ -55,65 +55,61 @@ AI as a content farm? Garbage.
     <button type="button" class="slop-voice" style="--v:#4a9aff"
             data-src="/assets/audio/aislop_jason-ellis-conversational.ogg"
             data-tip="Me, if I'd had three cups of coffee and a point to prove."
-            aria-label="Play Jason Ellis, conversational">
-      <span class="sv-avatar" aria-hidden="true">🎙️</span>
-      <span class="sv-meta">
-        <span class="sv-name">Jason Ellis</span>
-        <span class="sv-style">conversational</span>
+            aria-label="Play AI Jason Ellis, conversational">
+      <span class="sv-name">AI: Jason Ellis</span>
+      <span class="sv-style">conversational</span>
+      <span class="sv-row">
+        <span class="sv-ctrl" aria-hidden="true"></span>
+        <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </span>
-      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="sv-ctrl" aria-hidden="true"></span>
     </button>
     <button type="button" class="slop-voice" style="--v:#8a7dff"
             data-src="/assets/audio/aislop_jason-ellis-calm-muted.ogg"
             data-tip="Me, but sedated and vaguely disappointed in you."
-            aria-label="Play Jason Ellis, calm and muted">
-      <span class="sv-avatar" aria-hidden="true">😌</span>
-      <span class="sv-meta">
-        <span class="sv-name">Jason Ellis</span>
-        <span class="sv-style">calm &amp; muted</span>
+            aria-label="Play AI Jason Ellis, calm and muted">
+      <span class="sv-name">AI: Jason Ellis</span>
+      <span class="sv-style">calm &amp; muted</span>
+      <span class="sv-row">
+        <span class="sv-ctrl" aria-hidden="true"></span>
+        <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </span>
-      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="sv-ctrl" aria-hidden="true"></span>
     </button>
     <button type="button" class="slop-voice" style="--v:#17c3b2"
             data-src="/assets/audio/aislop_ryan-reynolds.ogg"
             data-tip="Charming enough to sell you absolutely nothing."
-            aria-label="Play Ryan Reynolds">
-      <span class="sv-avatar" aria-hidden="true">😏</span>
-      <span class="sv-meta">
-        <span class="sv-name">Ryan Reynolds</span>
-        <span class="sv-style">smooth pitchman</span>
+            aria-label="Play AI Ryan Reynolds">
+      <span class="sv-name">AI: Ryan Reynolds</span>
+      <span class="sv-style">smooth pitchman</span>
+      <span class="sv-row">
+        <span class="sv-ctrl" aria-hidden="true"></span>
+        <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </span>
-      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="sv-ctrl" aria-hidden="true"></span>
     </button>
     <button type="button" class="slop-voice" style="--v:#e23b3b"
             data-src="/assets/audio/aislop_deadpool.ogg"
             data-tip="Fourth wall? Never met her. Also, this is a paid actor."
-            aria-label="Play Deadpool">
-      <span class="sv-avatar" aria-hidden="true">🗡️</span>
-      <span class="sv-meta">
-        <span class="sv-name">Deadpool</span>
-        <span class="sv-style">unhinged &amp; armed</span>
+            aria-label="Play AI Deadpool">
+      <span class="sv-name">AI: Deadpool</span>
+      <span class="sv-style">unhinged &amp; armed</span>
+      <span class="sv-row">
+        <span class="sv-ctrl" aria-hidden="true"></span>
+        <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </span>
-      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="sv-ctrl" aria-hidden="true"></span>
     </button>
     <button type="button" class="slop-voice" style="--v:#e0a63c"
             data-src="/assets/audio/aislop_morgan-freeman-slow.ogg"
             data-tip="Every word sounds like the truth, even the dumb ones."
-            aria-label="Play Morgan Freeman, slow">
-      <span class="sv-avatar" aria-hidden="true">🎬</span>
-      <span class="sv-meta">
-        <span class="sv-name">Morgan Freeman</span>
-        <span class="sv-style">slow &amp; almighty</span>
+            aria-label="Play AI Morgan Freeman, slow">
+      <span class="sv-name">AI: Morgan Freeman</span>
+      <span class="sv-style">slow &amp; almighty</span>
+      <span class="sv-row">
+        <span class="sv-ctrl" aria-hidden="true"></span>
+        <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       </span>
-      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="sv-ctrl" aria-hidden="true"></span>
     </button>
   </div>
   <p class="slop-now" role="status" aria-live="polite"></p>
+  <p class="slop-fineprint">Ryan, Morgan, Wade — love you fellas, truly. This is a robot doing a bad impression, not actually any of you. Please don't sue me; I own a paintball gun and roughly four dollars.</p>
 </aside>
 
 <script>
@@ -123,6 +119,16 @@ AI as a content farm? Garbage.
   var cards = Array.prototype.slice.call(band.querySelectorAll('.slop-voice'));
   var status = band.querySelector('.slop-now');
   var current = null;
+
+  // Base playback volume for the whole band (0–1). Override globally with
+  // window.SLOP_VOLUME, or per-card with a data-vol="0.9" attribute.
+  var BASE_VOLUME = 0.5;
+  function volumeFor(card) {
+    var base = typeof window.SLOP_VOLUME === 'number' ? window.SLOP_VOLUME : BASE_VOLUME;
+    var mult = parseFloat(card.getAttribute('data-vol'));
+    if (isNaN(mult)) mult = 1;
+    return Math.max(0, Math.min(1, base * mult));
+  }
 
   function reset(card) {
     card.classList.remove('is-playing');
@@ -154,6 +160,7 @@ AI as a content farm? Garbage.
           if (current === card) { current = null; setNow(''); }
         });
       }
+      card._audio.volume = volumeFor(card);
 
       // Track state up front so the equalizer animates on the very first click.
       current = card;
