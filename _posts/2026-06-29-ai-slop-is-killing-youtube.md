@@ -47,62 +47,156 @@ AI as a tool? Fine.
 
 AI as a content farm? Garbage.
 
+<aside id="slop-band" class="slop-band">
+  <span class="slop-eyebrow">AI Slop-O-Vision™</span>
+  <h2 class="slop-title">Hear it in glorious synthetic mono</h2>
+  <p class="slop-sub">Same rant, different robot. Tap a voice and let a computer read my words back to me with all the warmth of a self-checkout machine. One plays at a time — because even I have standards.</p>
+  <div class="slop-grid">
+    <button type="button" class="slop-voice" style="--v:#4a9aff"
+            data-src="/assets/audio/aislop_jason-ellis-conversational.ogg"
+            data-tip="Me, if I'd had three cups of coffee and a point to prove."
+            aria-label="Play Jason Ellis, conversational">
+      <span class="sv-avatar" aria-hidden="true">🎙️</span>
+      <span class="sv-meta">
+        <span class="sv-name">Jason Ellis</span>
+        <span class="sv-style">conversational</span>
+      </span>
+      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sv-ctrl" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="slop-voice" style="--v:#8a7dff"
+            data-src="/assets/audio/aislop_jason-ellis-calm-muted.ogg"
+            data-tip="Me, but sedated and vaguely disappointed in you."
+            aria-label="Play Jason Ellis, calm and muted">
+      <span class="sv-avatar" aria-hidden="true">😌</span>
+      <span class="sv-meta">
+        <span class="sv-name">Jason Ellis</span>
+        <span class="sv-style">calm &amp; muted</span>
+      </span>
+      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sv-ctrl" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="slop-voice" style="--v:#17c3b2"
+            data-src="/assets/audio/aislop_ryan-reynolds.ogg"
+            data-tip="Charming enough to sell you absolutely nothing."
+            aria-label="Play Ryan Reynolds">
+      <span class="sv-avatar" aria-hidden="true">😏</span>
+      <span class="sv-meta">
+        <span class="sv-name">Ryan Reynolds</span>
+        <span class="sv-style">smooth pitchman</span>
+      </span>
+      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sv-ctrl" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="slop-voice" style="--v:#e23b3b"
+            data-src="/assets/audio/aislop_deadpool.ogg"
+            data-tip="Fourth wall? Never met her. Also, this is a paid actor."
+            aria-label="Play Deadpool">
+      <span class="sv-avatar" aria-hidden="true">🗡️</span>
+      <span class="sv-meta">
+        <span class="sv-name">Deadpool</span>
+        <span class="sv-style">unhinged &amp; armed</span>
+      </span>
+      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sv-ctrl" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="slop-voice" style="--v:#e0a63c"
+            data-src="/assets/audio/aislop_morgan-freeman-slow.ogg"
+            data-tip="Every word sounds like the truth, even the dumb ones."
+            aria-label="Play Morgan Freeman, slow">
+      <span class="sv-avatar" aria-hidden="true">🎬</span>
+      <span class="sv-meta">
+        <span class="sv-name">Morgan Freeman</span>
+        <span class="sv-style">slow &amp; almighty</span>
+      </span>
+      <span class="sv-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="sv-ctrl" aria-hidden="true"></span>
+    </button>
+  </div>
+  <p class="slop-now" role="status" aria-live="polite"></p>
+</aside>
+
+<script>
+(function () {
+  var band = document.getElementById('slop-band');
+  if (!band) return;
+  var cards = Array.prototype.slice.call(band.querySelectorAll('.slop-voice'));
+  var status = band.querySelector('.slop-now');
+  var current = null;
+
+  function reset(card) {
+    card.classList.remove('is-playing');
+    if (card._audio) {
+      card._audio.pause();
+      card._audio.currentTime = 0;
+    }
+  }
+  function setNow(text) {
+    if (status) status.textContent = text || '';
+  }
+
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      // Tapping the active card again = stop.
+      if (current === card) {
+        reset(card);
+        current = null;
+        setNow('');
+        return;
+      }
+      // One-at-a-time: synchronously silence every other card first.
+      cards.forEach(function (c) { if (c !== card) reset(c); });
+
+      if (!card._audio) {
+        card._audio = new Audio(card.getAttribute('data-src'));
+        card._audio.addEventListener('ended', function () {
+          reset(card);
+          if (current === card) { current = null; setNow(''); }
+        });
+      }
+
+      // Track state up front so the equalizer animates on the very first click.
+      current = card;
+      card.classList.add('is-playing');
+      var name = card.querySelector('.sv-name').textContent;
+      var style = card.querySelector('.sv-style').textContent;
+      setNow('▶ Now playing: ' + name + ' · ' + style);
+
+      var p = card._audio.play();
+      if (p && p.catch) {
+        p.catch(function () {
+          // Only unwind if playback genuinely didn't start (ignore spurious AbortError).
+          if (card._audio.paused) {
+            reset(card);
+            if (current === card) { current = null; setNow(''); }
+          }
+        });
+      }
+    });
+  });
+})();
+</script>
+
 ## Made by Nobody, for Nobody
 
 YouTube used to feel like a place where real people made real things. Some of it was dumb, some of it was brilliant, some of it was weird as hell, but at least it felt human. Now too much of it feels like being trapped in a waiting room where every TV is playing a fake documentary narrated by a GPS.
 
 And I hate it.
 
-Not because I'm scared of technology. Not because I think every video needs to be a handcrafted masterpiece. But because I can feel when something was made with zero care. And increasingly, that's what YouTube is serving up: videos made by nobody, for nobody, about nothing, designed only to harvest clicks before you realize you're watching sludge.
+Not because I'm scared of technology. Not because I think every video needs to be a handcrafted masterpiece. But because I can feel when something was made with zero care. And increasingly, that's what YouTube is serving up: videos made by nobody, for nobody, about nothing, designed only to harvest clicks before you realize you're watching crap.
 
 AI slop is not the future of entertainment.
 
 It's the fast food wrapper blowing across the parking lot after everyone else has gone home.
 
-{% comment %} VOICE-SCRIPT
-This block is invisible on the website. It is the spoken/voiced version of the
-post, massaged for text-to-speech: punctuation tuned for pacing, tricky words
-respelled, pauses added. Edit freely — the web output never sees any of this.
+<% comment %>
+YouTube used to feel like a place where real people made real things. Some of it was dumb, some of it was brilliant, some of it was weird as hell, but at least it felt human. Now too much of it feels like being trapped in a waiting room where every TV is playing a fake documentary. narrated by a GPS..
 
----
+And I hate it.,.
 
-YouTube is getting harder and harder to watch. And it's not because people suddenly forgot how to make videos. It's because the platform is being flooded with A.I. slop.
-
-You know exactly the kind of video I'm talking about.
-
-Some generic thumbnail. Some over-dramatic title. Some faceless channel, with a script that sounds like it was written by a committee of drunk autocomplete bots. Then the voice starts... and within thirty seconds, you know nobody who made this thing cared about it.
-
-The A.I. voice mispronounces simple words. It puts the emphasis in the wrong places. It pauses halfway through a sentence, like it just forgot how breathing works. It reads emotional moments with the warmth of a self-checkout machine. And the script? Pure filler. Recycled facts. Fake suspense. Pointless repetition. And that weird cadence, where every sentence sounds like it was engineered to barely keep you from clicking away.
-
-It is cheap, easy, mass-produced garbage.
-
-And that's the problem. A.I. made it possible to generate content at industrial scale. But "content" is not the same thing as something worth watching. A real video has a point of view. It has effort. It has taste. It has a person behind it who actually gives a damn. A.I. slop has none of that. It's just noise, with a thumbnail.
-
-The worst part is how common it has become. It feels like half of YouTube now is some low-effort, synthetic junk. Fake history channels. Fake movie recaps. Fake science explainers. Fake "top ten" videos. Fake documentaries. Fake news summaries. Fake... everything. Not fake because every fact is wrong, necessarily. But fake because there's no human judgment behind it. No curiosity. No personality. No soul.
-
-And it's jarring. That's the word I keep coming back to. Jarring.
-
-You're trying to watch something interesting, and suddenly the narrator says a normal word like they've never encountered human language before. Or they insert a dramatic pause, right in the middle of a basic sentence. Or they describe something tragic with the exact same tone they'd use to explain a toaster warranty. It pulls you right out of the video. It makes the whole thing feel cheap, and disposable.
-
-Which, of course, it is.
-
-This is what happens when platforms reward output over quality. If a creator can pump out fifty lazy videos a week using A.I. voices, A.I. scripts, A.I. images, and A.I. editing... then eventually the feed gets buried under that trash. The people actually making thoughtful, funny, weird, useful, human videos are now competing against an infinite sewage pipe of algorithm bait.
-
-And yeah. A.I. can be a useful tool. I'm not pretending it has no place. But there's a massive difference between using A.I. to help make something better... and using A.I. to avoid making something at all.
-
-That's the line.
-
-A.I. as a tool? Fine.
-
-A.I. as a content farm? Garbage.
-
-YouTube used to feel like a place where real people made real things. Some of it was dumb. Some of it was brilliant. Some of it was weird as hell. But at least it felt human. Now too much of it feels like being trapped in a waiting room, where every T.V. is playing a fake documentary narrated by a G.P.S.
-
-And I hate it.
-
-Not because I'm scared of technology. Not because I think every video needs to be a handcrafted masterpiece. But because I can feel when something was made with zero care. And increasingly, that's what YouTube is serving up. Videos made by nobody, for nobody, about nothing. Designed only to harvest clicks before you realize you're watching sludge.
+Not because I’m scared of technology. Not because I think every video needs to be a handcrafted masterpiece. But because I can feel when something was made with zero care. And increasingly, that’s what YouTube is serving up: videos made by nobody, for nobody, about nothing, designed only to harvest clicks before you realize you’re watching crap..
 
 A.I. slop is not the future of entertainment.
 
-It's the fast food wrapper, blowing across the parking lot, after everyone else has gone home.
-{% endcomment %}
+It’s the fast food wrapper blowing across the parking lot after everyone else, has gone home.
+<% endcomment %>
