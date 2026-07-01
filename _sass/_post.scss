@@ -57,6 +57,7 @@ $po-line:    #ddd;
 
   .post-hero-cats {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 0.4rem;
     margin-bottom: 0.7rem;
@@ -95,6 +96,62 @@ $po-line:    #ddd;
     color: rgba(255,255,255,0.7);
     .post-hero-author { color: #fff; font-weight: 600; }
     .post-hero-dot { opacity: 0.5; }
+    .post-hero-listen-note { color: $po-accent-2; font-weight: 600; }
+  }
+
+  // ════════════════ "AI NARRATION" CHIP ════════════════
+  // A ghost/outline variant of the category pills, pushed to the right
+  // edge of the .post-hero-cats row. Shown only when the post front
+  // matter defines `audio:`; toggles an AI-read <audio> element.
+  .post-hero-cats .post-listen {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.7rem 0.2rem 0.4rem;
+    border-radius: 999px;
+    cursor: pointer;
+    color: #cfe0ff;
+    background: rgba(74,154,255,0.14);
+    border: 1px solid rgba(74,154,255,0.5);
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    &:hover { background: rgba(74,154,255,0.26); border-color: $po-accent-2; color: #fff; }
+    &:focus-visible { outline: 2px solid $po-accent-2; outline-offset: 2px; }
+    @media (max-width: 760px) { margin-left: 0; }
+  }
+  // small play triangle → pause bars when .is-playing
+  .post-listen-ico {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.95rem;
+    height: 0.95rem;
+    border-radius: 50%;
+    background: $po-accent-2;
+    &::before {
+      content: "";
+      width: 0; height: 0;
+      margin-left: 2px;
+      border-style: solid;
+      border-width: 3px 0 3px 5px;
+      border-color: transparent transparent transparent #0b1120;
+    }
+  }
+  .post-listen.is-playing .post-listen-ico::before {
+    width: 5px; height: 6px;
+    margin-left: 0;
+    border: 0;
+    background:
+      linear-gradient(#0b1120, #0b1120) left / 2px 100% no-repeat,
+      linear-gradient(#0b1120, #0b1120) right / 2px 100% no-repeat;
+  }
+  .post-listen-lead {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
   }
 
   // ════════════════ ARTICLE CARD ════════════════
@@ -360,6 +417,120 @@ $po-line:    #ddd;
     .slop-voice { transition: none; }
     .slop-voice:hover { transform: none; }
     .slop-voice.is-playing .sv-eq i { animation: none; height: 10px; }
+  }
+
+  // ════════════════ EMISSIONS DATA TABLE ════════════════
+  // Dark breakout band (same edge-to-edge trick as .slop-band) that
+  // frames the land-area-flattened emissions table as a real table.
+  .post-content .emit-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem -2.5rem;
+    padding: 2rem 2.5rem 1.6rem;
+    border-radius: 2px;
+    color: #e9edf6;
+    background:
+      radial-gradient(130% 150% at 12% 0%, #1c2946 0%, transparent 55%),
+      linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #101a30 100%);
+    @media (max-width: 600px) {
+      margin: 2rem -1.5rem;
+      padding: 1.6rem 1.5rem 1.4rem;
+    }
+    // faint scan-grid texture, faded top-down (matches .slop-band)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+    }
+    > * { position: relative; z-index: 1; }
+  }
+  .post-content .emit-eyebrow {
+    display: block;
+    margin-bottom: 1.1rem;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #9fb4e6;
+  }
+  // horizontal scroll on narrow screens so the table never squishes
+  .post-content .emit-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-content .emit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+
+    thead th {
+      padding: 0 0.7rem 0.7rem;
+      text-align: right;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8fa3cc;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; }
+
+    tbody th,
+    tbody td {
+      padding: 0.72rem 0.7rem;
+      text-align: right;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+    }
+    tbody th {
+      text-align: left;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    tbody td { color: #c6d1e8; }
+    tbody tr:last-child th,
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td,
+    tbody tr:hover th { background: rgba(255,255,255,0.03); }
+
+    // the "money" column — the whole point of the table
+    .emit-key {
+      color: #eaf1ff;
+      font-weight: 700;
+    }
+    thead .emit-key { color: #bcd0ff; }
+
+    // France's per-km² — the "would you look at that" cell
+    .emit-flag {
+      background: rgba(240,196,64,0.20);
+      box-shadow: inset 0 0 0 1px rgba(240,196,64,0.45);
+      color: #ffe9a6;
+      border-radius: 3px;
+    }
+
+    // China: the elephant eating the curtains
+    .emit-standout th,
+    .emit-standout td {
+      background: rgba(226,59,59,0.12);
+    }
+    .emit-standout th { color: #ffd7d7; }
+    .emit-standout .emit-key { color: #ff9f9f; }
+  }
+  .post-content .emit-source {
+    display: block;
+    margin-top: 0.95rem;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #7f8aa3;
   }
 }
 
