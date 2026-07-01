@@ -588,16 +588,28 @@
     }
 
     .read-more {
-      color: #2673da;
+      display: inline-block;
+      padding: 0.5rem 2rem;
+      border: 1px solid #888;
+      border-radius: 3px;
       font-size: 0.85rem;
-      &:hover { color: #4a9aff; }
+      color: #ddd;
+      &:hover { border-color: #ccc; color: #fff; text-decoration: none; }
     }
+  }
+
+  .footer-about-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.9rem;
+    flex-wrap: wrap;
   }
 
   .footer-about-social {
     display: flex;
     gap: 0.55rem;
-    margin-top: 0.9rem;
 
     .social-icon {
       width: 32px;
