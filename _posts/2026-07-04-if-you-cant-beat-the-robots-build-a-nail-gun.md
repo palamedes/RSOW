@@ -192,3 +192,8 @@ Or you can put the robots on the board, hand them a card, cap their permissions,
 Because if you can't beat the robots, the answer was never surrender.
 
 **The answer is to build a better nail gun, and never once mistake it for the carpenter.**
+
+---
+
+Check it out here https://github.com/palamedes/cardinal
+It's still a work in progress, so lots of updates are on going.  But I'm having fun with it.
