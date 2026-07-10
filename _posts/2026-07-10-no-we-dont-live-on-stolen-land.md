@@ -12,13 +12,13 @@ excerpt: "'We live on stolen land' pretends history began five minutes before Eu
 
 "We live on stolen land" may be one of the laziest political arguments in circulation, because it pretends history began five minutes before Europeans showed up.
 
-So let me start with this: No, we do not live on "stolen land" in some uniquely American evil sense.
+So let me start with this: No, we do not live on "stolen land" in some uniquely evil American way.
 
 We live on conquered land, purchased land, annexed land, treatied land, disputed land, inherited land, and so on ... like almost every civilization that has ever existed.
 
 ## Stolen From Whom, Exactly?
 
-But stolen land? Stolen from whom, exactly? And who did *they* get it from? Were they handed a divine notarized deed by God himself? Ridiculous.
+But, stolen land? Stolen from whom, exactly? And who did *they* get it from? Were they handed a divine notarized deed by God himself? Ridiculous.
 
 Human history is conquest layered on top of conquest. Tribes fought tribes. Kingdoms swallowed kingdoms. Empires rose, fell, and got replaced by the next people strong enough to hold the ground. It may not be pretty, but it is reality.
 
@@ -28,7 +28,7 @@ And America's land history isn't one simple cartoon of "bad people stole everyth
 
 The United States bought the Louisiana Territory from France in 1803. Florida was ceded by Spain under the Adams–Onís Treaty, signed in 1819 and effective in 1821. Alaska was purchased from Russia in 1867. Texas was annexed in 1845 after existing as the Republic of Texas. The Mexican Cession came through the Treaty of Guadalupe Hidalgo in 1848 after a war. The Gadsden Purchase followed in 1854.
 
-Yeah, some of that history is ugly. Some of it is complicated. Some of it was purchased. Some of it was conquered. But reducing everything to "you live on stolen land" is dumb. It's an emotional bumper-sticker version of history for people who want the satisfaction of guilt without doing the intellectual work of understanding anything.
+That's a lot of history.  And yeah, some of that history is ugly. Some of it's complicated. Some of America was purchased and some of it was conquered. But reducing everything to "you live on stolen land" is dumb. It's an emotional bumper-sticker version of history for people who want the satisfaction of guilt without doing the intellectual work of understanding anything.
 
 ## Pick a Principle
 
@@ -40,18 +40,18 @@ Pick a principle. Either nations have a right to control their borders, protect 
 
 ## It's Not an Argument. It's a Cudgel.
 
-The truth is, "stolen land" is not usually an argument. It's a cudgel. It's a way to shut down debate, assign inherited guilt, and pretend modern Americans are somehow uniquely illegitimate for living in the same historical reality every people on Earth has lived in.
+The truth is, the "stolen land" argument is not used as an argument. But rather as a cudgel. It's a way to shut down debate, assign inherited guilt, and pretend modern Americans are somehow uniquely illegitimate for living in the same historical reality every people on Earth has ever lived in.
 
-Nobody alive today conquered the continent. Nobody alive today signed the Adams–Onís Treaty. Nobody alive today negotiated the Louisiana Purchase. We inherited a country, with all its greatness, flaws, blood, sacrifice, and complexity.
+The simple fact is that nobody alive today conquered the continent. Nobody alive today signed the Adams–Onís Treaty. Nobody alive today negotiated the Louisiana Purchase. We all inherited a country with all its greatness, flaws, blood, sacrifice, and complexity.
 
-You can acknowledge that history without groveling before a slogan. And you can respect native history without pretending the United States is the only civilization in human history that acquired land through force, treaty, purchase, settlement, and power.
+And you can acknowledge that history, the good and the bad, without groveling before a slogan. You can respect native history without pretending the United States is the only civilization in human history that acquired land through force, treaty, purchase, settlement, and power.
 
 ## Spare Me the Sermon
 
-So spare me the sanctimonious sermon about "stolen land." It's not an argument. It's emotional sloganeering for people who learned history from memes and think moral seriousness means repeating whatever slogan gets applause from the room.
+But spare me the sanctimonious sermon about "stolen land." It's not an argument. It's emotional sloganeering for people who learned history from memes and think moral seriousness means repeating whatever nonsense gets applause from the room.
 
 If your worldview requires pretending every civilization before America was a peaceful drum circle living in perfect harmony until the evil United States invented conquest, then you are not making a moral argument. You are advertising historical illiteracy.
 
-America's history is bloody, complicated, purchased, conquered, negotiated, annexed, and inherited ... just like human history everywhere else on Earth.
+America's history is bloody and complicated. The land itself was purchased, conquered, negotiated, annexed, and inherited ... just like human history in countries everywhere else on Earth.
 
 You can wrestle with that honestly, or you can keep chanting "stolen land" like a moron using a magic spell in order to excuse yourself from having to think. But don't confuse your slogan for wisdom. It's not profound. It's lazy.
