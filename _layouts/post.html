@@ -90,7 +90,6 @@ layout: default
     {%- assign gc = site.giscus -%}
     {%- if page.allow_comments != false and gc and gc.repo_id != "" and gc.category_id != "" -%}
     <section class="post-comments" aria-label="Comments">
-      <h2 class="post-comments-title">Comments</h2>
       <script src="https://giscus.app/client.js"
         data-repo="{{ gc.repo }}"
         data-repo-id="{{ gc.repo_id }}"
