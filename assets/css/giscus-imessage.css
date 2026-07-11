@@ -88,6 +88,13 @@ main {
 .gsc-comment:has(.color-box-border-info) .gsc-comment-header {
   justify-content: flex-end;                /* your header on the right */
 }
+/* the avatar/name/time/pill live in a full-width flex row (.gsc-comment-author),
+   so right-pack them there — aligning the header alone doesn't move anything. */
+.gsc-comment:has(.color-box-border-info) .gsc-comment-author {
+  justify-content: flex-end !important;
+  width: 100%;
+  text-align: right;                        /* fallback if it isn't flex */
+}
 .gsc-comment:has(.color-box-border-info) .gsc-comment-content {
   margin: 0 0 0 auto;                       /* bubble floats right */
   background: #2673da !important;
