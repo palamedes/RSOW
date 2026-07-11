@@ -7,10 +7,11 @@
    black outlines). After the base we retint the accent to the site blue and
    restyle posted comments as chat bubbles.
 
-   "Your" comments (repo OWNER) are detected via `.gsc-comment:has(.Label)` —
-   GitHub renders an author-association Label ("Owner") on them; ordinary
-   visitors are association NONE and get no label. If owner comments don't turn
-   blue/right once live, that's the one selector to adjust.
+   "Your" comments (repo OWNER) are detected via the author-association pill
+   giscus renders (class `.color-box-border-info`, text "Owner"). Ordinary
+   visitors are association NONE and get no pill, so `:has(.color-box-border-info)`
+   effectively means "your comments." If they don't turn blue/right once live,
+   that's the one selector to adjust.
    ============================================================================ */
 
 /* ---- giscus official light base (Primer tokens), inlined ------------------ */
@@ -52,6 +53,8 @@ main {
   padding: 0 !important;
 }
 .gsc-comment-header {
+  display: flex !important;
+  justify-content: flex-start;              /* visitors: header on the left */
   padding: 0 0.55rem 0.2rem !important;
   background: transparent !important;
   border: 0 !important;
@@ -59,12 +62,14 @@ main {
 }
 .gsc-comment-author-avatar img { width: 22px !important; height: 22px !important; }
 
-/* the message body is the bubble */
+/* the message body is the bubble. `fit-content` width + auto margins is what
+   floats it left/right — auto margins absorb free space in both block AND
+   flex layouts, so this works regardless of giscus's internal container. */
 .gsc-comment-content {
   display: block;
   width: fit-content;
   max-width: 82%;
-  margin-right: auto;                       /* left-aligned by default */
+  margin: 0 auto 0 0;                        /* visitors: bubble on the left */
   padding: 0.6rem 0.9rem !important;
   border-radius: 18px 18px 18px 5px !important;
   background: #e9e9eb !important;
@@ -76,13 +81,20 @@ main {
 .gsc-comment-content > *:last-child  { margin-bottom: 0; }
 .gsc-reactions, .gsc-comment-reactions { padding-top: 0.35rem !important; }
 
-/* OWNER (you) → blue, right-aligned */
-.gsc-comment:has(.Label) .gsc-comment-header { flex-direction: row-reverse !important; text-align: right; }
-.gsc-comment:has(.Label) .gsc-comment-content {
-  margin-left: auto;
-  margin-right: 0;
+/* ---- OWNER (you) → blue bubble, floated right ------------------------------
+   giscus renders an author-association pill (.color-box-border-info) ONLY for
+   non-NONE associations. On a personal blog that's effectively just you
+   (OWNER) — visitors are NONE and get no pill — so this targets your comments. */
+.gsc-comment:has(.color-box-border-info) .gsc-comment-header {
+  justify-content: flex-end;                /* your header on the right */
+}
+.gsc-comment:has(.color-box-border-info) .gsc-comment-content {
+  margin: 0 0 0 auto;                       /* bubble floats right */
   background: #2673da !important;
   color: #fff !important;
   border-radius: 18px 18px 5px 18px !important;
 }
-.gsc-comment:has(.Label) .gsc-comment-content a { color: #fff; text-decoration: underline; }
+.gsc-comment:has(.color-box-border-info) .gsc-comment-content a {
+  color: #fff;
+  text-decoration: underline;
+}
