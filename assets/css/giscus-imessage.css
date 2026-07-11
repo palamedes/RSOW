@@ -7,10 +7,11 @@
    black outlines). After the base we retint the accent to the site blue and
    restyle posted comments as chat bubbles.
 
-   "Your" comments (repo OWNER) are detected via `.gsc-comment:has(.Label)` —
-   GitHub renders an author-association Label ("Owner") on them; ordinary
-   visitors are association NONE and get no label. If owner comments don't turn
-   blue/right once live, that's the one selector to adjust.
+   "Your" comments (repo OWNER) are detected via the author-association pill
+   giscus renders (class `.color-box-border-info`, text "Owner"). Ordinary
+   visitors are association NONE and get no pill, so `:has(.color-box-border-info)`
+   effectively means "your comments." If they don't turn blue/right once live,
+   that's the one selector to adjust.
    ============================================================================ */
 
 /* ---- giscus official light base (Primer tokens), inlined ------------------ */
