@@ -285,6 +285,23 @@ $po-line:    #ddd;
     }
   }
 
+  // ════════════════ GISCUS COMMENTS ════════════════
+  // Wrapper around the giscus iframe (which is themed separately via
+  // /assets/css/giscus-imessage.css). This just handles the section
+  // heading + spacing on the host page.
+  .post-comments {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  .post-comments-title {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0 0 1rem;
+    color: $po-ink;
+  }
+
   // ════════════════ LEGACY COMMENTS (iMessage-style) ════════════════
   // The old blog's comment thread, rendered as a chat: the author's
   // replies ("me") are blue bubbles on the right, everyone else's are

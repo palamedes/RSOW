@@ -8,6 +8,19 @@ permalink: /post/:title/
 # Fallback image for posts without a featured image
 default_image: /assets/images/rsow-default.jpg
 
+# Comments — giscus (GitHub Discussions). Comments render on a post only when
+# repo_id AND category_id below are filled in (get them from https://giscus.app
+# after enabling Discussions on the repo + installing the giscus GitHub App).
+# Per-post opt-out: set `allow_comments: false` in the post's front matter.
+giscus:
+  repo: "palamedes/RSOW"
+  repo_id: ""            # <-- fill from giscus.app (e.g. R_kgD...)
+  category: "Comments"   # the Discussions category giscus should post into
+  category_id: ""        # <-- fill from giscus.app (e.g. DIC_kwD...)
+  mapping: "pathname"
+  reactions_enabled: 1
+  input_position: "top"
+
 # Build
 markdown: kramdown
 sass:

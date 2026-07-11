@@ -1,0 +1,95 @@
+/* ============================================================================
+   giscus custom theme — "iMessage" bubbles for Random String of Words
+   ----------------------------------------------------------------------------
+   giscus renders inside its own iframe on giscus.app, so this file is loaded
+   *inside* that iframe (referenced via data-theme). We import giscus's official
+   light theme for a correct Primer base, then layer a chat-bubble look on top:
+     • everyone's comments  → grey bubbles, left-aligned
+     • the repo OWNER (you) → blue bubbles, right-aligned
+
+   HOW "your comments" are detected: GitHub tags each comment with an author
+   association and giscus renders it as a Primer `.Label` ("Owner"). Ordinary
+   visitors are association NONE and get no label, so `.gsc-comment:has(.Label)`
+   ≈ "your comments" on a personal blog. This is the one selector to VERIFY once
+   comments are live — if giscus names the owner marker differently, only the
+   two `:has(...)` blocks below need adjusting; the bubble look is independent.
+   ============================================================================ */
+
+@import url("https://giscus.app/themes/light.css");
+
+:root {
+  --rsow-accent: #2673da;   /* your bubble (blue) */
+  --rsow-them:   #e9e9eb;   /* their bubble (grey) */
+  --rsow-them-fg:#16181d;
+  --rsow-muted:  #97a1b2;
+}
+
+main { font-size: 14px; }
+
+/* ---- comment row ---------------------------------------------------------- */
+.gsc-comment {
+  margin: 0 0 0.5rem;
+}
+.gsc-comment > div,
+.gsc-comment-content {
+  border: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* header (avatar · name · time) sits small above the bubble */
+.gsc-comment-header {
+  padding: 0 0.55rem 0.2rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  font-size: 0.78rem;
+  color: var(--rsow-muted);
+}
+.gsc-comment-author-avatar img {
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* the message body → the bubble */
+.gsc-comment-content {
+  display: inline-block;
+  max-width: 82%;
+  padding: 0.6rem 0.9rem !important;
+  border-radius: 18px !important;
+  background: var(--rsow-them) !important;
+  color: var(--rsow-them-fg) !important;
+  line-height: 1.42;
+  border-bottom-left-radius: 5px !important;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.06) !important;
+}
+.gsc-comment-content > *:first-child { margin-top: 0; }
+.gsc-comment-content > *:last-child  { margin-bottom: 0; }
+
+/* reactions / replies kept but understated */
+.gsc-reactions, .gsc-comment-reactions { padding-top: 0.35rem !important; }
+
+/* ---- OWNER (your) comments → blue, right-aligned -------------------------- */
+.gsc-comment:has(.Label) {
+  /* right-align the whole row */
+}
+.gsc-comment:has(.Label) .gsc-comment-header {
+  flex-direction: row-reverse !important;
+  text-align: right;
+}
+.gsc-comment:has(.Label) .gsc-comment-content {
+  margin-left: auto;
+  background: var(--rsow-accent) !important;
+  color: #fff !important;
+  border-bottom-left-radius: 18px !important;
+  border-bottom-right-radius: 5px !important;
+}
+.gsc-comment:has(.Label) .gsc-comment-content a { color: #fff; text-decoration: underline; }
+
+/* ---- the comment box (your reply editor) --------------------------------- */
+.gsc-comment-box {
+  border-radius: 14px !important;
+}
+.gsc-comment-box-textarea { border-radius: 10px !important; }
+
+/* tidy up the "Sign in with GitHub" prompt spacing */
+.gsc-comments > .gsc-header { margin-bottom: 0.5rem; }
