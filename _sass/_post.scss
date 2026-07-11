@@ -182,10 +182,12 @@ $po-line:    #ddd;
   // Cover image floated top-right inside the article body; text wraps around it.
   .post-body-img {
     float: right;
-    width: 340px;
-    max-width: 44%;
+    width: 50%;
+    max-width: 50%;
     aspect-ratio: 3 / 2;
     object-fit: cover;
+    cursor: pointer;
+    clear: right;
     margin: 0.35rem 0 1.1rem 1.6rem;
     border-radius: 12px;
     border: 1px solid $po-line;
@@ -196,6 +198,60 @@ $po-line:    #ddd;
       max-width: none;
       margin: 0 0 1.2rem;
     }
+  }
+
+  // ════════════════ PHOTO-SET GALLERIES (cruise post) ════════════════
+  // Each labeled photo set becomes a captioned grid of square thumbnails
+  // that open the site lightbox. `clear: both` keeps grids from colliding
+  // with a right-floated .post-body-img "key" image.
+  .cruise-set {
+    clear: both;
+    margin: 1.4rem 0 1.6rem;
+  }
+  .cruise-setcap {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: $po-ink;
+    margin: 0 0 0.55rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid $po-accent;
+    a { color: $po-accent; }
+  }
+  .cruise-note {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #8a94a6;
+    margin: -0.25rem 0 0.55rem;
+    padding-left: 0.6rem;
+  }
+  .cruise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 6px;
+  }
+  .cruise-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #eef1f5;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -8px rgba(0,0,0,0.45);
+      filter: brightness(1.04);
+    }
+  }
+  .cruise-setlabel {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: $po-ink;
+    margin: 1.4rem 0 0.4rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid #cfd6e2;
+    .cruise-nopics { font-weight: 400; font-style: italic; color: #97a1b2; }
   }
 
   // ════════════════ TAG PILLS ════════════════
