@@ -229,6 +229,72 @@ $po-line:    #ddd;
     }
   }
 
+  // ════════════════ LEGACY COMMENTS (iMessage-style) ════════════════
+  // The old blog's comment thread, rendered as a chat: the author's
+  // replies ("me") are blue bubbles on the right, everyone else's are
+  // grey bubbles on the left.
+  .legacy-comments {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+  }
+  .lc-heading {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.2rem;
+    color: $po-ink;
+  }
+  .lc-note {
+    font-size: 0.85rem;
+    color: #8a94a6;
+    margin: 0 0 1.4rem;
+  }
+  .lc-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .lc-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 82%;
+    @media (max-width: 600px) { max-width: 92%; }
+    &.them { align-self: flex-start; align-items: flex-start; }
+    &.me   { align-self: flex-end;   align-items: flex-end; }
+    // group consecutive bubbles from the same side a little tighter
+    & + &.them, & + &.me { margin-top: -0.35rem; }
+  }
+  .lc-meta {
+    font-size: 0.72rem;
+    color: #97a1b2;
+    margin: 0 0.55rem 0.22rem;
+    .lc-name { font-weight: 700; color: #6b7688; }
+  }
+  .me .lc-meta .lc-name { color: $po-accent; }
+  .lc-bubble {
+    position: relative;
+    padding: 0.6rem 0.9rem;
+    border-radius: 18px;
+    line-height: 1.42;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.06);
+    p { margin: 0 0 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+  }
+  .them .lc-bubble {
+    background: #e9e9eb;
+    color: #16181d;
+    border-bottom-left-radius: 5px;
+  }
+  .me .lc-bubble {
+    background: $po-accent;
+    color: #fff;
+    border-bottom-right-radius: 5px;
+    a { color: #fff; text-decoration: underline; }
+  }
+
   // ════════════════ AI SLOP-O-VISION BAND ════════════════
   // Full-width dark band that breaks out of the .post-article
   // padding (2.5rem desktop / 1.5rem mobile) to run edge-to-edge.
