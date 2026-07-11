@@ -15,8 +15,8 @@ default_image: /assets/images/rsow-default.jpg
 giscus:
   repo: "palamedes/RSOW"
   repo_id: "R_kgDOSCxkQg"
-  category: "General"
-  category_id: "DIC_kwDOSCxkQs4DA_7l"
+  category: "Announcements"
+  category_id: "DIC_kwDOSCxkQs4DA_7k"
   mapping: "pathname"
   strict: 1
   reactions_enabled: 1
