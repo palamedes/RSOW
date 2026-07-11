@@ -8,6 +8,10 @@ permalink: /post/:title/
 # Fallback image for posts without a featured image
 default_image: /assets/images/rsow-default.jpg
 
+# Google Search Console site verification (emitted by jekyll-seo-tag as
+# <meta name="google-site-verification" ...> in every page head).
+google_site_verification: wHMVNxhYpUZWA4VUYdvlrg6ib6CnrzZDdnMocpelhm0
+
 # Comments — giscus (GitHub Discussions). Comments render on a post only when
 # repo_id AND category_id below are filled in (get them from https://giscus.app
 # after enabling Discussions on the repo + installing the giscus GitHub App).
