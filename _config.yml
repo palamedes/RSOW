@@ -14,12 +14,14 @@ default_image: /assets/images/rsow-default.jpg
 # Per-post opt-out: set `allow_comments: false` in the post's front matter.
 giscus:
   repo: "palamedes/RSOW"
-  repo_id: ""            # <-- fill from giscus.app (e.g. R_kgD...)
-  category: "Comments"   # the Discussions category giscus should post into
-  category_id: ""        # <-- fill from giscus.app (e.g. DIC_kwD...)
+  repo_id: "R_kgDOSCxkQg"
+  category: "General"
+  category_id: "DIC_kwDOSCxkQs4DA_7l"
   mapping: "pathname"
+  strict: 1
   reactions_enabled: 1
   input_position: "top"
+  loading: "lazy"
 
 # Build
 markdown: kramdown
