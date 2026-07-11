@@ -500,6 +500,7 @@
   }
 
   .gallery-modal-body {
+    position: relative;
     padding: 0 1rem 1rem;
     overflow: auto;
     flex: 1 1 auto;
@@ -508,6 +509,42 @@
     justify-content: center;
     background: #fff;
   }
+
+  // Prev/next arrows — hidden unless the current group has >1 image.
+  .gallery-modal-count {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: #6c757d;
+    white-space: nowrap;
+    &:empty { display: none; }
+  }
+  .gallery-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.15s ease;
+    &:hover { background: rgba(0,0,0,0.82); }
+    &.prev { left: 1.25rem; }
+    &.next { right: 1.25rem; }
+    @media (max-width: 600px) {
+      width: 36px; height: 36px; font-size: 1.4rem;
+      &.prev { left: 0.4rem; } &.next { right: 0.4rem; }
+    }
+  }
+  .gallery-modal-card.has-nav .gallery-modal-nav { display: flex; }
 
   img {
     max-width: 100%;
