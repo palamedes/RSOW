@@ -19,7 +19,7 @@ giscus:
   category_id: "DIC_kwDOSCxkQs4DA_7k"
   mapping: "pathname"
   strict: 1
-  reactions_enabled: 1
+  reactions_enabled: 0
   input_position: "top"
   loading: "lazy"
 
