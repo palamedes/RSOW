@@ -1,0 +1,59 @@
+// Clap back — highlight article text to quote it into the comments.
+// Floating button + toast + the blue selection/highlight treatment.
+
+// Blue selection inside the article signals "this is quotable".
+.post-content ::selection { background: #2573da; color: #fff; }
+.post-content ::-moz-selection { background: #2573da; color: #fff; }
+
+// Persistent highlight after the reader clicks "Clap back"
+// (CSS Custom Highlight API; ignored where unsupported).
+::highlight(clapback) { background: #2573da; color: #fff; }
+
+.clapback-btn {
+  position: absolute;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: 6px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: #2573da;
+  color: #fff;
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 115, 218, .4);
+  transition: background .15s ease, transform .1s ease;
+
+  svg { width: 15px; height: 15px; }
+
+  &:hover { background: #1b5fb8; transform: translateY(-1px); }
+  &:active { transform: translateY(0); }
+}
+
+.clapback-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 70;
+  max-width: min(92vw, 460px);
+  padding: .7rem 1rem;
+  background: #14243b;
+  color: #fff;
+  border-radius: 10px;
+  font-size: .85rem;
+  line-height: 1.45;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, .28);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

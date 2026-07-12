@@ -8,6 +8,83 @@ categories:
 tags:
 description: "'We live on stolen land' is one of the laziest arguments in circulation. It pretends history began five minutes before Europeans showed up. America's land was conquered, purchased, annexed, and treatied ... just like every civilization on Earth. Here's why the slogan is a cudgel, not an argument."
 excerpt: "'We live on stolen land' pretends history began five minutes before Europeans showed up. Stolen from whom, exactly? And who did they get it from? Human history is conquest layered on conquest, and America's land story is bought, annexed, treatied, and inherited ... just like everywhere else. The slogan isn't an argument. It's a cudgel for people who learned history from memes."
+ai_notes:
+  - quote: "treatied land"
+    rating: "Mostly True"
+    note: >-
+      Between 1778 and 1871 the U.S. ratified roughly 370 treaties with Native
+      nations. Congress later broke or unilaterally altered many of them, and the
+      Indian Appropriations Act of 1871 ended treaty-making with tribes entirely.
+    sources:
+      - title: "National Archives — American Indian Treaties"
+        url: "https://www.archives.gov/research/native-americans/treaties"
+  - quote: "divine notarized deed by God himself"
+    rating: "Context"
+    note: >-
+      In law, European and later U.S. claims to inhabited land rested on the
+      "Doctrine of Discovery." The Supreme Court adopted it in Johnson v. M'Intosh
+      (1823), holding that Native nations could occupy their land but could not
+      hold full title to it.
+    sources:
+      - title: "Justia — Johnson & Graham's Lessee v. McIntosh, 21 U.S. 543 (1823)"
+        url: "https://supreme.justia.com/cases/federal/us/21/543/"
+  - quote: "Tribes fought tribes"
+    rating: "True"
+    note: >-
+      Accurate as a general pattern. For example, the Haudenosaunee (Iroquois)
+      Confederacy waged the 17th-century Beaver Wars against neighboring nations to
+      control fur-trade territory, displacing whole peoples across the Great Lakes.
+    sources:
+      - title: "Ohio History Connection — The Great Beaver Wars"
+        url: "https://www.ohiohistory.org/the-great-beaver-wars/"
+  - quote: "bought the Louisiana Territory from France in 1803"
+    rating: "True"
+    note: >-
+      Accurate — the U.S. paid France about $15 million for roughly 828,000 square
+      miles. France's own claim was colonial: the territory held dozens of Native
+      nations who were not parties to the sale, and the U.S. bought France's
+      exclusive right to purchase that land, not clear title to it.
+    sources:
+      - title: "National Archives — Louisiana Purchase Treaty (1803)"
+        url: "https://www.archives.gov/milestone-documents/louisiana-purchase-treaty"
+  - quote: "Treaty of Guadalupe Hidalgo in 1848 after a war"
+    rating: "True"
+    note: >-
+      Accurate — the 1848 treaty ended the Mexican-American War, and Mexico ceded
+      about 55% of its territory (present-day California, Nevada, Utah, and parts of
+      several other states). On ratification the U.S. Senate struck Article X, which
+      had protected existing Mexican land grants.
+    sources:
+      - title: "National Archives — Treaty of Guadalupe Hidalgo (1848)"
+        url: "https://www.archives.gov/milestone-documents/treaty-of-guadalupe-hidalgo"
+  - quote: "borders are sacred when discussing 1492"
+    rating: "Random Fact"
+    note: >-
+      In 1492 Columbus, sailing for the Spanish crown, made landfall in the Bahamas
+      (the Lucayan island of Guanahani) and went on to Cuba and Hispaniola. His
+      first voyage never reached the North American mainland.
+    sources:
+      - title: "Britannica — Christopher Columbus: The First Voyage"
+        url: "https://www.britannica.com/biography/Christopher-Columbus/The-first-voyage"
+  - quote: "Nobody alive today signed the"
+    rating: "Context"
+    note: >-
+      The Adams-Onís Treaty (signed 1819, effective 1821) had Spain cede Florida to
+      the U.S., fixed the first agreed transcontinental U.S.-Spanish boundary, and
+      had the U.S. assume up to $5 million in its own citizens' claims against Spain.
+    sources:
+      - title: "State Dept, Office of the Historian — Acquisition of Florida (1819)"
+        url: "https://history.state.gov/milestones/1801-1829/florida"
+  - quote: "peaceful drum circle"
+    rating: "True"
+    note: >-
+      Pre-contact North America held large, complex societies. Cahokia, near
+      present-day St. Louis, was the biggest settlement north of Mexico — some 120
+      earthen mounds and, at its peak around 1050–1200, a population estimated in
+      the low tens of thousands.
+    sources:
+      - title: "UNESCO World Heritage Centre — Cahokia Mounds"
+        url: "https://whc.unesco.org/en/list/198/"
 ---
 
 "We live on stolen land" may be one of the laziest political arguments in circulation, because it pretends history began five minutes before Europeans showed up.

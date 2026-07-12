@@ -67,8 +67,26 @@ layout: default
   <div class="post-wrap">
     <article class="post-article">
       <div class="post-content">
+        {%- comment -%} Post action toolbar — right-aligned row above the hero image, room for future buttons. {%- endcomment -%}
+        {% if page.ai_notes %}
+        <div class="post-actions">
+          <button type="button" class="post-ainotes-btn" aria-pressed="false" aria-label="Toggle AI-generated factual notes on this article">
+            <span class="post-ainotes-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+            <span class="post-ainotes-lead">Click for AI Notes</span>
+          </button>
+        </div>
+        {% endif %}
         <img class="post-body-img" src="{{ featured_image | relative_url }}" alt="{{ page.title | escape }}">
         {{ content }}
+        {% if page.ai_notes %}
+        <aside class="ai-notes-about">
+          <div class="ai-notes-about-head">
+            <span class="ai-notes-about-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+            <span>About AI Notes</span>
+          </div>
+          <p>The highlighted phrases above carry notes that add factual context to specific claims in this post. These notes are <strong>generated entirely by AI</strong> &mdash; they are not written, curated, fact-checked, or endorsed by me, and they don't necessarily reflect my views. The article itself stands exactly as written. Treat the notes as an automated starting point, not gospel: each one links to a source so you can verify it yourself. Spot an error? The comments are open.</p>
+        </aside>
+        {% endif %}
       </div>
 
       {% if page.categories.size > 0 %}
@@ -80,6 +98,8 @@ layout: default
       </footer>
       {% endif %}
     </article>
+
+    {% if page.ai_notes %}{% include ai-notes.html %}{% endif %}
 
     {%- comment -%}
       giscus comments (GitHub Discussions). Shown unless the post opts out with
@@ -106,6 +126,7 @@ layout: default
         crossorigin="anonymous"
         async>
       </script>
+      <script src="{{ '/assets/js/clapback.js' | relative_url }}" defer></script>
     </section>
     {%- endif -%}
   </div>
