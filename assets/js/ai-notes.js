@@ -33,6 +33,16 @@
     return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   }
 
+  // Kramdown smartquotes turns straight ' " into curly ones in the rendered
+  // HTML, so anchor phrases with apostrophes won't match. Normalize both sides
+  // to straight quotes before searching. This is a 1:1, length-preserving swap,
+  // so string offsets used for highlighting stay valid.
+  function normQuotes(s) {
+    return String(s)
+      .replace(/[‘’‚‛]/g, "'")
+      .replace(/[“”„‟]/g, '"');
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     var dataEl = document.getElementById('ai-notes-data');
     var btn = document.querySelector('.post-ainotes-btn');
@@ -50,8 +60,9 @@
     function highlight(p, quote, num) {
       var walker = document.createTreeWalker(p, NodeFilter.SHOW_TEXT, null);
       var node;
+      var nq = normQuotes(quote);
       while ((node = walker.nextNode())) {
-        var i = node.nodeValue.indexOf(quote);
+        var i = normQuotes(node.nodeValue).indexOf(nq);
         if (i === -1) continue;
         var range = document.createRange();
         range.setStart(node, i);
@@ -87,8 +98,9 @@
       var num = 0;
       notes.forEach(function (note) {
         var target = null;
+        var nq = normQuotes(note.quote);
         for (var i = 0; i < paras.length; i++) {
-          if (paras[i].textContent.indexOf(note.quote) !== -1) { target = paras[i]; break; }
+          if (normQuotes(paras[i].textContent).indexOf(nq) !== -1) { target = paras[i]; break; }
         }
         if (!target) return;
         num++;

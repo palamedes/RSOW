@@ -52,10 +52,10 @@ target post and verify the anchors resolve. Do not touch the prose or the plumbi
 3. **Write each note.**
    - `quote` — a **verbatim substring copied from the body**, ~3–10 words, that
      appears **exactly once**. It must be **plain text**: do not let it cross
-     markdown emphasis (`*...*`, `_..._`), and do not include characters Kramdown
-     rewrites — `--`/`---` (en/em dash), `...` (ellipsis), or straight quotes
-     (smart-quoted). Pick phrases without those so the rendered HTML contains the
-     exact string.
+     markdown emphasis (`*...*`, `_..._`), and avoid `--`/`---` (en/em dash) and
+     `...` (ellipsis), which Kramdown rewrites into single characters of a
+     different length and will break the anchor. Apostrophes and quotes are FINE —
+     the JS normalizes Kramdown's curly quotes back to straight before matching.
    - `note` — **1–3 sentences, ≤ ~55 words. Factual and neutral.** Add verifiable
      context: dates, numbers, definitions, origins, corrections. **Never** state
      an opinion, take the author's side, or argue against them. If a claim is

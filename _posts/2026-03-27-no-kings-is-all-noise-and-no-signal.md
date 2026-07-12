@@ -9,6 +9,91 @@ categories:
 tags:
 description: "The \"No Kings\" rallies are all noise and no signal. No specific demands, no actionable solutions, just performative outrage dressed up in revolutionary language. Here's why vague slogans hurt more than they help."
 excerpt: "I'm for peaceful protest, full stop. But the \"No Kings\" rallies aren't a message, they're a bumper sticker pretending to be a thought. No specific demand, no clear solution, no follow-through. Just vibes, virtue signaling, and a catchy slogan that means almost nothing."
+ai_notes:
+  - quote: "a system specifically designed to prevent"
+    rating: "Accurate"
+    note: >-
+      Accurate as to intent. The framers, shaped by their break with the British
+      monarchy, split federal power across three branches with checks and
+      balances specifically to guard against concentrated, monarchical power.
+      Madison laid out this reasoning in Federalist No. 51 (1788).
+    sources:
+      - title: "Bill of Rights Institute — Federalist No. 51 (1788)"
+        url: "https://billofrightsinstitute.org/primary-sources/federalist-no-51/"
+      - title: "Constitution Annotated — Separation of Powers and Checks and Balances"
+        url: "https://constitution.congress.gov/browse/essay/artI-S1-3-1/ALDE_00013290/"
+  - quote: "those rallies wouldn't exist"
+    rating: "Context"
+    note: >-
+      Context on the events referenced. The "No Kings" protests were held on June
+      14, 2025 (about 2,100 sites) and October 18, 2025 (about 2,700 sites),
+      organized by groups including Indivisible, MoveOn and the 50501 Movement.
+      Estimates put turnout in the millions each time.
+    sources:
+      - title: "Britannica — No Kings protests"
+        url: "https://www.britannica.com/event/No-Kings-protests"
+      - title: "Wikipedia — June 2025 No Kings protests"
+        url: "https://en.wikipedia.org/wiki/June_2025_No_Kings_protests"
+  - quote: "we don't want anyone acting above the law"
+    rating: "Context"
+    note: >-
+      Context on the slogan's meaning. Organizers frame "No Kings" as opposition
+      to authoritarianism and to any leader treated as above the law, not as a
+      claim that a literal monarch exists. The name echoes the founding-era motto
+      "no kings" tied to rejecting monarchy.
+    sources:
+      - title: "Britannica — No Kings protests"
+        url: "https://www.britannica.com/event/No-Kings-protests"
+  - quote: "Trump Derangement Syndrome"
+    rating: "Background"
+    note: >-
+      Background on the phrase. It adapts "Bush Derangement Syndrome," coined by
+      conservative columnist and psychiatrist Charles Krauthammer in 2003. It is
+      a rhetorical label, not a clinical diagnosis; no version of the American
+      Psychiatric Association's DSM recognizes it.
+    sources:
+      - title: "Wikipedia — Trump derangement syndrome"
+        url: "https://en.wikipedia.org/wiki/Trump_derangement_syndrome"
+  - quote: "the boy who cried king"
+    rating: "Random Fact"
+    note: >-
+      A play on Aesop's fable "The Boy Who Cried Wolf" (Perry Index 210), in which
+      a shepherd boy raises so many false alarms that villagers ignore his cries
+      when a real wolf comes. The idiom "to cry wolf" means to sound a false alarm.
+    sources:
+      - title: "Library of Congress (Read.gov) — Aesop: The Shepherd Boy and the Wolf"
+        url: "https://read.gov/aesop/043.html"
+  - quote: "that's part of the American DNA"
+    rating: "Mostly True"
+    note: >-
+      Broadly supported. Suspicion of concentrated power runs through the founding
+      documents; the Declaration of Independence catalogs grievances against King
+      George III, and the Federalist Papers repeatedly justify the design as a
+      guard against tyranny.
+    sources:
+      - title: "Constitution Annotated — Separation of Powers Under the Constitution"
+        url: "https://constitution.congress.gov/browse/essay/intro.7-2/ALDE_00000031/"
+  - quote: "imposing sweeping tariffs through executive action without Congressional approval"
+    rating: "Accurate"
+    note: >-
+      Accurate as a description of a real legal dispute. Trump imposed broad 2025
+      tariffs under the International Emergency Economic Powers Act. On February
+      20, 2026, the Supreme Court ruled 6-3 that IEEPA does not authorize tariffs,
+      noting the tariff power belongs to Congress under Article I, Section 8.
+    sources:
+      - title: "Congress.gov CRS — Supreme Court Rules Against IEEPA Tariffs"
+        url: "https://www.congress.gov/crs-product/LSB11398"
+      - title: "Supreme Court — Learning Resources, Inc. v. Trump (Feb. 20, 2026)"
+        url: "https://www.supremecourt.gov/opinions/25pdf/24-1287_4gcj.pdf"
+  - quote: "LARPing as a resistance fighter"
+    rating: "Random Fact"
+    note: >-
+      LARP stands for "live action role-playing," a hobby in which participants
+      physically act out fictional characters. Used figuratively here, "LARPing"
+      means play-acting a role rather than doing the real thing.
+    sources:
+      - title: "Merriam-Webster — LARP"
+        url: "https://www.merriam-webster.com/dictionary/LARP"
 ---
 
 I'm for peaceful protest, full stop. If people want to gather, hold signs, and make their voices heard, that's part of the deal. That's baked into the system and I have no issue with it.

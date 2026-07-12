@@ -9,6 +9,95 @@ categories:
 tags:
 description: "Microsoft didn't lose me in one disaster. It lost me one small insult at a time — and now that Linux gaming actually works, I've moved to CachyOS full time."
 excerpt: "Microsoft didn't lose me in one giant disaster. It lost me the way companies usually lose customers: one small insult at a time. A nag here, a forced account there, a Start menu that feels more like a billboard than a tool. Steam and Proton killed the last excuse, so I left for CachyOS."
+ai_notes:
+  - quote: "if you wanted to play games"
+    rating: "Context"
+    note: >-
+      Proton, Valve's compatibility layer that runs Windows games on Linux via a
+      patched build of Wine, was first released on 21 August 2018 as part of
+      Steam Play. Before it matured, native Linux game support was limited, which
+      is why Windows long remained the default for PC gaming.
+    sources:
+      - title: "Proton (software) — Wikipedia"
+        url: "https://en.wikipedia.org/wiki/Proton_(software)"
+      - title: "Valve — ValveSoftware/Proton (GitHub)"
+        url: "https://github.com/ValveSoftware/Proton"
+  - quote: "The Steam Deck changed the expectations"
+    rating: "Random Fact"
+    note: >-
+      The Steam Deck, Valve's handheld PC, launched on 25 February 2022. It runs
+      SteamOS 3, an Arch Linux based system, and uses Proton to run Windows
+      games, which pushed developers and anti-cheat vendors to broaden Linux
+      compatibility.
+    sources:
+      - title: "Steam Deck — Wikipedia"
+        url: "https://en.wikipedia.org/wiki/Steam_Deck"
+  - quote: "chew through 5 or 6 GB of RAM"
+    rating: "Needs Context"
+    note: >-
+      Microsoft lists 4 GB as the minimum RAM for Windows 11, and idle memory use
+      of several gigabytes is common because Windows caches data in RAM
+      (SuperFetch/SysMain) and counts standby memory as "in use." Reported idle
+      figures vary widely by configuration and background apps.
+    sources:
+      - title: "Microsoft Support — Windows 11 system requirements"
+        url: "https://support.microsoft.com/en-us/windows/experience/compatibility/windows-11-system-requirements"
+  - quote: "Secure Boot. Supported CPUs"
+    rating: "True"
+    note: >-
+      Accurate. Windows 11's official minimum requirements include TPM 2.0, UEFI
+      firmware with Secure Boot capability, and a 64-bit CPU from Microsoft's
+      approved list. Machines that fail these hardware gates are marked
+      unsupported for the standard upgrade.
+    sources:
+      - title: "Microsoft Support — Windows 11 system requirements"
+        url: "https://support.microsoft.com/en-us/windows/experience/compatibility/windows-11-system-requirements"
+  - quote: "and a pile of lightweight distros"
+    rating: "Context"
+    note: >-
+      antiX and Puppy Linux are designed for low-resource machines; antiX
+      officially supports systems with as little as 256 MB of RAM, and Puppy Linux
+      can run entirely in RAM on very old PCs, letting hardware stay usable
+      without meeting Windows 11's requirements.
+    sources:
+      - title: "antiX Linux — official site"
+        url: "https://antixlinux.com/"
+      - title: "Puppy Linux — official site"
+        url: "https://puppylinux-woof-ce.github.io/"
+  - quote: "local, encrypted, opt-in"
+    rating: "Mostly True"
+    note: >-
+      This describes Windows Recall. After a 2024 security backlash, Microsoft
+      made Recall opt-in and off by default, with snapshots stored and processed
+      locally and encrypted using keys tied to the TPM and Windows Hello. The
+      feature is limited to Copilot+ PCs.
+    sources:
+      - title: "Windows Experience Blog — Update on Recall security and privacy architecture (2024)"
+        url: "https://blogs.windows.com/windowsexperience/2024/09/27/update-on-recall-security-and-privacy-architecture/"
+      - title: "Windows Recall — Wikipedia"
+        url: "https://en.wikipedia.org/wiki/Windows_Recall"
+  - quote: "rebranded the computer from"
+    rating: "Needs Context"
+    note: >-
+      The desktop and Explorer item once called "My Computer" (renamed to
+      "Computer" in Windows Vista) became "This PC" in Windows 8.1, released in
+      2013, not "This Computer." The label has remained "This PC" through Windows
+      10 and 11.
+    sources:
+      - title: "How-To Geek — How to Rename This PC Back to My Computer in Windows"
+        url: "https://www.howtogeek.com/198582/how-to-rename-this-pc-back-to-my-computer-in-windows/"
+  - quote: "command-line archaeology"
+    rating: "Context"
+    note: >-
+      CachyOS is a performance-focused Arch Linux based rolling release. Because
+      it inherits Arch's model, configuration and troubleshooting often involve
+      the terminal, though it ships a graphical installer and desktop options such
+      as KDE Plasma and GNOME.
+    sources:
+      - title: "CachyOS — official site"
+        url: "https://cachyos.org/"
+      - title: "CachyOS — Wikipedia"
+        url: "https://en.wikipedia.org/wiki/CachyOS"
 ---
 
 Microsoft didn't lose me in one giant disaster. It lost me the way companies usually lose customers: one small insult at a time.

@@ -9,6 +9,81 @@ categories:
 tags:
 description: "YouTube is getting harder to watch, and it's not because people forgot how to make videos. It's because the feed is drowning in mass-produced AI slop: fake voices, fake scripts, fake everything — content made by nobody, for nobody, about nothing."
 excerpt: "YouTube is getting harder and harder to watch, and it's not because people suddenly forgot how to make videos. It's because the platform is being flooded with AI slop: faceless channels, robot narration, recycled filler scripts, and an infinite sewage pipe of algorithm bait drowning out the humans who actually give a damn."
+ai_notes:
+  - quote: "The AI voice mispronounces simple words"
+    rating: "Context"
+    note: >-
+      The synthetic narration described here is text-to-speech (TTS). Modern
+      neural TTS from vendors like ElevenLabs and Google predicts pronunciation
+      from spelling, so it still stumbles on names, homographs (read, lead),
+      and unusual words, producing the flat prosody and misplaced stress the
+      author points to.
+    sources:
+      - title: "Wikipedia — Speech synthesis (text normalization and homograph challenges)"
+        url: "https://en.wikipedia.org/wiki/Speech_synthesis"
+  - quote: "cheap, easy, mass-produced garbage"
+    rating: "Context"
+    note: >-
+      This describes what is now widely called AI slop: low-quality digital
+      content generated in bulk. Merriam-Webster named slop its 2025 Word of
+      the Year, defining it as digital content of low quality produced usually
+      in quantity by artificial intelligence.
+    sources:
+      - title: "Merriam-Webster — Word of the Year 2025: Slop"
+        url: "https://www.merriam-webster.com/wordplay/word-of-the-year"
+      - title: "Wikipedia — AI slop"
+        url: "https://en.wikipedia.org/wiki/AI_slop"
+  - quote: "content at industrial scale"
+    rating: "Accurate"
+    note: >-
+      The bulk-content model predates AI. Content farms, sites that publish
+      large volumes of low-value material to capture search traffic, date to
+      the late 2000s. Since 2022, many have shifted from cheap freelance
+      writers to generative AI to produce even more content per dollar.
+    sources:
+      - title: "Wikipedia — Content farm"
+        url: "https://en.wikipedia.org/wiki/Content_farm"
+  - quote: "fake news summaries"
+    rating: "Context"
+    note: >-
+      In 2023 the media watchdog NewsGuard began tracking websites running
+      largely AI-generated news with minimal human oversight; its count of
+      such Unreliable AI-Generated News sites grew into the hundreds, echoing
+      the AI-produced news summaries the author describes.
+    sources:
+      - title: "NewsGuard — Tracking AI-Generated News and Information Websites"
+        url: "https://www.newsguardtech.com/special-reports/ai-tracking-center/"
+  - quote: "reward output over quality"
+    rating: "Accurate"
+    note: >-
+      YouTube's stated policy is the opposite of rewarding raw output. On
+      July 15, 2025 it updated its monetization rules, renaming repetitious
+      content to inauthentic content to clarify that mass-produced or
+      templated videos with little variation are ineligible for ad revenue.
+    sources:
+      - title: "YouTube Help — Inauthentic content: mass-produced and repetitious content policies"
+        url: "https://support.google.com/youtube/answer/1311392?hl=en"
+  - quote: "using AI to help make something better"
+    rating: "Context"
+    note: >-
+      This distinction matches YouTube's official position. The platform says
+      creators may use AI tools to enhance storytelling and remain eligible for
+      monetization; only mass-produced, low-effort AI content that adds no
+      original insight is disallowed.
+    sources:
+      - title: "Social Media Today — YouTube Clarifies Changes to Monetization Rules Around Inauthentic Content (2025)"
+        url: "https://www.socialmediatoday.com/news/youtube-clarifies-monetization-update-inauthentic-repeated-content/752892/"
+  - quote: "harvest clicks before you realize you're watching crap"
+    rating: "Context"
+    note: >-
+      This describes clickbait optimized for watch time. YouTube's
+      recommendation system historically prioritized watch time and, later,
+      user satisfaction signals; the company has repeatedly adjusted the
+      algorithm and monetization rules to discourage low-value, engagement
+      baiting content.
+    sources:
+      - title: "YouTube Official Blog — On YouTube's recommendation system"
+        url: "https://blog.youtube/inside-youtube/on-youtubes-recommendation-system/"
 ---
 
 YouTube is getting harder and harder to watch, and it's not because people suddenly forgot how to make videos. It's because the platform is being flooded with AI slop.
