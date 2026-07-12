@@ -19,6 +19,87 @@ private: false
 allow_comments: true
 duration:
 costs: 
+ai_notes:
+  - quote: "socialist state can be achieved through democratic means"
+    rating: "Accurate"
+    note: >-
+      Accurate as a definition. Britannica describes democratic socialism as a
+      political movement seeking to establish a socialist economy through
+      democratic rather than revolutionary means. Its defining feature is
+      commitment to democratic institutions, distinguishing it from
+      Marxist-Leninist models that accept one-party rule.
+    sources:
+      - title: "Britannica — Democratic socialism"
+        url: "https://www.britannica.com/topic/democratic-socialism"
+  - quote: "refer to themselves as Social Democrats"
+    rating: "Context"
+    note: >-
+      The distinction the author draws is real. In common usage, social
+      democracy seeks to reform and humanize capitalism through regulation and
+      a welfare state while keeping private ownership, whereas democratic
+      socialism aims ultimately to replace capitalism with social or
+      cooperative ownership of the means of production.
+    sources:
+      - title: "Britannica — Social democracy"
+        url: "https://www.britannica.com/topic/social-democracy"
+  - quote: "United States of America isn't a democracy"
+    rating: "Needs Context"
+    note: >-
+      The U.S. is a constitutional federal republic, but political scientists
+      classify it as a representative democracy; the two labels are not
+      mutually exclusive. A republic is a state without a monarch, while
+      "democracy" here refers to rule by elected representatives. The
+      republic-versus-democracy contrast is a rhetorical framing, not a formal
+      classification.
+    sources:
+      - title: "Britannica — Republic (government)"
+        url: "https://www.britannica.com/topic/republic-government"
+  - quote: "what exactly is democratic about the DPRK"
+    rating: "True"
+    note: >-
+      A fair point. North Korea's official name is the Democratic People's
+      Republic of Korea, but the U.S. State Department and international
+      observers report its elections offer single, pre-selected candidates and
+      are neither free nor fair. Authoritarian states often adopt "democratic"
+      in their titles.
+    sources:
+      - title: "U.S. State Department — 2018 Human Rights Report: DPRK"
+        url: "https://www.state.gov/reports/2018-country-reports-on-human-rights-practices/democratic-peoples-republic-of-korea/"
+  - quote: "over 50% unemployment and over 80% taxation"
+    rating: "False"
+    note: >-
+      These figures do not match the Nordic countries. Denmark's unemployment
+      rate was about 3.9% in 2016 (World Bank), and top marginal income tax
+      rates in Denmark, Sweden and Norway ran roughly 55-73%, not over 80%.
+      Total tax revenue was near 45% of GDP in Denmark, the OECD's highest.
+    sources:
+      - title: "World Bank — Unemployment, total (% of labor force), Denmark"
+        url: "https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS?locations=DK"
+      - title: "OECD — Revenue Statistics: tax-to-GDP ratios"
+        url: "https://www.oecd.org/tax/tax-policy/revenue-statistics-denmark.pdf"
+  - quote: "Men make their own history, but they do not make it as they please"
+    rating: "True"
+    note: >-
+      Correctly attributed. This is the opening line of Karl Marx's "The
+      Eighteenth Brumaire of Louis Bonaparte" (1852), one of his most-quoted
+      passages. The full sentence continues that people make history "under
+      circumstances existing already, given and transmitted from the past."
+    sources:
+      - title: "Marxists.org — The Eighteenth Brumaire of Louis Bonaparte (1852)"
+        url: "https://www.marxists.org/archive/marx/works/1852/18th-brumaire/ch01.htm"
+  - quote: "direct quotes from the man"
+    rating: "Partly True"
+    note: >-
+      Mixed. "Men make their own history" is genuinely Marx (Eighteenth
+      Brumaire, 1852). But "The road to hell is paved with good intentions" is
+      a much older proverb, often linked to St. Bernard of Clairvaux, not Marx.
+      "Democracy is the road to socialism" is widely attributed to Marx but
+      unsourced in his works, with the earliest known appearance in 1952.
+    sources:
+      - title: "Wikipedia — The road to hell is paved with good intentions"
+        url: "https://en.wikipedia.org/wiki/The_road_to_hell_is_paved_with_good_intentions"
+      - title: "Wikiquote — Karl Marx (Misattributed)"
+        url: "https://en.wikiquote.org/wiki/Karl_Marx"
 ---
 
 <img src='/assets/images/2016/socialism.png' class='right scaled' />

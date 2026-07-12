@@ -19,8 +19,6 @@
     '<line x1="20" y1="13" x2="21.5" y2="13" stroke="currentColor" stroke-width="1.8"/>' +
     '</svg>';
 
-  var STORE_KEY = 'rsow.ainotes.on';
-
   function escapeHtml(s) {
     return String(s)
       .replace(/&/g, '&amp;')
@@ -123,12 +121,10 @@
       btn.classList.toggle('is-on', on);
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       if (lead) lead.textContent = on ? 'Hide AI Notes' : labelOff;
-      try { localStorage.setItem(STORE_KEY, on ? '1' : '0'); } catch (e) {}
     }
 
+    // Notes always start closed on each page load — the reader must click to
+    // open them; the state deliberately does not persist across pages.
     btn.addEventListener('click', function () { setOn(!on); });
-
-    // Remember the reader's preference across posts.
-    try { if (localStorage.getItem(STORE_KEY) === '1') setOn(true); } catch (e) {}
   });
 })();
