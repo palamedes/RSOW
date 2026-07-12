@@ -188,9 +188,3 @@ What would it mean for a true socialist democratic solution in the US?
 &#185;,&#178;,&#179; : Finally, if you agree with any of the quoted headers above then you agree with Carl Marx and his Communist Manifesto as they are direct quotes from the man -- this would be a good time to rethink your position.  National Socialism (Hitler), Marxist Socialism (Communism), and Democratic Socialism are different, but not vastly so.  More over "DS" can include forms of Marxism and even Anarchism.  I feel modern pro "DS" individuals are taking more of a Marxist tack than they realize.
 
 Also, keep in mind, governments ultimately enforce everything with a gun.  I feel that this socialism road people are trying to take us down will have a very bad ending...
-
-<hr/>
-
-Additional -- I think this is a pretty good viewing and worth watching all of it: 
-
-<iframe width="920" height="540" src="https://www.youtube.com/embed/D0Yp1jUtcX8" frameborder="0" allowfullscreen></iframe>
