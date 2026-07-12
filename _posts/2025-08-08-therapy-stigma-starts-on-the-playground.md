@@ -8,6 +8,67 @@ categories:
 tags:
 description: "Gen X learned to bury it, cops learned to say 'I'm fine,' and PTSD is rarely one shell-shock moment — it's erosion. Therapy isn't weakness; staying broken to look strong is."
 excerpt: "I grew up in the age of 'shut the hell up and deal with it.' Gen X didn't get therapy — we got sarcasm and the emotional toolkit of a half-melted G.I. Joe."
+ai_notes:
+  - quote: "latchkey independence"
+    rating: "Context"
+    note: >-
+      "Latchkey kid" describes a child who comes home to an empty house and lets
+      themselves in, a term tied to Gen X (born roughly 1965 to 1980) as rates of
+      dual-income and single-parent households rose. The phrase dates to at least a
+      1940s discussion of children of working wartime mothers.
+    sources:
+      - title: "Britannica — Generation X"
+        url: "https://www.britannica.com/topic/Generation-X"
+  - quote: "Cops don't talk."
+    rating: "Mostly True"
+    note: >-
+      Research on police mental health finds stigma is a substantial barrier to
+      care. Studies report officers are socialized to control emotions, and that
+      roughly half or more view seeking treatment as a sign of weakness, with
+      perceived and self-stigma each lowering intentions to seek help.
+    sources:
+      - title: "Mental Health Stigma and Help-Seeking Intentions in Police Employees (PMC, 2023)"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9986855/"
+  - quote: "More often, it's erosion"
+    rating: "Mostly True"
+    note: >-
+      PTSD can follow a single event or repeated, ongoing trauma; not everyone
+      exposed to trauma develops it. Clinicians describe "cumulative" or complex
+      trauma from repeated exposure, which is common in policing, where officers
+      may face many critical incidents over a career.
+    sources:
+      - title: "NIMH — Post-Traumatic Stress Disorder (PTSD)"
+        url: "https://www.nimh.nih.gov/health/publications/post-traumatic-stress-disorder-ptsd"
+  - quote: "building tools for SLPs, OTs"
+    rating: "Background"
+    note: >-
+      SLPs (speech-language pathologists), OTs (occupational therapists), and PTs
+      (physical therapists) are distinct licensed professions: SLPs treat speech,
+      language, and swallowing; OTs build daily-living and functional skills; PTs
+      address movement, strength, and mobility. Each has pediatric specialists.
+    sources:
+      - title: "ASHA — About Speech-Language Pathologists"
+        url: "https://www.asha.org/students/speech-language-pathologists/"
+  - quote: "Just one voice poisoning the well"
+    rating: "Context"
+    note: >-
+      Research distinguishes public stigma (societal attitudes) from self-stigma
+      (internalized shame). Both are documented barriers that delay or prevent
+      treatment; U.S. surveys have found long gaps, often years, between symptom
+      onset and a person first seeking help.
+    sources:
+      - title: "APA — Stigma, Prejudice and Discrimination Against People with Mental Illness"
+        url: "https://www.psychiatry.org/patients-families/stigma-and-discrimination"
+  - quote: "talking to a professional is one of the strongest things"
+    rating: "Mostly True"
+    note: >-
+      Major health bodies frame help-seeking as beneficial, not weak. The WHO and
+      NIMH note effective psychotherapies exist for conditions like PTSD, and that
+      stigma is a leading reason people avoid care. Roughly half of U.S. adults
+      with a mental illness receive treatment in a given year.
+    sources:
+      - title: "WHO — Mental disorders (fact sheet)"
+        url: "https://www.who.int/news-room/fact-sheets/detail/mental-disorders"
 ---
 
 I grew up in the age of "shut the hell up and deal with it."

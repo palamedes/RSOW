@@ -8,6 +8,80 @@ categories:
 tags:
 description: "Being a cop is one of the worst jobs in America. The idealism burns off fast. A story about Jenny, the hundreds of Jennys, and shoveling water out of a sinking boat with a teaspoon."
 excerpt: "I'm not a cop anymore. I get asked why I left, why I didn't stick it out for the pension. Here's the truth: being a cop is one of the worst jobs in America."
+ai_notes:
+  - quote: "no one warns you how fast that idealism burns off"
+    rating: "Context"
+    note: >-
+      Research on early-career attrition supports this. Police officers show
+      elevated rates of burnout and cynicism, and shift work, trauma exposure,
+      and chronic stress are documented contributors to officers leaving the
+      profession.
+    sources:
+      - title: "National Institute of Justice — Sleep Disorders, Work Shifts and Officer Wellness"
+        url: "https://nij.ojp.gov/topics/articles/sleep-disorders-work-shifts-and-officer-wellness"
+  - quote: "It's a lie. It's bullshit."
+    rating: "Mostly True"
+    note: >-
+      A Campbell Collaboration systematic review of nine studies found no
+      evidence that Scared Straight-type programs reduce delinquency. Programs
+      that expose youth to prison actually increased later offending by roughly
+      1 to 28 percent versus doing nothing, making them worse than no
+      intervention.
+    sources:
+      - title: "Petrosino et al., Campbell Systematic Reviews (2013) — 'Scared Straight' and Other Juvenile Awareness Programs"
+        url: "https://onlinelibrary.wiley.com/doi/10.4073/csr.2013.5"
+  - quote: "blow a 0.22"
+    rating: "Context"
+    note: >-
+      A 0.22 percent blood alcohol concentration is nearly three times the 0.08
+      per se legal limit that applies in every U.S. state except Utah, which set
+      its limit at 0.05 percent in December 2018. Many states impose enhanced
+      penalties at elevated levels such as 0.15 or 0.20.
+    sources:
+      - title: "NHTSA — Countermeasures That Work: Lower BAC Limits"
+        url: "https://www.nhtsa.gov/book/countermeasures-that-work/alcohol-impaired-driving/countermeasures/legislation-and-licensing-7"
+  - quote: "running on four hours of sleep for months straight"
+    rating: "Context"
+    note: >-
+      The Buffalo Cardio-Metabolic Occupational Police Stress (BCOPS) study
+      found poor sleep quality in 69 percent of night-shift officers versus 44
+      percent on day shift. Officers on night duty had roughly twice the rate of
+      long-term injury leave as those on afternoon shifts.
+    sources:
+      - title: "Fekedulegn et al., 'Shift Work and Sleep Quality Among Urban Police Officers: The BCOPS Study' (PMC)"
+        url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4829798/"
+  - quote: "Body cameras are a cops best friend"
+    rating: "Mixed"
+    note: >-
+      Evidence is mixed rather than uniform. A Rialto, California trial found
+      force roughly halved with cameras, and a Las Vegas trial found fewer
+      complaints. But a large Washington, D.C. trial of 2,224 officers found
+      cameras did not meaningfully change use of force or complaints.
+    sources:
+      - title: "Yokum, Ravishankar & Coppock, 'A randomized control trial evaluating the effects of police body-worn cameras' (PNAS, 2019)"
+        url: "https://www.pnas.org/doi/abs/10.1073/pnas.1814773116"
+      - title: "Ariel, Farrar & Sutherland, 'The Effect of Police Body-Worn Cameras on Use of Force and Citizens' Complaints' (J. Quantitative Criminology)"
+        url: "https://link.springer.com/article/10.1007/s10940-014-9236-3"
+  - quote: "You see things you can't unsee."
+    rating: "Context"
+    note: >-
+      Cumulative trauma exposure is well documented in policing. Studies
+      estimate PTSD prevalence among officers at roughly 7 to 19 percent,
+      compared with about 6.8 percent in the general population, with officers
+      exposed to several traumatic events over a typical six-month period.
+    sources:
+      - title: "SAMHSA — First Responders: Behavioral Health Concerns, Emergency Response, and Trauma (2018)"
+        url: "https://www.samhsa.gov/sites/default/files/dtac/supplementalresearchbulletin-firstresponders-may2018.pdf"
+  - quote: "You'll never find tighter bonds than the ones forged on the street"
+    rating: "Context"
+    note: >-
+      Strong peer cohesion is a recurring theme in law-enforcement research.
+      Social support and camaraderie among officers are frequently cited as
+      protective factors that buffer job stress, even as the same studies
+      document the occupation's high burnout and trauma burden.
+    sources:
+      - title: "National Policing Institute — Shift Work, Fatigue, and Overtime in Policing"
+        url: "https://www.policinginstitute.org/infocus/infocus-shift-work-fatigue-and-overtime-in-policing-balancing-officer-wellness-and-public-safety/"
 ---
 
 I'm not a cop anymore.

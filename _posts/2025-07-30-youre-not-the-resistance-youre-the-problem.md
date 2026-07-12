@@ -9,6 +9,83 @@ categories:
 tags:
 description: "If you cheer for an assassination — out loud or in cowardly 'won't someone rid me of this meddlesome priest' code — you're not the resistance. You're the villain in the story you think you're heroing."
 excerpt: "There are actual citizens openly hoping the president is assassinated. Not in code. Out loud. That's not edgy. That's not righteous anger. That's evil."
+ai_notes:
+  - quote: "Henry II said it"
+    rating: "Needs Context"
+    note: >-
+      The line is traditionally attributed to Henry II of England regarding
+      Archbishop Thomas Becket, but the exact wording is likely apocryphal.
+      Contemporary accounts record a rant such as "What miserable drones and
+      traitors have I nurtured," and the familiar phrasing about a
+      "turbulent"/"meddlesome priest" was popularized centuries later.
+    sources:
+      - title: "The Week — Thomas Becket: murder and the making of a saint"
+        url: "https://theweek.com/arts-life/952966/thomas-becket-exhibition-british-museum"
+  - quote: "Four knights heard it"
+    rating: "Mostly True"
+    note: >-
+      Four knights (Reginald FitzUrse, Hugh de Morville, William de Tracy, and
+      Richard Brito) rode to Canterbury and killed Becket in the cathedral on
+      29 December 1170. Historians note the knights reportedly first meant to
+      arrest Becket, not kill him. The pope later excommunicated them.
+    sources:
+      - title: "Exploring Building History — The Cult of St Thomas Becket"
+        url: "https://www.exploringbuildinghistory.co.uk/the-cult-of-st-thomas-becket-murder-miracles-a-challenge-to-royal-authority/"
+  - quote: "killing an innocent bystander in the process"
+    rating: "True"
+    note: >-
+      On 13 July 2024 a gunman fired on Donald Trump at a Butler, Pennsylvania
+      rally, wounding Trump's ear and killing rallygoer Corey Comperatore, 50, a
+      former volunteer fire chief who died shielding his family. Two other
+      attendees were critically wounded before the Secret Service killed the
+      shooter.
+    sources:
+      - title: "NPR — Corey Comperatore, killed in Trump assassination attempt, died shielding family"
+        url: "https://www.npr.org/2024/07/14/nx-s1-5039293/corey-comperatore-man-killed-in-trump-assassination-attempt"
+      - title: "Wikipedia — Attempted assassination of Donald Trump in Pennsylvania"
+        url: "https://en.wikipedia.org/wiki/Attempted_assassination_of_Donald_Trump_in_Pennsylvania"
+  - quote: "hope the President of the United States is assassinated"
+    rating: "Context"
+    note: >-
+      Threatening the life of the U.S. president is a federal felony under 18
+      U.S.C. Section 871, punishable by up to five years in prison; the Supreme
+      Court in Watts v. United States (1969) held that only a "true threat," not
+      political hyperbole, is criminal.
+    sources:
+      - title: "Cornell Law — 18 U.S. Code Section 871"
+        url: "https://www.law.cornell.edu/uscode/text/18/871"
+      - title: "Oyez — Watts v. United States (1969)"
+        url: "https://www.oyez.org/cases/1968/1107"
+  - quote: "Democracy dies in darkness"
+    rating: "Context"
+    note: >-
+      "Democracy Dies in Darkness" is The Washington Post's slogan, adopted in
+      February 2017 — the first official slogan in the paper's roughly 140-year
+      history. The phrase had circulated internally for years before its public
+      debut.
+    sources:
+      - title: "Wikipedia — Democracy Dies in Darkness"
+        url: "https://en.wikipedia.org/wiki/Democracy_Dies_in_Darkness"
+  - quote: "We have terms. We have ballots."
+    rating: "Context"
+    note: >-
+      U.S. federal officeholders are changed through fixed terms and elections.
+      The 22nd Amendment (ratified 1951) limits a president to two elected
+      terms, and Article II sets a four-year term; removal between elections
+      requires impeachment by the House and conviction by the Senate.
+    sources:
+      - title: "National Archives — 22nd Amendment"
+        url: "https://www.archives.gov/milestone-documents/22nd-amendment"
+  - quote: "Becket-style plausible deniability"
+    rating: "Context"
+    note: >-
+      The reference is to the Becket episode, where Henry II's outburst was
+      taken by his knights as license to kill without an explicit order — a
+      historical touchstone often cited for the idea of "plausible deniability,"
+      indirectly inciting an act while avoiding a direct command.
+    sources:
+      - title: "The Week — Thomas Becket: murder and the making of a saint"
+        url: "https://theweek.com/arts-life/952966/thomas-becket-exhibition-british-museum"
 ---
 
 If you're out here openly advocating for the death of another person — whether you're saying it directly (at least then you've got the spine to be honest about your rot) or slithering around it in that cowardly "won't someone rid me of this meddlesome priest?" kind of way; you're a piece of shit. No qualifiers. No footnotes. You're just… garbage.

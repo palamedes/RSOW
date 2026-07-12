@@ -9,6 +9,113 @@ categories:
 tags:
 description: "The party that built its power on slavery, Black Codes, Jim Crow, and the Klan — and the 'party switch' myth that lets it off the hook. History, with the receipts."
 excerpt: "I'm tired of being called racist for the crime of being a white male in modern America by people who have no clue what they're talking about. So let's talk about real racism."
+ai_notes:
+  - quote: "was created in 1854 for one reason"
+    rating: "Mostly True"
+    note: >-
+      Accurate on the core point. The Republican Party was founded in 1854, largely by
+      anti-slavery Whigs and Free Soilers opposed to the Kansas-Nebraska Act. Its stated aim
+      was to stop the spread of slavery into western territories rather than to abolish it
+      everywhere immediately.
+    sources:
+      - title: "HISTORY — Republican Party founded (March 20, 1854)"
+        url: "https://www.history.com/this-day-in-history/march-20/republican-party-founded"
+      - title: "ushistory.org — The Origins of the Republican Party"
+        url: "https://ushistory.org/gop/origins.htm"
+  - quote: "Lincoln signed it in 1863"
+    rating: "True"
+    note: >-
+      Accurate. President Lincoln issued the final Emancipation Proclamation on January 1,
+      1863. It declared enslaved people in Confederate-held territory free, but it could only
+      be enforced where Union forces advanced, which is why word reached Texas much later.
+    sources:
+      - title: "National Archives — Emancipation Proclamation (1863)"
+        url: "https://www.archives.gov/milestones-documents/emancipation-proclamation"
+  - quote: "Democrats filibustered it for 75 straight days"
+    rating: "Needs Context"
+    note: >-
+      The filibuster was led by Southern Democrats, but the length figure is high. Senate
+      records put the debate at 60 working days; the filibuster itself ran roughly 54-60 days
+      before cloture was invoked on June 10, 1964. Six Republicans also voted against the final
+      bill.
+    sources:
+      - title: "U.S. Senate — Civil Rights Filibuster Ended"
+        url: "https://www.senate.gov/about/powers-procedures/filibusters-cloture/civil-rights-filibuster-ended.htm"
+      - title: "PolitiFact — Group of Southern Democrats held up 1964 Civil Rights Act"
+        url: "https://www.politifact.com/factchecks/2020/jul/30/facebook-posts/group-southern-democrats-not-all-democrats-held-19/"
+  - quote: "a former Exalted Cyclops in the Ku Klux Klan"
+    rating: "True"
+    note: >-
+      Accurate. Robert C. Byrd (D-WV) helped organize a KKK chapter in the 1940s and held the
+      title Exalted Cyclops. He served in the Senate from 1959 until his death in 2010, later
+      called his Klan involvement a mistake, and was eulogized by Joe Biden.
+    sources:
+      - title: "Newsweek — Fact Check: Biden eulogy for Robert Byrd"
+        url: "https://www.newsweek.com/did-joe-biden-attend-kkk-leader-funeral-ted-cruz-fact-check-1823670"
+  - quote: "switched to the Republican Party. The other 20 stayed Democrats"
+    rating: "Mostly True"
+    note: >-
+      Of the 21 Democratic senators who voted against the 1964 Civil Rights Act, Strom Thurmond
+      was the one who switched to the GOP, in September 1964. The rest remained Democrats. All
+      21 represented Southern or border states.
+    sources:
+      - title: "National Archives — Senate Roll Call, Civil Rights Act of 1964"
+        url: "https://www.archives.gov/legislative/features/civil-rights-1964/senate-roll-call.html"
+      - title: "Britannica — Strom Thurmond"
+        url: "https://www.britannica.com/biography/Strom-Thurmond"
+  - quote: "stood in the schoolhouse door to block integration"
+    rating: "True"
+    note: >-
+      Accurate. In June 1963, Alabama Governor George Wallace, a Democrat, physically blocked
+      the entrance at the University of Alabama to protest the enrollment of two Black students,
+      standing aside only after federal intervention.
+    sources:
+      - title: "Britannica — Stand in the Schoolhouse Door"
+        url: "https://www.britannica.com/event/Stand-in-the-Schoolhouse-Door"
+  - quote: "a lot more to do with religion, economics"
+    rating: "Mixed"
+    note: >-
+      This is genuinely debated. Some scholars stress economics, religion, and anti-federal
+      sentiment, but a prominent 2018 study by Kuziemko and Washington found racial views
+      explained essentially all of the Southern white shift from 1958 to 1980. Historians widely
+      cite racial backlash as a major factor.
+    sources:
+      - title: "Kuziemko & Washington, American Economic Review (2018)"
+        url: "https://www.aeaweb.org/articles?id=10.1257%2Faer.20161413"
+      - title: "Wikipedia — Southern strategy"
+        url: "https://en.wikipedia.org/wiki/Southern_strategy"
+  - quote: "allegedly told Democratic governors"
+    rating: "Needs Context"
+    note: >-
+      The author flags this himself. This LBJ quote is widely circulated but unverified: it is
+      most often traced to Ronald Kessler's 1995 book, with no audio, transcript, or contemporary
+      report confirming it. Johnson is separately documented as using racist language in private.
+    sources:
+      - title: "Snopes — Did LBJ Say '...voting Democratic for 200 years'?"
+        url: "https://www.snopes.com/fact-check/lbj-voting-democratic-200-years/"
+  - quote: "The first Black senator? Hiram Revels, 1870 a Republican"
+    rating: "True"
+    note: >-
+      Accurate. Hiram Revels, a Republican from Mississippi, became the first Black U.S. senator
+      in 1870. Blanche K. Bruce (1875) and Edward Brooke (1967) were also Republicans; Carol
+      Moseley Braun (1993) was the first Black Democratic senator, about 123 years after Revels.
+    sources:
+      - title: "U.S. Senate — Hiram Revels, First African American Senator"
+        url: "https://www.senate.gov/artandhistory/senate-stories/First-African-American-Senator.htm"
+      - title: "Wikipedia — List of African-American United States senators"
+        url: "https://en.wikipedia.org/wiki/List_of_African-American_United_States_senators"
+  - quote: "used his presidency to force Native Americans off their land in the Trail of Tears"
+    rating: "Mostly True"
+    note: >-
+      Andrew Jackson is generally considered the first president of the modern Democratic Party,
+      and he signed the 1830 Indian Removal Act. The main Trail of Tears removal of the Cherokee
+      occurred in 1838-39, largely under his successor Martin Van Buren, though it followed from
+      Jackson's policy.
+    sources:
+      - title: "HISTORY — Andrew Jackson signs the Indian Removal Act (May 28, 1830)"
+        url: "https://www.history.com/this-day-in-history/may-28/indian-removal-act-signed-andrew-jackson"
+      - title: "Bill of Rights Institute — The Trail of Tears"
+        url: "https://billofrightsinstitute.org/essays/the-trail-of-tears/"
 ---
 
 Let’s talk about racism because I’m tired of being called racist for the heinous crime of being a white male in modern America by people who have no clue what they’re talking about.

@@ -9,6 +9,101 @@ categories:
 tags:
 description: "Conscription fills uniforms, not fighters. From Roman legions to the Gulf War, volunteer forces consistently outperform drafted armies."
 excerpt: "Forcing people to fight doesn't make them good at it. It makes them present. The U.S. military is what it is because every person in it chose to be there."
+ai_notes:
+  - quote: "all-volunteer since 1973 when Nixon ended the draft after Vietnam"
+    rating: "Accurate"
+    note: >-
+      Accurate. Defense Secretary Melvin Laird announced the end of the draft on
+      January 27, 1973, and the U.S. all-volunteer force officially began July 1,
+      1973. Nixon, who campaigned on ending conscription in 1968, followed the
+      1970 Gates Commission recommendation to shift to a volunteer military.
+    sources:
+      - title: "U.S. Army — July marks 40th anniversary of all-volunteer Army"
+        url: "https://www.army.mil/article/106813/july_marks_40th_anniversary_of_all_volunteer_army"
+      - title: "RAND — The Evolution of the All-Volunteer Force"
+        url: "https://www.rand.org/pubs/research_briefs/RB9195.html"
+  - quote: "He killed over 100,000 Teutones with a smaller, professional Roman army"
+    rating: "Needs Context"
+    note: >-
+      Roman sources for the 102 BC Battle of Aquae Sextiae claim about 90,000
+      Teutones and Ambrones killed and 20,000 captured, so the figure of "over
+      100,000" reflects ancient accounts. Modern historians consider these
+      numbers likely exaggerated, estimating the whole migrating group at roughly
+      30,000 to 50,000, including non-combatants.
+    sources:
+      - title: "Britannica — Gaius Marius"
+        url: "https://www.britannica.com/biography/Gaius-Marius"
+      - title: "Wikipedia — Battle of Aquae Sextiae"
+        url: "https://en.wikipedia.org/wiki/Battle_of_Aquae_Sextiae"
+  - quote: "an empire that covered a quarter of the globe"
+    rating: "Accurate"
+    note: >-
+      Accurate. At its 1920 peak the British Empire covered about 35.5 million
+      square kilometers, roughly 24 percent of Earth's total land area, and ruled
+      over 400 million people, making it the largest empire in history.
+    sources:
+      - title: "Britannica — British Empire"
+        url: "https://www.britannica.com/place/British-Empire"
+  - quote: "dismantled the fourth-largest army in the world in 100 hours"
+    rating: "Accurate"
+    note: >-
+      Accurate. Iraq's military was commonly described as the fourth largest in
+      the world before 1991. The Gulf War ground offensive ran from February 24
+      to 28, 1991, liberating Kuwait in about 100 hours; coalition forces lost a
+      few hundred killed against tens of thousands of Iraqi deaths.
+    sources:
+      - title: "Imperial War Museums — Operation Desert Storm: How To Win A War In 100 Hours"
+        url: "https://www.iwm.org.uk/history/cold-war/gulf-war/operation-desert-storm"
+  - quote: "Iraq had a massive conscript-heavy military with Soviet equipment"
+    rating: "Mostly True"
+    note: >-
+      Iraq's army was largely conscript-based and equipped heavily with Soviet
+      designs such as T-72 tanks and MiG aircraft, though it also fielded French
+      hardware including Mirage jets and Exocet missiles. Its doctrine drew
+      substantially on Soviet models.
+    sources:
+      - title: "Britannica — Persian Gulf War"
+        url: "https://www.britannica.com/event/Persian-Gulf-War"
+  - quote: "a population of under 10 million"
+    rating: "Accurate"
+    note: >-
+      Accurate. Israel's population is roughly 9.5 to 10 million. Fixed-term
+      military service has been compulsory since 1948 for most Jewish citizens
+      (men and women) plus Druze and Circassian men; non-Druze Arab citizens are
+      not conscripted but may volunteer.
+    sources:
+      - title: "Wikipedia — Conscription in Israel"
+        url: "https://en.wikipedia.org/wiki/Conscription_in_Israel"
+  - quote: "your neighbor to the north has the fourth-largest military in the world"
+    rating: "Accurate"
+    note: >-
+      Accurate. North Korea's Korean People's Army sustains roughly 1.2 million
+      active personnel through near-universal male conscription, ranking about
+      fourth in the world by active manpower. Men are typically conscripted
+      around age 17.
+    sources:
+      - title: "Wikipedia — Conscription in North Korea"
+        url: "https://en.wikipedia.org/wiki/Conscription_in_North_Korea"
+  - quote: "When Russia rolled across the border"
+    rating: "Context"
+    note: >-
+      Russia launched its full-scale invasion of Ukraine on February 24, 2022.
+      Ukraine had already declared martial law and a general mobilization,
+      barring most men aged 18 to 60 from leaving the country and calling up
+      reservists and conscripts.
+    sources:
+      - title: "Britannica — Russia-Ukraine War"
+        url: "https://www.britannica.com/event/Russia-Ukraine-War"
+  - quote: "The U.S. conscripted millions during WWII"
+    rating: "Accurate"
+    note: >-
+      Accurate. Under the Selective Training and Service Act of 1940 and wartime
+      extensions, the United States inducted about 10 million men through the
+      draft during World War II, out of roughly 16 million who served in the
+      armed forces.
+    sources:
+      - title: "National WWII Museum — Research Starters: US Military by the Numbers"
+        url: "https://www.nationalww2museum.org/students-teachers/student-resources/research-starters/research-starters-us-military-numbers"
 ---
 
 Here's the thing nobody wants to say out loud:

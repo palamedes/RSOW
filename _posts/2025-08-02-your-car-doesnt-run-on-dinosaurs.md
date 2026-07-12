@@ -8,6 +8,96 @@ categories:
 tags:
 description: "Oil isn't liquified T. rex. It's plankton, algae, and ancient ocean death-stew cooked under a billion tons of rock. A rant about the dumbest myth in your gas tank."
 excerpt: "Somewhere along the way someone told you a car runs on liquified T. rex. That nonsense stuck. It stuck hard. Oil comes from pond scum and pressure — read something once in a while."
+ai_notes:
+  - quote: "It comes from plankton and algae"
+    rating: "Accurate"
+    note: >-
+      Correct. The dominant biogenic theory holds that most crude oil forms from
+      the buried remains of microscopic marine organisms, chiefly phytoplankton
+      (including algae) and zooplankton, not dinosaurs. Much of this organic
+      matter accumulated long before dinosaurs existed.
+    sources:
+      - title: "National Geographic — Petroleum"
+        url: "https://education.nationalgeographic.org/resource/petroleum/"
+      - title: "Live Science — The Chemistry of Life: Where Oil Comes From"
+        url: "https://www.livescience.com/3400-chemistry-life-oil.html"
+  - quote: "buried by mud and pressure over eons"
+    rating: "Mostly True"
+    note: >-
+      Broadly accurate, though heat is the key driver alongside burial. Organic
+      matter first becomes kerogen, then, in the "oil window" roughly 60-120 C
+      (about 2-4 km deep), thermal maturation cracks it into liquid petroleum
+      over millions of years.
+    sources:
+      - title: "Penn State — Origins of Oil and Natural Gas (PNG 301)"
+        url: "https://www.e-education.psu.edu/png301/node/557"
+      - title: "Wikipedia — Kerogen"
+        url: "https://en.wikipedia.org/wiki/Kerogen"
+  - quote: "We have found biomarkers"
+    rating: "True"
+    note: >-
+      Petroleum biomarkers, or "molecular fossils" such as steranes and hopanes,
+      are stable hydrocarbon molecules whose carbon skeletons trace back to
+      lipids in once-living organisms. Geochemists use them to fingerprint an
+      oil's biological source and thermal history.
+    sources:
+      - title: "Springer — Biomarkers (Molecular Fossils)"
+        url: "https://link.springer.com/rwe/10.1007/978-1-4020-9212-1_30"
+  - quote: "Natural gas is hydrocarbons"
+    rating: "Accurate"
+    note: >-
+      Correct. Natural gas is a mixture of hydrocarbons, predominantly methane
+      (CH4), with smaller amounts of ethane, propane, and butane. Wells produce
+      it via the same burial-and-heating of marine organic matter that forms
+      oil (thermogenic gas) or via microbial activity (biogenic gas).
+    sources:
+      - title: "U.S. Energy Information Administration — Natural gas explained"
+        url: "https://www.eia.gov/energyexplained/natural-gas/"
+      - title: "USGS — Biogenic vs. Thermogenic Gas"
+        url: "https://pubs.usgs.gov/of/1996/of96-272/ch03s07.html"
+  - quote: "microbes are quietly building up the next batch of future fossil fuels"
+    rating: "Needs Context"
+    note: >-
+      Formation of source-rock kerogen and biogenic methane is ongoing in
+      modern sediments, so new organic matter does accumulate. However,
+      converting it into producible oil and gas takes millions of years of
+      burial and heating, so this is not renewable on any human timescale.
+    sources:
+      - title: "USGS — Biogenic vs. Thermogenic Gas"
+        url: "https://pubs.usgs.gov/of/1996/of96-272/ch03s07.html"
+  - quote: "some hydrocarbons might be abiotic"
+    rating: "Needs Context"
+    note: >-
+      The abiogenic hypothesis, notably Thomas Gold's 1999 "The Deep Hot
+      Biosphere," proposes some hydrocarbons form without biological input.
+      It remains outside the scientific mainstream; biomarker and isotopic
+      evidence supports a biological origin for the vast majority of commercial
+      petroleum.
+    sources:
+      - title: "Wikipedia — Abiogenic petroleum origin"
+        url: "https://en.wikipedia.org/wiki/Abiogenic_petroleum_origin"
+      - title: "Glasby (2006) — Abiogenic Origin of Hydrocarbons: An Historical Overview"
+        url: "http://www.zo.utexas.edu/courses/thoc/Glasby2006-abioticOil.pdf"
+  - quote: "it might not even be"
+    rating: "Context"
+    note: >-
+      The term "fossil fuel" reflects the biogenic view that these fuels derive
+      from ancient organisms. If any hydrocarbons were abiogenic, "fossil" would
+      be a misnomer for them, but this caveat applies only to the unproven
+      abiotic fraction, not to the bulk of petroleum.
+    sources:
+      - title: "Wikipedia — Abiogenic petroleum origin"
+        url: "https://en.wikipedia.org/wiki/Abiogenic_petroleum_origin"
+  - quote: "does that mean oil is renewable"
+    rating: "True"
+    note: >-
+      Correct that petroleum is non-renewable in practical terms. Natural
+      replenishment takes millions of years, while global consumption runs at
+      roughly 100 million barrels per day, so reserves are drawn down far faster
+      than they can form.
+    sources:
+      - title: "U.S. Energy Information Administration — Oil and petroleum products explained"
+        url: "https://www.eia.gov/energyexplained/oil-and-petroleum-products/"
 ---
 
 It runs on ancient sea slime and Earth's death coffee.

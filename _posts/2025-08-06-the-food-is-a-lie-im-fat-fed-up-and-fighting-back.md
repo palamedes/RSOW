@@ -8,6 +8,87 @@ categories:
 tags:
 description: "GLP-1 shots, the sugar epidemic, and Ancel Keys' bought-and-paid-for war on fat. The food is broken, the advice is broken — and I'm fighting back anyway."
 excerpt: "I'm fat. Not in the body-positive way — in the 'my knees hurt going up stairs and I'm mad about it' way. I've tried everything. So what gives?"
+ai_notes:
+  - quote: "They were designed to manage blood sugar in people with Type 2 diabetes"
+    rating: "True"
+    note: >-
+      Accurate. Semaglutide (Ozempic) is a GLP-1 receptor agonist first approved
+      by the FDA in December 2017 to improve glycemic control in adults with type
+      2 diabetes. Weight loss was a secondary effect; the higher-dose weight-loss
+      version, Wegovy, was approved separately in 2021.
+    sources:
+      - title: "FDA press release — Ozempic (semaglutide) approval for type 2 diabetes (Dec 2017)"
+        url: "https://www.prnewswire.com/news-releases/novo-nordisk-receives-fda-approval-of-ozempic-semaglutide-injection-for-the-treatment-of-adults-with-type-2-diabetes-300567052.html"
+  - quote: "made over $10 billion off these drugs"
+    rating: "Mostly True"
+    note: >-
+      In the right range. Novo Nordisk reported roughly 8.4 billion USD in Ozempic
+      sales in 2022, plus additional obesity-care revenue that includes Wegovy, so
+      combined semaglutide sales were near or above 10 billion USD that year.
+    sources:
+      - title: "CNBC — How Ozempic and Wegovy turned Novo Nordisk into a $400 billion company"
+        url: "https://www.cnbc.com/2023/10/10/ozempic-wegovy-novo-nordisk.html"
+  - quote: "regained two-thirds of their lost weight within a year of stopping semaglutide"
+    rating: "True"
+    note: >-
+      Accurate. The STEP 1 trial extension (Wilding et al., Diabetes, Obesity and
+      Metabolism, 2022) found participants regained about two-thirds of their prior
+      weight loss one year after stopping semaglutide 2.4 mg, and cardiometabolic
+      gains largely reverted toward baseline.
+    sources:
+      - title: "Wilding et al., Diabetes, Obesity and Metabolism (2022) — STEP 1 trial extension"
+        url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9542252/"
+  - quote: "the average American consumed 6 lbs of sugar per year"
+    rating: "Needs Context"
+    note: >-
+      Estimates vary by source and by whether the figure counts refined sugar
+      alone or all added sweeteners. Commonly cited numbers put early-1800s intake
+      near 6 to 12 pounds per person per year, rising to roughly 100 to 130 pounds
+      by the late 20th century, so the direction and scale are well supported.
+    sources:
+      - title: "USDA ARS — The Question of Sugar"
+        url: "https://www.ars.usda.gov/plains-area/gfnd/gfhnrc/docs/news-articles/2012/the-question-of-sugar/"
+  - quote: "Type 2 diabetes isn't some mystery illness"
+    rating: "Needs Context"
+    note: >-
+      Type 2 diabetes is strongly linked to excess body weight, diet, and physical
+      inactivity, and is often preventable. However, genetics, age, and ethnicity
+      also raise risk, so it is not purely self-inflicted; family history is a
+      recognized independent risk factor.
+    sources:
+      - title: "CDC — Diabetes Risk Factors"
+        url: "https://www.cdc.gov/diabetes/risk-factors/index.html"
+  - quote: "cherry-picked data from his"
+    rating: "Partly True"
+    note: >-
+      Keys is widely criticized for the Seven Countries Study reporting on seven
+      nations while data from others existed. Critics note excluded countries like
+      France had high fat intake but low heart-disease rates. Defenders counter that
+      the often-cited 22-country graph came from a 1953 talk, before the study
+      began in 1957.
+    sources:
+      - title: "Scientific American — Records Found in Dusty Basement Undermine Decades of Dietary Advice"
+        url: "https://www.scientificamerican.com/article/records-found-in-dusty-basement-undermine-decades-of-dietary-advice/"
+  - quote: "base our diets on bread and pasta and limit red meat and eggs"
+    rating: "Mostly True"
+    note: >-
+      The 1992 USDA Food Guide Pyramid placed bread, cereal, rice, and pasta at its
+      base, recommending 6 to 11 servings daily, while meat and eggs sat in a
+      smaller upper tier (2 to 3 servings). It advised limiting fats but did not
+      single out eggs by name.
+    sources:
+      - title: "Britannica — Food pyramid"
+        url: "https://www.britannica.com/science/food-pyramid"
+  - quote: "I'm talking beef, eggs, salt, butter, and water"
+    rating: "Context"
+    note: >-
+      The carnivore diet excludes plant foods and has limited long-term research.
+      Short-term reports include weight loss, but it typically lacks fiber and some
+      micronutrients and may raise LDL cholesterol. Major health bodies do not
+      endorse it as a long-term eating pattern.
+    sources:
+      - title: "Harvard T.H. Chan School of Public Health — Diet Review: Ketogenic and low-carb diets"
+        url: "https://nutritionsource.hsph.harvard.edu/healthy-weight/diet-reviews/ketogenic-diet/"
 ---
 
 I'm fat.

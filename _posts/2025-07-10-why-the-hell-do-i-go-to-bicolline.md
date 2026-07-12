@@ -8,6 +8,76 @@ categories:
 tags:
 description: "Once a year I vanish into a medieval village in Quebec, become Angus Lachlen of the Horse and Hound, and haul a Nerf cannon across a battlefield. Here's why it makes me more human."
 excerpt: "Once a year, I disappear. No laptop, no meetings, no glowing rectangle. I drive north and step into a medieval village in the woods of Quebec."
+ai_notes:
+  - quote: "Company Sergeant of the Horse and Hound"
+    rating: "Context"
+    note: >-
+      Bicolline players adopt a character within an in-game feudal world.
+      The Duché de Bicolline maintains a complex fictional geopolitical
+      system organized around guilds, and participants develop persistent
+      characters and ranks like this one across events.
+    sources:
+      - title: "Wikipedia — Bicolline"
+        url: "https://en.wikipedia.org/wiki/Bicolline"
+  - quote: "We haul this beast across battlefields like lunatics"
+    rating: "Background"
+    note: >-
+      Bicolline is a combat-oriented (or "boffer") LARP, a style that
+      simulates fighting with padded foam weapons so hits can be scored
+      safely. Foam-based armaments are standard equipment in this form of
+      live-action role-playing.
+    sources:
+      - title: "Wikipedia — Live action role-playing game"
+        url: "https://en.wikipedia.org/wiki/Live_action_role-playing_game"
+  - quote: "shouting in bad accents, pretending to be elves, orcs, mercenaries"
+    rating: "Background"
+    note: >-
+      LARP (live-action role-playing) is an immersive game in which
+      participants physically portray characters in a fictional setting,
+      blending theatre, improvisation and rules. Fantasy races such as elves
+      and orcs are common character archetypes at events like Bicolline.
+    sources:
+      - title: "Wikipedia — Live action role-playing game"
+        url: "https://en.wikipedia.org/wiki/Live_action_role-playing_game"
+  - quote: "the same shared hallucination for a week"
+    rating: "Accurate"
+    note: >-
+      Accurate as to duration. Bicolline's main event, the Grande Bataille
+      (Great Battle), runs about seven days at a dedicated site in
+      Saint-Mathieu-du-Parc, Quebec, culminating in a large mass battle near
+      the end of the week.
+    sources:
+      - title: "Wikipedia — Bicolline"
+        url: "https://en.wikipedia.org/wiki/Bicolline"
+  - quote: "a village full of hand-built guild halls"
+    rating: "Context"
+    note: >-
+      The Bicolline venue spans roughly 140 hectares and includes two
+      medieval villages with more than 200 constructed buildings, many
+      maintained by player guilds. The site was established in the mid-1990s,
+      with the first official Grande Bataille held in 1996.
+    sources:
+      - title: "Duché de Bicolline — official site"
+        url: "https://bicolline.org/en/"
+  - quote: "sweating buckets in the August sun"
+    rating: "Context"
+    note: >-
+      The Grande Bataille is typically held in the summer. Bicolline is
+      located near Saint-Mathieu-du-Parc in Quebec's Mauricie region, where
+      warm, humid weather is common during the July-August event window.
+    sources:
+      - title: "Bonjour Québec — Grande Bataille de Bicolline"
+        url: "https://www.bonjourquebec.com/en-us/listing/events/grande-bataille-de-bicolline/0rao"
+  - quote: "for one week, I remembered what life felt like"
+    rating: "FYI"
+    note: >-
+      Bicolline is one of the largest fantasy LARP events in North America.
+      Reported attendance for the Grande Bataille ranges from several
+      thousand to nearly 6,000 participants across its various access days,
+      drawing players internationally.
+    sources:
+      - title: "Wikipedia — Bicolline"
+        url: "https://en.wikipedia.org/wiki/Bicolline"
 ---
 
 Once a year, I disappear.

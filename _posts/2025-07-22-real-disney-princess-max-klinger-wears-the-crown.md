@@ -8,6 +8,58 @@ categories:
 tags:
 description: "Fox owned M*A*S*H. Disney bought Fox. Which makes Corporal Max Klinger — Section 8 hustler in heels — technically a Disney Princess. And he earned that crown."
 excerpt: "M*A*S*H was owned by Fox. Fox got bought by Disney. You know what that means? Max Klinger is now, technically, a Disney Princess. Let that sink in."
+ai_notes:
+  - quote: "watched it religiously with my dad"
+    rating: "Background"
+    note: >-
+      M*A*S*H ran on CBS from September 1972 to February 1983, spanning 11 seasons and 256 episodes. It was adapted from Robert Altman's 1970 film and the 1968 Richard Hooker novel, both set at a mobile army surgical hospital during the Korean War.
+    sources:
+      - title: "Britannica — M*A*S*H (American television program)"
+        url: "https://www.britannica.com/topic/MASH-American-television-program"
+  - quote: "trying to get that Section 8 discharge"
+    rating: "Accurate"
+    note: >-
+      A Section 8 was a U.S. military discharge for being mentally unfit for service. Klinger's running gag was wearing women's clothing to convince the Army he was insane enough to be sent home; the ploy never worked over the show's run.
+    sources:
+      - title: "Britannica — M*A*S*H (American television program)"
+        url: "https://www.britannica.com/topic/MASH-American-television-program"
+  - quote: "Jamie Farr sold it"
+    rating: "Accurate"
+    note: >-
+      Jamie Farr (born Jameel Joseph Farah, 1934) played Corporal Maxwell Klinger. He was hired in October 1972 for a single episode but stayed all 11 seasons. A Korean War Army veteran himself, Farr wore his own service dog tags in the role.
+    sources:
+      - title: "Wikipedia — Jamie Farr"
+        url: "https://en.wikipedia.org/wiki/Jamie_Farr"
+  - quote: "a thinly veiled commentary on the Vietnam War"
+    rating: "Mostly True"
+    note: >-
+      This is a widely shared reading of the series, which aired 1972 to 1983 while the Vietnam War was ending and being reassessed. Critics note the Korean setting let writers comment on Vietnam-era attitudes, though the show also drew on its Korean War source material.
+    sources:
+      - title: "Britannica — M*A*S*H (American television program)"
+        url: "https://www.britannica.com/topic/MASH-American-television-program"
+  - quote: "The House of Mouse owns him"
+    rating: "True"
+    note: >-
+      The Walt Disney Company completed its roughly $71 billion acquisition of 21st Century Fox on March 20, 2019, which included Twentieth Century Fox Television, the studio behind M*A*S*H. Disney (via 20th Television) thus controls the series.
+    sources:
+      - title: "The Walt Disney Company — Disney's Acquisition of 21st Century Fox"
+        url: "https://thewaltdisneycompany.com/news/disneys-acquisition-of-21st-century-fox-will-bring-an-unprecedented-collection-of-content-and-talent-to-consumers-around-the-world/"
+      - title: "Wikipedia — Acquisition of 21st Century Fox by Disney"
+        url: "https://en.wikipedia.org/wiki/Acquisition_of_21st_Century_Fox_by_Disney"
+  - quote: "the whole Jabba bikini thing"
+    rating: "Background"
+    note: >-
+      This refers to the metal bikini Princess Leia wears while enslaved by Jabba the Hutt in Return of the Jedi (1983). Disney acquired Lucasfilm and the Star Wars franchise in 2012 for about $4 billion, before the Fox deal.
+    sources:
+      - title: "NPR — Disney Buys Lucasfilm For $4.05 Billion (2012)"
+        url: "https://www.npr.org/sections/thetwo-way/2012/10/30/163976651/the-force-is-strong-with-this-one-disney-buys-lucasfilm-for-4b"
+  - quote: "another live-action reboot no one asked for"
+    rating: "Context"
+    note: >-
+      Disney has released a steady stream of live-action remakes of its animated films, including Cinderella (2015), The Little Mermaid (2023), and a live-action Snow White (2025) — the same princesses the author references later.
+    sources:
+      - title: "Britannica — The Walt Disney Company"
+        url: "https://www.britannica.com/topic/the-Walt-Disney-Company"
 ---
 
 M\*A\*S\*H was one of my favorite shows as a kid. I watched it religiously with my dad, like some unspoken ritual. No matter what else was going on, we parked it in front of the TV and let Hawkeye, Radar, and Klinger take us to that weird, bittersweet little corner of the Korean War.

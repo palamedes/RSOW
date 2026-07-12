@@ -8,6 +8,91 @@ categories:
 tags:
 description: "ISTP personality type: competence over attention, fixing things while everyone else is still talking about them. Low-maintenance, high-output."
 excerpt: "I didn't set out to be the quiet analytical badass who watches the room fall apart and then fixes it while everyone's still talking. But here we are."
+ai_notes:
+  - quote: "I didn't set out to be an ISTP"
+    rating: "Background"
+    note: >-
+      ISTP is one of 16 types in the Myers-Briggs Type Indicator (MBTI), a
+      questionnaire built in the 1940s-60s on Carl Jung's theory of psychological
+      types. Many psychologists regard it as lacking scientific validity; a 1991
+      U.S. National Academy of Sciences review found insufficient evidence to
+      support its use in career counseling.
+    sources:
+      - title: "Truity - Validity of the MBTI: Is the MBTI Scientific?"
+        url: "https://www.truity.com/blog/myers-briggs/mbti-validity-challenges"
+      - title: "The Myers-Briggs Company - Myers-Briggs and Jung's legacy"
+        url: "https://www.myersbriggs.org/about-us/myers-briggs-jung-legacy/"
+  - quote: "I don't crave attention, I crave"
+    rating: "Context"
+    note: >-
+      In personality psychology, introversion is defined mainly by where a person
+      draws energy: introverts recharge through solitude and internal processing
+      rather than social stimulation. Psychologists note that introversion is
+      distinct from shyness or being antisocial, which the author's point echoes.
+    sources:
+      - title: "Cleveland Clinic - What Is an Introvert? Common Traits and Misconceptions"
+        url: "https://health.clevelandclinic.org/introvert"
+  - quote: "Sensing types like me"
+    rating: "Context"
+    note: >-
+      Sensing versus Intuition is one of the four MBTI dichotomies. The framework
+      describes Sensing types as focusing on concrete, present, and literal
+      information gathered through the senses, in contrast to Intuitive types who
+      favor patterns and possibilities.
+    sources:
+      - title: "University of South Carolina Upstate - Myers-Briggs: ISTP"
+        url: "https://uscupstate.libguides.com/Myers_Briggs/ISTP"
+  - quote: "Being a thinker doesn't mean I'm a robot"
+    rating: "Context"
+    note: >-
+      In MBTI terms, the Thinking-Feeling dichotomy describes how someone prefers
+      to make decisions, not whether they have emotions. Thinking types are
+      described as prioritizing logic and objective analysis, while Feeling types
+      weigh personal values and impact on people; both are said to experience
+      emotion.
+    sources:
+      - title: "University of South Carolina Upstate - Myers-Briggs: ISTP"
+        url: "https://uscupstate.libguides.com/Myers_Briggs/ISTP"
+  - quote: "I might look calm in a crisis"
+    rating: "Needs Context"
+    note: >-
+      MBTI type sorts stated preferences and is not designed to measure or predict
+      stress response or performance under pressure. Research also finds the test's
+      retest reliability is limited: studies report that a large share of people
+      receive a different four-letter type when retested weeks later.
+    sources:
+      - title: "Truity - Validity of the MBTI: Is the MBTI Scientific?"
+        url: "https://www.truity.com/blog/myers-briggs/mbti-validity-challenges"
+  - quote: "adaptable. We move fast, pivot hard"
+    rating: "Context"
+    note: >-
+      Judging versus Perceiving is the fourth pair, added by Isabel Briggs Myers to
+      Jung's original three. In the framework, Perceiving types are described as
+      flexible and spontaneous, preferring to keep options open, while Judging types
+      prefer structure and closure.
+    sources:
+      - title: "Truity - The History of Katharine Briggs, Isabel Myers, and the MBTI"
+        url: "https://www.truity.com/blog/myers-briggs/story-of-mbti-briggs-myers-biography"
+  - quote: "We're low-maintenance and high-output"
+    rating: "Needs Context"
+    note: >-
+      MBTI type is not a validated predictor of job performance or productivity.
+      Reviews of the instrument report little evidence that type reliably predicts
+      work outcomes, so claims linking a type to higher output are not supported by
+      the research.
+    sources:
+      - title: "Truity - Validity of the MBTI: Is the MBTI Scientific?"
+        url: "https://www.truity.com/blog/myers-briggs/mbti-validity-challenges"
+  - quote: "I just need to"
+    rating: "Random Fact"
+    note: >-
+      The MBTI was developed by Katharine Cook Briggs and her daughter Isabel Briggs
+      Myers, neither of whom was a trained psychologist. Isabel began building the
+      indicator around 1942; an early client was the U.S. Office of Strategic
+      Services, which used it to help match wartime operatives to roles.
+    sources:
+      - title: "NPR - How The Myers-Briggs Personality Test Began In A Mother's Living Room Lab"
+        url: "https://www.npr.org/2018/09/22/650019038/how-the-myers-briggs-personality-test-began-in-a-mothers-living-room-lab"
 ---
 
 I didn't set out to be an ISTP. It's not like I woke up one day and said, "I'd like to be the quiet, analytical badass who silently watches the room fall apart and then fixes it while everyone else is still talking about it." But here we are.

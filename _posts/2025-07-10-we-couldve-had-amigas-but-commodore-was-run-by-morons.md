@@ -8,6 +8,63 @@ categories:
 tags:
 description: "From a VIC-20 in '83 to the Amiga 500's custom-silicon wizardry — Commodore had the future in its hands and flushed it. Bad marketing, rotted R&D, and a boardroom of clowns."
 excerpt: "I'll die on this hill: if Commodore had half a clue, we'd all be using Amigas today. Not Windows. Not Mac. Amigas. And they threw it all away."
+ai_notes:
+  - quote: "Got my start on a VIC-20 back in '83"
+    rating: "Random Fact"
+    note: >-
+      The VIC-20 debuted at CES in 1980 and reached US retail in early 1981. It became the first computer of any kind to sell one million units, eventually topping roughly 2.5 million.
+    sources:
+      - title: "Wikipedia — VIC-20"
+        url: "https://en.wikipedia.org/wiki/VIC-20"
+  - quote: "SID chip sound, smooth-ass scrolling, color"
+    rating: "Context"
+    note: >-
+      The Commodore 64's SID (Sound Interface Device, the 6581 chip) gave it three-voice programmable synthesis. The C64 sold over 17 million units and is often cited as the best-selling single computer model of all time.
+    sources:
+      - title: "Wikipedia — Commodore 64"
+        url: "https://en.wikipedia.org/wiki/Commodore_64"
+  - quote: "Custom silicon that could multitask"
+    rating: "Accurate"
+    note: >-
+      The Amiga's custom chips were named Agnus, Denise and Paula. Agnus managed chip RAM and housed the blitter and Copper co-processor, Denise handled video, and Paula drove four-channel PCM audio.
+    sources:
+      - title: "Wikipedia — Amiga Original Chip Set"
+        url: "https://en.wikipedia.org/wiki/Amiga_Original_Chip_Set"
+  - quote: "were mind-blowing for the time"
+    rating: "Context"
+    note: >-
+      Commodore's Amiga chipset saw only incremental successors. The Enhanced Chip Set (ECS) arrived around 1990 and the Advanced Graphics Architecture (AGA) in 1992, both widely seen as too little, too late against fast-improving PC hardware.
+    sources:
+      - title: "Wikipedia — Amiga Enhanced Chip Set"
+        url: "https://en.wikipedia.org/wiki/Amiga_Enhanced_Chip_Set"
+  - quote: "They had Video Toaster. They had NewTek."
+    rating: "True"
+    note: >-
+      NewTek's Video Toaster, released in December 1990 for the Amiga 2000, delivered broadcast-quality NTSC effects for about $2,399 versus far pricier studio switchers. It was used on productions including The Tonight Show and SeaQuest DSV.
+    sources:
+      - title: "Wikipedia — Video Toaster"
+        url: "https://en.wikipedia.org/wiki/Video_Toaster"
+  - quote: "It had multitasking before Windows could spell it"
+    rating: "True"
+    note: >-
+      AmigaOS shipped with full preemptive multitasking in 1985 on the Amiga 1000. The Mac stayed cooperative until Mac OS X, and the PC did not get preemptive multitasking until OS/2 and Windows 95.
+    sources:
+      - title: "Wikipedia — AmigaOS"
+        url: "https://en.wikipedia.org/wiki/AmigaOS"
+  - quote: "They cut R&D. They slashed future development."
+    rating: "Needs Context"
+    note: >-
+      Commodore filed for bankruptcy on April 29, 1994. Analyses often trace the decline to founder Jack Tramiel's 1984 departure and management turnover under chairman Irving Gould, alongside underinvestment against the standardizing PC market.
+    sources:
+      - title: "Wikipedia — Jack Tramiel"
+        url: "https://en.wikipedia.org/wiki/Jack_Tramiel"
+  - quote: "AmigaOS 3.2 dropped in 2021"
+    rating: "True"
+    note: >-
+      Hyperion Entertainment released AmigaOS 3.2 for classic 68k Amigas on May 14, 2021, with a 3.2.1 update that December. AmigaOS 4.x is a separate line targeting PowerPC hardware.
+    sources:
+      - title: "Hyperion Entertainment — AmigaOS 3.2 released"
+        url: "https://www.hyperion-entertainment.com/index.php/news/1-latest-news/290-amigaos-42-for-all-classic-amigas-released-and-available"
 ---
 
 I'll die on this hill: if Commodore had half a clue, we'd all be using Amigas today.

@@ -9,6 +9,87 @@ categories:
 tags:
 description: "A thief doesn't care what he steals because he didn't earn it. Sound familiar? Taxed when you earn, spend, save, own, drive, and die — more heavily than a feudal serf."
 excerpt: "Your average thief doesn't give a shit about what they're stealing. No pride. No respect. No sense of what it cost you to earn it. Sound familiar? Yeah. That's the government."
+ai_notes:
+  - quote: "Taxed when you die (estate tax)."
+    rating: "Needs Context"
+    note: >-
+      Accurate that a federal estate tax exists, but it reaches very few
+      estates. For deaths in 2023 the exemption was $12.92 million per person, so
+      the IRS reported roughly 4,000 taxable estate-tax returns nationwide that
+      year — well under 0.1% of deaths.
+    sources:
+      - title: "IRS — Estate Tax exemption and filing thresholds"
+        url: "https://www.irs.gov/businesses/small-businesses-self-employed/estate-tax"
+  - quote: "Americans paid $4.7 trillion in federal taxes"
+    rating: "Mostly True"
+    note: >-
+      Close but slightly high. The Treasury and CBO report total federal
+      receipts of about $4.44 trillion in fiscal year 2023, down roughly 9% from
+      FY2022. The figure includes income, payroll, corporate, and excise taxes.
+    sources:
+      - title: "U.S. Treasury Fiscal Data — Government Revenue"
+        url: "https://fiscaldata.treasury.gov/americas-finance-guide/government-revenue/"
+      - title: "CBO — Monthly Budget Review: Summary for Fiscal Year 2023"
+        url: "https://www.cbo.gov/publication/59640/html"
+  - quote: "medieval serfs gave around 25% of their harvest to their lords"
+    rating: "Needs Context"
+    note: >-
+      Obligations varied widely by manor and era and were rarely a clean
+      percentage — a mix of crops, cash rent, and labor days. Estimates commonly
+      cited include roughly 20% of produce owed to the lord plus a separate 10%
+      church tithe, so total burdens could exceed 25%.
+    sources:
+      - title: "World History Encyclopedia — Serf"
+        url: "https://www.worldhistory.org/Serf/"
+  - quote: "wasted $247 billion in improper payments in 2022 alone"
+    rating: "Accurate"
+    note: >-
+      The GAO reported an estimated $247 billion in improper payments across 82
+      programs in fiscal year 2022. "Improper" includes overpayments,
+      underpayments, and payments lacking documentation; the largest sources were
+      Medicaid, Medicare, and pandemic-relief programs.
+    sources:
+      - title: "U.S. GAO — Improper Payments: Fiscal Year 2022 Estimates (GAO-23-106285)"
+        url: "https://www.gao.gov/products/gao-23-106285"
+  - quote: "the Pentagon \"lost track\" of $2.1 trillion in assets"
+    rating: "Needs Context"
+    note: >-
+      The Department of Defense has failed every financial audit since its first
+      in 2018. Auditors describe assets and adjustments as insufficiently
+      documented rather than proven missing; a widely cited figure is $2.3
+      trillion in unsupported accounting adjustments identified around 2000.
+    sources:
+      - title: "Breaking Defense — Pentagon fails audit for sixth year in a row (2023)"
+        url: "https://breakingdefense.com/2023/11/with-trillions-at-play-pentagon-fails-audit-for-sixth-year-in-a-row/"
+  - quote: "it blew past $6.4 billion, finished 10 years late"
+    rating: "Mostly True"
+    note: >-
+      The Bay Bridge eastern span replacement was originally estimated in the
+      low hundreds of millions and ultimately cost about $6.4 billion. It opened
+      in September 2013, roughly a decade after its original 2007 target.
+    sources:
+      - title: "Wikipedia — Eastern span replacement of the San Francisco-Oakland Bay Bridge"
+        url: "https://en.wikipedia.org/wiki/Eastern_span_replacement_of_the_San_Francisco%E2%80%93Oakland_Bay_Bridge"
+  - quote: "colonists were paying around 1 to 1.5% of their income in taxes"
+    rating: "True"
+    note: >-
+      Historians estimate effective colonial tax rates of roughly 1 to 1.5% of
+      income, versus about 5 to 7% for residents of Britain. Scholars note the
+      Revolution turned more on the principle of representation than on the raw
+      size of the tax burden.
+    sources:
+      - title: "Tax Foundation — Taxes and the Road to Revolution"
+        url: "https://taxfoundation.org/blog/independence-day-taxes/"
+  - quote: "Most Americans are handing over 30 to 40%"
+    rating: "Needs Context"
+    note: >-
+      Combined federal, state, and local burdens vary by income and location.
+      The Tax Foundation puts the average total burden near 30% of income, with
+      higher earners in high-tax states reaching the upper end of this range and
+      many households falling below it.
+    sources:
+      - title: "Tax Foundation — Who Pays Taxes: Federal, State, and Local Tax Burden"
+        url: "https://taxfoundation.org/research/all/federal/who-pays-taxes-federal-state-local-tax-burden-transfers/"
 ---
 
 Let's talk about thieves.
