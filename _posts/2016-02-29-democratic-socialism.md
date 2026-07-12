@@ -102,8 +102,6 @@ ai_notes:
         url: "https://en.wikiquote.org/wiki/Karl_Marx"
 ---
 
-<img src='/assets/images/2016/socialism.png' class='right scaled' />
-
 It seems like a lot of America's young people (commonly referred to millennials) love the notion of Socialism.  They color it by saying it's "Democratic Socialism" ("DS" going forward) which is sorta the same thing and not good -- Bear with me here.  
 
 True democratic socialists believe that a socialist state can be achieved through democratic means.  I don't believe that's what these folks are going for.  It would be far better for these people to refer to themselves as Social Democrats because then at least that says they aim to modify the harshness of capitalism with the infusion of some elements of socialism which I believe to be closer to their true aim.   But so far all of the millennials I have talked to that are pro the "DS" idea's call themselves democratic socialists, not social democrats.  May seem like a minor quibble all things considered but language matters.
