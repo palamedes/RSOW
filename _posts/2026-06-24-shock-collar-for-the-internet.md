@@ -8,6 +8,68 @@ categories:
 tags:
 description: "I wired up a Chrome extension that redirects me to a screaming 'no' page every time I try to open Reddit. Yes, it's ridiculous. It's also the right lesson: stop feeding the machine."
 excerpt: "I reached the point where I needed the internet equivalent of a shock collar. Reddit annoyed me enough that I built a tiny digital cattle prod to stop myself from wandering back into the glowing landfill. The embarrassing part isn't that the place is awful — it's that I kept going back."
+ai_notes:
+  - quote: "it immediately redirects me to"
+    rating: "Random Fact"
+    note: >-
+      The linked site is a long-running joke page built around Darth Vader
+      shouting NOOOO in the 2005 film Star Wars Episode III: Revenge of the
+      Sith. The scene became a widely parodied internet meme, and the domain
+      simply plays that clip.
+    sources:
+      - title: "Know Your Meme — Darth Vader's Noooo!"
+        url: "https://knowyourmeme.com/memes/darth-vaders-noooo"
+  - quote: "captured by one ideological lane"
+    rating: "Mostly True"
+    note: >-
+      Reddit's user base does skew left. In Pew Research surveys, about 47
+      percent of Reddit news users identified as liberal versus 13 percent
+      conservative, compared with roughly a quarter of all U.S. adults calling
+      themselves liberal. The skew tracks with a young, male, urban, highly
+      educated user base.
+    sources:
+      - title: "Pew Research Center — Reddit news users (2016)"
+        url: "https://www.pewresearch.org/journalism/2016/02/25/reddit-news-users-more-likely-to-be-male-young-and-digital-in-their-news-preferences/"
+  - quote: "the preferred ad hominem accusation of the day"
+    rating: "Random Fact"
+    note: >-
+      Ad hominem is Latin for to the person, short for argumentum ad hominem.
+      It names a logical fallacy in which an argument attacks the character or
+      motives of the person making a claim rather than addressing the claim
+      itself.
+    sources:
+      - title: "Merriam-Webster — ad hominem"
+        url: "https://www.merriam-webster.com/dictionary/ad%20hominem"
+  - quote: "backed by a dopamine hit"
+    rating: "Context"
+    note: >-
+      Social rewards such as likes activate the brain's reward circuitry,
+      including the ventral striatum, and release dopamine. Because the rewards
+      are unpredictable, like a slot machine, they can drive compulsive
+      checking, a pattern researchers describe as a variable reward loop.
+    sources:
+      - title: "Harvard University — Dopamine, Smartphones and You"
+        url: "https://sitn.hms.harvard.edu/flash/2018/dopamine-smartphones-battle-time/"
+  - quote: "outrage is engagement"
+    rating: "Mostly True"
+    note: >-
+      Research supports the link between outrage and reach. A 2021 Science
+      Advances study of 12.7 million tweets found that likes and shares
+      reinforce and amplify expressions of moral outrage over time, consistent
+      with reinforcement learning.
+    sources:
+      - title: "Science Advances — How social learning amplifies moral outrage (2021)"
+        url: "https://www.science.org/doi/10.1126/sciadv.abe5641"
+  - quote: "a deviously baited hook"
+    rating: "Context"
+    note: >-
+      The pattern he describes reflects intermittent, or variable, reinforcement,
+      a schedule studied by psychologist B.F. Skinner. Unpredictable rewards
+      tend to produce more persistent behavior than predictable ones, which is
+      why the mechanism is often compared to gambling.
+    sources:
+      - title: "Britannica — B.F. Skinner and operant conditioning"
+        url: "https://www.britannica.com/biography/B-F-Skinner"
 ---
 
 How pathetic of me.  I have apparently reached the point where I need the internet equivalent of a shock collar.

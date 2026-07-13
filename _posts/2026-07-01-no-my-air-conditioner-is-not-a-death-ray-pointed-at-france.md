@@ -9,6 +9,74 @@ categories:
 - Political
 tags:
 description: "Some people are floating the idea that American air conditioning is cooking Europe during a heat wave. It's a bumper sticker for smug people, not an argument — so let's actually do the math on emissions, land area, per-capita reality, and who spent decades refusing to plan for hotter summers."
+ai_notes:
+  - quote: "the United States is about 9.15 million square kilometers"
+    rating: "Random Fact"
+    note: >-
+      The World Bank lists U.S. land area at roughly 9,147,420 square
+      kilometers (2023), matching this figure. France sits near 549,000
+      and China near 9,390,000 square kilometers.
+    sources:
+      - title: "World Bank — Land area (sq. km), United States"
+        url: "https://data.worldbank.org/indicator/AG.LND.TOTL.K2?locations=US"
+  - quote: "France emits more greenhouse gas per square kilometer than the United States"
+    rating: "True"
+    note: >-
+      Using EDGAR 2025 figures for 2024 (France and Monaco about 378 Mt
+      CO2e over roughly 549,000 sq km, the U.S. about 5,913 Mt over about
+      9.15 million sq km), France emits near 702 tons per sq km versus
+      about 646 for the United States, so the density claim holds.
+    sources:
+      - title: "EDGAR 2025 — GHG emissions of all world countries"
+        url: "https://edgar.jrc.ec.europa.eu/report_2025"
+  - quote: "the U.S. is about 17 times the land area"
+    rating: "True"
+    note: >-
+      U.S. land area (about 9.15 million sq km) divided by France (about
+      549,000 sq km) is roughly 16.7, so about 17 times is accurate. U.S.
+      emissions of roughly 5,913 Mt versus France plus Monaco at 378 Mt is
+      about 15.6 times.
+    sources:
+      - title: "World Bank — Land area (sq. km)"
+        url: "https://data.worldbank.org/indicator/AG.LND.TOTL.K2"
+  - quote: "emits about 2.5 times as much as the United States while being roughly comparable in land area"
+    rating: "Mostly True"
+    note: >-
+      EDGAR 2025 puts China at about 15,536 Mt CO2e for 2024 versus the
+      U.S. at about 5,913 Mt, a ratio near 2.6. China's land area (about
+      9.39 million sq km) is slightly larger than the U.S. (about 9.15
+      million), so roughly comparable is fair.
+    sources:
+      - title: "EDGAR 2025 — GHG emissions of all world countries"
+        url: "https://edgar.jrc.ec.europa.eu/report_2025"
+  - quote: "roughly 15,000 excess deaths during a brutal August heat wave"
+    rating: "Accurate"
+    note: >-
+      French public health authorities estimated about 15,000 excess
+      deaths from the August 2003 heat wave, concentrated among the
+      elderly. It remains one of Europe's deadliest modern heat events.
+    sources:
+      - title: "Santé publique France — The August 2003 heat wave: what happened?"
+        url: "https://www.santepubliquefrance.fr/en/climat/fortes-chaleurs-canicule/article/august-2003-heat-wave-what-happened"
+  - quote: "the United States is high"
+    rating: "True"
+    note: >-
+      On a per-person basis the U.S. does rank high. Estimates put U.S.
+      per-capita GHG emissions near 17 tons CO2e in 2024, well above the
+      EU average of roughly 7 tons and above France.
+    sources:
+      - title: "Our World in Data — CO2 and GHG emissions, United States"
+        url: "https://ourworldindata.org/co2/country/united-states"
+  - quote: "Air conditioning is not just some frivolous luxury"
+    rating: "Context"
+    note: >-
+      Heat is the deadliest weather hazard in many regions, and public
+      health agencies list access to cooling among the most effective
+      protective measures during extreme heat, especially for the elderly
+      and chronically ill.
+    sources:
+      - title: "CDC — Heat and Health / Extreme Heat"
+        url: "https://www.cdc.gov/heat-health/about/index.html"
 excerpt: "Some people are now floating the idea that American air conditioning is somehow responsible for Europeans roasting during a heat wave. What a beautiful little pile of sanctimonious nonsense. Not because climate change is fake — it isn't — but because this argument turns a complicated global problem into a cartoon where some guy in Florida is firing a climate laser across the Atlantic. So let's do some math."
 ---
 

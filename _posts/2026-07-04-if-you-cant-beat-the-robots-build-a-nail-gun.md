@@ -9,6 +9,91 @@ categories:
 tags:
 description: "Everyone's terrified AI is coming for their job. Most of that fear is theater. The real question was never 'can a robot replace me' ... it's 'what can I build now that I couldn't before.' So I built Cardinal, a Kanban board where dragging a card hires an AI to do the work, and the human still owns every merge."
 excerpt: "A lot of people are terrified of AI right now, and honestly, I get it. But the fear is pointed in the wrong direction. The question was never 'can AI replace me.' The better question is 'what can I build now that I couldn't build before.' AI isn't a god or a genius in a glowing rectangle. It's a nail gun. And I built a very opinionated, Kanban-shaped nail gun to prove the point."
+ai_notes:
+  - quote: "diagnose your rash"
+    rating: "Context"
+    note: >-
+      AI is being applied to dermatology: a 2020 Nature Medicine study of a
+      Google deep-learning system reported it identified skin conditions at
+      accuracy comparable to board-certified dermatologists across 26 common
+      conditions. Such tools are decision aids and are not a substitute for a
+      clinician's diagnosis.
+    sources:
+      - title: "Nature Medicine — A deep learning system for differential diagnosis of skin diseases (2020)"
+        url: "https://www.nature.com/articles/s41591-020-0842-3"
+  - quote: "same move as every other moral panic"
+    rating: "Accurate"
+    note: >-
+      The term "moral panic" was popularized by sociologist Stanley Cohen in his
+      1972 book Folk Devils and Moral Panics, which analyzed the amplified public
+      reaction to Britain's Mods and Rockers youth clashes. Cohen described how a
+      minor event is exaggerated by media and cast with a clear villain, a "folk
+      devil."
+    sources:
+      - title: "Britannica — moral panic"
+        url: "https://www.britannica.com/topic/moral-panic"
+  - quote: "cite a source that was never written"
+    rating: "True"
+    note: >-
+      This is commonly called "hallucination": language models generate
+      fluent, confident text that can be factually wrong, including inventing
+      citations to papers or cases that do not exist. In one 2023 evaluation,
+      roughly 18 percent of GPT-4 generated citations and 55 percent of GPT-3.5
+      citations were entirely fabricated.
+    sources:
+      - title: "Nature — Why ChatGPT and other AI tools cannot be trusted to cite sources (news, 2023)"
+        url: "https://www.nature.com/articles/d41586-023-00816-5"
+  - quote: "framed houses by hand for centuries"
+    rating: "Random Fact"
+    note: >-
+      The pneumatic nail gun is a mid-20th-century invention. A prototype is
+      credited to engineer Morris Pynoos in the 1940s, and the first
+      commercial construction nailers appeared around 1950-1951, driving dozens
+      of collated nails per minute versus hammering them individually.
+    sources:
+      - title: "JLC — A Brief History of Portable Nail Guns"
+        url: "https://www.jlconline.com/tools/fastening-tools/a-brief-history-of-portable-nail-guns_o"
+  - quote: "Git lets you branch, review, merge, and undo"
+    rating: "Random Fact"
+    note: >-
+      Git is a distributed version-control system created by Linus Torvalds in
+      2005, after Linux kernel developers lost free access to the proprietary
+      BitKeeper tool. Torvalds wrote the initial version in about ten days and
+      handed maintainership to Junio Hamano later that year.
+    sources:
+      - title: "Git — About / History (git-scm.com)"
+        url: "https://git-scm.com/about"
+  - quote: "columns are labels"
+    rating: "Context"
+    note: >-
+      Kanban originated at Toyota, where engineer Taiichi Ohno developed it in
+      the late 1940s and 1950s as part of the Toyota Production System. Inspired
+      by supermarket restocking, it used physical cards ("kanban" means signboard
+      in Japanese) to signal when work should proceed, the ancestor of today's
+      columned task boards.
+    sources:
+      - title: "Britannica — Toyota Production System"
+        url: "https://www.britannica.com/topic/Toyota-Production-System"
+  - quote: "if the project has CI"
+    rating: "Context"
+    note: >-
+      CI stands for continuous integration, the practice of merging code
+      changes frequently and running an automated build and test suite on each
+      change. The term was named by Grady Booch in 1991 and became one of the
+      core practices of Extreme Programming in the late 1990s.
+    sources:
+      - title: "Martin Fowler — Continuous Integration"
+        url: "https://martinfowler.com/articles/continuousIntegration.html"
+  - quote: "High-level languages were cheating"
+    rating: "Accurate"
+    note: >-
+      This echoes a real historical pattern. Early programmers resisted
+      high-level languages; the first widely used compiled language, FORTRAN,
+      was released by IBM in 1957 amid skepticism that automatic code could
+      match hand-written assembly, a doubt its efficiency largely overcame.
+    sources:
+      - title: "Britannica — FORTRAN"
+        url: "https://www.britannica.com/technology/FORTRAN"
 ---
 
 A lot of people are absolutely terrified of AI right now.

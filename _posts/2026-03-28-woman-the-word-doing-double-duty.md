@@ -9,6 +9,73 @@ categories:
 tags:
 description: "The word 'woman' is carrying two incompatible definitions at once. That's not language evolving — it's a collision we refuse to name."
 excerpt: "For basically all of recorded history, \"woman\" meant an adult human female. It wasn't ideological. It wasn't a stance. It was descriptive. What's happening now is that the same word is being asked to carry two incompatible meanings at once ... and instead of creating new language to handle a new concept, we just crammed both meanings into the same word and started screaming at each other when the confusion kicked in. That's not evolution of language. That's collision."
+ai_notes:
+  - quote: "For basically all of recorded history"
+    rating: "Mostly True"
+    note: >-
+      Major dictionaries still give the primary sense of woman as an adult
+      human female: Merriam-Webster lists an adult female person, and the
+      Oxford English Dictionary gives an adult female human being. Some
+      dictionaries have added identity-based senses in recent years, but the
+      female-sex definition remains the leading one.
+    sources:
+      - title: "Merriam-Webster — woman"
+        url: "https://www.merriam-webster.com/dictionary/woman"
+      - title: "Oxford English Dictionary — woman, n."
+        url: "https://www.oed.com/dictionary/woman_n"
+  - quote: "gender is an internal identity, not tied to sex"
+    rating: "Accurate"
+    note: >-
+      This describes the mainstream psychological framework. The American
+      Psychological Association defines gender identity as a person's internal
+      sense of being male, female, or something else, and distinguishes it from
+      sex, which is based on observable biological criteria such as chromosomes,
+      gonads, and genitalia.
+    sources:
+      - title: "APA Dictionary of Psychology — gender identity"
+        url: "https://dictionary.apa.org/gender-identity"
+  - quote: "gender role someone lives as"
+    rating: "Context"
+    note: >-
+      In sociology, a gender role is the set of behaviors, attitudes, and
+      characteristics a society considers appropriate for people based on their
+      perceived sex. It is generally treated as culturally learned and varying
+      across time and place, distinct from both biological sex and internal
+      gender identity.
+    sources:
+      - title: "Britannica — gender role"
+        url: "https://www.britannica.com/topic/gender-role"
+  - quote: "were separated because of male-female physical differences"
+    rating: "Accurate"
+    note: >-
+      Title IX regulations expressly permit separate athletic teams by sex, and
+      courts have tied this to inherent physical differences relevant to
+      athletic performance such as height, weight, strength, and speed. In 2026
+      the Supreme Court held that separating teams by biological sex is
+      reasonable for fairness and injury reduction.
+    sources:
+      - title: "Supreme Court — slip opinion No. 24-43 (2026)"
+        url: "https://www.supremecourt.gov/opinions/25pdf/24-43_2b35.pdf"
+  - quote: "bad actors will exploit them"
+    rating: "Context"
+    note: >-
+      Debates over changing sex-based definitions frequently cite this concern,
+      though systematic evidence on how often rules are actually gamed is
+      limited and contested. Whether exploitation is common or rare is itself a
+      point of ongoing dispute among researchers and policymakers.
+    sources:
+      - title: "SCOTUSblog — 2026 ruling on transgender athletes in sports"
+        url: "https://www.scotusblog.com/2026/06/court-rules-that-states-can-exclude-transgender-athletes-from-girls-and-womens-sports-teams/"
+  - quote: "Languages create new vocabulary all the time"
+    rating: "True"
+    note: >-
+      Accurate. The word woman itself is a coinage: it derives from Old English
+      wifman, combining wif (female person) and man (human being). English
+      routinely forms new words, so the practice of building fresh terms for new
+      concepts is well established.
+    sources:
+      - title: "Etymonline — woman"
+        url: "https://www.etymonline.com/word/woman"
 ---
 
 I'm going to say something that apparently counts as controversial now.

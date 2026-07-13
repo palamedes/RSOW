@@ -19,6 +19,67 @@ private: false
 allow_comments: true
 duration:
 costs: 
+ai_notes:
+  - quote: "minimum wage or there abouts"
+    rating: "Context"
+    note: >-
+      The U.S. federal minimum wage was 7.25 dollars per hour when this was written in 2015, and it remains 7.25 dollars in 2026, unchanged since July 2009. As of 2026, 30 states plus D.C. set their own minimums above the federal floor.
+    sources:
+      - title: "U.S. Department of Labor — Minimum Wage"
+        url: "https://www.dol.gov/general/topic/wages/minimumwage"
+      - title: "BLS — Characteristics of Minimum Wage Workers, 2015"
+        url: "https://www.bls.gov/opub/reports/minimum-wage/2015/home.htm"
+  - quote: "hours (often days) of communication, information gathering, research"
+    rating: "Context"
+    note: >-
+      Unpaid pre-sale scoping is common in professional-services and consulting work, where discovery, requirements-gathering, and estimating are typically treated as a cost of sale rather than billable time. This is a standard practice the author is describing, not a claim about wages.
+    sources:
+      - title: "U.S. Small Business Administration — Pricing your services"
+        url: "https://www.sba.gov/business-guide/manage-your-business/pricing-products-services"
+  - quote: "the sky, the moon, and stars"
+    rating: "Random Fact"
+    note: >-
+      The mismatch between a client's desired feature set and their budget or schedule is a widely documented cause of software project trouble, sometimes called scope creep or the iron triangle (scope, time, cost). The author is describing this tension anecdotally.
+    sources:
+      - title: "Project Management Institute — Scope creep"
+        url: "https://www.pmi.org/learning/library/top-five-causes-scope-creep-6675"
+  - quote: "just above $10 an hour over the life of the project"
+    rating: "Mostly True"
+    note: >-
+      The arithmetic roughly checks out: 10,000 dollars over about 60 working days at 8 hours for 2 developers is about 960 labor-hours, or roughly 10.42 dollars per hour before taxes and overhead. It ignores non-labor costs, which would push the effective rate lower.
+    sources:
+      - title: "BLS — How the Government Measures Unemployment / OEWS methodology (hours basis, 2,080-hour year)"
+        url: "https://www.bls.gov/oes/oes_ques.htm"
+  - quote: "A plumber makes more"
+    rating: "Needs Context"
+    note: >-
+      At roughly 10 dollars per hour, the project rate would indeed trail plumbers: the BLS median wage for plumbers, pipefitters, and steamfitters was about 50,620 dollars a year in 2015 (about 24 dollars per hour) and 62,970 dollars in May 2024. But this compares a squeezed project rate to typical software pay; the 2015 median for applications software developers was about 98,260 dollars a year.
+    sources:
+      - title: "BLS — Plumbers, Pipefitters, and Steamfitters (Occupational Outlook Handbook)"
+        url: "https://www.bls.gov/ooh/construction-and-extraction/plumbers-pipefitters-and-steamfitters.htm"
+      - title: "BLS — Software Developers, Quality Assurance Analysts, and Testers (OOH)"
+        url: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm"
+  - quote: "the last 20+ years getting experience in my industry"
+    rating: "Context"
+    note: >-
+      Software developers are among the higher-paid occupations tracked by BLS. The median annual wage was about 98,260 dollars for applications developers in May 2015; by May 2024 the median for software developers had risen to about 133,080 dollars, versus roughly 48,000 dollars for all occupations.
+    sources:
+      - title: "BLS — Software Developers, Quality Assurance Analysts, and Testers (OOH)"
+        url: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm"
+  - quote: "Most firms would charge closer to $100k for that 3 month job"
+    rating: "Context"
+    note: >-
+      Agency and consultancy billing rates vary widely by region and specialization; U.S. software-development firms commonly quote blended rates in the range of roughly 100 to 250 dollars per hour, so a three-month, multi-developer build reaching six figures is plausible. Specific quotes depend on scope and market.
+    sources:
+      - title: "U.S. Bureau of Labor Statistics — Computer Systems Design Services (industry data)"
+        url: "https://www.bls.gov/iag/tgs/iag5415.htm"
+  - quote: "you get what you pay for"
+    rating: "Needs Context"
+    note: >-
+      Research on IT and software projects links underfunding and unrealistic estimates to higher failure and abandonment rates, which supports the general point. That said, price is not a perfect proxy for quality; higher spending does not guarantee success absent sound requirements and management.
+    sources:
+      - title: "Standish Group — CHAOS Report (project success and failure factors)"
+        url: "https://www.standishgroup.com/sample_research_files/CHAOSReport2015-Final.pdf"
 ---
 
 <img src='/assets/images/2015/08/greed.jpg' class='right' /> 

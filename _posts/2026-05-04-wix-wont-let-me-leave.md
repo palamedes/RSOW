@@ -9,6 +9,93 @@ categories:
 tags:
 description: "I tried to cancel my Wix account. Four times. They blocked me at every turn. This is what dark patterns look like in the wild."
 excerpt: "I tried to cancel Wix. First they said I couldn't because I had domains pointed at it. Then I couldn't because I had a subscription. Then support couldn't either. Dark patterns aren't a theory — I'm living one right now."
+ai_notes:
+  - quote: "had domains pointed at the account"
+    rating: "Context"
+    note: >-
+      Domain records like NS and A records can be repointed at any registrar or
+      DNS host independently of where a site is built. Wix was founded in 2006
+      and is headquartered in Tel Aviv, Israel; it lets users connect
+      third-party domains rather than requiring them to be hosted with Wix.
+    sources:
+      - title: "Wikipedia — Wix.com"
+        url: "https://en.wikipedia.org/wiki/Wix.com"
+  - quote: "circular logic so tight it could power a perpetual motion machine"
+    rating: "Random Fact"
+    note: >-
+      A perpetual motion machine is a hypothetical device that runs forever
+      without an energy source. It is impossible because it would violate the
+      first or second law of thermodynamics; the US Patent Office has long
+      refused to grant patents for such machines absent a working model.
+    sources:
+      - title: "Britannica — Perpetual motion"
+        url: "https://www.britannica.com/technology/perpetual-motion"
+  - quote: "guide me through the cancellation process"
+    rating: "Context"
+    note: >-
+      Cancellation flows that route users to a live agent or an off-page channel
+      are a recognized retention tactic. Consumer-protection regulators have
+      cited requiring a phone call or chat to cancel a service that was signed
+      up for online as a form of deceptive or unfair design.
+    sources:
+      - title: "FTC — Negative Option Rule (Rule on Unfair or Deceptive Fees)"
+        url: "https://www.ftc.gov/legal-library/browse/rules/negative-option-rule"
+  - quote: "deliberately designed friction intended to prevent you from leaving"
+    rating: "Accurate"
+    note: >-
+      This matches the accepted definition of a dark pattern. UX designer Harry
+      Brignull coined the term in 2010; his taxonomy includes forced continuity
+      and the roach motel, an interface that is easy to enter but deliberately
+      hard to exit. The concept is now referenced in laws such as the EU Digital
+      Services Act.
+    sources:
+      - title: "Deceptive Design (Harry Brignull) — Types of deceptive pattern"
+        url: "https://www.deceptive.design/types"
+      - title: "Wikipedia — Dark pattern"
+        url: "https://en.wikipedia.org/wiki/Dark_pattern"
+  - quote: "has to be as easy as signup"
+    rating: "Needs Context"
+    note: >-
+      The FTC finalized this Click-to-Cancel provision in October 2024, but the
+      Eighth Circuit vacated the entire Negative Option Rule on July 8, 2025,
+      days before it took effect, on procedural grounds. As of this post the
+      rule is not in force, though the FTC still enforces ROSCA and began a new
+      rulemaking in January 2026.
+    sources:
+      - title: "Cooley — Eighth Circuit Vacates FTC Negative Option Rule (July 2025)"
+        url: "https://www.cooley.com/news/insight/2025/2025-07-11-click-to-cancel-just-got-cancelled-eighth-circuit-vacates-entirety-of-ftcs-negative-option-rule"
+  - quote: "migrating my site to Jekyll on GitHub Pages"
+    rating: "Context"
+    note: >-
+      Jekyll is a static site generator that turns Markdown and HTML into a
+      complete website. GitHub Pages has built-in Jekyll support and hosts
+      public-repository sites at no cost, including on a custom domain, which is
+      why it is a common destination for people leaving hosted website builders.
+    sources:
+      - title: "Jekyll Docs — GitHub Pages"
+        url: "https://jekyllrb.com/docs/github-pages/"
+      - title: "GitHub Docs — About GitHub Pages and Jekyll"
+        url: "https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll"
+  - quote: "the digital equivalent of a hotel telling you that checkout"
+    rating: "Context"
+    note: >-
+      The dynamic described here is the roach motel dark pattern: a service that
+      is quick to join but engineered to be difficult to cancel. Brignull named
+      it after the roach-trap slogan promising bugs check in but do not check
+      out.
+    sources:
+      - title: "Deceptive Design — Types of deceptive pattern"
+        url: "https://www.deceptive.design/types"
+  - quote: "hosted for free on GitHub Pages"
+    rating: "Mostly True"
+    note: >-
+      GitHub Pages hosting is free for sites in public repositories on GitHub
+      Free. It has published limits, including a soft bandwidth cap of about 100
+      GB per month and a recommended site size under 1 GB, so it is free within
+      those usage bounds rather than unlimited.
+    sources:
+      - title: "GitHub Docs — About GitHub Pages (usage limits)"
+        url: "https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages"
 ---
 
 I'm writing this in real time. I am currently on hold with Wix support, trying to do something that should take exactly one click: cancel my account.

@@ -17,6 +17,88 @@ tile_color:
 tile_class:
 private: false
 allow_comments: true
+ai_notes:
+  - quote: "the mana from heaven"
+    rating: "Context"
+    note: >-
+      "Mana from heaven" alludes to the food described in the Book of Exodus as
+      miraculously provided to the Israelites in the wilderness. In business
+      writing it is used figuratively for an unexpected, essential resource.
+    sources:
+      - title: "Britannica — Manna"
+        url: "https://www.britannica.com/topic/manna"
+  - quote: "a cancer that must be cut away"
+    rating: "Context"
+    note: >-
+      Framing a draining client as a "cancer" is a common business metaphor.
+      Client-relationship guidance widely recommends periodically evaluating and
+      ending relationships that consume disproportionate time, money, or morale
+      relative to their revenue.
+    sources:
+      - title: "Harvard Business Review — The Right Way to Fire a Customer"
+        url: "https://hbr.org/2008/04/the-right-way-to-fire-a-custom"
+  - quote: "No one knows you better than the people closest to you"
+    rating: "Mostly True"
+    note: >-
+      Research on work-life spillover supports the idea that job stress carries
+      into home life and is often noticed by partners and family. Studies on
+      stress "crossover" find that one partner's work strain can affect the
+      well-being of the other.
+    sources:
+      - title: "American Psychological Association — Stress in America / work-life"
+        url: "https://www.apa.org/topics/healthy-workplaces/work-life-balance"
+  - quote: "you can't program to a moving target"
+    rating: "True"
+    note: >-
+      This describes "scope creep," the uncontrolled expansion of a project's
+      requirements after work has begun. Project-management guidance treats a
+      documented, change-controlled scope as a standard defense, since shifting
+      requirements commonly cause missed deadlines and budget overruns.
+    sources:
+      - title: "Atlassian — Scope creep in project management"
+        url: "https://www.atlassian.com/work-management/project-management/scope-creep"
+  - quote: "a good plumber charges over"
+    rating: "Needs Context"
+    note: >-
+      The rate a customer pays a plumbing company (which includes overhead,
+      parts, and profit) differs from a plumber's wage. Consumer cost guides
+      commonly cite hourly billing roughly in the $45 to $200 range, while the
+      U.S. Bureau of Labor Statistics reports median plumber wages well below
+      those billed rates.
+    sources:
+      - title: "U.S. Bureau of Labor Statistics — Plumbers, Pipefitters, and Steamfitters"
+        url: "https://www.bls.gov/ooh/construction-and-extraction/plumbers-pipefitters-and-steamfitters.htm"
+      - title: "Angi — How Much Does a Plumber Cost?"
+        url: "https://www.angi.com/articles/plumber-cost.htm"
+  - quote: "To quote Jayne Cobb"
+    rating: "Context"
+    note: >-
+      Jayne Cobb is a mercenary character (played by Adam Baldwin) on Joss
+      Whedon's 2002 science-fiction series "Firefly." The "ten percent of
+      nothing" line is delivered in the pilot episode, "Serenity."
+    sources:
+      - title: "Britannica — Firefly (television series)"
+        url: "https://www.britannica.com/topic/Firefly-American-television-series"
+  - quote: "get everything in writing"
+    rating: "Accurate"
+    note: >-
+      A written contract is widely recommended as a freelancer's primary legal
+      protection against non-payment. New York's Freelance Isn't Free Act, for
+      example, requires a written contract for work valued at $800 or more and
+      mandates payment within 30 days of completion absent other terms.
+    sources:
+      - title: "NYC Department of Consumer and Worker Protection — Freelance Isn't Free Act"
+        url: "https://www.nyc.gov/site/dca/about/freelance-isnt-free-act.page"
+  - quote: "It's a very liberating"
+    rating: "Context"
+    note: >-
+      Surveys of freelancers and small-business owners consistently report that
+      difficult or non-paying clients are a major source of stress, and business
+      advice often frames ending such relationships as a way to protect capacity
+      and well-being.
+    sources:
+      - title: "Harvard Business Review — When to Fire a Customer"
+        url: "https://hbr.org/2008/04/the-right-way-to-fire-a-custom"
 ---
 
 <img src='/assets/images/2015/01/fired-image-web.jpg' class='right' /> 

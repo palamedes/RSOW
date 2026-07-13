@@ -8,6 +8,101 @@ categories:
 tags:
 description: "\"Clinically proven\" is an unregulated phrase. No governing body checks it. No standard exists. Here's what it actually means and how to read the fine print."
 excerpt: "Two words that sound like science but operate like a magic spell. Designed to make you stop thinking and start buying. Unlike \"FDA-approved,\" which requires surviving years of rigorous trials, independent review, and public data disclosure ... \"clinically proven\" requires basically nothing. Here's the full spectrum, from legitimate peer-reviewed research to pure marketing theater."
+ai_notes:
+  - quote: "operate like a magic spell"
+    rating: "Context"
+    note: >-
+      There is no strict legal definition of "clinically proven" for most
+      consumer products in the United States. The FTC regulates such advertising
+      claims for truthfulness, but no agency pre-certifies the phrase or sets a
+      fixed standard it must meet before use.
+    sources:
+      - title: "FTC — Health Products Compliance Guidance (2022)"
+        url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance"
+  - quote: "The study was peer-reviewed"
+    rating: "Accurate"
+    note: >-
+      Peer review is independent evaluation of a manuscript's methodology and
+      conclusions by outside experts before a journal publishes it. It is widely
+      treated as a quality check, though it is not infallible and does not verify
+      that data are correct.
+    sources:
+      - title: "USGS — What does it mean when a publication is peer reviewed?"
+        url: "https://www.usgs.gov/faqs/what-does-it-mean-when-a-publication-peer-reviewed"
+  - quote: "is an unregulated phrase"
+    rating: "Mostly True"
+    note: >-
+      No US agency approves the phrase "clinically proven" itself, but the claim
+      is not consequence-free: under the FTC Act, an advertiser must possess
+      "competent and reliable scientific evidence" to substantiate it, and the
+      FTC can bring enforcement actions for unsupported health claims.
+    sources:
+      - title: "FTC — Health Products Compliance Guidance (2022)"
+        url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance"
+  - quote: "some study exists that they can vaguely gesture toward"
+    rating: "Needs Context"
+    note: >-
+      For dietary supplements and cosmetics, the FDA does not review products or
+      their claims before sale. For "clinically proven" claims specifically, the
+      FTC expects randomized, controlled human trials, though it does not require
+      a set number of studies and weighs quality over quantity.
+    sources:
+      - title: "FDA — Questions and Answers on Dietary Supplements"
+        url: "https://www.fda.gov/food/information-consumers-using-dietary-supplements/questions-and-answers-dietary-supplements"
+      - title: "FTC — Health Products Compliance Guidance (2022)"
+        url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance"
+  - quote: "one of the most demanding regulatory gauntlets in existence"
+    rating: "Accurate"
+    note: >-
+      A new drug must pass FDA-defined Phase 1, 2, and 3 clinical trials, often
+      spanning years and thousands of participants in Phase 3, before approval.
+      By contrast, cosmetics and supplements are not subject to FDA pre-market
+      approval at all.
+    sources:
+      - title: "NIH NCATS Toolkit — Phases of Clinical Trials"
+        url: "https://toolkit.ncats.nih.gov/glossary/phases-of-clinical-trials/"
+      - title: "FDA — FDA Authority Over Cosmetics"
+        url: "https://www.fda.gov/cosmetics/cosmetics-laws-regulations/fda-authority-over-cosmetics-how-cosmetics-are-not-fda-approved-are-fda-regulated"
+  - quote: "reviewed the methodology before publication"
+    rating: "Accurate"
+    note: >-
+      This describes pre-publication peer review, the standard model in which
+      independent reviewers assess a study before a journal accepts it. Reviewers
+      typically are unpaid and can request revisions or rejection, though the
+      process cannot catch all errors or fraud.
+    sources:
+      - title: "USGS — What does it mean when a publication is peer reviewed?"
+        url: "https://www.usgs.gov/faqs/what-does-it-mean-when-a-publication-peer-reviewed"
+  - quote: "That statistic is about the category, not the product"
+    rating: "Mostly True"
+    note: >-
+      Regulators have flagged this pattern. In 2007 the UK Advertising Standards
+      Authority ruled Colgate's "80% of dentists recommend" poster misleading:
+      the survey let dentists name several brands, and a rival was recommended
+      nearly as often, so it did not show a preference for Colgate over others.
+    sources:
+      - title: "marketinglaw (Osborne Clarke) — Colgate's '80% of dentists recommend' claim under fire"
+        url: "https://marketinglaw.osborneclarke.com/retailing/colgates-80-of-dentists-recommend-claim-under-fire/"
+  - quote: "separate the effect of the product from the placebo effect"
+    rating: "Accurate"
+    note: >-
+      A control group is why randomized, placebo-controlled trials are the
+      "gold standard." Comparing treated and untreated groups helps show whether
+      a change comes from the product rather than from patient expectation,
+      natural recovery, or chance.
+    sources:
+      - title: "NIH NCCIH — Placebo Effect"
+        url: "https://www.nccih.nih.gov/health/placebo-effect"
+  - quote: "marketing claim dressed in a lab coat"
+    rating: "Context"
+    note: >-
+      This restates the article's thesis: because "clinically proven" carries no
+      fixed regulatory meaning, it can accompany rigorous evidence or almost none.
+      The FTC's substantiation rules govern only whether the underlying claim can
+      be supported, not the wording itself.
+    sources:
+      - title: "FTC — Health Products Compliance Guidance (2022)"
+        url: "https://www.ftc.gov/business-guidance/resources/health-products-compliance-guidance"
 ---
 
 You've seen it on everything. The toothpaste. The wrinkle cream. The supplement that promises to make your brain work like it did in college. The shampoo that will apparently repair your hair at the molecular level.

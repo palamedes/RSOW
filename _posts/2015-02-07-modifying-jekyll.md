@@ -20,6 +20,51 @@ private: false
 allow_comments: true
 duration:
 costs: 
+ai_notes:
+  - quote: "as my primary blogging system"
+    rating: "Context"
+    note: >-
+      Jekyll is a static site generator written in Ruby that turns Markdown and Liquid templates into plain HTML files. It was created by GitHub co-founder Tom Preston-Werner in 2008 and remains widely used for blogs and project sites.
+    sources:
+      - title: "Jekyll — Simple, blog-aware, static sites (official site)"
+        url: "https://jekyllrb.com/"
+  - quote: "Each page is built as raw html and then pushed to the servers"
+    rating: "Accurate"
+    note: >-
+      Accurate description of the static-site model. Jekyll renders all content ahead of time into a _site directory of static HTML, so pages are served without database queries at request time, which generally makes them fast and reduces the attack surface.
+    sources:
+      - title: "Jekyll Docs — Quickstart / how Jekyll works"
+        url: "https://jekyllrb.com/docs/"
+  - quote: "add a special post type"
+    rating: "Context"
+    note: >-
+      Jekyll's built-in mechanism closest to a custom post type is a "collection," which lets you group related documents (like a build log) with their own output rules. Collections were introduced in Jekyll 2.0, released in 2014, roughly when this 2015 post was written.
+    sources:
+      - title: "Jekyll Docs — Collections"
+        url: "https://jekyllrb.com/docs/collections/"
+  - quote: "re-architecture/re-factor all of Jekyll"
+    rating: "Context"
+    note: >-
+      Deep custom behavior in Jekyll is typically added through plugins such as generators and Liquid tags rather than by modifying Jekyll's core. Sites hosted on GitHub Pages build in a sandboxed "safe" mode that only allows a fixed whitelist of plugins, so unlisted custom code will not run there.
+    sources:
+      - title: "Jekyll Docs — Plugins"
+        url: "https://jekyllrb.com/docs/plugins/"
+      - title: "GitHub Docs — About GitHub Pages and Jekyll"
+        url: "https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/about-github-pages-and-jekyll"
+  - quote: "using all the same views as the main blog"
+    rating: "FYI"
+    note: >-
+      Jekyll's layouts and includes are reusable across sites by copying the _layouts and _includes directories, so two separate Jekyll projects can share an identical look. The workaround of building a second site and nesting its output is a common way to reuse templates without merging the source repositories.
+    sources:
+      - title: "Jekyll Docs — Layouts"
+        url: "https://jekyllrb.com/docs/layouts/"
+  - quote: "instead of the old facebook comments"
+    rating: "Background"
+    note: >-
+      Disqus is a third-party, JavaScript-embedded commenting service, a common choice for static sites that have no server-side backend. Comments are stored on Disqus's own servers rather than in the site's repository, so they are not part of the statically generated HTML.
+    sources:
+      - title: "Disqus — Wikipedia"
+        url: "https://en.wikipedia.org/wiki/Disqus"
 ---
 
 I love being a programmer.  It's one of those things that I truly enjoy and get a real sense of accomplish out of when I can make something work the way I want it to.

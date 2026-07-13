@@ -9,6 +9,76 @@ categories:
 tags:
 description: "Charlie Kirk was assassinated for speaking his mind. Politicians booed his moment of silence. When you martyr a man, you don't end the message — you amplify it."
 excerpt: "They killed a man who debated with civility and changed minds without violence. Then they cheered. That tells you everything about who the real extremists are."
+ai_notes:
+  - quote: "Charlie Kirk is dead. Shot. Murdered. Assassinated."
+    rating: "True"
+    note: >-
+      Charlie Kirk, co-founder of Turning Point USA, was fatally shot on
+      September 10, 2025, while speaking at Utah Valley University in Orem, Utah.
+      He was 31. Authorities charged 22-year-old Tyler Robinson with the killing.
+    sources:
+      - title: "NPR — Right-wing activist Charlie Kirk fatally shot at Utah event (Sept 10, 2025)"
+        url: "https://www.npr.org/2025/09/10/nx-s1-5537068/charlie-kirk-shot-utah-university-campus"
+      - title: "Wikipedia — Assassination of Charlie Kirk"
+        url: "https://en.wikipedia.org/wiki/Assassination_of_Charlie_Kirk"
+  - quote: "He could stand toe to toe with people who hated him"
+    rating: "Background"
+    note: >-
+      Kirk was known for open-air campus events, often billed "Prove Me Wrong,"
+      where he took unscripted questions from students who disagreed with him.
+      This debate-style format was a signature of Turning Point USA's college tours.
+    sources:
+      - title: "Wikipedia — Charlie Kirk"
+        url: "https://en.wikipedia.org/wiki/Charlie_Kirk"
+  - quote: "when the House of Representatives paused for a moment of silence"
+    rating: "Needs Context"
+    note: >-
+      The House did hold a moment of silence for Kirk on September 11, 2025.
+      Reporting indicates the floor disruption erupted afterward, when Rep. Lauren
+      Boebert requested an added prayer and some Democrats shouted about a Colorado
+      school shooting that same day, rather than jeering during the silence itself.
+    sources:
+      - title: "Axios — Chaos erupts on House floor over Charlie Kirk shooting (Sept 11, 2025)"
+        url: "https://www.axios.com/2025/09/11/charlie-kirk-shooting-house-boebert-luna"
+  - quote: "Rome killed Cicero for being too persuasive"
+    rating: "Mostly True"
+    note: >-
+      The Roman orator Cicero was proscribed and executed in December 43 BC on the
+      orders of the Second Triumvirate. Mark Antony pressed for his death largely
+      because of the Philippics, a series of speeches attacking Antony; Cicero's
+      head and hands were displayed on the Rostra.
+    sources:
+      - title: "Britannica — Cicero"
+        url: "https://www.britannica.com/biography/Cicero"
+  - quote: "The French Revolution cheered when priests and teachers lost their heads"
+    rating: "Needs Context"
+    note: >-
+      During the Reign of Terror (1793-1794), revolutionary France pursued
+      dechristianization: clergy who refused the 1790 oath were persecuted,
+      thousands were exiled, and hundreds were executed. Historical accounts
+      center on clergy and political opponents rather than "teachers" specifically.
+    sources:
+      - title: "Wikipedia — Dechristianization of France during the French Revolution"
+        url: "https://en.wikipedia.org/wiki/Dechristianization_of_France_during_the_French_Revolution"
+  - quote: "Charlie was a faithful Christian"
+    rating: "True"
+    note: >-
+      Kirk was an evangelical Christian associated with the Calvary Chapel
+      Association and founded Turning Point Faith to mobilize churches politically.
+      He attended Mass with his Catholic wife and said he was close to converting
+      to Catholicism.
+    sources:
+      - title: "Wikipedia — Charlie Kirk"
+        url: "https://en.wikipedia.org/wiki/Charlie_Kirk"
+  - quote: "He was a father of a young daughter and a baby boy"
+    rating: "True"
+    note: >-
+      Kirk married Erika Frantzve in May 2021. They had a daughter born in August
+      2022 and a son born in May 2024, both of whom were young children at the
+      time of his death.
+    sources:
+      - title: "Wikipedia — Erika Kirk"
+        url: "https://en.wikipedia.org/wiki/Erika_Kirk"
 ---
 
 Charlie Kirk is dead. Shot. Murdered. Assassinated. Pick whatever word makes you feel the weight of it.

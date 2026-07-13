@@ -8,6 +8,98 @@ categories:
 tags:
 description: "A blunt look at Gen X work ethic, why it held everything together, and what could happen when the generation that just showed up finally retires."
 excerpt: "Gen X never asked for recognition. We just showed up, did the work, and kept everything running while nobody was paying attention. Now we’re aging out, and the uncomfortable question is this: what happens when the last generation that treated showing up like a baseline expectation finally walks away?"
+ai_notes:
+  - quote: "house key on a shoelace around my neck"
+    rating: "Background"
+    note: >-
+      This describes a latchkey kid, a term for a child who lets themselves into
+      an empty home after school. It became closely associated with Generation X
+      as US divorce rates and the share of working mothers rose sharply through
+      the 1970s and 1980s; by some estimates roughly 40 percent of Gen Xers were
+      latchkey kids.
+    sources:
+      - title: "Wikipedia — Latchkey kid"
+        url: "https://en.wikipedia.org/wiki/Latchkey_kid"
+      - title: "JSTOR Daily — The Latchkey Generation: How Bad Was It?"
+        url: "https://daily.jstor.org/latchkey-generation-bad/"
+  - quote: "I didn't get participation trophies"
+    rating: "Context"
+    note: >-
+      Participation awards predate Gen X: examples appear as early as the 1920s,
+      and military bases handed them out around World War II. They became a
+      cultural norm in youth sports in the 1980s and 1990s, alongside the
+      self-esteem movement and cheap plastic manufacturing.
+    sources:
+      - title: "Slate — We've Been Handing Out Participation Trophies for 100 Years"
+        url: "https://slate.com/culture/2019/04/participation-trophy-history-world-war-i.html"
+  - quote: "lay us off by fax machine"
+    rating: "Context"
+    note: >-
+      The fax machine was the dominant office document-transmission technology in
+      the late 1980s and 1990s before email became widespread; US fax usage
+      peaked in the late 1990s. It is often invoked as shorthand for that era of
+      workplace communication.
+    sources:
+      - title: "Britannica — Fax (facsimile transmission)"
+        url: "https://www.britannica.com/technology/fax"
+  - quote: "hadn't been cleaned since the Reagan administration"
+    rating: "Random Fact"
+    note: >-
+      Ronald Reagan served as the 40th US president from January 20, 1981 to
+      January 20, 1989.
+    sources:
+      - title: "Office of the Historian — Reagan Administration (1981–1989)"
+        url: "https://history.state.gov/historicaldocuments/reagan"
+  - quote: "bridges the gap between Boomers who"
+    rating: "Context"
+    note: >-
+      Pew Research Center defines Generation X as those born from 1965 to 1980,
+      the cohort between Baby Boomers (1946–1964) and Millennials (1981–1996).
+      Gen X is sometimes called a bridge generation because it came of age during
+      the shift from analog to digital technology.
+    sources:
+      - title: "Pew Research Center — Where Millennials end and Generation Z begins"
+        url: "https://www.pewresearch.org/short-reads/2019/01/17/where-millennials-end-and-generation-z-begins/"
+  - quote: "in our mid-40s to early 60s now"
+    rating: "Accurate"
+    note: >-
+      Consistent with Pew's 1965–1980 definition of Generation X. In 2026, people
+      born in 1980 turn 46 and those born in 1965 turn 61, so Gen Xers are roughly
+      mid-40s to early 60s.
+    sources:
+      - title: "Pew Research Center — The Whys and Hows of Generations Research"
+        url: "https://www.pewresearch.org/politics/2015/09/03/the-whys-and-hows-of-generations-research/"
+  - quote: "hustle culture is a scam"
+    rating: "Context"
+    note: >-
+      Views on overwork are mixed. The World Health Organization classifies
+      burnout as an occupational phenomenon resulting from chronic workplace
+      stress that has not been successfully managed, and a WHO/ILO study linked
+      long working hours (55 or more per week) to higher risk of stroke and heart
+      disease.
+    sources:
+      - title: "World Health Organization — Burn-out an occupational phenomenon (ICD-11)"
+        url: "https://www.who.int/news/item/28-05-2019-burn-out-an-occupational-phenomenon-international-classification-of-diseases"
+  - quote: "Every generation thinks the next one is soft"
+    rating: "True"
+    note: >-
+      Complaints that the young are lazy or disrespectful are documented for
+      millennia, commonly attributed to ancient Greek and Roman writers and found
+      in sources such as a 1624 sermon by Thomas Barnes. Each older generation
+      tends to view its criticism as uniquely justified.
+    sources:
+      - title: "Reader's Digest — Why Generations Clash"
+        url: "https://www.rd.com/article/why-generations-clash/"
+  - quote: "industries that can't staff positions"
+    rating: "Needs Context"
+    note: >-
+      US job openings have fallen from pandemic-era highs but remain historically
+      elevated: BLS reported about 7.6 million openings in May 2026, with a quits
+      rate near 1.9 percent. Staffing difficulty varies widely by industry rather
+      than being uniform across the economy.
+    sources:
+      - title: "Bureau of Labor Statistics — Job Openings and Labor Turnover Summary"
+        url: "https://www.bls.gov/news.release/jolts.nr0.htm"
 ---
 
 Look, I'm not here to win a popularity contest. I'm Gen-X. I didn't get participation trophies. I got a house key on a shoelace around my neck and a frozen pizza with instructions taped to the microwave. And somehow, against all odds, I turned into the most dependable, hardest-working, quietly-holding-civilization-together generation this country has ever accidentally produced.

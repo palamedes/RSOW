@@ -8,6 +8,76 @@ categories:
 tags:
 description: "Corporate America fires people for opinions now. We went from 'agree to disagree' to 'agree or be unemployed.' That's not culture — it's cowardice."
 excerpt: "No company worth a damn would fire you for having an opinion. If your entire HR strategy is 'don't get yelled at on Twitter,' you're not a business — you're a wet nap."
+ai_notes:
+  - quote: "the death of disagreement in corporate America"
+    rating: "Context"
+    note: >-
+      In the U.S., the First Amendment restrains only the government, not
+      private employers, so it generally does not shield workers from being
+      disciplined or fired for their speech at private companies.
+    sources:
+      - title: "Freedom Forum — Do First Amendment Freedoms Apply in the Workplace?"
+        url: "https://www.freedomforum.org/first-amendment-in-the-workplace/"
+  - quote: "no company worth a damn would fire you for having an opinion"
+    rating: "Needs Context"
+    note: >-
+      Most U.S. states follow at-will employment, meaning an employer can
+      generally fire a worker for almost any reason, including their speech,
+      unless a specific statute (such as anti-discrimination or whistleblower
+      law) applies.
+    sources:
+      - title: "Economic Policy Institute — Legal Protections for Employee Speech"
+        url: "https://www.epi.org/unequalpower/publications/free-speech-in-the-workplace/"
+  - quote: "gets screenshotted by someone from the other 50%"
+    rating: "Context"
+    note: >-
+      One narrow protection exists: Section 7 of the National Labor Relations
+      Act shields "concerted activity," so social-media posts where two or more
+      employees act together about wages or working conditions can be protected,
+      while purely individual gripes usually are not.
+    sources:
+      - title: "National Labor Relations Board — Social Media"
+        url: "https://www.nlrb.gov/about-nlrb/rights-we-protect/the-law/employees/social-media-0"
+  - quote: "not aligned with company values"
+    rating: "Context"
+    note: >-
+      Because at-will employment lets employers dismiss workers without cause,
+      a stated rationale like this is not a distinct legal category; it
+      functions the same as any other at-will termination and generally needs
+      no proof.
+    sources:
+      - title: "Freedom Forum — Do First Amendment Freedoms Apply in the Workplace?"
+        url: "https://www.freedomforum.org/first-amendment-in-the-workplace/"
+  - quote: "I disagree with you, but I'll defend your right to say it"
+    rating: "Context"
+    note: >-
+      This maxim is popularly attributed to Voltaire, but he never wrote it.
+      Biographer Evelyn Beatrice Hall coined the line in her 1906 book "The
+      Friends of Voltaire" (under the pen name S.G. Tallentyre) to summarize his
+      attitude, and later confirmed the words were hers.
+    sources:
+      - title: "Quote Investigator — I Disapprove of What You Say, But I Will Defend Your Right to Say It"
+        url: "https://quoteinvestigator.com/2015/06/01/defend-say/"
+  - quote: "that we hash those out with words"
+    rating: "Background"
+    note: >-
+      This echoes the "marketplace of ideas" concept, most associated with
+      Justice Oliver Wendell Holmes Jr.'s dissent in Abrams v. United States
+      (1919), which argued that truth is best tested by its acceptance in the
+      competition of the market rather than by suppression.
+    sources:
+      - title: "Britannica — Marketplace of Ideas"
+        url: "https://www.britannica.com/topic/marketplace-of-ideas"
+  - quote: "the minimum wage shouldn't be $30 an hour"
+    rating: "Random Fact"
+    note: >-
+      No U.S. jurisdiction has a $30 minimum wage. As of 2026 the highest local
+      minimum was in Tukwila, Washington, at $21.65 per hour, and the highest
+      statewide-level rate was Washington, D.C., at $17.95; the federal minimum
+      remains $7.25.
+    sources:
+      - title: "CNBC — Cities and counties with some of the highest U.S. minimum wages"
+        url: "https://www.cnbc.com/2025/01/10/10-cities-and-counties-with-some-of-the-highest-us-minimum-wages.html"
 ---
 
 Let's talk about those people that are fired for thinking and the death of disagreement in corporate America.
