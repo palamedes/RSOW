@@ -98,6 +98,14 @@ What is not legitimate is pretending that Hitler's "far right" ideology naturall
 
 Those are not remotely the same philosophy.
 
+And before someone reaches for the obvious dodge — no, this is not a sleight of hand where I compare the Nazi state as it actually operated to American conservatism as it merely likes to describe itself.
+
+Compare the ideals of both. Compare the real-world record of both. Run it whichever way you want.
+
+The Nazi ideal was total submission to the nation and the race. The conservative ideal is the government leaving the individual alone. In practice, one built camps and a one-party police state. The other argues about tax brackets and carry permits.
+
+The two never meet in the middle.
+
 ## Two Different Philosophies
 
 One wants the state to leave you alone.
@@ -123,3 +131,7 @@ Anyone who refuses to acknowledge that distinction is not making a serious histo
 They are playing a word game.
 
 And when they turn the comments off immediately afterward, it is usually because they already know the game falls apart the moment someone is allowed to answer.
+
+So here is a novel idea: the comments are open.
+
+If you think I am wrong, say so below. I promise not to run away and lock the door.
