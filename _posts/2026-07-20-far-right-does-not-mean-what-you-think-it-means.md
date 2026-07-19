@@ -14,55 +14,55 @@ I keep seeing people on the left proudly post some variation of:
 
 **"Hitler was right wing."**
 
+The implication, of course, is that Hitler belongs in the same ideological family as modern American conservatives.
+
 Then, almost without fail, they turn the comments off.
 
-Because apparently nothing screams intellectual confidence like making a sweeping historical claim and immediately barricading the door so nobody can question it.
+Because apparently nothing screams intellectual confidence like making a deliberately misleading comparison and then disabling the one place where anyone could challenge it.
 
-Here's the problem.
-
-The phrase **"far right" is doing double duty**, and a lot of people are either too ignorant to understand that or too dishonest to admit it.
+Here's the problem; The phrase **"far right" is doing double duty**, and a lot of people are either too ignorant to understand that or too dishonest to admit it.
 
 ## Two Words, Two Completely Different Meanings
 
-When historians describe Hitler and the Nazis as "far right," they are generally using an old European political definition, and they are correct.
+When historians describe Hitler and the Nazis as "far right," they are generally using an old European political definition, and they're correct.
 
 In that context, "far right" means things like extreme nationalism, racial hierarchy, militarism, authoritarian government, dictatorship, national supremacy and violent opposition to communism.
 
-Fine. Under that definition, Hitler was far right.
+Which is Fine and correct. Under that definition, Hitler was far right.  
 
 But that's not what the average American means when they say "the political right."
 
 In modern American politics, "the right" generally means lower taxes, private property, gun rights, free enterprise, limited government, individual liberty, religious freedom, fewer regulations and less federal control over your daily life.
 
-Hitler believed in virtually none of that.
+**Hitler believed in virtually none of that.**
 
 The Nazi state controlled speech, crushed political opposition, abolished independent unions, directed industry, censored the press, confiscated property, regulated private life and demanded absolute loyalty to the government.
 
-That doesn't sound like limited government. That sounds like totalitarianism.
+That bears no resemblance to the limited-government ideals of the American right. It is totalitarianism—the concentration of power the American right exists to oppose.
 
 ## The Dishonest Trick
 
-People using the European historical meaning of "far right" when describing Hitler, then quietly switch to the modern American meaning when describing Republicans and conservatives are being intentionally dishonest.
+People using the European historical meaning of "far right" when describing Hitler, that then quietly switch to the modern American meaning when describing Republicans and conservatives are being intentionally dishonest.
 
-Hitler was "far right."  American conservatives are "right wing."  **Therefore, American conservatives are basically Nazis.**
+The argument goes like this;  Hitler was "far right."  American conservatives are "right wing."  **Therefore, American conservatives are basically Nazis.**
 
 See how easy that was?
 
 All you have to do is use the same words to describe two completely different political traditions and hope nobody notices the definitions changed halfway through the argument. It's a lie. And they know it. (Or worse, they don't... but I digress.)
 
-It is the political equivalent of saying:  A bat is an animal. A baseball bat is a bat. Therefore, baseball bats are animals.
+It's the political equivalent of saying:  A bat is an animal. A baseball bat is a bat. Therefore, baseball bats are animals.
 
 Same words. Different meaning.
 
 ## No, He Wasn't a Progressive Democrat Either
 
-This does not mean Hitler was some kind of modern progressive Democrat. He was not.
+This doesn't mean Hitler was some kind of modern progressive Democrat. He was not. Lets not be dishonest there either.
 
-It also does not mean that putting the word "socialist" in the party name automatically settles the argument. Political parties name themselves whatever they think will attract supporters. North Korea calls itself the Democratic People's Republic of Korea, and nobody with functioning brain cells believes that makes it a democracy.
+It also doesn't mean that putting the word "socialist" in the party name automatically settles the argument. Political parties name themselves whatever they think will attract supporters. North Korea calls itself the Democratic People's Republic of Korea, and nobody with functioning brain cells believes that makes it a democracy.
 
-The Nazis were fascists.  They were nationalists, collectivists, authoritarians and totalitarians. They opposed Marxist international socialism, but they were not free-market, limited-government conservatives either. Their system was built around the idea that the individual existed to serve the nation, the race and the state.
+**The Nazis were fascists. They were nationalists, collectivists, authoritarians and totalitarians.** They opposed Marxist international socialism, but they weren't free-market, limited-government conservatives either. Their system was built around the idea that the individual existed to serve the nation, the race and the state.
 
-That is the exact opposite of the American conservative belief that government exists to protect the rights of the individual.
+**That's the exact opposite of the American conservative belief that government exists to protect the rights of the individual.**
 
 ## Where the Real Argument Actually Lives
 
@@ -74,9 +74,9 @@ You can point out that its economic controls and collectivism resemble policies 
 
 You can even argue that a simple left-right line is a completely inadequate way to classify authoritarian political systems.
 
-Those are legitimate discussions.  What is not legitimate is pretending that Hitler's "far right" ideology naturally leads to some guy in North Carolina wanting lower property taxes, fewer federal agencies and the right to own an AR-15. 'cause 'Merika!
+Those are legitimate discussions that we can have. What is not legitimate is pretending that Hitler's "far right" ideology naturally leads to some guy in North Carolina wanting lower property taxes, fewer federal agencies and the right to own an AR-15. 'cause 'Merika!
 
-Those are not remotely the same philosophy.  Compare the ideals of both. Compare the real-world record of both. Run it whichever way you want.
+Those are not remotely the same philosophy. Compare the ideals. Compare the real-world record. Compare what each side believes government is supposed to do. Calling the American right “Nazis” is not serious political analysis. At best, it is historical ignorance. At worst, it is a deliberate attempt to smear millions of people and provoke a fight.
 
 The Nazi ideal was total submission to the nation and the race. The conservative ideal is the government leaving the individual alone. In practice, one built camps and a one-party police state. The other argues about tax brackets and carry permits.
 
@@ -84,16 +84,24 @@ The two never meet in the middle.
 
 ## Two Different Philosophies
 
-One wants the state to leave you alone. The other wants the state involved in every aspect of your existence.
+One wants the state involved in every aspect of your existence. The other wants the state to leave you alone. 
 
-One begins with individual rights. The other begins with collective obedience.
+One begins with collective obedience. The other begins with individual rights.
 
-One distrusts centralized power. The other worships it.
+One worships centralized power. The other distrusts it.
+
+One demands conformity. The other defends the right to dissent.
+
+One treats private property as something the state may control or seize. The other treats it as a fundamental right.
+
+One believes the individual exists to serve the state. The other believes the state exists to serve the individual.
+
+One concentrates power in the hands of a ruling class. The other divides power specifically to prevent that from happening.
 
 So yes, historians call Hitler far right. But no, that does not make him an ideological cousin of every modern American conservative.
 
-The word is being used under two different political systems with two different historical meanings. Anyone who refuses to acknowledge that distinction is not making a serious historical argument. They are playing a word game.
+The term is being used under two different political systems with two different historical meanings. Anyone who refuses to acknowledge that distinction is not making a serious historical argument. They are playing a word game.
 
-And when they turn the comments off immediately afterward, it is usually because they already know the game falls apart the moment someone is allowed to answer.
+And when they immediately turn the comments off, it is usually because they know the argument falls apart the moment anyone is allowed to answer. They're not trying to start a discussion.  They're trying to provoke a fight, score points, and perform for an echo chamber that already agrees with them.  And if that's the case, read that "two different philosophies" section again and ask your self who the Nazi's ideals sound more like at this point.. the American political left or right?
 
 So here is a novel idea: the comments are open. If you think I am wrong, say so below. I promise not to run away and lock the door.
