@@ -1,7 +1,7 @@
 ---
 title: "Gun Control Is the Fantasy of People Who Think Criminals Obey Signs"
 layout: post
-date: 2026-07-25
+date: 2026-08-02
 image: /assets/images/2026/gun-control-criminals-dont-obey-signs.png
 categories:
 - Rant
