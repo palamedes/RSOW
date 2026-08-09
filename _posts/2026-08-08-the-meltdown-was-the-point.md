@@ -1,7 +1,7 @@
 ---
 title: "The Meltdown Was the Point"
 layout: post
-date: 2026-07-30
+date: 2026-08-08
 image: /assets/images/2026/the-meltdown-was-the-point.png
 categories:
 - Rant
