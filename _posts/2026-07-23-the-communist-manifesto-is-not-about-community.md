@@ -8,6 +8,127 @@ categories:
 tags:
 description: "Communism and community share four letters and nothing else. The Communist Manifesto isn't a warm story about neighbors sharing — it's a revolutionary program with an actual to-do list: abolish private property, seize the banks, confiscate the land, and hand the whole economy to one authority that's somehow supposed to give the power back afterward. It never does."
 excerpt: "People sell the Communist Manifesto like it's a children's book about putting all the toys in one box. It isn't. It's a blueprint for power — overthrow, confiscation, centralization — and the state at the center of it doesn't show up with a casserole. It shows up with a list of what you own."
+ai_notes:
+  - quote: "the resemblance stops at the first four letters"
+    rating: "Background"
+    note: >-
+      Both words descend from the Latin communis, meaning shared or common, but
+      they part company in the 1840s. Communism entered English as the name of a
+      specific political movement, and the Manifesto was published in London in
+      February 1848, weeks before revolutions broke out across Europe.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto of the Communist Party (1848), full text"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/"
+  - quote: "Abolition of private property"
+    rating: "True"
+    note: >-
+      Quoted correctly. Chapter II states that the theory of the Communists may be
+      summed up in the single sentence: abolition of private property. The chapter
+      then argues the target is bourgeois property specifically, not all personal
+      possessions.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto, Chapter II: Proletarians and Communists"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm"
+  - quote: "Shuffle populations around between city and country as needed"
+    rating: "True"
+    note: >-
+      A fair paraphrase of the ten measures listed at the end of Chapter II. Point
+      nine calls for combining agriculture with manufacturing industries and the
+      gradual abolition of the distinction between town and country by a more
+      equable distribution of the population.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto, Chapter II (the ten measures)"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm"
+  - quote: "despotic inroads"
+    rating: "True"
+    note: >-
+      Verbatim. The text says the proletariat will use its political supremacy to
+      wrest all capital from the bourgeoisie by means of despotic inroads on the
+      rights of property, and describes those measures as economically
+      insufficient and untenable on their own.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto, Chapter II"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm"
+  - quote: "That distinction exists in the theory"
+    rating: "Accurate"
+    note: >-
+      The text does draw it explicitly. Chapter II answers the charge directly,
+      saying communism deprives no one of the power to appropriate the products of
+      society and abolishes only the power to subjugate the labour of others by
+      means of such appropriation.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto, Chapter II"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch02.htm"
+  - quote: "the worker gets just enough to survive"
+    rating: "Context"
+    note: >-
+      This is the subsistence-wage idea Marx inherited from Ricardo and later
+      formalized as surplus value in Capital, volume one, published in 1867. Most
+      modern economists abandoned the underlying labor theory of value after the
+      1870s marginal revolution.
+    sources:
+      - title: "Marxists Internet Archive — Capital, Volume I (1867)"
+        url: "https://www.marxists.org/archive/marx/works/1867-c1/"
+  - quote: "That was Hayek's whole point"
+    rating: "True"
+    note: >-
+      Accurately stated. Hayek made the argument in The Use of Knowledge in
+      Society, published in the American Economic Review in September 1945. Ludwig
+      von Mises had raised the related economic calculation problem in 1920,
+      arguing planners without prices cannot compare alternatives.
+    sources:
+      - title: "Econlib — F. A. Hayek, The Use of Knowledge in Society (1945)"
+        url: "https://www.econlib.org/library/Essays/hykKnw.html"
+  - quote: "Marx figured that once the classes were gone"
+    rating: "Needs Context"
+    note: >-
+      The famous phrasing is Engels', not Marx's. In Anti-Duhring (1878) Engels
+      wrote that the state is not abolished, it withers away. Lenin built State
+      and Revolution (1917) around the idea, then presided over a state that grew
+      rather than faded.
+    sources:
+      - title: "Marxists Internet Archive — Engels, Anti-Duhring (1878)"
+        url: "https://www.marxists.org/archive/marx/works/1877/anti-duhring/"
+  - quote: "Stalin's forced collectivization seized the farmland"
+    rating: "True"
+    note: >-
+      Accurate. Collectivization began in 1929 and the resulting famine of 1932-33
+      killed roughly five million across the USSR, with common estimates of about
+      3.5 to 4 million deaths in Ukraine alone, the event now known as the
+      Holodomor.
+    sources:
+      - title: "Britannica — Holodomor"
+        url: "https://www.britannica.com/event/Holodomor"
+  - quote: "Somewhere around 30 million people starved"
+    rating: "Partly True"
+    note: >-
+      Within the accepted range, toward its lower end. Estimates for the Great
+      Leap Forward famine of 1959-61 run from roughly 15 million to 45 million
+      excess deaths; Yang Jisheng put it at 36 million and Frank Dikotter at 45
+      million.
+    sources:
+      - title: "Association for Asian Studies — China's Great Leap Forward"
+        url: "https://www.asianstudies.org/publications/eaa/archives/chinas-great-leap-forward/"
+  - quote: "pulling something like 800 million people out of extreme poverty"
+    rating: "True"
+    note: >-
+      Accurate and correctly attributed. The World Bank reports that since reforms
+      began in 1978, nearly 800 million Chinese have risen above the extreme
+      poverty line, accounting for close to three-quarters of global poverty
+      reduction over that period.
+    sources:
+      - title: "World Bank — Lifting 800 Million People Out of Poverty (2022)"
+        url: "https://www.worldbank.org/en/news/press-release/2022/04/01/lifting-800-million-people-out-of-poverty-new-report-looks-at-lessons-from-china-s-experience"
+  - quote: "all of history is basically class struggle"
+    rating: "Accurate"
+    note: >-
+      That is the Manifesto's opening claim: the history of all hitherto existing
+      society is the history of class struggles. Engels added a footnote in the
+      1888 English edition narrowing it to written history, after research on
+      preliterate communal societies.
+    sources:
+      - title: "Marxists Internet Archive — Manifesto, Chapter I: Bourgeois and Proletarians"
+        url: "https://www.marxists.org/archive/marx/works/1848/communist-manifesto/ch01.htm"
 ---
 
 Communism is not about community.

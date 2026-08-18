@@ -9,6 +9,106 @@ categories:
 tags:
 description: "Yes, your license plate is visible in public. That was never the argument. Flock isn't replacing the cop sitting beside the road — it's building a searchable historical record of where millions of people have been, almost none of whom are suspected of anything. A former cop on Carpenter, Chatrie, Baltimore's spy plane, and why 'but you're in public' misses the point entirely."
 excerpt: "One cop watching you drive down Main Street isn't the same thing as every cop in the country being able to ask a database everywhere you've driven for the last three months. Those aren't remotely equivalent capabilities. Useful does not mean constitutionally unlimited."
+ai_notes:
+  - quote: "Your license plate is visible in public, therefore you have no expectation of privacy"
+    rating: "Needs Context"
+    note: >-
+      This is the plain-view and third-party reasoning, and courts increasingly
+      treat it as incomplete. In Chatrie (2026) the Supreme Court rejected the
+      government's third-party argument for location data, holding it is not truly
+      shared in the ordinary sense of the word.
+    sources:
+      - title: "Supreme Court of the United States — Chatrie v. United States (2026)"
+        url: "https://www.supremecourt.gov/opinions/25pdf/25-112_0am4.pdf"
+  - quote: "It's creating a gigantic, searchable historical record"
+    rating: "True"
+    note: >-
+      Accurate as to scale. Flock Safety has grown to roughly 5,000 contracting
+      communities and well over 100,000 cameras across nearly every state, though
+      more than 50 agencies canceled, suspended, or rejected contracts during 2026
+      amid privacy objections.
+    sources:
+      - title: "Flock Safety — company overview and deployment figures"
+        url: "https://en.wikipedia.org/wiki/Flock_Safety"
+  - quote: "The Supreme Court already recognized this problem with cellphone location data"
+    rating: "True"
+    note: >-
+      Correct. Carpenter v. United States (2018) held 5-4 that obtaining seven
+      days of cell-site location records is a Fourth Amendment search, reasoning
+      that individuals have a reasonable expectation of privacy in the whole of
+      their physical movements.
+    sources:
+      - title: "Supreme Court of the United States — Carpenter v. United States, 585 U.S. 296 (2018)"
+        url: "https://www.supremecourt.gov/opinions/17pdf/16-402_h315.pdf"
+  - quote: "Police obtained Google's historical location data during a robbery investigation"
+    rating: "True"
+    note: >-
+      Accurate. Chatrie v. United States, decided June 29, 2026, arose from a 2019
+      credit union robbery in Midlothian, Virginia and a geofence warrant covering
+      a 150-meter radius. Justice Kagan wrote for the Court; Justices Alito,
+      Thomas, and Barrett dissented in whole or part.
+    sources:
+      - title: "Supreme Court of the United States — Chatrie v. United States, 609 U.S. ___ (2026)"
+        url: "https://www.supremecourt.gov/opinions/25pdf/25-112_0am4.pdf"
+  - quote: "Police no longer necessarily have to decide to follow you before you do something"
+    rating: "True"
+    note: >-
+      This tracks the opinion's own language. The Court noted Location History
+      lets police reconstruct people's comings and goings retrospectively and with
+      no real effort, and rejected the argument that a short window of data escapes
+      the Fourth Amendment.
+    sources:
+      - title: "Supreme Court of the United States — Chatrie v. United States (2026), syllabus"
+        url: "https://www.supremecourt.gov/opinions/25pdf/25-112_0am4.pdf"
+  - quote: "a federal district court recently upheld Norfolk, Virginia's Flock system"
+    rating: "True"
+    note: >-
+      That is Schmidt v. City of Norfolk. In early 2026 the Eastern District of
+      Virginia granted the city summary judgment over its roughly 170 cameras,
+      finding insufficient evidence the network captured enough images to
+      reconstruct the whole of anyone's movements.
+    sources:
+      - title: "Institute for Justice — Hampton Roads residents will appeal Norfolk license plate reader decision"
+        url: "https://ij.org/press-release/hampton-roads-residents-will-appeal-court-decision-upholding-norfolks-license-plate-reader-surveillance/"
+  - quote: "Baltimore once operated an aerial surveillance system"
+    rating: "True"
+    note: >-
+      That is Leaders of a Beautiful Struggle v. Baltimore Police Department, 2
+      F.4th 330 (4th Cir. 2021) (en banc). The AIR program photographed about 90%
+      of the city for roughly 12 daylight hours a day and stored images for 45
+      days; the court held accessing that data was a search.
+    sources:
+      - title: "Justia — Leaders of a Beautiful Struggle v. Baltimore Police Dept., No. 20-1495 (4th Cir. 2021)"
+        url: "https://law.justia.com/cases/federal/appellate-courts/ca4/20-1495/20-1495-2021-06-24.html"
+  - quote: "The Fourth Amendment was written in 1791"
+    rating: "Mostly True"
+    note: >-
+      Close. James Madison introduced what became the Fourth Amendment in 1789 and
+      Congress approved it that September; ratification finished on December 15,
+      1791, when Virginia became the eleventh state to adopt the Bill of Rights.
+    sources:
+      - title: "National Archives — The Bill of Rights (1791)"
+        url: "https://www.archives.gov/milestone-documents/bill-of-rights"
+  - quote: "North Carolina law currently allows ALPR data to be retained for up to"
+    rating: "True"
+    note: >-
+      Accurate. G.S. 20-183.32 bars preserving captured plate data more than 90
+      days, with exceptions for a written preservation request or a search
+      warrant. Preserved data is held about a year unless another request resets
+      the clock.
+    sources:
+      - title: "North Carolina General Assembly — Chapter 20, Article 3D, Automatic License Plate Reader Systems"
+        url: "https://ncleg.gov/EnactedLegislation/Statutes/HTML/ByArticle/Chapter_20/Article_3D.html"
+  - quote: "If you can afford the machine gun"
+    rating: "Context"
+    note: >-
+      Current federal law is narrower than that. The National Firearms Act of 1934
+      taxes and registers machine guns, and 18 U.S.C. 922(o), added by the Hughes
+      Amendment in 1986, bars civilian possession of any made after May 19, 1986,
+      leaving only a frozen pre-1986 pool.
+    sources:
+      - title: "U.S. House, Office of the Law Revision Counsel — 18 U.S.C. 922"
+        url: "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title18-section922&num=0&edition=prelim"
 ---
 
 I've been thinking about Flock cameras and the Fourth Amendment, and the deeper I dig into it, the less comfortable I am with them. Before somebody starts with, **“Your license plate is visible in public, therefore you have no expectation of privacy,”** yes, I know. That's true. It's also completely missing the fucking point.
