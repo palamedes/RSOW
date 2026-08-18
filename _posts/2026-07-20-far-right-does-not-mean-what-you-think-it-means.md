@@ -8,6 +8,77 @@ categories:
 tags:
 description: "\"Hitler was right wing\" is a word game, not a history lesson. The phrase 'far right' is doing double duty — the old European meaning (nationalism, racial hierarchy, dictatorship) versus the modern American meaning (lower taxes, gun rights, limited government). Swap the definitions halfway through and you can 'prove' conservatives are Nazis. Same word, different political tradition."
 excerpt: "People love to post 'Hitler was right wing' and then turn the comments off — because nothing says intellectual confidence like barricading the door so nobody can question you. The trick is that 'far right' means one thing when historians describe the Nazis and something completely different when Americans describe Republicans. Use both meanings in the same argument and hope nobody notices the definition changed halfway through."
+ai_notes:
+  - quote: "they are generally using an old European political definition"
+    rating: "True"
+    note: >-
+      The left-right axis is literally a seating chart. In the French National
+      Assembly of 1789, deputies who backed the king and the old order sat to the
+      president's right and supporters of the revolution to his left. Every later
+      meaning is borrowed from that room.
+    sources:
+      - title: "Left-right political spectrum — origin in the 1789 National Assembly"
+        url: "https://en.wikipedia.org/wiki/Left%E2%80%93right_political_spectrum"
+  - quote: "crushed political opposition"
+    rating: "True"
+    note: >-
+      Accurate, and it happened fast. The Enabling Act of March 23, 1933 let
+      Hitler's cabinet issue laws without the Reichstag, and the Law against the
+      Founding of New Parties on July 14, 1933 made the NSDAP the only legal party
+      in Germany.
+    sources:
+      - title: "USHMM Holocaust Encyclopedia — The Enabling Act"
+        url: "https://encyclopedia.ushmm.org/content/en/article/the-enabling-act"
+      - title: "USHMM Holocaust Encyclopedia — Law against the Founding of New Parties"
+        url: "https://encyclopedia.ushmm.org/content/en/article/law-against-the-founding-of-new-parties"
+  - quote: "abolished independent unions, directed industry"
+    rating: "True"
+    note: >-
+      Accurate on unions. On May 2, 1933, one day after co-opting the May Day
+      holiday, the regime raided and dissolved Germany's free trade unions and
+      replaced them with the state-run German Labor Front.
+    sources:
+      - title: "USHMM Holocaust Encyclopedia — 1933: Key Dates"
+        url: "https://encyclopedia.ushmm.org/content/en/article/1933-key-dates"
+  - quote: "confiscated property, regulated private life"
+    rating: "Needs Context"
+    note: >-
+      True of Jewish and dissident property, which was seized outright. The wider
+      economic picture is less tidy: economist Germa Bel documents that in the
+      mid-1930s the regime sold state-owned firms in steel, banking, shipping, and
+      railways back into private hands, against the era's trend.
+    sources:
+      - title: "Economic History Review — Bel, Against the mainstream: Nazi privatization in 1930s Germany (2010)"
+        url: "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1468-0289.2009.00473.x"
+  - quote: "North Korea calls itself the Democratic People's Republic of Korea"
+    rating: "True"
+    note: >-
+      Accurate. The DPRK adopted that name at its founding on September 9, 1948.
+      Freedom House has for years scored it at the bottom of its global rankings,
+      and its elections offer a single approved candidate per seat.
+    sources:
+      - title: "CIA World Factbook — Korea, North (government and country name)"
+        url: "https://www.cia.gov/the-world-factbook/countries/korea-north/"
+  - quote: "They opposed Marxist international socialism"
+    rating: "True"
+    note: >-
+      Accurate. The Communist Party of Germany was suppressed after the Reichstag
+      fire of February 1933 and its deputies arrested, and the Night of the Long
+      Knives in June 1934 also destroyed the party's own anti-capitalist Strasser
+      wing.
+    sources:
+      - title: "USHMM Holocaust Encyclopedia — 1933: Key Dates"
+        url: "https://encyclopedia.ushmm.org/content/en/article/1933-key-dates"
+  - quote: "one built camps and a one-party police state"
+    rating: "True"
+    note: >-
+      Accurate. Dachau, the first regular Nazi concentration camp, opened outside
+      Munich in March 1933, receiving its first prisoners on March 22, weeks after
+      Hitler took office. It held political prisoners long before it held anyone
+      else.
+    sources:
+      - title: "USHMM Holocaust Encyclopedia — Dachau"
+        url: "https://encyclopedia.ushmm.org/content/en/article/dachau"
 ---
 
 I keep seeing people on the left proudly post some variation of:
