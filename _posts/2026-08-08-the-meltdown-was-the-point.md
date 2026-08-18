@@ -8,6 +8,66 @@ categories:
 tags:
 description: "A viral video of a grown adult melting down during an arrest — screaming to be called 'she' — is easy to laugh at. But the tantrum wasn't a glitch. It was the finished product of a culture that teaches people distress is leverage, fragility is status, and reality is supposed to reorganize itself around their feelings. Then the real world showed up wearing a badge."
 excerpt: "He learned that crying louder gives you power over the room — that the second the tears start, everyone else is supposed to soften up and rearrange reality around his feelings. It worked on teachers, on HR, on social media. Then he met police officers who just needed him to stop causing a scene. The meltdown didn't strengthen his case. It destroyed it."
+ai_notes:
+  - quote: "demanding to be called"
+    rating: "Background"
+    note: >-
+      For scale: the Williams Institute at UCLA estimated in August 2025 that
+      about 2.8 million people aged 13 and older in the United States identify as
+      transgender, roughly 1.0% of that age group, based on CDC survey data.
+    sources:
+      - title: "Williams Institute, UCLA School of Law — Transgender population estimates (2025)"
+        url: "https://williamsinstitute.law.ucla.edu/press/trans-pop-estimates-press-release/"
+  - quote: "It feels like a mental health crisis we've collectively decided to indulge"
+    rating: "Context"
+    note: >-
+      On the clinical question specifically: the DSM-5-TR diagnoses gender
+      dysphoria, defined by clinically significant distress, while stating that
+      gender nonconformity is not itself a mental disorder. The WHO's ICD-11 moved
+      the condition out of its mental-disorders chapter entirely.
+    sources:
+      - title: "American Psychiatric Association — What Is Gender Dysphoria?"
+        url: "https://www.psychiatry.org/patients-families/gender-dysphoria/what-is-gender-dysphoria"
+  - quote: "They weren't there to explore his feelings"
+    rating: "Context"
+    note: >-
+      Pronoun rules for officers do exist, but mostly in custody settings rather
+      than street encounters. California's Transgender Respect, Agency, and
+      Dignity Act, signed September 2020, requires state corrections staff to use
+      an incarcerated person's stated pronouns and honorifics.
+    sources:
+      - title: "California Legislative Information — SB 132 (2020), Penal Code 2605-2606"
+        url: "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=201920200SB132"
+  - quote: "refusing lawful instructions and escalating a public disturbance"
+    rating: "Context"
+    note: >-
+      Every state criminalizes this conduct in some form. In North Carolina,
+      willfully resisting, delaying, or obstructing a public officer performing an
+      official duty is a Class 2 misdemeanor under G.S. 14-223, with felony
+      enhancements if it causes an officer serious injury.
+    sources:
+      - title: "North Carolina General Assembly — G.S. 14-223, Resisting officers"
+        url: "https://www.ncleg.gov/enactedlegislation/statutes/html/bysection/chapter_14/gs_14-223.html"
+  - quote: "He was taught the world splits neatly into victims and oppressors"
+    rating: "Context"
+    note: >-
+      There is research on the incentive the author describes. A 2021 Journal of
+      Personality and Social Psychology paper by Ok and colleagues found that
+      frequent signaling of virtuous victimhood correlated with Dark Triad traits
+      and predicted willingness to extract resources from others.
+    sources:
+      - title: "PubMed — Ok et al., Signaling virtuous victimhood as indicators of Dark Triad personalities (2021)"
+        url: "https://pubmed.ncbi.nlm.nih.gov/32614222/"
+  - quote: "an entire ideological machine convinced him this would work"
+    rating: "Context"
+    note: >-
+      Departments do train for encounters like this one. The Crisis Intervention
+      Team model, built in Memphis in 1988 with the local NAMI chapter and two
+      universities, puts volunteer officers through 40 hours of de-escalation
+      training and has since spread nationally and internationally.
+    sources:
+      - title: "CIT Center, University of Memphis — About CIT"
+        url: "https://cit.memphis.edu/aboutCIT.php"
 ---
 
 You've probably seen the video by now.
