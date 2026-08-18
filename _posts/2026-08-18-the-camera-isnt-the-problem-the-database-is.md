@@ -66,3 +66,25 @@ The constitutional question isn't simply, **“Could a police officer have seen 
 The government of 1791 couldn't do that.
 
 And if it could have, I strongly suspect the Fourth Amendment would have been considerably more specific.
+
+## Addendum:
+
+One last thought, because I know somebody is going to make this argument: **modern technology does not shrink your constitutional rights.**
+
+We hear this all the time with the Second Amendment. “The founders only had muskets. They couldn't have imagined machine guns, AR-15s, drones, aircraft carriers, or modern weaponry.” Maybe not. It doesn't matter. The Second Amendment protects a principle, not a catalog of weapons available in 1791.
+
+The exact same logic applies to the Fourth Amendment.
+
+The founders couldn't imagine nationwide license-plate databases, cell-site tracking, facial recognition, artificial intelligence, or a computer capable of reconstructing months of your movements in seconds. That does not mean those technologies somehow fall outside the constitutional boundary simply because they are new.
+
+**The Constitution doesn't freeze technology in 1791. It freezes the government's boundaries.**
+
+If “arms” still means arms even when technology makes them exponentially more capable, then “searches” still means searches when technology makes government surveillance exponentially more capable.
+
+You don't get to argue that technological advancement expands the government's power while simultaneously narrowing the citizen's protections.
+
+So yes, I believe the Second Amendment means what it says. If you can afford the machine gun (or hell, an aircraft carrier) I don't believe the government should arbitrarily infringe your right to own it.
+
+And by the same principle, I don't believe the government gets to use twenty-first-century technology to quietly erase the protections of the Fourth Amendment.
+
+**Your rights don't become obsolete because the tools got better.**
