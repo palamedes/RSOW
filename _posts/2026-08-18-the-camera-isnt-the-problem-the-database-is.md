@@ -2,7 +2,7 @@
 title: "The Camera Isn't the Problem. The Database Is."
 layout: post
 date: 2026-08-18
-image: /assets/images/2026/the-camera-isnt-the-problem-the-database-is.png
+image: /assets/images/2026/the-camera-isnt-the-problem-the-database-is.jpg
 categories:
 - Rant
 - Political
