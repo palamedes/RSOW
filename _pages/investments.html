@@ -40,7 +40,7 @@ full_width: true
       </div>
 
       <p class="inv-asof" id="inv-asof">
-        <span class="inv-asof-left"><span class="inv-live-dot"></span>Snapshot as of June 27, 2026 · <span id="inv-live-status">prices as of this snapshot · live off</span></span>
+        <span class="inv-asof-left"><span class="inv-live-dot"></span>Snapshot as of August 19, 2026 · <span id="inv-live-status">prices as of this snapshot · live off</span></span>
         <button type="button" class="inv-asof-link" id="inv-observer-open">To the keen observer</button>
       </p>
     </div>
@@ -208,8 +208,8 @@ full_width: true
         <!-- controls -->
         <form class="inv-controls" id="sim-controls" onsubmit="return false;">
           <div class="inv-control">
-            <div class="inv-control-top"><label for="sim-start">Starting value</label><span class="inv-control-val" id="out-start">$21,963</span></div>
-            <input type="range" id="sim-start" min="5000" max="100000" step="100" value="21963">
+            <div class="inv-control-top"><label for="sim-start">Starting value</label><span class="inv-control-val" id="out-start">$24,213</span></div>
+            <input type="range" id="sim-start" min="5000" max="100000" step="100" value="24213">
             <div class="inv-control-hint">Today's Drip Fund balance.</div>
           </div>
           <div class="inv-control">
@@ -345,16 +345,18 @@ full_width: true
         <p class="inv-yt-verdict">The gap between those two bars <em>is</em> your own capital being handed back to you and called income. {{ d.yieldTrap.warning }} <strong>{{ d.yieldTrap.examples }}</strong></p>
       </div>
 
-      <div class="inv-section-head"><h2>Cleanup days</h2><p>Two deliberate restructurings turned a cluttered 19-position grab-bag into a focused 13-position income machine.</p></div>
+      <div class="inv-section-head"><h2>Cleanup days &amp; check-ins</h2><p>Two deliberate restructurings turned a cluttered 19-position grab-bag into a focused 13-position income machine. Every entry since has been the boring kind: add money, confirm DRIP, change nothing.</p></div>
       <div class="inv-timeline">
         {% for day in d.cleanupDays %}
         <div class="inv-tl-item">
           <div class="inv-tl-date">{{ day.date }}</div>
           <div class="inv-tl-title">{{ day.title }} <span style="color:#999;font-weight:400;font-family:'SFMono-Regular',monospace;font-size:0.8rem;">· {{ day.from }} → {{ day.to }} positions</span></div>
           <p class="inv-tl-body">{{ day.summary }}</p>
+          {% if day.sold.size > 0 %}
           <div class="inv-chips" style="margin-bottom:0.45rem;">
             {% for s in day.sold %}<span class="inv-chip sell" title="{{ s.note }}">SELL {{ s.ticker }}</span>{% endfor %}
           </div>
+          {% endif %}
           <div class="inv-chips">
             {% for b in day.bought %}<span class="inv-chip buy" title="{{ b.note }}">BUY {{ b.ticker }}{% if b.shares %} ×{{ b.shares }}{% endif %}{% if b.price %} @${{ b.price }}{% endif %}</span>{% endfor %}
           </div>
@@ -408,12 +410,12 @@ full_width: true
       <button type="button" class="inv-modal-x" data-close aria-label="Close">&times;</button>
       <h3 id="inv-observer-title">To the keen observer 👀</h3>
       <div class="inv-modal-body">
-        <p>You noticed it, didn't you. The fund throws off about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %} a year</strong> in dividends — and I shovel in roughly <strong>$100 a month</strong>, call it <strong>$1,200 a year</strong>. So right now the dividends barely match what I add by hand. “Aha,” you think, “the compounding isn't really doing much yet — he's basically paying himself.”</p>
-        <p>You're sharp to catch it, and you're not wrong about <em>today</em>. But here's what that snapshot misses.</p>
+        <p>You noticed it, didn't you. The fund throws off about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %} a year</strong> in dividends — and I shovel in roughly <strong>$100 a month</strong>, call it <strong>$1,200 a year</strong>. So for most of this account's life, the dividends have merely <em>matched</em> what I add by hand. “Aha,” you think, “the compounding isn't really doing much — he's basically paying himself.”</p>
+        <p>You're sharp to catch it, and for a long while you'd have been right. But look at the date on this snapshot: as of August 2026 the dividends have quietly <strong>passed</strong> my contributions. Here's why that matters more than the size of either number.</p>
         <p><strong>The two lines are on completely different trajectories.</strong> My contributions are flat — a hundred-ish bucks a month — and honestly they'll <em>stop</em> once the mortgage is gone. The dividend income is a curve that bends upward: every dividend buys more shares, those shares pay more dividends, and the companies themselves keep <em>raising</em> their payouts. One line is a straight road; the other is a snowball rolling downhill.</p>
-        <p><strong>When I started, this gap was enormous.</strong> A ~$5,000 seed paying maybe a couple hundred dollars a year, dwarfed by what I was adding. Today the dividends have climbed to about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %}</strong> and all but caught up. That isn't a failure — it's the exact milestone you want: the moment the account starts pulling its own weight.</p>
-        <p><strong>The crossover is the whole point.</strong> Soon the dividends out-earn my contributions, then double them, then make them irrelevant. Stop adding money entirely and the dividend line just keeps climbing on its own.</p>
-        <p>So yes — today it looks like I'm only feeding a piggy bank. Give it a few years, and the piggy bank starts feeding <em>me.</em> <button type="button" class="inv-modal-inline-link" data-goforecast>Watch it happen on the Forecast →</button></p>
+        <p><strong>When I started, this gap was enormous.</strong> A ~$5,000 seed paying maybe a couple hundred dollars a year, dwarfed by what I was adding. Today the dividends have climbed to about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %}</strong> — more than the ~$1,200 I hand it. That isn't a failure, it's the milestone you're actually waiting for: the account has started pulling its own weight, and it did it while I wasn't watching.</p>
+        <p><strong>The crossover is the whole point, and it just happened.</strong> Next the dividends double my contributions, then they make them irrelevant. Stop adding money entirely, today, and the dividend line just keeps climbing on its own — that's the difference between saving and owning something that pays you.</p>
+        <p>So yes — for years it looked like I was only feeding a piggy bank. As of this snapshot, the piggy bank has started feeding <em>me.</em> <button type="button" class="inv-modal-inline-link" data-goforecast>Watch it happen on the Forecast →</button></p>
       </div>
     </div>
   </div>
