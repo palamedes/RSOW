@@ -577,7 +577,7 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 
   // ── Core Three strip ─────────────────────────────────
-  .inv-core3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.8rem; }
+  .inv-core3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 0.8rem; margin-top: 0.8rem; }
   .inv-core3-item {
     background: #fff; border: 1px solid $inv-line; border-radius: 4px;
     padding: 0.8rem 0.9rem; border-top: 3px solid $inv-build;
@@ -586,6 +586,21 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     .inv-core3-bar { height: 6px; background: #eee; border-radius: 3px; margin: 0.5rem 0 0.35rem; overflow: hidden; }
     .inv-core3-bar span { display: block; height: 100%; background: $inv-build; border-radius: 3px; }
     .inv-core3-note { font-size: 0.72rem; color: $inv-faint; }
+    .inv-core3-target { color: $inv-faint; font-size: 0.72rem; }
+    .inv-core3-role { font-size: 0.72rem; color: $inv-muted; line-height: 1.35; margin-bottom: 0.3rem; }
+    &.is-underweight {
+      border-top-color: $inv-monitor;
+      .inv-core3-bar span { background: $inv-monitor; }
+      .inv-core3-note { color: $inv-monitor; font-weight: 700; }
+    }
+  }
+  .inv-queue-status {
+    background: #fdf6e6; border: 1px solid #f0dca8; border-radius: 4px;
+    padding: 0.6rem 0.85rem; margin-top: 0.8rem;
+    font-size: 0.8rem; color: #6a4f0f;
+  }
+  .inv-chip.decision {
+    background: #f3edfd; border-color: #d9cbef; color: #6b46c1;
   }
 
   // ── Comparison (Drip vs IRA) ─────────────────────────
