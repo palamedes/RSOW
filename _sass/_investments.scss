@@ -532,6 +532,50 @@ $inv-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     &.info { background: #eef4fd; border-color: #cfe0f8; color: #1f4f8f; h4 { color: #1f4f8f; } }
   }
 
+  // ── Pending decision (trade decided, not yet settled) ─
+  .inv-pending {
+    background: #fff;
+    border: 1px solid #d9cbef;
+    border-left: 3px solid #6b46c1;
+    border-radius: 4px;
+    padding: 1rem 1.15rem;
+    margin: 1rem 0;
+  }
+  .inv-pending-head {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
+    h3 { margin: 0; font-size: 1rem; color: $inv-ink; }
+  }
+  .inv-pending-tag {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 700; color: #fff; background: #6b46c1;
+    padding: 0.15rem 0.45rem; border-radius: 3px;
+  }
+  .inv-pending-date { font-family: $inv-mono; font-size: 0.75rem; color: $inv-faint; margin-left: auto; }
+  .inv-pending-status {
+    margin: 0.55rem 0 0; font-size: 0.83rem; color: $inv-muted; font-style: italic;
+  }
+  .inv-pending-why {
+    margin: 0.8rem 0 0; padding-left: 1.2rem;
+    font-size: 0.85rem; color: $inv-body;
+    li { margin-bottom: 0.4rem; }
+    strong { color: $inv-ink; }
+  }
+  .inv-pending-tradeoff {
+    margin-top: 0.8rem; padding: 0.7rem 0.85rem;
+    background: #faf7ff; border: 1px solid #e6dcf7; border-radius: 3px;
+    font-size: 0.82rem; color: #4c3583;
+  }
+  .inv-pending-rule { margin: 0.7rem 0 0; font-size: 0.76rem; color: $inv-faint; }
+  .inv-exit-flag {
+    font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em;
+    font-weight: 700; color: #6b46c1; background: #f3edfd;
+    border: 1px solid #d9cbef; border-radius: 3px;
+    padding: 0.12rem 0.4rem; white-space: nowrap;
+  }
+  @media (max-width: 720px) {
+    .inv-pending-date { margin-left: 0; width: 100%; }
+  }
+
   // ── Core Three strip ─────────────────────────────────
   .inv-core3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 0.8rem; }
   .inv-core3-item {
