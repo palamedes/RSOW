@@ -75,8 +75,8 @@
       "why": "Not a dividend-income play and doesn't fit the strategy cleanly, but the gain has held at about +34% for two straight quarters and it keeps paying monthly.",
       "risk": "Watch. Do not add. Consider selling if the gain erodes below $200 or a better use of capital emerges. It has now survived three quarterly reviews on inertia — decide it or sell it." },
     { "ticker": "XYLD", "name": "Global X S&P 500 Covered Call ETF",      "tier": "hold",    "role": "Covered call (S&P 500)", "monthly": true, "value": 1052.15, "pct": 4.35, "costBasis": 1041.47, "gain": 10.68, "gainPct": 1.02, "annualIncome": 116, "targetYield": "~11%", "shares": 25.268, "price": 41.64, "avgCost": 41.22, "todayPct": -0.03, "todayDollar": -0.26,
-      "why": "The strongest covered-call base (S&P 500). Nudged into the green for the first time. Hold, do not add.",
-      "risk": "" },
+      "why": "The strongest covered-call base (S&P 500) — but redundant next to JEPI, which does the same job with a less punishing structure. Sold on Aug 20, 2026 while the gain was still only $10.68 and the exit was effectively free. Proceeds go to SCHD.",
+      "risk": "Sale decided and in flight — settlement pending, so it still appears here as held." },
     { "ticker": "KO",   "name": "Coca-Cola",                               "tier": "hold",    "role": "Dividend aristocrat", "monthly": false, "value": 1025.27, "pct": 4.23, "costBasis": 595.27, "gain": 430.00, "gainPct": 72.23, "annualIncome": 29, "targetYield": "~2.8%", "shares": 11.411, "price": 89.85, "avgCost": 52.17, "todayPct": 1.15, "todayDollar": 11.75,
       "why": "60+ year dividend grower. Never cuts. Boring perfection — and it just crossed $1,000 on nothing but price growth and reinvested dividends.",
       "risk": "" },
@@ -95,6 +95,25 @@
   ],
 
   "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 3.72 },
+
+  "pending": {
+    "date": "2026-08-20",
+    "ticker": "XYLD",
+    "into": "SCHD",
+    "amount": 1052.15,
+    "title": "Selling XYLD, proceeds to SCHD",
+    "status": "Decided and in flight. The sale has to settle before the cash can buy SCHD, so for a couple of days this page still shows XYLD as a held position — the numbers below are accurate as of the last snapshot, not as of the decision.",
+    "why": [
+      { "t": "It was redundant", "b": "JEPI already covers S&P 500 covered calls. Two funds were being paid to do one job, and XYLD was the weaker of the two." },
+      { "t": "It has the worst structure in the category", "b": "XYLD writes at-the-money calls on essentially the entire portfolio, which caps upside harder than any alternative. JEPI writes further out through ELNs and keeps more of a rally." },
+      { "t": "It was the QYLG lesson, again", "b": "Same Global X mechanism, same bargain: a headline yield funded by giving away the upside. That lesson already cost money once. Holding XYLD was paying tuition twice." },
+      { "t": "The exit was free, and wouldn't stay that way", "b": "The position was up $10.68 — roughly $1.60 of tax. Every month held, the gain grows and the exit gets more expensive. Cheap exits have a shelf life." },
+      { "t": "Wrong phase of the plan", "b": "Eleven years from retirement with every dividend reinvested, capped upside is the wrong trade. Current income matters at 65, not at 54." },
+      { "t": "SCHD is the better home for the money", "b": "It cuts covered-call concentration from ~28% to ~24%, and SCHD pays qualified dividends where XYLD did not — a meaningful difference in a taxable account." }
+    ],
+    "tradeoff": "This deliberately lowers estimated income by about $79/yr — XYLD paid roughly $116, the same money in SCHD pays about $37. That is the point rather than a side effect: trading current yield for total return and a lower tax bill. It does narrow the dividends-vs-contributions crossover back to a hair above the ~$1,200/yr that gets contributed by hand.",
+    "rule": "Consistent with the standing rules: quality over quantity, don't chase yield, and check SEC yield against distribution yield before holding anything."
+  },
 
   "coreThree": {
     "note": "All new monthly contributions split between these three — together about 39% of the account. SCHD is the clear leader; the summer's contributions went to SCHD and JEPQ, which leaves JEPI as the underweighted one to favor next.",

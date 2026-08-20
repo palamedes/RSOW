@@ -82,6 +82,24 @@ full_width: true
         <p>{{ d.meta.oneJob }}</p>
       </div>
 
+      {% if d.pending %}
+      <div class="inv-pending">
+        <div class="inv-pending-head">
+          <span class="inv-pending-tag">Decision in flight</span>
+          <h3>{{ d.pending.title }}</h3>
+          <span class="inv-pending-date">{{ d.pending.date }}</span>
+        </div>
+        <p class="inv-pending-status">{{ d.pending.status }}</p>
+        <ol class="inv-pending-why">
+          {% for r in d.pending.why %}
+          <li><strong>{{ r.t }}.</strong> {{ r.b }}</li>
+          {% endfor %}
+        </ol>
+        <div class="inv-pending-tradeoff"><strong>What it costs:</strong> {{ d.pending.tradeoff }}</div>
+        <p class="inv-pending-rule">{{ d.pending.rule }}</p>
+      </div>
+      {% endif %}
+
       <!-- charts: switchable views -->
       <div class="inv-chartswitch">
         <div class="inv-cs-tabs" role="tablist" aria-label="Chart view">
@@ -158,6 +176,7 @@ full_width: true
               </div>
               <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.45rem;">
                 <span class="inv-tier-badge">{{ tk | capitalize }}</span>
+                {% if d.pending and d.pending.ticker == h.ticker %}<span class="inv-exit-flag" title="{{ d.pending.status }}">Selling → {{ d.pending.into }}</span>{% endif %}
                 <div class="inv-live" data-live="{{ h.ticker }}"><span class="inv-live-flat">snapshot</span></div>
               </div>
             </div>
