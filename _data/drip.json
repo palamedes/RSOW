@@ -28,7 +28,8 @@
 
   "strategyRules": [
     { "title": "DRIP is always on", "body": "Every dividend reinvests automatically. Never turn it off." },
-    { "title": "New money to the Core Three", "body": "All new contributions go to JEPI, JEPQ, SCHD only. No impulse buys." },
+    { "title": "New money to the Core Five", "body": "All new contributions go to SCHD, JEPI, JEPQ, SCHY and O only. No impulse buys, and no new ticker without a written reason." },
+    { "title": "Fund one target at a time", "body": "The whole contribution goes to the single most underweight Core Five member until it reaches its target weight, then moves to the next in the queue. Splitting a small monthly contribution five ways means nothing ever reaches a size that matters." },
     { "title": "Do not chase yield", "body": "If a yield looks too good to be true (15%+), it probably is." },
     { "title": "Quality over quantity", "body": "Fewer, stronger positions beats 20 tiny ones." },
     { "title": "Redirect mortgage cash flow", "body": "When the mortgage is paid off, redirect a significant portion of that freed cash flow here immediately." },
@@ -73,7 +74,7 @@
       "risk": "" },
     { "ticker": "QQQH", "name": "Neos Nasdaq 100 Hedged ETF",             "tier": "monitor", "role": "Hedged Nasdaq (off-strategy)", "monthly": true, "value": 1191.37, "pct": 4.93, "costBasis": 891.52, "gain": 299.85, "gainPct": 33.63, "annualIncome": 113, "targetYield": "~9.5%", "shares": 21.808, "price": 54.63, "avgCost": 40.88, "todayPct": -0.26, "todayDollar": -3.06,
       "why": "Not a dividend-income play and doesn't fit the strategy cleanly, but the gain has held around +34% for two straight quarters and it keeps paying monthly.",
-      "risk": "Watch. Do not add. Now the only genuinely off-strategy holding left, and the obvious next candidate if the XYLD logic gets applied consistently. Consider selling if the gain erodes below $200 or a better use of capital emerges." },
+      "risk": "Watch. Do not add. Considered for promotion to the Core Five on Aug 20, 2026 and rejected: QQQH is Nasdaq-100 plus option income, which is what JEPQ already does — promoting it would rebuild the exact redundancy the XYLD sale had just removed, one week later. It is also an options-income fund rather than a dividend-growth fund, which the core requires. Still the only genuinely off-strategy holding, and still undecided. Consider selling if the gain erodes below $200 or a better use of capital emerges." },
     { "ticker": "KO",   "name": "Coca-Cola",                               "tier": "hold",    "role": "Dividend aristocrat", "monthly": false, "value": 1038.57, "pct": 4.30, "costBasis": 595.27, "gain": 443.30, "gainPct": 74.47, "annualIncome": 29, "targetYield": "~2.8%", "shares": 11.411, "price": 91.015, "avgCost": 52.17, "todayPct": 0.73, "todayDollar": 7.58,
       "why": "60+ year dividend grower. Never cuts. Boring perfection — a $1,000 position built on nothing but price growth and reinvested dividends.",
       "risk": "" },
@@ -81,10 +82,10 @@
       "why": "Recovered well, dividend growing again. Up +207% on a $310 cost basis. Next quarterly dividend lands in September, which is when the share count finally moves again.",
       "risk": "" },
     { "ticker": "O",    "name": "Realty Income Corp",                      "tier": "build",   "role": "Monthly income + real estate", "monthly": true, "value": 839.15, "pct": 3.47, "costBasis": 890.12, "gain": -50.97, "gainPct": -5.73, "annualIncome": 42, "targetYield": "~5%", "shares": 13.282, "price": 63.18, "avgCost": 67.02, "todayPct": 0.36, "todayDollar": 3.05,
-      "why": "'The Monthly Dividend Company.' 30+ years of dividend increases. Monthly payer. Real estate diversification. The deepest red in the account at -5.7%, which is exactly when a monthly DRIP earns its keep — twelve cheaper buys a year.",
+      "why": "'The Monthly Dividend Company.' 30+ years of dividend increases. Monthly payer. Promoted into the Core Five on Aug 20, 2026, which finally resolves a contradiction: O was tagged Tier 1 Build while the contribution rule said 'JEPI, JEPQ, SCHD only', so it sat in the top tier and never received a dollar. It is also the only non-equity asset class in the core. At -5.7% it is the cheaper of the two queue targets.",
       "risk": "" },
-    { "ticker": "SCHY", "name": "Schwab International Dividend Equity ETF","tier": "hold",    "role": "International dividend", "monthly": false, "value": 713.29, "pct": 2.95, "costBasis": 711.34, "gain": 1.95, "gainPct": 0.27, "annualIncome": 24, "targetYield": "~3.4%", "shares": 21.353, "price": 33.405, "avgCost": 33.31, "todayPct": -0.14, "todayDollar": -0.97,
-      "why": "International diversification — the global cousin of SCHD. Adds non-US exposure to an otherwise all-domestic portfolio. Essentially flat since March; it is here for the diversification, not the performance.",
+    { "ticker": "SCHY", "name": "Schwab International Dividend Equity ETF","tier": "build",    "role": "International dividend", "monthly": false, "value": 713.29, "pct": 2.95, "costBasis": 711.34, "gain": 1.95, "gainPct": 0.27, "annualIncome": 24, "targetYield": "~3.4%", "shares": 21.353, "price": 33.405, "avgCost": 33.31, "todayPct": -0.14, "todayDollar": -0.97,
+      "why": "International diversification — the global cousin of SCHD, and screened the same way: 10+ consecutive years of dividend payments plus quality and dividend-growth filters. Promoted into the Core Five on Aug 20, 2026 as the fix for a portfolio that was otherwise ~97% US by any diversified measure. It had been starved since March, which is why it is first in the funding queue. Expect lumpier payouts than SCHD — foreign companies often pay semi-annually and size the dividend to earnings rather than growing it smoothly.",
       "risk": "" },
     { "ticker": "NLY",  "name": "Annaly Capital Management",               "tier": "hold",    "role": "Mortgage REIT (watch)", "monthly": false, "value": 669.88, "pct": 2.77, "costBasis": 539.26, "gain": 130.62, "gainPct": 24.22, "annualIncome": 90, "targetYield": "13.48%", "shares": 28.373, "price": 23.61, "avgCost": 19.01, "todayPct": -0.55, "todayDollar": -3.69,
       "why": "Mortgage REIT, acceptable risk at the current small size, yields well. Punches far above its weight on income — 2.8% of the account producing 7.4% of the dividends, which is precisely the pattern that deserves scrutiny rather than admiration.",
@@ -93,17 +94,26 @@
 
   "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 3.91 },
 
-  "coreThree": {
-    "note": "All new monthly contributions split between these three — now about 44% of the account, up from 39% once the XYLD proceeds landed in SCHD. SCHD has overtaken BP as the single largest holding for the first time. JEPI is still the smallest of the three and the one to favor next.",
+  "core": {
+    "name": "The Core Five",
+    "note": "The Core Three were three slices of one basket — all US, all large cap, all moving together. On Aug 20, 2026 SCHY and O were promoted to fix that: SCHY is the only holding that adds genuinely diversified non-US exposure, and O is the only non-equity asset class in the core. All five are dividend funds, and each one does something the other four don't.",
+    "funding": {
+      "rule": "One target at a time. The whole contribution goes to the most underweight member until it reaches its target weight, then the next in the queue. When the queue empties, resume even splits.",
+      "queue": ["SCHY", "O"],
+      "status": "Decided Aug 20, 2026. Funding begins with the September 2026 contribution — nothing has been bought yet, and the weights below are as of the Aug 20 snapshot.",
+      "why": "Splitting a $250 contribution five ways is $50 a position. At that rate SCHY needs nearly three years to matter. Concentrating on one target at a time gets it there in about seven months, and the portfolio ends up in the same place either way."
+    },
     "members": [
-      { "ticker": "SCHD", "value": 4794.28, "pct": 19.84, "note": "Largest holding in the account" },
-      { "ticker": "JEPQ", "value": 2916.14, "pct": 12.06, "note": "Biggest income producer" },
-      { "ticker": "JEPI", "value": 2844.44, "pct": 11.77, "note": "Still the smallest — favor next" }
+      { "ticker": "SCHD", "value": 4794.28, "pct": 19.84, "target": 20, "role": "US dividend growth — the value-tilted compounder, deliberately light on tech.", "note": "At target" },
+      { "ticker": "JEPQ", "value": 2916.14, "pct": 12.06, "target": 12, "role": "Nasdaq-100 income — growth and tech exposure with option premium on top.", "note": "At target" },
+      { "ticker": "JEPI", "value": 2844.44, "pct": 11.77, "target": 12, "role": "S&P 500 income — low-volatility large caps plus option premium. The steady one.", "note": "At target" },
+      { "ticker": "O",    "value": 839.15,  "pct": 3.47,  "target": 6,  "role": "Real estate income — monthly payer, 30+ years of increases, the only non-equity asset class here.", "note": "Queue #2 — about $610 short" },
+      { "ticker": "SCHY", "value": 713.29,  "pct": 2.95,  "target": 10, "role": "International dividend — the fix for a portfolio that is otherwise ~97% US.", "note": "Queue #1 — about $1,700 short" }
     ],
     "contribution": {
       "minimum": 200,
       "target": "300-500",
-      "split": "Roughly equal thirds into JEPI, JEPQ, SCHD; any extra to whichever is most underweighted.",
+      "split": "One target at a time: the entire contribution goes to the most underweight Core Five member until it hits its target weight, then the next in the queue.",
       "tip": "Fidelity allows dollar-based fractional purchases — type '$67' instead of a share count."
     }
   },
@@ -179,6 +189,17 @@
       ],
       "taxNote": "The gain was $10.68 — under $3 of tax whatever the rate. That was the entire argument for moving now: a cheap exit has a shelf life, and every month held makes it dearer. No wash-sale issue, since those rules apply to losses and this was a gain.",
       "result": "Positions 13 → 12. SCHD overtakes BP as the largest holding (19.8% vs 16.8%). Covered-call products drop from three to two, ~28% → ~24% of the account. Estimated income falls $1,299 → $1,217/yr — the deliberate cost of the trade, paid for better total return and less tax drag."
+    },
+    {
+      "date": "2026-08-20",
+      "title": "The Core Three becomes the Core Five",
+      "summary": "A strategy change, not a trade — nothing was bought or sold. The Core Three turned out not to be three baskets but three slices of one: SCHD, JEPI and JEPQ are all US, all large cap, and all fall together. Diversified non-US exposure was 2.95% of the account against a global market weight nearer 37%, and there was no non-equity asset class in the core at all. SCHY and O were promoted to fix both gaps.",
+      "from": 12, "to": 12,
+      "sold": [],
+      "bought": [],
+      "decisionOnly": true,
+      "taxNote": "QQQH was considered for promotion and rejected. It is Nasdaq-100 plus option income — which is what JEPQ already does — so promoting it would have rebuilt the exact redundancy the XYLD sale removed a week earlier. It is also an options-income fund, not a dividend-growth fund. Its fate stays open.",
+      "result": "Target weights set: SCHD 20%, JEPQ 12%, JEPI 12%, SCHY 10%, O 6% — 60% of the account in the core, against 50.1% today. SCHY and O are the underweight pair and form the funding queue, roughly $1,700 and $610 short. Contributions go to one target at a time rather than splitting five ways. Funding begins with the September 2026 contribution; nothing has been bought yet."
     }
   ],
 
@@ -211,7 +232,8 @@
   "planForward": {
     "monthly": [
       "Deposit the contribution ($200 minimum, $300–500 target).",
-      "Buy JEPI, JEPQ, SCHD in equal thirds (or weight toward whichever is most underweighted — currently JEPI).",
+      "Send the whole contribution to the current queue target — SCHY first, then O. Do not split it five ways.",
+      "When a target reaches its weight, move to the next in the queue. When the queue is empty, resume even splits across the Core Five.",
       "Confirm DRIP is active on all positions.",
       "Do nothing else."
     ],
@@ -219,7 +241,7 @@
       "Review all positions against their tier.",
       "Check NLY for dividend sustainability news.",
       "Check BP for any dividend policy changes — and whether the ~16% weight is still tolerable.",
-      "Evaluate whether QQQH still makes sense to hold. It has now survived three reviews unchanged.",
+      "Decide QQQH. It has survived four reviews now and was rejected for the core — either sell it or write down why it stays.",
       "Confirm no cash is accumulating in the money market unnecessarily."
     ],
     "mortgagePayoff": [

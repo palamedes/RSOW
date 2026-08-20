@@ -131,23 +131,29 @@ full_width: true
         </div>
       </div>
 
-      <!-- Core Three -->
+      <!-- Core Five -->
       <div class="inv-section-head">
-        <h2>The Core Three</h2>
-        <p>{{ d.coreThree.note }}</p>
+        <h2>{{ d.core.name }}</h2>
+        <p>{{ d.core.note }}</p>
       </div>
+      {% if d.core.funding.status %}
+      <div class="inv-queue-status">⏳ {{ d.core.funding.status }}</div>
+      {% endif %}
       <div class="inv-core3">
-        {% for m in d.coreThree.members %}
-        <div class="inv-core3-item">
+        {% for m in d.core.members %}
+        {% assign fill = m.pct | times: 100.0 | divided_by: m.target | at_most: 100 | round: 1 %}
+        <div class="inv-core3-item{% if fill < 90 %} is-underweight{% endif %}">
           <div class="inv-core3-tick">{{ m.ticker }}</div>
-          <div class="inv-core3-val">${% include inv-num.html n=m.value %} · {{ m.pct }}%</div>
-          <div class="inv-core3-bar"><span style="width:{{ m.pct | times: 5 }}%"></span></div>
+          <div class="inv-core3-val">${% include inv-num.html n=m.value %} · {{ m.pct }}% <span class="inv-core3-target">/ {{ m.target }}% target</span></div>
+          <div class="inv-core3-bar"><span style="width:{{ fill }}%"></span></div>
+          <div class="inv-core3-role">{{ m.role }}</div>
           <div class="inv-core3-note">{% if m.note != "" %}{{ m.note }}{% else %}&nbsp;{% endif %}</div>
         </div>
         {% endfor %}
       </div>
       <div class="inv-callout info" style="margin-top:0.9rem;">
-        <p><strong>Contribution rule:</strong> {{ d.coreThree.contribution.split }} Minimum ${{ d.coreThree.contribution.minimum }}/mo, targeting ${{ d.coreThree.contribution.target }}. <em>{{ d.coreThree.contribution.tip }}</em></p>
+        <p><strong>Contribution rule:</strong> {{ d.core.contribution.split }} Minimum ${{ d.core.contribution.minimum }}/mo, targeting ${{ d.core.contribution.target }}. <em>{{ d.core.contribution.tip }}</em></p>
+        <p style="margin-top:0.5rem;"><strong>Why one at a time:</strong> {{ d.core.funding.why }}</p>
       </div>
 
       <!-- Holdings by tier -->
@@ -234,7 +240,7 @@ full_width: true
           <div class="inv-control">
             <div class="inv-control-top"><label for="sim-contrib">Monthly contribution</label><span class="inv-control-val" id="out-contrib">$300</span></div>
             <input type="range" id="sim-contrib" min="0" max="1500" step="25" value="300">
-            <div class="inv-control-hint">New cash added every month (split across the Core Three).</div>
+            <div class="inv-control-hint">New cash added every month (directed to the Core Five funding queue).</div>
           </div>
           <div class="inv-control">
             <div class="inv-control-top"><label for="sim-return">Total annual return</label><span class="inv-control-val" id="out-return">9.0%</span></div>
@@ -335,7 +341,7 @@ full_width: true
       </div>
       <p style="color:#444;max-width:75ch;">{{ d.meta.oneJob }}</p>
 
-      <div class="inv-section-head"><h2>The rules that never change</h2><p>Nine commandments. They exist mostly to stop the investor from doing something clever.</p></div>
+      <div class="inv-section-head"><h2>The rules that never change</h2><p>Ten commandments. They exist mostly to stop the investor from doing something clever.</p></div>
       <div class="inv-rules-wrap">
         <div class="inv-rules">
           {% for rule in d.strategyRules %}
@@ -376,9 +382,12 @@ full_width: true
             {% for s in day.sold %}<span class="inv-chip sell" title="{{ s.note }}">SELL {{ s.ticker }}</span>{% endfor %}
           </div>
           {% endif %}
+          {% if day.bought.size > 0 %}
           <div class="inv-chips">
             {% for b in day.bought %}<span class="inv-chip buy" title="{{ b.note }}">BUY {{ b.ticker }}{% if b.shares %} ×{{ b.shares }}{% endif %}{% if b.price %} @${{ b.price }}{% endif %}</span>{% endfor %}
           </div>
+          {% endif %}
+          {% if day.decisionOnly %}<div class="inv-chips"><span class="inv-chip decision">DECISION ONLY — no trade</span></div>{% endif %}
           {% if day.taxNote %}<div class="inv-tl-tax">🧾 {{ day.taxNote }}</div>{% endif %}
           <div class="inv-tl-result">{{ day.result }}</div>
         </div>
