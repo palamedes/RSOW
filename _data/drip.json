@@ -5,19 +5,19 @@
     "tagline": "Every dividend reinvests. More shares, more dividends, more shares. Slow, steady, relentless compounding. Water wears down stone.",
     "oneJob": "A taxable brokerage account with one job: build a growing stream of passive dividend income to supplement retirement. Not the primary retirement vehicle (that's a 401k and Roth IRA) — this is the income supplement: money that shows up every month whether you work or not.",
     "broker": "Fidelity",
-    "lastUpdated": "2026-08-19",
+    "lastUpdated": "2026-08-20",
     "investorAge": 54,
     "targetRetirementAge": 65,
     "yearsToRetirement": 11,
     "strategyType": "Dividend Income / Passive Income Building",
     "riskTolerance": "Moderate — sustainable, growing income over maximum yield",
-    "totalValue": 24213,
-    "totalCostBasis": 17044,
-    "totalGainLoss": 7166,
-    "totalGainLossPct": 42.0,
-    "estAnnualIncome": 1299,
-    "blendedYield": 5.4,
-    "positionCount": 13,
+    "totalValue": 24171,
+    "totalCostBasis": 17055,
+    "totalGainLoss": 7112,
+    "totalGainLossPct": 41.7,
+    "estAnnualIncome": 1217,
+    "blendedYield": 5.0,
+    "positionCount": 12,
     "return2025": 19.2,
     "context": [
       "Home mortgage is being aggressively paid down — the retirement goal includes zero housing costs.",
@@ -53,74 +53,52 @@
   },
 
   "holdings": [
-    { "ticker": "BP",   "name": "BP PLC ADR",                              "tier": "hold",    "role": "Energy income (concentration risk)", "monthly": false, "value": 3980.90, "pct": 16.44, "costBasis": 2043.80, "gain": 1937.10, "gainPct": 94.77, "annualIncome": 167, "targetYield": "~4.2%", "shares": 90.137, "price": 44.165, "avgCost": 22.67, "todayPct": 1.73, "todayDollar": 68.05,
-      "why": "Yield around 4.2%. Held for income and energy exposure. The share price ran up roughly 19% since June, which pushed BP back up to about 16.4% of the account — not because anything was added, but because it outran everything else. Watch for dividend policy changes.",
-      "risk": "Back to being the largest single position at ~16.4%, up from 15.0% in June (still below April's 20.3%). Do not add; the only lever is letting other positions grow. The unrealized gain is now +$1,937, which makes selling even more tax-expensive than it was. BP cut its dividend in 2020." },
-    { "ticker": "SCHD", "name": "Schwab US Dividend Equity ETF",          "tier": "build",   "role": "Dividend growth — the long-game compounder", "monthly": false, "value": 3771.37, "pct": 15.58, "costBasis": 3345.19, "gain": 426.18, "gainPct": 12.74, "annualIncome": 132, "targetYield": "~3.5%", "shares": 106.959, "price": 35.26, "avgCost": 31.28, "todayPct": 2.17, "todayDollar": 80.21,
-      "why": "Lower yield now but dividend and price grow consistently. The long-game compounder. Most tax-efficient of the Core Three (qualified dividends). Crossed 100 shares this summer and is now up +12.7% — the April mega-buy has fully vindicated itself.",
+    { "ticker": "SCHD", "name": "Schwab US Dividend Equity ETF",          "tier": "build",   "role": "Dividend growth — the long-game compounder", "monthly": false, "value": 4794.28, "pct": 19.84, "costBasis": 4397.18, "gain": 397.10, "gainPct": 9.03, "annualIncome": 168, "targetYield": "~3.5%", "shares": 136.96, "price": 35.005, "avgCost": 32.11, "todayPct": -0.23, "todayDollar": -10.90,
+      "why": "Lower yield now but dividend and price grow consistently. The long-game compounder. Most tax-efficient holding in the account (qualified dividends). The XYLD proceeds landed here on Aug 20, adding 30 shares and pushing SCHD past BP — for the first time, the position the strategy actually believes in is the biggest thing in the account.",
       "risk": "" },
-    { "ticker": "JEPQ", "name": "JPMorgan Nasdaq Equity Premium Income ETF","tier": "build", "role": "Income + growth", "monthly": true, "value": 2925.91, "pct": 12.08, "costBasis": 2807.49, "gain": 118.42, "gainPct": 4.21, "annualIncome": 292, "targetYield": "~9-11%", "shares": 48.814, "price": 59.94, "avgCost": 57.51, "todayPct": 0.01, "todayDollar": 0.48,
-      "why": "Same covered-call strategy as JEPI but Nasdaq / tech-heavy. Higher yield with more growth upside. Its SEC yield matches its distribution yield — the income is real. Took about half the summer contributions and has moved back ahead of JEPI. Still the single biggest income producer in the account at ~$292/yr.",
+    { "ticker": "BP",   "name": "BP PLC ADR",                              "tier": "hold",    "role": "Energy income (concentration risk)", "monthly": false, "value": 4058.41, "pct": 16.79, "costBasis": 2043.80, "gain": 2014.61, "gainPct": 98.57, "annualIncome": 170, "targetYield": "~4.2%", "shares": 90.137, "price": 45.025, "avgCost": 22.67, "todayPct": 2.96, "todayDollar": 116.72,
+      "why": "Yield around 4.2%. Held for income and energy exposure. Still climbing — 16.4% to 16.8% in a day — but it is no longer the largest position, because SCHD grew past it. That is the dilution plan finally working, and it worked by addition rather than subtraction. Watch for dividend policy changes.",
+      "risk": "Now the second-largest position at ~16.8%, and still drifting upward on price alone. Do not add. The unrealized gain has crossed +$2,000, which makes selling progressively more tax-expensive. BP cut its dividend in 2020." },
+    { "ticker": "JEPQ", "name": "JPMorgan Nasdaq Equity Premium Income ETF","tier": "build", "role": "Income + growth", "monthly": true, "value": 2916.14, "pct": 12.06, "costBasis": 2807.49, "gain": 108.65, "gainPct": 3.87, "annualIncome": 291, "targetYield": "~9-11%", "shares": 48.814, "price": 59.74, "avgCost": 57.51, "todayPct": -0.22, "todayDollar": -6.35,
+      "why": "Same covered-call strategy as JEPI but Nasdaq / tech-heavy. Higher yield with more growth upside. Its SEC yield matches its distribution yield — the income is real. Now the single biggest income producer in the account at ~$291/yr, roughly a quarter of everything the fund pays.",
       "risk": "" },
-    { "ticker": "JEPI", "name": "JPMorgan Equity Premium Income ETF",      "tier": "build",   "role": "Income + stability", "monthly": true, "value": 2858.20, "pct": 11.80, "costBasis": 2851.46, "gain": 6.74, "gainPct": 0.23, "annualIncome": 214, "targetYield": "~7-8%", "shares": 49.165, "price": 58.135, "avgCost": 58.00, "todayPct": 0.52, "todayDollar": 14.99,
-      "why": "S&P 500 covered-call ETF. Monthly dividends, quality management, sustainable yield, low volatility. Finally back above cost basis after months underwater — and it collected distributions the whole time it was red. Got no new money this summer, so it is now the smallest of the Core Three and the one to favor next.",
+    { "ticker": "JEPI", "name": "JPMorgan Equity Premium Income ETF",      "tier": "build",   "role": "Income + stability", "monthly": true, "value": 2844.44, "pct": 11.77, "costBasis": 2851.46, "gain": -7.02, "gainPct": -0.25, "annualIncome": 213, "targetYield": "~7-8%", "shares": 49.165, "price": 57.855, "avgCost": 58.00, "todayPct": -0.19, "todayDollar": -5.17,
+      "why": "S&P 500 covered-call ETF. Monthly dividends, quality management, sustainable yield, low volatility. Dipped back below cost basis on a soft day — it has hovered within a percent of break-even for months while paying 7-8% in distributions the entire time, which is the whole point of the product. Still the smallest of the Core Three and the one to favor next.",
       "risk": "" },
-    { "ticker": "AAPL", "name": "Apple Inc",                               "tier": "hold",    "role": "Legacy growth winner", "monthly": false, "value": 2613.20, "pct": 10.79, "costBasis": 414.07, "gain": 2199.13, "gainPct": 531.10, "annualIncome": 10, "targetYield": "~0.4%", "shares": 8.187, "price": 319.19, "avgCost": 50.58, "todayPct": 2.95, "todayDollar": 74.99,
-      "why": "Held for a huge unrealized gain (+$2,199, +531%). Cleared $300/share this summer and is now worth more than six times what it cost. Hold, do not add. Let DRIP work.",
-      "risk": "Tax impact of selling is significant given the +531% unrealized gain — consider capital gains before ever trimming." },
-    { "ticker": "MTB",  "name": "M&T Bank",                                "tier": "hold",    "role": "Regional bank", "monthly": false, "value": 1595.37, "pct": 6.59, "costBasis": 602.93, "gain": 992.44, "gainPct": 164.60, "annualIncome": 46, "targetYield": "~2.9%", "shares": 6.42, "price": 248.50, "avgCost": 93.91, "todayPct": -1.20, "todayDollar": -19.26,
-      "why": "Solid regional bank with a growing dividend. Big total gain (+165%) and within a few dollars of a $1,000 unrealized profit on a $603 cost basis.",
+    { "ticker": "AAPL", "name": "Apple Inc",                               "tier": "hold",    "role": "Legacy growth winner", "monthly": false, "value": 2592.57, "pct": 10.73, "costBasis": 414.07, "gain": 2178.50, "gainPct": 526.12, "annualIncome": 10, "targetYield": "~0.4%", "shares": 8.187, "price": 316.67, "avgCost": 50.58, "todayPct": -0.06, "todayDollar": -1.31,
+      "why": "Held for a huge unrealized gain (+$2,179, +526%). Worth more than six times what it cost, on a cost basis of $414. Hold, do not add. Let DRIP work.",
+      "risk": "Tax impact of selling is significant given the +526% unrealized gain — consider capital gains before ever trimming." },
+    { "ticker": "MTB",  "name": "M&T Bank",                                "tier": "hold",    "role": "Regional bank", "monthly": false, "value": 1558.10, "pct": 6.45, "costBasis": 602.93, "gain": 955.17, "gainPct": 158.42, "annualIncome": 45, "targetYield": "~2.9%", "shares": 6.42, "price": 242.695, "avgCost": 93.91, "todayPct": -0.76, "todayDollar": -11.91,
+      "why": "Solid regional bank with a growing dividend. Up +158% on a $603 cost basis.",
       "risk": "" },
-    { "ticker": "QQQH", "name": "Neos Nasdaq 100 Hedged ETF",             "tier": "monitor", "role": "Hedged Nasdaq (off-strategy)", "monthly": true, "value": 1196.05, "pct": 4.94, "costBasis": 891.52, "gain": 304.53, "gainPct": 34.15, "annualIncome": 113, "targetYield": "~9.5%", "shares": 21.808, "price": 54.845, "avgCost": 40.88, "todayPct": 0.19, "todayDollar": 2.28,
-      "why": "Not a dividend-income play and doesn't fit the strategy cleanly, but the gain has held at about +34% for two straight quarters and it keeps paying monthly.",
-      "risk": "Watch. Do not add. Consider selling if the gain erodes below $200 or a better use of capital emerges. It has now survived three quarterly reviews on inertia — decide it or sell it." },
-    { "ticker": "XYLD", "name": "Global X S&P 500 Covered Call ETF",      "tier": "hold",    "role": "Covered call (S&P 500)", "monthly": true, "value": 1052.15, "pct": 4.35, "costBasis": 1041.47, "gain": 10.68, "gainPct": 1.02, "annualIncome": 116, "targetYield": "~11%", "shares": 25.268, "price": 41.64, "avgCost": 41.22, "todayPct": -0.03, "todayDollar": -0.26,
-      "why": "The strongest covered-call base (S&P 500) — but redundant next to JEPI, which does the same job with a less punishing structure. Sold on Aug 20, 2026 while the gain was still only $10.68 and the exit was effectively free. Proceeds go to SCHD.",
-      "risk": "Sale decided and in flight — settlement pending, so it still appears here as held." },
-    { "ticker": "KO",   "name": "Coca-Cola",                               "tier": "hold",    "role": "Dividend aristocrat", "monthly": false, "value": 1025.27, "pct": 4.23, "costBasis": 595.27, "gain": 430.00, "gainPct": 72.23, "annualIncome": 29, "targetYield": "~2.8%", "shares": 11.411, "price": 89.85, "avgCost": 52.17, "todayPct": 1.15, "todayDollar": 11.75,
-      "why": "60+ year dividend grower. Never cuts. Boring perfection — and it just crossed $1,000 on nothing but price growth and reinvested dividends.",
+    { "ticker": "QQQH", "name": "Neos Nasdaq 100 Hedged ETF",             "tier": "monitor", "role": "Hedged Nasdaq (off-strategy)", "monthly": true, "value": 1191.37, "pct": 4.93, "costBasis": 891.52, "gain": 299.85, "gainPct": 33.63, "annualIncome": 113, "targetYield": "~9.5%", "shares": 21.808, "price": 54.63, "avgCost": 40.88, "todayPct": -0.26, "todayDollar": -3.06,
+      "why": "Not a dividend-income play and doesn't fit the strategy cleanly, but the gain has held around +34% for two straight quarters and it keeps paying monthly.",
+      "risk": "Watch. Do not add. Now the only genuinely off-strategy holding left, and the obvious next candidate if the XYLD logic gets applied consistently. Consider selling if the gain erodes below $200 or a better use of capital emerges." },
+    { "ticker": "KO",   "name": "Coca-Cola",                               "tier": "hold",    "role": "Dividend aristocrat", "monthly": false, "value": 1038.57, "pct": 4.30, "costBasis": 595.27, "gain": 443.30, "gainPct": 74.47, "annualIncome": 29, "targetYield": "~2.8%", "shares": 11.411, "price": 91.015, "avgCost": 52.17, "todayPct": 0.73, "todayDollar": 7.58,
+      "why": "60+ year dividend grower. Never cuts. Boring perfection — a $1,000 position built on nothing but price growth and reinvested dividends.",
       "risk": "" },
-    { "ticker": "WFC",  "name": "Wells Fargo",                             "tier": "hold",    "role": "Recovered bank", "monthly": false, "value": 964.62, "pct": 3.98, "costBasis": 310.07, "gain": 654.55, "gainPct": 211.09, "annualIncome": 23, "targetYield": "~2.3%", "shares": 11.162, "price": 86.42, "avgCost": 27.78, "todayPct": -1.13, "todayDollar": -10.94,
-      "why": "Recovered well, dividend growing again. Massive total gain (+211%) on a $310 cost basis. Share count is flat since June simply because the next quarterly dividend doesn't land until September.",
+    { "ticker": "WFC",  "name": "Wells Fargo",                             "tier": "hold",    "role": "Recovered bank", "monthly": false, "value": 950.61, "pct": 3.93, "costBasis": 310.07, "gain": 640.54, "gainPct": 206.57, "annualIncome": 22, "targetYield": "~2.3%", "shares": 11.162, "price": 85.165, "avgCost": 27.78, "todayPct": -0.91, "todayDollar": -8.66,
+      "why": "Recovered well, dividend growing again. Up +207% on a $310 cost basis. Next quarterly dividend lands in September, which is when the share count finally moves again.",
       "risk": "" },
-    { "ticker": "O",    "name": "Realty Income Corp",                      "tier": "build",   "role": "Monthly income + real estate", "monthly": true, "value": 835.70, "pct": 3.45, "costBasis": 890.12, "gain": -54.42, "gainPct": -6.12, "annualIncome": 42, "targetYield": "~5%", "shares": 13.282, "price": 62.92, "avgCost": 67.02, "todayPct": 1.14, "todayDollar": 9.43,
-      "why": "'The Monthly Dividend Company.' 30+ years of dividend increases. Monthly payer. Real estate diversification. Now the only red position in the account — which is exactly when a monthly DRIP earns its keep, buying cheaper shares twelve times a year.",
+    { "ticker": "O",    "name": "Realty Income Corp",                      "tier": "build",   "role": "Monthly income + real estate", "monthly": true, "value": 839.15, "pct": 3.47, "costBasis": 890.12, "gain": -50.97, "gainPct": -5.73, "annualIncome": 42, "targetYield": "~5%", "shares": 13.282, "price": 63.18, "avgCost": 67.02, "todayPct": 0.36, "todayDollar": 3.05,
+      "why": "'The Monthly Dividend Company.' 30+ years of dividend increases. Monthly payer. Real estate diversification. The deepest red in the account at -5.7%, which is exactly when a monthly DRIP earns its keep — twelve cheaper buys a year.",
       "risk": "" },
-    { "ticker": "SCHY", "name": "Schwab International Dividend Equity ETF","tier": "hold",    "role": "International dividend", "monthly": false, "value": 714.15, "pct": 2.95, "costBasis": 711.34, "gain": 2.81, "gainPct": 0.39, "annualIncome": 24, "targetYield": "~3.4%", "shares": 21.353, "price": 33.445, "avgCost": 33.31, "todayPct": 1.07, "todayDollar": 7.58,
-      "why": "International diversification — the global cousin of SCHD. Adds non-US exposure to an otherwise all-domestic portfolio. Finally back to break-even after five months of going essentially nowhere.",
+    { "ticker": "SCHY", "name": "Schwab International Dividend Equity ETF","tier": "hold",    "role": "International dividend", "monthly": false, "value": 713.29, "pct": 2.95, "costBasis": 711.34, "gain": 1.95, "gainPct": 0.27, "annualIncome": 24, "targetYield": "~3.4%", "shares": 21.353, "price": 33.405, "avgCost": 33.31, "todayPct": -0.14, "todayDollar": -0.97,
+      "why": "International diversification — the global cousin of SCHD. Adds non-US exposure to an otherwise all-domestic portfolio. Essentially flat since March; it is here for the diversification, not the performance.",
       "risk": "" },
-    { "ticker": "NLY",  "name": "Annaly Capital Management",               "tier": "hold",    "role": "Mortgage REIT (watch)", "monthly": false, "value": 676.69, "pct": 2.79, "costBasis": 539.26, "gain": 137.43, "gainPct": 25.48, "annualIncome": 91, "targetYield": "13.48%", "shares": 28.373, "price": 23.85, "avgCost": 19.01, "todayPct": 1.92, "todayDollar": 12.76,
-      "why": "Mortgage REIT, acceptable risk at the current small size, yields well. Nearly a full extra share added by DRIP since June, with no dividend cut so far.",
-      "risk": "Mortgage REITs are interest-rate sensitive and have historically cut dividends. The high distribution yield warrants skepticism. Position is small (~$677). Watch Fed policy quarterly." }
+    { "ticker": "NLY",  "name": "Annaly Capital Management",               "tier": "hold",    "role": "Mortgage REIT (watch)", "monthly": false, "value": 669.88, "pct": 2.77, "costBasis": 539.26, "gain": 130.62, "gainPct": 24.22, "annualIncome": 90, "targetYield": "13.48%", "shares": 28.373, "price": 23.61, "avgCost": 19.01, "todayPct": -0.55, "todayDollar": -3.69,
+      "why": "Mortgage REIT, acceptable risk at the current small size, yields well. Punches far above its weight on income — 2.8% of the account producing 7.4% of the dividends, which is precisely the pattern that deserves scrutiny rather than admiration.",
+      "risk": "Mortgage REITs are interest-rate sensitive and have historically cut dividends. The 13.48% distribution yield has still never been checked against its SEC yield — the exact test the standing rules require and the one that caught QYLG. Position is small (~$670). Watch Fed policy quarterly." }
   ],
 
-  "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 3.72 },
-
-  "pending": {
-    "date": "2026-08-20",
-    "ticker": "XYLD",
-    "into": "SCHD",
-    "amount": 1052.15,
-    "title": "Selling XYLD, proceeds to SCHD",
-    "status": "Decided and in flight. The sale has to settle before the cash can buy SCHD, so for a couple of days this page still shows XYLD as a held position — the numbers below are accurate as of the last snapshot, not as of the decision.",
-    "why": [
-      { "t": "It was redundant", "b": "JEPI already covers S&P 500 covered calls. Two funds were being paid to do one job, and XYLD was the weaker of the two." },
-      { "t": "It has the worst structure in the category", "b": "XYLD writes at-the-money calls on essentially the entire portfolio, which caps upside harder than any alternative. JEPI writes further out through ELNs and keeps more of a rally." },
-      { "t": "It was the QYLG lesson, again", "b": "Same Global X mechanism, same bargain: a headline yield funded by giving away the upside. That lesson already cost money once. Holding XYLD was paying tuition twice." },
-      { "t": "The exit was free, and wouldn't stay that way", "b": "The position was up $10.68 — roughly $1.60 of tax. Every month held, the gain grows and the exit gets more expensive. Cheap exits have a shelf life." },
-      { "t": "Wrong phase of the plan", "b": "Eleven years from retirement with every dividend reinvested, capped upside is the wrong trade. Current income matters at 65, not at 54." },
-      { "t": "SCHD is the better home for the money", "b": "It cuts covered-call concentration from ~28% to ~24%, and SCHD pays qualified dividends where XYLD did not — a meaningful difference in a taxable account." }
-    ],
-    "tradeoff": "This deliberately lowers estimated income by about $79/yr — XYLD paid roughly $116, the same money in SCHD pays about $37. That is the point rather than a side effect: trading current yield for total return and a lower tax bill. It does narrow the dividends-vs-contributions crossover back to a hair above the ~$1,200/yr that gets contributed by hand.",
-    "rule": "Consistent with the standing rules: quality over quantity, don't chase yield, and check SEC yield against distribution yield before holding anything."
-  },
+  "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 3.91 },
 
   "coreThree": {
-    "note": "All new monthly contributions split between these three — together about 39% of the account. SCHD is the clear leader; the summer's contributions went to SCHD and JEPQ, which leaves JEPI as the underweighted one to favor next.",
+    "note": "All new monthly contributions split between these three — now about 44% of the account, up from 39% once the XYLD proceeds landed in SCHD. SCHD has overtaken BP as the single largest holding for the first time. JEPI is still the smallest of the three and the one to favor next.",
     "members": [
-      { "ticker": "SCHD", "value": 3771.37, "pct": 15.58, "note": "Core Three leader" },
-      { "ticker": "JEPQ", "value": 2925.91, "pct": 12.08, "note": "Biggest income producer" },
-      { "ticker": "JEPI", "value": 2858.20, "pct": 11.80, "note": "Now the smallest — favor next" }
+      { "ticker": "SCHD", "value": 4794.28, "pct": 19.84, "note": "Largest holding in the account" },
+      { "ticker": "JEPQ", "value": 2916.14, "pct": 12.06, "note": "Biggest income producer" },
+      { "ticker": "JEPI", "value": 2844.44, "pct": 11.77, "note": "Still the smallest — favor next" }
     ],
     "contribution": {
       "minimum": 200,
@@ -131,9 +109,9 @@
   },
 
   "concentrationNotes": [
-    { "title": "BP concentration (moved the wrong way)", "body": "BP is back to about 16.4% of the portfolio, up from ~15.0% in June, though still below April's ~20.3% peak. Nothing was added — the price simply rose roughly 19% and outgrew the rest of the account. The plan doesn't change: do not add, keep growing everything else, and let time dilute it. The +$1,937 unrealized gain makes selling tax-expensive. BP cut its dividend in 2020." },
-    { "title": "Covered-call concentration", "body": "The portfolio holds JEPI, JEPQ, and XYLD — three covered-call products (together about 28% of the account). In a strong bull market, covered calls cap upside. An accepted tradeoff for consistent monthly income." },
-    { "title": "NLY interest-rate risk", "body": "Mortgage REITs are rate-sensitive and have historically cut dividends. NLY's distribution yield is high enough to warrant skepticism. Position is small (~$677). Watch Fed policy quarterly." }
+    { "title": "BP concentration (no longer the largest)", "body": "BP is ~16.8% of the portfolio and still drifting up on price alone, but as of Aug 20 it is no longer the biggest position — SCHD passed it. That is the dilution plan working, and note how it worked: not by BP shrinking, but by the thing new money buys finally outgrowing it. Do not add. The unrealized gain has crossed +$2,000, so selling is progressively more tax-expensive. BP cut its dividend in 2020." },
+    { "title": "Covered-call concentration (improved)", "body": "Down to JEPI and JEPQ — two covered-call products, about 24% of the account, from three products and ~28% before XYLD was sold. In a strong bull market, covered calls still cap upside. An accepted tradeoff for consistent monthly income, now taken in a smaller dose." },
+    { "title": "NLY interest-rate risk", "body": "Mortgage REITs are rate-sensitive and have historically cut dividends. NLY is 2.8% of the account but produces 7.4% of the income — a ratio that argues for scrutiny, not comfort. Its 13.48% distribution yield has still never been checked against its SEC yield, which is the standing rule that caught QYLG. Position is small (~$670). Watch Fed policy quarterly." }
   ],
 
   "cleanupDays": [
@@ -187,6 +165,20 @@
         { "ticker": "JEPQ", "shares": null, "price": null, "note": "Cost basis $2,547 → $2,807. Shares 44.5 → 48.8." }
       ],
       "result": "Portfolio value $21,963 → $24,213. Unrealized gain $5,521 → $7,166 (+42.0%). Estimated income $1,191 → $1,299/yr. Twelve of thirteen positions now green — only O is still red. Money market drained to $3.72, exactly as the rules require."
+    },
+    {
+      "date": "2026-08-20",
+      "title": "XYLD sold — SCHD takes the lead",
+      "summary": "Decided and executed the same day; the sale and the repurchase both cleared faster than expected. $1,052 moved out of XYLD and into 30 more shares of SCHD at about $35.07. The first position sold purely on structure rather than performance — XYLD was up, and was sold anyway.",
+      "from": 13, "to": 12,
+      "sold": [
+        { "ticker": "XYLD", "note": "Redundant with JEPI, and the worse instrument: at-the-money calls on essentially the whole portfolio cap upside harder than JEPI's further-out ELNs. The QYLG lesson, a second time." }
+      ],
+      "bought": [
+        { "ticker": "SCHD", "shares": 30.001, "price": 35.07, "note": "The entire XYLD proceeds. Pushed SCHD past BP into the largest position in the account." }
+      ],
+      "taxNote": "The gain was $10.68 — under $3 of tax whatever the rate. That was the entire argument for moving now: a cheap exit has a shelf life, and every month held makes it dearer. No wash-sale issue, since those rules apply to losses and this was a gain.",
+      "result": "Positions 13 → 12. SCHD overtakes BP as the largest holding (19.8% vs 16.8%). Covered-call products drop from three to two, ~28% → ~24% of the account. Estimated income falls $1,299 → $1,217/yr — the deliberate cost of the trade, paid for better total return and less tax drag."
     }
   ],
 
@@ -201,7 +193,8 @@
     { "ticker": "SLRC", "reason": "BDC, similar risk profile to PSEC. Exited Mar 2, 2026." },
     { "ticker": "QYLD", "reason": "Largest covered-call position; sacrificed the most growth, capped upside. Proceeds moved to JEPQ and SCHY. Exited Mar 2, 2026." },
     { "ticker": "QYLG", "reason": "The SEC-yield lesson. 19.44% distribution vs 0.32% SEC yield — most of the 'income' was return of capital. Underwater ~$128; sold at a loss that offset the PEY gain. Exited Apr 2, 2026." },
-    { "ticker": "PEY",  "reason": "Redundant once SCHD was established as a Core Three position. ~$131 gain offset the QYLG loss. Exited Apr 2, 2026." }
+    { "ticker": "PEY",  "reason": "Redundant once SCHD was established as a Core Three position. ~$131 gain offset the QYLG loss. Exited Apr 2, 2026." },
+    { "ticker": "XYLD", "reason": "Redundant with JEPI, which does S&P 500 covered calls with a less punishing structure — XYLD wrote at-the-money calls on essentially the whole portfolio. The QYLG lesson a second time. Sold at a $10.68 gain, while the exit was still effectively free. Proceeds to SCHD. Exited Aug 20, 2026." }
   ],
 
   "projections": {
