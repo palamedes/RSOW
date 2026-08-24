@@ -8,6 +8,94 @@ categories:
 tags:
 description: "I keep hoping flat earthers are just trolls, because that's the easy version. The Earth is an oblate spheroid — we settled this a very long time ago. So this isn't an argument about the shape of the planet. It's an honest walk backward: from an innocent problem of scale, past all the evidence, to the exact moment ignorance stops being ignorance and becomes a choice not to know."
 excerpt: "I really do hope they're trolls, because trolling has a motive I can hold in my hand. The problem is I don't think all of them are joking. 'You're wrong' isn't an explanation, though, so I tried to work backward and figure out how a person actually gets here. Most don't start at stupid. They start at ignorant — at a problem of scale, an ant that thinks the car is flat — and then, somewhere after the evidence keeps landing, it curdles into something with a security system."
+ai_notes:
+  - quote: "water always finds its level"
+    rating: "Background"
+    note: >-
+      This slogan traces to Samuel Rowbotham's 1838 Bedford Level experiment on a
+      six-mile stretch of the Old Bedford River. In 1870 naturalist Alfred Russel
+      Wallace repeated it with proper controls for atmospheric refraction and
+      measured the curvature Rowbotham had missed.
+    sources:
+      - title: "Bedford Level Experiment (1838 and 1870 observations)"
+        url: "https://en.wikipedia.org/wiki/Bedford_Level_experiment"
+  - quote: "We nailed this down a very, very long time ago"
+    rating: "True"
+    note: >-
+      Accurate. Earth is an oblate spheroid: NASA lists an equatorial diameter of
+      12,756 km against a polar diameter of 12,714 km, a flattening of about
+      1/298. The bulge comes from rotation, not from anything controversial.
+    sources:
+      - title: "NASA NSSDCA — Earth Fact Sheet"
+        url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+  - quote: "a ball 8,000 miles across"
+    rating: "Mostly True"
+    note: >-
+      Close enough as a round number. Earth's mean diameter is about 7,918 miles
+      (12,742 km), roughly 7,926 miles at the equator and 7,900 miles pole to
+      pole.
+    sources:
+      - title: "NASA NSSDCA — Earth Fact Sheet"
+        url: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+  - quote: "watch the horizon visibly bend around your sneakers"
+    rating: "Context"
+    note: >-
+      The geometry is on the author's side here. From an eye height of about six
+      feet the horizon sits only around three miles away, and the surface drops
+      roughly eight inches over the first mile, which is well inside what heat
+      haze and refraction can hide.
+    sources:
+      - title: "Horizon — distance to the horizon and geometrical formulas"
+        url: "https://en.wikipedia.org/wiki/Horizon"
+  - quote: "Shadows measured the circumference of the Earth before Rome was Rome"
+    rating: "Needs Context"
+    note: >-
+      The experiment is real, the timeline is loose. Eratosthenes compared noon
+      shadows at Alexandria and Syene around 240 BCE and got 250,000 stadia,
+      within a few percent of the modern 40,008 km. Rome by then was already a
+      major republic, fresh off the First Punic War.
+    sources:
+      - title: "Britannica — Eratosthenes"
+        url: "https://www.britannica.com/biography/Eratosthenes"
+  - quote: "Ships vanish hull-first over the horizon"
+    rating: "True"
+    note: >-
+      Accurate, and old. Aristotle listed it in De Caelo around 350 BCE alongside
+      the round shadow Earth casts on the Moon during a lunar eclipse and the way
+      the visible stars change as you travel north or south.
+    sources:
+      - title: "Internet Classics Archive — Aristotle, On the Heavens, Book II"
+        url: "http://classics.mit.edu/Aristotle/heavens.2.ii.html"
+  - quote: "Nobody accidentally flies into the ice wall"
+    rating: "Background"
+    note: >-
+      The ice wall comes from Rowbotham's 1865 model, which put a flat disc
+      centered on the North Pole and ringed by a wall of ice. Antarctica has been
+      circumnavigated and continuously occupied since; 12 nations signed the
+      Antarctic Treaty in 1959 and it now has well over 50 parties.
+    sources:
+      - title: "U.S. Department of State — The Antarctic Treaty (1959)"
+        url: "https://www.state.gov/antarctic-treaty/"
+  - quote: "Satellites work. GPS works"
+    rating: "True"
+    note: >-
+      The U.S. Space Force flies 31 operational GPS satellites in six orbital
+      planes at about 12,550 miles altitude. The arrangement exists so at least
+      four are visible from any point on a sphere, and the math it runs on assumes
+      exactly that shape.
+    sources:
+      - title: "GPS.gov — Space Segment"
+        url: "https://www.gps.gov/space-segment"
+  - quote: "Some are lonely and love finally belonging"
+    rating: "Context"
+    note: >-
+      A 2018 YouGov survey of 8,215 U.S. adults found 84% say Earth is round and
+      2% say it is flat, with the rest unsure or doubting. Among the flat-Earth
+      respondents, 52% described themselves as very religious against 20% of
+      Americans overall.
+    sources:
+      - title: "YouGov — Most flat earthers consider themselves very religious (2018)"
+        url: "https://today.yougov.com/society/articles/20510-most-flat-earthers-consider-themselves-religious"
 ---
 
 I hope they're trolls.

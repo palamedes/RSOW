@@ -40,7 +40,7 @@ full_width: true
       </div>
 
       <p class="inv-asof" id="inv-asof">
-        <span class="inv-asof-left"><span class="inv-live-dot"></span>Snapshot as of June 27, 2026 · <span id="inv-live-status">prices as of this snapshot · live off</span></span>
+        <span class="inv-asof-left"><span class="inv-live-dot"></span>Snapshot as of August 20, 2026 · <span id="inv-live-status">prices as of this snapshot · live off</span></span>
         <button type="button" class="inv-asof-link" id="inv-observer-open">To the keen observer</button>
       </p>
     </div>
@@ -82,6 +82,24 @@ full_width: true
         <p>{{ d.meta.oneJob }}</p>
       </div>
 
+      {% if d.pending %}
+      <div class="inv-pending">
+        <div class="inv-pending-head">
+          <span class="inv-pending-tag">Decision in flight</span>
+          <h3>{{ d.pending.title }}</h3>
+          <span class="inv-pending-date">{{ d.pending.date }}</span>
+        </div>
+        <p class="inv-pending-status">{{ d.pending.status }}</p>
+        <ol class="inv-pending-why">
+          {% for r in d.pending.why %}
+          <li><strong>{{ r.t }}.</strong> {{ r.b }}</li>
+          {% endfor %}
+        </ol>
+        <div class="inv-pending-tradeoff"><strong>What it costs:</strong> {{ d.pending.tradeoff }}</div>
+        <p class="inv-pending-rule">{{ d.pending.rule }}</p>
+      </div>
+      {% endif %}
+
       <!-- charts: switchable views -->
       <div class="inv-chartswitch">
         <div class="inv-cs-tabs" role="tablist" aria-label="Chart view">
@@ -113,29 +131,35 @@ full_width: true
         </div>
       </div>
 
-      <!-- Core Three -->
+      <!-- Core Five -->
       <div class="inv-section-head">
-        <h2>The Core Three</h2>
-        <p>{{ d.coreThree.note }}</p>
+        <h2>{{ d.core.name }}</h2>
+        <p>{{ d.core.note }}</p>
       </div>
+      {% if d.core.funding.status %}
+      <div class="inv-queue-status">⏳ {{ d.core.funding.status }}</div>
+      {% endif %}
       <div class="inv-core3">
-        {% for m in d.coreThree.members %}
-        <div class="inv-core3-item">
+        {% for m in d.core.members %}
+        {% assign fill = m.pct | times: 100.0 | divided_by: m.target | at_most: 100 | round: 1 %}
+        <div class="inv-core3-item{% if fill < 90 %} is-underweight{% endif %}">
           <div class="inv-core3-tick">{{ m.ticker }}</div>
-          <div class="inv-core3-val">${% include inv-num.html n=m.value %} · {{ m.pct }}%</div>
-          <div class="inv-core3-bar"><span style="width:{{ m.pct | times: 5 }}%"></span></div>
+          <div class="inv-core3-val">${% include inv-num.html n=m.value %} · {{ m.pct }}% <span class="inv-core3-target">/ {{ m.target }}% target</span></div>
+          <div class="inv-core3-bar"><span style="width:{{ fill }}%"></span></div>
+          <div class="inv-core3-role">{{ m.role }}</div>
           <div class="inv-core3-note">{% if m.note != "" %}{{ m.note }}{% else %}&nbsp;{% endif %}</div>
         </div>
         {% endfor %}
       </div>
       <div class="inv-callout info" style="margin-top:0.9rem;">
-        <p><strong>Contribution rule:</strong> {{ d.coreThree.contribution.split }} Minimum ${{ d.coreThree.contribution.minimum }}/mo, targeting ${{ d.coreThree.contribution.target }}. <em>{{ d.coreThree.contribution.tip }}</em></p>
+        <p><strong>Contribution rule:</strong> {{ d.core.contribution.split }} Minimum ${{ d.core.contribution.minimum }}/mo, targeting ${{ d.core.contribution.target }}. <em>{{ d.core.contribution.tip }}</em></p>
+        <p style="margin-top:0.5rem;"><strong>Why one at a time:</strong> {{ d.core.funding.why }}</p>
       </div>
 
       <!-- Holdings by tier -->
       <div class="inv-section-head">
         <h2>Every position, on its own sheet</h2>
-        <p>Thirteen holdings, sorted into three tiers: <strong>Build</strong> (new money goes here), <strong>Hold</strong> (let it DRIP), and <strong>Monitor</strong> (watch, maybe trim).</p>
+        <p>Twelve holdings, sorted into three tiers: <strong>Build</strong> (new money goes here), <strong>Hold</strong> (let it DRIP), and <strong>Monitor</strong> (watch, maybe trim).</p>
       </div>
 
       {% for tk in tierOrder %}
@@ -158,6 +182,7 @@ full_width: true
               </div>
               <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.45rem;">
                 <span class="inv-tier-badge">{{ tk | capitalize }}</span>
+                {% if d.pending and d.pending.ticker == h.ticker %}<span class="inv-exit-flag" title="{{ d.pending.status }}">Selling → {{ d.pending.into }}</span>{% endif %}
                 <div class="inv-live" data-live="{{ h.ticker }}"><span class="inv-live-flat">snapshot</span></div>
               </div>
             </div>
@@ -208,14 +233,14 @@ full_width: true
         <!-- controls -->
         <form class="inv-controls" id="sim-controls" onsubmit="return false;">
           <div class="inv-control">
-            <div class="inv-control-top"><label for="sim-start">Starting value</label><span class="inv-control-val" id="out-start">$21,963</span></div>
-            <input type="range" id="sim-start" min="5000" max="100000" step="100" value="21963">
+            <div class="inv-control-top"><label for="sim-start">Starting value</label><span class="inv-control-val" id="out-start">$24,171</span></div>
+            <input type="range" id="sim-start" min="5000" max="100000" step="100" value="24171">
             <div class="inv-control-hint">Today's Drip Fund balance.</div>
           </div>
           <div class="inv-control">
             <div class="inv-control-top"><label for="sim-contrib">Monthly contribution</label><span class="inv-control-val" id="out-contrib">$300</span></div>
             <input type="range" id="sim-contrib" min="0" max="1500" step="25" value="300">
-            <div class="inv-control-hint">New cash added every month (split across the Core Three).</div>
+            <div class="inv-control-hint">New cash added every month (directed to the Core Five funding queue).</div>
           </div>
           <div class="inv-control">
             <div class="inv-control-top"><label for="sim-return">Total annual return</label><span class="inv-control-val" id="out-return">9.0%</span></div>
@@ -316,7 +341,7 @@ full_width: true
       </div>
       <p style="color:#444;max-width:75ch;">{{ d.meta.oneJob }}</p>
 
-      <div class="inv-section-head"><h2>The rules that never change</h2><p>Nine commandments. They exist mostly to stop the investor from doing something clever.</p></div>
+      <div class="inv-section-head"><h2>The rules that never change</h2><p>Ten commandments. They exist mostly to stop the investor from doing something clever.</p></div>
       <div class="inv-rules-wrap">
         <div class="inv-rules">
           {% for rule in d.strategyRules %}
@@ -345,19 +370,24 @@ full_width: true
         <p class="inv-yt-verdict">The gap between those two bars <em>is</em> your own capital being handed back to you and called income. {{ d.yieldTrap.warning }} <strong>{{ d.yieldTrap.examples }}</strong></p>
       </div>
 
-      <div class="inv-section-head"><h2>Cleanup days</h2><p>Two deliberate restructurings turned a cluttered 19-position grab-bag into a focused 13-position income machine.</p></div>
+      <div class="inv-section-head"><h2>Cleanup days &amp; check-ins</h2><p>Every decision this account has made, newest first — three deliberate restructurings that turned a cluttered 19-position grab-bag into a focused 12-position income machine, plus the quiet months in between.</p></div>
       <div class="inv-timeline">
-        {% for day in d.cleanupDays %}
+        {% for day in d.cleanupDays reversed %}
         <div class="inv-tl-item">
           <div class="inv-tl-date">{{ day.date }}</div>
           <div class="inv-tl-title">{{ day.title }} <span style="color:#999;font-weight:400;font-family:'SFMono-Regular',monospace;font-size:0.8rem;">· {{ day.from }} → {{ day.to }} positions</span></div>
           <p class="inv-tl-body">{{ day.summary }}</p>
+          {% if day.sold.size > 0 %}
           <div class="inv-chips" style="margin-bottom:0.45rem;">
             {% for s in day.sold %}<span class="inv-chip sell" title="{{ s.note }}">SELL {{ s.ticker }}</span>{% endfor %}
           </div>
+          {% endif %}
+          {% if day.bought.size > 0 %}
           <div class="inv-chips">
             {% for b in day.bought %}<span class="inv-chip buy" title="{{ b.note }}">BUY {{ b.ticker }}{% if b.shares %} ×{{ b.shares }}{% endif %}{% if b.price %} @${{ b.price }}{% endif %}</span>{% endfor %}
           </div>
+          {% endif %}
+          {% if day.decisionOnly %}<div class="inv-chips"><span class="inv-chip decision">DECISION ONLY — no trade</span></div>{% endif %}
           {% if day.taxNote %}<div class="inv-tl-tax">🧾 {{ day.taxNote }}</div>{% endif %}
           <div class="inv-tl-result">{{ day.result }}</div>
         </div>
@@ -408,12 +438,12 @@ full_width: true
       <button type="button" class="inv-modal-x" data-close aria-label="Close">&times;</button>
       <h3 id="inv-observer-title">To the keen observer 👀</h3>
       <div class="inv-modal-body">
-        <p>You noticed it, didn't you. The fund throws off about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %} a year</strong> in dividends — and I shovel in roughly <strong>$100 a month</strong>, call it <strong>$1,200 a year</strong>. So right now the dividends barely match what I add by hand. “Aha,” you think, “the compounding isn't really doing much yet — he's basically paying himself.”</p>
-        <p>You're sharp to catch it, and you're not wrong about <em>today</em>. But here's what that snapshot misses.</p>
+        <p>You noticed it, didn't you. The fund throws off about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %} a year</strong> in dividends — and I shovel in roughly <strong>$100 a month</strong>, call it <strong>$1,200 a year</strong>. So for most of this account's life, the dividends have merely <em>matched</em> what I add by hand. “Aha,” you think, “the compounding isn't really doing much — he's basically paying himself.”</p>
+        <p>You're sharp to catch it, and for a long while you'd have been right. But look at the date on this snapshot: as of August 2026 the dividends have quietly <strong>passed</strong> my contributions. Here's why that matters more than the size of either number.</p>
         <p><strong>The two lines are on completely different trajectories.</strong> My contributions are flat — a hundred-ish bucks a month — and honestly they'll <em>stop</em> once the mortgage is gone. The dividend income is a curve that bends upward: every dividend buys more shares, those shares pay more dividends, and the companies themselves keep <em>raising</em> their payouts. One line is a straight road; the other is a snowball rolling downhill.</p>
-        <p><strong>When I started, this gap was enormous.</strong> A ~$5,000 seed paying maybe a couple hundred dollars a year, dwarfed by what I was adding. Today the dividends have climbed to about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %}</strong> and all but caught up. That isn't a failure — it's the exact milestone you want: the moment the account starts pulling its own weight.</p>
-        <p><strong>The crossover is the whole point.</strong> Soon the dividends out-earn my contributions, then double them, then make them irrelevant. Stop adding money entirely and the dividend line just keeps climbing on its own.</p>
-        <p>So yes — today it looks like I'm only feeding a piggy bank. Give it a few years, and the piggy bank starts feeding <em>me.</em> <button type="button" class="inv-modal-inline-link" data-goforecast>Watch it happen on the Forecast →</button></p>
+        <p><strong>When I started, this gap was enormous.</strong> A ~$5,000 seed paying maybe a couple hundred dollars a year, dwarfed by what I was adding. Today the dividends sit at about <strong>${% include inv-num.html n=d.meta.estAnnualIncome %}</strong> — still ahead of the ~$1,200 I hand it, though only just. Selling XYLD in August deliberately gave back about $82 of annual income in exchange for better total return and a smaller tax bill, which narrowed the gap to a sliver. I'd rather own the better portfolio and win the race by an inch.</p>
+        <p><strong>The crossover is the whole point, and it just happened.</strong> Next the dividends double my contributions, then they make them irrelevant. Stop adding money entirely, today, and the dividend line just keeps climbing on its own — that's the difference between saving and owning something that pays you.</p>
+        <p>So yes — for years it looked like I was only feeding a piggy bank. As of this snapshot, the piggy bank has started feeding <em>me.</em> <button type="button" class="inv-modal-inline-link" data-goforecast>Watch it happen on the Forecast →</button></p>
       </div>
     </div>
   </div>

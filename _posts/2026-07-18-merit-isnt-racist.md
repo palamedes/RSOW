@@ -8,6 +8,89 @@ categories:
 tags:
 description: "DEI is marketed as fairness while it abandons the most basic principle of fairness there is: judge the individual, not the category. Intentions don't change the act — if you hire or reject someone because of the color of their skin, that's racism, no matter how much corporate jargon you wrap around it. Merit isn't racist. Standards aren't racist. Racism is racist."
 excerpt: "DEI is racism with a marketing department — that's the part nobody is supposed to say out loud. We're told judging people by skin color is evil, unless the people doing the judging have good intentions and put 'equity' in a PowerPoint. But intentions don't change the act. You don't defeat racism by changing which race gets discriminated against. You defeat it by refusing to discriminate."
+ai_notes:
+  - quote: "put \"equity\" in a PowerPoint"
+    rating: "Context"
+    note: >-
+      Title VII of the Civil Rights Act of 1964 bars employment discrimination
+      because of race, with no exception for good intentions. Section 703(j) goes
+      further and states that nothing in the title requires preferential treatment
+      to correct a racial imbalance in a workforce.
+    sources:
+      - title: "EEOC — Title VII of the Civil Rights Act of 1964 (full text)"
+        url: "https://www.eeoc.gov/statutes/title-vii-civil-rights-act-1964"
+  - quote: "If you refuse to hire someone because of the color of his skin"
+    rating: "True"
+    note: >-
+      Settled law. In McDonald v. Santa Fe Trail Transportation Co. (1976) the
+      Supreme Court held that Title VII protects white employees on precisely the
+      same terms as everyone else, and that its terms are not limited to
+      discrimination against members of any particular race.
+    sources:
+      - title: "Justia — McDonald v. Santa Fe Trail Transportation Co., 427 U.S. 273 (1976)"
+        url: "https://supreme.justia.com/cases/federal/us/427/273/"
+  - quote: "is a cowardly term designed to make one flavor"
+    rating: "True"
+    note: >-
+      The courts recently agreed on the substance. In Ames v. Ohio Department of
+      Youth Services, decided unanimously on June 5, 2025, the Supreme Court threw
+      out the rule requiring majority-group plaintiffs to clear an extra
+      background circumstances hurdle that minority plaintiffs never faced.
+    sources:
+      - title: "Supreme Court of the United States — Ames v. Ohio Dept. of Youth Servs. (2025)"
+        url: "https://www.supremecourt.gov/opinions/24pdf/23-1039_c0n2.pdf"
+  - quote: "scholarships, contracts, and admissions policies where race matters enormously"
+    rating: "Context"
+    note: >-
+      On admissions specifically, this changed in 2023. Students for Fair
+      Admissions v. Harvard held race-conscious admissions unconstitutional,
+      though the Court carved out room for essays describing how race affected an
+      applicant personally, and expressly left the military academies aside.
+    sources:
+      - title: "Supreme Court of the United States — SFFA v. President and Fellows of Harvard College (2023)"
+        url: "https://www.supremecourt.gov/opinions/22pdf/20-1199_hgdj.pdf"
+  - quote: "It quietly assumes certain groups can't succeed under neutral standards"
+    rating: "Context"
+    note: >-
+      This stigma argument has a long paper trail on the Court. Justice Thomas has
+      pressed it since his Grutter dissent in 2003 and again at length in his 2023
+      SFFA concurrence, arguing racial preferences taint the accomplishments of
+      the people they are meant to help.
+    sources:
+      - title: "Supreme Court of the United States — SFFA v. Harvard (2023), Thomas, J., concurring"
+        url: "https://www.supremecourt.gov/opinions/22pdf/20-1199_hgdj.pdf"
+  - quote: "The defenders of DEI usually respond by saying merit itself is biased"
+    rating: "Context"
+    note: >-
+      The best-known evidence for that claim is a 2003 field experiment by
+      Bertrand and Mullainathan, which sent about 5,000 fictitious resumes to
+      Boston and Chicago job ads. Identical resumes with white-sounding names drew
+      roughly 50% more callbacks than those with Black-sounding names.
+    sources:
+      - title: "NBER Working Paper 9873 — Are Emily and Greg More Employable than Lakisha and Jamal?"
+        url: "https://www.nber.org/papers/w9873"
+  - quote: "A person's skin color should neither help them nor hurt them"
+    rating: "Background"
+    note: >-
+      This echoes the framing of the 1964 Civil Rights Act, signed July 2, 1964,
+      which outlawed discrimination based on race, color, religion, sex, or
+      national origin in employment and public accommodations without reference to
+      which group was affected.
+    sources:
+      - title: "National Archives — Civil Rights Act of 1964"
+        url: "https://www.archives.gov/milestone-documents/civil-rights-act"
+  - quote: "Help disadvantaged people based on actual disadvantage"
+    rating: "Context"
+    note: >-
+      California ran this experiment. Proposition 209 passed 54% to 46% in
+      November 1996, barring racial preferences in state hiring, contracting, and
+      admissions; the University of California shifted toward socioeconomic and
+      outreach-based criteria, and voters declined to repeal the ban in 2020.
+    sources:
+      - title: "California Legislative Analyst's Office — Proposition 209 (1996)"
+        url: "https://lao.ca.gov/ballot/1996/prop209_11_1996.html"
+      - title: "University of California — Research and Analyses on the Impact of Proposition 209"
+        url: "https://www.ucop.edu/academic-affairs/prop-209/index.html"
 ---
 
 DEI is racism with a marketing department. That's the part nobody is supposed to say out loud.
