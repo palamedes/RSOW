@@ -8,6 +8,149 @@ categories:
 tags:
 description: "Gun control keeps landing on the one person guaranteed to obey it — the law-abiding citizen — while the criminal walks around the whole system. Signs don't stop killers, cosmetic features don't determine lethality, and you can't confiscate 393 million guns with a slogan. The problem was never the peaceful people who followed the rules."
 excerpt: "'Common sense gun control' is the polite name for making the law harder on the people who already obey it, while the criminal keeps getting his guns the way he always has. A sign is not a force field. A .223 is not a magic death ray. And nobody has explained how you take 393 million guns away from people who never broke a law to begin with."
+ai_notes:
+  - quote: "demand authority over the people who know the most"
+    rating: "Context"
+    note: >-
+      Pew Research Center found that 32% of U.S. adults say they personally own a gun, and
+      about four-in-ten live in a household with one. Those figures were essentially
+      unchanged from 2021.
+    sources:
+      - title: "Pew Research Center — Key facts about Americans and guns (2024)"
+        url: "https://www.pewresearch.org/short-reads/2024/07/24/key-facts-about-americans-and-guns/"
+
+  - quote: "The Justice Department's own survey of people locked up"
+    rating: "Accurate"
+    note: >-
+      The Bureau of Justice Statistics' Survey of Prison Inmates, 2016 (published 2019) found
+      that among prisoners who possessed a firearm during their offense, about 90% did not
+      obtain it from a retail source and 0.8% obtained it at a gun show. Roughly 43% got it
+      off the street or on the underground market.
+    sources:
+      - title: "Bureau of Justice Statistics — Source and Use of Firearms Involved in Crimes: Survey of Prison Inmates, 2016"
+        url: "https://bjs.ojp.gov/library/publications/source-and-use-firearms-involved-crimes-survey-prison-inmates-2016"
+
+  - quote: "Somebody prints a sign, tapes it to a door"
+    rating: "Background"
+    note: >-
+      The federal Gun-Free School Zones Act of 1990 was struck down in United States v. Lopez
+      (1995), the first law invalidated on Commerce Clause grounds since 1937. Congress
+      re-enacted it in 1996 with an interstate-commerce element added, and lower courts have
+      upheld that version.
+    sources:
+      - title: "United States v. Lopez, 514 U.S. 549 (1995) — Justia"
+        url: "https://supreme.justia.com/cases/federal/us/514/549/"
+
+  - quote: "Police can't teleport into your bedroom"
+    rating: "True"
+    note: >-
+      U.S. courts have repeatedly held that police owe no individual legal duty to protect a
+      specific person. Warren v. District of Columbia (1981) and Town of Castle Rock v.
+      Gonzales (2005, decided 7-2) both concluded the duty runs to the public at large.
+    sources:
+      - title: "Town of Castle Rock v. Gonzales, 545 U.S. 748 (2005) — Justia"
+        url: "https://supreme.justia.com/cases/federal/us/545/748/"
+
+  - quote: "Bolt on some black polymer, a pistol grip, an adjustable stock"
+    rating: "Accurate"
+    note: >-
+      The 1994 federal ban classified a semiautomatic rifle as an assault weapon if it accepted
+      a detachable magazine and had two of five features: a folding or telescoping stock, a
+      pistol grip, a bayonet mount, a flash suppressor or threaded barrel, or a grenade
+      launcher. A National Institute of Justice assessment found manufacturers evaded it with
+      minor cosmetic changes.
+    sources:
+      - title: "National Institute of Justice — An Updated Assessment of the Federal Assault Weapons Ban (2004)"
+        url: "https://www.ojp.gov/pdffiles1/nij/grants/204431.pdf"
+
+  - quote: "Winchester lists a 55-grain"
+    rating: "Accurate"
+    note: >-
+      Winchester's own published data matches the figure: its 55-grain .223 Remington USA
+      full-metal-jacket load is listed at 1,282 ft-lbs of muzzle energy, while its 150-grain
+      .308 loads run roughly 2,630 to 2,650 ft-lbs. Energy varies by load, but the .223 sits
+      well below both .308 and .30-06.
+    sources:
+      - title: "Winchester Ammunition — Ballistics Calculator"
+        url: "https://ballisticscalculator.winchester.com/"
+
+  - quote: "The Supreme Court has recognized it protects an individual right"
+    rating: "Accurate"
+    note: >-
+      District of Columbia v. Heller (2008, 5-4) held the Second Amendment protects an
+      individual right to keep a handgun at home for self-defense. New York State Rifle &
+      Pistol Association v. Bruen (2022, 6-3) extended that to carrying outside the home.
+      Heller also expressly stated the right is not unlimited.
+    sources:
+      - title: "District of Columbia v. Heller, 554 U.S. 570 (2008) — Justia"
+        url: "https://supreme.justia.com/cases/federal/us/554/570/"
+      - title: "NYSRPA v. Bruen (2022) — Cornell Legal Information Institute"
+        url: "https://www.law.cornell.edu/wex/new_york_state_rifle_pistol_association_(nysrpa)_v._bruen_(2022)"
+
+  - quote: "Neither does relabeling a commonly owned rifle"
+    rating: "Random Fact"
+    note: >-
+      The AR in AR-15 stands for ArmaLite Rifle, after the company that designed it in the
+      1950s. It does not stand for assault rifle or automatic rifle. ArmaLite sold the design
+      to Colt in 1959, and Colt began selling semi-automatic versions to civilians in 1963.
+    sources:
+      - title: "Poynter — The history of the AR-15 and how it became a symbol of American gun culture"
+        url: "https://www.poynter.org/fact-checking/2022/what-is-ar15-rifle-history-of-firearm/"
+
+  - quote: "Jewish fighters took on the SS and German police"
+    rating: "Accurate"
+    note: >-
+      The Warsaw Ghetto Uprising ran from 19 April to 16 May 1943, just under a month. Roughly
+      700 to 750 lightly armed fighters, led by Mordecai Anielewicz, held out against SS and
+      police units. It was the largest Jewish revolt of the Second World War.
+    sources:
+      - title: "United States Holocaust Memorial Museum — The Warsaw Ghetto Uprising"
+        url: "https://encyclopedia.ushmm.org/content/en/article/the-warsaw-ghetto-uprising"
+
+  - quote: "prosecutors keep official guidance for"
+    rating: "Accurate"
+    note: >-
+      The Crown Prosecution Service publishes standing guidance on communications offences,
+      covering grossly offensive messages under section 127 of the Communications Act 2003.
+      After several contested cases, interim guidelines issued in December 2012 set a
+      deliberately high threshold for charging.
+    sources:
+      - title: "Crown Prosecution Service — Communications Offences prosecution guidance"
+        url: "https://www.cps.gov.uk/prosecution-guidance/communications-offences"
+
+  - quote: "The Small Arms Survey put civilian-owned firearms"
+    rating: "Accurate"
+    note: >-
+      The Small Arms Survey's 2018 Global Firearms Holdings study estimated 393.3 million
+      civilian-held firearms in the United States as of 2017, about 46% of the global civilian
+      stock of 857 million, or roughly 120.5 firearms per 100 residents.
+    sources:
+      - title: "Small Arms Survey — Global Firearms Holdings database"
+        url: "https://www.smallarmssurvey.org/database/global-firearms-holdings"
+
+  - quote: "Go after traffickers, thieves, and straw purchasers"
+    rating: "Context"
+    note: >-
+      Until 2022 there was no standalone federal offense for straw purchasing or gun
+      trafficking. The Bipartisan Safer Communities Act created both, each carrying up to 15
+      years. The Justice Department reported charging more than 500 defendants under the new
+      provisions within two years.
+    sources:
+      - title: "Congressional Research Service — Straw Purchase and Gun Trafficking Provisions in P.L. 117-159"
+        url: "https://www.congress.gov/crs_external_products/IF/HTML/IF12190.web.html"
+      - title: "U.S. Department of Justice — Fact Sheet: Two Years of the Bipartisan Safer Communities Act"
+        url: "https://www.justice.gov/archives/opa/pr/fact-sheet-two-years-bipartisan-safer-communities-act"
+
+  - quote: "But laws don't physically protect anybody"
+    rating: "Needs Context"
+    note: >-
+      How often firearms are used defensively is genuinely disputed. A 2013 CDC-commissioned
+      National Academies review reported published annual estimates ranging from about 500,000
+      to more than 3 million, while the National Crime Victimization Survey yields figures
+      closer to 60,000 to 120,000. The gap is methodological, not settled.
+    sources:
+      - title: "National Academies (2013) — Priorities for Research to Reduce the Threat of Firearm-Related Violence"
+        url: "https://nap.nationalacademies.org/read/18319/chapter/3"
 ---
 
 Gun control is what happens when the people who know the least about firearms demand authority over the people who know the most.
