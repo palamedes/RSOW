@@ -1,0 +1,69 @@
+{%- comment -%}
+  The "Click for AI Notes" pill outside of a post — it explains the feature
+  rather than toggling it, since there are no notes to toggle here. Same shape
+  and colour as the real toggle in _layouts/post.html so the two read as the
+  same thing. Renders the pill and its dialog together; <dialog> paints in the
+  top layer, so it doesn't matter that it sits inside a flex row.
+{%- endcomment -%}
+<button type="button" class="ainotes-explain-btn" aria-haspopup="dialog" aria-controls="ainotes-explainer">
+  <span class="ainotes-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+  <span>Click for AI Notes</span>
+</button>
+
+<dialog class="ainotes-modal" id="ainotes-explainer" aria-labelledby="ainotes-modal-title">
+  <div class="ainotes-modal-head">
+    <span class="ainotes-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+    <h2 id="ainotes-modal-title">What are AI Notes?</h2>
+    <button type="button" class="ainotes-modal-close" data-close aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+
+  <div class="ainotes-modal-body">
+    <p>Some posts on this site carry <strong>AI Notes</strong> &mdash; short, sourced annotations that add factual context to specific claims in the article.</p>
+
+    <div class="ainotes-modal-how">
+      <p class="ainotes-modal-how-lead">How to use them</p>
+      <p>Open a post and look for this button near the top of the article:</p>
+      <p class="ainotes-modal-demo">
+        <span class="ainotes-explain-btn is-demo" aria-hidden="true">
+          <span class="ainotes-ico"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+          <span>Click for AI Notes</span>
+        </span>
+      </p>
+      <p>Toggle it on and phrases throughout the article light up. Each one gets a numbered note underneath its paragraph with the relevant fact, a verdict, and a link to where it came from. Not every post has them.</p>
+    </div>
+
+    <p class="ainotes-modal-honest"><strong>Keeping Jason honest.</strong> The notes aren't a victory lap. They confirm a claim when it holds up, supply the date or number the article skipped, and say plainly when something needs more context than it got. A note that disagrees with the post stays in.</p>
+
+    <p>They are <strong>generated entirely by AI</strong> &mdash; not written, curated, fact-checked, or endorsed by me, and they don't necessarily reflect my views. The article stands exactly as written. Treat them as an automated starting point, not gospel: every note links to a source so you can check it yourself. Spot an error? The comments are open.</p>
+  </div>
+
+  <div class="ainotes-modal-foot">
+    <button type="button" class="ainotes-modal-ok" data-close>Got it</button>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var btn = document.querySelector('.ainotes-explain-btn[aria-controls="ainotes-explainer"]');
+    var dlg = document.getElementById('ainotes-explainer');
+    if (!btn || !dlg || typeof dlg.showModal !== 'function') return;
+
+    btn.addEventListener('click', function () { dlg.showModal(); });
+
+    dlg.querySelectorAll('[data-close]').forEach(function (el) {
+      el.addEventListener('click', function () { dlg.close(); });
+    });
+
+    // Click outside the panel closes it. showModal() makes the backdrop part of
+    // the dialog itself, so compare against the panel's own box.
+    dlg.addEventListener('click', function (e) {
+      if (e.target !== dlg) return;
+      var r = dlg.getBoundingClientRect();
+      var outside = e.clientX < r.left || e.clientX > r.right ||
+                    e.clientY < r.top  || e.clientY > r.bottom;
+      if (outside) dlg.close();
+    });
+  })();
+</script>

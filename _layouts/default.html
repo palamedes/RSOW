@@ -8,7 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- comment -%}
+    ?v= is the build timestamp. /assets/css/main.css is served with
+    cache-control: max-age=600 and no fingerprint in the filename, so without
+    this a browser can hold a stale stylesheet for ten minutes after a deploy
+    and render new markup against old CSS.
+  {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>

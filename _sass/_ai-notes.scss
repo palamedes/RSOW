@@ -16,7 +16,8 @@
 }
 
 // ── Toggle button (lives in .post-actions, on the light body background) ──
-.post-ainotes-btn {
+.post-ainotes-btn,
+.ainotes-explain-btn {
   display: inline-flex;
   align-items: center;
   gap: .45rem;
@@ -33,7 +34,8 @@
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
 
-  .post-ainotes-ico {
+  .post-ainotes-ico,
+  .ainotes-ico {
     display: inline-flex;
     width: 17px;
     height: 17px;
@@ -47,11 +49,12 @@
     box-shadow: 0 1px 4px rgba(0, 0, 0, .08);
   }
 
-  &.is-on {
-    background: #ffd21e;
-    border-color: #ffd21e;
-    color: #1a1a1a;
-  }
+}
+
+.post-ainotes-btn.is-on {
+  background: #ffd21e;
+  border-color: #ffd21e;
+  color: #1a1a1a;
 }
 
 // ── Injected bubbles ── (scoped to post body)
@@ -235,4 +238,159 @@
 
   .ai-notes-about p { margin: 0; }
   .ai-notes-about strong { color: #4a4227; }
+}
+
+
+// ── "What are AI Notes?" explainer modal ──
+// Opened from the pill on the home page. Native <dialog>, so Esc and focus
+// trapping come free; the JS only adds open, close, and click-outside.
+.ainotes-explain-btn.is-demo {
+  cursor: default;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.ainotes-modal {
+  width: min(38rem, calc(100vw - 2rem));
+  max-height: min(85vh, 46rem);
+  padding: 0;
+  border: 1px solid #e6cf6a;
+  border-radius: 14px;
+  background: #fff;
+  color: #333;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .45);
+  overflow: hidden;
+
+  &::backdrop {
+    background: rgba(20, 22, 28, .55);
+    backdrop-filter: blur(2px);
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    animation: ainotes-modal-in .18s ease-out;
+  }
+}
+
+@keyframes ainotes-modal-in {
+  from { opacity: 0; transform: translateY(6px) scale(.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ainotes-modal[open] { animation: none; }
+}
+
+.ainotes-modal-head {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 1rem 1.15rem;
+  border-bottom: 1px solid #f1dd85;
+  background: #fffbea;
+  color: #6b5400;
+
+  .ainotes-ico {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    padding: 4px;
+    border-radius: 50%;
+    background: #ffd21e;
+    color: #1a1a1a;
+
+    svg { width: 18px; height: 18px; }
+  }
+
+  h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: #4a3a00;
+  }
+}
+
+.ainotes-modal-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: #6b5400;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+
+  svg { width: 17px; height: 17px; }
+
+  &:hover { background: #fff4c2; border-color: #e6cf6a; }
+  &:focus-visible { outline: 2px solid #2673da; outline-offset: 2px; }
+}
+
+.ainotes-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.15rem;
+  font-size: .95rem;
+  line-height: 1.65;
+
+  p { margin: 0 0 .9rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 800; }
+}
+
+.ainotes-modal-how {
+  margin: 0 0 .9rem;
+  padding: .85rem 1rem;
+  border: 1px solid #f1dd85;
+  border-left: 4px solid #ffd21e;
+  border-radius: 10px;
+  background: #fffbea;
+  color: #3a3320;
+
+  .ainotes-modal-how-lead {
+    margin-bottom: .45rem;
+    font-weight: 800;
+    color: #4a3a00;
+  }
+}
+
+.ainotes-modal-demo {
+  margin: .7rem 0 .8rem;
+}
+
+.ainotes-modal-honest {
+  padding-left: .85rem;
+  border-left: 3px solid #ddd;
+}
+
+.ainotes-modal-foot {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: .85rem 1.15rem;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.ainotes-modal-ok {
+  padding: .45rem 1.1rem;
+  border: 1px solid #e6cf6a;
+  border-radius: 999px;
+  background: #ffd21e;
+  color: #1a1a1a;
+  font: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background .15s ease, box-shadow .15s ease;
+
+  &:hover { background: #ffdc4d; box-shadow: 0 1px 4px rgba(0, 0, 0, .12); }
+  &:focus-visible { outline: 2px solid #2673da; outline-offset: 2px; }
 }
