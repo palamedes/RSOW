@@ -227,6 +227,17 @@
 }
 
 // ── "Most Recent Blog Posts" heading ────────────────────
+// The heading shares a row with the AI Notes explainer pill, which sits hard
+// right. Baseline alignment keeps the pill on the heading's text baseline
+// rather than centring it against the underline bar the h2 draws below itself.
+.recent-posts-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
 .recent-posts-heading {
   font-size: 1.45rem;
   font-weight: 700;

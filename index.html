@@ -19,7 +19,10 @@ full_width: true
   <div class="sub-hero" aria-hidden="true"></div>
 
   <div class="site-wrapper">
-    <h2 class="recent-posts-heading">Most Recent Blog Posts</h2>
+    <div class="recent-posts-head">
+      <h2 class="recent-posts-heading">Most Recent Blog Posts</h2>
+      {% include ai-notes-explainer.html %}
+    </div>
     <div class="post-grid">
       {% for post in paginator.posts %}
       <a class="post-card" href="{{ post.url | relative_url }}">
