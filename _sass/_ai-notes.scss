@@ -251,6 +251,11 @@
 }
 
 .ainotes-modal {
+  // The browser centres a modal <dialog> with `inset: 0` plus `margin: auto`,
+  // but the `* { margin: 0 }` reset in _base.scss is an author style and so
+  // beats the UA stylesheet — which leaves inset:0 with no centring and pins
+  // the dialog to the top-left. Restore the auto margins explicitly.
+  margin: auto;
   width: min(38rem, calc(100vw - 2rem));
   max-height: min(85vh, 46rem);
   padding: 0;
