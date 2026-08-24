@@ -1,7 +1,7 @@
 ---
 title: "Gun Control Is the Fantasy of People Who Think Criminals Obey Signs"
 layout: post
-date: 2026-08-02
+date: 2026-08-24
 image: /assets/images/2026/gun-control-criminals-dont-obey-signs.png
 categories:
 - Rant
@@ -14,7 +14,7 @@ Gun control is what happens when the people who know the least about firearms de
 
 It gets sold under the soothing label of **"common sense gun control,"** as if disagreeing with it proves you have no common sense. But scrape off the focus-tested slogan and you're left with the same tired proposition:
 
-The law-abiding citizen has to surrender more freedom because the criminal won't obey the freedoms already taken away.
+_The law-abiding citizen has to surrender more freedom because the criminal won't obey the freedoms already taken away._
 
 That's not common sense.
 
@@ -28,13 +28,13 @@ Every gun-control proposal should have to answer one question before anything el
 
 Not from hunters. Not from veterans. Not from competitive shooters. Not from the woman carrying because her ex told her he'd kill her. Not from the homeowner who knows the cops are several minutes away when somebody kicks in his door.
 
-From criminals.
+_From criminals._
 
-The Justice Department's own survey of people locked up for crimes committed with a gun found that **90% didn't get that gun from a store, and 99% didn't get it at a gun show.** They got them the way criminals get everything — theft, the black market, trades, a buddy who knows a guy.
+The Justice Department's own survey of people locked up for crimes committed with a gun found that **90% didn't get that gun from a store, and 99% didn't get it at a gun show.** They got them the way criminals get everything ... theft, the black market, trades, a buddy who knows a guy.
 
 So naturally the political response is another restriction on the retail buyer. The one who fills out the paperwork, shows his ID, sits through the background check, and follows every rule.
 
-The criminal walks around the system.
+The criminal walks around and completely ignores the system.
 
 The government responds by making the system harder for the guy who used it.
 
@@ -44,19 +44,17 @@ That's not crime prevention. It's theater, performed at the expense of people wh
 
 ## A Sign Is Not a Force Field
 
-The "gun-free zone" might be the purest version of the fantasy.
-
-Somebody prints a sign, tapes it to a door, and decides the building is now protected.
+The "gun-free zone" might be the purest version of the fantasy.  Somebody prints a sign, tapes it to a door, and decides the building is now protected.
 
 Protected by what? The ink? The tape? The moral authority of the property-management committee?
 
-A rule works on people who intend to follow rules. It does exactly nothing to physically stop someone who has already decided to commit murder.
+**A rule works on people who intend to follow rules. It does exactly nothing to physically stop someone who has already decided to commit murder.**
 
-The sign doesn't detect a weapon. It doesn't tackle an attacker. It doesn't return fire. All it does is announce that the responsible people inside have probably been disarmed.
+The sign doesn't detect a weapon. It doesn't tackle an attacker. It doesn't return fire. All it does is announce that the responsible people inside have probably been disarmed... **Read that again.**
 
 That doesn't mean every building should be the Wild West. It means a policy is not a security system. Declaring a place safe is not the same as making it safe.
 
-A sign without enforcement is a wish taped to a wall.
+::A sign without enforcement is a wish taped to a wall.::
 
 ## The "Good Guy With a Gun" They Pretend Not to Believe In
 
@@ -70,27 +68,23 @@ Apparently the concept only becomes legitimate when the armed person is wearing 
 
 We arm the police because we already agree on the basic truth: determined violence sometimes has to be met with immediate, capable force. That question is settled. We settled it the day we handed cops guns.
 
-The actual disagreement is whether ordinary people should be forced to stay helpless until those armed agents show up.
+::The actual disagreement is whether ordinary people should be forced to stay helpless until those armed agents show up.::
 
 And they can't always show up. Police can't teleport into your bedroom, your business, your church, or your car. They arrive after somebody notices the danger, finds a phone, makes the call, explains the situation, and waits for dispatch.
 
-That's not an insult to cops. It's time, distance, and physics.
-
-Your life can end in seconds. Help is minutes away.
+That's not an insult to cops. It's time, distance, and physics.  When your life can end in seconds, help is a few minutes away.
 
 The gun exists to give an innocent person a fighting chance in the gap between the two.
 
 ## Guns Are Tools, Not Demons
 
-A firearm is a machine.
-
-It isn't possessed. It doesn't whisper. It doesn't crawl out of the safe at night to go commit crimes.
+A firearm is a machine. It isn't possessed. It doesn't whisper. It doesn't crawl out of the safe at night to go commit crimes.
 
 It can be used to murder. It can also protect a home, stop an assault, put food on the table, drop a predator, win a match, or defend a country. Its morality comes entirely from the person holding it.
 
-Pretending otherwise is childish. It's the political version of blaming the hammer and ignoring the guy swinging it.
+::Pretending otherwise is childish. It's the political version of blaming the hammer and ignoring the guy swinging it.::
 
-The answer to dangerous people is to identify and stop dangerous people — with evidence, due process, and actual enforcement. The answer is not to declare millions of peaceful citizens presumptively dangerous because they own an object that scares politicians.
+The answer to dangerous people is to identify and stop dangerous people with evidence, due process, and actual enforcement. The answer is not to declare millions of peaceful citizens presumptively dangerous because they own an object that scares politicians.
 
 ## The Scary Black Rifle
 
@@ -116,7 +110,7 @@ The Second Amendment says:
 
 > "A well regulated Militia, being necessary to the security of a free State, the right of the people to keep and bear Arms, shall not be infringed."
 
-That's the text. The Supreme Court has recognized it protects an individual right to keep and bear arms for self-defense — in *District of Columbia v. Heller* and again in *New York State Rifle & Pistol Association v. Bruen*.
+That's the text. The Supreme Court has recognized it protects an individual right to keep and bear arms for self-defense in *District of Columbia v. Heller* and again in *New York State Rifle & Pistol Association v. Bruen*.
 
 That doesn't mean no regulation can ever exist. Rights have legal edges, and dangerous people can be disarmed through lawful process. But it does mean the government starts from a constitutional restriction on its own power.
 
@@ -136,7 +130,7 @@ History is more complicated than a bumper sticker, and a bunch of civilian rifle
 
 But history still teaches something.
 
-During the Warsaw Ghetto uprising, Jewish fighters took on the SS and German police with Molotov cocktails, grenades, and a handful of small arms. The Germans had overwhelming superiority — and it still took them nearly a month to put the resistance down.
+During the Warsaw Ghetto uprising, Jewish fighters took on the SS and German police with Molotov cocktails, grenades, and a handful of small arms. The Germans had overwhelming superiority and it still took them nearly a month to put the resistance down.
 
 The lesson isn't that a rifle guarantees you beat tyranny. It doesn't.
 
@@ -146,7 +140,7 @@ Arms don't guarantee liberty. But history is not exactly overflowing with exampl
 
 The Second Amendment exists for the ugly possibilities. For the moment every civilized safeguard has broken down and the government, the mob, or the criminal no longer cares about your rights.
 
-A fire extinguisher doesn't guarantee your house survives a fire. That's not an argument for throwing it out.
+::A fire extinguisher doesn't guarantee your house survives a fire. That's not an argument for throwing it out.::
 
 ## Look at What Other Countries Call "Freedom"
 
@@ -168,15 +162,13 @@ The Small Arms Survey put civilian-owned firearms in the United States at roughl
 
 Voluntary surrender collects guns from people willing to comply. The criminals won't. A whole lot of ordinary owners won't either.
 
-Then what?
-
-Registration? Warrants? Home inspections? Informants? Cops sent door to door? Prison for the people who say no?
+Then what? Registration? Warrants? Home inspections? Informants? Cops sent door to door? Prison for the people who say no?
 
 At some point "gun control" stops being a slogan and becomes an armed government agent physically trying to take a gun from someone who does not consent. That's the part advocates never want to say out loud.
 
-They talk like hundreds of millions of guns are going to quietly evaporate the second Congress passes the right combination of words.
+They talk like hundreds of millions of guns are going to quietly evaporate the second Congress passes the right combination of words. They won't. 
 
-They won't. Confiscation requires confiscators. And sending armed agents to disarm millions of citizens creates the exact coercive confrontation the Second Amendment was written to deter.
+::Confiscation requires confiscators. And sending armed agents to disarm millions of citizens creates the exact coercive confrontation the Second Amendment was written to deter.::
 
 ## Start Punishing the People Actually Committing the Crimes
 
@@ -188,7 +180,7 @@ All of that focuses on conduct and dangerousness. And all of it is hard. It mean
 
 Blanket restrictions are easier. They let officials avoid the criminals entirely and regulate the people who are easy to find, easy to monitor, and unlikely to shoot back.
 
-Law-abiding gun owners make convenient targets precisely because they're law-abiding.
+::**Law-abiding gun owners make convenient targets precisely because they're law-abiding.**::
 
 ## Stop Treating Liberty Like a Disease
 
@@ -196,7 +188,7 @@ Gun-control advocates keep treating the law like a magic spell. Write another pr
 
 But laws don't physically protect anybody. People protect people. Tools help them do it.
 
-The firearm is the tool that lets the old resist the young, the weak resist the strong, the woman resist the man, the lone homeowner resist the mob — and the citizen stay something more than a subject.
+**The firearm is the tool that lets the old resist the young, the weak resist the strong, the woman resist the man, the lone homeowner resist the mob and the citizen stay something more than a subject.**
 
 You're free to dislike guns. You're free to fear them. You're free to decide you never want one in your house.
 
