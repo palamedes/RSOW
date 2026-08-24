@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "jekyll", "~> 4.4"
 gem "webrick" # Required for local server in Ruby 3+
+gem "erb"     # No longer a default gem as of Ruby 3.4
 
 group :jekyll_plugins do
   gem "jekyll-feed"
