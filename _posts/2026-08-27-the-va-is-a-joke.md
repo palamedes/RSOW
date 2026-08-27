@@ -2,7 +2,7 @@
 title: "The VA Is a Fucking Joke"
 layout: post
 date: 2026-08-27
-image: /assets/images/2026/the-va-is-a-fucking-joke.jpg
+image: /assets/images/2026/the-va-is-a-joke.jpg
 categories:
 - Rant
 tags:
