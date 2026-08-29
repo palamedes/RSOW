@@ -255,8 +255,13 @@
           open(list, Math.max(0, list.indexOf(img)));
         });
       }
-      document.querySelectorAll('.gallery-thumb').forEach(bind);
-      document.querySelectorAll('.post-content img').forEach(bind);
+      function bindAll(){
+        document.querySelectorAll('.gallery-thumb').forEach(bind);
+        document.querySelectorAll('.post-content img').forEach(bind);
+      }
+      bindAll();
+      // soft navigation swaps <main>, so let the player re-bind afterwards
+      window.RSOWGallery = { rebind: bindAll };
 
       prevBtn.addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
       nextBtn.addEventListener('click', function(e){ e.stopPropagation(); step(1); });
@@ -296,5 +301,7 @@
       </div>
     </div>
   </footer>
+
+  {% include audio-player.html %}
 </body>
 </html>

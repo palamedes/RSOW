@@ -1,0 +1,46 @@
+{%- comment -%}
+  Shared post card for the home grid and the /archive/ grid.
+
+  The narration chip is a real button on the date row, so the card can no longer
+  be one big <a> (a button nested in an anchor is invalid, and its clicks would
+  navigate). Instead the title carries the link and .card-link::after stretches
+  over the whole card, which keeps the entire card clickable while leaving the
+  chip — lifted above it — free to handle its own clicks.
+
+  The filter/search data lives on the wrapper because the archive script shows
+  and hides that element.
+{%- endcomment -%}
+{%- assign card_img = include.post.image | default: site.default_image -%}
+{%- assign card_human = false -%}
+{%- if include.post.audio_narrator == 'human' %}{%- assign card_human = true -%}{%- endif -%}
+<div class="post-card-wrap"
+     data-categories="{{ include.post.categories | join: ',' }}"
+     data-title="{{ include.post.title | strip_html | escape | downcase }}"
+     data-search="{{ include.post.title | strip_html | escape | downcase }} {{ include.post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
+  <div class="post-card">
+    <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ include.post.title }}">
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-date">{{ include.post.date | date: "%B %-d, %Y" }}</span>
+        {%- if include.post.audio %}
+        <button type="button"
+                class="card-listen{% if card_human %} card-listen--human{% endif %}"
+                data-audio="{{ include.post.audio | relative_url }}"
+                data-audio-title="{{ include.post.title | strip_html | escape }}"
+                data-audio-url="{{ include.post.url | relative_url }}"
+                data-audio-narrator="{% if card_human %}human{% else %}ai{% endif %}"
+                data-idle-label="Listen"
+                data-tip="{% if card_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}"
+                aria-label="{% if card_human %}Listen to Jason reading “{{ include.post.title | strip_html | escape }}” — read aloud by Jason, not AI{% else %}Listen to an AI-generated narration of “{{ include.post.title | strip_html | escape }}”{% endif %}">
+          <span class="card-listen-ico" aria-hidden="true"></span>
+          <span class="card-listen-lead">Listen</span>
+        </button>
+        {%- endif %}
+      </div>
+      <h2 class="card-title">
+        <a class="card-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
+      </h2>
+      <p class="card-excerpt">{{ include.post.excerpt | strip_html | truncatewords: 25 }}</p>
+    </div>
+  </div>
+</div>

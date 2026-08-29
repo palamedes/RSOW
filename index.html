@@ -25,17 +25,10 @@ full_width: true
     </div>
     <div class="post-grid">
       {% for post in paginator.posts %}
-      <a class="post-card" href="{{ post.url | relative_url }}">
-        {% assign card_img = post.image | default: site.default_image %}
-        <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ post.title }}">
-        <div class="card-body">
-          <span class="card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-        </div>
-      </a>
+      {% include post-card.html post=post %}
       {% endfor %}
     </div>
+    {% include card-narration.html %}
 
     <div class="view-more">
       <a href="{{ '/archive/' | relative_url }}">View More</a>

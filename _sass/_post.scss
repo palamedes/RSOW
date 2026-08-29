@@ -6,6 +6,7 @@
 
 $po-accent:  #2673da;
 $po-accent-2:#4a9aff;
+$po-voice:   #ffbd59;   // warm amber — the "read by a human" narration chip
 $po-ink:     #1c2330;
 $po-line:    #ddd;
 
@@ -96,15 +97,35 @@ $po-line:    #ddd;
     color: rgba(255,255,255,0.7);
     .post-hero-author { color: #fff; font-weight: 600; }
     .post-hero-dot { opacity: 0.5; }
-    .post-hero-listen-note { color: $po-accent-2; font-weight: 600; }
+    // Clickable (it toggles playback) but deliberately still looks like text.
+    .post-hero-listen-note { color: $po-accent-2; font-weight: 600; cursor: pointer; }
+    .post-hero-listen-note.is-human { color: $po-voice; }
   }
 
   // ════════════════ "AI NARRATION" CHIP ════════════════
   // A ghost/outline variant of the category pills, pushed to the right
   // edge of the .post-hero-cats row. Shown only when the post front
   // matter defines `audio:`; toggles an AI-read <audio> element.
-  .post-hero-cats .post-listen {
+  .post-hero-cats .post-listen-group {
     margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    @media (max-width: 760px) { margin-left: 0; }
+  }
+  // elapsed / total, sitting just left of the chip while it plays
+  .post-listen-time {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    font-variant-numeric: tabular-nums;   // keeps the digits from jittering
+    color: rgba(255,255,255,0.72);
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
+  .post-listen-time--human { color: rgba(255,228,184,0.85); }
+
+  .post-hero-cats .post-listen {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
@@ -117,7 +138,6 @@ $po-line:    #ddd;
     transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
     &:hover { background: rgba(74,154,255,0.26); border-color: $po-accent-2; color: #fff; }
     &:focus-visible { outline: 2px solid $po-accent-2; outline-offset: 2px; }
-    @media (max-width: 760px) { margin-left: 0; }
   }
   // small play triangle → pause bars when .is-playing
   .post-listen-ico {
@@ -145,6 +165,23 @@ $po-line:    #ddd;
     background:
       linear-gradient(#0b1120, #0b1120) left / 2px 100% no-repeat,
       linear-gradient(#0b1120, #0b1120) right / 2px 100% no-repeat;
+  }
+  // Human-read narration: same chip, warm amber instead of the AI blue, so a
+  // reader can tell at a glance that this one isn't text-to-speech.
+  .post-hero-cats .post-listen--human {
+    color: #ffe4b8;
+    background: rgba(255,189,89,0.14);
+    border-color: rgba(255,189,89,0.5);
+    &:hover { background: rgba(255,189,89,0.26); border-color: $po-voice; color: #fff; }
+    &:focus-visible { outline-color: $po-voice; }
+    .post-listen-ico { background: $po-voice; }
+  }
+  .post-listen.is-error {
+    color: #ffd2d2;
+    background: rgba(255,90,90,0.16);
+    border-color: rgba(255,90,90,0.55);
+    cursor: default;
+    .post-listen-ico { background: #ff7676; }
   }
   .post-listen-lead {
     font-size: 0.66rem;

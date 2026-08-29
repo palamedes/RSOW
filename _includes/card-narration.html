@@ -1,0 +1,46 @@
+{%- comment -%}
+  Hover/focus tooltip for the narration chips on a post grid, declaring whose
+  voice the recording is. Playback itself is handled by the site-wide player in
+  _includes/audio-player.html, which picks up any element carrying data-audio.
+
+  Delegated, so cards the archive script reveals later still get a tooltip.
+{%- endcomment -%}
+<script>
+(function () {
+  // One node, moved into whichever card is hovered. It lives on
+  // .post-card-wrap because .post-card clips its overflow.
+  var tip = document.createElement('span');
+  tip.className = 'card-tip';
+  tip.setAttribute('role', 'tooltip');
+
+  function show(btn) {
+    var text = btn.getAttribute('data-tip');
+    if (!text) return;
+    var wrap = btn.closest('.post-card-wrap');
+    if (!wrap) return;
+    tip.textContent = text;
+    wrap.appendChild(tip);
+    tip.style.top = Math.max(4, btn.offsetTop - tip.offsetHeight - 7) + 'px';
+    tip.classList.add('is-visible');
+  }
+  function hide() {
+    tip.classList.remove('is-visible');
+    if (tip.parentNode) tip.parentNode.removeChild(tip);
+  }
+
+  document.addEventListener('mouseover', function (e) {
+    var btn = e.target.closest ? e.target.closest('.card-listen') : null;
+    if (btn) show(btn);
+  });
+  document.addEventListener('mouseout', function (e) {
+    var btn = e.target.closest ? e.target.closest('.card-listen') : null;
+    if (btn && !btn.contains(e.relatedTarget)) hide();
+  });
+  document.addEventListener('focusin', function (e) {
+    var btn = e.target.closest ? e.target.closest('.card-listen') : null;
+    if (btn) show(btn);
+  });
+  document.addEventListener('focusout', hide);
+  window.addEventListener('scroll', hide, { passive: true });
+})();
+</script>
