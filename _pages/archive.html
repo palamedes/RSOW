@@ -61,17 +61,10 @@ full_width: true
 
     <div class="post-grid" id="archive-grid">
       {% for post in site.posts %}
-      <a class="post-card" href="{{ post.url | relative_url }}" data-categories="{{ post.categories | join: ',' }}" data-title="{{ post.title | strip_html | escape | downcase }}" data-search="{{ post.title | strip_html | escape | downcase }} {{ post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
-        {% assign card_img = post.image | default: site.default_image %}
-        <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ post.title }}">
-        <div class="card-body">
-          <span class="card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-        </div>
-      </a>
+      {% include post-card.html post=post %}
       {% endfor %}
     </div>
+    {% include card-narration.html %}
 
     <div class="arc-empty" id="archive-empty" hidden>
       <svg class="arc-empty-ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -90,7 +83,7 @@ full_width: true
 (function(){
   var root = document.getElementById('arc');
   var grid = document.getElementById('archive-grid');
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card-wrap'));
   var pills = Array.prototype.slice.call(document.querySelectorAll('.arc-pill'));
   var search = document.getElementById('post-search');
   var clearBtn = document.getElementById('arc-search-clear');

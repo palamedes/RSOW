@@ -1,0 +1,383 @@
+{%- comment -%}
+  Site-wide narration player.
+
+  Lives in the layout shell, outside <main>, so the single <audio> element is
+  never torn down. While something is playing, internal links are handled by
+  soft navigation (fetch → swap <main> → pushState), which keeps playback and
+  the scrub position completely intact across pages. If anything about that
+  goes wrong it falls back to a normal page load, and the saved position in
+  sessionStorage brings the bar back where you left it.
+
+  Every trigger on the site is just an element carrying data-audio:
+  the card chips, the post hero chip, and the "🎧 15 min listen" byline note.
+{%- endcomment -%}
+<audio id="rsow-audio" preload="none"></audio>
+
+<div class="rsow-player" id="rsow-player" hidden aria-label="Narration player">
+  <div class="rsow-scrub" id="rsow-scrub" role="slider" tabindex="0"
+       aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="rsow-scrub-buffered" id="rsow-buffered"></div>
+    <div class="rsow-scrub-fill" id="rsow-fill"><span class="rsow-scrub-knob"></span></div>
+  </div>
+
+  <div class="rsow-bar">
+    <button type="button" class="rsow-btn rsow-play" id="rsow-play" aria-label="Play">
+      <span class="rsow-play-ico" aria-hidden="true"></span>
+    </button>
+
+    <button type="button" class="rsow-btn rsow-skip" id="rsow-back" aria-label="Back 15 seconds">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z" fill="currentColor"/></svg>
+      <span class="rsow-skip-n">15</span>
+    </button>
+    <button type="button" class="rsow-btn rsow-skip rsow-skip-fwd" id="rsow-fwd" aria-label="Forward 15 seconds">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2l5 4-5 4V7a6 6 0 1 0 6 6h2a8 8 0 1 1-8-8z" fill="currentColor"/></svg>
+      <span class="rsow-skip-n">15</span>
+    </button>
+
+    <div class="rsow-meta">
+      <span class="rsow-badge" id="rsow-badge">AI</span>
+      <a class="rsow-title" id="rsow-title" href="#"></a>
+    </div>
+
+    <div class="rsow-time"><span id="rsow-elapsed">0:00</span> / <span id="rsow-total">0:00</span></div>
+
+    <button type="button" class="rsow-btn rsow-close" id="rsow-close" aria-label="Close player">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var KEY = 'rsow.player.v1';
+  var audio  = document.getElementById('rsow-audio');
+  var bar    = document.getElementById('rsow-player');
+  if (!audio || !bar) return;
+
+  var playBtn  = document.getElementById('rsow-play');
+  var scrub    = document.getElementById('rsow-scrub');
+  var fill     = document.getElementById('rsow-fill');
+  var buffered = document.getElementById('rsow-buffered');
+  var elapsedEl= document.getElementById('rsow-elapsed');
+  var totalEl  = document.getElementById('rsow-total');
+  var titleEl  = document.getElementById('rsow-title');
+  var badgeEl  = document.getElementById('rsow-badge');
+
+  var track = null;      // {src, title, url, narrator}
+  var dragging = false;
+
+  // ── helpers ──────────────────────────────────────────
+  function clock(sec) {
+    if (!isFinite(sec) || sec < 0) sec = 0;
+    sec = Math.floor(sec);
+    var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+    var mm = h ? (m < 10 ? '0' + m : '' + m) : '' + m;
+    return (h ? h + ':' : '') + mm + ':' + (s < 10 ? '0' + s : '' + s);
+  }
+  function sameSrc(a, b) {
+    if (!a || !b) return false;
+    return new URL(a, location.href).pathname === new URL(b, location.href).pathname;
+  }
+  function save() {
+    if (!track) return;
+    try {
+      sessionStorage.setItem(KEY, JSON.stringify({
+        src: track.src, title: track.title, url: track.url, narrator: track.narrator,
+        t: audio.currentTime || 0, playing: !audio.paused
+      }));
+    } catch (e) {}
+  }
+  function forget() { try { sessionStorage.removeItem(KEY); } catch (e) {} }
+
+  // ── the bar ──────────────────────────────────────────
+  function showBar() {
+    bar.hidden = false;
+    document.body.classList.add('has-rsow-player');
+  }
+  function hideBar() {
+    bar.hidden = true;
+    document.body.classList.remove('has-rsow-player');
+  }
+  function paintTrack() {
+    if (!track) return;
+    titleEl.textContent = track.title || 'Narration';
+    titleEl.setAttribute('href', track.url || '#');
+    var human = track.narrator === 'human';
+    badgeEl.textContent = human ? 'JASON' : 'AI';
+    bar.classList.toggle('is-human', human);
+  }
+  function paintProgress() {
+    var d = audio.duration, t = audio.currentTime;
+    totalEl.textContent = isFinite(d) ? clock(d) : '0:00';
+    if (!dragging) {
+      elapsedEl.textContent = clock(t);
+      var pct = (isFinite(d) && d > 0) ? (t / d) * 100 : 0;
+      fill.style.width = pct + '%';
+      scrub.setAttribute('aria-valuenow', Math.round(pct));
+      scrub.setAttribute('aria-valuetext', clock(t) + ' of ' + (isFinite(d) ? clock(d) : 'unknown'));
+    }
+    try {
+      if (audio.buffered.length && isFinite(d) && d > 0) {
+        buffered.style.width = (audio.buffered.end(audio.buffered.length - 1) / d) * 100 + '%';
+      }
+    } catch (e) {}
+  }
+  function paintPlaying() {
+    var on = !audio.paused;
+    bar.classList.toggle('is-playing', on);
+    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
+  }
+
+  // ── triggers scattered through the page ──────────────
+  // Any element with data-audio drives the player; these keep their own label
+  // in sync with whatever the player is currently doing.
+  function refreshTriggers() {
+    var nodes = document.querySelectorAll('[data-audio]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var isCur = track && sameSrc(el.getAttribute('data-audio'), track.src);
+      var playing = isCur && !audio.paused;
+      el.classList.toggle('is-playing', !!playing);
+      el.setAttribute('aria-pressed', playing ? 'true' : 'false');
+
+      var cardLead = el.querySelector('.card-listen-lead');
+      if (cardLead) {
+        cardLead.textContent = (isCur && isFinite(audio.duration))
+          ? clock(audio.currentTime) + ' / ' + clock(audio.duration)
+          : (el.getAttribute('data-idle-label') || 'Listen');
+      }
+      var postLead = el.querySelector('.post-listen-lead');
+      if (postLead) {
+        postLead.textContent = playing ? 'Pause' : (el.getAttribute('data-idle-label') || 'Listen');
+      }
+    }
+    // the post hero's own elapsed/total readout
+    var t = document.querySelector('.post-listen-time');
+    var chip = document.querySelector('.post-listen[data-audio]');
+    if (t && chip && track && sameSrc(chip.getAttribute('data-audio'), track.src) && isFinite(audio.duration)) {
+      t.hidden = false;
+      t.textContent = clock(audio.currentTime) + ' / ' + clock(audio.duration);
+    }
+  }
+  function markError() {
+    if (!track) return;
+    var nodes = document.querySelectorAll('[data-audio]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      if (!sameSrc(el.getAttribute('data-audio'), track.src)) continue;
+      el.classList.add('is-error');
+      var l = el.querySelector('.card-listen-lead') || el.querySelector('.post-listen-lead');
+      if (l) l.textContent = 'Unavailable';
+    }
+    bar.classList.add('is-error');
+  }
+
+  function paintAll() { paintProgress(); paintPlaying(); refreshTriggers(); }
+
+  // ── playback ─────────────────────────────────────────
+  function load(next, startAt) {
+    track = next;
+    bar.classList.remove('is-error');
+    audio.src = next.src;
+    if (startAt) {
+      audio.addEventListener('loadedmetadata', function once() {
+        audio.removeEventListener('loadedmetadata', once);
+        try { audio.currentTime = startAt; } catch (e) {}
+        paintAll();
+      });
+    }
+    paintTrack();
+    showBar();
+  }
+  function start(next) {
+    if (!track || !sameSrc(track.src, next.src)) load(next);
+    return audio.play().then(function () { paintAll(); save(); })
+      .catch(function () { markError(); paintAll(); });
+  }
+  function toggle(next) {
+    if (track && sameSrc(track.src, next.src) && !audio.paused) { audio.pause(); return; }
+    start(next);
+  }
+  function trackFrom(el) {
+    return {
+      src: el.getAttribute('data-audio'),
+      title: el.getAttribute('data-audio-title') || document.title,
+      url: el.getAttribute('data-audio-url') || location.pathname,
+      narrator: el.getAttribute('data-audio-narrator') || 'ai'
+    };
+  }
+
+  document.addEventListener('click', function (e) {
+    var el = e.target.closest ? e.target.closest('[data-audio]') : null;
+    if (!el) return;
+    e.preventDefault();
+    e.stopPropagation();
+    toggle(trackFrom(el));
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var el = e.target.closest ? e.target.closest('[data-audio]') : null;
+    if (!el || el.tagName === 'BUTTON') return;   // buttons already fire click
+    e.preventDefault();
+    toggle(trackFrom(el));
+  });
+
+  playBtn.addEventListener('click', function () {
+    if (!track) return;
+    if (audio.paused) audio.play().catch(markError); else audio.pause();
+  });
+  document.getElementById('rsow-back').addEventListener('click', function () {
+    audio.currentTime = Math.max(0, audio.currentTime - 15);
+  });
+  document.getElementById('rsow-fwd').addEventListener('click', function () {
+    if (isFinite(audio.duration)) audio.currentTime = Math.min(audio.duration, audio.currentTime + 15);
+  });
+  document.getElementById('rsow-close').addEventListener('click', function () {
+    audio.pause();
+    audio.removeAttribute('src');
+    audio.load();
+    track = null;
+    hideBar();
+    forget();
+    refreshTriggers();
+  });
+
+  // ── scrubbing ────────────────────────────────────────
+  function ratioFrom(e) {
+    var r = scrub.getBoundingClientRect();
+    return Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+  }
+  function preview(ratio) {
+    fill.style.width = (ratio * 100) + '%';
+    if (isFinite(audio.duration)) elapsedEl.textContent = clock(ratio * audio.duration);
+  }
+  scrub.addEventListener('pointerdown', function (e) {
+    if (!track) return;
+    dragging = true;
+    scrub.setPointerCapture(e.pointerId);
+    bar.classList.add('is-scrubbing');
+    preview(ratioFrom(e));
+  });
+  scrub.addEventListener('pointermove', function (e) {
+    if (!dragging) return;
+    preview(ratioFrom(e));
+  });
+  function endDrag(e) {
+    if (!dragging) return;
+    dragging = false;
+    bar.classList.remove('is-scrubbing');
+    if (isFinite(audio.duration)) {
+      try { audio.currentTime = ratioFrom(e) * audio.duration; } catch (err) {}
+    }
+    paintAll();
+    save();
+  }
+  scrub.addEventListener('pointerup', endDrag);
+  scrub.addEventListener('pointercancel', function () { dragging = false; bar.classList.remove('is-scrubbing'); paintProgress(); });
+  scrub.addEventListener('keydown', function (e) {
+    if (!isFinite(audio.duration)) return;
+    var step = e.shiftKey ? 60 : 5;
+    if (e.key === 'ArrowRight') { audio.currentTime = Math.min(audio.duration, audio.currentTime + step); e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { audio.currentTime = Math.max(0, audio.currentTime - step); e.preventDefault(); }
+    else if (e.key === 'Home') { audio.currentTime = 0; e.preventDefault(); }
+    else if (e.key === 'End') { audio.currentTime = audio.duration; e.preventDefault(); }
+  });
+
+  // ── audio events ─────────────────────────────────────
+  var lastSave = 0;
+  audio.addEventListener('timeupdate', function () {
+    paintProgress(); refreshTriggers();
+    var now = Math.floor(audio.currentTime);
+    if (now !== lastSave) { lastSave = now; save(); }
+  });
+  audio.addEventListener('loadedmetadata', paintAll);
+  audio.addEventListener('progress', paintProgress);
+  audio.addEventListener('play',  function () { paintAll(); save(); });
+  audio.addEventListener('pause', function () { paintAll(); save(); });
+  audio.addEventListener('ended', function () { paintAll(); forget(); });
+  audio.addEventListener('error', function () { if (track) { markError(); } });
+  window.addEventListener('beforeunload', save);
+
+  // ── restore after a hard page load ───────────────────
+  (function restore() {
+    var raw;
+    try { raw = sessionStorage.getItem(KEY); } catch (e) { return; }
+    if (!raw) return;
+    var st;
+    try { st = JSON.parse(raw); } catch (e) { return; }
+    if (!st || !st.src) return;
+    load({src: st.src, title: st.title, url: st.url, narrator: st.narrator}, st.t || 0);
+    paintAll();
+    if (st.playing) {
+      // Autoplay without a gesture is usually blocked; the bar simply stays
+      // paused at the saved spot, which is the graceful outcome.
+      audio.play().then(paintAll).catch(paintAll);
+    }
+  })();
+
+  // ── soft navigation ──────────────────────────────────
+  // Only engaged while a track is loaded. With no player active the site
+  // navigates exactly as it always has.
+  function isInternal(a) {
+    if (!a || !a.getAttribute) return false;
+    var href = a.getAttribute('href');
+    if (!href || href[0] === '#') return false;
+    if (a.target || a.hasAttribute('download')) return false;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (e) { return false; }
+    if (u.origin !== location.origin) return false;
+    if (/\.(zip|pdf|png|jpe?g|gif|svg|ogg|mp3|xml|txt|ico|webp)$/i.test(u.pathname)) return false;
+    return true;
+  }
+  function runScripts(root) {
+    var list = root.querySelectorAll('script');
+    for (var i = 0; i < list.length; i++) {
+      var old = list[i];
+      var s = document.createElement('script');
+      for (var j = 0; j < old.attributes.length; j++) {
+        s.setAttribute(old.attributes[j].name, old.attributes[j].value);
+      }
+      s.textContent = old.textContent;
+      old.parentNode.replaceChild(s, old);
+    }
+  }
+  function navigate(url, push) {
+    return fetch(url, { credentials: 'same-origin' }).then(function (res) {
+      if (!res.ok) throw new Error('bad status');
+      return res.text();
+    }).then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var next = doc.querySelector('main.site-content');
+      var cur  = document.querySelector('main.site-content');
+      if (!next || !cur) throw new Error('no main');
+      cur.parentNode.replaceChild(document.adoptNode(next), cur);
+      document.title = doc.title;
+      if (push) history.pushState({ rsow: 1 }, '', url);
+      window.scrollTo(0, 0);
+      runScripts(next);
+      if (window.RSOWGallery && window.RSOWGallery.rebind) window.RSOWGallery.rebind();
+      refreshTriggers();
+      document.dispatchEvent(new CustomEvent('rsow:navigated'));
+    }).catch(function () {
+      location.href = url;    // anything unexpected → ordinary page load
+    });
+  }
+  document.addEventListener('click', function (e) {
+    if (!track) return;                                   // player idle: stock behaviour
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a || !isInternal(a)) return;
+    var u = new URL(a.href, location.href);
+    if (u.pathname === location.pathname && u.search === location.search) return;  // same page / hash
+    e.preventDefault();
+    navigate(u.href, true);
+  });
+  window.addEventListener('popstate', function () {
+    if (!track) return;
+    navigate(location.href, false);
+  });
+
+  window.RSOWPlayer = { toggle: toggle, start: start, audio: audio };
+})();
+</script>

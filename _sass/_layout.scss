@@ -1,3 +1,11 @@
+// Narration chip colours, mirroring the post hero: blue = AI read,
+// amber = read by Jason. Deeper than the hero tints so they hold up against a
+// photo thumbnail instead of a dark gradient.
+$card-listen-ai:   #2673da;
+$card-listen-ai-h: #1b57ad;
+$card-listen-me:   #f0a42a;
+$card-listen-me-h: #d18d17;
+
 .site-wrapper {
   max-width: 1120px;
   margin: 0 auto;
@@ -276,17 +284,45 @@
   }
 }
 
+// Wrapper exists so the narration chip can be a sibling of the card link
+// rather than nested inside it. It is the grid item, and on /archive/ it is
+// also the element the filter script shows and hides.
+.post-card-wrap {
+  position: relative;
+  display: flex;
+}
+
 .post-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 2px;
   overflow: hidden;
-  text-decoration: none;
   color: inherit;
   transition: box-shadow 0.2s ease;
-  &:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); text-decoration: none; }
+  &:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+
+  // The title is the real link; this stretches its hit area over the whole
+  // card so the card still behaves like one big link.
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    &::after { content: ""; position: absolute; inset: 0; }
+    &:hover { color: #2673da; }
+  }
+
+  // date on the left, narration chip floated right on the same line
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: 1.15rem;
+  }
 
   .card-image {
     width: 100%;
@@ -326,6 +362,122 @@
     line-height: 1.5;
     margin: 0;
   }
+}
+
+// ── Narration chip on a card ────────────────────────────
+// Sits on the date row, floated right. Blue = AI read, amber = Jason read.
+// It rides above .card-link's stretched hit area so its own clicks land.
+.card-listen {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.5rem 0.2rem 0.28rem;
+  border-radius: 999px;
+  border: 0;
+  cursor: pointer;
+  color: #fff;
+  background: $card-listen-ai;
+  transition: background 0.15s ease;
+
+  &:hover { background: $card-listen-ai-h; }
+  &:focus-visible { outline: 2px solid $card-listen-ai; outline-offset: 2px; }
+
+  &--human {
+    background: $card-listen-me;
+    color: #3b2600;                        // amber needs dark text to stay legible
+    &:hover { background: $card-listen-me-h; }
+    &:focus-visible { outline-color: $card-listen-me; }
+    .card-listen-ico { background: #3b2600; }
+    .card-listen-ico::before { border-left-color: $card-listen-me; }
+  }
+
+  &.is-error {
+    background: #c0392b;
+    color: #fff;
+    cursor: default;
+    .card-listen-ico { background: #fff; }
+    .card-listen-ico::before { border-left-color: #c0392b; }
+  }
+}
+
+// ── Tooltip: says out loud whose voice this is ──────────
+// Anchored to the wrapper (not .post-card, which clips overflow) and pinned to
+// the chip's row, so it can sit clear of the card edge without being cut off.
+.post-card-wrap {
+  .card-tip {
+    position: absolute;
+    z-index: 5;
+    right: 0.75rem;
+    padding: 0.32rem 0.55rem;
+    border-radius: 4px;
+    background: #1c2330;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.28);
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.13s ease, transform 0.13s ease;
+    pointer-events: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 14px;
+      border: 5px solid transparent;
+      border-top-color: #1c2330;
+    }
+    &.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 380px) { white-space: normal; max-width: 12rem; }
+  }
+}
+
+.card-listen-ico {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: #fff;
+  &::before {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent $card-listen-ai;
+  }
+}
+// play triangle → pause bars
+.card-listen.is-playing .card-listen-ico::before {
+  width: 5px; height: 6px;
+  margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(currentColor, currentColor) left / 2px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) right / 2px 100% no-repeat;
+  color: $card-listen-ai;
+}
+.card-listen--human.is-playing .card-listen-ico::before { color: $card-listen-me; }
+.card-listen.is-error .card-listen-ico::before { color: #c0392b; }
+
+.card-listen-lead {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-variant-numeric: tabular-nums;   // stops the timer digits jittering
+  white-space: nowrap;
 }
 
 // ── View More button ────────────────────────────────────

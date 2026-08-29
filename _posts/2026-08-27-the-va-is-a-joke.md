@@ -3,6 +3,9 @@ title: "The VA Is a Fucking Joke"
 layout: post
 date: 2026-08-27
 image: /assets/images/2026/the-va-is-a-joke.jpg
+audio: /assets/audio/the-va-is-a-joke.ogg
+audio_narrator: human
+audio_length: "15 min"
 categories:
 - Rant
 tags:
