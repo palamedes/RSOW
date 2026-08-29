@@ -21,7 +21,6 @@
   display: inline-flex;
   align-items: center;
   gap: .45rem;
-  line-height: 0.1rem;
   padding: 2px 10px;
   border: 1px solid #e6cf6a;
   border-radius: 999px;
@@ -31,6 +30,10 @@
   font-size: .82rem;
   font-weight: 700;
   letter-spacing: .02em;
+  // Must sit after `font: inherit` — the shorthand resets line-height, which is
+  // why the old value here never applied and the label kept the body's 1.8.
+  // That tall line box is what left the words riding high beside the icon.
+  line-height: 1;
   cursor: pointer;
   transition: background .15s ease, border-color .15s ease, color .15s ease, box-shadow .15s ease;
 
