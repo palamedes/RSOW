@@ -63,6 +63,6 @@ If you can't state their position well enough that they'd nod at it, you don't u
 
 - "That's not the claim. The claim is: [say it again, plainly]. Take that one."
 - "Would you agree that's a fair restatement?" — asked *before* the argument starts, this prevents the whole thing.
-- "I'll happily argue against the version you just described. I don't hold it, but I'll argue it if you want."
+- "That's not my position, but I'll defend it for you if you like — and then you can tell me which of us you were arguing with."
 
-That last one is worth keeping in your pocket. Offering to defend the extreme position makes it very clear, very fast, that it was never yours.
+That last one is worth keeping in your pocket. Offering to argue *for* the extreme version makes it very clear, very fast, that it was never yours — nobody volunteers to defend a position they were caught holding.

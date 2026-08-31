@@ -80,7 +80,7 @@ This also explains why arguing someone out of a costly position so rarely works.
 
 - **Changing your mind on evidence.** That's the machinery working. Dissonance reduction is belief change driven by *discomfort*; updating is belief change driven by *information*. Same movement, entirely different cause.
 - **Holding two beliefs that conflict.** Everybody does, constantly, with no ill effect — most contradictory beliefs never meet, and no discomfort is generated. Dissonance needs the collision.
-- **Hypocrisy.** Hypocrisy is knowing the gap is there. Dissonance is the machinery that stops the gap being visible from the inside, which is exactly why hypocrites so rarely feel like hypocrites.
+- **Hypocrisy.** Hypocrisy is a gap between what somebody says and what they do, and it's a description of the gap rather than of anybody's state of mind. Dissonance is the machinery that keeps the gap from being visible to the person standing in it — which is why so much of what looks like hypocrisy from outside is sincere from inside, and why saying so is not a defence of it.
 - **"He's just in cognitive dissonance."** This has become a way to dismiss a disagreement without engaging it — the same misuse that happened to *groupthink*. It's unfalsifiable as an accusation and it isn't an argument.
 
 The test is about timing, and it's the only reliable one: ::did the belief move because something new came in, or because something already done needed to have been all right?::

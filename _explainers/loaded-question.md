@@ -3,8 +3,8 @@ title: "Loaded Question"
 kind: "Rhetorical move"
 aka: "the complex question, the trick question"
 tagline: "A question with a claim smuggled inside it, so that any straight answer concedes something you never agreed to."
-tell: "Both answers convict you of something nobody has actually shown."
-description: "A loaded question hides an unproven assumption inside itself, so answering either way grants it. What it looks like, why it works on an audience, and how to defuse one without looking evasive."
+tell: "There is no way to answer it without conceding something nobody has shown."
+description: "A loaded question hides an unproven assumption inside itself, so any straight answer grants it. What it looks like, why it works on an audience, and how to defuse one without looking evasive."
 ---
 
 ## The short version
@@ -19,7 +19,7 @@ The textbook version is "have you stopped beating your wife?" — yes and no bot
    a_label="The question"
    a="Why do you keep ignoring customer complaints?"
    a_tone="warm"
-   mid="What either answer grants"
+   mid="What any straight answer grants"
    b_label="The claim you just agreed to"
    b="That you have been ignoring customer complaints."
    b_tone="plain" %}
@@ -28,7 +28,7 @@ The textbook version is "have you stopped beating your wife?" — yes and no bot
    a_label="The question"
    a="When are you going to admit the rewrite was a mistake?"
    a_tone="warm"
-   mid="What either answer grants"
+   mid="What any straight answer grants"
    b_label="The claim you just agreed to"
    b="That the rewrite was a mistake."
    b_tone="plain" %}

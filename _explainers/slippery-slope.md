@@ -38,7 +38,7 @@ Both capture the same claim, which is a real one worth taking seriously: that a 
    mid="What gets argued against"
    mid_note="…and the steps between the two are never named."
    b_label="What gets answered"
-   b="So it’s surveillance now. Where does that stop?"
+   b="Then it’s keystrokes, then it’s screen recording, then we’re all on a monitoring dashboard."
    b_tone="warm" %}
 
 {% include explain-swap.html

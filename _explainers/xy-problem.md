@@ -81,7 +81,7 @@ The test takes one second. ::If they solve exactly what you asked, are you actua
 
 ## How to call it out
 
-On yourself, which is where most of the value is, it's one extra sentence in front of the question: **"I'm trying to X. I thought Y might do it — is Y right?"** That's the whole discipline. It costs you nine words and it gives the other person permission to throw out your approach, which they will not otherwise feel entitled to do.
+On yourself, which is where most of the value is, it's one extra sentence in front of the question: **"I'm trying to X. I thought Y might do it — is Y right?"** That's the whole discipline. It costs you one sentence and it gives the other person permission to throw out your approach, which they will not otherwise feel entitled to do.
 
 On somebody else, ask the goal, not the diagnosis:
 

@@ -25,8 +25,8 @@ Almost everybody now uses "begs the question" to mean "raises the question," and
    note="“Necessary” and “we need it” are the same sentence twice." %}
 
 {% include explain-loop.html
-   claim="He’s the most trustworthy person in the company."
-   reason="Everyone knows he’d never lie about anything."
+   claim="He’s completely trustworthy."
+   reason="He’d never lie to you about anything."
    note="Being trustworthy is what “would never lie” means. No new fact arrived." %}
 
 {% include explain-loop.html

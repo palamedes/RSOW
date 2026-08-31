@@ -41,7 +41,7 @@ Harvey's actual point is the one that usually gets dropped, and it's the good on
 ## This is not the Abilene paradox
 
 - **A compromise.** If everyone conceded something and the result pleases nobody entirely, that's a negotiation working as designed. Abilene is when there was nothing to concede.
-- **Deference to somebody who does know.** Going along with the person who has the expertise isn't the paradox. It's division of labour, and it's how groups get anything done.
+- **Deference to somebody who does know.** Going along with the person who has the expertise isn't the paradox. It's division of labour, and it's how groups get anything done — provided the expert has actually formed a view. If they turn out to have floated it because they were reading the room too, that isn't deference at all, and it is precisely how the trip to Abilene got proposed.
 - **Groupthink.** Groupthink is a group suppressing real dissent to protect a consensus it values. Abilene is a group with no dissent to suppress, because the consensus was imaginary in both directions at once.
 - **Being outvoted.** Losing an argument you had is not the same as everybody losing an argument nobody had.
 

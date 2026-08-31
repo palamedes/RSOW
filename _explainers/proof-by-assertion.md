@@ -3,7 +3,7 @@ title: "Proof by Assertion"
 kind: "Rhetorical move"
 aka: "ipse dixit, the bare assertion, appeal to common belief"
 tagline: "The claim gets repeated with more confidence instead of more support — and “everybody knows this” is handed over as though it were the evidence."
-tell: "Asked how they know, they told you again — louder, and faintly surprised that you asked."
+tell: "Asked how they know, you got the claim again, or a headcount — and faint surprise that you asked."
 description: "Proof by assertion offers confidence in place of evidence and treats the request for evidence as ignorance. Why “obviously” is a rating rather than a reason, and how to ask for the source without starting a fight."
 ---
 

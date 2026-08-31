@@ -66,7 +66,7 @@ That's also why it hardens in groups. "We've come too far to stop now" is rarely
 - **Commitments that genuinely bind.** Contracts, promises and reputation have real future consequences. "We said we would" can be a legitimate forward-looking reason, so long as it's the consequence doing the work and not the embarrassment.
 - **Refusing to churn.** Abandoning things the moment they get hard has its own failure mode, and it's at least as expensive. Persistence isn't the fallacy; persistence *justified solely by prior spend* is.
 
-The test is a clean-slate question, and it's brutal because it works: ::if you arrived today, with no history here and nothing already spent, and somebody offered you this exactly as it stands — would you take it?:: If the answer is no, then the only thing keeping you in is a number that can't be recovered either way.
+The test is a clean-slate question, and it's brutal because it works: ::if you arrived today, with no history here and nothing already spent, and somebody offered you this exactly as it stands — would you take it?:: If the answer is no, ask one follow-up before you act on it: is there anything that would cost you to stop — a penalty, a promise, an obligation that survives the decision? That's a real forward cost and it belongs in the sum. If there isn't, then the only thing keeping you in is a number that can't be recovered either way.
 
 ## How to call it out
 

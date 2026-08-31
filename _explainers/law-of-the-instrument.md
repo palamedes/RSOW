@@ -34,7 +34,7 @@ The failure is that ::the problem never got characterised independently of the s
 
 And it compounds, which is the genuinely uncomfortable part. Every use makes you better with the tool. Being better makes it cheaper to reach for. Cheaper means you reach for it more. Expertise and this trap are the same process seen from two different angles, and there is no point at which you get good enough to stop being susceptible — you get more susceptible.
 
-The organisational version is worse again. Teams that are good at a thing get handed the problems that suit the thing, which makes them better at it, which makes them the obvious choice next time. Give it three years and nobody left in the building is able to evaluate the alternatives, because nobody has used one since 2023.
+The organisational version is worse again. Teams that are good at a thing get handed the problems that suit the thing, which makes them better at it, which makes them the obvious choice next time. Give it three years and nobody left in the building can evaluate the alternatives, because nobody has used one since before the tool arrived.
 
 ## This is not the law of the instrument
 
