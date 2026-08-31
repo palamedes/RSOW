@@ -55,20 +55,22 @@ None of which means picking a number was a mistake. Acting on incomplete evidenc
 
 ## Why it doesn't work
 
-The mechanism is called insufficient adjustment, and the name is the explanation. You don't take the anchor as the answer — you start there and move away from it, which feels exactly like reasoning. But you stop moving when the number stops feeling wrong, and that arrives far too early. The adjustment is real, and it's always too small.
+Tversky and Kahneman called it *insufficient adjustment*: you don't take the anchor as the answer, you start there and move away from it, and you stop when the number stops feeling wrong — which arrives far too early. That is still the best description of what happens when the anchor is one you came up with yourself.
 
-That's why it doesn't feel like a bias from inside. ::You experience yourself reasoning *from* the anchor, not being moved *by* it,:: and those are indistinguishable while it's happening.
+For a number somebody hands you, which is every case on this page, the account that fits better is less flattering. Checking the anchor against the question — is it higher than that, or lower? — loads your memory with whatever is consistent with it. By the time you come to answer, the evidence available to you has already been filtered. The anchor isn't a starting point you move away from; it's the reason some things come to mind and others don't.
+
+That's why it doesn't feel like a bias from inside. ::You experience yourself reasoning *from* the anchor, not being moved *by* it,:: and those are indistinguishable while it's happening. There is nothing to catch yourself doing.
 
 Two findings make this worse than the average bias, and they're the reason it's worth a page.
 
-The first is that **it works on experts, in their own field.** Estate agents shown a property with a listing price gave appraisals that tracked the listing — and afterwards said the listing price had played no part in their judgement. They weren't lying. It genuinely doesn't feel like an input.
+The first is that **it works on experts, in their own field.** Estate agents shown a property with a listing price gave appraisals that tracked the listing — and afterwards said the listing price had played no part in their judgement. They weren't lying. It genuinely doesn't feel like an input. By the time they had a number, the comparison had already decided what they could recall about the property.
 
 The second is that **being warned barely helps.** You can tell people the number is random, tell them it's designed to influence them, and watch them anchor anyway. This is the practical fact of the matter: attention is not a defence, so anything that depends on you being careful in the moment will fail.
 
 ## This is not anchoring
 
 - **A first number that carries information.** Last year's actual spend, a genuine market rate, a real quote — those *should* move your estimate. Anchoring is an arbitrary or self-serving number doing work it never earned.
-- **Opening a negotiation high.** That's bargaining, it's openly adversarial, and both sides know the game they're playing. Nobody's being deceived about what the number is for.
+- **Opening a negotiation high — as a move.** Making an aggressive first offer isn't a foul. It's expected, it's openly adversarial, and nobody is being deceived about what the number is for. What it isn't is harmless. Opening offers are the best-documented anchors there are, and knowing a number is an opening bid does nothing to stop it dragging the settlement toward itself. The move is fair; the pull is real — which is why the defence below matters most of all here.
 - **Using a reference point deliberately and saying so.** "Let's start from last quarter and adjust from there" is a stated method, and a stated method can be argued with.
 - **Being convinced by the case for a number.** If somebody showed their working and you found it persuasive, you were persuaded. That's the system working.
 
@@ -81,6 +83,6 @@ Because awareness doesn't work, everything useful here is procedural — somethi
 - **Write your number down before the meeting.** Before the email, before the offer, before anyone else's figure is in the room. This is the entire defence, and nothing else comes close.
 - **"Before we discuss their figure — what would we have said on our own?"** Ask it early. Once the number has been spoken, this question can't be answered honestly by anybody.
 - **Ask for the derivation.** "How was that arrived at?" An anchor usually can't answer, and finding that out in front of everyone does more than any objection you could raise.
-- **Argue the opposite deliberately.** Generate a real reason it's far too high, then a real reason it's far too low. Considering the opposite is one of the few things shown to reduce the effect, and it works because it's a task rather than a resolution.
+- **Argue the opposite deliberately.** Generate a real reason it's far too high, then a real reason it's far too low. Considering the opposite is one of the few things shown to reduce the effect, and it works because it forces the anchor-inconsistent evidence back into reach — it's a task rather than a resolution.
 
 The honest reason to know about this one isn't that knowing protects you. Mostly it doesn't. It's that it tells you the protection has to be a habit you set up beforehand — and *decide your number before you hear theirs* is a small enough habit to actually keep.

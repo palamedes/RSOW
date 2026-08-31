@@ -15,22 +15,22 @@ A group is close, capable, and under pressure. Agreement starts to feel like the
 
 ## Where the name comes from
 
-Irving Janis, in 1972, borrowing the shape of the word from Orwell. He defined it as what happens when the members' drive for unanimity overrides their motivation to realistically appraise the alternatives, and he built the case out of American foreign-policy disasters — the Bay of Pigs above all, where a room of unusually intelligent people signed off on a plan that several of them privately thought was madness.
+The word was coined twice. William H. Whyte had it first, in *Fortune* in March 1952, for the corporate cult of togetherness — "a rationalized conformity, an open, articulate philosophy which holds that group values are not only expedient but right and good as well." Irving Janis arrived at it again twenty years later, apparently on his own — he never cites Whyte — building it on the pattern of Orwell's newspeak. Janis's is the meaning that stuck: *Psychology Today* in 1971, then *Victims of Groupthink* the following year. He defined it as what happens when the members' drive for unanimity overrides their motivation to realistically appraise the alternatives, and he built the case out of American foreign-policy disasters — the Bay of Pigs above all, where a room of unusually intelligent people signed off on a plan that several of them privately thought was madness.
 
 Janis listed eight symptoms. The ones you can actually spot in a meeting are these four:
 
 {% include explain-pile.html
    label="What it looks like from inside"
    items="An illusion of unanimity — silence read as consent|Self-censorship — the doubt you decide isn’t worth raising|Direct pressure on the one person who does raise it|Mindguards — someone quietly keeping inconvenient information away from the group"
-   note="Janis’s other four are about how the group sees itself: invulnerable, inherently decent, and up against opponents too stupid or evil to matter." %}
+   note="Janis’s other four are about how the group sees itself and the world: invulnerable, inherently decent, warnings explained away rather than reckoned with, and opponents too stupid or evil to matter." %}
 
 ## Why it happens
 
 Cohesion is the cause, which is what makes this so awkward — the groups most vulnerable are the ones that like and respect each other. A group of strangers argues freely because none of them has anything to protect. A close team has something to lose by arguing, and it isn't the argument.
 
-The mechanism is a slow one. First the objection gets softened, so as not to sound like an attack on colleagues. Then it gets held back for a better moment that never arrives. Then the person stops having it — because a mind that has repeatedly learned an objection has nowhere to go stops generating the objection. ::By the time the decision is made there is no suppressed dissent to uncover, which is exactly why the group is so certain.::
+The mechanism is a slow one. First the objection gets softened, so as not to sound like an attack on colleagues. Then it gets held back for a better moment that never arrives. Then, for some, the person stops having it — because a mind that has repeatedly learned an objection has nowhere to go stops generating the objection. ::By the time the decision is made the doubts have been set aside rather than answered, and the silence gets read as consent:: — which is exactly why the group is so certain.
 
-Two things make it worse, and both look like good leadership. A leader who states their preference early converts every subsequent disagreement into a disagreement with the boss. And time pressure, which everyone treats as a reason to consult fewer people, is the single most reliable accelerant.
+Two things make it worse, and both look like good leadership. A leader who states their preference early converts every subsequent disagreement into a disagreement with the boss. And time pressure, which everyone treats as a reason to consult fewer people, removes the slack in which a doubt would have been raised.
 
 ## This is not groupthink
 

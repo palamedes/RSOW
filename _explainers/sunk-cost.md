@@ -62,7 +62,7 @@ That's also why it hardens in groups. "We've come too far to stop now" is rarely
 ## This is not the sunk cost fallacy
 
 - **Being nearly finished.** If the remaining cost is small and the payoff still exceeds it, carry on. That's correct marginal reasoning. The fallacy is about the *past* spend counting, not about ever continuing anything.
-- **Investment that produced a real asset going forward.** If three years bought you expertise, a codebase, or a licence that makes the next year cheaper, that's not a sunk cost — it's a live one, and it belongs in the forward calculation.
+- **An asset you actually still have.** If three years bought you expertise, a codebase, or a licence, the three years are still sunk — they don't come back either way. But the thing they bought is real, and it makes the next year cheaper. That lower forward cost is what belongs in the calculation. The three years still don't.
 - **Commitments that genuinely bind.** Contracts, promises and reputation have real future consequences. "We said we would" can be a legitimate forward-looking reason, so long as it's the consequence doing the work and not the embarrassment.
 - **Refusing to churn.** Abandoning things the moment they get hard has its own failure mode, and it's at least as expensive. Persistence isn't the fallacy; persistence *justified solely by prior spend* is.
 

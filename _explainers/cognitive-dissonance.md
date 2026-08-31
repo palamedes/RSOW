@@ -55,7 +55,9 @@ Twenty dollars is reason enough to say something you don't mean; there's no diss
    b="This is a genuinely exceptional group of people."
    b_tone="warm" %}
 
-That last one has a name of its own — effort justification — and it is the reason unpleasant initiations produce loyal members rather than resentful ones. The suffering has to have bought something, so it does.
+That last one has a name of its own — effort justification — and it's the standard explanation for why people defend the group that put them through it. The suffering has to have bought something, so it does.
+
+It's also the place this whole idea is weakest, which is worth saying out loud. The effect is solid in the laboratory. Studies that follow real initiations mostly fail to find it, and sometimes find the reverse — severity predicting humiliation and *lower* liking for the group, with whatever bond forms coming from going through it alongside the other newcomers rather than from the suffering itself.
 
 ## Why it doesn't work
 

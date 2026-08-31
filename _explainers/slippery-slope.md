@@ -53,7 +53,7 @@ Both capture the same claim, which is a real one worth taking seriously: that a 
 
 ## Why it doesn't work
 
-A chain is exactly as strong as its weakest link — and this move never shows you the links. It shows you the two ends and invites you to fill in the middle yourself, which you will, because your imagination is obliging and nobody has been asked to defend anything. ::Each step needs its own argument, and the whole design of the move is that none of them gets one.::
+A chain is no stronger than its weakest link — and this move never shows you the links. It shows you the two ends and invites you to fill in the middle yourself, which you will, because your imagination is obliging and nobody has been asked to defend anything. ::Each step needs its own argument, and the whole design of the move is that none of them gets one.::
 
 Then there's the arithmetic, which almost never gets done. Suppose each step really is 80 per cent likely to follow from the one before — generous, for a speculative chain nobody has evidenced. Four steps is 0.8 × 0.8 × 0.8 × 0.8, which is about 41 per cent. Chains of individually-plausible steps become improbable startlingly fast, and intuition doesn't track it at all, because you assess the steps one at a time and each one sounds reasonable on its own.
 
