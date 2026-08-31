@@ -25,9 +25,9 @@ A visibly random number, generated in front of them, on a completely unrelated q
 
 {% include explain-compare.html
    left_label="The anchor"
-   left="A wheel that stopped on 65|“Was £200”|“We were thinking somewhere around forty”|A placeholder estimate somebody typed into the doc in March"
+   left="A wheel that stopped on 65|“Was £200”|“We were thinking somewhere around forty”|A placeholder estimate somebody typed into the doc in March|Six feet apart"
    right_label="What it moved"
-   right="Estimates of UN membership|What £80 feels like|Every offer made after it|The entire budget conversation in October" %}
+   right="Estimates of UN membership|What £80 feels like|Every offer made after it|The entire budget conversation in October|Two years of arguing about distance" %}
 
 {% include explain-swap.html
    a_label="What actually happened"
@@ -38,6 +38,20 @@ A visibly random number, generated in front of them, on a completely unrelated q
    b_label="What it turned into"
    b="Argued about whether it should be a bit higher or a bit lower."
    b_tone="warm" %}
+
+## When the anchor becomes the argument
+
+The highest-stakes recent case is the six-foot rule.
+
+The number had a lineage. Droplet studies going back to the 1930s suggested that large respiratory droplets fall to the ground within a metre or two, and that had been standard infection-control guidance for decades. What it did not have was a derivation for this particular disease. Different authorities read the same evidence and landed in different places — the WHO said one metre, the UK said two, the United States said six feet. ::A quantity that varies by a factor of two between health agencies is not a measurement.:: A BMJ analysis in 2020 made the case directly, arguing that a single fixed distance was poorly supported and that the real risk depended on ventilation, occupancy, duration, masking and activity. In 2024 Anthony Fauci told a congressional subcommittee that the six-foot figure "sort of just appeared," and that he was not aware of studies behind it.
+
+Now the anchoring part, which is a separate question from whether distancing worked. Once six feet existed, essentially every argument that followed was conducted in units of six feet. Was three enough? Should it be ten? Could the classroom reopen at three, the restaurant at five, the church at four? An enormous public argument ran for two years with a coordinate system, and the origin of that system was a number nobody had derived.
+
+Notice what mostly never happened: the six itself was rarely the thing being defended. It didn't have to be. It was the fixed point that everything else was measured from — and that is a far stronger position for a number to occupy than being correct.
+
+There's a second cost, and it's the one that lasts. The things that actually governed risk — how well ventilated the room was, how long you stayed, how many people were in it, indoors or out, whether anyone was masked — are hard to paint on a floor. The anchor was one number, so the argument became one-dimensional, and the dimensions that got left out at the start never made it back in.
+
+None of which means picking a number was a mistake. Acting on incomplete evidence is frequently the only responsible thing available, and a rule people can actually follow beats a more accurate rule they can't. ::The failure isn't choosing a number under uncertainty. It's that the number stopped being provisional:: — and became a thing to be defended, by people on both sides who had never once asked where it came from.
 
 ## Why it doesn't work
 
