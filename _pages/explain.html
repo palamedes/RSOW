@@ -1,0 +1,144 @@
+---
+layout: default
+title: Explainers
+description: "Short, linkable explanations of the ways thinking goes wrong — in an argument, on your own, and in a room full of reasonable people. Send someone the link instead of typing it out again."
+permalink: /explain/
+full_width: true
+---
+{%- assign items = site.explainers | sort: "title" -%}
+{%- comment -%} kinds in display order; counts come from the collection itself {%- endcomment -%}
+{%- assign kinds = "Rhetorical move,Faulty reasoning,Bad evidence,Thinking trap,Group failure" | split: "," -%}
+<div class="exp exp-index">
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="exp-hero">
+    <div class="exp-hero-bg" aria-hidden="true"></div>
+    <div class="exp-wrap exp-hero-inner">
+      <div class="exp-hero-figure" aria-hidden="true"></div>
+      <p class="exp-eyebrow">Explainers</p>
+      <h1 class="exp-title">You just did a thing.<br>Here’s what it’s called.</h1>
+      <p class="exp-tagline">
+        Short, plain explanations of the ways thinking goes wrong — in an argument, on your own,
+        and in a room full of reasonable people. What each one is, what it looks like, and why it
+        doesn’t work. One page each, no rant attached. Made to be sent to somebody instead of
+        typed out for the hundredth time.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ LIST ══════════════ -->
+  <div class="exp-wrap exp-index-wrap">
+    {%- if items.size > 5 %}
+    <nav class="exp-filters" aria-label="Filter explainers by kind">
+      <button type="button" class="exp-pill is-active" data-filter="all" aria-pressed="true">
+        All <span class="exp-pill-count">{{ items.size }}</span>
+      </button>
+      {%- for kind in kinds %}
+      {%- assign n = items | where: "kind", kind | size %}
+      {%- if n > 0 %}
+      <button type="button" class="exp-pill" data-filter="{{ kind | slugify }}" aria-pressed="false">
+        {{ kind }} <span class="exp-pill-count">{{ n }}</span>
+      </button>
+      {%- endif %}
+      {%- endfor %}
+    </nav>
+
+    <div class="exp-search">
+      <svg class="exp-search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input type="text" id="exp-search" placeholder="Search explainers…" autocomplete="off" aria-label="Search explainers">
+      <button type="button" class="exp-search-clear" id="exp-search-clear" aria-label="Clear search" hidden>&times;</button>
+    </div>
+    {%- endif %}
+
+    <div class="exp-grid" id="exp-grid">
+      {%- for e in items %}
+      <article class="exp-card"
+               data-kind="{{ e.kind | default: 'Rhetorical move' | slugify }}"
+               data-search="{{ e.title | strip_html | escape | downcase }} {{ e.aka | strip_html | escape | downcase }} {{ e.tagline | strip_html | escape | downcase }} {{ e.kind | strip_html | escape | downcase }}">
+        <span class="exp-card-kind is-{{ e.kind | default: 'Rhetorical move' | slugify }}">{{ e.kind | default: "Rhetorical move" }}</span>
+        <h2 class="exp-card-title">
+          <a class="exp-card-link" href="{{ e.url | relative_url }}">{{ e.title }}</a>
+        </h2>
+        {%- if e.aka %}<p class="exp-card-aka">also called {{ e.aka }}</p>{%- endif %}
+        <p class="exp-card-line">{{ e.tagline | strip_html }}</p>
+        <div class="exp-card-foot">
+          <span class="exp-card-read">Read it &rarr;</span>
+          <button type="button" class="exp-copy is-mini" data-copy-link data-url="{{ e.url | absolute_url }}" aria-label="Copy the link to {{ e.title | escape }}">
+            <span class="exp-copy-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </span>
+            <span class="exp-copy-lead">Copy link</span>
+          </button>
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+
+    <p class="exp-empty" id="exp-empty" hidden>Nothing matches that. Try a different word.</p>
+
+    <aside class="exp-suggest">
+      <h2>Missing one?</h2>
+      <p>
+        There are more of these than I’ve written up. If somebody pulled a move on you and you
+        want the page for it, <a href="{{ '/about/' | relative_url }}">tell me</a> and I’ll add it.
+      </p>
+    </aside>
+  </div>
+</div>
+
+<script>
+(function () {
+  var grid = document.getElementById('exp-grid');
+  if (!grid) return;
+
+  var input = document.getElementById('exp-search');
+  var clear = document.getElementById('exp-search-clear');
+  var empty = document.getElementById('exp-empty');
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.exp-pill'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.exp-card'));
+  var filter = 'all';
+
+  function render() {
+    var q = input ? input.value.trim().toLowerCase() : '';
+    var shown = 0;
+    cards.forEach(function (c) {
+      var okKind = filter === 'all' || c.dataset.kind === filter;
+      var okText = !q || (c.dataset.search || '').indexOf(q) !== -1;
+      var hit = okKind && okText;
+      c.hidden = !hit;
+      if (hit) shown++;
+    });
+    if (clear) clear.hidden = !q;
+    if (empty) empty.hidden = shown !== 0;
+  }
+
+  pills.forEach(function (p) {
+    p.addEventListener('click', function () {
+      pills.forEach(function (b) {
+        b.classList.remove('is-active');
+        b.setAttribute('aria-pressed', 'false');
+      });
+      p.classList.add('is-active');
+      p.setAttribute('aria-pressed', 'true');
+      filter = p.dataset.filter;
+      render();
+    });
+  });
+
+  if (input) input.addEventListener('input', render);
+  if (clear) clear.addEventListener('click', function () {
+    input.value = '';
+    input.focus();
+    render();
+  });
+
+  render();
+})();
+</script>
+
+{% include explain-copy.html %}

@@ -1,0 +1,52 @@
+{%- comment -%}
+  Two-step move: someone says one thing, gets pushed on it, and a different
+  thing comes back. Labels and tones are parameters so the same block works
+  wherever the next explainer needs to name its halves.
+
+    {% include explain-swap.html
+       a_label="The bailey"  a="Capitalism is inherently evil."
+       mid="When challenged"
+       b_label="The motte"   b="I'm only saying corporations sometimes exploit people." %}
+
+  Tones — `a_tone` / `b_tone`, defaulting to warm then cool:
+    warm   the step that's the actual problem
+    cool   the reasonable step it's standing next to
+    plain  neither; just a step
+
+  Optional: `mid_note` for a full sentence under the short mid label, and
+  `back` for the return trip that makes a move a move rather than a retreat.
+{%- endcomment -%}
+{%- assign a_tone = include.a_tone | default: "warm" -%}
+{%- assign b_tone = include.b_tone | default: "cool" -%}
+<figure class="exp-swap">
+  <div class="exp-swap-step is-{{ a_tone }}">
+    <span class="exp-swap-label">{{ include.a_label }}</span>
+    <p class="exp-swap-claim">{{ include.a }}</p>
+  </div>
+
+  <div class="exp-swap-arrow">
+    <span class="exp-swap-arrow-top">
+      <span class="exp-swap-mid">{{ include.mid | default: "When challenged" }}</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="12" y1="4" x2="12" y2="19"></line>
+        <polyline points="6 13 12 19 18 13"></polyline>
+      </svg>
+    </span>
+    {%- if include.mid_note %}<span class="exp-swap-note">{{ include.mid_note }}</span>{%- endif %}
+  </div>
+
+  <div class="exp-swap-step is-{{ b_tone }}">
+    <span class="exp-swap-label">{{ include.b_label }}</span>
+    <p class="exp-swap-claim">{{ include.b }}</p>
+  </div>
+
+  {%- if include.back %}
+  <div class="exp-swap-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="9 14 4 9 9 4"></polyline>
+      <path d="M20 20v-7a4 4 0 0 0-4-4H4"></path>
+    </svg>
+    <span>{{ include.back }}</span>
+  </div>
+  {%- endif %}
+</figure>
