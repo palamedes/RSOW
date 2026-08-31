@@ -14,7 +14,7 @@ $exp-warm-2:   #f59e0b;
 $exp-logic:    #6d28d9;
 $exp-trap:     #0f766e;
 $exp-evidence: #be123c;
-$exp-group:    #15803d;
+$exp-group:    #475569;
 $exp-ink:      #1c2330;
 $exp-body:     #3a3f4b;
 $exp-muted:    #6b7280;
@@ -818,7 +818,7 @@ $exp-line:     #e3e6ea;
     }
     &.is-group-failure {
       color: $exp-group;
-      background: rgba(21, 128, 61, 0.10);
+      background: rgba(71, 85, 105, 0.12);
     }
   }
   .exp-card-title {
