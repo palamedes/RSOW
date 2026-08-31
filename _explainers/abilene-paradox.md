@@ -17,7 +17,7 @@ A group makes a decision. Afterwards it emerges that no individual member was in
 
 Jerry B. Harvey, 1974, describing an afternoon in Coleman, Texas. It is a hundred and four degrees. Somebody suggests driving to Abilene for dinner — fifty-three miles each way, in a Buick with no air conditioning, through the dust. Everyone agrees. The food is bad. Four hours later they're back on the porch, sweating, and somebody says they'd only gone along with it.
 
-So does the next person. And the next. And finally the man who proposed the trip admits he'd only suggested it because the others had looked bored.
+So does the next person. And the next. And finally the man who proposed the trip admits he'd only suggested it because he thought the others might be bored — not because any of them had given the slightest sign of it.
 
 ## What it looks like
 
@@ -50,7 +50,7 @@ The test is worth asking out loud: ::does anybody in this room actually want thi
 ## How to head it off
 
 - **Ask for preferences before there's a proposal on the table.** Once a plan exists, agreeing costs nothing and objecting costs something. Reverse the order and the price goes away.
-- **Poll in a fixed order, most junior first**, or in writing, simultaneously. Both work for the same reason: nobody gets to hear the room before committing.
+- **Poll in a fixed order, most junior first**, or in writing, simultaneously. Either way everybody has to put a preference on the record, and silence stops being an available answer. Written and simultaneous is much the stronger of the two, because nobody hears anybody before committing. A fixed order only fully protects whoever speaks first — by the fourth voice you are reading the room again — which is exactly why it has to start with the person who can least afford to go last.
 - **Say the quiet question.** "Before we lock this — is anyone here doing this because they think the rest of us want it?" It sounds faintly ridiculous, and it works, because it's the first moment where the honest answer is cheap.
 - **Go first, if you're the one who can afford to.** Somebody has to make objecting survivable, and it should be the person with the least to lose by it.
 

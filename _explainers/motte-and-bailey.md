@@ -15,7 +15,7 @@ You can't argue with the safe version, so the conversation stalls out. And once 
 
 ## Where the name comes from
 
-A motte-and-bailey castle has two parts. The **bailey** is the courtyard — the good land, where you actually want to live, with the barns and the workshops and the room to move. It's also almost impossible to defend. The **motte** is a stone keep on a raised mound: cramped, miserable, useless for daily life, and very hard to take.
+A motte-and-bailey castle has two parts. The **bailey** is the courtyard — the good land, where you actually want to live, with the barns and the workshops and the room to move. It's also almost impossible to defend. The **motte** is the mound — an earth hill with a keep on top, usually a timber tower: cramped, miserable, useless for daily life, and very hard to take.
 
 When raiders show up, you fall back to the motte and wait. When they get bored and leave, you walk straight back down into the bailey.
 

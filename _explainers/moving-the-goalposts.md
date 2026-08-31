@@ -1,7 +1,7 @@
 ---
 title: "Moving the Goalposts"
 kind: "Rhetorical move"
-aka: "shifting the burden, raising the bar"
+aka: "shifting the goalposts, raising the bar"
 tagline: "You meet the standard you were given, and a new and higher standard appears where the old one used to be."
 tell: "You did the thing they asked for and it didn’t count, and now there’s a different thing."
 description: "Moving the goalposts changes the standard of proof after the original standard has been met. What it looks like, why no amount of evidence can ever settle it, and how to nail the target down in advance."

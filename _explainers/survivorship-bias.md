@@ -17,7 +17,7 @@ You can't tell from the winners. That's the whole problem, and no amount of stud
 
 Abraham Wald, working for the Statistical Research Group during the second world war. Bombers were coming back from raids with bullet holes concentrated on the wings and fuselage and hardly any on the engines, and the obvious response was to put the armour where the holes were.
 
-Wald's answer was the opposite: armour the engines. The aircraft with holes in the engines weren't in the sample. They hadn't come back. The story gets told a little tidier than the memoranda actually were, but the reasoning is his.
+Wald's answer was the opposite: armour the engines. The aircraft with holes in the engines weren't in the sample. They hadn't come back. The story gets told a little tidier than the memoranda actually were, and the name isn't his either — "survivorship bias" is a later term of art out of statistics and fund-performance research, and the word "bias" appears nowhere in what Wald wrote. But the reasoning is his, and his is the example everybody still reaches for.
 
 ## What it looks like
 

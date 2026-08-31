@@ -41,7 +41,7 @@ What makes the fallacy sticky is that we don't experience a correlation neutrall
 - **Using a correlation to predict.** If all you need is a forecast, you don't need the mechanism at all. This is the distinction that matters most in practice: ::a correlation is enough to bet on and not enough to intervene on.:: Insurers price on correlations happily and correctly, and they aren't claiming to know why.
 - **Correlation as the start of an investigation.** It's how almost every causal discovery in history began. Noticing is not concluding.
 - **A causal claim with a mechanism and a test.** Once somebody can say *how*, and the how makes a prediction that could come out wrong, you have an argument rather than a pattern.
-- **Randomised experiments.** Random assignment is the specific tool built to turn correlation into causation. If it was a properly randomised trial, this objection simply doesn't apply, and raising it anyway is its own kind of error.
+- **Randomised experiments.** Random assignment is the specific tool built to turn correlation into causation. If the thing being claimed as the cause is the thing that was randomised, and the trial was a proper one, this objection simply doesn't apply, and raising it anyway is its own kind of error. But the licence covers only what was actually assigned: comparisons a trial merely *measured* — who stuck with the pills, who responded, which subgroup did best — are ordinary correlations again, confounders and all.
 
 The test: ::what's the third thing, and has anybody actually looked for it?::
 

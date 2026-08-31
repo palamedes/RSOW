@@ -43,6 +43,8 @@ Because it refutes a claim nobody made. That part is obvious. The interesting qu
 
 It's because the extreme version *feels* like the real position. When somebody wants another week of testing, it is genuinely tempting to hear "this person will never be satisfied," because you've met that person before. That feeling is the trap. ::You don't get to argue with what you suspect somebody believes. You have to argue with what they said.:: If you're right about the hidden position, you can go get it — ask them directly, and make them say it out loud.
 
+None of this requires bad faith, and it's worth being clear that the fallacy doesn't need any. It's still a straw man when the misreading is completely sincere — the argument you knocked down still isn't the one that was made, whether or not you meant to swap it. ::What a correction changes isn't whether it was a straw man. It's only what happens next:: — carry on after being told, and what was a mistake becomes something else.
+
 The cost is that the actual argument never gets tested. Another week of testing might be a bad idea for real, specific reasons. Nobody will ever hear them, because the conversation went somewhere else.
 
 ## The opposite move
@@ -56,7 +58,6 @@ If you can't state their position well enough that they'd nod at it, you don't u
 - **Following an argument to its consequences.** "If we apply that rule generally, here's where it lands" is a real move. It stays honest as long as you'd genuinely accept "no, here's why it doesn't generalize" as an answer.
 - **Summarizing.** Every restatement loses something. Ask "is that fair?" before you swing, and mean it.
 - **Arguing with a position somebody actually holds but is currently softening.** That's a different problem, and it has [its own page](/explain/motte-and-bailey/).
-- **Being wrong about what somebody meant.** Misreading is a mistake. It becomes a straw man when it's corrected and the attack continues anyway.
 
 ## How to call it out
 

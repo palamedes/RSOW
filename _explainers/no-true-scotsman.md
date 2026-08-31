@@ -15,13 +15,13 @@ The claim survives. It just isn't about anything any more.
 
 ## Where the name comes from
 
-From the philosopher Antony Flew. Hamish reads in the paper that a man in Brighton has done something appalling, and says: "No Scotsman would do such a thing." The following week he reads about a man from Aberdeen who did something considerably worse. Hamish says: "No *true* Scotsman would do such a thing."
+From the philosopher Antony Flew, in *Thinking About Thinking* (1975). A Scottish chauvinist reads in his Sunday *News of the World* that the Sidcup Sex Maniac has struck again, and says: "No Scot would do such a thing." The very next Sunday the same paper carries the considerably more scandalous doings of one Angus McSporran, in Aberdeen. He says: "No *true* Scotsman would do such a thing."
 
 ## What it looks like
 
 {% include explain-swap.html
    a_label="The claim"
-   a="No real conservative would support that bill."
+   a="No conservative would support that bill."
    a_tone="warm"
    mid="The counterexample"
    mid_note="A senator with a thirty-year conservative voting record co-sponsored it."
@@ -34,7 +34,7 @@ From the philosopher Antony Flew. Hamish reads in the paper that a man in Bright
    a="Nobody on this team ships without tests."
    a_tone="warm"
    mid="The counterexample"
-   mid_note="Three commits went out last month with no tests at all."
+   mid_note="Two people on the team shipped commits last month with no tests at all."
    b_label="The claim, adjusted"
    b="Well, those two aren’t really part of the team."
    b_tone="warm" %}

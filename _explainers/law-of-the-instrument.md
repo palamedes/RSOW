@@ -22,7 +22,7 @@ Two people, two years apart, both called Abraham. Abraham Kaplan, in 1964: *"Giv
 {% include explain-compare.html
    left_label="The tool, already chosen"
    left="Kubernetes|A new microservice|A machine-learning model|A recurring meeting|A rewrite"
-   right_label="The problem, once somebody looks at it"
+   right_label="What the job actually needed"
    right="Two servers and a cron job|A function in the code you already have|Three if-statements and a lookup table|One message to one person|Four hours in the module that actually breaks"
    note="Every tool on the left is a good tool. That’s exactly why it got picked before anyone finished describing the problem." %}
 

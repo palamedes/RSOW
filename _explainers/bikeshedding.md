@@ -15,9 +15,9 @@ Everybody leaves believing they've done a morning's work. ::The item that got th
 
 ## Where the name comes from
 
-C. Northcote Parkinson, 1957. His imaginary finance committee approves a ten-million-pound nuclear reactor in two and a half minutes, because nobody in the room understands reactors well enough to hold an opinion, and nobody wants to be the person who says so.
+C. Northcote Parkinson, 1957. His imaginary finance committee approves a ten-million-pound nuclear reactor in two and a half minutes. Of the eleven men present, several have no idea what a reactor is and several more don't know what it's for. The one man who genuinely does know what he's talking about has a page of objections — the suspiciously round figure, the size of the contingency, the credentials of one of the consultants — and swallows every one of them, because he would have to begin by explaining what a reactor *is*, and nobody in that room would admit they didn't already know.
 
-Then it spends three quarters of an hour on a proposed bicycle shed for the clerical staff, costing three hundred and fifty pounds, because every man present has built a shed or knows someone who has, and every man present has views about the roofing material. Then it gets to the refreshments budget — a trivial annual sum, thoroughly within everyone's competence — and that runs longest of all, before being deferred for further information.
+Then it spends three quarters of an hour on a proposed bicycle shed for the clerical staff, costing three hundred and fifty pounds, because that is a sum well within everybody's comprehension and every man present can picture a bicycle shed — and having pictured one, has views about the roofing material. Then it gets to the refreshments budget — a trivial annual sum, thoroughly within everyone's competence — and that runs longest of all, before being deferred for further information.
 
 ## What it looks like
 
@@ -31,6 +31,8 @@ Then it spends three quarters of an hour on a proposed bicycle shed for the cler
 It isn't stupidity, and it isn't laziness. Every individual in that room is behaving sensibly.
 
 Contributing to a discussion has a price of entry, and the price is competence. The reactor costs more than most of the people present can pay, so they don't speak — and their silence isn't agreement, it's the sound of nobody wanting to reveal that they can't evaluate it. The bike shed is the one item on the agenda where the price of entry is zero. ::Everybody talks about the shed because the shed is the only place they're allowed to exist.::
+
+And the cruellest part of Parkinson's version is what that does to the one person who could have helped. Objecting to the reactor would mean beginning by explaining what a reactor is, to a room that will not admit it needs telling. ::The expert's silence is bought by everybody else's pretence,:: and it costs nobody anything to keep buying it.
 
 There's a second engine, which is that saying something is how you demonstrate you should have been invited. A meeting you sat through in silence feels like a meeting you didn't need to attend, and nobody enjoys that feeling. The trivial item is where that debt gets paid.
 
