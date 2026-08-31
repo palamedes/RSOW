@@ -48,6 +48,8 @@ $card-listen-me-h: #d18d17;
 
   .nav-links {
     display: flex;
+    // the added link pushes past the social icons on mid-width screens
+    flex-wrap: wrap;
     gap: 1.25rem;
 
     a {
@@ -66,6 +68,111 @@ $card-listen-me-h: #d18d17;
       color: #696969;
       &:hover { color: #2673da; }
     }
+  }
+
+  // ── Mobile nav ──────────────────────────────────────────
+  // Six links plus the social row wrap the header into four stacked rows on a
+  // phone. Below $nav-bp they collapse behind a hamburger and the bar keeps to
+  // one line. The button is display:none above it, so the desktop header is
+  // untouched.
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 4px;
+    color: #696969;
+    cursor: pointer;
+
+    &:hover { color: #2673da; }
+    &:focus-visible { outline: 2px solid #2673da; outline-offset: 2px; }
+  }
+
+  .nav-toggle-bars {
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 14px;
+
+    span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.18s ease, opacity 0.18s ease, top 0.18s ease;
+
+      &:nth-child(1) { top: 0; }
+      &:nth-child(2) { top: 6px; }
+      &:nth-child(3) { top: 12px; }
+    }
+  }
+
+  // Bars fold into an X while the panel is open.
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars span {
+    &:nth-child(1) { top: 6px; transform: rotate(45deg); }
+    &:nth-child(2) { opacity: 0; }
+    &:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+  }
+
+  @media (max-width: 860px) {
+    .header-inner { gap: 0.5rem; }
+
+    .site-title   { order: 1; }
+    .social-icons { order: 2; margin-left: auto; }
+    .resume-slot  { order: 3; }
+    .nav-toggle   { order: 4; display: flex; }
+
+    // A quarter smaller on a phone — they're secondary to the title and the
+    // menu button, and at full size they crowd both. Header only; the footer
+    // set keeps its size.
+    .social-icons .social-icon {
+      width: 21px;
+      height: 21px;
+
+      svg { width: 13.5px; height: 13.5px; }
+    }
+
+    // Full-width panel on its own row under the bar.
+    .nav-links {
+      order: 5;
+      flex-basis: 100%;
+      flex-direction: column;
+      gap: 0;
+      margin: 0;
+      padding-top: 0.25rem;
+      border-top: 1px solid #e3e6ea;
+
+      a {
+        padding: 0.65rem 0.25rem;
+        font-size: 0.95rem;
+        border-bottom: 1px solid #f0f2f4;
+
+        &:last-child { border-bottom: 0; }
+      }
+    }
+
+    .header-inner:not(.is-nav-open) .nav-links { display: none; }
+  }
+
+  // Narrowest phones can't fit title + icons + button on one line, so the
+  // icons join the links in the panel.
+  @media (max-width: 400px) {
+    .social-icons {
+      order: 6;
+      flex-basis: 100%;
+      justify-content: flex-start;
+      gap: 1.1rem;
+      margin-left: 0;
+      padding-top: 0.7rem;
+    }
+    .nav-toggle { margin-left: auto; }
+    .header-inner:not(.is-nav-open) .social-icons { display: none; }
   }
 
   .adv-resume-btn {
