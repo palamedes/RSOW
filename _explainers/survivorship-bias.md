@@ -1,7 +1,7 @@
 ---
 title: "Survivorship Bias"
 kind: "Bad evidence"
-aka: "counting only the ones that made it"
+aka: "survivor bias, survival bias, counting only the ones that made it"
 tagline: "You study the things that came through, work out what they had in common, and never notice that the things that didn’t come through had all the same qualities."
 tell: "Every case in the sample is a success, and nobody went looking for the failures."
 description: "Survivorship bias draws lessons from a sample that selected itself on the thing being studied. Why the missing cases are missing precisely because they’d have changed the answer."

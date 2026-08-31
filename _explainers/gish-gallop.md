@@ -1,7 +1,7 @@
 ---
 title: "Gish Gallop"
 kind: "Rhetorical move"
-aka: "the spreading argument, shotgun argumentation"
+aka: "more claims than anyone can answer"
 tagline: "Bury the other side in so many claims at once that answering all of them is impossible — and then let “unanswered” get scored as “unanswerable.”"
 tell: "Each claim took four seconds to make and would take ten minutes to check. There are fourteen of them."
 description: "The Gish Gallop wins by volume: more claims than anyone can rebut in the time available, so whatever goes unaddressed looks conceded. Why it works, and the only response that doesn't lose."
@@ -15,7 +15,7 @@ That asymmetry is the entire weapon. Your opponent can answer some of it or none
 
 ## Where the name comes from
 
-Duane Gish was a creationist who spent the 1980s debating evolutionary biologists, and he was extremely good at exactly this: rattling off far more claims than any opponent could address inside a debate format, then treating the leftovers as unrefuted. Eugenie Scott of the National Center for Science Education gave the technique his name, and it has outlived the debates by a wide margin.
+Duane Gish was a creationist who spent about thirty years — from the early 1970s to around the turn of the century — debating evolutionary biologists, and he was extremely good at exactly this: rattling off far more claims than any opponent could address inside a debate format, then treating the leftovers as unrefuted. He did it, by his own side's count and by his critics', more than three hundred times. Eugenie Scott of the National Center for Science Education gave the technique his name in 1994, and it has outlived the debates by a wide margin.
 
 ## What it looks like
 

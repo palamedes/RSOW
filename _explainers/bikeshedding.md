@@ -1,7 +1,7 @@
 ---
 title: "Bikeshedding"
 kind: "Group failure"
-aka: "Parkinson’s law of triviality, the colour of the bike shed"
+aka: "Parkinson’s law of triviality, the colour of the bike shed (which is not Parkinson’s)"
 tagline: "The enormous, expensive, irreversible decision goes through in four minutes. The small one everybody understands eats the rest of the meeting."
 tell: "Time spent on an item is running inversely to what the item costs."
 description: "Bikeshedding is a group spending its attention on the trivial item because it’s the only one everyone can evaluate. Why the wasted hour isn’t the damage, and how to run the meeting so it can’t happen."
@@ -19,6 +19,8 @@ C. Northcote Parkinson, 1957. His imaginary finance committee approves a ten-mil
 
 Then it spends three quarters of an hour on a proposed bicycle shed for the clerical staff, costing three hundred and fifty pounds, because that is a sum well within everybody's comprehension and every man present can picture a bicycle shed — and having pictured one, has views about the roofing material. Then it gets to the refreshments budget — a trivial annual sum, thoroughly within everyone's competence — and that runs longest of all, before being deferred for further information.
 
+The shed is Parkinson's. The colour isn't. In his committee they argue about the roof — aluminium, asbestos, galvanised iron — and about the price, and about whether the staff need a shed at all; nobody there ever mentions what colour to paint it. The colour arrives forty-two years later, when the FreeBSD developer Poul-Henning Kamp watched his project spend a fortnight arguing about whether `sleep` should accept fractional seconds and wrote a long mail under the subject line "A bike shed (any colour will do) on greener grass...". That is where software got the word, and where the shed acquired a colour it never had.
+
 ## What it looks like
 
 {% include explain-pile.html
@@ -34,7 +36,9 @@ Contributing to a discussion has a price of entry, and the price is competence. 
 
 And the cruellest part of Parkinson's version is what that does to the one person who could have helped. Objecting to the reactor would mean beginning by explaining what a reactor is, to a room that will not admit it needs telling. ::The expert's silence is bought by everybody else's pretence,:: and it costs nobody anything to keep buying it.
 
-There's a second engine, which is that saying something is how you demonstrate you should have been invited. A meeting you sat through in silence feels like a meeting you didn't need to attend, and nobody enjoys that feeling. The trivial item is where that debt gets paid.
+There's a second engine, which is that saying something is how you demonstrate you should have been invited. Parkinson is explicit about it: the moment the reactor is through, his members start wondering privately whether they have really been pulling their weight, and would like to show, before the meeting ends, that they are alive to what is going on. The shed is the next item on the paper. That is where the debt gets paid.
+
+Which is worth sitting with, because it inverts the obvious fix. ::The reactor didn't slip through because the meeting was tired by the time it came up. It came first.:: Its passing unopposed is precisely what created the appetite for an argument, and the shed was simply the first thing to hand that everyone could have one about.
 
 And the damage isn't the forty-five minutes. Forty-five minutes is cheap. The damage is the two and a half, because a decision that passes in silence gets minuted as a decision the group considered and approved — and everyone will remember it that way, including the people who had no idea what they were nodding at.
 
@@ -51,7 +55,7 @@ The test is a ratio, and it's quick: ::compare the minutes spent to the cost of 
 
 This one doesn't yield to a clever remark, because nobody in the room is doing anything wrong. It yields to running the meeting differently:
 
-- **Take the expensive item first**, while attention is still a resource you have rather than one you've spent.
+- **Don't count on running order.** In Parkinson's committee the reactor is taken first, while everyone is fresh, and it goes through in two and a half minutes anyway. What was scarce in that room was never attention. It was competence, and no amount of reshuffling an agenda buys anybody more of it.
 - **Say the stakes out loud before the discussion, not after.** "This one we can reverse in an afternoon. This one we live with for five years." People calibrate well when they're told; they calibrate terribly by instinct.
 - **Give the small item an owner instead of a discussion.** "Sam picks the colour and tells us Friday" is a complete solution to a bike shed.
 - **Ask who in the room can actually evaluate the big one.** Out loud, before it's approved.

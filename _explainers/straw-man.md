@@ -15,7 +15,9 @@ The refutation is often perfectly good. It's just aimed at a claim nobody made. 
 
 ## Where the name comes from
 
-A straw man is a training dummy. It's man-shaped, it doesn't hit back, and knocking it over tells you nothing whatsoever about whether you could knock over a man.
+Nobody actually knows. You'll often hear it was a military training dummy, and it might have been, but that's a guess rather than a finding. The older phrase is "man of straw," which has meant a scarecrow, an effigy, and a person of no substance — someone with nothing behind him. It was already being used for an invented opponent in the 1620s, the better part of three centuries before anyone wrote "straw man" in that sense.
+
+Which image the phrase actually grew out of has never been settled, and it doesn't much matter, because they all land in the same place. The thing is man-shaped, it doesn't hit back, and knocking it over tells you nothing whatsoever about whether you could knock over a man.
 
 ## What it looks like
 
