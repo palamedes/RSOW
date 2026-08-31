@@ -13,7 +13,9 @@ You raise a problem. Instead of addressing it, they raise a *different* problem 
 
 ## Where the name comes from
 
-It's a Cold War coinage. Criticism of the Soviet Union was routinely met with a counter-charge about the West rather than an answer — the best-known form being "and you are lynching Negroes," which was a real and repeatedly used line. Western journalists started calling the reflex ::whataboutism::, and it stuck. The older Latin name for the same shape is *tu quoque*: "you too."
+The word starts in an argument about the Troubles, not about Moscow. On 30 January 1974 *The Irish Times* published a letter from Sean O'Conaill, a history teacher in Northern Ireland, complaining about "the Whatabouts" — the people who answered every condemnation of the Provisional IRA with an argument proving the greater immorality of the other side. Three days later the paper's John Healy, writing as "Backbencher", picked the letter up and gave the habit its name: ::whataboutery::.
+
+What made it famous was the Soviet version, which is why English mostly settled on ::whataboutism::. For decades criticism of Soviet repression was answered with a counter-charge about American racism instead of a reply — a reflex remembered in the stock phrase "and you are lynching Negroes," which circulated at least as much as a joke about the tactic as an actual quotation. The older Latin name for the same shape is *tu quoque*: "you too."
 
 ## What it looks like
 

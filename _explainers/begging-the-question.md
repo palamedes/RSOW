@@ -25,8 +25,8 @@ Almost everybody now uses "begs the question" to mean "raises the question," and
    note="“Necessary” and “we need it” are the same sentence twice." %}
 
 {% include explain-loop.html
-   claim="He’s the most trustworthy person in the company."
-   reason="Everyone knows he’d never lie about anything."
+   claim="He’s completely trustworthy."
+   reason="He’d never lie to you about anything."
    note="Being trustworthy is what “would never lie” means. No new fact arrived." %}
 
 {% include explain-loop.html
@@ -44,7 +44,7 @@ The other reason it survives: circular arguments are always *valid*. The conclus
 
 ## This is not circular reasoning
 
-- **Definitions.** "It's a bachelor because he's an unmarried man" isn't an argument that failed; it's a definition doing its job.
+- **Definitions nobody is fighting over.** "He's a bachelor because he's an unmarried man" isn't an argument that failed; it's a definition doing its job. But a definition can also be the trick, and in its oldest form that's exactly what this fallacy is: when the word is the thing in dispute, defining your way to the verdict *is* the move. "That wasn't a layoff, it was a restructuring — and restructurings aren't layoffs" doesn't argue for anything, it packs the conclusion into a noun. Ask whether the definition is one both sides already accept, or the very thing you were supposed to be proving.
 - **Axioms, stated as axioms.** Every argument bottoms out somewhere. Saying "I'm taking this as a starting point" is honest. It's only circular if the starting point is smuggled in as a conclusion.
 - **Evidence that happens to sound similar.** "He's trustworthy because he returned the deposit when nobody would have known" adds a fact from outside. Different sentence, different content.
 - **Repeating yourself for emphasis.** Saying the same thing twice isn't a fallacy unless the second one is being billed as the reason for the first.

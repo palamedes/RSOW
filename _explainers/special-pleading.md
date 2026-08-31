@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "one rule for me, the convenient exception"
 tagline: "The rule applies to everybody — right up until it applies to you, and then there’s a reason it doesn’t, and the reason has never come up before."
 tell: "The exception has no test behind it. It just happens to cover this case."
-description: "Special pleading exempts your own case from a rule you apply to everyone else, without a reason that would work for anyone in the same position. How to spot it — including in yourself."
+description: "Special pleading exempts a favoured case from a rule applied to everyone else, without a reason that would work for anyone in the same position. Usually the favoured case is your own — it doesn't have to be."
 ---
 
 ## The short version

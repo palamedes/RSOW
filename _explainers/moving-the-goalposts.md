@@ -1,7 +1,7 @@
 ---
 title: "Moving the Goalposts"
 kind: "Rhetorical move"
-aka: "shifting the burden, raising the bar"
+aka: "shifting the goalposts, raising the bar"
 tagline: "You meet the standard you were given, and a new and higher standard appears where the old one used to be."
 tell: "You did the thing they asked for and it didn’t count, and now there’s a different thing."
 description: "Moving the goalposts changes the standard of proof after the original standard has been met. What it looks like, why no amount of evidence can ever settle it, and how to nail the target down in advance."
@@ -52,7 +52,9 @@ That's the real cost, and it's mostly borne by the person doing it. Everyone els
 - **Multiple independent objections.** Some things really do have several separate problems. Answering one doesn't clear the rest, and being told so isn't a trick.
 - **A different person raising a different bar.** Two people in a room are allowed to want two different things. That's a meeting, not a fallacy.
 
-The line is admission. ::A revised standard that gets announced as revised is honest. One that appears in place of the old one, silently, is the move.::
+The line isn't admission. Saying it out loud doesn't repair it — "fair enough, and I still want more" is the same move with a covering note, and plenty of goalpost-moving is exactly that open: each objection answered, the next one raised, nothing hidden and nothing conceded.
+
+Two other things have to hold. ::Whatever the met standard actually established has to be conceded:: — said out loud, with the position moved by that much. And the new bar needs a reason that isn't "the old one was met": one that would have applied whatever the evidence had shown, and could have been stated before it came in. If the only thing making the new objection worth raising is that the previous one got answered, it isn't a standard. It's a patch.
 
 ## How to call it out
 

@@ -15,7 +15,9 @@ The refutation is often perfectly good. It's just aimed at a claim nobody made. 
 
 ## Where the name comes from
 
-A straw man is a training dummy. It's man-shaped, it doesn't hit back, and knocking it over tells you nothing whatsoever about whether you could knock over a man.
+Nobody actually knows. You'll often hear it was a military training dummy, and it might have been, but that's a guess rather than a finding. The older phrase is "man of straw," which has meant a scarecrow, an effigy, and a person of no substance — someone with nothing behind him. It was already being used for an invented opponent in the 1620s, the better part of three centuries before anyone wrote "straw man" in that sense.
+
+Which image the phrase actually grew out of has never been settled, and it doesn't much matter, because they all land in the same place. The thing is man-shaped, it doesn't hit back, and knocking it over tells you nothing whatsoever about whether you could knock over a man.
 
 ## What it looks like
 
@@ -43,6 +45,8 @@ Because it refutes a claim nobody made. That part is obvious. The interesting qu
 
 It's because the extreme version *feels* like the real position. When somebody wants another week of testing, it is genuinely tempting to hear "this person will never be satisfied," because you've met that person before. That feeling is the trap. ::You don't get to argue with what you suspect somebody believes. You have to argue with what they said.:: If you're right about the hidden position, you can go get it — ask them directly, and make them say it out loud.
 
+None of this requires bad faith, and it's worth being clear that the fallacy doesn't need any. It's still a straw man when the misreading is completely sincere — the argument you knocked down still isn't the one that was made, whether or not you meant to swap it. ::What a correction changes isn't whether it was a straw man. It's only what happens next:: — carry on after being told, and what was a mistake becomes something else.
+
 The cost is that the actual argument never gets tested. Another week of testing might be a bad idea for real, specific reasons. Nobody will ever hear them, because the conversation went somewhere else.
 
 ## The opposite move
@@ -56,12 +60,11 @@ If you can't state their position well enough that they'd nod at it, you don't u
 - **Following an argument to its consequences.** "If we apply that rule generally, here's where it lands" is a real move. It stays honest as long as you'd genuinely accept "no, here's why it doesn't generalize" as an answer.
 - **Summarizing.** Every restatement loses something. Ask "is that fair?" before you swing, and mean it.
 - **Arguing with a position somebody actually holds but is currently softening.** That's a different problem, and it has [its own page](/explain/motte-and-bailey/).
-- **Being wrong about what somebody meant.** Misreading is a mistake. It becomes a straw man when it's corrected and the attack continues anyway.
 
 ## How to call it out
 
 - "That's not the claim. The claim is: [say it again, plainly]. Take that one."
 - "Would you agree that's a fair restatement?" — asked *before* the argument starts, this prevents the whole thing.
-- "I'll happily argue against the version you just described. I don't hold it, but I'll argue it if you want."
+- "That's not my position, but I'll defend it for you if you like — and then you can tell me which of us you were arguing with."
 
-That last one is worth keeping in your pocket. Offering to defend the extreme position makes it very clear, very fast, that it was never yours.
+That last one is worth keeping in your pocket. Offering to argue *for* the extreme version makes it very clear, very fast, that it was never yours — nobody volunteers to defend a position they were caught holding.

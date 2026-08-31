@@ -35,7 +35,7 @@ The premise is a fact about you. The conclusion is a claim about the world. Ther
 
 {% include explain-swap.html
    a_label="What’s actually known"
-   a="There’s no way a real user would ever click that."
+   a="I can’t imagine why a real user would ever click that."
    a_tone="cool"
    mid="Therefore"
    b_label="What gets concluded"

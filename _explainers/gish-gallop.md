@@ -1,7 +1,7 @@
 ---
 title: "Gish Gallop"
 kind: "Rhetorical move"
-aka: "the spreading argument, shotgun argumentation"
+aka: "more claims than anyone can answer"
 tagline: "Bury the other side in so many claims at once that answering all of them is impossible — and then let “unanswered” get scored as “unanswerable.”"
 tell: "Each claim took four seconds to make and would take ten minutes to check. There are fourteen of them."
 description: "The Gish Gallop wins by volume: more claims than anyone can rebut in the time available, so whatever goes unaddressed looks conceded. Why it works, and the only response that doesn't lose."
@@ -15,7 +15,7 @@ That asymmetry is the entire weapon. Your opponent can answer some of it or none
 
 ## Where the name comes from
 
-Duane Gish was a creationist who spent the 1980s debating evolutionary biologists, and he was extremely good at exactly this: rattling off far more claims than any opponent could address inside a debate format, then treating the leftovers as unrefuted. Eugenie Scott of the National Center for Science Education gave the technique his name, and it has outlived the debates by a wide margin.
+Duane Gish was a creationist who spent about thirty years — from the early 1970s to around the turn of the century — debating evolutionary biologists, and he was extremely good at exactly this: rattling off far more claims than any opponent could address inside a debate format, then treating the leftovers as unrefuted. He did it, by his own side's count and by his critics', more than three hundred times. Eugenie Scott of the National Center for Science Education gave the technique his name in 1994, and it has outlived the debates by a wide margin.
 
 ## What it looks like
 
@@ -34,11 +34,11 @@ The bind for whoever has to respond is genuinely nasty. Answer everything, and y
 
 ## This is not a Gish Gallop
 
-- **A complicated case with a lot of parts.** Plenty of real arguments have twelve moving pieces. The difference is structural: a real case is a *structure*, where the parts hold each other up. A gallop is a *pile*, where no single part is load-bearing — which is what makes it survive having any given part removed.
+- **A complicated case with a lot of parts.** Plenty of real arguments have twelve moving pieces, and plenty of good ones are piles rather than chains. A dozen independent lines converging on one conclusion is how a circumstantial case works, and how most of science works — good reasoning is a cable of many slender fibres, not a chain no stronger than its weakest link. So the difference isn't the number of parts, or how they're joined. It's whether the parts are any good, and whether the person will stand behind them.
 - **Somebody who just talks a lot.** Verbosity is a personality, not a tactic.
 - **A lot of evidence for one claim.** That's not a gallop, that's a well-supported argument, and you should be pleased to get one.
 
-The test: ::knock out the three weakest items and see whether anything changes.:: A real case gets weaker. A gallop doesn't even notice.
+The test: ::pick one item and make them defend it.:: A real case has a best piece, and its owner is glad to be asked for it. A gallop has no best piece — press on any single item and you get a new item instead of a defence.
 
 ## How to call it out
 

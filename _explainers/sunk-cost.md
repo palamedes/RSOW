@@ -17,7 +17,11 @@ Those resources are gone. They're gone if you continue and they're gone if you s
 
 "Sunk cost" is straight economics — an expenditure already incurred and unrecoverable. The fallacy is the habit of counting it anyway.
 
-Its other name is the Concorde fallacy, after the Anglo-French supersonic programme that both governments went on funding long past the point where anyone expected it to pay, in significant part because of how much had already gone in. It's a useful nickname because it captures the scale: this is not a small private weakness, it's a thing that states do with billions.
+Its other name is the Concorde fallacy, after the Anglo-French supersonic programme that both governments kept funding for years after the commercial case had gone. The name is worth keeping and worth handling carefully, because the history is more awkward than the label.
+
+The 1962 agreement was a treaty, and a remarkably short one — seven articles, setting out how the work, the costs and the proceeds would be split. It said nothing whatever about either side leaving. No exit, no notice period, no penalty, no procedure. So when Harold Wilson's incoming government tried in 1964 to renegotiate its way out, there was nothing to invoke, and the French declined to reopen it. That left Britain choosing between carrying on and breaking a treaty outright. Britain carried on.
+
+Which makes Concorde a better story about a trap than about the fallacy it named. ::What mostly held the two governments in was the cost of getting out — and a cost of getting out is a forward-looking cost, the legitimate kind.:: Use the nickname, because it's the one everybody knows. Just don't use it as the proof.
 
 ## What it looks like
 
@@ -62,11 +66,11 @@ That's also why it hardens in groups. "We've come too far to stop now" is rarely
 ## This is not the sunk cost fallacy
 
 - **Being nearly finished.** If the remaining cost is small and the payoff still exceeds it, carry on. That's correct marginal reasoning. The fallacy is about the *past* spend counting, not about ever continuing anything.
-- **Investment that produced a real asset going forward.** If three years bought you expertise, a codebase, or a licence that makes the next year cheaper, that's not a sunk cost — it's a live one, and it belongs in the forward calculation.
+- **An asset you actually still have.** If three years bought you expertise, a codebase, or a licence, the three years are still sunk — they don't come back either way. But the thing they bought is real, and it makes the next year cheaper. That lower forward cost is what belongs in the calculation. The three years still don't.
 - **Commitments that genuinely bind.** Contracts, promises and reputation have real future consequences. "We said we would" can be a legitimate forward-looking reason, so long as it's the consequence doing the work and not the embarrassment.
 - **Refusing to churn.** Abandoning things the moment they get hard has its own failure mode, and it's at least as expensive. Persistence isn't the fallacy; persistence *justified solely by prior spend* is.
 
-The test is a clean-slate question, and it's brutal because it works: ::if you arrived today, with no history here and nothing already spent, and somebody offered you this exactly as it stands — would you take it?:: If the answer is no, then the only thing keeping you in is a number that can't be recovered either way.
+The test is a clean-slate question, and it's brutal because it works: ::if you arrived today, with no history here and nothing already spent, and somebody offered you this exactly as it stands — would you take it?:: If the answer is no, ask one follow-up before you act on it: is there anything that would cost you to stop — a penalty, a promise, an obligation that survives the decision? That's a real forward cost and it belongs in the sum. If there isn't, then the only thing keeping you in is a number that can't be recovered either way.
 
 ## How to call it out
 

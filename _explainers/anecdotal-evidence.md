@@ -21,7 +21,9 @@ The size isn't really the problem, though. The *selection* is. Anecdotes reach y
 
 Then there's how the two kinds of evidence land. A rate is a fact about a population — abstract, external, nothing to picture. A story is an experience you briefly had. Nobody is calibrated for that difference, and the story wins in a room every time, including in the head of the person who knows better.
 
-And it functions beautifully as a conversation-ender, because it can't be checked. You cannot sample more of it, you cannot look it up, and disputing it means implying somebody is lying about their own life — which they almost certainly aren't. "It worked for me" is the strongest form there is: true, unverifiable, and entirely silent on the question actually being asked.
+And it functions beautifully as a conversation-ender, because it can't be checked. You cannot sample more of it, you cannot look it up, and disputing it means implying somebody is lying about their own life — which they almost certainly aren't. "It worked for me" is the strongest form there is: sincere, unverifiable, and entirely silent on the question actually being asked.
+
+And there's a third option that leaving out is what makes the whole thing feel unanswerable. ::An account can be sincere and still be wrong.:: Memory isn't a recording played back; it's reconstructed fresh each time, steadier on the gist than on what happened in what order and how long the gap was. But the bigger problem isn't memory at all. "I took it and I got better" can be perfectly accurate as a report and still be silent on cause, because the complaints people reach for a remedy for are very often the ones that ease on their own. Colds end. Flare-ups subside. A bad stretch is usually followed by an average one. Whatever you did last before improving collects the credit, and there is no version of that week running alongside where you didn't do it. Nobody is misremembering. They're reading a cause off a sequence, and a sequence is the one thing that can't supply one.
 
 ## This is not the fallacy
 
