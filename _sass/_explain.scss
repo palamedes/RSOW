@@ -1,0 +1,909 @@
+// ════════════════════════════════════════════════════════════════
+//  Explainers — /explain/ and /explain/:name/
+//  Scoped under `.exp`. Short, single-idea pages built to be pasted
+//  into an argument, so the type is bigger and the line length is
+//  shorter than the blog. Palette inherits the site's #2673da accent;
+//  the amber is used only for "the claim that can't be defended", so
+//  the two halves of a swap read apart at a glance.
+// ════════════════════════════════════════════════════════════════
+
+$exp-accent:   #2673da;
+$exp-accent-2: #4a9aff;
+$exp-warm:     #b45309;
+$exp-warm-2:   #f59e0b;
+$exp-logic:    #6d28d9;
+$exp-trap:     #0f766e;
+$exp-evidence: #be123c;
+$exp-group:    #15803d;
+$exp-ink:      #1c2330;
+$exp-body:     #3a3f4b;
+$exp-muted:    #6b7280;
+$exp-faint:    #9aa1ad;
+$exp-line:     #e3e6ea;
+
+.exp {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // Same geometry as .site-wrapper / .post-wrap — the explainers sit on the
+  // site grid, not one of their own.
+  .exp-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  // ════════════════ HERO ════════════════
+  .exp-hero {
+    position: relative;
+    background: radial-gradient(120% 150% at 80% -20%, #26375d 0%, #161c2c 55%, #0c1018 100%);
+    color: #fff;
+    padding: 2.7rem 0 2.6rem;
+    overflow: hidden;
+    border-bottom: 3px solid $exp-accent;
+  }
+  .exp-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(36% 58% at 8% 12%, rgba(38, 115, 218, 0.30) 0%, transparent 62%),
+      radial-gradient(30% 46% at 97% 104%, rgba(245, 158, 11, 0.16) 0%, transparent 62%);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 20%, #000 0%, transparent 78%);
+    }
+  }
+  .exp-hero-inner { position: relative; }
+
+  // ════════════════ HERO FIGURE ════════════════
+  // He points up and to his own right, so he only reads as pointing at
+  // anything when he's parked in the top-right corner with the title sitting
+  // under his finger. A background rather than an <img> for the same reason
+  // the glow above is one: he's decoration, and the narrow layouts that drop
+  // him should never spend the download. The cutout ends in a flat chest
+  // crop, so it's faded into the hero gradient instead of left as a hard cut.
+  .exp-hero-figure { display: none; }
+
+  // Below the site's own 1120px wrap there's no width left to give him, so the
+  // text takes it all and he steps out.
+  @media (min-width: 1120px) {
+    .exp-hero-inner { padding-right: 22rem; }
+
+    .exp-hero-figure {
+      display: block;
+      position: absolute;
+      top: 0;
+      // Flush with the right edge of the text column, so he lines up with the
+      // site grid instead of floating loose in the corner.
+      right: 1.5rem;
+      width: 290px;
+      aspect-ratio: 520 / 511;
+      background: url("/assets/images/jason-pointing.png") no-repeat center / contain;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 94%);
+      mask-image: linear-gradient(to bottom, #000 55%, transparent 94%);
+    }
+  }
+
+  .exp-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.62);
+    margin: 0 0 0.55rem;
+
+    a {
+      color: inherit;
+      &:hover { color: $exp-accent-2; }
+    }
+  }
+  .exp-eyebrow-dot { margin: 0 0.45rem; opacity: 0.5; }
+
+  .exp-title {
+    font-size: clamp(1.9rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.55rem;
+    color: #fff;
+    background: linear-gradient(180deg, #ffffff 0%, #cdd9f0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .exp-aka {
+    font-size: 0.86rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 0.8rem;
+  }
+
+  .exp-tagline {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .exp-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+  .exp-hero-hint {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  // Side by side the hint runs to the edge on a phone; stack it instead.
+  @media (max-width: 620px) {
+    .exp-hero-actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.7rem;
+    }
+  }
+
+  // ════════════════ COPY-LINK BUTTON ════════════════
+  .exp-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.05rem;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    font: inherit;
+    font-size: 0.86rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.16s ease, border-color 0.16s ease, transform 0.1s ease, color 0.16s ease;
+
+    .exp-copy-ico {
+      display: inline-flex;
+      svg { width: 15px; height: 15px; }
+    }
+
+    &:hover {
+      background: $exp-accent;
+      border-color: $exp-accent;
+      transform: translateY(-1px);
+    }
+    &:active { transform: translateY(0); }
+
+    &.is-copied,
+    &.is-copied:hover {
+      background: #16a34a;
+      border-color: #16a34a;
+      color: #fff;
+      transform: none;
+    }
+
+    &.is-failed,
+    &.is-failed:hover {
+      background: #b91c1c;
+      border-color: #b91c1c;
+      color: #fff;
+      transform: none;
+    }
+
+    // On light ground (article footer)
+    &.is-light {
+      background: $exp-accent;
+      border-color: $exp-accent;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(38, 115, 218, 0.28);
+      &:hover { background: #1b5fb8; border-color: #1b5fb8; }
+    }
+
+    // Inside an index card
+    &.is-mini {
+      padding: 0.32rem 0.7rem;
+      font-size: 0.74rem;
+      font-weight: 700;
+      background: transparent;
+      border-color: $exp-line;
+      color: $exp-muted;
+      &:hover { background: $exp-accent; border-color: $exp-accent; color: #fff; }
+      .exp-copy-ico svg { width: 13px; height: 13px; }
+    }
+  }
+
+  // ════════════════ SINGLE — BODY ════════════════
+  .exp-body-wrap { padding-bottom: 3.5rem; }
+
+  .exp-tell {
+    position: relative;
+    z-index: 2;
+    margin: -2rem 0 2.4rem;
+    padding: 1.15rem 1.35rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-left: 4px solid $exp-warm-2;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.10);
+
+    p {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      font-weight: 600;
+      color: $exp-ink;
+    }
+  }
+  .exp-tell-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: $exp-warm;
+    margin-bottom: 0.35rem;
+  }
+
+  // ════════════════ SINGLE — ARTICLE TYPE ════════════════
+  .exp-content {
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: $exp-body;
+
+    h2 {
+      font-size: 1.42rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: $exp-ink;
+      margin: 2.5rem 0 0.8rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid $exp-line;
+
+      &:first-child {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: $exp-ink;
+      margin: 1.8rem 0 0.5rem;
+    }
+
+    p { margin: 0 0 1.15rem; }
+
+    strong { font-weight: 800; color: $exp-ink; }
+
+    a {
+      color: $exp-accent;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      &:hover { color: #1b5fb8; }
+    }
+
+    ul, ol {
+      margin: 0 0 1.3rem;
+      padding-left: 1.35rem;
+    }
+    li {
+      margin-bottom: 0.55rem;
+      &::marker { color: $exp-faint; }
+    }
+
+    em { color: $exp-ink; }
+  }
+
+  // ════════════════ THE SWAP DIAGRAM ════════════════
+  .exp-swap {
+    margin: 1.8rem 0 2rem;
+    padding: 0;
+  }
+
+  .exp-swap-step {
+    position: relative;
+    padding: 0.95rem 1.2rem 1rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(16, 24, 40, 0.05);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 8px 0 0 8px;
+    }
+
+    &.is-warm {
+      background: #fffbf4;
+      border-color: #f3e3c8;
+      &::before { background: $exp-warm-2; }
+      .exp-swap-label { color: $exp-warm; }
+    }
+
+    &.is-cool {
+      background: #f6f9fe;
+      border-color: #d8e5f8;
+      &::before { background: $exp-accent; }
+      .exp-swap-label { color: $exp-accent; }
+    }
+
+    &.is-plain {
+      &::before { background: #cbd2dc; }
+      .exp-swap-label { color: $exp-muted; }
+    }
+  }
+
+  .exp-swap-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.63rem;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+  }
+
+  .exp-swap-claim {
+    margin: 0;
+    font-size: 1.06rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: $exp-ink;
+
+    &::before { content: "\201C"; }
+    &::after  { content: "\201D"; }
+  }
+
+  .exp-swap-arrow {
+    padding: 0.5rem 0 0.5rem 1.2rem;
+    color: $exp-faint;
+  }
+  .exp-swap-arrow-top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    svg { width: 17px; height: 17px; flex: none; }
+  }
+  // A counterexample or an aside that needs a full sentence, where the
+  // uppercase mid label would be unreadable.
+  .exp-swap-note {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: $exp-muted;
+  }
+  .exp-swap-mid {
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.64rem;
+    font-weight: 800;
+    color: $exp-muted;
+  }
+
+  .exp-swap-back {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px dashed #e2c9a4;
+    border-radius: 8px;
+    background: #fffbf4;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: $exp-warm;
+
+    svg { width: 15px; height: 15px; flex: none; }
+  }
+
+  // ════════════════ COMPARE — THE FRAME VS. THE OPTIONS ════════════════
+  .exp-compare {
+    margin: 1.8rem 0 2rem;
+  }
+  .exp-compare-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    // top-aligned, not stretched: the short list is usually the whole point,
+    // and matching its height to the long one leaves a dead panel
+    align-items: start;
+    gap: 0.85rem;
+
+    @media (max-width: 620px) { grid-template-columns: 1fr; }
+  }
+  .exp-compare-col {
+    padding: 0.95rem 1.15rem 1.05rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 8px;
+
+    ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    li {
+      margin: 0 0 0.4rem;
+      font-size: 0.98rem;
+      line-height: 1.5;
+      color: $exp-ink;
+      &:last-child { margin-bottom: 0; }
+    }
+
+    &.is-warm {
+      background: #fffbf4;
+      border-color: #f3e3c8;
+      .exp-compare-label { color: $exp-warm; }
+      li::marker { color: $exp-warm-2; }
+    }
+    &.is-cool {
+      background: #f6f9fe;
+      border-color: #d8e5f8;
+      .exp-compare-label { color: $exp-accent; }
+      li::marker { color: $exp-accent; }
+    }
+  }
+  .exp-compare-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.63rem;
+    font-weight: 800;
+    margin-bottom: 0.55rem;
+  }
+  .exp-compare-note {
+    margin-top: 0.7rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: $exp-muted;
+  }
+
+  // ════════════════ LOOP — REASONING THAT EATS ITS OWN TAIL ════════════════
+  .exp-loop {
+    display: flex;
+    gap: 1rem;
+    margin: 1.8rem 0 2rem;
+    padding: 1.1rem 1.25rem;
+    background: #fffbf4;
+    border: 1px solid #f3e3c8;
+    border-radius: 8px;
+  }
+  .exp-loop-ring {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(245, 158, 11, 0.16);
+    color: $exp-warm;
+
+    svg { width: 18px; height: 18px; }
+  }
+  .exp-loop-body { flex: 1; min-width: 0; }
+  .exp-loop-row {
+    &:not(:last-of-type) {
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px dashed #ecd9b8;
+    }
+  }
+  .exp-loop-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.63rem;
+    font-weight: 800;
+    color: $exp-warm;
+    margin-bottom: 0.2rem;
+  }
+  .exp-loop-text {
+    margin: 0;
+    font-size: 1.02rem;
+    line-height: 1.5;
+    font-weight: 600;
+    color: $exp-ink;
+
+    &::before { content: "\201C"; }
+    &::after  { content: "\201D"; }
+  }
+  .exp-loop-note {
+    margin: 0.75rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: $exp-warm;
+    font-weight: 600;
+  }
+
+  // ════════════════ PILE — VOLUME AS THE ARGUMENT ════════════════
+  // Tight leading and a fade at the foot: the block should feel like more than
+  // you can answer, which is the whole point of the move it illustrates.
+  .exp-pile {
+    position: relative;
+    margin: 1.8rem 0 2rem;
+    padding: 0.95rem 1.2rem 1.1rem;
+    background: #fffbf4;
+    border: 1px solid #f3e3c8;
+    border-radius: 8px;
+  }
+  .exp-pile-label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.63rem;
+    font-weight: 800;
+    color: $exp-warm;
+    margin-bottom: 0.5rem;
+  }
+  .exp-pile-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin: 0;
+      padding: 0.28rem 0 0.28rem 1.1rem;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: $exp-ink;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.72em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: $exp-warm-2;
+      }
+      &:not(:last-child) { border-bottom: 1px dashed #f0e2c9; }
+    }
+  }
+  .exp-pile-note {
+    margin: 0.7rem 0 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: $exp-warm;
+  }
+
+  // ════════════════ SINGLE — FOOTER ════════════════
+  .exp-foot {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid $exp-line;
+  }
+
+  .exp-foot-share {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.2rem 1.4rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 10px;
+  }
+  .exp-foot-share-text {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: $exp-ink;
+  }
+
+  .exp-more { margin-top: 2.6rem; }
+  .exp-more-head {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 800;
+    color: $exp-faint;
+    margin: 0 0 0.9rem;
+  }
+  .exp-more-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+
+    @media (max-width: 620px) { grid-template-columns: 1fr; }
+  }
+  .exp-more-item {
+    display: block;
+    padding: 0.9rem 1.1rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 8px;
+    transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+
+    &:hover {
+      border-color: rgba(38, 115, 218, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(16, 24, 40, 0.08);
+      .exp-more-title { color: $exp-accent; }
+    }
+  }
+  .exp-more-kind {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: $exp-warm;
+    margin-bottom: 0.2rem;
+
+    &.is-faulty-reasoning { color: $exp-logic; }
+    &.is-thinking-trap { color: $exp-trap; }
+    &.is-bad-evidence { color: $exp-evidence; }
+    &.is-group-failure { color: $exp-group; }
+  }
+  .exp-more-title {
+    display: block;
+    font-size: 1rem;
+    font-weight: 800;
+    color: $exp-ink;
+    line-height: 1.3;
+    transition: color 0.16s ease;
+  }
+  .exp-more-line {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: $exp-muted;
+  }
+  .exp-more-all {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $exp-accent;
+    &:hover { color: #1b5fb8; }
+  }
+
+  // ════════════════ INDEX ════════════════
+  &.exp-index .exp-title { max-width: 24ch; }
+
+  .exp-index-wrap { padding-top: 2rem; padding-bottom: 3.5rem; }
+
+  .exp-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 0.9rem;
+  }
+  .exp-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid $exp-line;
+    border-radius: 999px;
+    background: #fff;
+    color: $exp-body;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+
+    &:hover { border-color: rgba(38, 115, 218, 0.45); }
+
+    &.is-active {
+      background: $exp-accent;
+      border-color: $exp-accent;
+      color: #fff;
+      .exp-pill-count { color: rgba(255, 255, 255, 0.72); }
+    }
+  }
+  .exp-pill-count {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: $exp-faint;
+  }
+
+  .exp-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    max-width: 380px;
+    margin-bottom: 1.5rem;
+    padding: 0 0.85rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 999px;
+
+    &:focus-within { border-color: rgba(38, 115, 218, 0.5); }
+
+    .exp-search-ico { color: $exp-faint; flex: none; }
+
+    input {
+      flex: 1;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 0.9rem;
+      color: $exp-ink;
+      padding: 0.6rem 0.55rem;
+    }
+  }
+  .exp-search-clear {
+    border: 0;
+    background: transparent;
+    color: $exp-faint;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.15rem;
+    &:hover { color: $exp-ink; }
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.1rem;
+
+    @media (max-width: 560px) { grid-template-columns: 1fr; }
+  }
+
+  .exp-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    // The filter script hides cards with the `hidden` attribute, but the
+    // reset's `[hidden]{display:none}` is a single attribute selector and
+    // loses to `.exp .exp-card`'s display:flex. Without this the pills
+    // toggle their own state and nothing else happens.
+    &[hidden] { display: none; }
+
+    padding: 1.25rem 1.35rem 1.1rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-radius: 10px;
+    transition: border-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+
+    &:hover {
+      border-color: rgba(38, 115, 218, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(16, 24, 40, 0.08);
+      .exp-card-read { color: $exp-accent; }
+    }
+  }
+  // One colour per `kind:` so the index reads as three families at a glance.
+  // The class is the slugified front-matter value; an unlisted kind falls back
+  // to the amber below rather than rendering unstyled.
+  .exp-card-kind {
+    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: $exp-warm;
+    background: rgba(245, 158, 11, 0.11);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    margin-bottom: 0.6rem;
+
+    &.is-faulty-reasoning {
+      color: $exp-logic;
+      background: rgba(109, 40, 217, 0.10);
+    }
+    &.is-thinking-trap {
+      color: $exp-trap;
+      background: rgba(15, 118, 110, 0.10);
+    }
+    &.is-bad-evidence {
+      color: $exp-evidence;
+      background: rgba(190, 18, 60, 0.10);
+    }
+    &.is-group-failure {
+      color: $exp-group;
+      background: rgba(21, 128, 61, 0.10);
+    }
+  }
+  .exp-card-title {
+    margin: 0;
+    font-size: 1.24rem;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: $exp-ink;
+  }
+  // Stretched hit target: the whole card is clickable, but the copy button
+  // sits above it so its own clicks still land.
+  .exp-card-link {
+    color: inherit;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+    }
+    &:hover { color: $exp-accent; }
+  }
+  .exp-card-aka {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: $exp-faint;
+  }
+  .exp-card-line {
+    margin: 0.6rem 0 0;
+    font-size: 0.93rem;
+    line-height: 1.6;
+    color: $exp-muted;
+  }
+  .exp-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    // grid rows are equal height, so pin the foot down instead of letting it
+    // float wherever the taglines happen to end
+    margin-top: auto;
+    padding-top: 0.95rem;
+    border-top: 1px solid $exp-line;
+
+    .exp-copy { position: relative; z-index: 1; }
+  }
+  .exp-card-read {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: $exp-faint;
+    transition: color 0.16s ease;
+  }
+
+  .exp-empty {
+    margin: 2rem 0;
+    color: $exp-muted;
+    font-size: 0.95rem;
+  }
+
+  .exp-suggest {
+    margin-top: 2.6rem;
+    padding: 1.3rem 1.5rem;
+    background: #fff;
+    border: 1px solid $exp-line;
+    border-left: 4px solid $exp-accent;
+    border-radius: 10px;
+
+    h2 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: $exp-ink;
+    }
+    p {
+      margin: 0;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      color: $exp-muted;
+    }
+    a {
+      color: $exp-accent;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      &:hover { color: #1b5fb8; }
+    }
+  }
+}

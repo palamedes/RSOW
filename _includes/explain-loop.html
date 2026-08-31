@@ -1,0 +1,28 @@
+{%- comment -%}
+  Reasoning that runs in a circle: the reason offered turns out to be the claim
+  again. Drawn as a loop so the shape is visible before the words are read.
+
+    {% include explain-loop.html
+       claim="This policy is necessary."
+       reason="Because we need it."
+       note="The reason is the claim in a different coat." %}
+{%- endcomment -%}
+<figure class="exp-loop">
+  <div class="exp-loop-ring" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="23 4 23 10 17 10"></polyline>
+      <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+    </svg>
+  </div>
+  <div class="exp-loop-body">
+    <div class="exp-loop-row">
+      <span class="exp-loop-label">The claim</span>
+      <p class="exp-loop-text">{{ include.claim }}</p>
+    </div>
+    <div class="exp-loop-row">
+      <span class="exp-loop-label">The reason given</span>
+      <p class="exp-loop-text">{{ include.reason }}</p>
+    </div>
+    {%- if include.note %}<p class="exp-loop-note">{{ include.note }}</p>{%- endif %}
+  </div>
+</figure>

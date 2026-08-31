@@ -1,0 +1,108 @@
+---
+layout: default
+---
+{%- comment -%}
+  One explainer — /explain/:name/.
+
+  These pages exist to be pasted into an argument, so the top of the page has to
+  do the whole job on its own: what the move is called, what it does in one
+  sentence, and a copy-link button that hands you the URL without hunting for
+  the address bar.
+{%- endcomment -%}
+{%- comment -%}
+  Same-kind siblings first, then everything else — so a rhetorical move leads
+  with other rhetorical moves rather than whatever sorts first alphabetically.
+{%- endcomment -%}
+{%- assign kin = site.explainers | where: "kind", page.kind | where_exp: "e", "e.url != page.url" | sort: "title" -%}
+{%- assign rest = site.explainers | where_exp: "e", "e.kind != page.kind" | sort: "title" -%}
+{%- assign others = kin | concat: rest -%}
+
+<div class="exp exp-single">
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <header class="exp-hero">
+    <div class="exp-hero-bg" aria-hidden="true"></div>
+    <div class="exp-wrap exp-hero-inner">
+      <div class="exp-hero-figure" aria-hidden="true"></div>
+      <p class="exp-eyebrow">
+        <a href="{{ '/explain/' | relative_url }}">Explainers</a>
+        <span class="exp-eyebrow-dot">&middot;</span>
+        {{ page.kind | default: "Rhetorical move" }}
+      </p>
+      <h1 class="exp-title">{{ page.title }}</h1>
+      {%- if page.aka %}<p class="exp-aka">also called {{ page.aka }}</p>{%- endif %}
+      {%- if page.tagline %}<p class="exp-tagline">{{ page.tagline }}</p>{%- endif %}
+
+      <div class="exp-hero-actions">
+        <button type="button" class="exp-copy" data-copy-link data-url="{{ page.url | absolute_url }}">
+          <span class="exp-copy-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </span>
+          <span class="exp-copy-lead">Copy link</span>
+        </button>
+        <span class="exp-hero-hint">Send it instead of typing it out again.</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ BODY ══════════════ -->
+  <div class="exp-wrap exp-body-wrap">
+    {%- if page.tell %}
+    <aside class="exp-tell">
+      <span class="exp-tell-label">The tell</span>
+      <p>{{ page.tell }}</p>
+    </aside>
+    {%- endif %}
+
+    <article class="exp-content">
+      {{ content }}
+    </article>
+
+    <!-- ══════════════ FOOTER ══════════════ -->
+    <footer class="exp-foot">
+      <div class="exp-foot-share">
+        {%- comment -%}
+          Nobody does a thinking trap or a group failure *to* you, so the share
+          line changes for those two rather than accusing an absent opponent.
+        {%- endcomment -%}
+        <p class="exp-foot-share-text">
+          {%- if page.kind == "Thinking trap" or page.kind == "Group failure" -%}
+            Watching this happen right now?
+          {%- else -%}
+            Somebody just did this to you?
+          {%- endif -%}
+        </p>
+        <button type="button" class="exp-copy is-light" data-copy-link data-url="{{ page.url | absolute_url }}">
+          <span class="exp-copy-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="12" height="12" rx="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </span>
+          <span class="exp-copy-lead">Copy this link</span>
+        </button>
+      </div>
+
+      {%- if others.size > 0 %}
+      <div class="exp-more">
+        <h2 class="exp-more-head">More explainers</h2>
+        <div class="exp-more-list">
+          {%- for e in others limit: 4 %}
+          <a class="exp-more-item" href="{{ e.url | relative_url }}">
+            <span class="exp-more-kind is-{{ e.kind | default: 'Rhetorical move' | slugify }}">{{ e.kind | default: "Rhetorical move" }}</span>
+            <span class="exp-more-title">{{ e.title }}</span>
+            <span class="exp-more-line">{{ e.tagline | strip_html | truncatewords: 16 }}</span>
+          </a>
+          {%- endfor %}
+        </div>
+        <a class="exp-more-all" href="{{ '/explain/' | relative_url }}">See all explainers &rarr;</a>
+      </div>
+      {%- endif %}
+    </footer>
+  </div>
+</div>
+
+{% include explain-copy.html %}

@@ -55,6 +55,12 @@ jekyll-archives:
 collections:
   games:
     output: true
+  # Short, linkable explainers — /explain/:name/. Deliberately not posts: they
+  # aren't dated, aren't chronological, and shouldn't land in the blog archive
+  # or the feed.
+  explainers:
+    output: true
+    permalink: /explain/:name/
   pages:
     output: true
     # Keep page URLs at the site root (e.g. /hire/) instead of /pages/hire/.
@@ -72,6 +78,12 @@ defaults:
       path: ""
       type: posts
     values:
+      full_width: true
+  - scope:
+      path: ""
+      type: explainers
+    values:
+      layout: explainer
       full_width: true
 
 # Plugins

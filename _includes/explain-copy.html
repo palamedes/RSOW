@@ -1,0 +1,70 @@
+{%- comment -%}
+  Copy-link buttons for the explainers section.
+
+  Bound once on document rather than per button: the site's soft navigation
+  swaps <main> and re-runs the scripts inside it, so anything bound to the
+  buttons themselves would stack a fresh listener on every hop. The guard keeps
+  the second run a no-op while delegation still picks up the new markup.
+{%- endcomment -%}
+<script>
+(function () {
+  if (window.RSOWExplainCopy) return;
+  window.RSOWExplainCopy = true;
+
+  // Pre-async-clipboard browsers, and any context the API refuses.
+  function execCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '0';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function flash(btn, msg, state) {
+    var lead = btn.querySelector('.exp-copy-lead');
+    if (!lead) return;
+    if (btn.dataset.idle === undefined) btn.dataset.idle = lead.textContent;
+    clearTimeout(btn._expTimer);
+    lead.textContent = msg;
+    btn.classList.remove('is-copied', 'is-failed');
+    btn.classList.add(state);
+    btn._expTimer = setTimeout(function () {
+      lead.textContent = btn.dataset.idle;
+      btn.classList.remove('is-copied', 'is-failed');
+    }, 1800);
+  }
+
+  // Never leave someone without the URL: if both copy paths fail, hand it over
+  // in a prompt they can select out of.
+  function settle(btn, url, ok) {
+    if (ok) { flash(btn, 'Copied!', 'is-copied'); return; }
+    flash(btn, 'Copy failed', 'is-failed');
+    try { window.prompt('Copy this link', url); } catch (e) {}
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-copy-link]') : null;
+    if (!btn) return;
+    e.preventDefault();
+
+    var url = btn.dataset.url || location.href;
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(function () {
+        settle(btn, url, true);
+      }).catch(function () {
+        settle(btn, url, execCopy(url));
+      });
+    } else {
+      settle(btn, url, execCopy(url));
+    }
+  });
+})();
+</script>
