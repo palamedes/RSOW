@@ -2,11 +2,202 @@
 title: "What If Oswald Wasn't the Whole Story?"
 layout: post
 date: 2026-09-04
+image: /assets/images/2026/what-if-oswald-wasnt-the-whole-story.png
 categories:
 - Conspiracy Theory
 tags:
-description: ""
-excerpt: ""
+description: "You don't have to invent anything to build one hell of a JFK conspiracy theory. NSAM 263 six weeks before Dallas, the Church Committee's Castro plots, Allen Dulles seated on the commission investigating the president who fired him, and a government still declassifying assassination records more than sixty years later. Lights down, Art Bell style."
+excerpt: "Most JFK theories eventually wander into red string on a corkboard, which makes the whole subject easy to dismiss. This one doesn't need any of that. Strip out the lizards and the deathbed confessions and you're still left with a president who broke with his intelligence agency, resisted his generals over Cuba, and approved a Vietnam drawdown six weeks before Dallas, replaced by a man who escalated that war into a half-million-troop machine. Then Congress admitted the conspiracy investigation had been inadequate. I don't know who killed Kennedy. I do wonder at what point skepticism stops being irrational."
+ai_notes:
+  - quote: "somewhere in the Nevada desert an AM radio"
+    rating: "Background"
+    note: >-
+      Art Bell hosted the overnight paranormal call-in show "Coast to Coast AM"
+      from a home studio in Pahrump, Nevada; in the 1990s it aired on about 500
+      stations across the United States and Canada. He died in Pahrump in 2018 at
+      age 72.
+    sources:
+      - title: "Pahrump-based radio host Art Bell dies at 72 - Las Vegas Review-Journal"
+        url: "https://www.reviewjournal.com/local/local-nevada/pahrump-based-radio-host-art-bell-dies-at-72/"
+  - quote: "The Gulf of Tonkin Resolution wouldn't exist until August 1964"
+    rating: "Accurate"
+    note: >-
+      Congress passed the Gulf of Tonkin Resolution on August 7, 1964 - the House
+      416-0 and the Senate 88-2, with only Wayne Morse and Ernest Gruening opposed
+      - and Johnson signed it as Public Law 88-408 on August 10, roughly nine
+      months after Kennedy's assassination.
+    sources:
+      - title: "U.S. Senate - Chairman Fulbright and the 1964 Tonkin Gulf Resolution"
+        url: "https://www.senate.gov/artandhistory/senate-stories/chairman-fulbright-and-the-tonkin-gulf-resolution.htm"
+      - title: "Tonkin Gulf Resolution (1964) - National Archives Milestone Documents"
+        url: "https://www.archives.gov/milestone-documents/tonkin-gulf-resolution"
+  - quote: "withdrawing 1,000 American military personnel from South Vietnam"
+    rating: "Accurate"
+    note: >-
+      NSAM 263, approved October 11, 1963, endorsed Section I B (1-3) of the
+      McNamara-Taylor report of October 2, which called for withdrawing 1,000 U.S.
+      military personnel by the end of 1963. Kennedy barred any formal
+      announcement of the plan.
+    sources:
+      - title: "FRUS 1961-1963, Vol. IV, Doc. 194 - National Security Action Memorandum No. 263"
+        url: "https://history.state.gov/historicaldocuments/frus1961-63v04/d194"
+      - title: "FRUS 1961-1963, Vol. IV, Doc. 167 - McNamara-Taylor Report, Oct. 2, 1963"
+        url: "https://history.state.gov/historicaldocuments/frus1961-63v04/d167"
+  - quote: "Four days after the assassination, Johnson issued NSAM 273"
+    rating: "Accurate"
+    note: >-
+      NSAM 273 is dated November 26, 1963, four days after the assassination.
+      Signed by McGeorge Bundy, it stated that "the objectives of the United
+      States with respect to the withdrawal of U.S. military personnel remain as
+      stated in the White House statement of October 2, 1963."
+    sources:
+      - title: "FRUS 1961-1963, Vol. IV, Doc. 331 - National Security Action Memorandum No. 273"
+        url: "https://history.state.gov/historicaldocuments/frus1961-63v04/d331"
+  - quote: "Eight months later came the Gulf of Tonkin incident"
+    rating: "Accurate"
+    note: >-
+      The first clash was August 2, 1964, about eight months after NSAM 273. A
+      declassified NSA study by historian Robert Hanyok concluded the reported
+      August 4 engagement never happened; the North Vietnamese boats detected that
+      night were salvaging craft damaged on August 2.
+    sources:
+      - title: "Gulf of Tonkin Incident, 1964 - U.S. State Department, Office of the Historian"
+        url: "https://history.state.gov/milestones/1961-1968/gulf-of-tonkin"
+      - title: "Robert J. Hanyok, \"Skunks, Bogies, Silent Hounds, and the Flying Fish\" (declassified NSA Cryptologic Quarterly)"
+        url: "https://archive.org/download/Skunks-nsa/Skunks.pdf"
+  - quote: "one of the largest military escalations in American history"
+    rating: "True"
+    note: >-
+      A State Department memo recorded 16,730 U.S. military personnel in Vietnam
+      as of October 30, 1963, three weeks before Kennedy was killed. Strength
+      passed 500,000 during 1968 and peaked at 543,482 in April 1969, per U.S.
+      Army historical records.
+    sources:
+      - title: "FRUS 1961-1963, Vol. IV, Doc. 201 - Memorandum from the Vietnam Working Group"
+        url: "https://history.state.gov/historicaldocuments/frus1961-63v04/d201"
+      - title: "U.S. Army Medical Department, Office of Medical History - Medical Service Corps, Ch. 10"
+        url: "https://achh.army.mil/history/book-historyofusarmymsc-chapter10/"
+  - quote: "The claim is that Lady Bird Johnson owned Brown & Root"
+    rating: "True"
+    note: >-
+      Brown and Root was founded in 1919 by Herman Brown and his brother-in-law
+      Dan Root, with brother George R. Brown joining later; it was sold to
+      Halliburton in 1962. Lady Bird Johnson's fortune came from Austin
+      broadcasting - she bought radio station KTBC in 1943.
+    sources:
+      - title: "George Rufus Brown - Handbook of Texas, Texas State Historical Association"
+        url: "https://www.tshaonline.org/handbook/entries/brown-george-rufus"
+      - title: "Claudia Alta Taylor (Lady Bird) Johnson - Handbook of Texas"
+        url: "https://www.tshaonline.org/handbook/entries/johnson-claudia-alta-taylor-lady-bird"
+  - quote: "Herman and George Brown were major financial supporters"
+    rating: "True"
+    note: >-
+      Brown and Root covertly funded Johnson's failed 1941 Senate race. The IRS
+      halted its investigation in February 1944; the final report showed
+      $1,099,994 in deficiencies plus penalties, but the firm ultimately paid
+      $372,000, with no indictments. The Handbook of Texas describes George Brown
+      as a career-long Johnson supporter.
+    sources:
+      - title: "Princeton University Archives - the LBJ tax scandal (Elmer C. Werner Papers)"
+        url: "https://universityarchives.princeton.edu/2011/03/how-high-can-an-income-tax-fix-go-the-lbj-tax-scandal-that-youve-probably-never-heard-of/"
+      - title: "George Rufus Brown - Handbook of Texas, Texas State Historical Association"
+        url: "https://www.tshaonline.org/handbook/entries/brown-george-rufus"
+  - quote: "RMK-BRJ construction consortium"
+    rating: "Context"
+    note: >-
+      Raymond International and Morrison-Knudsen began Navy construction work in
+      Vietnam in 1962; Brown and Root and J.A. Jones joined in 1965. Between 1962
+      and 1972 RMK-BRJ built 15 jet-capable airfields and 7 deep-draft ports,
+      completing $1.9 billion of work before the contract closed in July 1972.
+    sources:
+      - title: "Vietnam: The Civil Engineer Corps Puts the Construction In - Naval History and Heritage Command (Internet Archive copy)"
+        url: "https://web.archive.org/web/20251208122704/https://www.history.navy.mil/content/history/museums/seabee/explore/civil-engineer-corps-history/vietnam--the-civil-engineer-corps-puts-the-construction-in-.html"
+  - quote: "only three days before Kennedy took office"
+    rating: "True"
+    note: >-
+      Eisenhower delivered the farewell address on January 17, 1961, warning
+      against "unwarranted influence, whether sought or unsought, by the military-
+      industrial complex" and "the disastrous rise of misplaced power." Kennedy
+      was inaugurated January 20, 1961, a gap of exactly three days.
+    sources:
+      - title: "President Dwight D. Eisenhower's Farewell Address (1961) - National Archives"
+        url: "https://www.archives.gov/milestone-documents/president-dwight-d-eisenhowers-farewell-address"
+      - title: "President John F. Kennedy's Inaugural Address (1961) - National Archives"
+        url: "https://www.archives.gov/milestone-documents/president-john-f-kennedys-inaugural-address"
+  - quote: "The invasion failed spectacularly in April 1961"
+    rating: "True"
+    note: >-
+      Brigade 2506 landed at the Bay of Pigs on April 17, 1961; fighting ended
+      April 20 with roughly 1,200 exiles captured. CIA leadership turned over
+      afterward: Allen Dulles served as Director of Central Intelligence until
+      November 1961, and Richard Bissell was Deputy Director for Plans until
+      February 1962.
+    sources:
+      - title: "60th Anniversary of the Bay of Pigs Invasion - National Archives"
+        url: "https://text-message.blogs.archives.gov/2021/04/15/60th-anniversary-of-the-bay-of-pigs/"
+      - title: "FRUS 1961-1963, Cuba - Persons - Office of the Historian"
+        url: "https://history.state.gov/historicaldocuments/frus1961-63v10-12mSupp/persons"
+  - quote: "attempts to assassinate Fidel Castro between 1960 and 1965"
+    rating: "Accurate"
+    note: >-
+      The Church Committee's interim report, released November 20, 1975, states:
+      "We have found concrete evidence of at least eight plots involving the CIA
+      to assassinate Fidel Castro from 1960 to 1965." One, run through mobsters
+      John Rosselli and Sam Giancana, twice reached the point of sending poison
+      pills to Cuba.
+    sources:
+      - title: "Alleged Assassination Plots Involving Foreign Leaders - U.S. Senate Select Committee interim report (Nov. 20, 1975)"
+        url: "https://www.intelligence.senate.gov/wp-content/uploads/2024/08/sites-default-files-94465.pdf"
+  - quote: "became one of seven members of the Warren Commission"
+    rating: "True"
+    note: >-
+      Executive Order 11130, signed by Johnson on November 29, 1963, created the
+      seven-member commission: Chief Justice Earl Warren, Senators Richard Russell
+      and John Sherman Cooper, Representatives Hale Boggs and Gerald Ford, John J.
+      McCloy, and Allen W. Dulles, the former Director of Central Intelligence.
+    sources:
+      - title: "Warren Commission Report - Commission Members and Transmittal Letter, National Archives"
+        url: "https://www.archives.gov/research/jfk/warren-commission-report/letter.html"
+      - title: "Warren Commission Report - Foreword, National Archives"
+        url: "https://www.archives.gov/research/jfk/warren-commission-report/foreword.html"
+  - quote: "the FBI failed adequately to investigate possible conspiracy"
+    rating: "True"
+    note: >-
+      The HSCA's 1979 report found the FBI "failed to investigate adequately the
+      possibility of a conspiracy" and the CIA "was deficient in its collection
+      and sharing of information." The same committee also concluded Kennedy was
+      "probably assassinated as a result of a conspiracy," citing dictabelt
+      acoustics a 1982 National Research Council panel later rejected.
+    sources:
+      - title: "HSCA Report - Summary of Findings, National Archives"
+        url: "https://www.archives.gov/research/jfk/select-committee-report/summary.html"
+      - title: "Report of the Committee on Ballistic Acoustics (1982) - National Research Council"
+        url: "https://www.nationalacademies.org/read/10264/chapter/3"
+  - quote: "after an executive order from President Trump"
+    rating: "Context"
+    note: >-
+      Executive Order 14176, signed January 23, 2025, ordered declassification;
+      the National Archives posted more than 80,000 pages on March 18, 2025, with
+      more added as digitization proceeded. The 1992 JFK Records Act had already
+      required all records open by 2017 unless the President certified continued
+      postponement.
+    sources:
+      - title: "National Archives Releases Thousands of JFK Assassination Records"
+        url: "https://www.archives.gov/news/articles/jfk-records-release"
+      - title: "Background on the JFK Assassination Records Collection - National Archives"
+        url: "https://www.archives.gov/research/jfk/background"
+  - quote: "shape-shifting lizards"
+    rating: "Background"
+    note: >-
+      The shape-shifting reptilian trope was popularized by British writer David
+      Icke in "The Biggest Secret," published in 1999. Icke, a former sports
+      broadcaster, claims inter-dimensional reptilian bloodlines, including royals
+      and heads of state, secretly rule humanity while appearing human.
+    sources:
+      - title: "The Biggest Secret - David Icke (Bridge of Love, 1999), Open Library"
+        url: "https://openlibrary.org/books/OL22144786M/The_biggest_secret."
+      - title: "Out of Mind? Out of Sight! - Skeptical Inquirer"
+        url: "https://skepticalinquirer.org/exclusive/out-of-mind-out-of-sight/"
 ---
 
 ### *The JFK conspiracy theory you don't have to make anything up to believe*
