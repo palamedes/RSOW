@@ -454,7 +454,7 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 
   // ════════════════ GALLERY ════════════════
-  .abt-gallery-section { background: $abt-bg; }
+  .abt-gallery-section { background: $abt-card; }
   .abt-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -474,21 +474,10 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 
   // ════════════════ IN MY OWN WORDS ════════════════
-  // Reuses the site-wide .post-grid / .post-card so the cards stay identical
-  // to the home and archive grids. The only adjustment: these sit on a white
-  // section rather than the usual #f2f2f2, so the stock #ddd hairline needs a
-  // little help to keep the cards from reading as flat boxes.
-  .abt-writing-section {
-    background: $abt-card;
-
-    .post-card {
-      border-color: $abt-line;
-      box-shadow: 0 1px 2px rgba(28, 35, 48, 0.05);
-    }
-    .post-card:hover {
-      box-shadow: 0 14px 30px rgba(28, 35, 48, 0.13);
-    }
-  }
+  // Reuses the site-wide .post-grid / .post-card untouched: this section sits
+  // on the same #f2f2f2 the home and archive grids do, so the cards need no
+  // adjustment to look native here.
+  .abt-writing-section { background: $abt-bg; }
   .abt-writing-more {
     margin: 0.75rem 0 0;
     text-align: center;
