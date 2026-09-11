@@ -8,6 +8,7 @@ audio_narrator: human
 audio_length: "15 min"
 categories:
 - Rant
+- About Me
 tags:
 description: "I broke my ankle in Basic Training in 1992, stayed when the Army offered to let me out, and thirty-four years later it still hurts. The VA agrees it's service connected and rated it 0%. My documented shoulder and thumb injuries 'neither occurred in nor were caused by service.' And the tinnitus denial cites an MOS I never had."
 excerpt: "Apparently the standard for whether something happened in the Army isn't your military medical records, the dates of treatment, or the fact that the Army itself documented the injury. It's whether the VA feels like admitting it happened. Documented shoulder: denied. Documented thumb: denied. Ankle broken in Basic Training that still hurts thirty-four years later: service connected, zero percent."

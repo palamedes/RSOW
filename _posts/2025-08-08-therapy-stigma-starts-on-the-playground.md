@@ -5,6 +5,7 @@ image: /assets/images/2025/therapy-stigma.jpg
 date: 2025-08-08
 categories:
 - Rant
+- About Me
 tags:
 description: "Gen X learned to bury it, cops learned to say 'I'm fine,' and PTSD is rarely one shell-shock moment — it's erosion. Therapy isn't weakness; staying broken to look strong is."
 excerpt: "I grew up in the age of 'shut the hell up and deal with it.' Gen X didn't get therapy — we got sarcasm and the emotional toolkit of a half-melted G.I. Joe."
