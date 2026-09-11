@@ -320,6 +320,42 @@ full_width: true
     </div>
   </section>
 
+  <!-- ══════════════ IN MY OWN WORDS ══════════════ -->
+  {%- comment -%}
+    Auto-populated from the About Me category, newest first. The whole section
+    hides itself below four posts: .post-grid is a four-up row on desktop, and
+    a lone card in it reads as broken rather than curated. Nothing to maintain
+    here — tag a post `About Me` and it shows up.
+  {%- endcomment -%}
+  {%- assign about_posts = site.categories['About Me'] -%}
+  {%- if about_posts.size >= 4 %}
+  <section class="abt-section abt-writing-section" id="my-own-words">
+    <div class="abt-wrap">
+      <div class="abt-section-head abt-reveal">
+        <p class="abt-kicker">In my own words</p>
+        <h2>The long versions</h2>
+        <p class="abt-section-sub">
+          Everything above is the summary. These are the posts where I stop
+          summarizing — the personal ones, at unreasonable length.
+        </p>
+      </div>
+
+      <div class="post-grid abt-reveal">
+        {%- for post in about_posts limit: 4 %}
+        {% include post-card.html post=post %}
+        {%- endfor %}
+      </div>
+      {% include card-narration.html %}
+
+      {%- if about_posts.size > 4 %}
+      <p class="abt-writing-more abt-reveal">
+        <a href="{{ '/archive/' | relative_url }}#About%20Me">All {{ about_posts.size }} of them →</a>
+      </p>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endif %}
+
   <!-- ══════════════ THE OUBLIETTE / OUTRO ══════════════ -->
   <section class="abt-outro">
     <div class="abt-wrap abt-outro-inner abt-reveal">

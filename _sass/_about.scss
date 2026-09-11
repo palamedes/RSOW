@@ -473,6 +473,37 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     &:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 16px 36px rgba(28,35,48,0.18); }
   }
 
+  // ════════════════ IN MY OWN WORDS ════════════════
+  // Reuses the site-wide .post-grid / .post-card so the cards stay identical
+  // to the home and archive grids. The only adjustment: these sit on a white
+  // section rather than the usual #f2f2f2, so the stock #ddd hairline needs a
+  // little help to keep the cards from reading as flat boxes.
+  .abt-writing-section {
+    background: $abt-card;
+
+    .post-card {
+      border-color: $abt-line;
+      box-shadow: 0 1px 2px rgba(28, 35, 48, 0.05);
+    }
+    .post-card:hover {
+      box-shadow: 0 14px 30px rgba(28, 35, 48, 0.13);
+    }
+  }
+  .abt-writing-more {
+    margin: 0.75rem 0 0;
+    text-align: center;
+
+    a {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: $abt-accent;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+      &:hover { border-bottom-color: $abt-accent; }
+    }
+  }
+
   // ════════════════ OUTRO / OUBLIETTE ════════════════
   .abt-outro {
     position: relative;
