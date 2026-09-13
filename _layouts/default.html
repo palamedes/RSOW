@@ -4,6 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  {%- comment -%}
+    jekyll-seo-tag stops at og:image. Facebook needs the size too, or it leaves
+    the picture off the first share of a URL while it measures the image in the
+    background. image_size lives in _plugins/image_size.rb.
+  {%- endcomment -%}
+  {%- assign og_size = page.image | image_size -%}
+  {%- if og_size %}
+  <meta property="og:image:width" content="{{ og_size[0] }}" />
+  <meta property="og:image:height" content="{{ og_size[1] }}" />
+  {%- endif %}
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
