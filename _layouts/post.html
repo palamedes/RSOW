@@ -17,20 +17,11 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
     <div class="post-hero-bg" aria-hidden="true"></div>
     <div class="post-hero-inner">
       <div class="post-hero-text">
-        {% if page.categories.size > 0 or page.audio %}
+        {% if page.categories.size > 0 %}
         <div class="post-hero-cats">
           {% for cat in page.categories %}
           <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
           {% endfor %}
-          {% if page.audio %}
-          <div class="post-listen-group">
-            <span class="post-listen-time{% if audio_human %} post-listen-time--human{% endif %}" hidden>0:00 / 0:00</span>
-            <button type="button" class="post-listen{% if audio_human %} post-listen--human{% endif %}" aria-pressed="false" aria-label="{% if audio_human %}Listen to Jason reading this article aloud{% else %}Listen to an AI-read version of this article{% endif %}" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-idle-label="{{ audio_lead }}" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">
-              <span class="post-listen-ico" aria-hidden="true"></span>
-              <span class="post-listen-lead">{{ audio_lead }}</span>
-            </button>
-          </div>
-          {% endif %}
         </div>
         {% endif %}
         <h1 class="post-hero-title">{{ page.title }}</h1>
@@ -43,6 +34,20 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
           {% if page.audio %}
           <span class="post-hero-dot">&middot;</span>
           <span class="post-hero-listen-note{% if audio_human %} is-human{% endif %}" role="button" tabindex="0" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">🎧 {% if page.audio_length %}{{ page.audio_length }}{% else %}{{ minutes }} min{% endif %} listen</span>
+          {%- comment -%} The listen button: right end of the byline row. The
+          player script rewrites .post-listen-lead ("Pause" while playing,
+          data-idle-label otherwise); .post-listen-sub is static and keeps the
+          AI / read-by-me distinction visible in every state. {%- endcomment %}
+          <div class="post-listen-group">
+            <span class="post-listen-time{% if audio_human %} post-listen-time--human{% endif %}" hidden>0:00 / 0:00</span>
+            <button type="button" class="post-listen{% if audio_human %} post-listen--human{% endif %}" aria-pressed="false" aria-label="{% if audio_human %}Listen to Jason reading this article aloud{% else %}Listen to an AI-read version of this article{% endif %}" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-idle-label="Listen now" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">
+              <span class="post-listen-ico" aria-hidden="true"></span>
+              <span class="post-listen-text">
+                <span class="post-listen-lead">Listen now</span>
+                <span class="post-listen-sub">{{ audio_lead }}</span>
+              </span>
+            </button>
+          </div>
           {% endif %}
         </div>
       </div>
