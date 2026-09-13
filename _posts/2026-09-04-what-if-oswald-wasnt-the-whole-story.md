@@ -379,3 +379,6 @@ Maybe every one of those dots is unrelated. Maybe Oswald was exactly what the Wa
 But if that's the case, the United States government has spent the last sixty years doing an absolutely spectacular impression of an organization that doesn't want us looking too closely.
 
 And somewhere around 2:00 in the morning, with the AM signal fading in and out somewhere over the high desert, that's where I'd open the phone lines.
+
+
+*Audio note: The narration accompanying this piece is an AI-generated tribute to the style and atmosphere of Art Bell’s late-night radio broadcasts. It is not an authentic recording of Art Bell and is not affiliated with, endorsed by, or authorized by his estate, Coast to Coast AM, or any associated rights holders.*
