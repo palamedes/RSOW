@@ -3,6 +3,8 @@ title: "What If Oswald Wasn't the Whole Story?"
 layout: post
 date: 2026-09-04
 image: /assets/images/2026/what-if-oswald-wasnt-the-whole-story.png
+audio: /assets/audio/what-if-oswald-wasnt-the-whole-story.ogg
+audio_length: "20 min"
 categories:
 - Conspiracy Theory
 tags:
