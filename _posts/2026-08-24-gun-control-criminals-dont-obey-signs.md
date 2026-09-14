@@ -348,4 +348,4 @@ You don't protect liberty by banning the tools that preserve it.
 And you don't get safer just because the government promised that someone with a gun will eventually show up.
 
 
-*Audio note: The narration accompanying this piece is an AI-generated tribute to the style and delivery of Ryan Reynolds. It is not an authentic recording of Ryan Reynolds and is not affiliated with, endorsed by, or authorized by him, his representatives, or any associated rights holders.*
+*Audio note: The narration accompanying this piece is an AI-generated tribute to the style and delivery of Ryan Reynolds. It is not an authentic recording of Ryan Reynolds and is not affiliated with, endorsed by, or authorized by him, his representatives, or any associated rights holders. Love you, Ryan. Please don't sue me.*
