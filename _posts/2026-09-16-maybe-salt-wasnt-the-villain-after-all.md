@@ -3,6 +3,8 @@ title: "Maybe Salt Wasn't the Villain After All"
 layout: post
 date: 2026-09-16
 image: /assets/images/2026/maybe-salt-wasnt-the-villain-after-all.png
+audio: /assets/audio/maybe-salt-wasnt-the-villain-after-all.ogg
+audio_length: "15 min"
 categories:
 - About Me
 - Health
