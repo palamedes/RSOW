@@ -53,13 +53,13 @@ Fine.
 
 But here's where things start getting interesting.
 
-A large 2020 meta-analysis of 133 randomized trials found that reducing sodium lowered systolic blood pressure by about **4.3 mmHg** and diastolic pressure by about **2.1 mmHg** on average. The effect was larger in older people, people who started with higher blood pressure, and some other populations.
+A large 2020 meta-analysis of 133 randomized trials found that reducing sodium lowered systolic blood pressure by about 4.3 mmHg and diastolic pressure by about 2.1 mmHg on average. The effect was larger in older people, people who started with higher blood pressure, and some other populations.
 
 That's real.
 
 But it also isn't exactly the nutritional equivalent of discovering penicillin.
 
-An earlier systematic review found about a **1.4 mmHg systolic reduction in people without hypertension**, versus about **4 mmHg in people with hypertension**. A 2020 Cochrane review likewise found that, in white participants with normal blood pressure, reducing sodium from roughly 203 mmol to 65 mmol per day lowered systolic pressure by only about **1.1 mmHg**, while the effect was considerably larger in people who actually had hypertension.
+An earlier systematic review found about a **1.4 mmHg systolic reduction in people without hypertension**, versus about **4 mmHg in people with hypertension**. A 2020 Cochrane review likewise found that, in white participants with normal blood pressure, reducing sodium from roughly 203 mmol to 65 mmol per day lowered systolic pressure by only about 1.1 mmHg, while the effect was considerably larger in people who actually had hypertension.
 
 And that distinction seems pretty damn important.
 
@@ -71,7 +71,7 @@ to:
 
 > Salt is bad for humans.
 
-Those are not the same statement.
+**Those are not the same statement.**
 
 ## Your body actually needs this stuff
 
@@ -131,7 +131,7 @@ When I first heard that, I assumed it would turn out to be one of those internet
 
 Except there actually is human research supporting it.
 
-Researchers from Brigham and Women's Hospital and Harvard Medical School studied **152 healthy men and women** under controlled sodium conditions. Participants spent seven days on a very low-sodium diet and seven days on a high-sodium diet.
+Researchers from Brigham and Women's Hospital and Harvard Medical School studied 152 healthy men and women under controlled sodium conditions. Participants spent seven days on a very low-sodium diet and seven days on a high-sodium diet.
 
 Their insulin resistance was significantly higher during the low-sodium period.
 
@@ -145,7 +145,7 @@ Perfect.
 
 That's science.
 
-Conflicting findings should make us more cautious, not less.
+**Conflicting findings should make us more cautious, not less.**
 
 But it certainly makes the simplistic instruction to "eat as little salt as possible" considerably harder to defend.
 
@@ -229,7 +229,7 @@ He suggests that the famous DASH diet may have lowered blood pressure mostly bec
 
 That would be a plausible criticism of the original DASH experiment.
 
-But researchers later did the **DASH-Sodium trial**, and this one controlled sodium independently.
+But researchers later did the DASH-Sodium trial, and this one controlled sodium independently.
 
 More than 400 participants were assigned either a typical American-style diet or DASH and then given high, intermediate and low sodium levels in randomized sequence.
 
