@@ -293,6 +293,19 @@ $po-line:    #ddd;
     }
   }
 
+  // Full-width photo inside the article body, dressed like the cover image.
+  // `clear: both` keeps it from tucking under a right-floated .post-body-img.
+  .post-photo {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: auto;
+    margin: 1.6rem 0;
+    border-radius: 12px;
+    border: 1px solid $po-line;
+    box-shadow: 0 14px 32px -14px rgba(0,0,0,0.35);
+  }
+
   // ════════════════ PHOTO-SET GALLERIES (cruise post) ════════════════
   // Each labeled photo set becomes a captioned grid of square thumbnails
   // that open the site lightbox. `clear: both` keeps grids from colliding
