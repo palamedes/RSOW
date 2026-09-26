@@ -1,0 +1,10 @@
+{%- comment -%}
+The two doors the whole site is built around: show me / I have an idea.
+Buttons pick up the section's theme (cream on dark, charcoal on light).
+  {% include tt/cta-pair.html show="See what we make" idea="Start a custom project" center=true %}
+{%- endcomment -%}
+{%- assign tt = site.data.tt -%}
+<div class="tt-cta-pair{% if include.center %} tt-cta-pair--center{% endif %}">
+  <a class="tt-btn tt-btn--primary" href="{{ include.show_url | default: '/work/' | prepend: tt.base | relative_url }}">{{ include.show | default: "Show me what you make" }}</a>
+  <a class="tt-btn tt-btn--secondary" href="{{ include.idea_url | default: '/custom-projects/#start' | prepend: tt.base | relative_url }}">{{ include.idea | default: "I have an idea" }} {% include tt/icon.html name="arrow" %}</a>
+</div>

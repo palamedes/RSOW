@@ -1,0 +1,9 @@
+{%- comment -%} "What can we put your idea on?" — the materials grid. {%- endcomment -%}
+<ul class="tt-materials">
+  {%- for m in site.data.tt.materials %}
+  <li class="tt-material tt-material--{{ m.key }}" data-reveal style="--i: {{ forloop.index0 }}">
+    {% include tt/icon.html name=m.key %}
+    <span class="tt-material__label">{{ m.label }}</span>
+  </li>
+  {%- endfor %}
+</ul>

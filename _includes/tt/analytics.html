@@ -1,0 +1,13 @@
+{%- comment -%} Analytics for Tinkered Tactile pages — off until _data/tt.yml names a provider. {%- endcomment -%}
+{%- assign tta = site.data.tt.analytics -%}
+{%- if tta.id != "" -%}
+{%- case tta.provider -%}
+{%- when "goatcounter" -%}
+<script data-goatcounter="https://{{ tta.id }}.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+{%- when "plausible" -%}
+<script defer data-domain="{{ tta.id }}" src="https://plausible.io/js/script.js"></script>
+{%- when "ga4" -%}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ tta.id }}"></script>
+<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '{{ tta.id }}');</script>
+{%- endcase -%}
+{%- endif -%}

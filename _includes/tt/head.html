@@ -1,0 +1,85 @@
+{%- assign tt = site.data.tt -%}
+{%- if page.tt_title -%}
+  {%- assign tt_title = page.tt_title -%}
+{%- else -%}
+  {%- assign tt_title = page.seo_title | default: page.title | append: " | " | append: tt.name -%}
+{%- endif -%}
+{%- assign tt_desc = page.description | default: tt.description | strip_html | normalize_whitespace | truncate: 220 -%}
+{%- assign tt_home = tt.base | append: "/" | absolute_url -%}
+{%- comment -%} Social card: page.og_image, else the piece's first image, else the brand card. {%- endcomment -%}
+{%- assign og = tt.og_image -%}{%- assign og_w = 1200 -%}{%- assign og_h = 630 -%}
+{%- if page.og_image -%}
+  {%- assign og = page.og_image -%}{%- assign og_w = nil -%}
+{%- elsif page.images -%}
+  {%- assign og_name = page.images[0].name -%}
+  {%- assign og_img = site.data.tt_images[og_name] -%}
+  {%- if og_img -%}
+    {%- assign og = "/assets/tinkered-tactile/img/" | append: og_name | append: "-" | append: og_img.fallback | append: ".jpg" -%}
+    {%- assign og_w = og_img.fallback -%}
+    {%- assign og_h = og_img.height | times: og_img.fallback | divided_by: og_img.width -%}
+  {%- endif -%}
+{%- endif -%}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ tt_title | escape }}</title>
+<meta name="description" content="{{ tt_desc | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta name="theme-color" content="#171714">
+<link rel="icon" href="{{ '/assets/tinkered-tactile/brand/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="icon" href="{{ '/assets/tinkered-tactile/brand/favicon-32.png' | relative_url }}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="{{ '/assets/tinkered-tactile/brand/apple-touch-icon.png' | relative_url }}">
+<meta property="og:site_name" content="{{ tt.name }}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ page.og_title | default: page.title | default: tt.name | escape }}">
+<meta property="og:description" content="{{ tt_desc | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ og | absolute_url }}">
+{%- if og_w %}
+<meta property="og:image:width" content="{{ og_w }}">
+<meta property="og:image:height" content="{{ og_h }}">
+{%- endif %}
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..800&family=Fraunces:ital,opsz,wght@0,9..144,400..800;1,9..144,400..700&display=swap">
+<link rel="stylesheet" href="{{ '/assets/tinkered-tactile/css/tt.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+<script>document.documentElement.className = document.documentElement.className.replace('tt-no-js', 'tt-js');</script>
+{%- assign tt_same = "" | split: "" -%}
+{%- for s in tt.social -%}{%- if s[1] != "" -%}{%- assign tt_same = tt_same | push: s[1] -%}{%- endif -%}{%- endfor -%}
+{%- for s in tt.shops -%}{%- if s[1] != "" -%}{%- assign tt_same = tt_same | push: s[1] -%}{%- endif -%}{%- endfor %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ tt_home }}#org",
+      "name": {{ tt.name | jsonify }},
+      "url": "{{ tt_home }}",
+      "logo": "{{ '/assets/tinkered-tactile/brand/icon-512.png' | absolute_url }}",
+      "description": {{ tt.description | jsonify }},
+      "slogan": {{ tt.tagline | jsonify }},
+      "areaServed": { "@type": "State", "name": "North Carolina" }{% if tt_same.size > 0 %},
+      "sameAs": {{ tt_same | jsonify }}{% endif %}
+    }{% if page.collection == "tt_work" %},
+    {
+      "@type": "CreativeWork",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "url": "{{ page.url | absolute_url }}",
+      "image": "{{ og | absolute_url }}",
+      "material": {{ page.materials | jsonify }},
+      "creator": { "@id": "{{ tt_home }}#org" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": {{ tt.name | jsonify }}, "item": "{{ tt_home }}" },
+        { "@type": "ListItem", "position": 2, "name": "Work", "item": "{{ tt.base | append: '/work/' | absolute_url }}" },
+        { "@type": "ListItem", "position": 3, "name": {{ page.title | jsonify }} }
+      ]
+    }{% endif %}
+  ]
+}
+</script>
+{% include tt/analytics.html %}

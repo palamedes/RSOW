@@ -1,0 +1,6 @@
+{%- comment -%}
+The Tinkered Tactile script wordmark (traced from the engraving artwork). It
+lives once in brand/sprite.svg so every page shares one cached copy; it takes
+its color from the surrounding `color`.
+{%- endcomment -%}
+<svg class="tt-wordmark{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 436 146" role="img" aria-label="Tinkered Tactile" focusable="false"><use href="{{ '/assets/tinkered-tactile/brand/sprite.svg' | relative_url }}?v=1#wordmark"/></svg>

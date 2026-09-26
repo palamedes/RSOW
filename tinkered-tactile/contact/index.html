@@ -1,0 +1,75 @@
+---
+layout: tt
+title: Contact
+seo_title: "Contact"
+description: "Questions, ideas, or a photo of something you can't stop thinking about: get in touch with Tinkered Tactile, a small maker shop in coastal North Carolina."
+---
+{%- assign tt = site.data.tt -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">Contact</p>
+    <h1 class="tt-h1">Say hello.</h1>
+    <p class="tt-lead">Questions, ideas, a photo of something you saw once and can&rsquo;t stop thinking about. Send it over.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-label="Get in touch">
+  <div class="tt-wrap tt-contact">
+    <div>
+      <h2 class="tt-h3">Send a message</h2>
+      <p class="tt-hint" style="margin-bottom: 1.75rem">For anything you want made, the <a href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">project form</a> has room for files and details. This one&rsquo;s for everything else.</p>
+      <form class="tt-form" data-tt-form data-endpoint="{{ tt.form_endpoint }}"{% if tt.form_endpoint != "" %} action="{{ tt.form_endpoint }}"{% endif %} method="post" data-success="tt-contact-success">
+        <div class="tt-row-2">
+          <div class="tt-field">
+            <label class="tt-label" for="tc-name">Name</label>
+            <input class="tt-input" id="tc-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="tt-field">
+            <label class="tt-label" for="tc-email">Email</label>
+            <input class="tt-input" id="tc-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="tt-field">
+          <label class="tt-label" for="tc-message">Message</label>
+          <textarea class="tt-textarea" id="tc-message" name="message" placeholder="So I was wondering…" required></textarea>
+        </div>
+        <div class="tt-hp" aria-hidden="true">
+          <label for="tc-gotcha">Leave this empty</label>
+          <input id="tc-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="_subject" value="Message from the Tinkered Tactile contact page">
+        <p class="tt-form__status" data-tt-status role="status" hidden></p>
+        <div class="tt-form__submit">
+          <button class="tt-btn tt-btn--primary" type="submit">Send it {% include tt/icon.html name="arrow" %}</button>
+        </div>
+      </form>
+      <div class="tt-success" id="tt-contact-success" hidden>
+        {% include tt/icon.html name="check" %}
+        <h2 class="tt-success__title">Got it.</h2>
+        <p class="tt-lead">Thanks for writing. We&rsquo;ll get back to you soon.</p>
+      </div>
+    </div>
+
+    <div class="tt-contact__cards">
+      {%- if tt.email != "" or tt.phone != "" %}
+      <ul class="tt-contact__lines">
+        {%- if tt.email != "" %}<li><a href="mailto:{{ tt.email }}">{% include tt/icon.html name="mail" %}{{ tt.email }}</a></li>{% endif %}
+        {%- if tt.phone != "" %}<li><a href="tel:{{ tt.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' }}">{% include tt/icon.html name="phone" %}{{ tt.phone }}</a></li>{% endif %}
+      </ul>
+      {%- endif %}
+      <a class="tt-contact-card" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">
+        <h3>Start a project</h3>
+        <p>Got something you want made? Tell us about it, with photos, sketches or a logo.</p>
+        <span class="tt-contact-card__go">Tell us your idea {% include tt/icon.html name="arrow" %}</span>
+      </a>
+      <a class="tt-contact-card" href="{{ tt.base | append: '/for-businesses/' | relative_url }}">
+        <h3>Business orders</h3>
+        <p>Logos, bulk runs, client gifts, signage and event pieces.</p>
+        <span class="tt-contact-card__go">For businesses {% include tt/icon.html name="arrow" %}</span>
+      </a>
+      <ul class="tt-contact__lines">
+        <li><span>{% include tt/icon.html name="pin" %}A small shop in coastal North Carolina. Catch us at local markets, too.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+---
+layout: tt
+title: Start a Custom Project
+seo_title: "Start a Custom Project: Custom Laser Engraving in North Carolina"
+description: "Tell us what you're thinking. Custom engraving, signs, layered maps, woodturning and one-off commissions, with no engineering drawings required. Photos, sketches and logos welcome."
+tt_no_sticky: true
+---
+{%- assign tt = site.data.tt -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">Custom projects</p>
+    <h1 class="tt-h1">Tell us what you&rsquo;re thinking.</h1>
+    <ul class="tt-chain">
+      <li>You do not need engineering drawings.</li>
+      <li>You do not need to know what material it should be made from.</li>
+      <li>You do not even need to know exactly what you want yet.</li>
+      <li>Just tell us what you&rsquo;re trying to make.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" id="start" aria-label="Project request">
+  <div class="tt-wrap tt-form-wrap">
+    <div>
+      <form class="tt-form" data-tt-form data-endpoint="{{ tt.form_endpoint }}"{% if tt.form_endpoint != "" %} action="{{ tt.form_endpoint }}"{% endif %} method="post" enctype="multipart/form-data" data-success="tt-success">
+        <p class="tt-note" data-tt-from hidden>{% include tt/icon.html name="spark" %}<span>Starting from <a href="#"></a>. Tell us what you&rsquo;d change.</span></p>
+
+        <div class="tt-row-2">
+          <div class="tt-field">
+            <label class="tt-label" for="tt-name">Name</label>
+            <input class="tt-input" id="tt-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="tt-field">
+            <label class="tt-label" for="tt-email">Email</label>
+            <input class="tt-input" id="tt-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="tt-field">
+          <label class="tt-label" for="tt-phone">Phone <span class="tt-label__opt">optional</span></label>
+          <input class="tt-input" id="tt-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+
+        <div class="tt-field">
+          <label class="tt-label" for="tt-message">What are we making?</label>
+          <textarea class="tt-textarea" id="tt-message" name="message" placeholder="I have this idea…" required></textarea>
+        </div>
+
+        <fieldset>
+          <legend>Category</legend>
+          <div class="tt-chips">
+            {%- for c in tt.form.categories %}
+            <label class="tt-chip"><input type="radio" name="category" value="{{ c }}"><span>{{ c }}</span></label>
+            {%- endfor %}
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Quantity</legend>
+          <div class="tt-chips">
+            {%- for q in tt.form.quantities %}
+            <label class="tt-chip"><input type="radio" name="quantity" value="{{ q }}"><span>{{ q }}</span></label>
+            {%- endfor %}
+          </div>
+        </fieldset>
+
+        <div class="tt-row-2">
+          <div class="tt-field">
+            <label class="tt-label" for="tt-date">Desired date</label>
+            <input class="tt-input" id="tt-date" name="date" type="date">
+            <p class="tt-hint">Birthday, event, trade show? Tell us the deadline up front.</p>
+          </div>
+          <div class="tt-field">
+            <label class="tt-label" for="tt-budget">Budget range <span class="tt-label__opt">optional</span></label>
+            <select class="tt-select tt-input" id="tt-budget" name="budget">
+              <option value="">Pick one, or don't</option>
+              {%- for b in tt.form.budgets %}
+              <option>{{ b }}</option>
+              {%- endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="tt-field">
+          <label class="tt-label" for="tt-files">Upload files <span class="tt-label__opt">optional</span></label>
+          <div class="tt-drop" data-tt-drop>
+            <input id="tt-files" name="attachments" type="file" multiple accept="{{ tt.form.accept }}" aria-describedby="tt-files-hint">
+            {% include tt/icon.html name="upload" %}
+            <p class="tt-drop__title">Logo? Sketch? Screenshot? Inspiration photo? Upload it.</p>
+            <p class="tt-drop__hint" id="tt-files-hint">Drop files here or tap to choose. JPG, PNG, PDF or SVG, up to 10 MB each.</p>
+          </div>
+          <ul class="tt-files" data-tt-files aria-live="polite"></ul>
+        </div>
+
+        <div class="tt-hp" aria-hidden="true">
+          <label for="tt-gotcha">Leave this empty</label>
+          <input id="tt-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="_subject" value="New project idea from the Tinkered Tactile site">
+
+        <p class="tt-form__status" data-tt-status role="status" hidden></p>
+        <div class="tt-form__submit">
+          <button class="tt-btn tt-btn--primary" type="submit">Send us the idea {% include tt/icon.html name="arrow" %}</button>
+          <p class="tt-form__fine">Photos, sketches, logos and badly drawn diagrams are all welcome.</p>
+        </div>
+      </form>
+
+      <div class="tt-success" id="tt-success" hidden>
+        {% include tt/icon.html name="check" %}
+        <h2 class="tt-success__title">Excellent.</h2>
+        <p class="tt-lead">Now you&rsquo;ve made us curious. We&rsquo;ll take a look and get back to you.</p>
+        {% include tt/cta-pair.html show="Look around some more" idea="Back to the start" idea_url="/" %}
+      </div>
+    </div>
+
+    <aside class="tt-aside" aria-labelledby="tt-next">
+      <h2 class="tt-aside__title" id="tt-next">What happens next</h2>
+      {% include tt/steps.html compact=true %}
+      <p class="tt-aside__more">Ordering for a company, a wedding or an event? The <a href="{{ tt.base | append: '/for-businesses/' | relative_url }}">business page</a> covers logos, bulk runs and proofs.{% if tt.email != "" %} Or skip the form and email <a href="mailto:{{ tt.email }}">{{ tt.email }}</a>.{% endif %}</p>
+    </aside>
+  </div>
+</section>
+
+{%- comment -%} Lets "I want one like this" links pre-fill the form (?piece=slug). {%- endcomment -%}
+<script type="application/json" id="tt-pieces">
+{
+{%- for w in site.tt_work %}
+  {{ w.slug | jsonify }}: { "title": {{ w.title | jsonify }}, "url": {{ w.url | relative_url | jsonify }}, "category": {{ w.form_category | default: "" | jsonify }} }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+}
+</script>

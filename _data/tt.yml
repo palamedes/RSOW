@@ -1,0 +1,207 @@
+# Tinkered Tactile — site settings and shared copy for /tinkered-tactile/.
+# Anything left blank is a placeholder: it simply doesn't render until filled in.
+
+name: Tinkered Tactile
+base: /tinkered-tactile
+domain: tinkeredtactile.com
+tagline: "Things worth touching. Made worth keeping."
+line_make: "You don't have to find exactly what you want. We can probably make it."
+line_stuff: "Your design. Your logo. Your idea. We put it on stuff."
+location: coastal North Carolina
+description: "Tinkered Tactile is a small maker shop in coastal North Carolina: laser engraving, woodturning, layered wood maps, slate, signs and custom one-offs. Bring an idea; we can probably make it."
+og_image: /assets/tinkered-tactile/brand/og-default.jpg
+
+# ── Placeholder photos (image names from _data/tt_images.yml) ──────────
+# Swap these once there are real shop photos: run _tools/tt-image.sh on the
+# photo, then put its name here. hero_caption is the small print in the
+# hero's corner; set it to "" for a real photo that needs no explaining.
+photos:
+  hero: oriental-map
+  hero_caption: "Shown: a layered map of Oriental, NC. It’s a render; the real one sold."
+  about: lady-liberty-slate           # home page About teaser
+  about_page: your-design-slate       # the About page
+  closing: cocktail-coasters-2        # "What should we make?" background
+
+# ── Contact (placeholders) ──────────────────────────────────────────────
+email: ""
+phone: ""
+social:
+  instagram: ""
+  facebook: ""
+  youtube: ""
+# Where "ready to buy" pieces will eventually sell. A work item can also carry
+# its own buy_url, which puts a "Buy it" button on that piece.
+shops:
+  etsy: ""
+  ebay: ""
+
+# ── Project form ────────────────────────────────────────────────────────
+# A form-service endpoint (Formspree or similar; it needs file-upload support
+# for the attachments). While blank, the form still renders but tells people
+# it isn't connected yet instead of pretending to send.
+form_endpoint: ""
+
+# ── Analytics ───────────────────────────────────────────────────────────
+# provider: goatcounter | plausible | ga4   (blank = no analytics at all)
+analytics:
+  provider: ""
+  id: ""
+
+# ── Navigation ──────────────────────────────────────────────────────────
+nav:
+  - { title: Work, url: /work/ }
+  - { title: What We Make, url: /what-we-make/ }
+  - { title: Custom Projects, url: /custom-projects/ }
+  - { title: For Businesses, url: /for-businesses/ }
+  - { title: About, url: /about/ }
+  - { title: Contact, url: /contact/ }
+
+footer_nav:
+  - { title: Work, url: /work/ }
+  - { title: What We Make, url: /what-we-make/ }
+  - { title: Custom Projects, url: /custom-projects/ }
+  - { title: Business Orders, url: /for-businesses/ }
+  - { title: About, url: /about/ }
+  - { title: Contact, url: /contact/ }
+
+# ── Gallery filters (each work item lists its keys under `filters:`) ───
+filters:
+  - { key: all, label: All }
+  - { key: laser-engraved, label: Laser Engraved }
+  - { key: woodwork, label: Woodwork }
+  - { key: coasters, label: Coasters }
+  - { key: signs, label: Signs }
+  - { key: maps, label: Maps }
+  - { key: business, label: Business }
+  - { key: gifts, label: Gifts }
+  - { key: custom, label: Custom }
+
+# ── The four big buckets: home page cards + What We Make sections ──────
+categories:
+  - key: personalized
+    filter: gifts
+    title: Personalized Goods
+    blurb: "Coasters, cutting boards, gifts, names, dates, monograms and custom artwork."
+    button: Explore personalized work
+    url: /what-we-make/#personalized
+    image: your-design-hex
+    focus: "50% 22%"
+    things:
+      - Slate and marble coasters with names, dates and monograms
+      - Engraved cutting boards and serving boards
+      - Layered maps of the places that matter
+      - Pet memorials and keepsake urns
+      - Family crests, clan colors and team mascots
+      - Wedding, anniversary and housewarming pieces
+      - Custom illustrations for birthdays, trips and inside jokes
+  - key: home-bar
+    filter: coasters
+    title: Home & Bar
+    blurb: "Cocktail coasters, bar signs, bottle accessories, kitchen pieces and things that make drinking establishments considerably more interesting."
+    button: Explore home & bar
+    url: /what-we-make/#home-bar
+    image: cocktail-coasters-1
+    focus: "50% 35%"
+    image_kind: render
+    things:
+      - Cocktail recipe coasters, sold in sets or mixed to order
+      - Bar signs, garage signs, porch signs
+      - Bottle openers with questionable sayings
+      - "Kitchen signs (Today's special: eat it or starve)"
+      - Welcome signs, and no-soliciting signs with some teeth
+      - Engraved glassware and barware
+  - key: woodwork
+    filter: woodwork
+    title: Woodwork
+    blurb: "Turned pepper mills, bowls, vases, urns, layered pieces and one-off woodworking projects."
+    button: Explore woodwork
+    url: /what-we-make/#woodwork
+    image: purpleheart-mill-tall
+    focus: "50% 48%"
+    image_kind: render
+    things:
+      - Hand-turned pepper mills and salt mills
+      - Bowls, vases and urns
+      - Layered wood maps and wall art
+      - Deer, duck, elk and fish silhouettes cut into reclaimed wood
+      - Mountain ranges and world maps for the wall
+      - One-off projects that don't have a category yet
+  - key: business
+    filter: business
+    title: Business & Events
+    blurb: "Logos, signage, branded gifts, event pieces, QR codes, bulk engraving and custom production runs."
+    button: For businesses
+    url: /for-businesses/
+    image: your-design-slate
+    focus: "50% 42%"
+    things:
+      - Logo coasters and branded barware
+      - QR-code menus and table displays
+      - Client gifts and employee gifts
+      - Signage and awards
+      - Wedding and event pieces
+      - Small production runs and bulk engraving
+
+# ── Three ways to buy (store strategy) ─────────────────────────────────
+offerings:
+  ready:
+    label: Ready to buy
+    blurb: "Pieces we make in batches, like cocktail coaster sets. Ask what's on the shelf."
+  personalize:
+    label: Personalize it
+    blurb: "Something we already make, with your names, dates, monogram or logo on it."
+  custom:
+    label: Custom project
+    blurb: "Anything that needs a conversation first. Those are our favorite kind."
+
+# ── Materials grid ──────────────────────────────────────────────────────
+materials:
+  - { key: wood, label: Wood }
+  - { key: slate, label: Slate }
+  - { key: leather, label: Leather }
+  - { key: glass, label: Glass }
+  - { key: acrylic, label: Acrylic }
+  - { key: metal, label: Metal }
+  - { key: cork, label: Cork }
+  - { key: paper, label: Paper }
+  - { key: unknown, label: "And probably something you're about to ask us about" }
+
+# ── How custom orders work ─────────────────────────────────────────────
+steps:
+  - title: You have an idea
+    text: "Tell us what you're thinking."
+  - title: We figure it out
+    text: "Material, size, design, engraving and how we're actually going to build the thing."
+  - title: You approve it
+    text: "For custom graphics or layouts, you'll see the design before production."
+  - title: We make it
+    text: "Then we turn perfectly good material into something considerably more interesting."
+
+# ── Why Tinkered Tactile ───────────────────────────────────────────────
+why:
+  - title: Made here
+    text: "These aren't anonymous products arriving by the container load with your initials added later."
+  - title: Designed around you
+    text: "Names, dates, artwork, logos, locations, jokes and weird ideas are encouraged."
+  - title: Built to last
+    text: "The goal isn't disposable stuff. It's making things people don't want to throw away."
+
+# ── Business capabilities ───────────────────────────────────────────────
+business_capabilities:
+  - Company logos
+  - Promotional items
+  - Employee gifts
+  - Client gifts
+  - Wedding and event pieces
+  - Awards
+  - Signage
+  - QR codes
+  - Small production runs
+  - Custom packaging pieces
+
+# ── Project form choices ────────────────────────────────────────────────
+form:
+  categories: [Gift, Sign, Coasters, Woodworking, Business / Logo, Event, Memorial, Map, Something Weird]
+  quantities: [One, 2–10, 11–25, 25–100, 100+]
+  budgets: ["Not sure yet", "Under $50", "$50–150", "$150–500", "$500–1,500", "$1,500+"]
+  accept: ".jpg,.jpeg,.png,.pdf,.svg,image/jpeg,image/png,application/pdf,image/svg+xml"

@@ -1,0 +1,113 @@
+---
+layout: tt
+title: For Businesses
+seo_title: "Custom Corporate Gifts & Business Logo Engraving"
+description: "Better branded stuff: logo coasters, client and employee gifts, signage, awards, QR displays, branded cutting boards and event pieces, in small batches or bulk, from coastal North Carolina."
+examples:
+  - { title: "Logo coasters", text: "Slate, wood, cork or marble, with your logo right where the drink goes." }
+  - { title: "Client gifts", text: "Something that stays on the desk instead of going in the drawer." }
+  - { title: "Employee gifts", text: "Milestones, anniversaries, holidays and the occasional thanks-for-not-quitting." }
+  - { title: "Bar & restaurant products", text: "Coasters, menus, table numbers and signs that survive a Friday night." }
+  - { title: "Signage", text: "Door signs, office signs, shop signs and the sign for the break room." }
+  - { title: "Awards", text: "Plaques that don't look like everybody else's plaques." }
+  - { title: "Promotional pieces", text: "Giveaways people actually keep." }
+  - { title: "QR displays", text: "Menus, reviews, Wi-Fi and payments, engraved so they don't peel." }
+  - { title: "Branded cutting boards", text: "Closing gifts for realtors. Client gifts for everybody else." }
+  - { title: "Event products", text: "Weddings, reunions, conferences and fundraisers: favors, table pieces and signs." }
+---
+{%- assign tt = site.data.tt -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap tt-pagehead__grid">
+    <div>
+      <p class="tt-eyebrow">For businesses</p>
+      <h1 class="tt-h1">Better branded stuff.</h1>
+      <p class="tt-lead"><strong>Your customers already have enough cheap pens.</strong> Give them something with your logo on it that they&rsquo;ll actually keep: engraved, cut, turned or layered, one at a time or by the hundred.</p>
+      {% include tt/cta-pair.html show="Request a business quote" show_url="/custom-projects/?type=business#start" idea="See business work" idea_url="/work/?filter=business" %}
+    </div>
+    <div class="tt-pagehead__media">
+      {% include tt/picture.html name="your-design-slate" alt="A round slate coaster engraved with a leaf wreath and 'Your design here: weddings, corporate, logos, QR menus, monograms, bulk and B2B available'" sizes="(min-width: 1000px) 40vw, 100vw" priority=true %}
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-labelledby="tt-examples">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">What we make for businesses</p>
+      <h2 class="tt-h2" id="tt-examples">Your logo looks good on things.</h2>
+      <p class="tt-lead">Need branded gifts, signage, awards, promotional pieces, client gifts, employee gifts, event items or something nobody else at the trade show is giving away? We can produce small-batch and bulk work from your logo, artwork or design.</p>
+    </div>
+    <ul class="tt-examples" role="list">
+      {%- for e in page.examples %}
+      <li class="tt-example" data-reveal style="--i: {{ forloop.index0 | modulo: 3 }}">
+        <span class="tt-example__num">{% if forloop.index < 10 %}0{% endif %}{{ forloop.index }}</span>
+        <h3 class="tt-example__title">{{ e.title }}</h3>
+        <p>{{ e.text }}</p>
+      </li>
+      {%- endfor %}
+      <li class="tt-example tt-example--ask">
+        <span class="tt-example__num">??</span>
+        <h3 class="tt-example__title">Something else entirely.</h3>
+        <p>If it can hold a logo and survive a laser, we&rsquo;re interested. <a href="{{ tt.base | append: '/custom-projects/?type=business#start' | relative_url }}">Tell us what you&rsquo;re picturing.</a></p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="tt-section tt-section--tight tt-theme-paper" aria-label="Business work">
+  <div class="tt-wrap">
+    <div class="tt-strip">
+      <figure data-reveal style="--i: 0">
+        {% include tt/picture.html name="your-design-hex" alt="A marble and wood hexagon engraved 'Your design here' with the Tinkered Tactile script" sizes="(min-width: 760px) 40vw, 100vw" %}
+        <figcaption>Marble &amp; wood sample</figcaption>
+      </figure>
+      <figure data-reveal style="--i: 1">
+        {% include tt/picture.html name="cocktail-coasters-1" alt="Slate cocktail recipe coasters" sizes="(min-width: 760px) 30vw, 100vw" %}
+        <figcaption>Bar coasters &middot; render</figcaption>
+      </figure>
+      <figure data-reveal style="--i: 2">
+        {% include tt/picture.html name="america-250-slate" alt="A slate plaque engraved for America's 250th anniversary" sizes="(min-width: 760px) 30vw, 100vw" %}
+        <figcaption>Commemorative slate</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-ink tt-grain" aria-labelledby="tt-biz-how">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">How business orders go</p>
+      <h2 class="tt-h2" id="tt-biz-how">No surprises, except the good kind.</h2>
+    </div>
+    <div class="tt-promises">
+      <div class="tt-promise" data-reveal style="--i: 0">
+        <h3>You see it first</h3>
+        <p>Logos and layouts get a proof before anything touches the laser. Approve it, or tell us what to fix.</p>
+      </div>
+      <div class="tt-promise" data-reveal style="--i: 1">
+        <h3>One, or a few hundred</h3>
+        <p>Small batches, bulk runs, and the one-off for the boss&rsquo;s retirement all get the same attention.</p>
+      </div>
+      <div class="tt-promise" data-reveal style="--i: 2">
+        <h3>Send what you have</h3>
+        <p>Start with the logo file you&rsquo;ve got. If it needs work before it&rsquo;ll engrave cleanly, we&rsquo;ll tell you before anything gets made.</p>
+      </div>
+      <div class="tt-promise" data-reveal style="--i: 3">
+        <h3>Tell us the date</h3>
+        <p>Trade shows and weddings don&rsquo;t move. Give us your deadline up front and we&rsquo;ll tell you honestly whether it works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tt-final" aria-labelledby="tt-biz-cta">
+  <div class="tt-final__media">{% include tt/picture.html name="your-design-hex" alt="" sizes="100vw" %}</div>
+  <div class="tt-wrap">
+    <h2 class="tt-final__title" id="tt-biz-cta">Let&rsquo;s put your logo on something good.</h2>
+    <p class="tt-final__lede">Tell us what it&rsquo;s for, how many, and when.</p>
+    <div class="tt-cta-pair tt-cta-pair--center">
+      <a class="tt-btn tt-btn--cream" href="{{ tt.base | append: '/custom-projects/?type=business#start' | relative_url }}">Request a business quote {% include tt/icon.html name="arrow" %}</a>
+      <a class="tt-btn tt-btn--ghost" href="{{ tt.base | append: '/work/?filter=business' | relative_url }}">See business work</a>
+    </div>
+  </div>
+</section>

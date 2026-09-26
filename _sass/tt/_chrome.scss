@@ -1,0 +1,243 @@
+@use "tokens" as *;
+
+.tt-skip {
+  @include caps(.72rem, .14em, 700);
+  position: absolute;
+  top: -5rem;
+  left: 1rem;
+  z-index: 100;
+  padding: .75rem 1rem;
+  border-radius: 3px;
+  background: $cream;
+  color: $charcoal;
+  text-decoration: none;
+  &:focus { top: 1rem; }
+}
+
+// ── Header ──────────────────────────────────────────────────────────────
+.tt-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  color: $cream;
+  background: rgba(23, 23, 20, .94);
+  border-bottom: 1px solid rgba(242, 238, 228, .08);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  backdrop-filter: saturate(1.2) blur(12px);
+  transition: background-color .35s, border-color .35s;
+}
+// Floats over a full-bleed hero, then settles into a solid bar on scroll.
+.tt-header--over {
+  margin-bottom: calc(-1 * var(--tt-header-h));
+  background: linear-gradient(rgba(23, 23, 20, .7), rgba(23, 23, 20, 0));
+  border-color: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.tt-header--over.is-scrolled {
+  background: rgba(23, 23, 20, .94);
+  border-color: rgba(242, 238, 228, .08);
+  -webkit-backdrop-filter: saturate(1.2) blur(12px);
+  backdrop-filter: saturate(1.2) blur(12px);
+}
+.tt-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  height: var(--tt-header-h);
+}
+.tt-header__logo {
+  flex: none;
+  display: block;
+  width: clamp(122px, 10vw + 60px, 152px);
+  color: $cream;
+  .tt-wordmark { width: 100%; height: auto; }
+}
+.tt-nav { display: none; margin-left: auto; }
+.tt-nav ul { display: flex; gap: clamp(1.1rem, 1.7vw, 2rem); margin: 0; padding: 0; list-style: none; }
+.tt-nav a {
+  position: relative;
+  display: block;
+  padding: .5rem 0;
+  font-size: .92rem;
+  font-weight: 500;
+  letter-spacing: .01em;
+  color: rgba(242, 238, 228, .8);
+  text-decoration: none;
+  transition: color .2s;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: .1rem;
+    height: 1px;
+    background: $copper-lt;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s $ease-out;
+  }
+  &:hover, &[aria-current] { color: $cream; }
+  &:hover::after, &[aria-current]::after { transform: scaleX(1); }
+}
+.tt-header__cta { margin-left: auto; }
+.tt-menu-btn, .tt-menu__close {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-right: -.55rem;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: none;
+  color: $cream;
+  cursor: pointer;
+  .tt-icon { width: 1.6rem; height: 1.6rem; }
+}
+.tt-menu-btn { margin-left: .25rem; }
+@include down($bp-sm) {
+  .tt-header__cta { display: none; }
+  .tt-menu-btn { margin-left: auto; }
+}
+@include up($bp-xl) {
+  .tt-nav { display: block; }
+  .tt-header__cta { margin-left: .75rem; }
+  .tt-menu-btn { display: none; }
+}
+
+// ── Full-screen menu (a modal <dialog>) ────────────────────────────────
+.tt-menu {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: $ink;
+  color: $cream;
+  flex-direction: column;
+  &[open] { display: flex; }
+  &::backdrop { background: rgba(0, 0, 0, .6); }
+  @include motion { &[open] { animation: tt-drop-in .35s $ease-out both; } }
+}
+.tt-menu__top, .tt-menu__nav, .tt-menu__foot { padding-inline: clamp(1.25rem, 4vw, 2.75rem); }
+.tt-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: none;
+  height: var(--tt-header-h);
+  border-bottom: 1px solid rgba(242, 238, 228, .08);
+}
+.tt-menu__logo { display: block; width: 128px; color: $cream; }
+.tt-menu__nav { flex: 1; overflow-y: auto; padding-block: clamp(1.5rem, 5vh, 3rem); }
+.tt-menu__nav ul { margin: 0; padding: 0; list-style: none; }
+.tt-menu__nav a {
+  display: block;
+  padding: .4rem 0;
+  font-family: $display;
+  font-size: clamp(2rem, 1.4rem + 3.5vw, 3rem);
+  font-weight: 560;
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  color: $cream;
+  text-decoration: none;
+  &[aria-current] { color: $copper-lt; }
+}
+.tt-menu__foot {
+  flex: none;
+  padding-block: 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+  border-top: 1px solid rgba(242, 238, 228, .08);
+}
+.tt-menu__tagline {
+  margin: 1rem 0 0;
+  font-family: $display;
+  font-style: italic;
+  color: rgba(242, 238, 228, .62);
+}
+@keyframes tt-drop-in { from { opacity: 0; transform: translateY(-10px); } }
+
+// ── Footer ──────────────────────────────────────────────────────────────
+.tt-footer {
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 calc(2rem + env(safe-area-inset-bottom));
+  background: $ink-deep;
+  color: $cream;
+  border-top: 1px solid rgba(242, 238, 228, .07);
+}
+.tt-footer__grid { display: grid; gap: 2.75rem; }
+@include up($bp-md) { .tt-footer__grid { grid-template-columns: 1.35fr 1fr 1.25fr; gap: 3rem; } }
+.tt-footer__logo { display: block; width: 210px; color: $cream; }
+.tt-footer__tagline {
+  max-width: 17em;
+  margin: 1.2rem 0 .75rem;
+  font-family: $display;
+  font-size: 1.4rem;
+  line-height: 1.28;
+}
+.tt-footer__domain { @include caps(.7rem, .22em); color: $copper-lt; margin: 0; }
+.tt-footer__head {
+  @include caps(.7rem, .22em, 650);
+  margin: 0 0 1.1rem;
+  color: rgba(242, 238, 228, .58);
+}
+.tt-footer__nav ul { display: grid; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.tt-footer__nav a {
+  color: rgba(242, 238, 228, .86);
+  text-decoration: none;
+  &:hover { color: $cream; text-decoration: underline; }
+}
+.tt-footer__contact p { max-width: 23em; color: rgba(242, 238, 228, .72); }
+.tt-footer__lines, .tt-footer__social { margin: 1.4rem 0 0; padding: 0; list-style: none; }
+.tt-footer__lines { display: grid; gap: .4rem; }
+.tt-footer__lines a {
+  display: inline-flex;
+  align-items: center;
+  gap: .65em;
+  text-decoration: none;
+  .tt-icon { width: 1.05em; height: 1.05em; color: $copper-lt; }
+  &:hover { text-decoration: underline; }
+}
+.tt-footer__social { display: flex; gap: .5rem; }
+.tt-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid rgba(242, 238, 228, .2);
+  border-radius: 50%;
+  transition: border-color .2s, background-color .2s;
+  .tt-icon { width: 1.2rem; height: 1.2rem; }
+  &:hover { border-color: $cream; background: rgba(242, 238, 228, .06); }
+}
+.tt-footer__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  margin-top: clamp(2.75rem, 5vw, 4rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(242, 238, 228, .1);
+  font-size: .88rem;
+  color: rgba(242, 238, 228, .6);
+  p { margin: 0; }
+}
+
+// ── Mobile "Start a project" bar ───────────────────────────────────────
+.tt-sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding: 1.5rem 1rem calc(.8rem + env(safe-area-inset-bottom));
+  background: linear-gradient(rgba(23, 23, 20, 0), rgba(23, 23, 20, .92) 45%);
+  transform: translateY(110%);
+  visibility: hidden;
+  transition: transform .35s $ease-out, visibility 0s .35s;
+  &.is-visible { transform: none; visibility: visible; transition: transform .35s $ease-out; }
+  @include up($bp-md) { display: none; }
+}
