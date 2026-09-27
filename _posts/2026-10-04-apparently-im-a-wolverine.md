@@ -120,9 +120,13 @@ Look at this guy.
 
 Reading glasses. Multimeter in one paw, the Constitution in the other. A cup of coffee. A workbench covered in wiring that is definitely going to work this time. A boat up on stands out back. A monitor with roughly four hundred tabs open, one of which is, naturally, another boat.
 
-And lying on the floor behind him, a golden retriever, fast asleep, who has clearly heard the "I've almost got this figured out" speech before and decided to take a nap.
-
 **That's not an avatar. That's a surveillance photo.**
+
+Except for one thing. Lying on the floor behind him, fast asleep, is a big yellow dog. The AI drew a golden retriever, which is close, but as far as I'm concerned that's Sadie, and Sadie was a yellow lab.
+
+She's gone now, and I never mentioned her to the AI. Not once. It put her in the shop anyway, sprawled out in the middle of everything, sound asleep, having heard the "I've almost got this figured out" speech a few thousand times and decided, very reasonably, to take a nap.
+
+That's exactly where she'd be. I'll allow it.
 
 ## Fine. I'm a wolverine.
 
