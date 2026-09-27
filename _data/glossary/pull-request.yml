@@ -1,0 +1,12 @@
+word: pull request
+say: PULL rih-KWEST
+pos: noun phrase
+topic: technology
+definition: >-
+  In software development, a proposed set of code changes, usually made on a
+  separate branch, submitted so others can review and discuss them before
+  they're merged into the project's main code.
+origin: >-
+  The contributor asks the project's maintainers to “pull” the changes into
+  their code.
+forms: [pull request]

@@ -6,6 +6,7 @@ image: /assets/images/2026/no-we-dont-live-on-stolen-land.png
 categories:
 - Rant
 tags:
+words: [cede, cudgel]
 description: "'We live on stolen land' is one of the laziest arguments in circulation. It pretends history began five minutes before Europeans showed up. America's land was conquered, purchased, annexed, and treatied ... just like every civilization on Earth. Here's why the slogan is a cudgel, not an argument."
 excerpt: "'We live on stolen land' pretends history began five minutes before Europeans showed up. Stolen from whom, exactly? And who did they get it from? Human history is conquest layered on conquest, and America's land story is bought, annexed, treatied, and inherited ... just like everywhere else. The slogan isn't an argument. It's a cudgel for people who learned history from memes."
 ai_notes:

@@ -7,6 +7,7 @@ categories:
 - Rant
 - Photography
 tags:
+words: [full-frame-sensor, depth-of-field, focal-length]
 description: "An Android buddy tried to win a phone argument with 50 megapixels. My Canon EOS 6D from 2012 has 20.2, and it still takes photographs I love, because a camera is a system — sensor, lens, light, focus and timing — and the person holding it is part of that system. Megapixels count pixels. They don't make the picture good."
 excerpt: "Every time a new phone comes out, somebody starts waving the megapixel count around like a ruler in a locker room. I'm eyeing the 48-megapixel iPhone Duo; my Android buddy's Galaxy Z Fold has 50. My old Canon EOS 6D came out in 2012 with a whopping 20.2, and it still takes photographs I look at years later and think, damn, that came out nice. Megapixels tell you how many pixels are in the image. They don't tell you whether the photograph is going to be any good, and they don't fix the person holding the camera."
 ---

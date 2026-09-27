@@ -6,6 +6,7 @@ image: /assets/images/2026/flat-earthers-i-keep-hoping-theyre-just-trolls.png
 categories:
 - Rant
 tags:
+words: [psyop, oblate-spheroid, object-permanence, order-of-magnitude]
 description: "I keep hoping flat earthers are just trolls, because that's the easy version. The Earth is an oblate spheroid — we settled this a very long time ago. So this isn't an argument about the shape of the planet. It's an honest walk backward: from an innocent problem of scale, past all the evidence, to the exact moment ignorance stops being ignorance and becomes a choice not to know."
 excerpt: "I really do hope they're trolls, because trolling has a motive I can hold in my hand. The problem is I don't think all of them are joking. 'You're wrong' isn't an explanation, though, so I tried to work backward and figure out how a person actually gets here. Most don't start at stupid. They start at ignorant — at a problem of scale, an ant that thinks the car is flat — and then, somewhere after the evidence keeps landing, it curdles into something with a security system."
 ai_notes:

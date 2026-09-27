@@ -6,6 +6,7 @@ image: /assets/images/2026/shock-collar.png
 categories:
 - Rant
 tags:
+words: [morality-play, purity-test, engagement-social-media]
 description: "I wired up a Chrome extension that redirects me to a screaming 'no' page every time I try to open Reddit. Yes, it's ridiculous. It's also the right lesson: stop feeding the machine."
 excerpt: "I reached the point where I needed the internet equivalent of a shock collar. Reddit annoyed me enough that I built a tiny digital cattle prod to stop myself from wandering back into the glowing landfill. The embarrassing part isn't that the place is awful — it's that I kept going back."
 ai_notes:

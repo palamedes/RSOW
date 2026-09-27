@@ -6,6 +6,7 @@ image: /assets/images/2026/far-right-does-not-mean-what-you-think-it-means.png
 categories:
 - Rant
 tags:
+words: [totalitarianism, collectivism]
 description: "\"Hitler was right wing\" is a word game, not a history lesson. The phrase 'far right' is doing double duty — the old European meaning (nationalism, racial hierarchy, dictatorship) versus the modern American meaning (lower taxes, gun rights, limited government). Swap the definitions halfway through and you can 'prove' conservatives are Nazis. Same word, different political tradition."
 excerpt: "People love to post 'Hitler was right wing' and then turn the comments off — because nothing says intellectual confidence like barricading the door so nobody can question you. The trick is that 'far right' means one thing when historians describe the Nazis and something completely different when Americans describe Republicans. Use both meanings in the same argument and hope nobody notices the definition changed halfway through."
 ai_notes:
