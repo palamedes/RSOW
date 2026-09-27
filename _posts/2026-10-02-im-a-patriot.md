@@ -1,7 +1,7 @@
 ---
 title: "I'm a Patriot"
 layout: post
-date: 2026-09-27
+date: 2026-10-02
 image: /assets/images/2026/im-a-patriot.png
 categories:
 - Rant
