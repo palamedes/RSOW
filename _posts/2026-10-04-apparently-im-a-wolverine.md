@@ -18,7 +18,7 @@ I asked an AI.
 
 > Based on everything you know about me from all my rants and conversations. What is my spirit animal?
 
-I'm not sure what I was expecting. Something dignified, probably. An eagle. A wolf. Maybe a golden retriever, because deep down I'm a loyal, lovable guy who just wants everybody to follow the rules and get along.
+I'm not sure what I was expecting. Something dignified, probably. An eagle. A wolf. Maybe a yellow lab, because deep down I'm a loyal, lovable guy who just wants everybody to follow the rules and get along.
 
 It said wolverine.
 
