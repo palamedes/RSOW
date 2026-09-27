@@ -14,7 +14,7 @@ overlay (cloned from a <template>), so it has to stand alone.
 {%- assign w_offer = tt.offerings[w.offering] -%}
 {%- capture w_form -%}{{ tt.base }}/custom-projects/?piece={{ w.slug }}#start{%- endcapture -%}
 <div class="tt-detail">
-  <div class="tt-detail__media">
+  <div class="tt-detail__media" data-tt-slider>
     <div class="tt-detail__slides" data-tt-slides tabindex="0" aria-label="Pictures of {{ w.title | escape }}">
       {%- for img in w.images %}
       <figure class="tt-detail__slide">

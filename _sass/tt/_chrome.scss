@@ -191,6 +191,8 @@
   &:hover { color: $cream; text-decoration: underline; }
 }
 .tt-footer__contact p { max-width: 23em; color: rgba(242, 238, 228, .72); }
+.tt-footer__contact .tt-footer__ask { margin: 1rem 0 0; font-size: .95rem; }
+.tt-footer__ask a { color: $cream; text-decoration: underline; text-decoration-color: rgba(242, 238, 228, .4); &:hover { text-decoration-color: $cream; } }
 .tt-footer__lines, .tt-footer__social { margin: 1.4rem 0 0; padding: 0; list-style: none; }
 .tt-footer__lines { display: grid; gap: .4rem; }
 .tt-footer__lines a {

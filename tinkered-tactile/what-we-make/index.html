@@ -31,6 +31,9 @@ description: "Personalized goods, home and bar pieces, woodwork and business wor
         <span class="tt-offer__num">0{{ forloop.index }}</span>
         <h3 class="tt-offer__title">{{ o[1].label }}</h3>
         <p>{{ o[1].blurb }}</p>
+        {%- if o[1].url %}
+        <a class="tt-link-arrow tt-offer__link" href="{{ tt.base | append: o[1].url | relative_url }}">{{ o[1].link }} {% include tt/icon.html name="arrow" %}</a>
+        {%- endif %}
       </div>
       {%- endfor %}
     </div>

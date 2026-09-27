@@ -23,6 +23,7 @@
         <h2 class="tt-footer__head">Got an idea?</h2>
         <p>Photos, sketches, logos and badly drawn diagrams are all welcome.</p>
         <a class="tt-btn tt-btn--ghost tt-btn--sm" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project {% include tt/icon.html name="arrow" %}</a>
+        <p class="tt-footer__ask"><a href="{{ tt.base | append: '/custom-projects/?type=question#start' | relative_url }}">Just have a question?</a></p>
         {%- if tt.email != "" or tt.phone != "" %}
         <ul class="tt-footer__lines">
           {%- if tt.email != "" %}<li><a href="mailto:{{ tt.email }}">{% include tt/icon.html name="mail" %}{{ tt.email }}</a></li>{% endif %}

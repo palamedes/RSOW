@@ -66,11 +66,12 @@
     updateSticky();
   }
 
-  // ── Detail carousels: thumbnails scroll the strip, the strip moves the marker
+  // ── Photo strips (piece details, for-sale cards): the thumbnails or dots
+  // scroll the strip, and scrolling the strip moves the marker.
   function initSlides(ctx) {
-    $$('.tt-detail', ctx).forEach(function (detail) {
-      var track = $('[data-tt-slides]', detail);
-      var thumbs = $$('[data-tt-slide]', detail);
+    $$('[data-tt-slider]', ctx).forEach(function (box) {
+      var track = $('[data-tt-slides]', box);
+      var thumbs = $$('[data-tt-slide]', box);
       if (!track || !thumbs.length || track.dataset.ttBound) return;
       track.dataset.ttBound = '1';
       thumbs.forEach(function (t) {
@@ -251,18 +252,56 @@
       status.scrollIntoView({ block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
     };
 
-    // Arriving from a piece ("I want one like this") or the business page
+    // "Just a question" relabels the form: every [data-tt-alt*] element swaps
+    // to its question wording and back again.
+    var question = form.getAttribute('data-question') || '';
+    var scope = form.parentNode;
+    var swap = function (el, attr, prop, on) {
+      var key = 'ttOrig' + prop;
+      if (el.dataset[key] === undefined) el.dataset[key] = el[prop];
+      el[prop] = on ? el.getAttribute(attr) : el.dataset[key];
+    };
+    var applyMode = function () {
+      var picked = $('input[name="category"]:checked', form);
+      var on = !!question && !!picked && picked.value === question;
+      form.classList.toggle('is-question', on);
+      $$('[data-tt-alt]', scope).forEach(function (el) { swap(el, 'data-tt-alt', 'textContent', on); });
+      $$('[data-tt-alt-placeholder]', scope).forEach(function (el) { swap(el, 'data-tt-alt-placeholder', 'placeholder', on); });
+      $$('[data-tt-alt-value]', scope).forEach(function (el) { swap(el, 'data-tt-alt-value', 'value', on); });
+    };
+    form.addEventListener('change', function (e) { if (e.target.name === 'category') applyMode(); });
+
+    // Arriving from a piece ("I want one like this"), a for-sale item, the
+    // business page, or a "just have a question?" link
     var pieces = {};
     try { pieces = JSON.parse(($('#tt-pieces') || { textContent: '{}' }).textContent); } catch (err) { pieces = {}; }
     var msg = form.elements.message;
-    var piece = pieces[params.get('piece')];
+    var from = $('[data-tt-from]', form);
+    var showFrom = function (lead, title, url, tail) {
+      var text = from && $('[data-tt-from-text]', from);
+      if (!text) return;
+      var a = doc.createElement('a');
+      a.href = url;
+      a.textContent = title;
+      text.textContent = '';
+      text.appendChild(doc.createTextNode(lead + ' '));
+      text.appendChild(a);
+      text.appendChild(doc.createTextNode(tail));
+      from.hidden = false;
+    };
+    var piece = (pieces.work || {})[params.get('piece')];
+    var item = (pieces.items || {})[params.get('item')];
     if (piece && msg && !msg.value) {
       msg.value = 'I saw the ' + piece.title + ' and I want something like it. ';
       if (piece.category) setCategory(piece.category);
-      var from = $('[data-tt-from]', form);
-      if (from) { from.hidden = false; $('a', from).href = piece.url; $('a', from).textContent = piece.title; }
+      showFrom('Starting from', piece.title, piece.url, '. Tell us what you’d change.');
+    } else if (item && msg && !msg.value) {
+      msg.value = 'I’m interested in the ' + item.title + (item.price ? ' (' + item.price + ')' : '') + '. ';
+      showFrom('Asking about', item.title, item.url, '.');
     }
     if (params.get('type') === 'business') setCategory('Business / Logo');
+    if (params.get('type') === 'question' && question) setCategory(question);
+    applyMode();
 
     // Files: keep a running list so people can add in batches and remove one
     var input = $('input[type="file"]', form);

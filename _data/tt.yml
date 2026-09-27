@@ -48,21 +48,23 @@ analytics:
   id: ""
 
 # ── Navigation ──────────────────────────────────────────────────────────
+# Contact and "Start a project" are the same page: the project form, where
+# "Just a question" is one of the categories.
 nav:
+  - { title: For Sale, url: /for-sale/ }
   - { title: Work, url: /work/ }
   - { title: What We Make, url: /what-we-make/ }
-  - { title: Custom Projects, url: /custom-projects/ }
   - { title: For Businesses, url: /for-businesses/ }
   - { title: About, url: /about/ }
-  - { title: Contact, url: /contact/ }
+  - { title: Contact, url: /custom-projects/ }
 
 footer_nav:
+  - { title: For Sale, url: /for-sale/ }
   - { title: Work, url: /work/ }
   - { title: What We Make, url: /what-we-make/ }
-  - { title: Custom Projects, url: /custom-projects/ }
   - { title: Business Orders, url: /for-businesses/ }
   - { title: About, url: /about/ }
-  - { title: Contact, url: /contact/ }
+  - { title: Contact, url: /custom-projects/ }
 
 # ── Gallery filters (each work item lists its keys under `filters:`) ───
 filters:
@@ -146,13 +148,19 @@ categories:
 offerings:
   ready:
     label: Ready to buy
-    blurb: "Pieces we make in batches, like cocktail coaster sets. Ask what's on the shelf."
+    blurb: "Finished pieces, on the shelf right now. When one sells it's gone, but most we can make again."
+    link: "See what's for sale"
+    url: /for-sale/
   personalize:
     label: Personalize it
     blurb: "Something we already make, with your names, dates, monogram or logo on it."
+    link: See the work
+    url: /work/
   custom:
     label: Custom project
     blurb: "Anything that needs a conversation first. Those are our favorite kind."
+    link: Start a project
+    url: /custom-projects/#start
 
 # ── Materials grid ──────────────────────────────────────────────────────
 materials:
@@ -201,7 +209,10 @@ business_capabilities:
 
 # ── Project form choices ────────────────────────────────────────────────
 form:
-  categories: [Gift, Sign, Coasters, Woodworking, Business / Logo, Event, Memorial, Map, Something Weird]
+  # "question" is the contact-form option: picking it relabels the form for a
+  # plain question. Keep it in sync with the categories list.
+  question: Just a question
+  categories: [Gift, Sign, Coasters, Woodworking, Business / Logo, Event, Memorial, Map, Something Weird, Just a question]
   quantities: [One, 2–10, 11–25, 25–100, 100+]
   budgets: ["Not sure yet", "Under $50", "$50–150", "$150–500", "$500–1,500", "$1,500+"]
   accept: ".jpg,.jpeg,.png,.pdf,.svg,image/jpeg,image/png,application/pdf,image/svg+xml"

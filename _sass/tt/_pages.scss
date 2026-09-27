@@ -120,24 +120,125 @@
 }
 .tt-trio li:last-child { background: var(--tt-panel); font-style: italic; }
 
-// ── Contact ─────────────────────────────────────────────────────────────
-.tt-contact { display: grid; gap: 3rem; }
-@include up($bp-lg) { .tt-contact { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 4.5rem; align-items: start; } }
-.tt-contact__cards { display: grid; gap: 1rem; }
-.tt-contact-card {
-  display: block;
-  padding: 1.75rem;
-  border: 1px solid var(--tt-line-strong);
+// ── Contact lines (the project page's aside) ───────────────────────────
+.tt-contact__lines { margin: 0 0 1rem; padding: 0; list-style: none; display: grid; gap: .6rem; }
+.tt-contact__lines a { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; &:hover { text-decoration: underline; } }
+.tt-contact__lines .tt-icon { width: 1.2rem; height: 1.2rem; color: var(--tt-accent); }
+
+// ── What We Make: the three-ways-in cards link somewhere ───────────────
+.tt-offer { display: flex; flex-direction: column; }
+.tt-offer p { flex: 1; }
+.tt-offer__link { align-self: flex-start; margin-top: 1.4rem; }
+
+// ── For Sale ────────────────────────────────────────────────────────────
+.tt-sale-grid { display: grid; gap: clamp(1.5rem, 2.5vw, 2.25rem); }
+@include up($bp-sm) { .tt-sale-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@include up($bp-lg) { .tt-sale-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tt-sale {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--tt-line);
   border-radius: 6px;
   background: var(--tt-panel);
-  color: inherit;
-  text-decoration: none;
-  transition: border-color .2s, transform .35s $ease-out;
-  &:hover { border-color: var(--tt-fg); transform: translateY(-2px); }
-  h3 { margin: 0 0 .4rem; font-size: 1.45rem; }
-  p { margin: 0; color: var(--tt-muted); }
+  scroll-margin-top: calc(var(--tt-header-h) + 1.5rem);
+  &:target { box-shadow: 0 0 0 2px var(--tt-fg); }
 }
-.tt-contact-card__go { @include caps(.66rem, .18em, 700); display: inline-flex; align-items: center; gap: .55em; margin-top: 1rem; .tt-icon { width: 1.1em; height: 1.1em; } }
-.tt-contact__lines { margin: 0 0 1.5rem; padding: 0; list-style: none; display: grid; gap: .6rem; }
-.tt-contact__lines a, .tt-contact__lines span { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
-.tt-contact__lines .tt-icon { width: 1.2rem; height: 1.2rem; color: var(--tt-accent); }
+.tt-sale__media { position: relative; background: $charcoal; }
+.tt-sale__slides {
+  display: flex;
+  aspect-ratio: 4 / 5;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+.tt-sale__slide { flex: 0 0 100%; margin: 0; scroll-snap-align: center; }
+.tt-sale__slide picture, .tt-sale__slide img { width: 100%; height: 100%; }
+.tt-sale__slide img { object-fit: cover; }
+.tt-sale__dots { position: absolute; left: 0; right: 0; bottom: .35rem; display: flex; justify-content: center; }
+// 24px hit area around an 8px dot
+.tt-sale__dots button {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  &::before {
+    content: "";
+    width: .5rem;
+    height: .5rem;
+    border: 1px solid rgba(242, 238, 228, .9);
+    border-radius: 50%;
+    background: rgba(23, 23, 20, .35);
+    transition: background-color .2s;
+  }
+  &[aria-current="true"]::before { background: $cream; }
+}
+.tt-sale__status {
+  @include caps(.6rem, .18em, 700);
+  position: absolute;
+  top: .85rem;
+  left: .85rem;
+  z-index: 2;
+  padding: .36rem .6rem;
+  border-radius: 2px;
+  background: $charcoal;
+  color: $cream;
+}
+.tt-sale__body { display: flex; flex: 1; flex-direction: column; gap: .55rem; padding: 1.35rem 1.35rem 1.45rem; }
+.tt-sale__top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.tt-sale__title { margin: 0; font-size: 1.42rem; line-height: 1.15; }
+.tt-sale__price {
+  flex: none;
+  margin: 0;
+  font-family: $display;
+  font-size: 1.42rem;
+  font-weight: 600;
+  line-height: 1.15;
+  font-variant-numeric: lining-nums;
+  text-align: right;
+}
+.tt-sale__note { display: block; font-family: $sans; font-size: .78rem; font-weight: 400; color: var(--tt-faint); }
+.tt-sale__desc { margin: 0; color: var(--tt-muted); }
+.tt-sale__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem .9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .88rem;
+  color: var(--tt-faint);
+}
+.tt-sale__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-top: auto; padding-top: .85rem; }
+.tt-sale__more { font-size: .92rem; color: var(--tt-muted); &:hover { color: var(--tt-fg); } }
+.tt-sale--sold .tt-sale__slide img { filter: grayscale(.55) contrast(.95); }
+.tt-sale--sold .tt-sale__price { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--tt-faint); }
+.tt-sale-how {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  max-width: 46rem;
+  margin: 2.25rem 0 0;
+  font-size: .95rem;
+  color: var(--tt-muted);
+  .tt-icon { flex: none; width: 1.2rem; height: 1.2rem; margin-top: .15em; color: var(--tt-accent); }
+}
+.tt-empty {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+  border: 1.5px dashed var(--tt-line-strong);
+  border-radius: 8px;
+  background: var(--tt-panel);
+  text-align: center;
+  .tt-eyebrow { justify-content: center; }
+  .tt-lead { margin: 0 auto 2rem; }
+}
+.tt-empty__title { margin: 0 0 1rem; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.8rem); }

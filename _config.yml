@@ -72,6 +72,10 @@ collections:
   tt_work:
     output: true
     permalink: /tinkered-tactile/work/:name/
+  # Things actually for sale right now, listed on /tinkered-tactile/for-sale/.
+  # No pages of their own: items come and go.
+  tt_inventory:
+    output: false
 
 defaults:
   - scope:
