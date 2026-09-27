@@ -15,7 +15,7 @@ And Energy Is Too Important for Fairy Tales.
 
 Somewhere along the way, one of the most important substances in modern civilization got reduced to a children's-book explanation; Oil is dead dinosaurs.
 
-in this ridiculous narrative dinosaurs died, got buried, turned into black goo, we drilled it up, and now we're rapidly approaching the bottom of the prehistoric dinosaur milkshake.
+In this ridiculous narrative dinosaurs died, got buried, turned into black goo, we drilled it up, and now we're rapidly approaching the bottom of the prehistoric dinosaur milkshake.
 
 Except that isn't what petroleum geology actually says at all.
 
@@ -65,7 +65,7 @@ The billionaire barely notices whether gasoline costs $2.50 or $5 a gallon.
 
 The guy driving forty miles to work notices.
 
-The single mother buying groceries, the plumber running three trucks, the farmer running diesel equipment, etc.. they all notice.
+The single mother buying groceries, the plumber running three trucks, the farmer running diesel equipment, etc. They all notice.
 
 The trucking company, when it notices the increase, passes the expense to Walmart. Walmart then passes it to you, and suddenly everyone is standing in the grocery aisle wondering why a cart full of ordinary food cost a small mortgage payment. 
 
@@ -89,7 +89,7 @@ Great. Buy one.
 
 But stop pretending that means they're automatically the superior solution for every human being on Earth.
 
-Someone towing a trailer hundreds of miles, living where charging infrastructure is sparse, traveling continuously, parking without access to overnight charging or needing extremely fast refueling has an entirely different transportation problem than somebody commuting twenty miles from a suburban garage to work everyday.
+Someone towing a trailer hundreds of miles, living where charging infrastructure is sparse, traveling continuously, parking without access to overnight charging or needing extremely fast refueling has an entirely different transportation problem than somebody commuting twenty miles from a suburban garage to work every day.
 
 Technology is supposed to solve people's problems. People shouldn't have to reorganize their lives to solve technology's problems.
 
@@ -99,7 +99,7 @@ Right now, you see crude prices fall and naturally wonder why the giant illumina
 
 Because gasoline isn't priced by taking today's barrel price, dividing it by 42 and changing the Speedway sign before lunch.
 
-Crude oil is only one component of the final price. We have to take into consideration refining capacity and margins, distribution, inventories, taxes, seasonal fuel requirements, regional supply disruptions, commodity markets, etc.. these things all matter, and changes in crude prices can take time to work through wholesale and retail markets.
+Crude oil is only one component of the final price. We have to take into consideration refining capacity and margins, distribution, inventories, taxes, seasonal fuel requirements, regional supply disruptions, commodity markets, etc. These things all matter, and changes in crude prices can take time to work through wholesale and retail markets.
 
 That's a considerably more complicated explanation than **"THEY'RE ALL FIXING THE PRICE."**
 
