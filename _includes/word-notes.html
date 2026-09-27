@@ -1,0 +1,23 @@
+{%- comment -%}
+Word notes: hands the post's curated words (front matter `words: [key, ...]`,
+entries in _data/glossary/<key>.yml) to assets/js/word-notes.js, which puts a
+squiggly underline on each word's first usable occurrence and shows its card
+on hover, focus or tap. Unknown keys are skipped here (the build warns about
+them via _plugins/word_notes.rb).
+{%- endcomment -%}
+{%- assign wn_keys = "" | split: "" -%}
+{%- for key in page.words -%}
+  {%- assign wn_key = key | append: "" -%}
+  {%- if site.data.glossary[wn_key] -%}{%- assign wn_keys = wn_keys | push: wn_key -%}{%- endif -%}
+{%- endfor -%}
+{%- if wn_keys.size > 0 %}
+<script type="application/json" id="word-notes-data" data-figure-base="{{ '/assets/images/words/' | relative_url }}">
+[
+{%- for key in wn_keys -%}
+{%- assign e = site.data.glossary[key] -%}
+{"key": {{ key | jsonify }}, "word": {{ e.word | default: key | jsonify }}, "say": {{ e.say | jsonify }}, "pos": {{ e.pos | jsonify }}, "topic": {{ e.topic | jsonify }}, "definition": {{ e.definition | strip | strip_newlines | jsonify }}, "origin": {{ e.origin | strip | strip_newlines | jsonify }}, "figure": {{ e.figure | jsonify }}, "figure_alt": {{ e.figure_alt | strip | strip_newlines | jsonify }}, "forms": {{ e.forms | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
+{%- endfor -%}
+]
+</script>
+<script src="{{ '/assets/js/word-notes.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+{%- endif %}

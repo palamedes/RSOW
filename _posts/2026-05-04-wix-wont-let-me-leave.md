@@ -7,6 +7,7 @@ categories:
 - Rant
 - Software
 tags:
+words: [dns, ux, static-file]
 description: "I tried to cancel my Wix account. Four times. They blocked me at every turn. This is what dark patterns look like in the wild."
 excerpt: "I tried to cancel Wix. First they said I couldn't because I had domains pointed at it. Then I couldn't because I had a subscription. Then support couldn't either. Dark patterns aren't a theory — I'm living one right now."
 ai_notes:

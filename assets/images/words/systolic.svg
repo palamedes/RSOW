@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 104" width="304" height="104" font-family="Nunito Sans, Arial, Helvetica, sans-serif">
+  <!-- Word-card figure for "systolic": an idealized arterial pressure wave
+       over three heartbeats. Peaks = systolic (~120 mmHg), low points =
+       diastolic (~80 mmHg). Shape is schematic, not a recording. -->
+  <g stroke="#c9b273" stroke-width="1" stroke-dasharray="3 3">
+    <line x1="0" y1="20" x2="232" y2="20"/>
+    <line x1="0" y1="68" x2="232" y2="68"/>
+  </g>
+  <path fill="none" stroke="#b3261e" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"
+        d="M6 68 C11 68 13 20 18 20 C23 20 29 31 34 37 C36 39.5 38 40 40 38.5 C41.5 37 43 37 45.5 39 C57 51 69 63 80 68
+           C85 68 87 20 92 20 C97 20 103 31 108 37 C110 39.5 112 40 114 38.5 C115.5 37 117 37 119.5 39 C131 51 143 63 154 68
+           C159 68 161 20 166 20 C171 20 177 31 182 37 C184 39.5 186 40 188 38.5 C189.5 37 191 37 193.5 39 C205 51 217 63 228 68"/>
+  <g fill="#b3261e">
+    <circle cx="92" cy="20" r="3"/>
+    <circle cx="154" cy="68" r="3"/>
+  </g>
+
+  <g font-size="9.5" font-weight="800" fill="#3a3120">
+    <text x="238" y="18">systolic</text>
+    <text x="238" y="66">diastolic</text>
+  </g>
+  <g font-size="9" fill="#6b5a2c">
+    <text x="238" y="29">~120 mmHg</text>
+    <text x="238" y="77">~80 mmHg</text>
+  </g>
+
+  <g stroke="#9a8340" stroke-width="1.2" fill="none" stroke-linecap="round">
+    <path d="M80 84v5h74v-5"/>
+  </g>
+  <text x="117" y="101" font-size="9" fill="#6b5a2c" text-anchor="middle">one heartbeat</text>
+</svg>

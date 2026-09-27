@@ -7,6 +7,7 @@ categories:
 - Rant
 - Political
 tags:
+words: [reasonable-expectation-of-privacy, fourth-amendment-search, probable-cause]
 description: "Yes, your license plate is visible in public. That was never the argument. Flock isn't replacing the cop sitting beside the road — it's building a searchable historical record of where millions of people have been, almost none of whom are suspected of anything. A former cop on Carpenter, Chatrie, Baltimore's spy plane, and why 'but you're in public' misses the point entirely."
 excerpt: "One cop watching you drive down Main Street isn't the same thing as every cop in the country being able to ask a database everywhere you've driven for the last three months. Those aren't remotely equivalent capabilities. Useful does not mean constitutionally unlimited."
 ai_notes:

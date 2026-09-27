@@ -1,0 +1,11 @@
+word: SSH
+say: ess-ess-AYCH
+pos: verb
+topic: technology
+definition: >-
+  To connect to another computer over a network and control it by typing text
+  commands, using SSH (Secure Shell), a standard method that encrypts
+  everything passing between the two machines.
+origin: >-
+  Secure Shell was first released in Finland in 1995.
+forms: [sshing, ssh]
