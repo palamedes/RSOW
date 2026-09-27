@@ -2,6 +2,7 @@
 title: "Oil Isn't Dinosaur Juice"
 layout: post
 date: 2026-09-30
+image: /assets/images/2026/oil-isnt-dinosaur-juice.png
 categories:
 - Rant
 - Political
