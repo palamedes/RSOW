@@ -66,6 +66,16 @@ collections:
     # Keep page URLs at the site root (e.g. /hire/) instead of /pages/hire/.
     # Per-page `permalink:` front matter still overrides this.
     permalink: /:path/
+  # Tinkered Tactile — the maker-shop site at /tinkered-tactile/. One file per
+  # piece of work; the gallery, category pages and detail pages all read from
+  # here. See _tools/README-tinkered-tactile.md.
+  tt_work:
+    output: true
+    permalink: /tinkered-tactile/work/:name/
+  # Things actually for sale right now, listed on /tinkered-tactile/for-sale/.
+  # No pages of their own: items come and go.
+  tt_inventory:
+    output: false
 
 defaults:
   - scope:
@@ -85,6 +95,11 @@ defaults:
     values:
       layout: explainer
       full_width: true
+  - scope:
+      path: ""
+      type: tt_work
+    values:
+      layout: tt-work
 
 # Plugins
 plugins:

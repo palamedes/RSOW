@@ -1,0 +1,217 @@
+---
+layout: tt
+title: Tinkered Tactile
+tt_title: "Tinkered Tactile | Custom Laser Engraving & Handmade Woodwork in North Carolina"
+description: "A small maker shop in coastal North Carolina: laser-engraved slate, layered wooden maps, custom signs, hand-turned pepper mills, logo work and one-off commissions. Bring an idea; we can probably make it."
+tt_header: over
+# The editorial grid: each row adds up to 12 columns at matching heights.
+featured:
+  - { slug: cocktail-recipe-coasters, title: "Cocktail coaster collection", caption: "A drink recipe that can't get ruined when someone spills a drink on it.", span: 7, ar: "7 / 5" }
+  - { slug: oriental-layered-map, title: "Layered wood maps", caption: "Maps built in layers, engraved with the places that matter.", span: 5, ar: "1 / 1" }
+  - { slug: america-250-slate, title: "Custom signs", caption: "Your words. Your joke. Your questionable sense of humor. Permanently burned into something.", span: 5, ar: "1 / 1" }
+  - { slug: purpleheart-pepper-mills, title: "Turned wood", caption: "Sometimes the wood gets to decide what it wants to become.", span: 3, ar: "3 / 5" }
+  - { slug: logo-samples, title: "Logos & business work", caption: "Your logo deserves better than another coffee mug.", span: 4, ar: "4 / 5" }
+---
+{%- assign tt = site.data.tt -%}
+<section class="tt-hero" aria-labelledby="tt-hero-title">
+  <div class="tt-hero__media">
+    {% include tt/picture.html name=tt.photos.hero alt="" sizes="100vw" priority=true %}
+  </div>
+  <div class="tt-wrap">
+    <div class="tt-hero__content">
+      <p class="tt-eyebrow">Handcrafted <span class="tt-dot" aria-hidden="true">•</span> Engraved <span class="tt-dot" aria-hidden="true">•</span> Made to be kept</p>
+      <h1 class="tt-h1" id="tt-hero-title"><span class="tt-hero__line">Things worth touching.</span> <span class="tt-hero__line tt-hero__line--2">Made worth keeping.</span></h1>
+      <p class="tt-hero__lede">Wood, slate, leather, glass, metal and whatever else we can convince a laser or woodworking tool to cooperate with.</p>
+      <div class="tt-cta-pair">
+        <a class="tt-btn tt-btn--cream" href="{{ tt.base | append: '/work/' | relative_url }}">See what we make</a>
+        <a class="tt-btn tt-btn--ghost" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a custom project {% include tt/icon.html name="arrow" %}</a>
+      </div>
+      <p class="tt-hero__where">{% include tt/icon.html name="pin" %}Made in coastal North Carolina.</p>
+    </div>
+  </div>
+  {%- if tt.photos.hero_caption != "" %}
+  <p class="tt-hero__placard">{{ tt.photos.hero_caption }}</p>
+  {%- endif %}
+</section>
+
+<section class="tt-section tt-theme-cream" aria-labelledby="tt-what">
+  <div class="tt-wrap">
+    <div class="tt-intro">
+      <div>
+        <p class="tt-eyebrow">What we make</p>
+        <h2 class="tt-h2" id="tt-what">So&hellip; what exactly do you make?</h2>
+      </div>
+      <div class="tt-intro__copy">
+        <p class="tt-intro__punch">That&rsquo;s a surprisingly difficult question.</p>
+        <p>We turn wood. We engrave slate. We make maps out of layers of wood. We put logos on things. We make signs, gifts, coasters, boards, memorial pieces, barware and occasionally something that didn&rsquo;t have a name until somebody asked us to make it.</p>
+      </div>
+    </div>
+    <div class="tt-cats">
+      {%- for c in tt.categories %}
+      <a class="tt-cat" href="{{ tt.base | append: c.url | relative_url }}" data-reveal style="--i: {{ forloop.index0 }}">
+        <div class="tt-cat__media">
+          {%- capture c_focus %}object-position: {{ c.focus | default: "50% 50%" }}{% endcapture %}
+          {% include tt/picture.html name=c.image alt="" sizes="(min-width: 760px) 50vw, 100vw" style=c_focus %}
+          {%- if c.image_kind == "render" %}<span class="tt-badge" title="An AI render. The real ones sold.">Render</span>{% endif %}
+        </div>
+        <div class="tt-cat__body">
+          <h3 class="tt-cat__title">{{ c.title }}</h3>
+          <p class="tt-cat__blurb">{{ c.blurb }}</p>
+          <span class="tt-cat__go">{{ c.button }} {% include tt/icon.html name="arrow" %}</span>
+        </div>
+      </a>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-ink tt-grain" aria-labelledby="tt-featured">
+  <div class="tt-wrap">
+    <div class="tt-section__head tt-section__head--split">
+      <div>
+        <p class="tt-eyebrow">Featured work</p>
+        <h2 class="tt-h2" id="tt-featured">Things we can make</h2>
+      </div>
+      <a class="tt-link-arrow" href="{{ tt.base | append: '/work/' | relative_url }}">View more work {% include tt/icon.html name="arrow" %}</a>
+    </div>
+    <div class="tt-featured">
+      {%- for f in page.featured %}
+      {%- assign w = site.tt_work | where: "slug", f.slug | first -%}
+      {%- if w %}
+      {%- capture f_style %}--span: {{ f.span }}; --ar: {{ f.ar }}; --i: {{ forloop.index0 }}{% endcapture %}
+      {% include tt/work-card.html item=w variant="below" title=f.title caption=f.caption style=f_style reveal=true sizes="(min-width: 760px) 55vw, 100vw" %}
+      {%- endif %}
+      {%- endfor %}
+    </div>
+    <div class="tt-featured__note">
+      <p>Some of these are photographs. Some are AI renders of pieces that sold before anyone thought to take a decent picture. All of them, we can make again.</p>
+      <a class="tt-btn tt-btn--primary" href="{{ tt.base | append: '/work/' | relative_url }}">View more work</a>
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-charcoal tt-grain" aria-labelledby="tt-idea">
+  <div class="tt-wrap">
+    <div class="tt-idea__grid">
+      <div>
+        <p class="tt-eyebrow">Custom work</p>
+        <h2 class="tt-idea__title" id="tt-idea">Got an idea?</h2>
+        <p class="tt-idea__sub">Good. Those are our favorite projects.</p>
+        <a class="tt-btn tt-btn--primary" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Tell us your idea {% include tt/icon.html name="arrow" %}</a>
+        <p class="tt-idea__small">Photos, sketches, logos and badly drawn diagrams are all welcome.</p>
+      </div>
+      <div>
+        <ul class="tt-maybes">
+          <li data-reveal style="--i: 0">Maybe you saw something here and want your name on it.</li>
+          <li data-reveal style="--i: 1">Maybe you have a company logo.</li>
+          <li data-reveal style="--i: 2">Maybe you need twenty-five gifts.</li>
+          <li data-reveal style="--i: 3">Maybe you drew something on a napkin.</li>
+          <li data-reveal style="--i: 4">Maybe you have an idea that begins with:</li>
+        </ul>
+        <p class="tt-idea__quote" data-reveal style="--i: 5">&ldquo;This might sound weird, but&hellip;&rdquo;</p>
+        <p class="tt-idea__after">That&rsquo;s usually where things get interesting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-labelledby="tt-how">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Custom orders</p>
+      <h2 class="tt-h2" id="tt-how">How custom orders work</h2>
+    </div>
+    {% include tt/steps.html %}
+    <div class="tt-steps__cta">
+      <a class="tt-btn tt-btn--primary" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project {% include tt/icon.html name="arrow" %}</a>
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-ink tt-grain" aria-labelledby="tt-materials">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Materials</p>
+      <h2 class="tt-h2" id="tt-materials">What can we put your idea on?</h2>
+    </div>
+    {% include tt/materials.html %}
+    <p class="tt-materials__after">Have something unusual in mind? Ask us. Half the fun is figuring out whether we can do it.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-paper" aria-labelledby="tt-biz">
+  <div class="tt-wrap">
+    <div class="tt-biz">
+      <div>
+        <p class="tt-eyebrow">Business &amp; bulk orders</p>
+        <h2 class="tt-h2" id="tt-biz">Your logo looks good on things.</h2>
+        <p class="tt-lead">Need branded gifts, signage, awards, promotional pieces, client gifts, employee gifts, event items or something nobody else at the trade show is giving away?</p>
+        <p>We can produce custom small-batch and bulk work using your logo, artwork or design.</p>
+        <ul class="tt-checklist">
+          {%- for c in tt.business_capabilities %}
+          <li>{% include tt/icon.html name="check" %}{{ c }}</li>
+          {%- endfor %}
+        </ul>
+        <div class="tt-cta-pair">
+          <a class="tt-btn tt-btn--primary" href="{{ tt.base | append: '/custom-projects/?type=business#start' | relative_url }}">Talk to us about a project {% include tt/icon.html name="arrow" %}</a>
+          <a class="tt-btn tt-btn--secondary" href="{{ tt.base | append: '/for-businesses/' | relative_url }}">For businesses</a>
+        </div>
+      </div>
+      <div class="tt-duo" data-reveal>
+        <div class="tt-duo__a">{% include tt/picture.html name="your-design-slate" alt="A round slate coaster engraved with a leaf wreath and 'Your design here'" sizes="(min-width: 1000px) 30vw, 70vw" %}</div>
+        <div class="tt-duo__b">{% include tt/picture.html name="your-design-hex" alt="A marble and wood hexagon engraved 'Your design here' with the Tinkered Tactile script" sizes="(min-width: 1000px) 25vw, 56vw" %}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-labelledby="tt-why">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Why Tinkered Tactile?</p>
+      <h2 class="tt-h2" id="tt-why">Why buy something somebody bothered to make?</h2>
+    </div>
+    <div class="tt-why">
+      {%- for w in tt.why %}
+      <div class="tt-why__item" data-reveal style="--i: {{ forloop.index0 }}">
+        <h3 class="tt-why__title">{{ w.title }}</h3>
+        <p>{{ w.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-ink tt-grain" aria-labelledby="tt-about">
+  <div class="tt-wrap">
+    <div class="tt-about">
+      <div class="tt-about__media" data-reveal>
+        {% include tt/picture.html name=tt.photos.about alt="Work from the shop: engraving on slate" sizes="(min-width: 1000px) 40vw, 100vw" %}
+      </div>
+      <div>
+        <p class="tt-eyebrow">About</p>
+        <h2 class="tt-h2" id="tt-about">We like making things.</h2>
+        <p class="tt-lead">Tinkered Tactile exists because making one kind of thing forever sounded boring.</p>
+        <ul class="tt-chain">
+          <li>Woodworking led to woodturning.</li>
+          <li>Woodturning led to engraving.</li>
+          <li>Engraving led to lasers.</li>
+          <li>Lasers led to wondering what else could be engraved.</li>
+        </ul>
+        <a class="tt-btn tt-btn--secondary" href="{{ tt.base | append: '/about/' | relative_url }}">About Tinkered Tactile {% include tt/icon.html name="arrow" %}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tt-final" aria-labelledby="tt-final">
+  <div class="tt-final__media">{% include tt/picture.html name=tt.photos.closing alt="" sizes="100vw" %}</div>
+  <div class="tt-wrap">
+    <h2 class="tt-final__title" id="tt-final">What should we make?</h2>
+    <p class="tt-final__lede">You bring the idea. We&rsquo;ll bring the tools.</p>
+    <div class="tt-cta-pair tt-cta-pair--center">
+      <a class="tt-btn tt-btn--cream" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a custom project {% include tt/icon.html name="arrow" %}</a>
+      <a class="tt-btn tt-btn--ghost" href="{{ tt.base | append: '/work/' | relative_url }}">Browse our work</a>
+    </div>
+  </div>
+</section>

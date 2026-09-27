@@ -1,0 +1,49 @@
+---
+layout: tt
+---
+{%- assign tt = site.data.tt -%}
+{%- assign tt_items = site.tt_work | sort: "order" -%}
+<section class="tt-section tt-section--detail tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <nav class="tt-crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="{{ tt.base | append: '/' | relative_url }}">Tinkered Tactile</a></li>
+        <li><a href="{{ tt.base | append: '/work/' | relative_url }}">Work</a></li>
+        <li aria-current="page">{{ page.title }}</li>
+      </ol>
+    </nav>
+    {% include tt/work-detail.html item=page body=content heading="h1" %}
+  </div>
+</section>
+
+{%- comment -%} More from the same bucket, falling back to anything featured. {%- endcomment -%}
+{%- assign tt_more = "" | split: "" -%}
+{%- for w in tt_items -%}
+  {%- if w.url != page.url and tt_more.size < 3 -%}
+    {%- assign tt_shared = false -%}
+    {%- for c in w.buckets -%}{%- if page.buckets contains c -%}{%- assign tt_shared = true -%}{%- endif -%}{%- endfor -%}
+    {%- if tt_shared -%}{%- assign tt_more = tt_more | push: w -%}{%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- for w in tt_items -%}
+  {%- if w.url != page.url and tt_more.size < 3 and w.featured -%}
+    {%- unless tt_more contains w -%}{%- assign tt_more = tt_more | push: w -%}{%- endunless -%}
+  {%- endif -%}
+{%- endfor %}
+<section class="tt-section tt-theme-cream">
+  <div class="tt-wrap">
+    <div class="tt-section__head tt-section__head--split">
+      <h2 class="tt-h2">More things we can make</h2>
+      <a class="tt-link-arrow" href="{{ tt.base | append: '/work/' | relative_url }}">All the work {% include tt/icon.html name="arrow" %}</a>
+    </div>
+    <div class="tt-grid-3">
+      {%- for w in tt_more %}
+      {% include tt/work-card.html item=w variant="below" sizes="(min-width: 900px) 30vw, 100vw" %}
+      {%- endfor %}
+    </div>
+    <div class="tt-more-cta">
+      <p class="tt-lead">Don't see it? That's normal. Most of what we make started as somebody's idea.</p>
+      {% include tt/cta-pair.html show="See all the work" idea="Tell us your idea" %}
+    </div>
+  </div>
+</section>

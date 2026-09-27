@@ -1,0 +1,108 @@
+---
+layout: tt
+title: What We Make
+seo_title: "Personalized Slate Coasters, Custom Wood Signs & Hand-Turned Pepper Mills"
+description: "Personalized goods, home and bar pieces, woodwork and business work: engraved slate, layered wooden maps, custom signs, turned pepper mills, bowls and urns, made in coastal North Carolina."
+---
+{%- assign tt = site.data.tt -%}
+{%- assign tt_items = site.tt_work | sort: "order" -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">What we make</p>
+    <h1 class="tt-h1">So&hellip; what exactly do you make?</h1>
+    <p class="tt-lead"><strong>That&rsquo;s a surprisingly difficult question.</strong> We turn wood. We engrave slate. We make maps out of layers of wood. We put logos on things. We make signs, gifts, coasters, boards, memorial pieces, barware and occasionally something that didn&rsquo;t have a name until somebody asked us to make it.</p>
+    <nav class="tt-bucket-nav" aria-label="Jump to">
+      {%- for c in tt.categories %}
+      <a class="tt-btn tt-btn--ghost tt-btn--sm" href="#{{ c.key }}">{{ c.title }}</a>
+      {%- endfor %}
+    </nav>
+  </div>
+</section>
+
+<section class="tt-section tt-section--tight tt-theme-cream" aria-labelledby="tt-ways">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Three ways in</p>
+      <h2 class="tt-h2" id="tt-ways">Buy it, make it yours, or start from scratch.</h2>
+    </div>
+    <div class="tt-offers">
+      {%- for o in tt.offerings %}
+      <div class="tt-offer" data-reveal style="--i: {{ forloop.index0 }}">
+        <span class="tt-offer__num">0{{ forloop.index }}</span>
+        <h3 class="tt-offer__title">{{ o[1].label }}</h3>
+        <p>{{ o[1].blurb }}</p>
+        {%- if o[1].url %}
+        <a class="tt-link-arrow tt-offer__link" href="{{ tt.base | append: o[1].url | relative_url }}">{{ o[1].link }} {% include tt/icon.html name="arrow" %}</a>
+        {%- endif %}
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+{%- assign tt_themes = "tt-theme-paper,tt-theme-ink tt-grain,tt-theme-cream,tt-theme-charcoal tt-grain" | split: "," -%}
+{%- assign tt_shown = "" | split: "" -%}
+{%- for c in tt.categories %}
+{%- comment -%} Up to three pieces per bucket, preferring ones the page hasn't shown yet. {%- endcomment -%}
+{%- assign c_items = "" | split: "" -%}
+{%- for w in tt_items -%}
+  {%- if w.buckets contains c.key and c_items.size < 3 -%}{%- unless tt_shown contains w.slug -%}{%- assign c_items = c_items | push: w -%}{%- endunless -%}{%- endif -%}
+{%- endfor -%}
+{%- for w in tt_items -%}
+  {%- if w.buckets contains c.key and c_items.size < 3 -%}{%- unless c_items contains w -%}{%- assign c_items = c_items | push: w -%}{%- endunless -%}{%- endif -%}
+{%- endfor -%}
+{%- for w in c_items -%}{%- assign tt_shown = tt_shown | push: w.slug -%}{%- endfor %}
+<section class="tt-section {{ tt_themes[forloop.index0] }}" id="{{ c.key }}" aria-labelledby="tt-{{ c.key }}-title">
+  <div class="tt-wrap">
+    <div class="tt-bucket">
+      <div class="tt-bucket__text">
+        <p class="tt-eyebrow">0{{ forloop.index }} / 0{{ tt.categories.size }}</p>
+        <h2 class="tt-h2" id="tt-{{ c.key }}-title">{{ c.title }}</h2>
+        <p class="tt-lead">{{ c.blurb }}</p>
+        <ul class="tt-things">
+          {%- for t in c.things %}
+          <li>{{ t }}</li>
+          {%- endfor %}
+        </ul>
+        {%- if c.key == "business" %}
+        {% include tt/cta-pair.html show="For businesses" show_url="/for-businesses/" idea="Request a quote" idea_url="/custom-projects/?type=business#start" %}
+        {%- else %}
+        {%- capture c_show %}/work/?filter={{ c.filter }}{% endcapture %}
+        {% include tt/cta-pair.html show="See the work" show_url=c_show idea="Ask about one" %}
+        {%- endif %}
+      </div>
+      <div class="tt-bucket__cards">
+        {%- for w in c_items %}
+        {% include tt/work-card.html item=w variant="below" reveal=true sizes="(min-width: 1000px) 30vw, (min-width: 560px) 50vw, 100vw" %}
+        {%- endfor %}
+      </div>
+    </div>
+    {%- if c.key == "home-bar" %}
+    <div class="tt-sayings" aria-label="A few sign sayings">
+      <p class="tt-saying" data-reveal style="--i: 0">If our dog doesn&rsquo;t like you, we probably won&rsquo;t either.<small>Porch sign</small></p>
+      <p class="tt-saying tt-saying--slate" data-reveal style="--i: 1">Today&rsquo;s special: eat it or starve.<small>Kitchen sign</small></p>
+      <p class="tt-saying tt-saying--light" data-reveal style="--i: 2">No soliciting. Yes, that means you.<small>Front door</small></p>
+    </div>
+    <p class="tt-sayings__cap">Your words. Your joke. Your questionable sense of humor. Permanently burned into something.</p>
+    {%- endif %}
+  </div>
+</section>
+{%- endfor %}
+
+<section class="tt-section tt-theme-ink tt-grain" aria-labelledby="tt-materials">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Materials</p>
+      <h2 class="tt-h2" id="tt-materials">What can we put your idea on?</h2>
+    </div>
+    {% include tt/materials.html %}
+    <p class="tt-materials__after">Have something unusual in mind? Ask us. Half the fun is figuring out whether we can do it.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-section--tight tt-theme-cream">
+  <div class="tt-wrap tt-more-cta" style="margin-top: 0; border-top: 0; padding-top: 0">
+    <p class="tt-lead">Still not sure what to call the thing you want? Good. Describe it; we&rsquo;ll figure out the name later.</p>
+    {% include tt/cta-pair.html %}
+  </div>
+</section>

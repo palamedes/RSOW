@@ -1,0 +1,64 @@
+---
+layout: tt
+title: Work
+seo_title: "Custom Engraving, Signs, Layered Maps & Woodwork"
+description: "Things we can make: slate cocktail coasters, layered wooden maps, custom signs, hand-turned pepper mills, urns, crests and logo work. Some photographed, some rendered, all of it makeable."
+---
+{%- assign tt = site.data.tt -%}
+{%- assign tt_items = site.tt_work | sort: "order" -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">The work</p>
+    <h1 class="tt-h1">Things we can make.</h1>
+    <p class="tt-lead">It isn&rsquo;t a catalog. Think of it as evidence. If you catch yourself thinking <em>&ldquo;I bet they could make&hellip;&rdquo;</em>, you&rsquo;re probably right.</p>
+  </div>
+</section>
+
+<div class="tt-filters tt-theme-ink">
+  <div class="tt-wrap tt-filters__inner" role="group" aria-label="Filter the work">
+    <span class="tt-filters__label" aria-hidden="true">Show</span>
+    {%- for f in tt.filters %}
+    <button class="tt-filter" type="button" data-tt-filter="{{ f.key }}" aria-pressed="{% if f.key == 'all' %}true{% else %}false{% endif %}">{{ f.label }}<span class="tt-filter__n" aria-hidden="true"></span></button>
+    {%- endfor %}
+  </div>
+</div>
+
+<section class="tt-section tt-theme-ink" style="padding-top: 0" aria-labelledby="tt-pieces-h">
+  <div class="tt-wrap">
+    <h2 class="tt-sr" id="tt-pieces-h">The pieces</h2>
+    <div class="tt-gallery" data-tt-gallery>
+      {%- for w in tt_items %}
+      {%- if w.tile == "wide" or w.tile == "big" -%}
+        {%- assign w_sizes = "(min-width: 1000px) 60vw, 100vw" -%}
+      {%- else -%}
+        {%- assign w_sizes = "(min-width: 1000px) 34vw, (min-width: 560px) 60vw, 100vw" -%}
+      {%- endif %}
+      {%- assign w_first = false -%}{%- if forloop.index <= 2 -%}{%- assign w_first = true -%}{%- endif %}
+      {% include tt/work-card.html item=w variant="overlay" sizes=w_sizes priority=w_first %}
+      {%- endfor %}
+    </div>
+    <p class="tt-gallery__empty" data-tt-empty hidden>Nothing under that one yet. Which, honestly, is an invitation.</p>
+
+    <div class="tt-gallery__foot">
+      <div>
+        <p class="tt-note">{% include tt/icon.html name="spark" %}<span><strong>About the pictures:</strong> some of these are photographs. Some are AI renders of pieces that sold before anyone took a decent photo, and a couple are the designs themselves. They&rsquo;re all labeled, and every one of them is something we can make again.</span></p>
+        <p class="tt-lead">Don&rsquo;t see it? That&rsquo;s normal. Most of what we make started as somebody&rsquo;s idea.</p>
+      </div>
+      {% include tt/cta-pair.html show="What we make" show_url="/what-we-make/" idea="Tell us your idea" %}
+    </div>
+  </div>
+</section>
+
+<dialog class="tt-dialog" data-tt-dialog aria-label="Piece details">
+  <div class="tt-dialog__bar">
+    <span class="tt-dialog__count" data-tt-dialog-count></span>
+    <a class="tt-dialog__page" data-tt-dialog-page href="#">Full page</a>
+    <button class="tt-dialog__btn" type="button" data-tt-dialog-prev>{% include tt/icon.html name="chevron-left" %}<span class="tt-sr">Previous piece</span></button>
+    <button class="tt-dialog__btn" type="button" data-tt-dialog-next>{% include tt/icon.html name="chevron-right" %}<span class="tt-sr">Next piece</span></button>
+    <button class="tt-dialog__btn" type="button" data-tt-dialog-close>{% include tt/icon.html name="close" %}<span class="tt-sr">Close</span></button>
+  </div>
+  <div class="tt-dialog__body" data-tt-dialog-body></div>
+</dialog>
+{%- for w in tt_items %}
+<template id="tt-tpl-{{ w.slug }}">{% include tt/work-detail.html item=w body=w.content heading="h2" %}</template>
+{%- endfor %}

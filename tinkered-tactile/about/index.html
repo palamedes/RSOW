@@ -1,0 +1,79 @@
+---
+layout: tt
+title: About
+seo_title: "About Tinkered Tactile: A Small Maker Shop in Coastal North Carolina"
+description: "Tinkered Tactile exists because making one kind of thing forever sounded boring. Woodworking led to woodturning, woodturning to engraving, engraving to lasers, and a workshop turned into a business."
+---
+{%- assign tt = site.data.tt -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">About</p>
+    <h1 class="tt-h1">We like making things.</h1>
+    <p class="tt-lead">Tinkered Tactile exists because making one kind of thing forever sounded boring.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-label="The story">
+  <div class="tt-wrap tt-story">
+    <div class="tt-story__text">
+      <ul class="tt-chain">
+        <li>Woodworking led to woodturning.</li>
+        <li>Woodturning led to engraving.</li>
+        <li>Engraving led to lasers.</li>
+        <li>Lasers led to wondering what else could be engraved.</li>
+      </ul>
+      <p>And somewhere along the way a workshop turned into a business.</p>
+      <p>Today Tinkered Tactile makes a constantly changing collection of handcrafted goods, custom pieces and experiments from a small shop in coastal North Carolina. Some of it is turned on a lathe. Some of it is cut and engraved with a laser. A lot of it is both, plus some leather, some slate and whatever else seemed like a good idea at the time.</p>
+      <p>That&rsquo;s why the shop doesn&rsquo;t have a tidy catalog. The products keep changing because the experiments keep working, and the best ones usually start with somebody else&rsquo;s idea.</p>
+      <p>You can also find us at local markets around coastal North Carolina, which is where a lot of those ideas get handed to us in person.</p>
+    </div>
+    <div class="tt-story__media" data-reveal>
+      {% include tt/picture.html name=tt.photos.about_page alt="Work from the shop: an engraved slate sample" sizes="(min-width: 1000px) 40vw, 100vw" %}
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-ink tt-grain" aria-label="How things start">
+  <div class="tt-wrap">
+    <ul class="tt-trio">
+      <li data-reveal style="--i: 0">Sometimes we make twenty of something.</li>
+      <li data-reveal style="--i: 1">Sometimes we make one.</li>
+      <li data-reveal style="--i: 2">Sometimes somebody asks, &ldquo;Can you make this?&rdquo; And that&rsquo;s usually how the next product starts.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-paper" aria-labelledby="tt-why">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Why Tinkered Tactile?</p>
+      <h2 class="tt-h2" id="tt-why">Why buy something somebody bothered to make?</h2>
+    </div>
+    <div class="tt-why">
+      {%- for w in tt.why %}
+      <div class="tt-why__item" data-reveal style="--i: {{ forloop.index0 }}">
+        <h3 class="tt-why__title">{{ w.title }}</h3>
+        <p>{{ w.text }}</p>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-charcoal tt-grain" aria-labelledby="tt-materials">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <p class="tt-eyebrow">Materials</p>
+      <h2 class="tt-h2" id="tt-materials">What we work with</h2>
+    </div>
+    {% include tt/materials.html %}
+    <p class="tt-materials__after">Have something unusual in mind? Ask us. Half the fun is figuring out whether we can do it.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-section--tight tt-theme-cream">
+  <div class="tt-wrap tt-more-cta" style="margin-top: 0; border-top: 0; padding-top: 0">
+    <p class="tt-lead">You bring the idea. We&rsquo;ll bring the tools.</p>
+    {% include tt/cta-pair.html %}
+  </div>
+</section>

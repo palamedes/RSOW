@@ -1,0 +1,17 @@
+{%- comment -%}
+Formats a price for display: 45 → $45, 12.5 → $12.50. A string that already
+has a "$" in it (e.g. "$40 a set") is shown as-is. Blank → nothing.
+  {% include tt/price.html price=item.price %}
+{%- endcomment -%}
+{%- assign tp = include.price -%}
+{%- if tp and tp != "" -%}
+  {%- assign tp_s = tp | append: "" -%}
+  {%- if tp_s contains "$" -%}
+    {{- tp_s -}}
+  {%- else -%}
+    {%- assign tp_cents = tp | times: 100 | round -%}
+    {%- assign tp_dollars = tp_cents | divided_by: 100 -%}
+    {%- assign tp_rest = tp_cents | modulo: 100 -%}
+    ${{ tp_dollars }}{% if tp_rest != 0 %}.{% if tp_rest < 10 %}0{% endif %}{{ tp_rest }}{% endif %}
+  {%- endif -%}
+{%- endif -%}
