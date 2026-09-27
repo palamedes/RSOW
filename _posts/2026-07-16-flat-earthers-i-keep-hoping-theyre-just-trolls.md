@@ -124,7 +124,7 @@ There's a difference. A real one.
 
 Ignorance is just not knowing something yet. It's bumping into an idea that's bigger than your current experience or ability to picture it.  Each of us is ignorant of things and it's okay. Stupidity is when the answer is sitting right in front of you, buried under mountains of evidence, and you shove it away anyway ... because taking it would mean admitting you were wrong. And that's a problem.
 
-Ignorance is curable. Stupidity is willfull ignorance, and that's not.
+Ignorance is curable. Stupidity is willful ignorance, and that's not.
 
 ## It's a Problem of Scale
 

@@ -126,7 +126,7 @@ I kept choosing to type a reply, even knowing full well it was probably going to
 
 So fine. Apparently I need a shock collar.
 
-Apparently I need my own browser to grab me by the throad and say, "No. Absolutely not. You have been here before. You know what this is. Go do literally anything else."
+Apparently I need my own browser to grab me by the throat and say, "No. Absolutely not. You have been here before. You know what this is. Go do literally anything else."
 
 Read a book. Go outside. Talk to a real person. Build something. Touch grass. Stare at a wall.
 
