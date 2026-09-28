@@ -12,7 +12,7 @@ full_width: true
     <div class="abt-hero-bg" aria-hidden="true"></div>
     <div class="abt-wrap abt-hero-inner">
       <div class="abt-portrait-frame">
-        <img class="abt-portrait" src="{{ '/assets/images/jason-2026.png' | relative_url }}" alt="Jason Ellis, 2026">
+        <img class="abt-portrait" src="{{ '/assets/images/jason-headshot-2026.jpg' | relative_url }}" alt="Jason Ellis, 2026">
       </div>
       <div class="abt-hero-text">
         <p class="abt-eyebrow">Software engineer · maker · ex-soldier · ex-cop · unrepentant hobbyist</p>
@@ -166,7 +166,7 @@ full_width: true
           </div>
         </li>
 
-        <li class="abt-tl-item abt-reveal">
+        <li class="abt-tl-item abt-tl-solo abt-reveal">
           <span class="abt-tl-dot" aria-hidden="true"></span>
           <div class="abt-tl-body">
             <span class="abt-tl-era">2002 – 2005 · The badge, part one</span>
@@ -179,13 +179,9 @@ full_width: true
               the keyboard down.)
             </p>
           </div>
-          <figure class="abt-tl-photo">
-            {% include img.html src="/assets/images/gallery/gallery-01.jpg" class="abt-photo" title="End of shift, in uniform" caption="<p>One of the few photos of me in my LEO uniform — taken after a long shift. I was tired.</p>" %}
-            <figcaption>End of shift, in uniform</figcaption>
-          </figure>
         </li>
 
-        <li class="abt-tl-item abt-tl-solo abt-reveal">
+        <li class="abt-tl-item abt-reveal">
           <span class="abt-tl-dot" aria-hidden="true"></span>
           <div class="abt-tl-body">
             <span class="abt-tl-era">2005 – 2016 · The corporate years</span>
@@ -200,9 +196,13 @@ full_width: true
               in between.
             </p>
           </div>
+          <figure class="abt-tl-photo">
+            {% include img.html src="/assets/images/jason-2026.png" class="abt-photo" style="object-position: 50% 12%" title="The shorter-beard years" alt="Jason Ellis with a shorter beard, in a dark shirt against a gray backdrop" caption="<p>The shorter-beard years.</p>" %}
+            <figcaption>The shorter-beard years</figcaption>
+          </figure>
         </li>
 
-        <li class="abt-tl-item abt-tl-solo abt-reveal">
+        <li class="abt-tl-item abt-reveal">
           <span class="abt-tl-dot" aria-hidden="true"></span>
           <div class="abt-tl-body">
             <span class="abt-tl-era">2017 – 2020 · The badge, part two</span>
@@ -214,6 +214,10 @@ full_width: true
               No regrets.
             </p>
           </div>
+          <figure class="abt-tl-photo">
+            {% include img.html src="/assets/images/gallery/gallery-01.jpg" class="abt-photo" title="End of shift, in uniform" caption="<p>One of the few photos of me in my LEO uniform — taken after a long shift in Georgia. I was tired.</p>" %}
+            <figcaption>End of shift, in uniform — Georgia</figcaption>
+          </figure>
         </li>
 
         <li class="abt-tl-item abt-tl-solo abt-reveal">
