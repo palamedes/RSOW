@@ -68,7 +68,7 @@ And then there are alkaloids, which is a gigantic family of compounds that inclu
 
 Like nicotine. Nicotine wasn't invented by Marlboro. The tobacco plant makes it.
 
-Why you ask?  I'm so glad you asked..
+Why, you ask? I'm so glad you asked.
 
 Because nicotine is a remarkably effective natural insecticide. Experiments in wild tobacco have shown that plants prevented from making normal amounts of nicotine get eaten substantially more than normal plants.
 
@@ -178,7 +178,7 @@ Both positions are ridiculous.
 
 But the existence of a defensive chemical does not automatically mean that eating normal amounts of a properly prepared food is harmful.
 
-Dosage is important. how you prepare it is kind of important, your physiology also comes into play, and the specific compound kind of matters.
+Dosage is important. How you prepare it is kind of important, your physiology also comes into play, and the specific compound kind of matters.
 
 Some of these so-called "antinutrients" also appear to have potentially beneficial biological effects. Phytates, tannins and other plant compounds may interfere with nutrient absorption under some circumstances while acting as antioxidants or producing other potentially useful effects under others. Modern reviews increasingly describe this as a context-dependent continuum rather than a neat little box marked GOOD or POISON.
 
