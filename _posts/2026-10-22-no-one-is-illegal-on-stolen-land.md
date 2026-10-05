@@ -1,5 +1,5 @@
 ---
-title: "\"No One Is Illegal on Stolen Land\" Is Three Arguments in a Trench Coat"
+title: "\"No One Is Illegal on Stolen Land\" Is Not an Argument"
 layout: post
 date: 2026-10-22
 image: /assets/images/2026/no-one-is-illegal-on-stolen-land.png
