@@ -3,6 +3,10 @@ description: Jason Ellis — Developer, Hobbyist, Opinionated Human
 url: https://randomstringofwords.com
 baseurl: ""
 
+# Dates without an offset are Eastern, and "future" posts publish at
+# midnight Eastern (the daily scheduled deploy picks them up).
+timezone: America/New_York
+
 permalink: /post/:title/
 
 # Fallback image for posts without a featured image
