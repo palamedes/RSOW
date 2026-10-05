@@ -123,6 +123,11 @@ target post and verify the anchors resolve. Do not touch the prose or the plumbi
    character like `--`/`...`/quotes, or the phrase crosses `*emphasis*`) — revise
    it. `2+` = not unique — lengthen the phrase. Rebuild and report which matched.
 
+   If the post also has word notes (`words:` in front matter), run
+   `uv run --quiet _tools/word-notes.py check _posts/<file>.md` too. Word notes
+   never underline inside an AI Note's quote, so a new quote can push a word's
+   underline to a later occurrence, or leave it with nowhere to go.
+
 6. **Remind the user** the notes are AI-generated and unvetted (the site's footer
    disclaimer already says so): they should click each source link before relying
    on it, and fix or drop any note whose source doesn't hold up.

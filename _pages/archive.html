@@ -7,7 +7,9 @@ full_width: true
 ---
 {%- comment -%} category pills in display order; counts pulled live from site.categories {%- endcomment -%}
 {%- assign cats = "Rant,Games,Hobbies,Software,Political,Photography,Aviation,About Me,Health,Comedy,Conspiracy Theory" | split: "," -%}
-{%- assign oldest = site.posts | last -%}
+{%- comment -%} every post except those marked `archive: false` (_plugins/listing_flags.rb) {%- endcomment -%}
+{%- assign listed = site.posts | where_exp: "p", "p.archive != false" -%}
+{%- assign oldest = listed | last -%}
 <div class="arc" id="arc">
 
   <!-- ══════════════ HERO ══════════════ -->
@@ -21,7 +23,7 @@ full_width: true
         all in one place. Filter by topic, search for a thread, and dig in.
       </p>
       <ul class="arc-stats">
-        <li><strong>{{ site.posts.size }}</strong><span>posts</span></li>
+        <li><strong>{{ listed.size }}</strong><span>posts</span></li>
         <li><strong>{{ oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
         <li><strong>{{ cats.size }}</strong><span>topics</span></li>
       </ul>
@@ -41,7 +43,7 @@ full_width: true
                 aria-haspopup="true" aria-expanded="false" aria-controls="arc-topic-menu">
           <span class="arc-topic-lead">Topic</span>
           <span class="arc-topic-value" id="arc-topic-value">All</span>
-          <span class="arc-topic-count" id="arc-topic-count">{{ site.posts.size }}</span>
+          <span class="arc-topic-count" id="arc-topic-count">{{ listed.size }}</span>
           <span class="arc-topic-caret" aria-hidden="true"></span>
         </button>
         <div class="arc-topic-menu" id="arc-topic-menu" role="menu"
@@ -49,10 +51,10 @@ full_width: true
           <button type="button" class="arc-topic-item is-active" role="menuitemradio"
                   aria-checked="true" data-filter="all" data-label="All">
             <span class="arc-topic-item-name">All</span>
-            <span class="arc-topic-item-count">{{ site.posts.size }}</span>
+            <span class="arc-topic-item-count">{{ listed.size }}</span>
           </button>
           {% for cat in cats %}
-          {% assign n = site.categories[cat] | size %}
+          {% assign n = site.categories[cat] | where_exp: "p", "p.archive != false" | size %}
           {% if n > 0 %}
           <button type="button" class="arc-topic-item" role="menuitemradio"
                   aria-checked="false" data-filter="{{ cat }}" data-label="{{ cat }}">
@@ -76,10 +78,10 @@ full_width: true
 
   <!-- ══════════════ RESULTS ══════════════ -->
   <div class="arc-wrap arc-grid-wrap">
-    <p class="arc-meta" id="archive-count">Showing all {{ site.posts.size }} posts</p>
+    <p class="arc-meta" id="archive-count">Showing all {{ listed.size }} posts</p>
 
     <div class="post-grid" id="archive-grid">
-      {% for post in site.posts %}
+      {% for post in listed %}
       {% include post-card.html post=post %}
       {% endfor %}
     </div>

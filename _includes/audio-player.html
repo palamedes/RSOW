@@ -10,12 +10,17 @@
 
   Every trigger on the site is just an element carrying data-audio:
   the card chips, the post hero chip, and the "🎧 15 min listen" byline note.
+
+  The seek strip draws the track's waveform when there's a <name>.peaks.json
+  beside the audio file (made by _tools/audio-peaks.py); otherwise it stays a
+  plain progress bar.
 {%- endcomment -%}
 <audio id="rsow-audio" preload="none"></audio>
 
 <div class="rsow-player" id="rsow-player" hidden aria-label="Narration player">
   <div class="rsow-scrub" id="rsow-scrub" role="slider" tabindex="0"
        aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <canvas class="rsow-wave" id="rsow-wave" aria-hidden="true"></canvas>
     <div class="rsow-scrub-buffered" id="rsow-buffered"></div>
     <div class="rsow-scrub-fill" id="rsow-fill"><span class="rsow-scrub-knob"></span></div>
   </div>
@@ -62,9 +67,12 @@
   var totalEl  = document.getElementById('rsow-total');
   var titleEl  = document.getElementById('rsow-title');
   var badgeEl  = document.getElementById('rsow-badge');
+  var wave     = document.getElementById('rsow-wave');
 
   var track = null;      // {src, title, url, narrator}
   var dragging = false;
+  var peaks = null;      // the current track's loudness, 0..1, when it has a peaks file
+  var peaksCache = {};   // audio path -> peaks array, or false when there isn't one
 
   // ── helpers ──────────────────────────────────────────
   function clock(sec) {
@@ -96,8 +104,74 @@
   }
   function hideBar() {
     bar.hidden = true;
-    document.body.classList.remove('has-rsow-player');
+    document.body.classList.remove('has-rsow-player', 'has-rsow-wave');
   }
+
+  // ── the waveform ─────────────────────────────────────
+  // Drawn on a canvas inside the seek strip: dim bars ahead of the playhead,
+  // a little brighter where the audio has already downloaded, solid colour
+  // behind it. `at` previews a drag position before it's committed.
+  function pathOf(src) { return new URL(src, location.href).pathname; }
+  function loadPeaks(src) {
+    var key = pathOf(src);
+    setPeaks(key, null);
+    if (key in peaksCache) { setPeaks(key, peaksCache[key]); return; }
+    fetch(key.replace(/\.[a-z0-9]+$/i, '.peaks.json'), { credentials: 'same-origin' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        peaksCache[key] = (j && j.peaks && j.peaks.length)
+          ? j.peaks.map(function (v) { return Math.max(0, Math.min(1, v / 100)); })
+          : false;
+      })
+      .catch(function () { peaksCache[key] = false; })
+      .then(function () { setPeaks(key, peaksCache[key]); });
+  }
+  function setPeaks(key, p) {
+    if (!track || pathOf(track.src) !== key) return;   // another track took over meanwhile
+    peaks = p || null;
+    bar.classList.toggle('has-wave', !!peaks);
+    document.body.classList.toggle('has-rsow-wave', !!peaks && !bar.hidden);
+    drawWave();
+  }
+  function drawWave(at) {
+    if (!peaks || bar.hidden) return;
+    var w = scrub.clientWidth, h = scrub.clientHeight;
+    if (!w || !h) return;
+    var dpr = window.devicePixelRatio || 1;
+    var pw = Math.round(w * dpr), ph = Math.round(h * dpr);
+    if (wave.width !== pw || wave.height !== ph) { wave.width = pw; wave.height = ph; }
+    var ctx = wave.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    var d = audio.duration;
+    var played = (at != null) ? at : ((isFinite(d) && d > 0) ? audio.currentTime / d : 0);
+    var loaded = 0;
+    try {
+      if (audio.buffered.length && isFinite(d) && d > 0) loaded = audio.buffered.end(audio.buffered.length - 1) / d;
+    } catch (e) {}
+    var lit = bar.classList.contains('is-error') ? '#c0392b'
+            : bar.classList.contains('is-human') ? '#f0a42a' : '#4a9aff';
+
+    var barW = 2, pitch = 3;                       // 2px bars, 1px gaps
+    var n = Math.max(1, Math.floor((w + 1) / pitch));
+    var mid = h / 2, room = h - 6;
+    for (var i = 0; i < n; i++) {
+      var a = Math.floor(i * peaks.length / n);
+      var b = Math.max(a + 1, Math.floor((i + 1) * peaks.length / n));
+      var v = 0;
+      for (var k = a; k < b; k++) if (peaks[k] > v) v = peaks[k];
+      var bh = Math.max(2, Math.round(v * room));
+      var pos = (i + 0.5) / n;
+      ctx.fillStyle = pos <= played ? lit : (pos <= loaded ? 'rgba(255,255,255,0.40)' : 'rgba(255,255,255,0.24)');
+      ctx.fillRect(i * pitch, Math.round(mid - bh / 2), barW, bh);
+    }
+  }
+  var waveFrame = 0;
+  window.addEventListener('resize', function () {
+    cancelAnimationFrame(waveFrame);
+    waveFrame = requestAnimationFrame(function () { drawWave(); });
+  });
   function paintTrack() {
     if (!track) return;
     titleEl.textContent = track.title || 'Narration';
@@ -105,6 +179,7 @@
     var human = track.narrator === 'human';
     badgeEl.textContent = human ? 'JASON' : 'AI';
     bar.classList.toggle('is-human', human);
+    drawWave();
   }
   function paintProgress() {
     var d = audio.duration, t = audio.currentTime;
@@ -121,6 +196,7 @@
         buffered.style.width = (audio.buffered.end(audio.buffered.length - 1) / d) * 100 + '%';
       }
     } catch (e) {}
+    if (!dragging) drawWave();
   }
   function paintPlaying() {
     var on = !audio.paused;
@@ -170,6 +246,7 @@
       if (l) l.textContent = 'Unavailable';
     }
     bar.classList.add('is-error');
+    drawWave();
   }
 
   function paintAll() { paintProgress(); paintPlaying(); refreshTriggers(); }
@@ -188,6 +265,7 @@
     }
     paintTrack();
     showBar();
+    loadPeaks(next.src);
   }
   function start(next) {
     if (!track || !sameSrc(track.src, next.src)) load(next);
@@ -249,6 +327,7 @@
   }
   function preview(ratio) {
     fill.style.width = (ratio * 100) + '%';
+    drawWave(ratio);
     if (isFinite(audio.duration)) elapsedEl.textContent = clock(ratio * audio.duration);
   }
   scrub.addEventListener('pointerdown', function (e) {

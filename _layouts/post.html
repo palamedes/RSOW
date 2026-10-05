@@ -90,6 +90,7 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
     </article>
 
     {% if page.ai_notes %}{% include ai-notes.html %}{% endif %}
+    {% if page.words %}{% include word-notes.html %}{% endif %}
 
     {%- comment -%}
       giscus comments (GitHub Discussions). Shown unless the post opts out with

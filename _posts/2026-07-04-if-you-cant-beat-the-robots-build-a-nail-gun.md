@@ -7,6 +7,7 @@ categories:
 - Rant
 - Software
 tags:
+words: [hallucinate, rif, force-multiplier, kanban-board, pull-request, boilerplate]
 description: "Everyone's terrified AI is coming for their job. Most of that fear is theater. The real question was never 'can a robot replace me' ... it's 'what can I build now that I couldn't before.' So I built Cardinal, a Kanban board where dragging a card hires an AI to do the work, and the human still owns every merge."
 excerpt: "A lot of people are terrified of AI right now, and honestly, I get it. But the fear is pointed in the wrong direction. The question was never 'can AI replace me.' The better question is 'what can I build now that I couldn't build before.' AI isn't a god or a genius in a glowing rectangle. It's a nail gun. And I built a very opinionated, Kanban-shaped nail gun to prove the point."
 ai_notes:

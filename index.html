@@ -24,6 +24,7 @@ full_width: true
       {% include ai-notes-explainer.html %}
     </div>
     <div class="post-grid">
+      {%- comment -%} the paginator already leaves out posts marked `index: false` (_plugins/listing_flags.rb) {%- endcomment %}
       {% for post in paginator.posts %}
       {% include post-card.html post=post %}
       {% endfor %}

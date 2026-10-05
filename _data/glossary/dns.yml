@@ -1,0 +1,11 @@
+word: DNS
+say: dee-en-ESS
+pos: abbreviation
+topic: technology
+definition: >-
+  The internet's naming system: it translates a domain name such as
+  example.com into the numeric address of the server that hosts it. Changing a
+  domain's DNS records points it at a different server.
+origin: >-
+  Short for Domain Name System, designed by Paul Mockapetris in 1983.
+forms: [dns]

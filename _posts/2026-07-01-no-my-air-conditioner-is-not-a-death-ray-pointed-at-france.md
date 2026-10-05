@@ -8,6 +8,7 @@ categories:
 - Rant
 - Political
 tags:
+words: [co2e, adaptation-climate, urban-heat-island]
 description: "Some people are floating the idea that American air conditioning is cooking Europe during a heat wave. It's a bumper sticker for smug people, not an argument — so let's actually do the math on emissions, land area, per-capita reality, and who spent decades refusing to plan for hotter summers."
 ai_notes:
   - quote: "the United States is about 9.15 million square kilometers"

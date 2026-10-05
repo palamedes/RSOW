@@ -8,8 +8,9 @@ $pl-ai:    #4a9aff;
 $pl-me:    #f0a42a;
 $pl-dim:   rgba(255,255,255,0.62);
 
-// keeps the footer clear of the fixed bar
+// keeps the footer clear of the fixed bar (taller when it shows a waveform)
 body.has-rsow-player { padding-bottom: 66px; }
+body.has-rsow-player.has-rsow-wave { padding-bottom: 86px; }
 
 .rsow-player {
   position: fixed;
@@ -62,12 +63,46 @@ body.has-rsow-player { padding-bottom: 66px; }
   .rsow-scrub:hover .rsow-scrub-knob,
   &.is-scrubbing .rsow-scrub-knob { transform: translate(50%, -50%) scale(1); }
 
+  // ── waveform mode: the strip grows and a canvas draws the track ──
+  // (has-wave is set once the track's .peaks.json arrives; the canvas does
+  // the colouring, so the plain fill and buffered layers stand down)
+  .rsow-wave { display: none; }
+  &.has-wave {
+    .rsow-scrub,
+    .rsow-scrub:hover,
+    .rsow-scrub:focus-visible {
+      height: 26px;
+      @media (max-width: 600px) { height: 22px; }
+    }
+    .rsow-scrub { background: rgba(255,255,255,0.03); }
+    .rsow-wave {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .rsow-scrub-buffered { display: none; }
+    .rsow-scrub-fill { background: transparent; }
+    // the playhead: a thin line instead of a dot
+    .rsow-scrub-knob {
+      width: 2px;
+      height: 100%;
+      border-radius: 1px;
+      transform: translate(50%, -50%) scaleY(0);
+    }
+    .rsow-scrub:hover .rsow-scrub-knob,
+    &.is-scrubbing .rsow-scrub-knob { transform: translate(50%, -50%) scaleY(1); }
+  }
+
   &.is-human {
     .rsow-scrub-fill { background: $pl-me; }
     .rsow-badge { background: $pl-me; color: #3b2600; }
     .rsow-scrub:focus-visible { outline-color: $pl-me; }
   }
   &.is-error .rsow-scrub-fill { background: #c0392b; }
+  &.has-wave.is-human .rsow-scrub-fill,
+  &.has-wave.is-error .rsow-scrub-fill { background: transparent; }
 
   // ── control row ──────────────────────────────────────
   .rsow-bar {

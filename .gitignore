@@ -10,3 +10,6 @@ talk.txt
 
 # Tinkered Tactile source images (full-size originals; the site uses optimized copies)
 _tt_originals/
+
+# Python bytecode (e.g. from _tools/*.py)
+__pycache__/

@@ -6,6 +6,7 @@ image: /assets/images/2026/merit-isnt-racist.png
 categories:
 - Rant
 tags:
+words: [dei, equity-dei]
 description: "DEI is marketed as fairness while it abandons the most basic principle of fairness there is: judge the individual, not the category. Intentions don't change the act — if you hire or reject someone because of the color of their skin, that's racism, no matter how much corporate jargon you wrap around it. Merit isn't racist. Standards aren't racist. Racism is racist."
 excerpt: "DEI is racism with a marketing department — that's the part nobody is supposed to say out loud. We're told judging people by skin color is evil, unless the people doing the judging have good intentions and put 'equity' in a PowerPoint. But intentions don't change the act. You don't defeat racism by changing which race gets discriminated against. You defeat it by refusing to discriminate."
 ai_notes:

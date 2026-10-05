@@ -1,0 +1,9 @@
+word: tax deed
+say: TAKS DEED
+pos: noun phrase
+topic: law
+definition: >-
+  A deed issued when a property is sold at auction to cover unpaid property
+  taxes. In Florida a tax-certificate holder can apply for one once the taxes
+  have been delinquent for two years.
+forms: [tax deed]
