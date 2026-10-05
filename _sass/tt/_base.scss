@@ -1,0 +1,249 @@
+@use "tokens" as *;
+
+// ── Themes ──────────────────────────────────────────────────────────────
+// Every section picks a palette; components only ever read these variables,
+// so a button or a rule looks right on ink and on cream without variants.
+%tt-dark {
+  --tt-bg: #{$ink};
+  --tt-fg: #{$cream};
+  --tt-muted: rgba(242, 238, 228, .74);
+  --tt-faint: rgba(242, 238, 228, .56);
+  --tt-line: rgba(242, 238, 228, .13);
+  --tt-line-strong: rgba(242, 238, 228, .4);
+  --tt-accent: #{$copper-lt};
+  --tt-panel: #{$charcoal};
+}
+%tt-light {
+  --tt-bg: #{$cream};
+  --tt-fg: #{$charcoal};
+  --tt-muted: rgba(34, 34, 31, .76);
+  --tt-faint: rgba(34, 34, 31, .66);
+  --tt-line: rgba(34, 34, 31, .14);
+  --tt-line-strong: rgba(34, 34, 31, .38);
+  --tt-accent: #{$walnut};
+  --tt-panel: #{$paper};
+}
+
+.tt {
+  @extend %tt-dark;
+  --tt-header-h: 4.25rem;
+  margin: 0;
+  background: $ink;
+  color: $cream;
+  font-family: $sans;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  @include up($bp-lg) { --tt-header-h: 5rem; font-size: 1.125rem; }
+}
+.tt-theme-ink { @extend %tt-dark; }
+.tt-theme-charcoal { @extend %tt-dark; --tt-bg: #{$charcoal}; --tt-panel: #2c2c28; }
+.tt-theme-cream { @extend %tt-light; }
+.tt-theme-paper { @extend %tt-light; --tt-bg: #{$paper}; --tt-panel: #fff; }
+[class*="tt-theme-"] { background-color: var(--tt-bg); color: var(--tt-fg); }
+
+html:has(> body.tt) { scroll-padding-top: calc(var(--tt-header-h, 5rem) + 1rem); }
+@include motion { html:has(> body.tt) { scroll-behavior: smooth; } }
+
+:where(.tt) *, :where(.tt) *::before, :where(.tt) *::after { box-sizing: border-box; }
+:where(.tt) img, :where(.tt) picture, :where(.tt) svg { display: block; max-width: 100%; }
+:where(.tt) img { height: auto; }
+:where(.tt) a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+:where(.tt) p { margin: 0 0 1em; }
+// `hidden` always wins, even over components that set their own display.
+.tt [hidden] { display: none !important; }
+:where(.tt) ::selection { background: $copper; color: $cream; }
+:where(.tt) :focus-visible { outline: 2px solid var(--tt-fg); outline-offset: 3px; border-radius: 2px; }
+.tt-main:focus { outline: none; }
+
+// ── Type ────────────────────────────────────────────────────────────────
+:where(.tt) :is(h1, h2, h3, h4) {
+  font-family: $display;
+  font-weight: 600;
+  font-optical-sizing: auto;
+  line-height: 1.06;
+  letter-spacing: -.015em;
+  margin: 0 0 .5em;
+  text-wrap: balance;
+}
+.tt-h1 { font-size: clamp(2.75rem, 1.5rem + 5.4vw, 6.4rem); line-height: .98; letter-spacing: -.028em; }
+.tt-h2 { font-size: clamp(2.2rem, 1.35rem + 3.4vw, 4.2rem); line-height: 1.01; letter-spacing: -.022em; }
+.tt-h3 { font-size: clamp(1.4rem, 1.15rem + .8vw, 1.8rem); line-height: 1.14; }
+.tt-lead {
+  font-size: clamp(1.12rem, 1rem + .45vw, 1.36rem);
+  line-height: 1.5;
+  color: var(--tt-muted);
+  max-width: 36em;
+}
+.tt-lead strong { color: var(--tt-fg); font-weight: 600; }
+.tt-eyebrow {
+  @include caps(.72rem, .24em);
+  color: var(--tt-accent);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35em .8em;
+  margin: 0 0 1.25rem;
+}
+.tt-dot { color: $copper; }
+.tt-italic { font-family: $display; font-style: italic; font-weight: 500; }
+.tt-accent { color: var(--tt-accent); }
+.tt-sr {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// ── Layout ──────────────────────────────────────────────────────────────
+.tt-wrap {
+  width: 100%;
+  max-width: $wrap;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.75rem);
+}
+.tt-wrap--narrow { max-width: 52rem; }
+.tt-section { position: relative; padding-block: clamp(4.5rem, 3rem + 6vw, 8.5rem); }
+.tt-section--tight { padding-block: clamp(3rem, 2rem + 4vw, 5.5rem); }
+.tt-section__head { max-width: 46rem; margin-bottom: clamp(2.5rem, 2rem + 2vw, 4rem); }
+.tt-section__head > :last-child { margin-bottom: 0; }
+.tt-section__head--center { margin-inline: auto; text-align: center; }
+.tt-section__head--center .tt-eyebrow { justify-content: center; }
+.tt-section__head--center .tt-lead { margin-inline: auto; }
+.tt-section__head--split {
+  max-width: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem 2.5rem;
+}
+.tt-section__head--split .tt-h2 { margin: 0; }
+.tt-grid-3 { display: grid; gap: clamp(1.5rem, 2.5vw, 2.25rem); }
+@include up($bp-md) { .tt-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+// A faint film grain on dark sections: tactile without faking wood.
+.tt-grain { position: relative; isolation: isolate; }
+.tt-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+// ── Buttons ─────────────────────────────────────────────────────────────
+.tt-btn {
+  @include caps(.76rem, .16em, 700);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75em;
+  min-height: 3.15rem;
+  padding: .95em 1.6em;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color .2s, color .2s, border-color .2s, box-shadow .25s, transform .25s $ease-out;
+  .tt-icon { width: 1.15em; height: 1.15em; flex: none; transition: transform .25s $ease-out; }
+  &:hover .tt-icon { transform: translateX(3px); }
+  @include motion { &:hover { transform: translateY(-1px); } }
+}
+.tt-btn--sm { min-height: 2.6rem; padding: .7em 1.15em; font-size: .7rem; }
+.tt-btn--block { width: 100%; }
+.tt-btn--primary {
+  background: var(--tt-fg);
+  border-color: var(--tt-fg);
+  color: var(--tt-bg);
+  &:hover { box-shadow: 0 12px 26px -14px rgba(0, 0, 0, .65); }
+}
+.tt-btn--secondary {
+  background: transparent;
+  border-color: var(--tt-line-strong);
+  color: var(--tt-fg);
+  &:hover { border-color: var(--tt-fg); background: color-mix(in srgb, var(--tt-fg) 7%, transparent); }
+}
+.tt-btn--cream {
+  background: $cream;
+  border-color: $cream;
+  color: $charcoal;
+  &:hover { background: #fff; border-color: #fff; }
+}
+.tt-btn--ghost {
+  background: transparent;
+  border-color: rgba(242, 238, 228, .42);
+  color: $cream;
+  &:hover { border-color: $cream; background: rgba(242, 238, 228, .07); }
+}
+.tt-cta-pair { display: flex; flex-wrap: wrap; gap: .85rem; }
+.tt-cta-pair--center { justify-content: center; }
+@include down($bp-sm) { .tt-cta-pair .tt-btn { flex: 1 1 100%; } }
+
+.tt-link-arrow {
+  @include caps(.72rem, .18em, 700);
+  display: inline-flex;
+  align-items: center;
+  gap: .6em;
+  text-decoration: none;
+  color: var(--tt-fg);
+  padding-block: .35rem;
+  border-bottom: 1px solid var(--tt-line-strong);
+  transition: border-color .2s;
+  .tt-icon { width: 1.1em; height: 1.1em; transition: transform .25s $ease-out; }
+  &:hover { border-color: var(--tt-fg); .tt-icon { transform: translateX(3px); } }
+}
+
+.tt-badge {
+  @include caps(.58rem, .18em, 700);
+  position: absolute;
+  top: .85rem;
+  right: .85rem;
+  z-index: 2;
+  padding: .34rem .55rem;
+  border-radius: 2px;
+  background: rgba(242, 238, 228, .92);
+  color: $charcoal;
+}
+
+.tt-note {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  margin: 0 0 1.75rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed color-mix(in srgb, var(--tt-accent) 60%, transparent);
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--tt-accent) 9%, transparent);
+  font-size: .95rem;
+  line-height: 1.5;
+  color: var(--tt-muted);
+  strong { color: var(--tt-fg); }
+  .tt-icon { flex: none; width: 1.2rem; height: 1.2rem; margin-top: .15em; color: var(--tt-accent); }
+}
+
+.tt-prose { color: var(--tt-muted); }
+.tt-prose p:last-child { margin-bottom: 0; }
+.tt-prose strong, .tt-prose em { color: var(--tt-fg); }
+
+// ── Reveal on scroll ────────────────────────────────────────────────────
+// Only hidden once tt.js is running (it adds .tt-ready), with a fail-safe if
+// the script never arrives, so content is never stranded at opacity 0.
+@include motion {
+  .tt-js [data-reveal] {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity .8s ease, transform .8s $ease-out;
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  .tt-js [data-reveal].is-in { opacity: 1; transform: none; }
+  .tt-js:not(.tt-ready) [data-reveal] { animation: tt-failsafe .01s 2.5s forwards; }
+}
+@keyframes tt-failsafe { to { opacity: 1; transform: none; } }

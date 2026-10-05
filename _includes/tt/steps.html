@@ -1,0 +1,10 @@
+{%- comment -%} How custom orders work — the four numbered steps. {%- endcomment -%}
+<ol class="tt-steps{% if include.compact %} tt-steps--compact{% endif %}">
+  {%- for s in site.data.tt.steps %}
+  <li class="tt-step" data-reveal style="--i: {{ forloop.index0 }}">
+    <span class="tt-step__num" aria-hidden="true">{{ forloop.index | prepend: "0" }}</span>
+    <h3 class="tt-step__title">{{ s.title }}</h3>
+    <p>{{ s.text }}</p>
+  </li>
+  {%- endfor %}
+</ol>

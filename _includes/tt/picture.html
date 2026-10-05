@@ -1,0 +1,23 @@
+{%- comment -%}
+Responsive <picture> for a Tinkered Tactile image made by _tools/tt-image.sh.
+
+  {% include tt/picture.html name="oriental-map" alt="…" sizes="(min-width: 900px) 50vw, 100vw" %}
+
+Params
+  name      — image name in _data/tt_images.yml (required)
+  alt       — alt text ("" for decorative)
+  sizes     — sizes attribute (default 100vw)
+  class     — class on <picture>
+  img_class — class on <img>
+  priority  — true: load eagerly with fetchpriority=high (heroes only)
+{%- endcomment -%}
+{%- assign tti = site.data.tt_images[include.name] -%}
+{%- if tti -%}
+{%- assign tt_base = "/assets/tinkered-tactile/img/" | append: include.name | append: "-" | relative_url -%}
+{%- assign tt_sizes = include.sizes | default: "100vw" -%}
+{%- capture tt_webp -%}{% for w in tti.widths %}{{ tt_base }}{{ w }}.webp {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{%- endcapture -%}
+{%- capture tt_avif -%}{% for w in tti.widths %}{{ tt_base }}{{ w }}.avif {{ w }}w{% unless forloop.last %}, {% endunless %}{% endfor %}{%- endcapture -%}
+<picture{% if include.class %} class="{{ include.class }}"{% endif %}>{% if tti.avif %}<source type="image/avif" srcset="{{ tt_avif }}" sizes="{{ tt_sizes }}">{% endif %}<source type="image/webp" srcset="{{ tt_webp }}" sizes="{{ tt_sizes }}"><img src="{{ tt_base }}{{ tti.fallback }}.jpg" alt="{{ include.alt | escape }}" width="{{ tti.width }}" height="{{ tti.height }}"{% if include.img_class %} class="{{ include.img_class }}"{% endif %}{% if include.style %} style="{{ include.style }}"{% endif %}{% if include.priority %} loading="eager" fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"></picture>
+{%- else -%}
+<!-- tt/picture: no image named "{{ include.name }}" in _data/tt_images.yml -->
+{%- endif -%}

@@ -1,0 +1,105 @@
+---
+layout: tt
+title: For Sale
+seo_title: "Handmade Pieces For Sale: Engraved Slate, Turned Wood & More"
+description: "Finished pieces from Tinkered Tactile that are ready to buy right now: engraved slate, hand-turned wood and whatever else just came off the bench in coastal North Carolina."
+---
+{%- comment -%}
+Everything in _tt_inventory/ — things actually for sale. Available and on-hold
+pieces first, then anything marked sold. See _tools/README-tinkered-tactile.md.
+{%- endcomment -%}
+{%- assign tt = site.data.tt -%}
+{%- assign tt_stock = site.tt_inventory | sort: "order", "last" -%}
+{%- assign tt_sold = tt_stock | where: "status", "sold" -%}
+{%- assign tt_open = tt_stock | where_exp: "i", "i.status != 'sold'" -%}
+<section class="tt-pagehead tt-theme-ink tt-grain">
+  <div class="tt-wrap">
+    <p class="tt-eyebrow">For sale</p>
+    <h1 class="tt-h1">On the shelf.</h1>
+    <p class="tt-lead">Finished pieces, ready to go home with somebody. When one sells it&rsquo;s gone, but most of them we can make again.</p>
+  </div>
+</section>
+
+<section class="tt-section tt-theme-cream" aria-labelledby="tt-stock">
+  <div class="tt-wrap">
+    <h2 class="tt-sr" id="tt-stock">Available now</h2>
+    {%- if tt_open.size > 0 %}
+    <div class="tt-sale-grid">
+      {%- for i in tt_open %}
+      {% include tt/sale-card.html item=i %}
+      {%- endfor %}
+    </div>
+    <p class="tt-sale-how">{% include tt/icon.html name="spark" %}<span>Where there&rsquo;s a Buy button, it goes to the listing on Etsy or eBay. No button? Ask about it and we&rsquo;ll sort it out.</span></p>
+    {%- else %}
+    <div class="tt-empty">
+      <p class="tt-eyebrow">Available now: nothing</p>
+      <h3 class="tt-empty__title">The shelf is empty right now.</h3>
+      <p class="tt-lead">Everything&rsquo;s either sold or still in the shop. That&rsquo;s the catch with making things one at a time. Check back soon, or ask for one of your own.</p>
+      {% include tt/cta-pair.html show="See what we can make" idea="Ask us to make one" center=true %}
+    </div>
+    {%- endif %}
+  </div>
+</section>
+
+{%- if tt_sold.size > 0 %}
+<section class="tt-section tt-section--tight tt-theme-paper" aria-labelledby="tt-sold">
+  <div class="tt-wrap">
+    <div class="tt-section__head">
+      <h2 class="tt-h2" id="tt-sold">Recently sold</h2>
+      <p class="tt-lead">Gone, but we remember how we made them. Want one like it? Ask.</p>
+    </div>
+    <div class="tt-sale-grid">
+      {%- for i in tt_sold %}
+      {% include tt/sale-card.html item=i %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+{%- if tt_open.size > 0 %}
+<section class="tt-section tt-section--tight tt-theme-ink tt-grain">
+  <div class="tt-wrap tt-more-cta" style="margin-top: 0; border-top: 0; padding-top: 0">
+    <p class="tt-lead">Not quite right? Most of what&rsquo;s here can be made again, bigger, smaller, or with your name on it.</p>
+    {% include tt/cta-pair.html show="See what we can make" idea="Ask about a custom one" %}
+  </div>
+</section>
+{%- endif %}
+
+{%- comment -%} Structured data so search engines can show price and availability. {%- endcomment -%}
+{%- assign tt_priced = "" | split: "" -%}
+{%- comment -%} Only plain numeric prices ("45", 12.5) make it into the markup; "$40 a set" doesn't. {%- endcomment -%}
+{%- for i in tt_stock -%}{%- assign i_num = i.price | plus: 0 -%}{%- if i_num > 0 -%}{%- assign tt_priced = tt_priced | push: i -%}{%- endif -%}{%- endfor -%}
+{%- if tt_priced.size > 0 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {%- for i in tt_priced %}
+    {%- assign i_img = site.data.tt_images[i.images[0].name] -%}
+    {%- assign i_url = tt.base | append: '/for-sale/#' | append: i.slug | absolute_url -%}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "Product",
+        "name": {{ i.title | jsonify }},
+        "description": {{ i.description | default: i.title | jsonify }},
+        "url": "{{ i_url }}"{% if i_img %},
+        "image": "{{ '/assets/tinkered-tactile/img/' | append: i.images[0].name | append: '-' | append: i_img.fallback | append: '.jpg' | absolute_url }}"{% endif %},
+        "brand": { "@type": "Brand", "name": {{ tt.name | jsonify }} },
+        "offers": {
+          "@type": "Offer",
+          "price": {{ i.price | plus: 0 }},
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/{% if i.status == 'sold' %}SoldOut{% elsif i.status == 'on-hold' %}LimitedAvailability{% else %}InStock{% endif %}",
+          "url": {{ i.buy_url | default: i_url | jsonify }}
+        }
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}
+</script>
+{%- endif %}

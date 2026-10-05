@@ -1,0 +1,244 @@
+@use "tokens" as *;
+
+// ── What We Make ────────────────────────────────────────────────────────
+.tt-offers { display: grid; gap: 1.25rem; }
+@include up($bp-md) { .tt-offers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tt-offer { padding: 1.9rem 1.75rem; border: 1px solid var(--tt-line-strong); border-radius: 6px; background: var(--tt-panel); }
+.tt-offer__num { @include caps(.64rem, .2em, 700); color: var(--tt-accent); }
+.tt-offer__title { margin: .8rem 0 .55rem; font-size: 1.7rem; }
+.tt-offer p { margin: 0; color: var(--tt-muted); }
+
+.tt-bucket { display: grid; gap: 2.75rem; }
+@include up($bp-lg) { .tt-bucket { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 4.5rem; align-items: start; } }
+.tt-bucket__text { max-width: 34rem; }
+@include up($bp-lg) { .tt-bucket__text { position: sticky; top: calc(var(--tt-header-h) + 2rem); } }
+.tt-bucket__cards { display: grid; gap: 1.5rem; }
+@include up($bp-sm) { .tt-bucket__cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tt-bucket__cards .tt-card:first-child:nth-last-child(odd) { grid-column: 1 / -1; --ar: 16 / 10; }
+.tt-things { margin: 1.5rem 0 2rem; padding: 0; list-style: none; border-top: 1px solid var(--tt-line); }
+.tt-things li {
+  display: flex;
+  gap: .85rem;
+  padding: .72rem 0;
+  border-bottom: 1px solid var(--tt-line);
+  &::before {
+    content: "";
+    flex: none;
+    width: .42rem;
+    height: .42rem;
+    margin-top: .62em;
+    background: var(--tt-accent);
+    transform: rotate(45deg);
+  }
+}
+.tt-bucket-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+
+// Sayings: typographic signs, since the joke is the product
+.tt-sayings { display: grid; gap: 1rem; margin-top: 2.5rem; }
+@include up($bp-md) { .tt-sayings { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tt-saying {
+  display: grid;
+  place-items: center;
+  min-height: 12.5rem;
+  margin: 0;
+  padding: 2rem 1.6rem;
+  border-radius: 4px;
+  background: $walnut-deep;
+  color: $cream;
+  font-family: $display;
+  font-size: 1.45rem;
+  font-weight: 560;
+  line-height: 1.22;
+  text-align: center;
+  text-wrap: balance;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06), inset 0 0 60px rgba(0, 0, 0, .35), 0 20px 34px -26px rgba(0, 0, 0, .7);
+}
+.tt-saying--slate { background: $slate; }
+.tt-saying--light { background: $paper; color: $charcoal; box-shadow: inset 0 0 0 1px rgba(34, 34, 31, .12), 0 20px 34px -26px rgba(0, 0, 0, .4); }
+.tt-saying small { display: block; margin-top: .9rem; font-family: $sans; font-size: .62rem; font-weight: 700; font-stretch: 118%; letter-spacing: .2em; text-transform: uppercase; opacity: .6; }
+.tt-sayings__cap { margin: 1.25rem 0 0; font-family: $display; font-style: italic; font-size: 1.15rem; color: var(--tt-muted); }
+
+// ── For Businesses ──────────────────────────────────────────────────────
+.tt-examples {
+  display: grid;
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  border: 1px solid var(--tt-line);
+  border-radius: 6px;
+  background: var(--tt-line);
+}
+@include up($bp-sm) { .tt-examples { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@include up($bp-lg) { .tt-examples { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tt-example { padding: 1.75rem 1.6rem; background: var(--tt-bg); }
+.tt-example__num { @include caps(.62rem, .2em, 700); color: var(--tt-accent); }
+.tt-example__title { margin: .6rem 0 .45rem; font-size: 1.38rem; }
+.tt-example p { margin: 0; font-size: .98rem; color: var(--tt-muted); }
+.tt-example--ask { display: flex; flex-direction: column; justify-content: center; background: var(--tt-panel); }
+@include up($bp-lg) { .tt-example--ask { grid-column: span 2; } }
+.tt-example--ask .tt-example__title { font-style: italic; font-weight: 500; }
+.tt-strip { display: grid; gap: 1rem; }
+@include up($bp-md) { .tt-strip { grid-template-columns: 1.2fr 1fr 1fr; } }
+.tt-strip figure { position: relative; margin: 0; overflow: hidden; border-radius: 6px; }
+.tt-strip picture, .tt-strip img { width: 100%; height: 100%; }
+.tt-strip img { aspect-ratio: 1 / 1; object-fit: cover; }
+.tt-strip figcaption {
+  @include caps(.6rem, .16em, 600);
+  position: absolute;
+  left: .85rem;
+  bottom: .85rem;
+  padding: .35rem .55rem;
+  border-radius: 2px;
+  background: rgba(23, 23, 20, .78);
+  color: $cream;
+}
+.tt-promises { display: grid; gap: 2rem; }
+@include up($bp-md) { .tt-promises { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 4rem; } }
+.tt-promise h3 { margin: 0 0 .5rem; font-size: 1.5rem; }
+.tt-promise p { margin: 0; color: var(--tt-muted); }
+
+// ── About ───────────────────────────────────────────────────────────────
+.tt-story { display: grid; gap: 3rem; }
+@include up($bp-lg) { .tt-story { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 5rem; align-items: start; } }
+.tt-story__text { font-size: 1.14rem; }
+.tt-story__text p { color: var(--tt-muted); }
+.tt-story__text .tt-chain li { color: var(--tt-fg); }
+.tt-story__media { display: grid; gap: 1rem; }
+@include up($bp-lg) { .tt-story__media { position: sticky; top: calc(var(--tt-header-h) + 2rem); } }
+.tt-story__media img { width: 100%; border-radius: 6px; }
+.tt-trio { display: grid; gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+@include up($bp-md) { .tt-trio { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; } }
+.tt-trio li {
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--tt-line);
+  border-radius: 6px;
+  font-family: $display;
+  font-size: clamp(1.35rem, 1.15rem + .7vw, 1.8rem);
+  line-height: 1.25;
+}
+.tt-trio li:last-child { background: var(--tt-panel); font-style: italic; }
+
+// ── Contact lines (the project page's aside) ───────────────────────────
+.tt-contact__lines { margin: 0 0 1rem; padding: 0; list-style: none; display: grid; gap: .6rem; }
+.tt-contact__lines a { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; &:hover { text-decoration: underline; } }
+.tt-contact__lines .tt-icon { width: 1.2rem; height: 1.2rem; color: var(--tt-accent); }
+
+// ── What We Make: the three-ways-in cards link somewhere ───────────────
+.tt-offer { display: flex; flex-direction: column; }
+.tt-offer p { flex: 1; }
+.tt-offer__link { align-self: flex-start; margin-top: 1.4rem; }
+
+// ── For Sale ────────────────────────────────────────────────────────────
+.tt-sale-grid { display: grid; gap: clamp(1.5rem, 2.5vw, 2.25rem); }
+@include up($bp-sm) { .tt-sale-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@include up($bp-lg) { .tt-sale-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.tt-sale {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--tt-line);
+  border-radius: 6px;
+  background: var(--tt-panel);
+  scroll-margin-top: calc(var(--tt-header-h) + 1.5rem);
+  &:target { box-shadow: 0 0 0 2px var(--tt-fg); }
+}
+.tt-sale__media { position: relative; background: $charcoal; }
+.tt-sale__slides {
+  display: flex;
+  aspect-ratio: 4 / 5;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+.tt-sale__slide { flex: 0 0 100%; margin: 0; scroll-snap-align: center; }
+.tt-sale__slide picture, .tt-sale__slide img { width: 100%; height: 100%; }
+.tt-sale__slide img { object-fit: cover; }
+.tt-sale__dots { position: absolute; left: 0; right: 0; bottom: .35rem; display: flex; justify-content: center; }
+// 24px hit area around an 8px dot
+.tt-sale__dots button {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  &::before {
+    content: "";
+    width: .5rem;
+    height: .5rem;
+    border: 1px solid rgba(242, 238, 228, .9);
+    border-radius: 50%;
+    background: rgba(23, 23, 20, .35);
+    transition: background-color .2s;
+  }
+  &[aria-current="true"]::before { background: $cream; }
+}
+.tt-sale__status {
+  @include caps(.6rem, .18em, 700);
+  position: absolute;
+  top: .85rem;
+  left: .85rem;
+  z-index: 2;
+  padding: .36rem .6rem;
+  border-radius: 2px;
+  background: $charcoal;
+  color: $cream;
+}
+.tt-sale__body { display: flex; flex: 1; flex-direction: column; gap: .55rem; padding: 1.35rem 1.35rem 1.45rem; }
+.tt-sale__top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+.tt-sale__title { margin: 0; font-size: 1.42rem; line-height: 1.15; }
+.tt-sale__price {
+  flex: none;
+  margin: 0;
+  font-family: $display;
+  font-size: 1.42rem;
+  font-weight: 600;
+  line-height: 1.15;
+  font-variant-numeric: lining-nums;
+  text-align: right;
+}
+.tt-sale__note { display: block; font-family: $sans; font-size: .78rem; font-weight: 400; color: var(--tt-faint); }
+.tt-sale__desc { margin: 0; color: var(--tt-muted); }
+.tt-sale__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .2rem .9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: .88rem;
+  color: var(--tt-faint);
+}
+.tt-sale__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-top: auto; padding-top: .85rem; }
+.tt-sale__more { font-size: .92rem; color: var(--tt-muted); &:hover { color: var(--tt-fg); } }
+.tt-sale--sold .tt-sale__slide img { filter: grayscale(.55) contrast(.95); }
+.tt-sale--sold .tt-sale__price { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--tt-faint); }
+.tt-sale-how {
+  display: flex;
+  align-items: flex-start;
+  gap: .75rem;
+  max-width: 46rem;
+  margin: 2.25rem 0 0;
+  font-size: .95rem;
+  color: var(--tt-muted);
+  .tt-icon { flex: none; width: 1.2rem; height: 1.2rem; margin-top: .15em; color: var(--tt-accent); }
+}
+.tt-empty {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: clamp(2.75rem, 6vw, 4.5rem) clamp(1.5rem, 4vw, 3rem);
+  border: 1.5px dashed var(--tt-line-strong);
+  border-radius: 8px;
+  background: var(--tt-panel);
+  text-align: center;
+  .tt-eyebrow { justify-content: center; }
+  .tt-lead { margin: 0 auto 2rem; }
+}
+.tt-empty__title { margin: 0 0 1rem; font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.8rem); }

@@ -1,0 +1,43 @@
+{%- assign tt = site.data.tt -%}
+<a class="tt-skip" href="#main">Skip to content</a>
+<header class="tt-header{% if page.tt_header == 'over' %} tt-header--over{% endif %}" data-tt-header>
+  <div class="tt-wrap tt-header__inner">
+    <a class="tt-header__logo" href="{{ tt.base | append: '/' | relative_url }}" aria-label="Tinkered Tactile home">{% include tt/wordmark.html %}</a>
+    <nav class="tt-nav" aria-label="Main">
+      <ul>
+        {%- for item in tt.nav %}
+        {%- assign tt_href = tt.base | append: item.url -%}
+        {%- assign tt_here = false -%}
+        {%- if page.url == tt_href -%}{%- assign tt_here = true -%}{%- endif -%}
+        {%- if item.url == "/work/" and page.collection == "tt_work" -%}{%- assign tt_here = true -%}{%- endif %}
+        <li><a href="{{ tt_href | relative_url }}"{% if tt_here %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+    <a class="tt-btn tt-btn--cream tt-btn--sm tt-header__cta" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project</a>
+    <button class="tt-menu-btn" type="button" aria-controls="tt-menu" aria-expanded="false" data-tt-menu-open>
+      {% include tt/icon.html name="menu" %}<span class="tt-sr">Open menu</span>
+    </button>
+  </div>
+</header>
+
+<dialog class="tt-menu" id="tt-menu" aria-label="Menu" data-tt-menu>
+  <div class="tt-menu__top">
+    <a class="tt-menu__logo" href="{{ tt.base | append: '/' | relative_url }}" aria-label="Tinkered Tactile home">{% include tt/wordmark.html %}</a>
+    <button class="tt-menu__close" type="button" data-tt-menu-close>
+      {% include tt/icon.html name="close" %}<span class="tt-sr">Close menu</span>
+    </button>
+  </div>
+  <nav class="tt-menu__nav" aria-label="Main">
+    <ul>
+      {%- for item in tt.nav %}
+      {%- assign tt_href = tt.base | append: item.url %}
+      <li><a href="{{ tt_href | relative_url }}"{% if page.url == tt_href %} aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      {%- endfor %}
+    </ul>
+  </nav>
+  <div class="tt-menu__foot">
+    <a class="tt-btn tt-btn--cream tt-btn--block" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project {% include tt/icon.html name="arrow" %}</a>
+    <p class="tt-menu__tagline">{{ tt.tagline }}</p>
+  </div>
+</dialog>

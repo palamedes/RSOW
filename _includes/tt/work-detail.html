@@ -1,0 +1,79 @@
+{%- comment -%}
+The detail view of a piece of work — used on its own page and in the gallery's
+overlay (cloned from a <template>), so it has to stand alone.
+  {% include tt/work-detail.html item=w body=w.content heading="h1" %}
+{%- endcomment -%}
+{%- assign w = include.item -%}
+{%- assign tt = site.data.tt -%}
+{%- assign w_h = include.heading | default: "h2" -%}
+{%- assign w_render = false -%}{%- assign w_design = false -%}
+{%- for img in w.images -%}
+  {%- if img.kind == "render" -%}{%- assign w_render = true -%}{%- endif -%}
+  {%- if img.kind == "design" -%}{%- assign w_design = true -%}{%- endif -%}
+{%- endfor -%}
+{%- assign w_offer = tt.offerings[w.offering] -%}
+{%- capture w_form -%}{{ tt.base }}/custom-projects/?piece={{ w.slug }}#start{%- endcapture -%}
+<div class="tt-detail">
+  <div class="tt-detail__media" data-tt-slider>
+    <div class="tt-detail__slides" data-tt-slides tabindex="0" aria-label="Pictures of {{ w.title | escape }}">
+      {%- for img in w.images %}
+      <figure class="tt-detail__slide">
+        {% include tt/picture.html name=img.name alt=img.alt sizes="(min-width: 1000px) 56vw, 100vw" %}
+        {%- if img.kind == "render" %}<span class="tt-badge">Render</span>{% elsif img.kind == "design" %}<span class="tt-badge">Design</span>{% endif %}
+        {%- if img.caption %}
+        <figcaption>{{ img.caption }}</figcaption>
+        {%- endif %}
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- if w.images.size > 1 %}
+    <div class="tt-detail__thumbs">
+      {%- for img in w.images %}
+      <button type="button" data-tt-slide="{{ forloop.index0 }}"{% if forloop.first %} aria-current="true"{% endif %} aria-label="Picture {{ forloop.index }} of {{ w.images.size }}">{% include tt/picture.html name=img.name alt="" sizes="88px" %}</button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+
+  <div class="tt-detail__info">
+    <p class="tt-eyebrow">
+      {%- if w_offer %}{{ w_offer.label }}{% endif -%}
+      {%- if w.personalizable and w.offering != "personalize" %}<span class="tt-dot" aria-hidden="true">•</span>Personalizable{% endif -%}
+    </p>
+    <{{ w_h }} class="tt-detail__title">{{ w.title }}</{{ w_h }}>
+    <p class="tt-detail__lede">{{ w.description }}</p>
+    {%- if include.body and include.body != "" %}
+    <div class="tt-prose tt-detail__story">{{ include.body }}</div>
+    {%- endif %}
+
+    <dl class="tt-specs">
+      {%- if w.materials %}<div><dt>Material</dt><dd>{{ w.materials }}</dd></div>{% endif %}
+      {%- if w.process %}<div><dt>Process</dt><dd>{{ w.process }}</dd></div>{% endif %}
+      {%- if w.dimensions %}<div><dt>Size</dt><dd>{{ w.dimensions }}</dd></div>{% endif %}
+      {%- if w.customization %}<div><dt>Make it yours</dt><dd>{{ w.customization }}</dd></div>{% endif %}
+      {%- if w.price and w.price != "" %}<div><dt>Price</dt><dd>{{ w.price }}</dd></div>
+      {%- elsif w.starting_price and w.starting_price != "" %}<div><dt>Price</dt><dd>{{ w.starting_price }}</dd></div>{% endif %}
+      {%- if w.lead_time and w.lead_time != "" %}<div><dt>Lead time</dt><dd>{{ w.lead_time }}</dd></div>{% endif %}
+      {%- if w.care %}<div><dt>Care</dt><dd>{{ w.care }}</dd></div>{% endif %}
+    </dl>
+
+    {%- if w_render %}
+    <p class="tt-note">{% include tt/icon.html name="spark" %}<span><strong>About the picture:</strong> that's an AI render. The real one sold before anyone took a decent photo of it. We can make you another.</span></p>
+    {%- elsif w_design %}
+    <p class="tt-note">{% include tt/icon.html name="spark" %}<span><strong>About the picture:</strong> that's the design itself, not a photo of the finished piece.</span></p>
+    {%- endif %}
+
+    <div class="tt-detail__actions">
+      <a class="tt-btn tt-btn--primary" href="{{ w_form | relative_url }}">{{ w.cta | default: "I want one like this" }} {% include tt/icon.html name="arrow" %}</a>
+      {%- if w.buy_url and w.buy_url != "" %}
+      <a class="tt-btn tt-btn--secondary" href="{{ w.buy_url }}" rel="noopener">Buy it {% include tt/icon.html name="external" %}</a>
+      {%- endif %}
+    </div>
+
+    {%- if w.notes %}
+    <ul class="tt-detail__notes">
+      {%- for n in w.notes %}<li>{{ n }}</li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </div>
+</div>

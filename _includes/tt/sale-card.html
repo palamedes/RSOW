@@ -1,0 +1,62 @@
+{%- comment -%}
+One thing that's actually for sale (a file in _tt_inventory/).
+  {% include tt/sale-card.html item=i %}
+{%- endcomment -%}
+{%- assign i = include.item -%}
+{%- assign tt = site.data.tt -%}
+{%- assign i_status = i.status | default: "available" -%}
+{%- assign i_work = nil -%}
+{%- if i.work -%}{%- assign i_work = site.tt_work | where: "slug", i.work | first -%}{%- endif -%}
+{%- assign i_buy = "Buy it" -%}
+{%- if i.buy_url contains "etsy." -%}{%- assign i_buy = "Buy on Etsy" -%}{%- elsif i.buy_url contains "ebay." -%}{%- assign i_buy = "Buy on eBay" -%}{%- endif -%}
+<article class="tt-sale tt-sale--{{ i_status }}" id="{{ i.slug }}">
+  <div class="tt-sale__media" data-tt-slider>
+    <div class="tt-sale__slides" data-tt-slides{% if i.images.size > 1 %} tabindex="0" aria-label="Pictures of {{ i.title | escape }}"{% endif %}>
+      {%- for img in i.images %}
+      <figure class="tt-sale__slide">{% include tt/picture.html name=img.name alt=img.alt sizes="(min-width: 1000px) 30vw, (min-width: 560px) 50vw, 100vw" %}</figure>
+      {%- endfor %}
+    </div>
+    {%- if i.images.size > 1 %}
+    <div class="tt-sale__dots">
+      {%- for img in i.images %}
+      <button type="button" data-tt-slide="{{ forloop.index0 }}"{% if forloop.first %} aria-current="true"{% endif %} aria-label="Picture {{ forloop.index }} of {{ i.images.size }}"></button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+    {%- if i_status == "sold" %}<span class="tt-sale__status">Sold</span>
+    {%- elsif i_status == "on-hold" %}<span class="tt-sale__status">On hold</span>{% endif %}
+    {%- if i.images[0].kind == "render" %}<span class="tt-badge" title="An AI render, not a photo of this exact piece.">Render</span>{% endif %}
+  </div>
+  <div class="tt-sale__body">
+    <div class="tt-sale__top">
+      <h3 class="tt-sale__title">{{ i.title }}</h3>
+      {%- capture i_price %}{% include tt/price.html price=i.price %}{% endcapture %}
+      {%- assign i_price = i_price | strip -%}
+      {%- if i_price != "" %}
+      <p class="tt-sale__price">{{ i_price }}{% if i.price_note %}<span class="tt-sale__note">{{ i.price_note }}</span>{% endif %}</p>
+      {%- endif %}
+    </div>
+    {%- if i.description %}<p class="tt-sale__desc">{{ i.description }}</p>{% endif %}
+    {%- capture i_meta -%}
+      {%- if i.materials %}<li>{{ i.materials }}</li>{% endif -%}
+      {%- if i.dimensions %}<li>{{ i.dimensions }}</li>{% endif -%}
+      {%- if i.quantity and i.quantity > 1 and i_status == "available" %}<li>{{ i.quantity }} available</li>{% endif -%}
+    {%- endcapture -%}
+    {%- if i_meta != "" %}<ul class="tt-sale__meta">{{ i_meta }}</ul>{% endif %}
+    <div class="tt-sale__actions">
+      {%- if i_status == "sold" %}
+      <a class="tt-btn tt-btn--secondary tt-btn--sm" href="{{ tt.base | append: '/custom-projects/?item=' | append: i.slug | append: '#start' | relative_url }}">Want one like it? {% include tt/icon.html name="arrow" %}</a>
+      {%- else %}
+      {%- if i.buy_url and i.buy_url != "" and i_status == "available" %}
+      <a class="tt-btn tt-btn--primary tt-btn--sm" href="{{ i.buy_url }}" rel="noopener">{{ i_buy }} {% include tt/icon.html name="external" %}</a>
+      <a class="tt-btn tt-btn--secondary tt-btn--sm" href="{{ tt.base | append: '/custom-projects/?item=' | append: i.slug | append: '#start' | relative_url }}">Ask about it</a>
+      {%- else %}
+      <a class="tt-btn tt-btn--primary tt-btn--sm" href="{{ tt.base | append: '/custom-projects/?item=' | append: i.slug | append: '#start' | relative_url }}">{% if i_status == "on-hold" %}Ask about it{% else %}I want this one{% endif %} {% include tt/icon.html name="arrow" %}</a>
+      {%- endif %}
+      {%- endif %}
+      {%- if i_work %}
+      <a class="tt-sale__more" href="{{ i_work.url | relative_url }}">More like this</a>
+      {%- endif %}
+    </div>
+  </div>
+</article>

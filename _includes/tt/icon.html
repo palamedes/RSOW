@@ -1,0 +1,43 @@
+{%- comment -%}
+Inline line icons for Tinkered Tactile. {% include tt/icon.html name="arrow" %}
+Material icons (wood, slate, …) use a 48px grid; the rest a 24px one.
+{%- endcomment -%}
+{%- assign n = include.name -%}
+{%- case n -%}
+{%- when "wood" or "slate" or "leather" or "glass" or "acrylic" or "metal" or "cork" or "paper" or "unknown" -%}
+<svg class="tt-icon tt-icon--material{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+{%- case n -%}
+{%- when "wood" -%}<ellipse cx="24" cy="24" rx="17" ry="15.5"/><ellipse cx="24.6" cy="24.6" rx="11.5" ry="10"/><ellipse cx="25.2" cy="25.2" rx="5.6" ry="4.8"/><path d="M24 8.6c1.6 4.4 1.9 7.8.8 11.2"/>
+{%- when "slate" -%}<path d="M7 29.5 24 21l17 8.5L24 38z"/><path d="M7 23.5 24 15l17 8.5"/><path d="M7 17.5 24 9l17 8.5"/>
+{%- when "leather" -%}<rect x="9" y="11" width="30" height="26" rx="6"/><rect x="13.5" y="15.5" width="21" height="17" rx="3.5" stroke-dasharray="2.4 2.6"/>
+{%- when "glass" -%}<path d="M16 8h16c0 9.5-3.2 15.5-8 15.5S16 17.5 16 8z"/><path d="M24 23.5V38M17 40h14"/><path d="M19.5 12.5c.2 2.6.9 4.7 2 6.2"/>
+{%- when "acrylic" -%}<rect x="8.5" y="15" width="22" height="22" rx="2.5"/><rect x="17.5" y="9" width="22" height="22" rx="2.5" opacity=".55"/><path d="M21.5 13h7" opacity=".7"/>
+{%- when "metal" -%}<path d="M24 7l14.7 8.5v17L24 41 9.3 32.5v-17z"/><circle cx="24" cy="24" r="6.5"/>
+{%- when "cork" -%}<path d="M15.5 13h17l-2.6 25h-11.8z"/><path d="M15.5 13c0-2.2 3.8-4 8.5-4s8.5 1.8 8.5 4"/><path d="M21 20.5h.01M26.5 24h.01M22.5 29.5h.01M27 33h.01" stroke-width="2.4"/>
+{%- when "paper" -%}<path d="M13 7h15l7 7v27H13z"/><path d="M28 7v7h7"/><path d="M18 21h12M18 26h12M18 31h8"/>
+{%- when "unknown" -%}<circle cx="24" cy="24" r="16" stroke-dasharray="3 3.4"/><path d="M19.6 19.4a4.6 4.6 0 1 1 6.4 4.2c-1.3.6-2 1.5-2 3v.9"/><path d="M24 31.6h.01" stroke-width="2.6"/>
+{%- endcase -%}
+</svg>
+{%- else -%}
+<svg class="tt-icon{% if include.class %} {{ include.class }}{% endif %}" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+{%- case n -%}
+{%- when "arrow" -%}<path d="M4.5 12h14.5M13.5 6.5 19 12l-5.5 5.5"/>
+{%- when "arrow-left" -%}<path d="M19.5 12H5M10.5 6.5 5 12l5.5 5.5"/>
+{%- when "menu" -%}<path d="M3.5 7.5h17M3.5 12h17M3.5 16.5h17"/>
+{%- when "close" -%}<path d="M6 6l12 12M18 6 6 18"/>
+{%- when "upload" -%}<path d="M12 15.5V4M7.5 8.5 12 4l4.5 4.5M4.5 15v3.5a1.5 1.5 0 0 0 1.5 1.5h12a1.5 1.5 0 0 0 1.5-1.5V15"/>
+{%- when "check" -%}<path d="M5 12.5 9.5 17 19 7.5"/>
+{%- when "file" -%}<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/>
+{%- when "pin" -%}<path d="M12 21s-6.5-5.8-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>
+{%- when "mail" -%}<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>
+{%- when "phone" -%}<path d="M6 3.5h3l1.8 4.6-2.2 1.4a11.5 11.5 0 0 0 5.9 5.9l1.4-2.2 4.6 1.8v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4 5.7a2 2 0 0 1 2-2.2z"/>
+{%- when "instagram" -%}<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><path d="M17.2 6.8h.01" stroke-width="2.4"/>
+{%- when "facebook" -%}<path d="M14 21v-7.5h2.7l.5-3.3H14V8.1c0-1 .4-1.7 1.8-1.7h1.6V3.5a19 19 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2v2.6H8.3v3.3h2.6V21"/>
+{%- when "youtube" -%}<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10.2 9.4v5.2l4.6-2.6z" fill="currentColor" stroke="none"/>
+{%- when "external" -%}<path d="M14 4h6v6M20 4l-8.5 8.5M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>
+{%- when "chevron-left" -%}<path d="M14.5 5.5 8 12l6.5 6.5"/>
+{%- when "chevron-right" -%}<path d="M9.5 5.5 16 12l-6.5 6.5"/>
+{%- when "spark" -%}<path d="M12 3.5v4M12 16.5v4M3.5 12h4M16.5 12h4M6 6l2.6 2.6M15.4 15.4 18 18M6 18l2.6-2.6M15.4 8.6 18 6"/>
+{%- endcase -%}
+</svg>
+{%- endcase -%}

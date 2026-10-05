@@ -1,0 +1,47 @@
+{%- assign tt = site.data.tt -%}
+{%- assign tt_social = false -%}
+{%- for s in tt.social -%}{%- if s[1] != "" -%}{%- assign tt_social = true -%}{%- endif -%}{%- endfor -%}
+<footer class="tt-footer tt-grain">
+  <div class="tt-wrap">
+    <div class="tt-footer__grid">
+      <div class="tt-footer__brand">
+        <a class="tt-footer__logo" href="{{ tt.base | append: '/' | relative_url }}" aria-label="Tinkered Tactile home">{% include tt/wordmark.html %}</a>
+        <p class="tt-footer__tagline">{{ tt.tagline }}</p>
+        {%- if tt.domain != "" %}
+        <p class="tt-footer__domain">{{ tt.domain }}</p>
+        {%- endif %}
+      </div>
+      <nav class="tt-footer__nav" aria-label="Footer">
+        <h2 class="tt-footer__head">Around the shop</h2>
+        <ul>
+          {%- for item in tt.footer_nav %}
+          <li><a href="{{ tt.base | append: item.url | relative_url }}">{{ item.title }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+      <div class="tt-footer__contact">
+        <h2 class="tt-footer__head">Got an idea?</h2>
+        <p>Photos, sketches, logos and badly drawn diagrams are all welcome.</p>
+        <a class="tt-btn tt-btn--ghost tt-btn--sm" href="{{ tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project {% include tt/icon.html name="arrow" %}</a>
+        <p class="tt-footer__ask"><a href="{{ tt.base | append: '/custom-projects/?type=question#start' | relative_url }}">Just have a question?</a></p>
+        {%- if tt.email != "" or tt.phone != "" %}
+        <ul class="tt-footer__lines">
+          {%- if tt.email != "" %}<li><a href="mailto:{{ tt.email }}">{% include tt/icon.html name="mail" %}{{ tt.email }}</a></li>{% endif %}
+          {%- if tt.phone != "" %}<li><a href="tel:{{ tt.phone | remove: ' ' | remove: '-' | remove: '(' | remove: ')' | remove: '.' }}">{% include tt/icon.html name="phone" %}{{ tt.phone }}</a></li>{% endif %}
+        </ul>
+        {%- endif %}
+        {%- if tt_social %}
+        <ul class="tt-footer__social">
+          {%- if tt.social.instagram != "" %}<li><a href="{{ tt.social.instagram }}" rel="me noopener">{% include tt/icon.html name="instagram" %}<span class="tt-sr">Instagram</span></a></li>{% endif %}
+          {%- if tt.social.facebook != "" %}<li><a href="{{ tt.social.facebook }}" rel="me noopener">{% include tt/icon.html name="facebook" %}<span class="tt-sr">Facebook</span></a></li>{% endif %}
+          {%- if tt.social.youtube != "" %}<li><a href="{{ tt.social.youtube }}" rel="me noopener">{% include tt/icon.html name="youtube" %}<span class="tt-sr">YouTube</span></a></li>{% endif %}
+        </ul>
+        {%- endif %}
+      </div>
+    </div>
+    <div class="tt-footer__base">
+      <p>Made with sawdust, lasers and an unreasonable number of unfinished ideas in North Carolina.</p>
+      <p>&copy; {{ site.time | date: "%Y" }} {{ tt.name }}</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,41 @@
+// Tinkered Tactile — design tokens.
+// Dark workshop + beautiful wood + precision craftsmanship. Copper is an
+// accent you'd find in a piece of inlay, not a brand color: use it sparingly.
+
+$ink: #171714;        // background dark
+$ink-deep: #11110f;   // footer
+$charcoal: #22221f;
+$cream: #f2eee4;
+$paper: #faf8f2;      // warm white
+$walnut: #5a3928;
+$walnut-deep: #3b2619;
+$copper: #a36a42;     // rules, dots, icons — large or non-text uses only
+$copper-lt: #d09a6e;  // copper that passes AA as small text on the darks
+$olive: #686a55;
+$slate: #2c2e2f;
+
+$display: "Fraunces", Georgia, "Times New Roman", serif;
+$sans: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+$wrap: 1240px;
+$bp-sm: 560px;
+$bp-md: 760px;
+$bp-lg: 1000px;
+$bp-xl: 1200px;
+
+$ease-out: cubic-bezier(.2, .7, .2, 1);
+
+@mixin up($bp) { @media (min-width: $bp) { @content; } }
+@mixin down($bp) { @media (max-width: ($bp - .02px)) { @content; } }
+@mixin motion { @media (prefers-reduced-motion: no-preference) { @content; } }
+
+// Stamped-label caps: expanded Archivo, tracked out.
+@mixin caps($size: .75rem, $track: .2em, $weight: 650) {
+  font-family: $sans;
+  font-size: $size;
+  font-weight: $weight;
+  font-stretch: 118%;
+  letter-spacing: $track;
+  line-height: 1.3;
+  text-transform: uppercase;
+}

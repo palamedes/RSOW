@@ -1,0 +1,30 @@
+<!doctype html>
+{%- comment -%}
+Tinkered Tactile — a standalone site living at /tinkered-tactile/. Nothing from
+the RSOW layout (styles, nav, the narration player) is loaded here. Its <main>
+deliberately isn't `main.site-content`, so RSOW's soft navigation falls back to
+a full page load when someone follows a link across.
+Front matter:
+  tt_title       full <title> override (otherwise "<title> | Tinkered Tactile")
+  tt_header      "over" to float the header over a full-bleed hero
+  tt_body_class  extra classes on <body>
+  tt_no_sticky   true to hide the mobile "Start a project" bar (the form page)
+{%- endcomment -%}
+<html lang="en" class="tt-no-js">
+<head>
+{% include tt/head.html %}
+</head>
+<body class="tt{% if page.tt_body_class %} {{ page.tt_body_class }}{% endif %}">
+{% include tt/header.html %}
+<main id="main" class="tt-main" tabindex="-1">
+{{ content }}
+</main>
+{% include tt/footer.html %}
+{%- unless page.tt_no_sticky %}
+<div class="tt-sticky-cta" data-tt-sticky>
+  <a class="tt-btn tt-btn--cream tt-btn--block" href="{{ site.data.tt.base | append: '/custom-projects/#start' | relative_url }}">Start a project {% include tt/icon.html name="arrow" %}</a>
+</div>
+{%- endunless %}
+<script src="{{ '/assets/tinkered-tactile/js/tt.js' | relative_url }}?v={{ site.time | date: '%s' }}" defer></script>
+</body>
+</html>

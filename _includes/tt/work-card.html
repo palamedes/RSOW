@@ -1,0 +1,33 @@
+{%- comment -%}
+A piece of work as a gallery tile.
+  {% include tt/work-card.html item=w variant="overlay" sizes="…" %}
+variant: overlay (text on the image, fixed tile shapes; the Work gallery)
+         below   (text under the image; editorial layouts)
+title / caption override the piece's own; style goes on the <article>
+(e.g. "--span: 7; --ar: 7 / 5"); reveal=true fades it in on scroll;
+priority=true loads the image eagerly (first tiles above the fold only).
+{%- endcomment -%}
+{%- assign w = include.item -%}
+{%- assign w_img = w.images[0] -%}
+{%- assign w_kind = w_img.kind | default: "photo" -%}
+{%- assign w_style = nil -%}
+{%- if w.focus -%}{%- assign w_style = "object-position: " | append: w.focus -%}{%- endif -%}
+<article class="tt-card tt-card--{{ include.variant | default: 'overlay' }} tt-tile--{{ w.tile | default: 'square' }}" data-filters="{{ w.filters | join: ' ' }}" data-slug="{{ w.slug }}"{% if include.style %} style="{{ include.style }}"{% endif %}{% if include.reveal %} data-reveal{% endif %}>
+  <a class="tt-card__link" href="{{ w.url | relative_url }}" data-tt-open="{{ w.slug }}">
+    <div class="tt-card__media">
+      {% include tt/picture.html name=w_img.name alt=w_img.alt sizes=include.sizes style=w_style priority=include.priority %}
+      {%- if w.labels %}
+      <ul class="tt-card__tags" aria-hidden="true">{% for t in w.labels %}<li>{{ t }}</li>{% endfor %}</ul>
+      {%- endif %}
+      {%- if w_kind == "render" %}
+      <span class="tt-badge" title="An AI render of the piece. The real one sold.">Render</span>
+      {%- elsif w_kind == "design" %}
+      <span class="tt-badge" title="The design itself, not a photo of the finished piece.">Design</span>
+      {%- endif %}
+    </div>
+    <div class="tt-card__text">
+      <h3 class="tt-card__title">{{ include.title | default: w.title }}</h3>
+      <p class="tt-card__caption">{{ include.caption | default: w.caption | default: w.description }}</p>
+    </div>
+  </a>
+</article>
