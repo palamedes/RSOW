@@ -454,7 +454,7 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
 
   // ════════════════ GALLERY ════════════════
-  .abt-gallery-section { background: $abt-bg; }
+  .abt-gallery-section { background: $abt-card; }
   .abt-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -471,6 +471,26 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     display: block;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     &:hover { transform: translateY(-3px) scale(1.01); box-shadow: 0 16px 36px rgba(28,35,48,0.18); }
+  }
+
+  // ════════════════ IN MY OWN WORDS ════════════════
+  // Reuses the site-wide .post-grid / .post-card untouched: this section sits
+  // on the same #f2f2f2 the home and archive grids do, so the cards need no
+  // adjustment to look native here.
+  .abt-writing-section { background: $abt-bg; }
+  .abt-writing-more {
+    margin: 0.75rem 0 0;
+    text-align: center;
+
+    a {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: $abt-accent;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+      &:hover { border-bottom-color: $abt-accent; }
+    }
   }
 
   // ════════════════ OUTRO / OUBLIETTE ════════════════

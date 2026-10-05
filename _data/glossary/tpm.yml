@@ -1,0 +1,12 @@
+word: TPM
+say: tee-pee-EM
+pos: abbreviation
+topic: technology
+definition: >-
+  A security component, either a separate chip or a feature built into the
+  processor, that stores encryption keys and helps confirm a computer hasn't
+  been tampered with. Windows 11 officially requires version 2.0.
+origin: >-
+  Short for Trusted Platform Module, a standard from the Trusted Computing
+  Group.
+forms: [tpm]

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 112" width="304" height="112" font-family="Nunito Sans, Arial, Helvetica, sans-serif">
+  <!-- Word-card figure for "full-frame sensor": three sensors drawn to the
+       same scale (3.2 px per mm). Full frame 36 x 24 mm; APS-C ~23.5 x 15.6 mm
+       (Nikon/Sony; Canon's is slightly smaller); a large phone main sensor
+       ~9.8 x 7.3 mm (48 MP at 1.22 um pixels, 1/1.28-inch type). -->
+  <rect x="2" y="7.2" width="115.2" height="76.8" rx="3" fill="#2f3a45" stroke="#d9a400" stroke-width="2"/>
+  <rect x="137" y="34.1" width="75.2" height="49.9" rx="3" fill="#6f7c87"/>
+  <rect x="240" y="60.6" width="31.4" height="23.4" rx="2" fill="#9aa6b0"/>
+
+  <text x="59.6" y="46" font-size="12" font-weight="800" fill="#ffd21e" text-anchor="middle">~12× the area</text>
+  <text x="59.6" y="59" font-size="9" fill="#e9e1c8" text-anchor="middle">of the phone sensor</text>
+
+  <g font-size="9.5" font-weight="800" fill="#3a3120" text-anchor="middle">
+    <text x="59.6" y="97">Full frame</text>
+    <text x="174.6" y="97">APS-C</text>
+    <text x="255.7" y="97">Big phone sensor</text>
+  </g>
+  <g font-size="9" fill="#6b5a2c" text-anchor="middle">
+    <text x="59.6" y="109">36 × 24 mm</text>
+    <text x="174.6" y="109">~23.5 × 15.6 mm</text>
+    <text x="255.7" y="109">~9.8 × 7.3 mm</text>
+  </g>
+</svg>

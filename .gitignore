@@ -7,3 +7,6 @@ vendor/
 .idea/
 _site/
 talk.txt
+
+# Python bytecode (e.g. from _tools/*.py)
+__pycache__/

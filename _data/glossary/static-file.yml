@@ -1,0 +1,9 @@
+word: static file
+say: STAT-ik FYLE
+pos: noun phrase
+topic: technology
+definition: >-
+  A web page or file that a server sends to visitors exactly as stored, rather
+  than one assembled on the fly from a database by a content management system
+  (CMS). A site made of static files can move to almost any host.
+forms: [static file]

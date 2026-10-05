@@ -6,6 +6,7 @@ image: /assets/images/2026/the-communist-manifesto-is-not-about-community.png
 categories:
 - Rant
 tags:
+words: [proletariat, progressive-tax, means-of-production, wrecker-soviet]
 description: "Communism and community share four letters and nothing else. The Communist Manifesto isn't a warm story about neighbors sharing — it's a revolutionary program with an actual to-do list: abolish private property, seize the banks, confiscate the land, and hand the whole economy to one authority that's somehow supposed to give the power back afterward. It never does."
 excerpt: "People sell the Communist Manifesto like it's a children's book about putting all the toys in one box. It isn't. It's a blueprint for power — overthrow, confiscation, centralization — and the state at the center of it doesn't show up with a casserole. It shows up with a list of what you own."
 ai_notes:

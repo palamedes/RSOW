@@ -5,24 +5,23 @@ layout: default
 {%- assign words = content | number_of_words -%}
 {%- assign minutes = words | divided_by: 250 -%}
 {%- if minutes < 1 %}{%- assign minutes = 1 -%}{%- endif -%}
+{%- comment -%} `audio_narrator: human` marks a recording read by Jason himself
+rather than the usual text-to-speech pass. It swaps the chip label, its colour,
+and the aria text so the two kinds of narration are never confused. {%- endcomment -%}
+{%- assign audio_human = false -%}
+{%- if page.audio_narrator == 'human' %}{%- assign audio_human = true -%}{%- endif -%}
+{%- if audio_human %}{%- assign audio_lead = 'Read by me' -%}{%- else %}{%- assign audio_lead = 'AI narration' -%}{%- endif -%}
 
 <div class="post">
   <header class="post-hero">
     <div class="post-hero-bg" aria-hidden="true"></div>
     <div class="post-hero-inner">
       <div class="post-hero-text">
-        {% if page.categories.size > 0 or page.audio %}
+        {% if page.categories.size > 0 %}
         <div class="post-hero-cats">
           {% for cat in page.categories %}
           <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
           {% endfor %}
-          {% if page.audio %}
-          <button type="button" class="post-listen" aria-pressed="false" aria-label="Listen to an AI-read version of this article">
-            <span class="post-listen-ico" aria-hidden="true"></span>
-            <span class="post-listen-lead">AI narration</span>
-          </button>
-          <audio class="post-listen-audio" src="{{ page.audio | relative_url }}" preload="none"></audio>
-          {% endif %}
         </div>
         {% endif %}
         <h1 class="post-hero-title">{{ page.title }}</h1>
@@ -34,35 +33,26 @@ layout: default
           <span>{{ minutes }} min read</span>
           {% if page.audio %}
           <span class="post-hero-dot">&middot;</span>
-          <span class="post-hero-listen-note">🎧 {% if page.audio_length %}{{ page.audio_length }}{% else %}{{ minutes }} min{% endif %} listen</span>
+          <span class="post-hero-listen-note{% if audio_human %} is-human{% endif %}" role="button" tabindex="0" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">🎧 {% if page.audio_length %}{{ page.audio_length }}{% else %}{{ minutes }} min{% endif %} listen</span>
+          {%- comment -%} The listen button: right end of the byline row. The
+          player script rewrites .post-listen-lead ("Pause" while playing,
+          data-idle-label otherwise); .post-listen-sub is static and keeps the
+          AI / read-by-me distinction visible in every state. {%- endcomment %}
+          <div class="post-listen-group">
+            <span class="post-listen-time{% if audio_human %} post-listen-time--human{% endif %}" hidden>0:00 / 0:00</span>
+            <button type="button" class="post-listen{% if audio_human %} post-listen--human{% endif %}" aria-pressed="false" aria-label="{% if audio_human %}Listen to Jason reading this article aloud{% else %}Listen to an AI-read version of this article{% endif %}" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-idle-label="Listen now" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">
+              <span class="post-listen-ico" aria-hidden="true"></span>
+              <span class="post-listen-text">
+                <span class="post-listen-lead">Listen now</span>
+                <span class="post-listen-sub">{{ audio_lead }}</span>
+              </span>
+            </button>
+          </div>
           {% endif %}
         </div>
       </div>
     </div>
   </header>
-
-  {% if page.audio %}
-  <script>
-  (function () {
-    var btn = document.querySelector('.post-listen');
-    var audio = document.querySelector('.post-listen-audio');
-    if (!btn || !audio) return;
-    var lead = btn.querySelector('.post-listen-lead');
-    function playing(on) {
-      btn.classList.toggle('is-playing', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      lead.textContent = on ? 'Pause' : 'AI narration';
-    }
-    btn.addEventListener('click', function () {
-      if (audio.paused) { audio.play().then(function () { playing(true); }).catch(function () {}); }
-      else { audio.pause(); }
-    });
-    audio.addEventListener('play', function () { playing(true); });
-    audio.addEventListener('pause', function () { playing(false); });
-    audio.addEventListener('ended', function () { playing(false); });
-  })();
-  </script>
-  {% endif %}
 
   <div class="post-wrap">
     <article class="post-article">
@@ -100,6 +90,7 @@ layout: default
     </article>
 
     {% if page.ai_notes %}{% include ai-notes.html %}{% endif %}
+    {% if page.words %}{% include word-notes.html %}{% endif %}
 
     {%- comment -%}
       giscus comments (GitHub Discussions). Shown unless the post opts out with

@@ -5,6 +5,7 @@ image: /assets/images/2025/food-is-a-lie.jpg
 date: 2025-08-06
 categories:
 - Rant
+- About Me
 tags:
 description: "GLP-1 shots, the sugar epidemic, and Ancel Keys' bought-and-paid-for war on fat. The food is broken, the advice is broken — and I'm fighting back anyway."
 excerpt: "I'm fat. Not in the body-positive way — in the 'my knees hurt going up stairs and I'm mad about it' way. I've tried everything. So what gives?"

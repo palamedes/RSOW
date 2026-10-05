@@ -1,0 +1,18 @@
+{%- comment -%}
+  A heap of claims delivered faster than anyone can answer them. Rendered dense
+  and clipped on purpose — the volume is the point, not any single line.
+
+    {% include explain-pile.html
+       items="First claim|Second claim|Third claim"
+       note="…and eleven more, in ninety seconds." %}
+{%- endcomment -%}
+{%- assign items = include.items | split: "|" -%}
+<figure class="exp-pile">
+  <span class="exp-pile-label">{{ include.label | default: "All in one breath" }}</span>
+  <ul class="exp-pile-list">
+    {%- for item in items %}
+    <li>{{ item | strip }}</li>
+    {%- endfor %}
+  </ul>
+  {%- if include.note %}<p class="exp-pile-note">{{ include.note }}</p>{%- endif %}
+</figure>

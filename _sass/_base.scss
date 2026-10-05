@@ -77,6 +77,31 @@ strong, b {
   font-weight: 800;
 }
 
+// ::highlight:: — see _plugins/highlighter.rb, which turns `::text::` into
+// <mark class="hl">. Styled as a marker-pen swipe rather than a filled box: the
+// ink is translucent so the words read through it, the gradient fades out at
+// both ends and pools slightly where the pen starts and stops, and the whole
+// swipe sits a touch below the text baseline the way a hand-drawn one does.
+$hl-ink: #e9d271;
+
+mark.hl {
+  background: linear-gradient(
+    100deg,
+    rgba($hl-ink, 0)    0.4%,
+    rgba($hl-ink, 0.72) 2.4%,
+    rgba($hl-ink, 0.50) 50%,
+    rgba($hl-ink, 0.68) 94%,
+    rgba($hl-ink, 0)    99.4%
+  );
+  color: inherit;
+  padding: 0.15em 0.32em 0.2em;
+  margin: 0 -0.18em;
+  border-radius: 0.2em;
+  // keeps the swipe whole on every line when a highlight wraps
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
 // The global `* { padding: 0 }` reset kills list indentation; restore it
 // for body content so bullets/numbers sit indented under their text.
 // Skip lists that already opt into an explicit indent (e.g. .ml-4 on the

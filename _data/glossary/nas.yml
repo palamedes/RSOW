@@ -1,0 +1,9 @@
+word: NAS
+say: NAZZ
+pos: abbreviation
+topic: technology
+definition: >-
+  Short for network-attached storage: a small, always-on computer full of
+  drives that sits on a home or office network, so every device on it can
+  save, share and back up files in one place.
+forms: [nas]

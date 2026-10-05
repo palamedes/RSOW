@@ -1,0 +1,34 @@
+{%- comment -%}
+  Side-by-side: the frame you're being handed vs. what's actually on the table.
+  Both lists are pipe-separated, so the caller writes them inline.
+
+    {% include explain-compare.html
+       left_label="The only two choices"  left="Rewrite it all|Live with the bugs"
+       right_label="Also available"       right="Fix the worst module|Ship a workaround" %}
+
+  The left column carries the warm tone (the thing being pulled), the right the
+  cool one (the thing being left out). `note` adds a line under both.
+{%- endcomment -%}
+{%- assign left = include.left | split: "|" -%}
+{%- assign right = include.right | split: "|" -%}
+<figure class="exp-compare">
+  <div class="exp-compare-cols">
+    <div class="exp-compare-col is-warm">
+      <span class="exp-compare-label">{{ include.left_label }}</span>
+      <ul>
+        {%- for item in left %}
+        <li>{{ item | strip }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+    <div class="exp-compare-col is-cool">
+      <span class="exp-compare-label">{{ include.right_label }}</span>
+      <ul>
+        {%- for item in right %}
+        <li>{{ item | strip }}</li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </div>
+  {%- if include.note %}<figcaption class="exp-compare-note">{{ include.note }}</figcaption>{%- endif %}
+</figure>

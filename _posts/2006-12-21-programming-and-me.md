@@ -9,6 +9,7 @@ tags:
 - Experience
 categories:
 - Software
+- About Me
 image:
 ribbon:
 tile_size: 1x1

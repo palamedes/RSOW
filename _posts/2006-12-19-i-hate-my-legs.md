@@ -8,6 +8,7 @@ layout: post
 tags:
 categories:
 - Rant
+- About Me
 image:
 ribbon:
 tile_size: 1x1

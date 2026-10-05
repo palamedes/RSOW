@@ -6,8 +6,10 @@ permalink: /archive/
 full_width: true
 ---
 {%- comment -%} category pills in display order; counts pulled live from site.categories {%- endcomment -%}
-{%- assign cats = "Rant,Games,Hobbies,Software,Political,Photography,Aviation,Comedy" | split: "," -%}
-{%- assign oldest = site.posts | last -%}
+{%- assign cats = "Rant,Games,Hobbies,Software,Political,Photography,Aviation,About Me,Health,Comedy,Conspiracy Theory" | split: "," -%}
+{%- comment -%} every post except those marked `archive: false` (_plugins/listing_flags.rb) {%- endcomment -%}
+{%- assign listed = site.posts | where_exp: "p", "p.archive != false" -%}
+{%- assign oldest = listed | last -%}
 <div class="arc" id="arc">
 
   <!-- ══════════════ HERO ══════════════ -->
@@ -21,7 +23,7 @@ full_width: true
         all in one place. Filter by topic, search for a thread, and dig in.
       </p>
       <ul class="arc-stats">
-        <li><strong>{{ site.posts.size }}</strong><span>posts</span></li>
+        <li><strong>{{ listed.size }}</strong><span>posts</span></li>
         <li><strong>{{ oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
         <li><strong>{{ cats.size }}</strong><span>topics</span></li>
       </ul>
@@ -31,19 +33,38 @@ full_width: true
   <!-- ══════════════ STICKY TOOLBAR ══════════════ -->
   <div class="arc-toolbar" id="arc-toolbar">
     <div class="arc-wrap arc-toolbar-inner">
-      <nav class="arc-pills" aria-label="Filter posts by topic">
-        <button type="button" class="arc-pill is-active" data-filter="all" aria-pressed="true">
-          All <span class="arc-pill-count">{{ site.posts.size }}</span>
+      {%- comment -%} Topic filter. A dropdown rather than a row of pills: the
+      pill row outgrew the toolbar's width once the category list passed eight,
+      and the toolbar is sticky, so a wrapped second row would eat viewport for
+      the whole scroll. This stays one line no matter how many categories exist.
+      {%- endcomment -%}
+      <div class="arc-topic" id="arc-topic">
+        <button type="button" class="arc-topic-trigger" id="arc-topic-trigger"
+                aria-haspopup="true" aria-expanded="false" aria-controls="arc-topic-menu">
+          <span class="arc-topic-lead">Topic</span>
+          <span class="arc-topic-value" id="arc-topic-value">All</span>
+          <span class="arc-topic-count" id="arc-topic-count">{{ listed.size }}</span>
+          <span class="arc-topic-caret" aria-hidden="true"></span>
         </button>
-        {% for cat in cats %}
-        {% assign n = site.categories[cat] | size %}
-        {% if n > 0 %}
-        <button type="button" class="arc-pill" data-filter="{{ cat }}" aria-pressed="false">
-          {{ cat }} <span class="arc-pill-count">{{ n }}</span>
-        </button>
-        {% endif %}
-        {% endfor %}
-      </nav>
+        <div class="arc-topic-menu" id="arc-topic-menu" role="menu"
+             aria-labelledby="arc-topic-trigger" hidden>
+          <button type="button" class="arc-topic-item is-active" role="menuitemradio"
+                  aria-checked="true" data-filter="all" data-label="All">
+            <span class="arc-topic-item-name">All</span>
+            <span class="arc-topic-item-count">{{ listed.size }}</span>
+          </button>
+          {% for cat in cats %}
+          {% assign n = site.categories[cat] | where_exp: "p", "p.archive != false" | size %}
+          {% if n > 0 %}
+          <button type="button" class="arc-topic-item" role="menuitemradio"
+                  aria-checked="false" data-filter="{{ cat }}" data-label="{{ cat }}">
+            <span class="arc-topic-item-name">{{ cat }}</span>
+            <span class="arc-topic-item-count">{{ n }}</span>
+          </button>
+          {% endif %}
+          {% endfor %}
+        </div>
+      </div>
 
       <div class="arc-search">
         <svg class="arc-search-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -57,21 +78,14 @@ full_width: true
 
   <!-- ══════════════ RESULTS ══════════════ -->
   <div class="arc-wrap arc-grid-wrap">
-    <p class="arc-meta" id="archive-count">Showing all {{ site.posts.size }} posts</p>
+    <p class="arc-meta" id="archive-count">Showing all {{ listed.size }} posts</p>
 
     <div class="post-grid" id="archive-grid">
-      {% for post in site.posts %}
-      <a class="post-card" href="{{ post.url | relative_url }}" data-categories="{{ post.categories | join: ',' }}" data-title="{{ post.title | strip_html | escape | downcase }}" data-search="{{ post.title | strip_html | escape | downcase }} {{ post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
-        {% assign card_img = post.image | default: site.default_image %}
-        <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ post.title }}">
-        <div class="card-body">
-          <span class="card-date">{{ post.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
-        </div>
-      </a>
+      {% for post in listed %}
+      {% include post-card.html post=post %}
       {% endfor %}
     </div>
+    {% include card-narration.html %}
 
     <div class="arc-empty" id="archive-empty" hidden>
       <svg class="arc-empty-ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -90,8 +104,13 @@ full_width: true
 (function(){
   var root = document.getElementById('arc');
   var grid = document.getElementById('archive-grid');
-  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card'));
-  var pills = Array.prototype.slice.call(document.querySelectorAll('.arc-pill'));
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card-wrap'));
+  var topicWrap = document.getElementById('arc-topic');
+  var topicTrigger = document.getElementById('arc-topic-trigger');
+  var topicMenu = document.getElementById('arc-topic-menu');
+  var topicValue = document.getElementById('arc-topic-value');
+  var topicCount = document.getElementById('arc-topic-count');
+  var pills = Array.prototype.slice.call(topicMenu.querySelectorAll('.arc-topic-item'));
   var search = document.getElementById('post-search');
   var clearBtn = document.getElementById('arc-search-clear');
   var countEl = document.getElementById('archive-count');
@@ -169,14 +188,76 @@ full_width: true
     toolbar.classList.toggle('is-stuck', window.scrollY > toolbarTop);
   }, { passive: true });
 
-  pills.forEach(function(p){
-    p.addEventListener('click', function(){
-      pills.forEach(function(b){ b.classList.remove('is-active'); b.setAttribute('aria-pressed', 'false'); });
-      this.classList.add('is-active');
-      this.setAttribute('aria-pressed', 'true');
-      activeFilter = this.dataset.filter;
-      reset({ correct: true });
+  // ── topic dropdown ─────────────────────────────────────────────────────
+  // Selection lives on the menu items; the trigger just mirrors whichever one
+  // is checked, so `select()` is the single place that state changes.
+  function menuOpen(){ return topicTrigger.getAttribute('aria-expanded') === 'true'; }
+
+  function openMenu(){
+    topicTrigger.setAttribute('aria-expanded', 'true');
+    topicMenu.hidden = false;
+    var active = topicMenu.querySelector('.arc-topic-item.is-active') || pills[0];
+    if(active) active.focus();
+  }
+
+  function closeMenu(opts){
+    topicTrigger.setAttribute('aria-expanded', 'false');
+    topicMenu.hidden = true;
+    if(opts && opts.focusTrigger) topicTrigger.focus();
+  }
+
+  function select(item, opts){
+    pills.forEach(function(b){
+      var on = b === item;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
     });
+    activeFilter = item.dataset.filter;
+    topicValue.textContent = item.dataset.label;
+    var c = item.querySelector('.arc-topic-item-count');
+    topicCount.textContent = c ? c.textContent : '';
+    topicWrap.classList.toggle('is-filtered', activeFilter !== 'all');
+    reset({ correct: !(opts && opts.silent) });
+    if(!(opts && opts.fromUrl)) syncUrl();
+  }
+
+  // Mirror the topic into the URL in the same shape post pages link to
+  // (/archive/#Conspiracy%20Theory), so a filtered view can be bookmarked or
+  // shared, and Back steps out of it just as it would after following one of
+  // those links. pushState rather than setting location.hash, which would
+  // also try to scroll to a matching id.
+  function syncUrl(){
+    var hash = activeFilter === 'all' ? '' : '#' + encodeURIComponent(activeFilter);
+    if(location.hash === hash) return;
+    history.pushState(null, '', location.pathname + location.search + hash);
+  }
+
+  topicTrigger.addEventListener('click', function(e){
+    e.stopPropagation();
+    if(menuOpen()) closeMenu(); else openMenu();
+  });
+
+  pills.forEach(function(p, i){
+    p.addEventListener('click', function(){
+      select(this);
+      closeMenu({ focusTrigger: true });
+    });
+    // roving focus so the menu is usable without a mouse
+    p.addEventListener('keydown', function(e){
+      var next = null;
+      if(e.key === 'ArrowDown') next = pills[(i + 1) % pills.length];
+      else if(e.key === 'ArrowUp') next = pills[(i - 1 + pills.length) % pills.length];
+      else if(e.key === 'Home') next = pills[0];
+      else if(e.key === 'End') next = pills[pills.length - 1];
+      if(next){ e.preventDefault(); next.focus(); }
+    });
+  });
+
+  document.addEventListener('click', function(e){
+    if(menuOpen() && !topicWrap.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && menuOpen()) closeMenu({ focusTrigger: true });
   });
 
   search.addEventListener('input', function(){ reset({ correct: true }); });
@@ -184,22 +265,22 @@ full_width: true
 
   if(emptyReset) emptyReset.addEventListener('click', function(){
     search.value = '';
-    activeFilter = 'all';
-    pills.forEach(function(b){
-      var on = b.dataset.filter === 'all';
-      b.classList.toggle('is-active', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
-    });
-    reset({ correct: true });
+    select(pills[0]);
   });
 
-  // deep link: /archive/#Software pre-selects that topic (used by post pages)
+  // deep link: /archive/#Software pre-selects that topic (used by post pages).
+  // Calls select() rather than click() so arriving with a hash doesn't yank
+  // focus into the (closed) menu on load. No hash means All, so Back out of a
+  // topic that syncUrl() pushed lands on the unfiltered list again.
   function applyHash(){
     var h = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim().toLowerCase();
-    if(!h) return;
-    var match = pills.filter(function(p){ return p.dataset.filter.toLowerCase() === h; })[0];
-    if(match && !match.classList.contains('is-active')) match.click();
+    var match = h ? pills.filter(function(p){ return p.dataset.filter.toLowerCase() === h; })[0] : pills[0];
+    if(match && !match.classList.contains('is-active')) select(match, { fromUrl: true });
   }
+  // Back/Forward across pushState entries fires popstate; a hand-edited hash
+  // fires hashchange. Both can fire for one traversal, and applyHash is a
+  // no-op once the topic already matches.
+  window.addEventListener('popstate', applyHash);
   window.addEventListener('hashchange', applyHash);
 
   reset();

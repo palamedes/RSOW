@@ -10,6 +10,7 @@ tags:
 categories:
  - Aviation
  - Hobbies
+ - About Me
 image: /assets/images/2014/09/N84086.jpg
 gallery:
 ribbon:

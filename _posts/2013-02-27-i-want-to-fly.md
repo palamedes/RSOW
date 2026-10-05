@@ -10,6 +10,7 @@ tags:
 categories:
 - Aviation
 - Hobbies
+- About Me
 image: /assets/images/2013/02/da42-01.jpg
 gallery:
 ribbon:

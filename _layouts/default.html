@@ -4,11 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% seo %}
+  {%- comment -%}
+    jekyll-seo-tag stops at og:image. Facebook needs the size too, or it leaves
+    the picture off the first share of a URL while it measures the image in the
+    background. image_size lives in _plugins/image_size.rb.
+  {%- endcomment -%}
+  {%- assign og_size = page.image | image_size -%}
+  {%- if og_size %}
+  <meta property="og:image:width" content="{{ og_size[0] }}" />
+  <meta property="og:image:height" content="{{ og_size[1] }}" />
+  {%- endif %}
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- comment -%}
+    ?v= is the build timestamp. /assets/css/main.css is served with
+    cache-control: max-age=600 and no fingerprint in the filename, so without
+    this a browser can hold a stale stylesheet for ten minutes after a deploy
+    and render new markup against old CSS.
+  {%- endcomment -%}
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>
@@ -17,9 +33,14 @@
       <div class="site-wrapper">
         <div class="header-inner">
           <a class="site-title" href="{{ '/' | relative_url }}">RSOW.com <span>|</span> Home</a>
-          <nav class="nav-links">
+          <button type="button" class="nav-toggle" id="nav-toggle"
+                  aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+            <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          </button>
+          <nav class="nav-links" id="site-nav">
             <a href="{{ '/about/' | relative_url }}">About Me</a>
             <a href="{{ '/archive/' | relative_url }}">Blog</a>
+            <a href="{{ '/explain/' | relative_url }}">Explainers</a>
             <a href="{{ '/games/' | relative_url }}">Games</a>
             <a href="{{ '/investments/' | relative_url }}">Investments</a>
             <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
@@ -34,6 +55,33 @@
       </div>
     </header>
   </div>
+
+  <script>
+    // Mobile nav. The six links wrap into three stacked rows on a phone, so
+    // below the breakpoint they collapse behind the hamburger; above it the
+    // button is display:none and none of this matters.
+    (function () {
+      var toggle = document.getElementById("nav-toggle");
+      var inner = toggle && toggle.closest(".header-inner");
+      if (!toggle || !inner) return;
+
+      function setOpen(open) {
+        inner.classList.toggle("is-nav-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      toggle.addEventListener("click", function () {
+        setOpen(toggle.getAttribute("aria-expanded") !== "true");
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+    })();
+  </script>
 
   <script>
     (function () {
@@ -249,8 +297,13 @@
           open(list, Math.max(0, list.indexOf(img)));
         });
       }
-      document.querySelectorAll('.gallery-thumb').forEach(bind);
-      document.querySelectorAll('.post-content img').forEach(bind);
+      function bindAll(){
+        document.querySelectorAll('.gallery-thumb').forEach(bind);
+        document.querySelectorAll('.post-content img').forEach(bind);
+      }
+      bindAll();
+      // soft navigation swaps <main>, so let the player re-bind afterwards
+      window.RSOWGallery = { rebind: bindAll };
 
       prevBtn.addEventListener('click', function(e){ e.stopPropagation(); step(-1); });
       nextBtn.addEventListener('click', function(e){ e.stopPropagation(); step(1); });
@@ -290,5 +343,7 @@
       </div>
     </div>
   </footer>
+
+  {% include audio-player.html %}
 </body>
 </html>
