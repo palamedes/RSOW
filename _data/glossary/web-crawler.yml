@@ -1,0 +1,9 @@
+word: crawler
+say: KRAW-ler
+pos: noun
+topic: technology
+definition: >-
+  A program that automatically visits web pages, follows their links and copies
+  what it finds, for a search engine's index or, increasingly, to collect
+  training data for AI models. Also called a spider or bot.
+forms: [crawler, crawlers, web crawler]
