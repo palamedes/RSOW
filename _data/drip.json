@@ -12,10 +12,10 @@
     "strategyType": "Dividend Income / Passive Income Building",
     "riskTolerance": "Moderate — sustainable, growing income over maximum yield",
     "totalValue": 23964,
-    "totalCostBasis": 17284,
+    "totalCostBasis": 17584,
     "totalGainLoss": 6375,
-    "totalGainLossPct": 36.9,
-    "estAnnualIncome": 1231,
+    "totalGainLossPct": 36.3,
+    "estAnnualIncome": 1254,
     "blendedYield": 5.1,
     "positionCount": 12,
     "return2025": 19.2,
@@ -63,8 +63,8 @@
     { "ticker": "JEPQ", "name": "JPMorgan Nasdaq Equity Premium Income ETF","tier": "build", "role": "Income + growth", "monthly": true, "value": 3049.77, "pct": 12.73, "costBasis": 2868.80, "gain": 180.97, "gainPct": 6.30, "annualIncome": 297, "targetYield": "~9-11%", "shares": 49.837, "price": 61.195, "avgCost": 57.56, "todayPct": 0.25, "todayDollar": 7.72,
       "why": "Same covered-call strategy as JEPI but Nasdaq / tech-heavy. Higher yield with more growth upside. Its SEC yield matches its distribution yield — the income is real. Tech held up through September while dividend stocks fell, so it is now slightly over its 12% target. Still the single biggest income producer in the account at ~$297/yr, roughly a quarter of everything the fund pays.",
       "risk": "" },
-    { "ticker": "JEPI", "name": "JPMorgan Equity Premium Income ETF",      "tier": "build",   "role": "Income + stability", "monthly": true, "value": 2802.64, "pct": 11.70, "costBasis": 2886.61, "gain": -83.97, "gainPct": -2.91, "annualIncome": 216, "targetYield": "~7-8%", "shares": 49.785, "price": 56.295, "avgCost": 57.98, "todayPct": 0.34, "todayDollar": 9.70,
-      "why": "S&P 500 covered-call ETF. Monthly dividends, quality management, sustainable yield, low volatility. It hovered within a percent of break-even for months, and the September rate shock pushed it to -2.9%, while it kept paying 7-8% in distributions the entire time, which is the whole point of the product.",
+    { "ticker": "JEPI", "name": "JPMorgan Equity Premium Income ETF",      "tier": "build",   "role": "Income + stability", "monthly": true, "value": 3102.64, "pct": 12.95, "costBasis": 3186.61, "gain": -83.97, "gainPct": -2.64, "annualIncome": 239, "targetYield": "~7-8%", "shares": 55.114, "price": 56.295, "avgCost": 57.82, "todayPct": 0.34, "todayDollar": 9.70,
+      "why": "S&P 500 covered-call ETF. Monthly dividends, quality management, sustainable yield, low volatility. It hovered within a percent of break-even for months, and the September rate shock pushed it to -2.9%, while it kept paying 7-8% in distributions the entire time, which is the whole point of the product. Took the September contribution: $300 on Oct 5, bought at the dip under the older plan that had JEPI next.",
       "risk": "" },
     { "ticker": "AAPL", "name": "Apple Inc",                               "tier": "hold",    "role": "Legacy growth winner", "monthly": false, "value": 2729.87, "pct": 11.39, "costBasis": 414.07, "gain": 2315.80, "gainPct": 559.27, "annualIncome": 10, "targetYield": "~0.4%", "shares": 8.187, "price": 333.44, "avgCost": 50.58, "todayPct": -0.08, "todayDollar": -2.05,
       "why": "Held for a huge unrealized gain (+$2,316, +559%). Worth more than six and a half times what it cost, on a cost basis of $414. Hold, do not add. Let DRIP work.",
@@ -85,14 +85,14 @@
       "why": "'The Monthly Dividend Company.' 30+ years of dividend increases. Monthly payer. Promoted into the Core Five on Aug 20, 2026, which finally resolves a contradiction: O was tagged Tier 1 Build while the contribution rule said 'JEPI, JEPQ, SCHD only', so it sat in the top tier and never received a dollar. It is also the only non-equity asset class in the core. Then rates hit: with the 10-year Treasury above 5% for the first time in nearly 20 years, O fell to a 52-week low and is now -19.6%, the account's biggest loser. The dividend itself is untouched, so every DRIP share now buys about a 6% yield.",
       "risk": "" },
     { "ticker": "SCHY", "name": "Schwab International Dividend Equity ETF","tier": "build",    "role": "International dividend", "monthly": false, "value": 675.38, "pct": 2.82, "costBasis": 718.09, "gain": -42.71, "gainPct": -5.95, "annualIncome": 24, "targetYield": "~3.4%", "shares": 21.564, "price": 31.32, "avgCost": 33.30, "todayPct": 0.00, "todayDollar": 0.00,
-      "why": "International diversification — the global cousin of SCHD, and screened the same way: 10+ consecutive years of dividend payments plus quality and dividend-growth filters. Promoted into the Core Five on Aug 20, 2026 as the fix for a portfolio that was otherwise ~97% US by any diversified measure. It had been starved since March, which is why it is first in the funding queue, and the September contribution meant for it is still sitting in cash. Expect lumpier payouts than SCHD — foreign companies often pay semi-annually and size the dividend to earnings rather than growing it smoothly.",
+      "why": "International diversification — the global cousin of SCHD, and screened the same way: 10+ consecutive years of dividend payments plus quality and dividend-growth filters. Promoted into the Core Five on Aug 20, 2026 as the fix for a portfolio that was otherwise ~97% US by any diversified measure. It had been starved since March, which is why it is first in the funding queue. The September contribution went to JEPI under the older plan, so SCHY's turn starts with the next one. Expect lumpier payouts than SCHD — foreign companies often pay semi-annually and size the dividend to earnings rather than growing it smoothly.",
       "risk": "" },
     { "ticker": "NLY",  "name": "Annaly Capital Management",               "tier": "hold",    "role": "Mortgage REIT (watch)", "monthly": false, "value": 520.78, "pct": 2.17, "costBasis": 539.26, "gain": -18.48, "gainPct": -3.43, "annualIncome": 90, "targetYield": "~16%", "shares": 28.373, "price": 18.355, "avgCost": 19.01, "todayPct": -0.79, "todayDollar": -4.12,
       "why": "Mortgage REIT, acceptable risk at the current small size, yields well. Punches far above its weight on income — 2.2% of the account producing about 7% of the dividends, which is precisely the pattern that deserves scrutiny rather than admiration.",
       "risk": "Fell about 22% in six weeks: it went ex-dividend on Sept 30 just as Treasury yields jumped. The $0.75 quarterly dividend was maintained (payable Oct 30), which at $18.36 is a ~16% yield, past the 15% line in this account's own 'too good to be true' rule. The SEC-yield test is for funds; for a single stock like this, the equivalent check is whether Annaly's earnings available for distribution cover the dividend. Position is small (~$521). Watch rates quarterly." }
   ],
 
-  "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 305.22 },
+  "cash": { "ticker": "SPAXX", "name": "Fidelity Government Money Market", "value": 5.22 },
 
   "core": {
     "name": "The Core Five",
@@ -100,13 +100,13 @@
     "funding": {
       "rule": "One target at a time. The whole contribution goes to the most underweight member until it reaches its target weight, then the next in the queue. When the queue empties, resume even splits.",
       "queue": ["SCHY", "O"],
-      "status": "Decided Aug 20, 2026. As of the Oct 5 snapshot nothing has been bought yet: the September contribution ($305) is sitting in the money market, waiting to go to SCHY.",
+      "status": "Decided Aug 20, 2026. The September contribution ($300, bought Oct 5) went to JEPI under the older plan, so the SCHY-first queue starts with the next contribution.",
       "why": "Splitting a $250 contribution five ways is $50 a position. At that rate SCHY needs nearly three years to matter. Concentrating on one target at a time gets it there in about seven months, and the portfolio ends up in the same place either way."
     },
     "members": [
       { "ticker": "SCHD", "value": 4513.21, "pct": 18.83, "target": 20, "role": "US dividend growth — the value-tilted compounder, deliberately light on tech.", "note": "Slightly under — about $280 short" },
       { "ticker": "JEPQ", "value": 3049.77, "pct": 12.73, "target": 12, "role": "Nasdaq-100 income — growth and tech exposure with option premium on top.", "note": "Slightly over target" },
-      { "ticker": "JEPI", "value": 2802.64, "pct": 11.70, "target": 12, "role": "S&P 500 income — low-volatility large caps plus option premium. The steady one.", "note": "At target" },
+      { "ticker": "JEPI", "value": 3102.64, "pct": 12.95, "target": 12, "role": "S&P 500 income — low-volatility large caps plus option premium. The steady one.", "note": "Slightly over target" },
       { "ticker": "O",    "value": 718.40,  "pct": 3.00,  "target": 6,  "role": "Real estate income — monthly payer, 30+ years of increases, the only non-equity asset class here.", "note": "Queue #2 — about $720 short" },
       { "ticker": "SCHY", "value": 675.38,  "pct": 2.82,  "target": 10, "role": "International dividend — the fix for a portfolio that is otherwise ~97% US.", "note": "Queue #1 — about $1,720 short" }
     ],
@@ -203,13 +203,13 @@
     },
     {
       "date": "2026-10-05",
-      "title": "Fall check-in — rates hit the income names",
-      "summary": "Nothing bought or sold. The 10-year Treasury crossed 5% for the first time in nearly 20 years, and the rate-sensitive holdings took it on the chin: NLY -22%, O -15%, MTB -10%, SCHD -7%. Tech went the other way, with Apple, JEPQ and QQQH all up. DRIP kept reinvesting through all of it. The September contribution never got invested; $305 is sitting in the money market, waiting for its queue target.",
+      "title": "Fall check-in — rates hit the income names, $300 into JEPI",
+      "summary": "Nothing sold. The 10-year Treasury crossed 5% for the first time in nearly 20 years, and the rate-sensitive holdings took it on the chin: NLY -22%, O -15%, MTB -10%, SCHD -7%. Tech went the other way, with Apple, JEPQ and QQQH all up. DRIP kept reinvesting through all of it. The September contribution had been sitting in the money market; on Oct 5 it went into JEPI, as the plan before the Core Five said it would.",
       "from": 12,
       "to": 12,
       "sold": [],
-      "bought": [],
-      "result": "Portfolio value $24,171 → $23,964. Unrealized gain $7,112 → $6,375 (+36.9%). Estimated income $1,217 → $1,231/yr, up while the value went down, because DRIP bought more shares at lower prices. Four positions are red: O, SCHY, NLY and JEPI. The money market holds $305, which the rules say should not stay there."
+      "bought": [ { "ticker": "JEPI", "shares": 5.329, "price": 56.295, "note": "The September contribution, $300 at about $56.30. The last buy under the pre-Core Five plan." } ],
+      "result": "Portfolio value $24,171 → $23,964. Unrealized gain $7,112 → $6,375 (+36.3%). Estimated income $1,217 → $1,254/yr, up while the value went down, because DRIP bought more shares at lower prices and the new JEPI shares came in at a dip. Four positions are red: O, SCHY, NLY and JEPI. Money market back down to $5.22. Next contribution: SCHY."
     }
   ],
 
