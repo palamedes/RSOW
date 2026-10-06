@@ -293,6 +293,65 @@ $po-line:    #ddd;
     }
   }
 
+  // Captioned cover image: when a post sets image_caption, the float moves
+  // from the <img> to this <figure> so the caption rides along under it.
+  .post-body-figure {
+    float: right;
+    clear: right;
+    width: 50%;
+    margin: 0.35rem 0 1.1rem 1.6rem;
+    .post-body-img {
+      float: none;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+    }
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      margin: 0 0 1.2rem;
+    }
+  }
+
+  // Shared caption style: the cover caption and figure.html captions.
+  .post-body-cap,
+  .post-figure-cap {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.45;
+    font-style: italic;
+    color: #5f6b7a;
+    text-align: center;
+  }
+
+  // figure.html: an in-body image with a visible caption. Full width by
+  // default; align="right"/"left" floats it beside the text at half width.
+  .post-figure {
+    clear: both;
+    margin: 1.6rem auto;
+    .post-figure-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid $po-line;
+      box-shadow: 0 14px 32px -14px rgba(0,0,0,0.35);
+    }
+  }
+  .post-figure--right,
+  .post-figure--left {
+    width: 45%;
+    margin-top: 0.35rem;
+    margin-bottom: 1.1rem;
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      margin: 1.2rem 0;
+    }
+  }
+  .post-figure--right { float: right; clear: right; margin-left: 1.6rem; }
+  .post-figure--left  { float: left;  clear: left;  margin-right: 1.6rem; }
+
   // Full-width photo inside the article body, dressed like the cover image.
   // `clear: both` keeps it from tucking under a right-floated .post-body-img.
   .post-photo {

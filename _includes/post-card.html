@@ -18,7 +18,7 @@
      data-title="{{ include.post.title | strip_html | escape | downcase }}"
      data-search="{{ include.post.title | strip_html | escape | downcase }} {{ include.post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
   <div class="post-card">
-    <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ include.post.title }}">
+    <img class="card-image" src="{{ card_img | relative_url }}" alt="{{ include.post.image_alt | default: include.post.title | strip_html | escape }}">
     <div class="card-body">
       <div class="card-meta">
         <span class="card-date">{{ include.post.date | date: "%B %-d, %Y" }}</span>
