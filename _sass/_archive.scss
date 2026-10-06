@@ -25,10 +25,10 @@ $arc-control-h: 2.5rem;
 // box on the right with the toolbar's space-between gap sitting in the middle.
 // The floor matters: 33% of a ~700px viewport is only ~215px, which would clip
 // "Topic: Conspiracy Theory", so the basis gives way to a min-width first.
-// three controls (Topic, Tag, search) share one toolbar row: thirds minus
-// the two 1rem gaps between them
-$arc-control-w: calc((100% - 2rem) / 3);
-$arc-control-w-min: 13rem;
+// three controls share one toolbar row. Topic and Tag are two-thirds of an
+// even third each (thirds minus the two 1rem gaps); search takes the rest.
+$arc-control-w: calc((100% - 2rem) / 3 * 2 / 3);
+$arc-control-w-min: 11rem;
 
 .arc {
   *, *::before, *::after { box-sizing: border-box; }
@@ -300,8 +300,8 @@ $arc-control-w-min: 13rem;
     position: relative;
     display: flex;
     align-items: center;
-    flex: 0 1 $arc-control-w;
-    min-width: $arc-control-w-min;
+    flex: 1 1 auto;
+    min-width: 13rem;
   }
   .arc-search-ico {
     position: absolute;
