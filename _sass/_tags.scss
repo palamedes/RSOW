@@ -5,7 +5,6 @@
 // small ones spreading outward. --tc-nudge (a few px, fixed per tag) knocks
 // the baseline around so it reads as a jumble rather than lines of text.
 
-.tc-body { padding-bottom: 3.5rem; }
 .tc-head {
   max-width: 980px;
   margin: 2.4rem auto 0;
@@ -29,7 +28,7 @@
   align-items: center;
   gap: 0.55rem 1.1rem;
   max-width: 980px;
-  margin: 1.4rem auto 0;
+  margin: 1.4rem auto 30px;
   padding: 2.2rem 1.5rem;
   background: #fff;
   border: 1px solid #e3e8f0;
