@@ -5,36 +5,14 @@ description: "Every subject I keep coming back to, sized by how often: taxes, MM
 permalink: /tags/
 full_width: true
 ---
-{%- comment -%}
-  Tag cloud. _plugins/tags.rb hands over the tags already in center-out order
-  (the most-used in the middle, alternating outward) with a font size and a
-  small vertical nudge for each, so this page only has to lay them out. Each
-  tag opens the archive filtered to it.
-{%- endcomment -%}
-{%- assign cloud = site.data.tag_cloud -%}
-{%- assign listed = site.posts | where_exp: "p", "p.archive != false" -%}
 <div class="arc tc">
-  <section class="arc-hero">
-    <div class="arc-hero-bg" aria-hidden="true"></div>
-    <div class="arc-wrap arc-hero-inner">
-      <p class="arc-eyebrow">The oubliette · by subject</p>
-      <h1>Tags</h1>
-      <p class="arc-sub">
-        {{ cloud.size }} subjects across {{ listed.size }} posts. The bigger the word, the more I've
-        gone on about it. Pick one to see every post that touches it, or
-        <a class="tc-hero-link" href="{{ '/archive/' | relative_url }}">browse everything</a>.
-      </p>
-    </div>
-  </section>
+  {% include archive-hero.html active="tags" %}
 
-  <div class="arc-wrap">
-    <nav class="tc-cloud" aria-label="All tags">
-      {%- for t in cloud %}
-      <a class="tc-tag tc-tier-{{ t.tier }}"
-         href="{{ '/archive/' | relative_url }}?tag={{ t.name | uri_escape | replace: '&', '%26' }}"
-         style="font-size:{{ t.size }}rem;--tc-nudge:{{ t.nudge }}px"
-         title="{{ t.count }} post{% if t.count != 1 %}s{% endif %}">{{ t.name }}<span class="tc-count">{{ t.count }}</span></a>
-      {%- endfor %}
-    </nav>
+  <div class="arc-wrap tc-body">
+    <div class="tc-head">
+      <h2>Browse by tag</h2>
+      <p>The bigger the word, the more posts it's on. <a href="{{ '/topics/' | relative_url }}">Browse by topic</a> · <a href="{{ '/archive/' | relative_url }}">All posts</a></p>
+    </div>
+    {% include cloud.html items=site.data.tag_cloud kind="tag" %}
   </div>
 </div>

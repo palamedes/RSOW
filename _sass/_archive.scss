@@ -446,6 +446,13 @@ $arc-control-w-min: 11rem;
   align-items: baseline;
   gap: 0.4rem;
   &:hover strong, &:focus-visible strong { text-decoration: underline; }
+  // the page you're on (archive, topics or tags) gets an accent underline
+  &.is-current strong {
+    text-decoration: underline;
+    text-decoration-color: #4a9aff;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
 }
 
 @media (max-width: 620px) {

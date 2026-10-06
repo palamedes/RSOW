@@ -1,0 +1,18 @@
+---
+layout: default
+title: Topics
+description: "The shelves this blog sits on, sized by how much is on each: games, technology, software, politics, hobbies and more. Pick one to see every post filed there."
+permalink: /topics/
+full_width: true
+---
+<div class="arc tc">
+  {% include archive-hero.html active="topics" %}
+
+  <div class="arc-wrap tc-body">
+    <div class="tc-head">
+      <h2>Browse by topic</h2>
+      <p>The bigger the word, the more posts are filed under it. <a href="{{ '/tags/' | relative_url }}">Browse by tag</a> · <a href="{{ '/archive/' | relative_url }}">All posts</a></p>
+    </div>
+    {% include cloud.html items=site.data.topic_cloud kind="topic" %}
+  </div>
+</div>

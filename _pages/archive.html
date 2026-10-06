@@ -5,33 +5,14 @@ description: "Everything I've rambled about — 200+ posts of rants, builds, gam
 permalink: /archive/
 full_width: true
 ---
-{%- comment -%} category pills in display order; counts pulled live from site.categories {%- endcomment -%}
-{%- assign cats = "Games,Technology,Software,Political,Society,Hobbies,About Me,Money,Media,Science,Health,Aviation,Photography,Comedy,Conspiracy Theory" | split: "," -%}
 {%- comment -%} tags most-used first, counted by _plugins/tags.rb (listed posts only) {%- endcomment -%}
 {%- assign tag_list = site.data.tags_by_count -%}
 {%- comment -%} every post except those marked `archive: false` (_plugins/listing_flags.rb) {%- endcomment -%}
 {%- assign listed = site.posts | where_exp: "p", "p.archive != false" -%}
-{%- assign oldest = listed | last -%}
 <div class="arc" id="arc">
 
   <!-- ══════════════ HERO ══════════════ -->
-  <section class="arc-hero">
-    <div class="arc-hero-bg" aria-hidden="true"></div>
-    <div class="arc-wrap arc-hero-inner">
-      <p class="arc-eyebrow">The oubliette · est. {{ oldest.date | date: "%Y" }}</p>
-      <h1>Everything I've rambled about</h1>
-      <p class="arc-sub">
-        Two decades and change of rants, builds, games, and the occasional strong opinion —
-        all in one place. Filter by topic, search for a thread, and dig in.
-      </p>
-      <ul class="arc-stats">
-        <li><strong>{{ listed.size }}</strong><span>posts</span></li>
-        <li><strong>{{ oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
-        <li><strong>{{ cats.size }}</strong><span>topics</span></li>
-        <li><a class="arc-stat-link" href="{{ '/tags/' | relative_url }}"><strong>{{ tag_list.size }}</strong><span>tags</span></a></li>
-      </ul>
-    </div>
-  </section>
+  {% include archive-hero.html active="posts" %}
 
   <!-- ══════════════ STICKY TOOLBAR ══════════════ -->
   <div class="arc-toolbar" id="arc-toolbar">
@@ -56,15 +37,12 @@ full_width: true
             <span class="arc-topic-item-name">All</span>
             <span class="arc-topic-item-count">{{ listed.size }}</span>
           </button>
-          {% for cat in cats %}
-          {% assign n = site.categories[cat] | where_exp: "p", "p.archive != false" | size %}
-          {% if n > 0 %}
+          {% for c in site.data.topics_by_count %}
           <button type="button" class="arc-topic-item" role="menuitemcheckbox"
-                  aria-checked="false" data-filter="{{ cat }}" data-label="{{ cat }}">
-            <span class="arc-topic-item-name">{{ cat }}</span>
-            <span class="arc-topic-item-count">{{ n }}</span>
+                  aria-checked="false" data-filter="{{ c.name | escape }}" data-label="{{ c.name | escape }}">
+            <span class="arc-topic-item-name">{{ c.name }}</span>
+            <span class="arc-topic-item-count">{{ c.count }}</span>
           </button>
-          {% endif %}
           {% endfor %}
         </div>
       </div>

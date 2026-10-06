@@ -22,13 +22,17 @@ Jekyll::Hooks.register :site, :post_read do |site|
   end
 end
 
-# site.data["tags_by_count"]: every tag on a listed post, most-used first,
-#   as { name, count }. Feeds the archive's tag dropdown.
-# site.data["tag_cloud"]: the same tags in center-out order (the biggest in
-#   the middle, then alternating outward), each with a font size, a weight
-#   from 0 to 1 and a small deterministic nudge, so the cloud reads as a
-#   jumble rather than a sorted list. Sizes follow the square root of the
-#   count, so one huge tag doesn't flatten everything else to the minimum.
+# Clouds for tags and topics (categories), computed once per build:
+#
+# site.data["tags_by_count"] / ["topics_by_count"]: every tag / category on a
+#   listed post, most-used first, as { name, count }. Feed the archive's
+#   dropdowns and the header stats.
+# site.data["tag_cloud"] / ["topic_cloud"]: the same in center-out order (the
+#   biggest in the middle, then alternating outward), each with a font size, a
+#   weight from 0 to 1, a tier for color and a small deterministic nudge, so
+#   the cloud reads as a jumble rather than a sorted list. Sizes follow the
+#   square root of the count, so one huge entry doesn't flatten everything
+#   else to the minimum.
 #
 # Posts marked `archive: false` (_plugins/listing_flags.rb) don't count.
 class RSOWTagCloud < Jekyll::Generator
@@ -39,32 +43,34 @@ class RSOWTagCloud < Jekyll::Generator
   MAX_REM = 3.1
 
   def generate(site)
-    counts = Hash.new(0)
-    site.posts.docs.each do |post|
-      next if post.data["archive"] == false
-      Array(post.data["tags"]).uniq.each { |tag| counts[tag] += 1 }
+    listed = site.posts.docs.reject { |post| post.data["archive"] == false }
+    { "tag" => "tags", "topic" => "categories" }.each do |kind, field|
+      counts = Hash.new(0)
+      listed.each { |post| Array(post.data[field]).uniq.each { |v| counts[v] += 1 } }
+      by_count = counts.sort_by { |name, n| [-n, name.downcase] }
+      site.data["#{kind}s_by_count"] = by_count.map { |name, n| { "name" => name, "count" => n } }
+      site.data["#{kind}_cloud"] = cloud(by_count)
     end
+  end
 
-    by_count = counts.sort_by { |tag, n| [-n, tag.downcase] }
-    site.data["tags_by_count"] = by_count.map { |tag, n| { "name" => tag, "count" => n } }
+  private
 
+  def cloud(by_count)
     max = by_count.first ? by_count.first[1].to_f : 1.0
     min = by_count.last ? by_count.last[1].to_f : 1.0
-    sized = by_count.map do |tag, n|
+    sized = by_count.map do |name, n|
       weight = max > min ? Math.sqrt((n - min) / (max - min)) : 1.0
-      seed = tag.bytes.sum
       {
-        "name"   => tag,
+        "name"   => name,
         "count"  => n,
         "weight" => weight.round(3),
         "size"   => (MIN_REM + weight * (MAX_REM - MIN_REM)).round(2),
         "tier"   => (weight * 4).ceil.clamp(1, 4),
-        "nudge"  => (seed % 9) - 4,
+        "nudge"  => (name.bytes.sum % 9) - 4,
       }
     end
-
-    cloud = []
-    sized.each_with_index { |entry, i| i.even? ? cloud.push(entry) : cloud.unshift(entry) }
-    site.data["tag_cloud"] = cloud
+    out = []
+    sized.each_with_index { |entry, i| i.even? ? out.push(entry) : out.unshift(entry) }
+    out
   end
 end
