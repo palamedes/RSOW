@@ -4,8 +4,12 @@ layout: post
 image: /assets/images/2025/car-dinosaurs.png
 date: 2025-08-02
 categories:
-- Rant
+- Science
 tags:
+- Rant
+- Energy
+- Cars
+- Critical Thinking
 description: "Oil isn't liquified T. rex. It's plankton, algae, and ancient ocean death-stew cooked under a billion tons of rock. A rant about the dumbest myth in your gas tank."
 excerpt: "Somewhere along the way someone told you a car runs on liquified T. rex. That nonsense stuck. It stuck hard. Oil comes from pond scum and pressure — read something once in a while."
 ai_notes:

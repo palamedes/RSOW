@@ -5,11 +5,13 @@ title: Tau Hammerhead in 3D
 description: "Modeling a Warhammer 40k Tau Hammerhead in 3D, documented in 4-hour work blocks from rough mesh to textured model in Modo."
 excerpt:
 layout: post
-tags:
-- 3D Graphics
-- Tank
 categories:
 - Hobbies
+tags:
+- 3D Modeling
+- Warhammer 40k
+- Games Workshop
+- Tabletop Gaming
 image: /assets/images/2009/05/currenthighresrender1.jpg
 ribbon:
 tile_size: 1x1

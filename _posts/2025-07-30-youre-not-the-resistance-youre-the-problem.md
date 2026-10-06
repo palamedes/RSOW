@@ -4,9 +4,13 @@ layout: post
 image: /assets/images/2025/not-the-resistance.png
 date: 2025-07-30
 categories:
-- Rant
 - Political
 tags:
+- Rant
+- Donald Trump
+- Protests
+- Government
+- Elections
 description: "If you cheer for an assassination — out loud or in cowardly 'won't someone rid me of this meddlesome priest' code — you're not the resistance. You're the villain in the story you think you're heroing."
 excerpt: "There are actual citizens openly hoping the president is assassinated. Not in code. Out loud. That's not edgy. That's not righteous anger. That's evil."
 ai_notes:

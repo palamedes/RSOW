@@ -2,11 +2,14 @@
 layout: post
 title: Tellico Turnings Sign
 description: "Made a scroll-saw sign for my dad's wood turning shop out of three plywood panels. First attempt at sign-making -- lessons learned."
-tags:
-- Wood Working
-- Scroll Saw
 categories:
 - Hobbies
+tags:
+- Scroll Saw
+- Woodworking
+- DIY
+- Family
+- Tennessee
 status: publish
 type: post
 published: true

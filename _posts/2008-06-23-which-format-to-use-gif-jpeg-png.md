@@ -5,9 +5,13 @@ title: Which format to use; Gif, Jpeg, Png
 description: "When to use GIF, JPEG, or PNG in web design. Use PNG for small graphics, JPEG for photos, and GIF only for animations."
 excerpt: I was asked today what my professional opinion was with regards to which graphical format to use in web design.  I pondered it a bit and it occurred to me that this was a very misleading question, and showed an error in thinking.
 layout: post
-tags:
 categories:
 - Software
+tags:
+- Web Development
+- How-To
+- Microsoft
+- Internet
 image: /assets/images/2008/06/pngdemo.png
 ribbon:
 private: false

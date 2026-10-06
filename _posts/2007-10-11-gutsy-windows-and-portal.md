@@ -5,9 +5,17 @@ title: Gutsy > Windows and Portal
 description: "Installed Ubuntu Gutsy on my home machine -- bye bye Windows. Also, Portal is easily one of the best games I've played. Only complaint: 3 hours long."
 excerpt: At work I use just about nothing but Linux.  Even my IBM issued laptop is dual-bootable.. The Linux of choice I have gone with is Ubuntu..
 layout: post
-tags:
 categories:
+- Software
+- Games
+tags:
 - Rant
+- Ubuntu
+- Linux
+- Windows
+- Portal
+- Valve
+- IBM
 image:
 ribbon:
 tile_size: 1x1

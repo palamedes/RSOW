@@ -5,11 +5,14 @@ title: 'Movie Review: Tron Legacy'
 description: "Tron Legacy is a visual masterpiece with a paper-thin plot. The CG young Jeff Bridges is close but not quite right. 8.5 out of 10."
 excerpt: Easily one of my favorite movies as a kid, Tron was a movie that not only defined a generation but also began the monumental shift in the movie industry towards using computers as a tool.    Without Tron leading the way showing what could be done, many of the movies today would have never been made.
 layout: post
-tags:
-- Movie
-- Review
 categories:
+- Media
+tags:
 - Rant
+- Tron
+- Movies & TV
+- Reviews
+- Sci-Fi
 image: /assets/images/2010/12/Tron-Legacy-Poster.jpg
 ribbon:
 tile_size: 1x2

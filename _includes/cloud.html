@@ -1,0 +1,22 @@
+{%- comment -%}
+  A word cloud of tags or topics. _plugins/tags.rb hands the entries over
+  already in center-out order (the most-used in the middle, alternating
+  outward) with a font size, a color tier and a small vertical nudge each, so
+  this only lays them out. Each word opens the archive filtered to it.
+
+  Usage: {% include cloud.html items=site.data.tag_cloud kind="tag" %}
+         {% include cloud.html items=site.data.topic_cloud kind="topic" %}
+{%- endcomment -%}
+{%- assign archive_url = '/archive/' | relative_url -%}
+<nav class="tc-cloud tc-cloud--{{ include.kind }}" aria-label="All {{ include.kind }}s">
+  {%- for t in include.items %}
+  {%- if include.kind == "topic" -%}
+    {%- capture href %}{{ archive_url }}#{{ t.name | uri_escape }}{% endcapture -%}
+  {%- else -%}
+    {%- capture href %}{{ archive_url }}?tag={{ t.name | uri_escape | replace: '&', '%26' }}{% endcapture -%}
+  {%- endif %}
+  <a class="tc-tag tc-tier-{{ t.tier }}" href="{{ href }}"
+     style="font-size:{{ t.size }}rem;--tc-nudge:{{ t.nudge }}px"
+     title="{{ t.count }} post{% if t.count != 1 %}s{% endif %}">{{ t.name }}<span class="tc-count">{{ t.count }}</span></a>
+  {%- endfor %}
+</nav>

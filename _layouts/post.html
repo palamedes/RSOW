@@ -92,12 +92,27 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
         {% endif %}
       </div>
 
-      {% if page.categories.size > 0 %}
+      {%- comment -%} Categories link to the archive filtered by topic
+      (/archive/#Political); tags to it filtered by tag (/archive/?tag=Taxes). {%- endcomment -%}
+      {% if page.categories.size > 0 or page.tags.size > 0 %}
       <footer class="post-tags">
-        <span class="post-tags-label">Filed under</span>
-        {% for cat in page.categories %}
-        <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
-        {% endfor %}
+        {% if page.categories.size > 0 %}
+        <div class="post-tags-row">
+          <span class="post-tags-label">Topic</span>
+          {% for cat in page.categories %}
+          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if page.tags.size > 0 %}
+        <div class="post-tags-row post-tags-row--tags">
+          <span class="post-tags-label">Tags</span>
+          {% for tag in page.tags %}
+          <a class="post-tag" href="{{ '/archive/' | relative_url }}?tag={{ tag | uri_escape | replace: '&', '%26' }}">{{ tag }}</a>
+          {% endfor %}
+          <a class="post-tags-all" href="{{ '/tags/' | relative_url }}">All tags &rarr;</a>
+        </div>
+        {% endif %}
       </footer>
       {% endif %}
     </article>

@@ -5,9 +5,13 @@ title: Ebay Bidding...
 description: "If you can't afford the opening bid, don't bid. An eBay buyer won our car auction for $6k and couldn't even scrape together $4,900."
 excerpt: I am not financial wiz-kid here. Infact, ever since my girl friend moved in, I have pushed all financial responsibility off on to her. Hey it's what she does for a living, and she's pretty good at it.
 layout: post
-tags:
 categories:
+- Money
+tags:
 - Rant
+- Cars
+- Internet
+- Personal Finance
 image:
 ribbon:
 tile_size: 1x1

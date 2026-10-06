@@ -5,9 +5,12 @@ title: Our generations Pearl Harbor?
 description: "Raw thoughts written on September 11, 2001. What was the point? Why did thousands have to die? And what do we do now?"
 excerpt: What has been solved today? Oh yeah.. You sure showed us.. What was the point? Why did thousands of people have to die? what were you trying to prove?
 layout: post
-tags:
 categories:
+- Political
+tags:
 - Rant
+- September 11
+- Patriotism
 image:
 ribbon:
 tile_size: 1x1

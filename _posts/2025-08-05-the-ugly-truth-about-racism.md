@@ -4,9 +4,14 @@ layout: post
 image: /assets/images/2025/ugly-truth-racism.jpg
 date: 2025-08-05
 categories:
-- Rant
 - Political
+- Society
 tags:
+- Rant
+- Race
+- Elections
+- Native Americans
+- Critical Thinking
 description: "The party that built its power on slavery, Black Codes, Jim Crow, and the Klan — and the 'party switch' myth that lets it off the hook. History, with the receipts."
 excerpt: "I'm tired of being called racist for the crime of being a white male in modern America by people who have no clue what they're talking about. So let's talk about real racism."
 ai_notes:

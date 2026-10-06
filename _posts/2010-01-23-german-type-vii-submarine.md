@@ -5,10 +5,12 @@ title: German Type VII Submarine
 description: "Building a detailed 3D model of a German Type VII-C submarine in Modo 401. Progress log with renders from start to conning tower details."
 excerpt: So I have always liked submarines, I think they are pretty neat.  I have wanted to create a 3D sub for a while and finally decided to get started on one..
 layout: post
-tags:
-- 3D Model
 categories:
 - Hobbies
+tags:
+- 3D Modeling
+- Military
+- Modo
 image: /assets/images/2010/01/type-vii-15.jpg
 ribbon:
 private: false

@@ -5,11 +5,13 @@ title: SU-152 Tank Destroyer
 description: "3D modeling the SU-152 tank destroyer from World of Tanks in 10 one-hour sessions, then releasing the model for free."
 excerpt: I have been playing a lot of World of Tanks lately and I liked the look of the SU-152 so much, I thought I'd model one up!
 layout: post
-tags:
-- 3D Graphics
-- Tank
 categories:
 - Hobbies
+tags:
+- 3D Modeling
+- World of Tanks
+- Military
+- Modo
 image: /assets/images/2011/05/SU152-hour17-18.jpg
 ribbon:
 private: false

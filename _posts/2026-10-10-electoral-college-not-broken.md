@@ -4,9 +4,12 @@ layout: post
 date: 2026-10-10
 image: /assets/images/2026/electoral-college-not-broken.png
 categories:
-- Rant
 - Political
 tags:
+- Rant
+- Electoral College
+- Elections
+- Government
 words: [federal-republic, winner-take-all]
 description: "Every election the pizza meme comes back around — four people want pizza, one wants an old shoe, so everyone eats the shoe because she's from Wyoming. It's clever, and it's wrong. The United States isn't one giant national bucket of votes. It's a union of states, and the President is elected by the states on purpose. That wasn't a bug. It was the compromise that made the Constitution possible."
 excerpt: "The pizza meme assumes America is one giant democracy where 340 million people pile their votes into a single national bucket. That's not the country we built. Wyoming doesn't outweigh California — California has eighteen times the pull. The Electoral College just keeps Wyoming from being rounded down to zero. If your argument against it is a joke about eating a shoe, you're not criticizing the Electoral College. You're criticizing a system that has never existed."

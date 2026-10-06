@@ -4,9 +4,15 @@ layout: post
 date: 2026-06-26
 image: /assets/images/2026/windows-is-dead-to-me.png
 categories:
-- Rant
 - Software
 tags:
+- Rant
+- Windows
+- Microsoft
+- Linux
+- PC Gaming
+- Valve
+- Privacy
 words: [tpm, distro, telemetry]
 description: "Microsoft didn't lose me in one disaster. It lost me one small insult at a time — and now that Linux gaming actually works, I've moved to CachyOS full time."
 excerpt: "Microsoft didn't lose me in one giant disaster. It lost me the way companies usually lose customers: one small insult at a time. A nag here, a forced account there, a Start menu that feels more like a billboard than a tool. Steam and Proton killed the last excuse, so I left for CachyOS."

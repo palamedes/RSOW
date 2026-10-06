@@ -5,9 +5,16 @@ title: Six figures for a domain?!
 description: "I created Palavista.com, the first digital music meta crawler. A domain squatter wants $64,000 for it. That's half my annual income for a dead domain."
 excerpt: As some of you know, I was the creator of Palavista.com
 layout: post
-tags:
 categories:
+- Money
+- Technology
+tags:
 - Rant
+- Internet
+- Entrepreneurship
+- Customer Service
+- Property Rights
+- Music
 image:
 ribbon:
 tile_size: 1x1

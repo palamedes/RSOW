@@ -5,9 +5,14 @@ title: I hate Apple fanboys
 description: "A guy compared my monitor to cheap beer and his Apple Cinema Display to fine wine. Blind brand loyalty is dumb. You're just buying a logo."
 excerpt: I understand brand loyalty, but Apple fanatics take it to extremes..  Buying something just because it has an Apple logo on the side is ludicrous..
 layout: post
-tags:
 categories:
+- Technology
+tags:
 - Rant
+- Apple
+- Computer Hardware
+- Pet Peeves
+- Forums
 image: /assets/images/2010/02/apple_fanboy.jpg
 ribbon:
 tile_size: 2x2

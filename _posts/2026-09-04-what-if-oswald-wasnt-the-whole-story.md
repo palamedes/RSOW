@@ -8,6 +8,9 @@ audio_length: "20 min"
 categories:
 - Conspiracy Theory
 tags:
+- Government
+- Military
+- Donald Trump
 words: [military-industrial-complex, naval-quarantine]
 description: "You don't have to invent anything to build one hell of a JFK conspiracy theory. NSAM 263 six weeks before Dallas, the Church Committee's Castro plots, Allen Dulles seated on the commission investigating the president who fired him, and a government still declassifying assassination records more than sixty years later. Lights down, Art Bell style."
 excerpt: "Most JFK theories eventually wander into red string on a corkboard, which makes the whole subject easy to dismiss. This one doesn't need any of that. Strip out the lizards and the deathbed confessions and you're still left with a president who broke with his intelligence agency, resisted his generals over Cuba, and approved a Vietnam drawdown six weeks before Dallas, replaced by a man who escalated that war into a half-million-troop machine. Then Congress admitted the conspiracy investigation had been inadequate. I don't know who killed Kennedy. I do wonder at what point skepticism stops being irrational."

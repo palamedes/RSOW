@@ -4,9 +4,13 @@ layout: post
 date: 2026-10-12
 image: /assets/images/2026/stop-making-me-defend-donald-trump.png
 categories:
-- Rant
 - Political
 tags:
+- Rant
+- Donald Trump
+- Media Bias
+- Critical Thinking
+- Social Media
 words: [adjudicate, corroborate, defamation, reckless-disregard]
 description: "I'm not the biggest fan of Donald Trump, and I'll criticize him when he's wrong. But I will defend somebody I don't even like when you lie about them. Going claim by claim through the Epstein accusations: what's documented, what's alleged, what was never proven, and why turning accusations into facts burns everybody's credibility."
 excerpt: "I voted for Trump, and I'm not the biggest fan of Trump. Apparently that puts me in some bizarre political no-man's-land, because the internet requires me to believe he's either the second coming or Satan and Hitler rolled into one orange package. How about neither? I'll criticize him when he's wrong. But I will defend somebody I don't even like when you lie about them, and once again, you've managed to make me defend him."

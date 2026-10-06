@@ -5,11 +5,13 @@ title: Polyester Resin Pens
 description: "Making pens from polyester resin instead of wood blanks. It's cheap, easy, and the results look great on a lathe."
 excerpt:
 layout: post
-tags:
-- Wood Turning
-- Wood Working
 categories:
 - Hobbies
+tags:
+- Woodturning
+- Woodworking
+- DIY
+- How-To
 image: /assets/images/2006/12/pen08.jpg
 ribbon:
 tile_size: 1x1

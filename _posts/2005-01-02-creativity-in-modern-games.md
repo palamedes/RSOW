@@ -5,9 +5,14 @@ title: Creativity in modern games
 description: "Games force you into canned solutions the programmer decided on. What if a game engine actually let players be creative and solve problems any way they want?"
 excerpt: One of the main issues with games today is that they are all striving very hard to simulate reality.
 layout: post
-tags:
 categories:
+- Games
+tags:
 - Rant
+- Game Design
+- MMOs
+- RPGs
+- First-Person Shooters
 image:
 ribbon:
 tile_size: 1x1

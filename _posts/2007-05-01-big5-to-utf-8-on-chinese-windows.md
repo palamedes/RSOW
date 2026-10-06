@@ -5,9 +5,13 @@ title: Big5 to UTF-8 on Chinese Windows
 description: "Chinese Windows mangles simplified Chinese characters by concatenating their bytes randomly. English Windows handles Unicode better. How is that possible?"
 excerpt: Microsoft has yet again been a source of pain for me.. And let me say that I find it amusing that English windows does unicode better than Chinese windows.. How is that even possible?!
 layout: post
-tags:
 categories:
 - Software
+tags:
+- Programming
+- Windows
+- Linux
+- Microsoft
 image:
 ribbon:
 tile_size: 1x1

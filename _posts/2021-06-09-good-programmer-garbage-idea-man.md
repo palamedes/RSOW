@@ -5,7 +5,11 @@ image: /assets/images/2025/good-programmer-garbage-ideas.png
 date: 2021-06-09
 categories:
 - Software
+- About Me
 tags:
+- Programming
+- Careers
+- Entrepreneurship
 description: "I can build anything — I just can't come up with the idea. A decade of Ikigai angst, a bipolar career path, and the itch to make something that's mine."
 excerpt: "I'm a good programmer but I'm really crap at coming up with ideas. I can implement — I just don't want to implement someone else's idea. I need it to be MINE."
 ---

@@ -5,10 +5,13 @@ title: Front Towards Enemy!
 description: "Games get the Claymore mine completely wrong. Having seen one detonated in the Army, trust me -- it is not compatible with life."
 excerpt: So, nothing bothers me more about Call of Duty 4 than how it and every other game, movie and .. media of choice .. misrepresent the Claymore mine.
 layout: post
-tags:
 categories:
 - Games
+tags:
 - Rant
+- Call of Duty
+- Military
+- First-Person Shooters
 image: /assets/images/2008/06/claymore.jpg
 ribbon:
 private: false

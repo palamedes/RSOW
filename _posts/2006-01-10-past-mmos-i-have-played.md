@@ -5,9 +5,15 @@ title: Past MMO's I have played
 description: "A list of every MMO I can remember playing, from Meridian 59 and Ultima Online to World of Warcraft and everything in between."
 excerpt: Below is a list of every MMO that I can remember playing --  Either in beta, or once the game when live.
 layout: post
-tags:
 categories:
 - Games
+tags:
+- MMOs
+- World of Warcraft
+- EVE Online
+- City of Heroes
+- Warhammer Online
+- Beta Testing
 image:
 ribbon:
 tile_size: 1x1

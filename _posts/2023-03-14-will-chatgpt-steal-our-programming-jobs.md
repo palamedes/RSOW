@@ -5,7 +5,12 @@ image: /assets/images/2025/chatgpt-jobs.jpg
 date: 2023-03-14
 categories:
 - Software
+- Technology
 tags:
+- AI
+- Programming
+- Careers
+- JavaScript
 description: "I fed ChatGPT my website and told it to argue, in my voice, that it won't steal our jobs. Then I fact-checked it line by line. Turns out it's a handy augmenting tool — but no replacement."
 excerpt: "For fun, I gave ChatGPT text from my site and told it to write a post in my voice on why it won't steal our jobs. Let's see how it did."
 ---

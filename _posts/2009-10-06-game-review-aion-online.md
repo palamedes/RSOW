@@ -5,10 +5,14 @@ title: 'Game Review: Aion Online'
 description: "Aion Online surprised me. Beautiful, deep, and the flight system is genuinely great. First MMO in a long time to hold up to my yardstick."
 excerpt: I have played a lot of MMO's in my time.. I feel I have a pretty good handle on the genre and have a very good idea of what makes a game good
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- MMOs
+- Reviews
+- PvP
+- World of Warcraft
+- PC Gaming
 image: /assets/images/2009/10/aion_wall_robe-150x150.jpg
 ribbon:
 private: false

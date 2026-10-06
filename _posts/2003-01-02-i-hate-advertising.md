@@ -5,9 +5,12 @@ title: I hate advertising...
 description: "Advertising is everywhere and it's only getting worse. From FM radio clutter to trucks driving around town with no purpose but to spam you."
 excerpt: Everywhere I turn.. Advertising! It's everywhere! Right now, thanks to that damn "sober" virus out of Germany, I'm getting a crapload of German spam!
 layout: post
-tags:
 categories:
+- Media
+tags:
 - Rant
+- Advertising
+- Pet Peeves
 image:
 ribbon:
 tile_size: 1x1

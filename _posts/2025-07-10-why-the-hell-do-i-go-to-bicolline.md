@@ -6,6 +6,8 @@ date: 2025-07-10
 categories:
 - Hobbies
 tags:
+- RPGs
+- Travel
 description: "Once a year I vanish into a medieval village in Quebec, become Angus Lachlen of the Horse and Hound, and haul a Nerf cannon across a battlefield. Here's why it makes me more human."
 excerpt: "Once a year, I disappear. No laptop, no meetings, no glowing rectangle. I drive north and step into a medieval village in the woods of Quebec."
 ai_notes:

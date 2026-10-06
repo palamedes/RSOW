@@ -5,12 +5,11 @@ title: "Learning to fly!"
 description: "I'm finally learning to fly for real this time and documenting the whole journey on YouTube to keep myself motivated."
 excerpt: I have always wanted to fly and have taken several steps towards doing just that in the past, but each time I would run out of money or something else in life would get in the way - No more.  
 layout: post
-tags:
- - General Aviation 
 categories:
- - Aviation
- - Hobbies
- - About Me
+- Aviation
+tags:
+- Flight Training
+- YouTube
 image: /assets/images/2014/09/N84086.jpg
 gallery:
 ribbon:

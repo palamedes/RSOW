@@ -5,12 +5,14 @@ title: Scroll Saw and MLT-13 Wooden Clock
 description: "Building an all-wood mechanical clock with a scroll saw. I keep coming back to wood because nothing else grabs me the same way."
 excerpt: I have always been a very artsy-craftsy person as I thoroughly enjoy making things.  I like working with my hands and creating something from nothing.
 layout: post
-tags:
-- Wood Working
-- Scroll Saw
-- Clock
 categories:
 - Hobbies
+tags:
+- Woodworking
+- Scroll Saw
+- Clocks
+- DIY
+- Woodturning
 image: /assets/images/2012/02/Marble-Strike-by-Alain-Saintagne-1.jpg
 ribbon:
 tile_size: 2x2

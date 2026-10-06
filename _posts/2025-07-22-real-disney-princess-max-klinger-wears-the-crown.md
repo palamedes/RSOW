@@ -4,8 +4,14 @@ layout: post
 image: /assets/images/2025/klinger-princess.png
 date: 2025-07-22
 categories:
-- Rant
+- Media
+- Comedy
 tags:
+- Rant
+- Military
+- Gender
+- Star Wars
+- Movies & TV
 description: "Fox owned M*A*S*H. Disney bought Fox. Which makes Corporal Max Klinger — Section 8 hustler in heels — technically a Disney Princess. And he earned that crown."
 excerpt: "M*A*S*H was owned by Fox. Fox got bought by Disney. You know what that means? Max Klinger is now, technically, a Disney Princess. Let that sink in."
 ai_notes:

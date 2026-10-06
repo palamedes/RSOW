@@ -4,8 +4,13 @@ layout: post
 image: /assets/images/2025/amigas-commodore.png
 date: 2025-07-10
 categories:
-- Rant
+- Technology
 tags:
+- Rant
+- Computer History
+- Computer Hardware
+- Apple
+- Microsoft
 description: "From a VIC-20 in '83 to the Amiga 500's custom-silicon wizardry — Commodore had the future in its hands and flushed it. Bad marketing, rotted R&D, and a boardroom of clowns."
 excerpt: "I'll die on this hill: if Commodore had half a clue, we'd all be using Amigas today. Not Windows. Not Mac. Amigas. And they threw it all away."
 ai_notes:

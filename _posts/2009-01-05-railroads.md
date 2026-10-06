@@ -5,10 +5,12 @@ title: 'Game Review: Railroads!'
 description: "Sid Meier's Railroads is a dumbed-down Railroad Tycoon 3 with automated routing that barely works. Great for kids, bad for fans."
 excerpt: I'm a bit of a Sid Meier's fan -- He will likely go down in history as the king of turn based strategy games with the introduction of the Civilization franchise in the early 1990's.
 layout: post
-tags:
-- Reviews
 categories:
 - Games
+tags:
+- Reviews
+- Strategy Games
+- PC Gaming
 image:
 ribbon:
 private: false

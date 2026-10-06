@@ -5,10 +5,12 @@ title: Happy Halloween 2009
 description: "Won best costume as the Wolf in grandmother's clothing at the annual Halloween bash. Melissa was a killer Little Red Riding Hood."
 excerpt: The annual Halloween bash that my friend and his wife put on was a success!   Every year my friend Calvin and his wife go NUTS with Halloween.. 
 layout: post
-tags:
-- Melissa
 categories:
+- About Me
+tags:
 - Rant
+- Family
+- Rock Band
 image: /assets/images/2009/11/littleredridinghoodpluswolf.jpg
 ribbon:
 private: false

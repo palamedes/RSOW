@@ -6,8 +6,13 @@ description: "A farewell to the Fan Films Forum, the small online community I ra
 excerpt: Amateur / Fan Films Forum was created in back in early 2000  and was made up of a small community of amateur and fan film enthusiasts.. 
 layout: page
 full_width: false
-tags:
 categories:
+- Society
+tags:
+- Forums
+- Movies & TV
+- Star Wars
+- Internet
 image: /assets/images/2009/10/fff.png
 ribbon:
 private: false

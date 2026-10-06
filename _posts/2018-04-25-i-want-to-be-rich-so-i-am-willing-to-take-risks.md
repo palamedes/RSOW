@@ -4,8 +4,12 @@ layout: post
 image: /assets/images/2025/rich-take-risks.png
 date: 2018-04-25
 categories:
-- Rant
+- Money
 tags:
+- Rant
+- Capitalism
+- Entrepreneurship
+- Careers
 description: "A debate about 'wage slavery' and the widening wealth gap. My answer: stop working for the man, take a risk, start a business. Risk takers get rich; wage earners never will."
 excerpt: "I got into a debate about 'wage slavery.' My answer — do what the rich did: stop working for the man and take some risks. You'd think I pissed in their cereal."
 ---

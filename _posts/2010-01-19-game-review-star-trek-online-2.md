@@ -5,10 +5,15 @@ title: 'Game Review: Star Trek Online'
 description: "My Star Trek Online beta review after 15 levels. Scaled missions kill community and there's basically no crafting system. Two big problems."
 excerpt: Here's my righteous opinion on the the first 15 levels of fed play and the first 12 or so of Klingon.. I only really have 2 major complaints.
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- Star Trek Online
+- Star Trek
+- MMOs
+- Cryptic Studios
+- Beta Testing
+- Reviews
 image: /assets/images/2010/01/Enterprise-150x150.jpg
 ribbon:
 private: false

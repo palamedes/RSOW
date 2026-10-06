@@ -5,9 +5,15 @@ title: Out of time, Site Future Plans, Life Goals, Etc..
 description: "Sold my half of the software company and still figuring out what's next. Twenty years in software makes a clean break feel impossible."
 excerpt: Well, it's that time again.  Time for me to talk about how I never post any more and how I have no time.  Life is super busy, I'm doing too many things, I need to find time. etc.. Feh.. These are all lies. 
 layout: post
-tags:
 categories:
- - Rant
+- About Me
+tags:
+- Rant
+- Careers
+- Entrepreneurship
+- Jekyll
+- RV-10
+- Blogging
 image: /assets/images/2016/out-of-time.jpg
 gallery:
 ribbon:

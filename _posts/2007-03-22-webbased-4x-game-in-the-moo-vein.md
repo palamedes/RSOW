@@ -5,9 +5,13 @@ title: Webbased 4X game in the MoO vein
 description: "Design notes for a browser-based multiplayer 4X space game in the style of Master of Orion. Thinking out loud about turns, restarts, and home worlds."
 excerpt: I have long wanted to make a game -- pretty much since I was a kid. Typically I try to make something bigger than is really realistic for my skills.
 layout: post
-tags:
 categories:
 - Games
+tags:
+- Game Design
+- Browser Games
+- Strategy Games
+- MMOs
 image:
 ribbon:
 tile_size: 1x1

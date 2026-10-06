@@ -5,9 +5,14 @@ title: PC Gaming is Dead!
 description: "PC gaming isn't dead, but developers obsess over graphics instead of gameplay. Crysis was a commercial failure. Portal was the real winner of 2007."
 excerpt: As many of you know I play a lot of games.  Specifically PC games.  You name it and there is a good chance I have played it.  Lately it really does seem like games for the PC are starting to fail me.
 layout: post
-tags:
 categories:
 - Games
+tags:
+- PC Gaming
+- Game Design
+- Portal
+- Valve
+- First-Person Shooters
 image:
 ribbon:
 private: false

@@ -6,9 +6,11 @@ image: /assets/images/2026/maybe-salt-wasnt-the-villain-after-all.png
 audio: /assets/audio/maybe-salt-wasnt-the-villain-after-all.ogg
 audio_length: "15 min"
 categories:
-- About Me
 - Health
+- Science
 tags:
+- Critical Thinking
+- Food & Nutrition
 words: [primary-hyperaldosteronism, mmhg, systolic, renin, noradrenaline, biomarker, insulin-resistance]
 description: "I have Conn's syndrome, so I went digging into aldosterone and sodium — and came out the other side wondering how bad salt actually is. A 133-trial meta-analysis worth 4.3 mmHg, a Cochrane review showing renin and aldosterone climb when you cut sodium, Harvard's insulin-resistance data, and the PURE study's J-curve that bottoms out above the amount the AHA calls a maximum."
 excerpt: "I have primary hyperaldosteronism, which means my body hangs onto sodium whether I want it to or not. Trying to understand my own endocrine plumbing sent me into the sodium literature, and what I found is a lot messier than the slogan. Yes, sodium raises blood pressure — DASH-Sodium settled that. But the effect is about 1.1 mmHg in healthy people, cutting sodium sends renin, aldosterone and noradrenaline climbing, Harvard found insulin resistance rose during a low-sodium week, and PURE's lowest-risk range starts above the AHA's recommended ceiling. Maybe salt isn't the villain. Maybe excess is."

@@ -5,9 +5,13 @@ title: My new Camera & Flat design
 description: "I finally got a proper camera -- a Canon 6D -- and my dog Meeko was the first willing test subject. Photos and first impressions inside."
 excerpt: I have long wanted a really nice camera -- this week I got one!  My dog helped me by being a faithful subject.
 layout: post
-tags:
 categories:
 - Photography
+tags:
+- Photography Gear
+- Pets
+- Blogging
+- Web Development
 image: /assets/images/2013/06/meeko_volunteer.jpg
 gallery:
 - /assets/images/2013/06/meeko_volunteer.jpg

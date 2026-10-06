@@ -5,9 +5,14 @@ title: Back from Blizzcon 2009
 description: "Recap of Blizzcon 2009 -- good times, surprisingly clean nerds, and zero info on Blizzard's mystery MMO."
 excerpt: Well the wife and I are back from Blizzcon..  I have to admit she had a pretty good idea of going and now that we have gone and come back I'm glad we did it..
 layout: post
-tags:
 categories:
+- Games
+tags:
 - Rant
+- Blizzard
+- MMOs
+- Travel
+- Air Travel
 image: /assets/images/2009/08/blizzcon-logo.png
 ribbon:
 private: false

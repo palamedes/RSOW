@@ -1,0 +1,28 @@
+{%- comment -%}
+  The blog's shared header: the archive (/archive/), the topic cloud
+  (/topics/) and the tag cloud (/tags/) all open with it, so moving between
+  them only changes what's underneath. The posts, topics and tags stats link
+  to those three pages; pass active="posts", "topics" or "tags" to mark the
+  one you're on.
+
+  Usage: {% include archive-hero.html active="tags" %}
+{%- endcomment -%}
+{%- assign hero_listed = site.posts | where_exp: "p", "p.archive != false" -%}
+{%- assign hero_oldest = hero_listed | last -%}
+<section class="arc-hero">
+  <div class="arc-hero-bg" aria-hidden="true"></div>
+  <div class="arc-wrap arc-hero-inner">
+    <p class="arc-eyebrow">The oubliette · est. {{ hero_oldest.date | date: "%Y" }}</p>
+    <h1>Everything I've rambled about</h1>
+    <p class="arc-sub">
+      Two decades and change of rants, builds, games, and the occasional strong opinion —
+      all in one place. Filter by topic, search for a thread, and dig in.
+    </p>
+    <ul class="arc-stats">
+      <li><a class="arc-stat-link{% if include.active == 'posts' %} is-current{% endif %}" href="{{ '/archive/' | relative_url }}"{% if include.active == 'posts' %} aria-current="page"{% endif %}><strong>{{ hero_listed.size }}</strong><span>posts</span></a></li>
+      <li><strong>{{ hero_oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
+      <li><a class="arc-stat-link{% if include.active == 'topics' %} is-current{% endif %}" href="{{ '/topics/' | relative_url }}"{% if include.active == 'topics' %} aria-current="page"{% endif %}><strong>{{ site.data.topics_by_count.size }}</strong><span>topics</span></a></li>
+      <li><a class="arc-stat-link{% if include.active == 'tags' %} is-current{% endif %}" href="{{ '/tags/' | relative_url }}"{% if include.active == 'tags' %} aria-current="page"{% endif %}><strong>{{ site.data.tags_by_count.size }}</strong><span>tags</span></a></li>
+    </ul>
+  </div>
+</section>

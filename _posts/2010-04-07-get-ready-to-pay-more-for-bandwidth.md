@@ -5,9 +5,13 @@ title: Get ready to pay more for bandwidth...
 description: "Net neutrality is dead. Federal judges sided with Comcast and now broadband providers can throttle and charge whatever they want."
 excerpt: Most gamers typically play games online, download expansions or other forms of DLC, watch hulu, stream music..etc.. generally speaking, use more bandwidth than your average user who just browses the occasional website or checks email.
 layout: post
-tags:
 categories:
+- Technology
+- Political
+tags:
 - Rant
+- Internet
+- Government
 image: /assets/images/2010/04/netneutrality-150x150.jpg
 ribbon:
 private: false

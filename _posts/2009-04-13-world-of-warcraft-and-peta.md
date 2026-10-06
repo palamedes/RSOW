@@ -5,9 +5,14 @@ title: World of Warcraft and PETA
 description: "PETA held an anti-seal-hunting protest inside World of Warcraft. Their message: kill the people killing the seals. Real ethical, guys."
 excerpt: So, on Saturday the 11th of April, PETA (People for the Ethical Treatment of Animals) held an awareness gathering in World of Warcraft where they killed four quest NPC's as a form of protest for the unethical killing of seals in real life.
 layout: post
-tags:
 categories:
+- Society
+- Games
+tags:
 - Rant
+- World of Warcraft
+- Protests
+- Critical Thinking
 image: /assets/images/2009/04/sealclub.jpg
 ribbon:
 private: false

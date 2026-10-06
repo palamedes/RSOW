@@ -4,8 +4,12 @@ layout: post
 image: /assets/images/2025/paypal-limited-state.png
 date: 2019-01-29
 categories:
-- Rant
+- Money
 tags:
+- Rant
+- Customer Service
+- Privacy
+- Personal Finance
 description: "A verified PayPal user since 2001, locked out for unspecified 'suspicious activity' — asked to upload my license, bank statement, and SSN to get back in. A 107-minute borderline-criminal saga."
 excerpt: "I have been using PayPal since 2001. That all ended today. They locked my account for 'suspicious activity' they refused to explain — and they'll keep your money until you comply."
 ---

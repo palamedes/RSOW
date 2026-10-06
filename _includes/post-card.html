@@ -15,6 +15,7 @@
 {%- if include.post.audio_narrator == 'human' %}{%- assign card_human = true -%}{%- endif -%}
 <div class="post-card-wrap"
      data-categories="{{ include.post.categories | join: ',' }}"
+     data-tags="{{ include.post.tags | join: '|' | escape }}"
      data-title="{{ include.post.title | strip_html | escape | downcase }}"
      data-search="{{ include.post.title | strip_html | escape | downcase }} {{ include.post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
   <div class="post-card">

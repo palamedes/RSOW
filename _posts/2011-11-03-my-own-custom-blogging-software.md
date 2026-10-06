@@ -5,9 +5,14 @@ title: My own custom blogging software
 description: "WordPress kept getting exploited so I decided to write my own blogging and CMS software from scratch. Because that's the kind of nerd I am."
 excerpt: As many of you know, I am very much my own special kind of nerd.  I enjoy doing many a'geeky thing that others wouldn't even dream of.  To be honest, I think all software engineers have to be a bit brain damaged just to do their job.
 layout: post
-tags:
 categories:
 - Software
+tags:
+- Blogging
+- WordPress
+- PHP
+- Programming
+- Web Development
 image: /assets/images/2011/11/iframe.jpg
 ribbon:
 private: false

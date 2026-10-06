@@ -5,10 +5,13 @@ title: Delphi like IDE/VCL for Javascript, written in javascript
 description: "Pondering a Delphi-style drag-and-drop IDE for JavaScript, written entirely in JavaScript. Design first, code second."
 excerpt: So something that I have been pondering is the creation of a rapid application framework/IDE similar to Delphi for javascript, in javascript..  Bear with me.. 
 layout: post
-tags:
-- jQuery
 categories:
 - Software
+tags:
+- JavaScript
+- jQuery
+- Programming
+- Web Development
 image:
 ribbon:
 private: false

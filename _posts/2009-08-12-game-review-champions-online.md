@@ -5,10 +5,15 @@ title: 'Game Review: Champions Online'
 description: "Champions Online closed beta impressions. It's basically City of Heroes 2 with a better character creator. Pretty good, not groundbreaking."
 excerpt: Okay I know I'm not supposed to talk about this yet, but it's near enough to open beta that I feel I can safely talk about the game without giving anything important away -- or at the very least I think I'm safe from being sued..  (Please don't sue me..)
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- Champions Online
+- City of Heroes
+- Cryptic Studios
+- MMOs
+- Beta Testing
+- Reviews
 image: /assets/images/2009/08/defender1-champ-online-415-150x150.jpg
 ribbon:
 private: false

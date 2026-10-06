@@ -5,9 +5,15 @@ title: Star Trek Online please don't be another Champions Online
 description: "Cryptic makes games that look cool but die fast. Star Trek Online better not be City of Star Trek or we're going to have a problem."
 excerpt: I have to admit that one of the games I am looking forward to in 2010 is Cryptic's, Star Trek Online.
 layout: post
-tags:
 categories:
 - Games
+tags:
+- Star Trek Online
+- Star Trek
+- Cryptic Studios
+- City of Heroes
+- Champions Online
+- MMOs
 image: /assets/images/2010/01/sto.jpg
 ribbon:
 private: false

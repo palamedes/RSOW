@@ -4,9 +4,15 @@ layout: post
 date: 2026-10-18
 image: /assets/images/2026/america-is-the-closest-thing-to-heaven.png
 categories:
-- Rant
 - Political
+- Society
 tags:
+- Rant
+- Patriotism
+- Free Speech
+- Guns
+- Immigration
+- Capitalism
 words: [dystopia]
 description: "We've become so used to extraordinary prosperity that we've mistaken it for normal. Hot water on demand, fifteen kinds of mustard, a supercomputer in your pocket, and the freedom to call the President an idiot without anybody kicking down your door. America isn't heaven. But compared with almost every human being who came before us, it's pretty fucking close."
 excerpt: "One of the strangest things about living in America is that we've become so accustomed to extraordinary prosperity that we've mistaken it for normal. It isn't. For almost all of human history, life was hard, short, uncertain and largely outside your control. That wasn't some particularly horrible chapter of human history. That was the default human experience. Then came the United States of America."

@@ -4,9 +4,13 @@ layout: post
 image: /assets/images/2025/they-shot-the-messenger.png
 date: 2025-09-12
 categories:
-- Rant
 - Political
 tags:
+- Rant
+- Free Speech
+- Cancel Culture
+- Religion
+- Government
 description: "Charlie Kirk was assassinated for speaking his mind. Politicians booed his moment of silence. When you martyr a man, you don't end the message — you amplify it."
 excerpt: "They killed a man who debated with civility and changed minds without violence. Then they cheered. That tells you everything about who the real extremists are."
 ai_notes:

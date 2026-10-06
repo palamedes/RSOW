@@ -5,10 +5,13 @@ title: "Livable Wages and Unreasonable Client Expectations"
 description: "Software development isn't cheap because skilled labor isn't cheap. Clients who scoff at the costs need a reality check."
 excerpt:  "I work in an industry that demands highly skilled laborers but are constantly bombarded by accusations of greed or people that scoff as the costs.  Plumbers make more!" 
 layout: post
-tags:
- - Business
 categories:
- - Software
+- Software
+- Money
+tags:
+- Freelancing
+- Careers
+- Entrepreneurship
 image: /assets/images/2015/08/greed.jpg
 gallery:
 ribbon:

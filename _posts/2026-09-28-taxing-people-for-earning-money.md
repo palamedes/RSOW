@@ -4,9 +4,13 @@ layout: post
 date: 2026-09-28
 image: /assets/images/2026/taxing-people-for-earning-money.png
 categories:
-- Rant
+- Money
 - Political
 tags:
+- Rant
+- Taxes
+- Capitalism
+- Government
 words: [flat-tax, consumption-tax, taxable-event, tax-base]
 description: "Flat-tax fans argue about what percentage of your paycheck the government should take. The better question is why we tax the paycheck at all. The case for replacing income, payroll, capital-gains and estate taxes with a tax on what you consume: necessities exempt, yachts very much not."
 excerpt: "Every so often the flat-tax argument comes around again: pick a number and everybody pays the same percentage. Compared with the Rube Goldberg machine we call the tax code, that sounds almost beautiful. But I think we're arguing about the wrong damn thing. The question shouldn't be what percentage of your income the government takes. It should be why the hell we're taxing income in the first place. Earn it, save it, invest it: keep it. Buy your third Ferrari? Now we have a taxable event. One condition, though: the other taxes have to die."

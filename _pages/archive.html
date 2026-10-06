@@ -5,30 +5,14 @@ description: "Everything I've rambled about — 200+ posts of rants, builds, gam
 permalink: /archive/
 full_width: true
 ---
-{%- comment -%} category pills in display order; counts pulled live from site.categories {%- endcomment -%}
-{%- assign cats = "Rant,Games,Hobbies,Software,Political,Photography,Aviation,About Me,Health,Comedy,Conspiracy Theory" | split: "," -%}
+{%- comment -%} tags most-used first, counted by _plugins/tags.rb (listed posts only) {%- endcomment -%}
+{%- assign tag_list = site.data.tags_by_count -%}
 {%- comment -%} every post except those marked `archive: false` (_plugins/listing_flags.rb) {%- endcomment -%}
 {%- assign listed = site.posts | where_exp: "p", "p.archive != false" -%}
-{%- assign oldest = listed | last -%}
 <div class="arc" id="arc">
 
   <!-- ══════════════ HERO ══════════════ -->
-  <section class="arc-hero">
-    <div class="arc-hero-bg" aria-hidden="true"></div>
-    <div class="arc-wrap arc-hero-inner">
-      <p class="arc-eyebrow">The oubliette · est. {{ oldest.date | date: "%Y" }}</p>
-      <h1>Everything I've rambled about</h1>
-      <p class="arc-sub">
-        Two decades and change of rants, builds, games, and the occasional strong opinion —
-        all in one place. Filter by topic, search for a thread, and dig in.
-      </p>
-      <ul class="arc-stats">
-        <li><strong>{{ listed.size }}</strong><span>posts</span></li>
-        <li><strong>{{ oldest.date | date: "%Y" }}</strong><span>first entry</span></li>
-        <li><strong>{{ cats.size }}</strong><span>topics</span></li>
-      </ul>
-    </div>
-  </section>
+  {% include archive-hero.html active="posts" %}
 
   <!-- ══════════════ STICKY TOOLBAR ══════════════ -->
   <div class="arc-toolbar" id="arc-toolbar">
@@ -48,21 +32,47 @@ full_width: true
         </button>
         <div class="arc-topic-menu" id="arc-topic-menu" role="menu"
              aria-labelledby="arc-topic-trigger" hidden>
-          <button type="button" class="arc-topic-item is-active" role="menuitemradio"
-                  aria-checked="true" data-filter="all" data-label="All">
+          <button type="button" class="arc-topic-item arc-topic-reset is-active" role="menuitem"
+                  data-filter="all" data-label="All">
             <span class="arc-topic-item-name">All</span>
             <span class="arc-topic-item-count">{{ listed.size }}</span>
           </button>
-          {% for cat in cats %}
-          {% assign n = site.categories[cat] | where_exp: "p", "p.archive != false" | size %}
-          {% if n > 0 %}
-          <button type="button" class="arc-topic-item" role="menuitemradio"
-                  aria-checked="false" data-filter="{{ cat }}" data-label="{{ cat }}">
-            <span class="arc-topic-item-name">{{ cat }}</span>
-            <span class="arc-topic-item-count">{{ n }}</span>
+          {% for c in site.data.topics_by_count %}
+          <button type="button" class="arc-topic-item" role="menuitemcheckbox"
+                  aria-checked="false" data-filter="{{ c.name | escape }}" data-label="{{ c.name | escape }}">
+            <span class="arc-topic-item-name">{{ c.name }}</span>
+            <span class="arc-topic-item-count">{{ c.count }}</span>
           </button>
-          {% endif %}
           {% endfor %}
+        </div>
+      </div>
+
+      {%- comment -%} Tag filter: the same dropdown as Topic, most-used tags
+      first. Both dropdowns are multi-select: any checked topic and any checked tag,
+      combined with the search (all three must match). {%- endcomment -%}
+      <div class="arc-topic arc-tagpick" id="arc-tag">
+        <button type="button" class="arc-topic-trigger" id="arc-tag-trigger"
+                aria-haspopup="true" aria-expanded="false" aria-controls="arc-tag-menu">
+          <span class="arc-topic-lead">Tag</span>
+          <span class="arc-topic-value" id="arc-tag-value">Any</span>
+          <span class="arc-topic-count" id="arc-tag-count">{{ listed.size }}</span>
+          <span class="arc-topic-caret" aria-hidden="true"></span>
+        </button>
+        <div class="arc-topic-menu" id="arc-tag-menu" role="menu"
+             aria-labelledby="arc-tag-trigger" hidden>
+          <button type="button" class="arc-topic-item arc-topic-reset is-active" role="menuitem"
+                  data-filter="all" data-label="Any">
+            <span class="arc-topic-item-name">Any tag</span>
+            <span class="arc-topic-item-count">{{ listed.size }}</span>
+          </button>
+          {% for t in tag_list %}
+          <button type="button" class="arc-topic-item" role="menuitemcheckbox"
+                  aria-checked="false" data-filter="{{ t.name | escape }}" data-label="{{ t.name | escape }}">
+            <span class="arc-topic-item-name">{{ t.name }}</span>
+            <span class="arc-topic-item-count">{{ t.count }}</span>
+          </button>
+          {% endfor %}
+          <a class="arc-tag-cloud-link" href="{{ '/tags/' | relative_url }}">Browse the tag cloud &rarr;</a>
         </div>
       </div>
 
@@ -94,7 +104,7 @@ full_width: true
         <line x1="10" y1="12" x2="14" y2="12"></line>
       </svg>
       <h2>Nothing in this drawer</h2>
-      <p>No posts match that topic or search. Try a different angle.</p>
+      <p>No posts match that topic, tag or search. Try a different angle.</p>
       <button type="button" class="arc-empty-reset" id="arc-empty-reset">Clear filters</button>
     </div>
   </div>
@@ -105,12 +115,6 @@ full_width: true
   var root = document.getElementById('arc');
   var grid = document.getElementById('archive-grid');
   var cards = Array.prototype.slice.call(grid.querySelectorAll('.post-card-wrap'));
-  var topicWrap = document.getElementById('arc-topic');
-  var topicTrigger = document.getElementById('arc-topic-trigger');
-  var topicMenu = document.getElementById('arc-topic-menu');
-  var topicValue = document.getElementById('arc-topic-value');
-  var topicCount = document.getElementById('arc-topic-count');
-  var pills = Array.prototype.slice.call(topicMenu.querySelectorAll('.arc-topic-item'));
   var search = document.getElementById('post-search');
   var clearBtn = document.getElementById('arc-search-clear');
   var countEl = document.getElementById('archive-count');
@@ -120,25 +124,35 @@ full_width: true
   var gridWrap = grid.parentElement;
 
   var total = cards.length;
-  var activeFilter = 'all';
+  // Each filter is a list of checked values; empty means no restriction.
+  // Within a list any value may match; across lists everything must.
+  var activeTopics = [];
+  var activeTags = [];
   var batchSize = 8;
   var initialLoad = 16;
   var visibleCount = 0;
 
+  function anyIn(have, want){
+    if(!want.length) return true;
+    for(var i = 0; i < want.length; i++){ if(have.indexOf(want[i]) !== -1) return true; }
+    return false;
+  }
+  function cardCats(card){ return (card.dataset.categories || '').split(','); }
+  function cardTags(card){ return (card.dataset.tags || '').split('|'); }
+
   function getFiltered(){
     var q = search.value.trim().toLowerCase();
     return cards.filter(function(card){
-      var cats = card.dataset.categories || '';
       var text = card.dataset.search || '';
-      var matchCat = activeFilter === 'all' || cats.split(',').indexOf(activeFilter) !== -1;
-      var matchSearch = !q || text.indexOf(q) !== -1;
-      return matchCat && matchSearch;
+      return anyIn(cardCats(card), activeTopics) &&
+             anyIn(cardTags(card), activeTags) &&
+             (!q || text.indexOf(q) !== -1);
     });
   }
 
   function updateMeta(shown){
     var q = search.value.trim();
-    var pristine = activeFilter === 'all' && !q;
+    var pristine = !activeTopics.length && !activeTags.length && !q;
     countEl.textContent = pristine
       ? 'Showing all ' + total + ' posts'
       : 'Showing ' + shown + ' of ' + total + ' post' + (total === 1 ? '' : 's');
@@ -188,102 +202,174 @@ full_width: true
     toolbar.classList.toggle('is-stuck', window.scrollY > toolbarTop);
   }, { passive: true });
 
-  // ── topic dropdown ─────────────────────────────────────────────────────
-  // Selection lives on the menu items; the trigger just mirrors whichever one
-  // is checked, so `select()` is the single place that state changes.
-  function menuOpen(){ return topicTrigger.getAttribute('aria-expanded') === 'true'; }
+  // ── multi-select dropdowns (Topic and Tag) ─────────────────────────────
+  // Both use the same markup: a reset item ("All" / "Any") and one checkbox
+  // item per value. Clicking a value toggles it and leaves the menu open so
+  // several can be picked; the reset item clears them and closes the menu.
+  // setValues() is the single place a dropdown's state changes. cardValues
+  // reads a card's values for this dropdown, so the trigger can show how many
+  // posts the current selection covers.
+  function Dropdown(prefix, cardValues, onChange){
+    var wrap = document.getElementById(prefix);
+    var trigger = document.getElementById(prefix + '-trigger');
+    var menu = document.getElementById(prefix + '-menu');
+    var valueEl = document.getElementById(prefix + '-value');
+    var countOut = document.getElementById(prefix + '-count');
+    var items = Array.prototype.slice.call(menu.querySelectorAll('.arc-topic-item'));
+    var resetItem = items.filter(function(b){ return b.dataset.filter === 'all'; })[0];
+    var valueItems = items.filter(function(b){ return b !== resetItem; });
+    var self = { wrap: wrap, values: [] };
 
-  function openMenu(){
-    topicTrigger.setAttribute('aria-expanded', 'true');
-    topicMenu.hidden = false;
-    var active = topicMenu.querySelector('.arc-topic-item.is-active') || pills[0];
-    if(active) active.focus();
-  }
+    function isOpen(){ return trigger.getAttribute('aria-expanded') === 'true'; }
+    function open(){
+      Dropdown.closeAll(self);
+      trigger.setAttribute('aria-expanded', 'true');
+      menu.hidden = false;
+      var first = menu.querySelector('.arc-topic-item.is-active') || items[0];
+      if(first) first.focus();
+    }
+    function close(opts){
+      trigger.setAttribute('aria-expanded', 'false');
+      menu.hidden = true;
+      if(opts && opts.focusTrigger) trigger.focus();
+    }
 
-  function closeMenu(opts){
-    topicTrigger.setAttribute('aria-expanded', 'false');
-    topicMenu.hidden = true;
-    if(opts && opts.focusTrigger) topicTrigger.focus();
-  }
+    function setValues(values, opts){
+      opts = opts || {};
+      var want = values.map(function(v){ return v.toLowerCase(); });
+      var picked = [];
+      valueItems.forEach(function(b){
+        var on = want.indexOf(b.dataset.filter.toLowerCase()) !== -1;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-checked', on ? 'true' : 'false');
+        if(on) picked.push(b.dataset.filter);
+      });
+      resetItem.classList.toggle('is-active', !picked.length);
+      self.values = picked;
 
-  function select(item, opts){
-    pills.forEach(function(b){
-      var on = b === item;
-      b.classList.toggle('is-active', on);
-      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      // trigger: "All", one name, or "First +2"; the bubble counts the posts
+      // the selection covers on its own (before the other filters apply)
+      if(!picked.length){
+        valueEl.textContent = resetItem.dataset.label;
+        countOut.textContent = total;
+      } else {
+        valueEl.textContent = picked[0] + (picked.length > 1 ? ' +' + (picked.length - 1) : '');
+        countOut.textContent = cards.filter(function(c){ return anyIn(cardValues(c), picked); }).length;
+      }
+      wrap.classList.toggle('is-filtered', picked.length > 0);
+      onChange(picked, opts);
+    }
+
+    trigger.addEventListener('click', function(e){
+      e.stopPropagation();
+      if(isOpen()) close(); else open();
     });
-    activeFilter = item.dataset.filter;
-    topicValue.textContent = item.dataset.label;
-    var c = item.querySelector('.arc-topic-item-count');
-    topicCount.textContent = c ? c.textContent : '';
-    topicWrap.classList.toggle('is-filtered', activeFilter !== 'all');
-    reset({ correct: !(opts && opts.silent) });
-    if(!(opts && opts.fromUrl)) syncUrl();
-  }
-
-  // Mirror the topic into the URL in the same shape post pages link to
-  // (/archive/#Conspiracy%20Theory), so a filtered view can be bookmarked or
-  // shared, and Back steps out of it just as it would after following one of
-  // those links. pushState rather than setting location.hash, which would
-  // also try to scroll to a matching id.
-  function syncUrl(){
-    var hash = activeFilter === 'all' ? '' : '#' + encodeURIComponent(activeFilter);
-    if(location.hash === hash) return;
-    history.pushState(null, '', location.pathname + location.search + hash);
-  }
-
-  topicTrigger.addEventListener('click', function(e){
-    e.stopPropagation();
-    if(menuOpen()) closeMenu(); else openMenu();
-  });
-
-  pills.forEach(function(p, i){
-    p.addEventListener('click', function(){
-      select(this);
-      closeMenu({ focusTrigger: true });
+    resetItem.addEventListener('click', function(){
+      setValues([]);
+      close({ focusTrigger: true });
+    });
+    valueItems.forEach(function(b){
+      b.addEventListener('click', function(e){
+        e.stopPropagation();
+        var v = this.dataset.filter;
+        var next = self.values.slice();
+        var at = next.indexOf(v);
+        if(at === -1) next.push(v); else next.splice(at, 1);
+        setValues(next);
+      });
     });
     // roving focus so the menu is usable without a mouse
-    p.addEventListener('keydown', function(e){
-      var next = null;
-      if(e.key === 'ArrowDown') next = pills[(i + 1) % pills.length];
-      else if(e.key === 'ArrowUp') next = pills[(i - 1 + pills.length) % pills.length];
-      else if(e.key === 'Home') next = pills[0];
-      else if(e.key === 'End') next = pills[pills.length - 1];
-      if(next){ e.preventDefault(); next.focus(); }
+    items.forEach(function(p, i){
+      p.addEventListener('keydown', function(e){
+        var next = null;
+        if(e.key === 'ArrowDown') next = items[(i + 1) % items.length];
+        else if(e.key === 'ArrowUp') next = items[(i - 1 + items.length) % items.length];
+        else if(e.key === 'Home') next = items[0];
+        else if(e.key === 'End') next = items[items.length - 1];
+        if(next){ e.preventDefault(); next.focus(); }
+      });
     });
+
+    self.isOpen = isOpen; self.close = close; self.setValues = setValues;
+    Dropdown.all.push(self);
+    return self;
+  }
+  Dropdown.all = [];
+  Dropdown.closeAll = function(except){
+    Dropdown.all.forEach(function(d){ if(d !== except && d.isOpen()) d.close(); });
+  };
+
+  var topic = Dropdown('arc-topic', cardCats, function(values, opts){
+    activeTopics = values;
+    reset({ correct: !opts.silent });
+    if(!opts.fromUrl) syncUrl();
+  });
+  var tag = Dropdown('arc-tag', cardTags, function(values, opts){
+    activeTags = values;
+    reset({ correct: !opts.silent });
+    if(!opts.fromUrl) syncUrl();
   });
 
   document.addEventListener('click', function(e){
-    if(menuOpen() && !topicWrap.contains(e.target)) closeMenu();
+    Dropdown.all.forEach(function(d){
+      if(d.isOpen() && !d.wrap.contains(e.target)) d.close();
+    });
   });
   document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape' && menuOpen()) closeMenu({ focusTrigger: true });
+    if(e.key !== 'Escape') return;
+    Dropdown.all.forEach(function(d){ if(d.isOpen()) d.close({ focusTrigger: true }); });
   });
+
+  // Mirror the filters into the URL in the same shapes post pages link to:
+  // topics as the hash (/archive/#Games,Hobbies) and tags as a query
+  // parameter (/archive/?tag=Taxes,Government), so a filtered view can be
+  // bookmarked or shared and Back steps out of it. A single value is the same
+  // URL post pages and the tag cloud already use. replaceState while picking
+  // inside an open menu would lose history; pushState per change is fine.
+  function syncUrl(){
+    var params = new URLSearchParams(location.search);
+    if(activeTags.length) params.set('tag', activeTags.join(',')); else params.delete('tag');
+    var qs = params.toString().replace(/%2C/g, ',');
+    var hash = activeTopics.length ? '#' + activeTopics.map(encodeURIComponent).join(',') : '';
+    var url = location.pathname + (qs ? '?' + qs : '') + hash;
+    if(url === location.pathname + location.search + location.hash) return;
+    history.pushState(null, '', url);
+  }
 
   search.addEventListener('input', function(){ reset({ correct: true }); });
   if(clearBtn) clearBtn.addEventListener('click', function(){ search.value = ''; search.focus(); reset(); });
 
   if(emptyReset) emptyReset.addEventListener('click', function(){
     search.value = '';
-    select(pills[0]);
+    tag.setValues([], { silent: true });
+    topic.setValues([]);
   });
 
-  // deep link: /archive/#Software pre-selects that topic (used by post pages).
-  // Calls select() rather than click() so arriving with a hash doesn't yank
-  // focus into the (closed) menu on load. No hash means All, so Back out of a
-  // topic that syncUrl() pushed lands on the unfiltered list again.
-  function applyHash(){
-    var h = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim().toLowerCase();
-    var match = h ? pills.filter(function(p){ return p.dataset.filter.toLowerCase() === h; })[0] : pills[0];
-    if(match && !match.classList.contains('is-active')) select(match, { fromUrl: true });
+  // Deep links: /archive/#Software (or #Software,Games) pre-selects topics,
+  // /archive/?tag=Taxes (or ?tag=Taxes,Government) tags. Missing values mean
+  // no filter, so Back out of a filter that syncUrl() pushed lands on the
+  // unfiltered list again.
+  function split(s){
+    return s.split(',').map(function(v){ return v.trim(); }).filter(Boolean);
+  }
+  function same(a, b){
+    return a.length === b.length && a.every(function(v){ return b.indexOf(v) !== -1; });
+  }
+  function applyUrl(){
+    var hashVals = split((location.hash || '').replace(/^#/, '')).map(function(v){
+      try { return decodeURIComponent(v); } catch(e){ return v; }
+    });
+    var tagVals = split(new URLSearchParams(location.search).get('tag') || '');
+    if(!same(tagVals, tag.values)) tag.setValues(tagVals, { fromUrl: true, silent: true });
+    if(!same(hashVals, topic.values)) topic.setValues(hashVals, { fromUrl: true });
   }
   // Back/Forward across pushState entries fires popstate; a hand-edited hash
-  // fires hashchange. Both can fire for one traversal, and applyHash is a
-  // no-op once the topic already matches.
-  window.addEventListener('popstate', applyHash);
-  window.addEventListener('hashchange', applyHash);
+  // fires hashchange. Both can fire for one traversal, and applyUrl is a
+  // no-op once both filters already match.
+  window.addEventListener('popstate', applyUrl);
+  window.addEventListener('hashchange', applyUrl);
 
   reset();
-  applyHash();
+  applyUrl();
 })();
 </script>

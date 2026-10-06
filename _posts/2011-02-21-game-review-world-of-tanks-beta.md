@@ -5,11 +5,15 @@ title: 'Game Review: World of Tanks (Beta)'
 description: "A review of World of Tanks beta. It's a lot of fun with tons of tanks to choose from, but it has some real flaws worth worrying about."
 excerpt: When I heard a buddy of mine tell me that he was playing a game called "World of Tanks" I thought he was kidding.. I thought he was making some reference to "tanking" in World of Warcraft or something..  But no, he was serious..
 layout: post
-tags:
-- Review
-- World of Tanks
 categories:
 - Games
+tags:
+- World of Tanks
+- Reviews
+- Beta Testing
+- First-Person Shooters
+- Game Balance
+- MMOs
 image: /assets/images/2011/02/tiger_ii_1024_768.jpg
 ribbon:
 private: true

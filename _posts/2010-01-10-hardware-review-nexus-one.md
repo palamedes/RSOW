@@ -5,10 +5,13 @@ title: 'Hardware Review: Nexus One'
 description: "The Google Nexus One is the best device I've ever owned. Everything just works -- Bluetooth, streaming, OLED screen. It beats my iPhone in every way."
 excerpt: I was tired of my original iPhone and that would be getting the Sony Ericsson Xperia X10 when it came out some time later this year.   That was before I heard/read about Google's offering; the Nexus One.
 layout: post
-tags:
-- Review
 categories:
+- Technology
+tags:
 - Rant
+- Smartphones
+- Reviews
+- Apple
 image: /assets/images/2010/01/nexusone.png
 ribbon:
 private: false
