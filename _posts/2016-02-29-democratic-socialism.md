@@ -5,10 +5,15 @@ title: "Democratic Socialism"
 description: "Millennials love democratic socialism but most don't know the difference between that and social democracy. Language matters, and so does history."
 excerpt:  "I feel that this socialism road people are trying to take us down will have a very bad ending..." 
 layout: post
-tags:
- - Democratic Socialism
 categories:
- - Rant
+- Political
+tags:
+- Rant
+- Capitalism
+- Government
+- Generations
+- Language
+- Socialism
 image: /assets/images/2016/socialism.png
 gallery:
 ribbon:

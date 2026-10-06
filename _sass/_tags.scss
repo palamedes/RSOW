@@ -1,0 +1,67 @@
+// ════════════════ TAG CLOUD (/tags/) ════════════════
+// The page borrows the archive hero (.arc / .arc-hero); this is just the
+// cloud. _plugins/tags.rb orders the tags center-out and sizes them, so a
+// centered, wrapping flex row puts the big ones in the middle rows with the
+// small ones spreading outward. --tc-nudge (a few px, fixed per tag) knocks
+// the baseline around so it reads as a jumble rather than lines of text.
+
+.tc .tc-hero-link {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tc-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem 1.1rem;
+  max-width: 980px;
+  margin: 2.6rem auto 3.5rem;
+  padding: 2.2rem 1.5rem;
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 16px;
+  box-shadow: 0 18px 40px -26px rgba(18,22,34,0.35);
+}
+
+.tc-tag {
+  position: relative;
+  display: inline-block;
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transform: translateY(var(--tc-nudge, 0px));
+  transition: color 0.15s ease, transform 0.15s ease;
+  &:hover, &:focus-visible {
+    color: #1a5ab8;
+    transform: translateY(var(--tc-nudge, 0px)) scale(1.06);
+    .tc-count { opacity: 1; }
+  }
+}
+// heavier, darker and bluer as the tag gets bigger
+.tc-tier-4 { color: #1c2330; font-weight: 800; }
+.tc-tier-3 { color: #2673da; font-weight: 800; }
+.tc-tier-2 { color: #3d5a80; }
+.tc-tier-1 { color: #7a8699; font-weight: 600; }
+
+// the count shows on hover, as a small superscript
+.tc-count {
+  font-size: 0.45em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 0.15em;
+  color: #97a1b2;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+@media (hover: none) {
+  .tc-count { opacity: 1; }
+}
+
+@media (max-width: 620px) {
+  .tc-cloud { padding: 1.4rem 0.9rem; gap: 0.45rem 0.8rem; margin-top: 1.6rem; }
+}

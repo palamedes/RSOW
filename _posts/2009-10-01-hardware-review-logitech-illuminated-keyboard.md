@@ -5,10 +5,12 @@ title: 'Hardware Review: Logitech Illuminated Keyboard'
 description: "The Logitech Illuminated Keyboard is dead quiet, super flat, and backlit. No extra fluff. Exactly what I wanted."
 excerpt: I have to admit I like Logitech.  Their hardware is always good.  I find their software is a little bloated and doesn't always deliver but I can't fault the hardware at all..
 layout: post
-tags:
-- Review
 categories:
+- Technology
+tags:
 - Rant
+- Computer Hardware
+- Reviews
 image: /assets/images/2009/10/logitech_illuminated_keyboard.jpg
 ribbon:
 private: false

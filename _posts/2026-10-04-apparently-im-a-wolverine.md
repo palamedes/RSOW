@@ -8,6 +8,12 @@ categories:
 - About Me
 - Comedy
 tags:
+- AI
+- Blogging
+- RV-10
+- Military
+- Pets
+- Boats
 words: [multimeter, signals-intelligence]
 description: "I asked an AI to name my spirit animal and it said wolverine: aggressively independent, chronically irritated and physically incapable of leaving well enough alone. So I did the most wolverine thing possible and roasted myself with receipts: two posts titled 'I hate people,' a boat, a half-built airplane and more than 140 posts filed under Rant."
 excerpt: "Some people take personality quizzes. I asked an AI to name my spirit animal, based on everything I've ever ranted about, and it said wolverine: aggressively independent, chronically irritated, impossible to intimidate and physically incapable of leaving well enough alone. Then it made me a picture. I'd argue, but I'd need about 2,400 words to do it, and that would just prove the point. So instead, the prosecution presents its evidence: my own blog."

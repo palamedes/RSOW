@@ -5,10 +5,13 @@ title: Sky Diving
 description: "I jumped solo out of an airplane at 14,000 feet on my first skydive. The sensory overload is beyond compare."
 excerpt: I got to do something that was literally above and beyond the range of the word cool. I got to jump out of an airplane at 14,000 ft.
 layout: post
-tags:
-- Experience
 categories:
+- Aviation
+- Hobbies
+tags:
 - Rant
+- Flight Training
+- Air Travel
 image:
 ribbon:
 tile_size: 1x1

@@ -5,10 +5,11 @@ title: Semantic UI
 description: "Semantic UI does everything Bootstrap does but with intuitive class names that actually make sense. Early stage but very promising."
 excerpt: It's time to remove the often obtuse vocabulary overhead required by certain UI frameworks
 layout: post
-tags:
-- UX
 categories:
 - Software
+tags:
+- Web Development
+- Programming
 image: /assets/images/2013/09/semanticui01.jpg
 gallery:
 ribbon:

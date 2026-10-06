@@ -4,8 +4,15 @@ layout: post
 image: /assets/images/2025/cosmetic-con.png
 date: 2025-07-24
 categories:
-- Rant
+- Society
+- Media
 tags:
+- Rant
+- Advertising
+- Gender
+- Social Media
+- Capitalism
+- Family
 description: "A $600 billion industry that doesn't sell beauty — it sells insecurity. Concave mirrors, six-year-olds worried about 'pretty,' and preventative-aging serums for kids."
 excerpt: "My beautiful wife thinks she's got the face of an alley troll without a dozen creams and potions. She's been convinced by a billion-dollar machine. And she's not alone."
 ai_notes:

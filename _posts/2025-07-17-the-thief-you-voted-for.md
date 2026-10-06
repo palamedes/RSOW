@@ -4,9 +4,12 @@ layout: post
 image: /assets/images/2025/thief-you-voted-for.jpg
 date: 2025-07-17
 categories:
-- Rant
 - Political
+- Money
 tags:
+- Rant
+- Taxes
+- Government
 description: "A thief doesn't care what he steals because he didn't earn it. Sound familiar? Taxed when you earn, spend, save, own, drive, and die — more heavily than a feudal serf."
 excerpt: "Your average thief doesn't give a shit about what they're stealing. No pride. No respect. No sense of what it cost you to earn it. Sound familiar? Yeah. That's the government."
 ai_notes:

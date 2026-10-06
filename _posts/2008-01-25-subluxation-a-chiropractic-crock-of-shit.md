@@ -5,10 +5,12 @@ title: 'Subluxation: A Chiropractic crock of shit!'
 description: "I went to a chiropractor with an open mind. They tried to sell me $4,000 in treatments for a sore neck. Subluxation is pseudoscience."
 excerpt: Subluxation is a real medical term,  it is an incomplete or partial dislocation of a joint or an organ.  As such if you have a subluxation, a dislocated joint or organ, you need to seek real medical attention.
 layout: post
-tags:
-- Subluxation
 categories:
+- Health
+tags:
 - Rant
+- Critical Thinking
+- Customer Service
 image:
 ribbon:
 private: false

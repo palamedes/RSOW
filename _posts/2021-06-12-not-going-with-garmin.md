@@ -6,6 +6,8 @@ date: 2021-06-12
 categories:
 - Aviation
 tags:
+- Customer Service
+- RV-10
 description: "Everyone assumes Garmin avionics for my RV-10 build. I'm not. A bricked motorcycle GPS, weeks of 'it's your fault,' and a rude booth at Oshkosh did it. Customer service wins or loses me every time."
 excerpt: "People are always shocked when I tell them I'm not going with Garmin for my RV-10. One thing wins me over or makes me leave every time: customer service. And Garmin blew it."
 ---

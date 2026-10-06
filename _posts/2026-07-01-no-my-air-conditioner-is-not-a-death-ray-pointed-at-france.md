@@ -5,9 +5,13 @@ date: 2026-07-01
 image: /assets/images/2026/air-conditioner-death-ray-france.png
 audio: /assets/audio/air-conditioner-death-ray-france.ogg
 categories:
-- Rant
 - Political
+- Science
 tags:
+- Rant
+- Energy
+- Critical Thinking
+- Government
 words: [co2e, adaptation-climate, urban-heat-island]
 description: "Some people are floating the idea that American air conditioning is cooking Europe during a heat wave. It's a bumper sticker for smug people, not an argument — so let's actually do the math on emissions, land area, per-capita reality, and who spent decades refusing to plan for hotter summers."
 ai_notes:

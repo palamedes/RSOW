@@ -5,11 +5,13 @@ title: 'Game Review: Dragon Age II'
 description: "Dragon Age II is a decent game on its own, but rushed out in 8 months it can't hold a candle to Origins. Reused dungeons get old fast."
 excerpt: So in my original Dragon Age review I began by asking "Can Bioware do no wrong?"   Apparently the answer is "Yes."
 layout: post
-tags:
-- Bioware
-- Review
 categories:
 - Games
+tags:
+- Dragon Age
+- BioWare
+- RPGs
+- Reviews
 image: /assets/images/2011/03/Dragon-Age-2-Wallpaper.jpg
 ribbon:
 private: false

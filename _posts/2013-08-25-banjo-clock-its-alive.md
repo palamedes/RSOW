@@ -5,10 +5,12 @@ title: "Banjo Clock: It's Alive!"
 description: "Finally fixed the broken banjo clock I've been hauling around for 15 years. New mechanism, some elbow grease, and it's back on the wall."
 excerpt: I have been lugging around this broken banjo clock for something like 15 years.  Well it's finally on the wall!
 layout: post
-tags:
-- Wood Working
 categories:
 - Hobbies
+tags:
+- Clocks
+- DIY
+- Family
 image: /assets/images/2013/08/banjoclock01.jpg
 gallery:
 - /assets/images/2013/08/banjoclock01.jpg

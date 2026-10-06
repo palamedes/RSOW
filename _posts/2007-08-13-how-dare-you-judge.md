@@ -5,10 +5,14 @@ title: How dare you judge!
 description: "College kids protesting Planned Parenthood from their BMWs, judging people in situations they've never been in. How dare they."
 excerpt:
 layout: post
-tags:
-- Abortion
 categories:
+- Political
+- Society
+tags:
 - Rant
+- Protests
+- Religion
+- Pet Peeves
 image:
 ribbon:
 tile_size: 1x1

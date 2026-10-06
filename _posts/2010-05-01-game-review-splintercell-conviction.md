@@ -5,10 +5,13 @@ title: 'Game Review: Splintercell Conviction'
 description: "Splinter Cell Conviction is a great stealth game with solid movement mechanics. Short at 11 hours, but the product placement is obnoxious."
 excerpt: I really like a good first person shooter..  But most FPS games these days aren't about thinking or planning your way out, they are just run and gun, "zerg-fests" where you run in shoot a few..
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- First-Person Shooters
+- Ubisoft
+- Reviews
+- Advertising
 image: /assets/images/2010/05/tom_clancys_splinter_cell_conviction-4.jpg
 ribbon:
 private: true

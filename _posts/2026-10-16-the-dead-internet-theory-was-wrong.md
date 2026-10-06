@@ -4,9 +4,14 @@ layout: post
 date: 2026-10-16
 image: /assets/images/2026/the-dead-internet-theory-was-wrong.png
 categories:
-- Rant
 - Conspiracy Theory
+- Technology
 tags:
+- Rant
+- AI
+- Internet
+- Social Media
+- Critical Thinking
 words: [engagement-social-media, social-proof, web-crawler, signal-to-noise-ratio]
 description: "The Dead Internet Theory claimed the web died around 2016 and became bots talking to bots. It was wrong. But since then we've built most of what it described: more bot traffic than human, AI writing a third of new pages, industrial-scale fake engagement, and AI training on AI. The internet doesn't have to be dead to become haunted."
 excerpt: "At first glance, the Dead Internet Theory sounds like the sort of thing you'd hear at 3:00 in the morning from a guy in a bathrobe. It claimed the web died around 2016 and became bots, fake accounts and manufactured trends. There's no evidence for that. The trouble is that the theory may have been wrong for the right reasons, because in the years since, we've built a lot of the exact things it said already existed."

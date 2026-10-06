@@ -5,10 +5,13 @@ title: iPhone, it's not all hype
 description: "Compared the Nokia N95, iPhone, and Sony Ericsson P910a. The iPhone wins on interface alone, and the SDK announcement sealed the deal."
 excerpt: As some of my close friends know, I have been shopping for a new cellphone for a while now.   And those same folks will tell you that not just any phone will do, I very much prefer a "convergence device."
 layout: post
-tags:
-- Review
 categories:
+- Technology
+tags:
 - Rant
+- Apple
+- Smartphones
+- Reviews
 image: /assets/images/2008/01/iphone.jpg
 ribbon:
 private: false

@@ -1,0 +1,25 @@
+---
+layout: null
+permalink: /category/rant/
+sitemap: false
+---
+{%- comment -%}
+  Rant used to be a category; it became a tag in October 2026. jekyll-archives
+  no longer builds /category/rant/, so this keeps old links and bookmarks
+  working by sending them to the archive filtered to the Rant tag.
+{%- endcomment -%}
+{%- assign target = '/archive/?tag=Rant' | relative_url -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Rants — Random String of Words</title>
+  <link rel="canonical" href="{{ site.url }}{{ target }}">
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0; url={{ target }}">
+  <script>location.replace({{ target | jsonify }});</script>
+</head>
+<body>
+  <p>Rants now live under a tag: <a href="{{ target }}">see every rant</a>.</p>
+</body>
+</html>

@@ -5,10 +5,14 @@ title: Home Depot kicks ass!
 description: "Brought back a burned-out bandsaw with no receipt and no box. Home Depot replaced it on the spot, no questions asked. That's how you do customer service."
 excerpt: Home Depot kicks ass - they make things simple and good, even when they could have easily turned me away.
 layout: post
-tags:
 categories:
-- Rant
 - Hobbies
+tags:
+- Rant
+- Customer Service
+- Woodworking
+- Woodturning
+- Reviews
 image:
 ribbon:
 tile_size: 1x1

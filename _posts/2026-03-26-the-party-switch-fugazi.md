@@ -4,9 +4,12 @@ layout: post
 image: /assets/images/2026/party-switch.jpg
 date: 2026-03-26
 categories:
-- Rant
 - Political
 tags:
+- Rant
+- Race
+- Elections
+- Critical Thinking
 description: "The 'party switch' narrative is historically fraudulent. Geography changed, ideology didn't. It's narrative laundering, not history."
 excerpt: "Fugazi. Fake. A fraud. The so-called party switch exists to launder historical guilt, and it collapses under basic scrutiny."
 ai_notes:

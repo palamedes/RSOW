@@ -4,9 +4,13 @@ layout: post
 date: 2026-10-14
 image: /assets/images/2026/corporate-greed-now-with-government-approval.png
 categories:
-- Rant
+- Money
 - Political
 tags:
+- Rant
+- Capitalism
+- Government
+- Energy
 words: [fixed-cost, rate-case]
 description: "In Louisiana, utility companies have discovered a horrifying problem with energy efficiency: if people use less electricity, the utilities make less money. So for years regulators have let them bill customers for the electricity they didn't sell. Imagine Exxon invoicing you for the gas you didn't buy."
 excerpt: "Apparently, in Louisiana, utility companies have looked at the concept of energy efficiency and discovered a horrifying problem: if people use less electricity, the utility companies might make less money. Yeah. No shit. So the state lets them recover that \"lost\" money through your rates. You used less electricity, so now we'd like to charge you because you used less electricity. What kind of business model is this?"

@@ -5,9 +5,11 @@ title: Google chrome reload options
 description: "Quick tip: open Chrome dev tools and long-click the refresh button to get hidden reload options including hard refresh and cache clear."
 excerpt: Today I found that if you have the developer tools open and click / hold the refresh button you are given different refresh options.
 layout: post
-tags:
 categories:
 - Software
+tags:
+- Web Development
+- How-To
 image: /assets/images/2013/04/google-chrome-hard-refresh.png
 gallery:
 ribbon:

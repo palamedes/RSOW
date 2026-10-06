@@ -4,9 +4,14 @@ layout: post
 image: /assets/images/2025/political-correctness.png
 date: 2025-07-03
 categories:
+- Society
 - Political
-- Rant
 tags:
+- Rant
+- Cancel Culture
+- Free Speech
+- Censorship
+- Language
 description: "When did being polite become mandatory and being honest become offensive? The term has older, more totalitarian roots than you think — and discomfort is where growth happens."
 excerpt: "Politeness isn't the problem. Forced conformity is. Somewhere along the line, political correctness stopped being about decency and became a straightjacket."
 ---

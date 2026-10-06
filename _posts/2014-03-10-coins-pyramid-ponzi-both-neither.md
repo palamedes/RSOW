@@ -5,10 +5,13 @@ title: "Coins: Pyramid or Poniz - Both? Neither?"
 description: "Is Bitcoin a ponzi scheme, a pyramid scheme, both, or neither? I break down the arguments and where cryptocurrency actually fits."
 excerpt: I have been pondering this at length -- Is bitcoin (or any of the alt-coins) a ponzi or pyramid scheme? Ponzi maybe, pyramid no.  How can it be one with out the other?
 layout: post
-tags:
- - Software
 categories:
- - Rant
+- Money
+- Technology
+tags:
+- Rant
+- Personal Finance
+- Government
 image: /assets/images/2014/03/Litecoin.jpg
 gallery:
 ribbon:

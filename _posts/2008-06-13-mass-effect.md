@@ -5,10 +5,14 @@ title: Mass Effect
 description: "Mass Effect on PC is the closest thing to playing a movie I have ever experienced. Bioware knocked it out of the park."
 excerpt: This game looked awesome!  Everyone that played it said it was awesome and that I should rush out and get a console to play it -- so needless to say I was really annoyed that it wasn't a PC game and even more annoyed at folks telling me to buy a console..
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- BioWare
+- RPGs
+- PC Gaming
+- Reviews
+- Sci-Fi
 image: /assets/images/2008/06/256px-masseffect_box_cover-150x150.jpg
 ribbon:
 private: false

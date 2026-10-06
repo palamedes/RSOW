@@ -2,10 +2,13 @@
 layout: post
 title: Electoral college versus popular vote
 description: "Breaking down how the electoral college works versus the popular vote and why both systems have real trade-offs worth understanding."
-tags:
-- Voting
 categories:
+- Political
+tags:
 - Rant
+- Electoral College
+- Elections
+- Government
 excerpt: So, with the 2012 presidential election finally over, I'd like to discuss some of the things that I saw during the whole shebang...
 published: true
 type: post

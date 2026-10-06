@@ -5,9 +5,14 @@ title: Windows XP Sp.3 ... "Access Denied!"
 description: "Windows XP SP3 won't install unless you hack the registry. Here's how to fix the Access Denied error with Microsoft's own tools."
 excerpt:  "Updates are ready for your computer.  Click here to download these updates. " But don't expect Windows XP to actually know how to install them.
 layout: post
-tags:
 categories:
+- Software
+tags:
 - Rant
+- Windows
+- Microsoft
+- How-To
+- Customer Service
 image: /assets/images/2008/09/software.png
 ribbon:
 private: false

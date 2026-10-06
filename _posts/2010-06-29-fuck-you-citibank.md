@@ -5,9 +5,12 @@ title: 15yr Citibank member says; Fuck you Citibank
 description: "After 15 years as a member, Citibank jacked my APR to 30% and added a $60 annual fee. I asked to cancel seven times before they let me."
 excerpt: Well the other day I went to pay off my card and I noticed that they bumped my APR to 29.998%...   Are you fucking kidding me?  30% APR is highway robbery.. I called them up and asked them to lower my rate and they refused.. 
 layout: post
-tags:
 categories:
+- Money
+tags:
 - Rant
+- Customer Service
+- Personal Finance
 image: /assets/images/2010/06/citibank_logo.jpg
 ribbon:
 private: false

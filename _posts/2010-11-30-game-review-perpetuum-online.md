@@ -5,11 +5,14 @@ title: 'Game Review: Perpetuum Online'
 description: "Perpetuum Online is basically Eve Online with mechs, made by a tiny indie team. Better UI, less brutal learning curve, and actual PVE content."
 excerpt: A while back I was trolling the intertoobs for a new game when I stumbled across Perpetuum Online;  A Hungarian borne MMO based in the distant future on a far away planet where the avatars are Mech based as are the mobs with a large skill based PVE and PVP system..  Booya!  It sounded great!
 layout: post
-tags:
-- Perpetuum
-- Review
 categories:
 - Games
+tags:
+- EVE Online
+- MMOs
+- PvP
+- Reviews
+- Sci-Fi
 image: /assets/images/2010/11/shots-2010-06-0007.jpg
 ribbon:
 private: true

@@ -4,8 +4,13 @@ layout: post
 image: /assets/images/2025/left-law-enforcement.jpg
 date: 2025-07-17
 categories:
-- Rant
+- About Me
+- Society
 tags:
+- Rant
+- Law Enforcement
+- Careers
+- Military
 description: "Being a cop is one of the worst jobs in America. The idealism burns off fast. A story about Jenny, the hundreds of Jennys, and shoveling water out of a sinking boat with a teaspoon."
 excerpt: "I'm not a cop anymore. I get asked why I left, why I didn't stick it out for the pension. Here's the truth: being a cop is one of the worst jobs in America."
 ai_notes:

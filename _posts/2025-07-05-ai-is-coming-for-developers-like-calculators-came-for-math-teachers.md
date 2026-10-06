@@ -4,9 +4,13 @@ layout: post
 image: /assets/images/2025/ai-calculators.jpg
 date: 2025-07-05
 categories:
-- Rant
+- Technology
 - Software
 tags:
+- Rant
+- AI
+- Programming
+- Careers
 description: "AI isn't replacing developers — it's surfacing the dead weight. It eats the boilerplate and the stackoverflow-on-autopilot garbage. The real work still needs brain cells."
 excerpt: "The robots are coming, ChatGPT and Claude are going to replace software developers. Except... no. Saying AI will replace developers is like saying calculators replaced math teachers."
 ---

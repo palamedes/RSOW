@@ -5,10 +5,13 @@ title: 'Game Review: Red Faction - Armageddon'
 description: "Red Faction Armageddon delivers the same destructible fun as the original but suffers from the same old problem: it's way too short."
 excerpt: I played Red Faction back in 2001 when it first came out and enjoyed the heck out of it.   It was the very first game to come out with the Geo-Mod game engine which allowed for massive destruction of the game models and levels.  
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- Reviews
+- First-Person Shooters
+- Game Design
+- PC Gaming
 image: /assets/images/2011/07/red-faction-armageddon-review.jpg
 ribbon:
 private: false

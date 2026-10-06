@@ -4,8 +4,15 @@ layout: post
 image: /assets/images/2025/tipping-shark.png
 date: 2025-07-26
 categories:
-- Rant
+- Money
+- Society
 tags:
+- Rant
+- Restaurants
+- Customer Service
+- Pet Peeves
+- Capitalism
+- Tipping
 description: "Tipping is a gratuity — a thank you, optional — not a tax enforced by touchscreen shame. Tipflation, guilt-trip kiosks, and 20% defaults for handing me a bag. Enough."
 excerpt: "Tipping is a gratuity. As in a thank you. As in optional. We've moved past tipping for service — now we're tipping for existence."
 ai_notes:

@@ -5,9 +5,14 @@ title: Anyone seen my hobby?!
 description: "When your hobby becomes your career, you lose your hobby. Now it's just CoD4, WoW, and painting 40k Orks."
 excerpt: I was asked the other day why I don't update my website more often..    A fine question, and I can only offer one answer..  I just don't want to..
 layout: post
-tags:
 categories:
 - Hobbies
+tags:
+- Call of Duty
+- World of Warcraft
+- Miniature Painting
+- Warhammer 40k
+- Careers
 image:
 ribbon:
 private: false

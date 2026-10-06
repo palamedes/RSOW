@@ -5,10 +5,14 @@ title: 'Game Review: Dragon Age - Origins'
 description: "Dragon Age Origins is pure liquid awesome. Beautiful, fully voice acted, 200+ hours of content, and six different origin stories."
 excerpt: I ask you -- can Bioware do no wrong?  Every game of theirs that I have played, I have loved.  Neverwinter Nights was kinda "Feh" but the concept was excellent even though the editor was horrible.
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- Dragon Age
+- BioWare
+- RPGs
+- PC Gaming
+- Reviews
 image: /assets/images/2009/11/dragonageoriginslogo.png
 ribbon:
 private: false

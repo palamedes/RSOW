@@ -2,12 +2,15 @@
 layout: post
 title: RubyPress Wordpress Replacement
 description: "Building my own open-source WordPress replacement in Ruby on Rails. PHP had its run, time to move on to something better."
-tags:
-- Ruby
-- Ruby on Rails
-- WordPress
 categories:
 - Software
+tags:
+- Ruby
+- WordPress
+- PHP
+- Blogging
+- Programming
+- Web Development
 excerpt: So a while back I had thought my WordPress install was getting exploited through some bug and decided I wanted to write my own replacement...
 published: true
 type: post

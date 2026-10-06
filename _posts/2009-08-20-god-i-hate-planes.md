@@ -5,9 +5,13 @@ title: God I hate planes
 description: "Headaches, cramped seats, baby poop, and nail polish fumes. Flying on major airlines is my personal hell."
 excerpt: Dear god but I hate flying on major airlines.  It's just not happy fun time for me.
 layout: post
-tags:
 categories:
+- Aviation
+tags:
 - Rant
+- Air Travel
+- Pet Peeves
+- Travel
 image:
 ribbon:
 private: false

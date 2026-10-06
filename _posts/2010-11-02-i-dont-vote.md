@@ -5,10 +5,14 @@ title: I don't vote...
 description: "I don't vote and it's my right. Voting in ignorance is worse than not voting at all. The system is broken and one vote changes nothing."
 excerpt: So as a general rule, I don't vote.  I don't vote, and it's my right to do so.  Leave me alone.  Stop harassing me with mindless slogans and social pressure.  I choose, to not choose.
 layout: post
-tags:
-- Voting
 categories:
+- Political
+tags:
 - Rant
+- Elections
+- Government
+- Military
+- Law Enforcement
 image: /assets/images/2010/11/votingprocess.jpg
 ribbon:
 tile_size: 2x2

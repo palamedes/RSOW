@@ -5,10 +5,12 @@ title: 'Sunday Stills Challenge: Yellow Flowers'
 description: "My first photography challenge entry with the Canon 6D -- yellow flowers shot around Knoxville Market Square."
 excerpt: Now that I have my Canon 6D I need to start participating in some of the photography challenges that my brother puts on.  The "I don't have a good camera" excuse apparently no longer holds water.
 layout: post
-tags:
-- Flowers
 categories:
 - Photography
+tags:
+- Photography Gear
+- Tennessee
+- Family
 image: /assets/images/2013/07/yellow-flowers04.jpg
 gallery:
 - /assets/images/2013/07/yellow-flowers00.jpg

@@ -5,10 +5,16 @@ title: Ork Dip! The 10 minute paint job...
 description: "100+ Ork models to paint for a tournament. The Minwax dip method gets each one done in 10 minutes and they look surprisingly good."
 excerpt: So I am going to be entering in a 40k tournament in August.  I'll be entering as an Ork player and have been tuning and playing various lists in preparation..   I have a lot left to do though.. 
 layout: post
-tags:
-- Warhammer
 categories:
+- Hobbies
+- Games
+tags:
 - Rant
+- Warhammer 40k
+- Miniature Painting
+- Games Workshop
+- Tabletop Gaming
+- How-To
 image: /assets/images/2009/06/10minork.jpg
 ribbon:
 tile_size: 2x1

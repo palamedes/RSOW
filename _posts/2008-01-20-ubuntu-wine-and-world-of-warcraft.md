@@ -5,10 +5,17 @@ title: Ubuntu, Wine and World of Warcraft
 description: "Installed Ubuntu on my game machine and got World of Warcraft running in WINE on the first try. Same frame rates as Windows or better. I'm stunned."
 excerpt: I am far from a linux "fanboi", in fact until recently I didn't really use linux all that much at all..  All of my games are played in WindowsXP simply because there really is no other option... or is there?
 layout: post
-tags:
 categories:
+- Software
+- Games
+tags:
 - Rant
-- Hobbies
+- Ubuntu
+- Linux
+- World of Warcraft
+- PC Gaming
+- Windows
+- Wine (Linux)
 image: /assets/images/2008/01/ubuntulogo.png
 ribbon:
 private: false

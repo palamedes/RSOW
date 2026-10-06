@@ -5,9 +5,14 @@ title: Being called a racist...
 description: "I refused to judge people by race during a police board interview and got failed for it. Apparently not being racist makes you inadequate."
 excerpt: I refused to judge a person based on their race.. but in turn was judged and called a racist.
 layout: post
-tags:
 categories:
+- Society
+tags:
 - Rant
+- Law Enforcement
+- Race
+- Military
+- Careers
 image:
 ribbon:
 tile_size: 1x1

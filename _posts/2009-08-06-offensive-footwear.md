@@ -5,9 +5,12 @@ title: Offensive footwear!
 description: "I bought Vibram FiveFingers toe shoes and people are losing their minds. Someone called me a fag over footwear. People are odd."
 excerpt: So a co-worker of mine showed up wearing what, at the time, I could only describe as "glove shoes".  They are sort of like water socks, where each toe has its own sleeve to fit in.
 layout: post
-tags:
 categories:
+- Society
+tags:
 - Rant
+- Pet Peeves
+- Reviews
 image: /assets/images/2009/08/feets-150x150.png
 ribbon:
 private: false

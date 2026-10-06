@@ -5,10 +5,12 @@ title: 'Book Review: A Game of Thrones'
 description: "A Game of Thrones is some of the best fiction I've read in years. Deep characters, political intrigue, and masterful storytelling. 5 out of 5."
 excerpt: I don't normally do book reviews but this book was so good I had to make an exception..   This book is easily some of the best candy I have had in a long time...
 layout: post
-tags:
-- Review
 categories:
+- Media
+tags:
 - Rant
+- Books
+- Reviews
 image: /assets/images/2010/09/30652075.jpg
 ribbon:
 private: false

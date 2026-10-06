@@ -5,9 +5,12 @@ title: Pulling weeds in my big ass yard
 description: "Six hours pulling weeds from a 26,000 square foot front yard. Eight bags of weeds later, I am a very sore human being."
 excerpt:
 layout: post
-tags:
 categories:
+- About Me
+tags:
 - Rant
+- DIY
+- Personal Finance
 image:
 ribbon:
 tile_size: 1x1

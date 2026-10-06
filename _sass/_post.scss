@@ -420,11 +420,34 @@ $po-line:    #ddd;
   }
 
   // ════════════════ TAG PILLS ════════════════
-  .post-tags {
+  // Each footer row (categories, then tags) wraps on its own.
+  .post-tags-row {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+  // Tags are quieter than categories: outlined, no fill, a leading #.
+  .post-tags .post-tag {
+    background: transparent;
+    border-color: #d9dee8;
+    color: #4a5568;
+    font-weight: 500;
+    &:hover { background: $po-accent; color: #fff; border-color: $po-accent; }
+  }
+  .post-tags .post-tags-all {
+    background: none;
+    border: none;
+    padding: 0.26rem 0.2rem;
+    font-weight: 600;
+    color: $po-accent;
+    &:hover { background: none; color: $po-accent; text-decoration: underline; }
+  }
+  .post-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.7rem;
     margin-top: 2rem;
     padding-top: 1.25rem;
     border-top: 1px solid #eee;

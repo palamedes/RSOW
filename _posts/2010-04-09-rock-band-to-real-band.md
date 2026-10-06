@@ -5,9 +5,12 @@ title: From Rock Band to Real Band
 description: "Rock Band should bridge the gap to real instruments. Imagine graduating from plastic buttons to actually playing the song. That would change everything."
 excerpt: I have been playing the hell out of Rock Band 2.  I very much enjoy it as it's quite fun and challenging. 
 layout: post
-tags:
 categories:
 - Games
+tags:
+- Rock Band
+- Music
+- Game Design
 image: /assets/images/2010/04/rock-band-guitar-decal-150x150.jpg
 ribbon:
 private: false

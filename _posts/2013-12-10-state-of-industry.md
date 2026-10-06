@@ -5,9 +5,15 @@ title: State of the Industry Concerns
 description: "Too many devs call themselves PHP experts but only know WordPress. If jQuery is your thing but you don't know JavaScript, we have a problem."
 excerpt: When your software goes from 'magic' to just another tool in your toolbox that you fully understand, then you can call yourself an expert.  Until then, you have some learning to do.
 layout: post
-tags:
 categories:
 - Software
+tags:
+- PHP
+- WordPress
+- jQuery
+- JavaScript
+- Careers
+- Programming
 image: /assets/images/2013/12/cliff.jpg
 gallery:
 ribbon:

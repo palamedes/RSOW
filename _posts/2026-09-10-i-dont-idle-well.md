@@ -10,6 +10,11 @@ categories:
 - About Me
 - Hobbies
 tags:
+- Woodworking
+- Linux
+- DIY
+- AI
+- Boats
 words: [nas, ssh, jig, cnc-plasma-table]
 description: "Some people can do nothing for six hours and call it a good day. I get about twenty minutes before my brain starts pricing commercial equipment. A confession about projects, boredom, and the half-finished archaeological record in my garage."
 excerpt: "Some people can sit on a couch for six hours and feel like they had a perfectly acceptable day. I get about twenty minutes before some defective part of my brain starts looking around like a Labrador that hasn't been walked. I don't seem capable of simply having a hobby — I price commercial equipment, buy a 36-year-old boat, install Linux and start SSHing into machines from other machines. And half the time the project was never the point. The question was: can I do this? Once the answer is yes, finishing feels like paperwork."

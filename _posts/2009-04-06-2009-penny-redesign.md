@@ -5,9 +5,12 @@ title: 2009 Penny Redesign
 description: "The US Mint redesigned the penny for Lincoln's bicentennial. It costs $0.0167 to make a coin worth $0.01. No wonder we're in debt."
 excerpt: So I wasn't terribly shocked to find a brand new penny in my hand upon receiving change for the breakfast I purchased this morning..  I was however shocked to see that they have been completely redesigned!!
 layout: post
-tags:
 categories:
+- Money
+tags:
 - Rant
+- Government
+- Pet Peeves
 image: /assets/images/2009/04/2009pennyuncobvthumb.jpg
 ribbon:
 private: false

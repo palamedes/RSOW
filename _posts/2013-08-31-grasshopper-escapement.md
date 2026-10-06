@@ -5,11 +5,12 @@ title: Grasshopper Escapement
 description: "Tackling the grasshopper escapement for my wooden clock project. The MLT-13 almost works but the escapement tolerances are killing me."
 excerpt: I started creating my main escape gear measured it to have 30 teeth and made a jig to help.  Sure enough, 29 teeth.. Damn it!  Math is hard!
 layout: post
-tags:
-- Wood Working
-- Clock
 categories:
 - Hobbies
+tags:
+- Clocks
+- Woodworking
+- Scroll Saw
 image: /assets/images/2013/08/grasshopper-escapement01.jpg
 gallery:
 - /assets/images/2013/08/grasshopper-escapement01.jpg

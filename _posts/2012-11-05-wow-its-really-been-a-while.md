@@ -2,9 +2,15 @@
 layout: post
 title: wow it's really been a while
 description: "Life update: still building blog software in Ruby, planning to move from Texas to Georgia, and fighting a 7-year foundation battle with David Weekly."
-tags:
 categories:
+- About Me
+tags:
 - Rant
+- Blogging
+- Ruby
+- WordPress
+- Georgia
+- Family
 excerpt: Hey guys, I'm went dark for quite some time apparently and I didn't really mean to let this much time passed since my last post..
 published: true
 type: post

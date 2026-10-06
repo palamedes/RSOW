@@ -4,8 +4,11 @@ layout: post
 image: /assets/images/2026/keep-lights-on.jpg
 date: 2026-03-20
 categories:
-- Rant
+- Society
 tags:
+- Rant
+- Generations
+- Careers
 description: "Gen-X isn't clinging to power — we're clinging to the breaker panel. Someone has to maintain the infrastructure nobody else wants to run."
 excerpt: "We'd happily hand over the keys tomorrow. But running things is not the same as criticizing things, and nobody's grabbed the clipboard yet."
 ai_notes:

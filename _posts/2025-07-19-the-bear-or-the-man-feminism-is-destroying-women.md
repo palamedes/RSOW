@@ -4,9 +4,11 @@ layout: post
 image: /assets/images/2025/bear-or-man.jpg
 date: 2025-07-19
 categories:
-- Rant
-- Political
+- Society
 tags:
+- Rant
+- Gender
+- Social Media
 description: "Not females — womanhood. The Instagram-TED-Talk mutation that traded hard-won equality for resentment, and taught a generation to pick the grizzly over the guy."
 excerpt: "Feminism is destroying women. Not women as in females — women as in the idea of womanhood. The role. The purpose. Smashed by a movement that was supposed to help."
 ai_notes:

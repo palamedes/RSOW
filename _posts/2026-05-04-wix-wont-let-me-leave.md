@@ -4,9 +4,13 @@ layout: post
 date: 2026-05-04
 image: /assets/images/2026/wix-wont-let-me-leave.png
 categories:
-- Rant
 - Software
+- Money
 tags:
+- Rant
+- Customer Service
+- Web Development
+- Jekyll
 words: [dns, ux, static-file]
 description: "I tried to cancel my Wix account. Four times. They blocked me at every turn. This is what dark patterns look like in the wild."
 excerpt: "I tried to cancel Wix. First they said I couldn't because I had domains pointed at it. Then I couldn't because I had a subscription. Then support couldn't either. Dark patterns aren't a theory — I'm living one right now."

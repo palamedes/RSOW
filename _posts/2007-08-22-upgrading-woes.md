@@ -5,9 +5,16 @@ title: Upgrading Woes
 description: "Trying to upgrade WordPress and Invision Power Board on my ancient colo box means upgrading MySQL and PHP first. Linux: powerful but complex."
 excerpt: Recently I decided it was time to upgrade both my blogging software, and my forum software.  Both are quite far behind the times, and lacking some features I'd very much like to have.
 layout: post
-tags:
 categories:
+- Software
+tags:
 - Rant
+- WordPress
+- PHP
+- Linux
+- Forums
+- Blogging
+- Web Development
 image:
 ribbon:
 tile_size: 1x1

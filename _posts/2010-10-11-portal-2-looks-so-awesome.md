@@ -5,9 +5,12 @@ title: Portal 2 looks so awesome... *gleeeee*
 description: "Portal was a genius 3-hour masterpiece and Portal 2 looks even better. If you haven't played the original, go buy it right now."
 excerpt: So I am a HUGE fan of Portal.. It was quite possibly one of the best 3 hour games I have ever played.. I mean, it was absolutely genius.. 
 layout: post
-tags:
 categories:
 - Games
+tags:
+- Portal
+- Valve
+- PC Gaming
 image: /assets/images/2010/10/Wallpaper01_iPhoneLockScreen-e1286852221988-150x150.jpg
 ribbon:
 private: false

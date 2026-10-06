@@ -5,10 +5,15 @@ title: Warhammer and Warhammer Online
 description: "As a longtime Warhammer tabletop player, Warhammer Online looks like a dated DAOC clone using Blizzard's art style. Disappointed."
 excerpt: I play Warhammer 40k and Warhammer Fantasy table top games.  I also used to play the Warhammer fantasy role playing game when I was in highschool..  Right now I'm doing my damnedest to assemble and paint models for my new Warhammer 40k Orks Army.
 layout: post
-tags:
-- Warhammer
 categories:
 - Games
+tags:
+- Warhammer Online
+- Warhammer 40k
+- Games Workshop
+- MMOs
+- Tabletop Gaming
+- Miniature Painting
 image: /assets/images/2008/07/runtherd.jpg
 ribbon:
 private: false

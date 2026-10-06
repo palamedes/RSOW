@@ -5,10 +5,14 @@ title: "Sometimes you just have to fire a client"
 description: "Clients aren't sacred. Some drain your resources so badly that firing them is the best business decision you can make."
 excerpt: Most people don't really think of clients as "fireable", including clients themselves... Think again.  Sometimes the best thing a company can do is get rid of that problem client by giving them the boot.  
 layout: post
-tags:
- - Business
 categories:
- - Software
+- Software
+- Money
+tags:
+- Freelancing
+- Entrepreneurship
+- Customer Service
+- Careers
 image: /assets/images/2015/01/fired-image-web.jpg
 gallery:
 ribbon:

@@ -5,9 +5,13 @@ title: Hostgator Really Sucks...
 description: "I ditched Hostgator after constant downtime, random SSH port changes, jail shells, and support staff who couldn't find my own account."
 excerpt: I have moved my hosting off Hostgator because frankly, they suck.   My site was suffering repeated down times, crashes, database disconnects, SSH daemon crashes/hangups, ..etc..
 layout: post
-tags:
 categories:
+- Technology
+tags:
 - Rant
+- Customer Service
+- Internet
+- Web Development
 image: /assets/images/2011/06/hostgator_sucks.jpg
 ribbon:
 private: false

@@ -5,10 +5,15 @@ title: 'Game Review: Farcry 2'
 description: "Farcry 2 has a gorgeous engine but terrible gameplay. Bullet-sponge enemies, instant respawns, and Securom DRM that only punishes legit buyers."
 excerpt: Open world game play is all the rage.  The industry has decided that linear is out and that open ended randomness is in!
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- First-Person Shooters
+- Ubisoft
+- PC Gaming
+- Reviews
+- Game Design
+- DRM
 image: /assets/images/2008/10/farcry2pc-150x150.jpg
 ribbon:
 private: false

@@ -5,10 +5,12 @@ title: My kitty Babie
 description: "My cat Babie died yesterday. She was the best kitty friend I ever had, and I will sorely miss her."
 excerpt: Yesterday was a hard day.  Even now I get a lump in my throat thinking about it.  Yesterday my long time pet, companion and friend died.  She had been suffering for a while, and it was finally time to stop that suffering and let her rest.  A hard day indeed.
 layout: post
-tags:
-- Babie
 categories:
+- About Me
+tags:
 - Rant
+- Pets
+- Family
 image: /assets/images/2008/01/babieandme.jpg
 ribbon:
 private: false

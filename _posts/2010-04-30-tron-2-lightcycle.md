@@ -5,9 +5,13 @@ title: Tron 2 Lightcycle
 description: "The Tron Legacy lightcycle is every childhood fantasy made real. Rumor says they're actual working motorcycles. I want one so bad."
 excerpt: I want one.. So I have gone above and beyond out of my way to avoid learning any details about Tron 2.. (Tron Legacy is it's officially called.) ..but it's hard not to see the lightcycle.. And man does it look cool..
 layout: post
-tags:
 categories:
+- Media
+tags:
 - Rant
+- Movies & TV
+- Tron
+- Sci-Fi
 image: /assets/images/2010/04/troncycle01.jpg
 ribbon:
 tile_size: 1x2

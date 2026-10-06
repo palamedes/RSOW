@@ -5,9 +5,14 @@ title: Age of Conan is beginning to annoy me
 description: "Age of Conan's ranger class is broken. No range, bugged combos, and the polish vanishes completely after level 20."
 excerpt: I'm starting to get upset / annoyed with Age of Conan.  Probably it's more fair to say, disappointed -- but you can only scream at your monitor for so long before disappointment spirals down into something else. 
 layout: post
-tags:
 categories:
 - Games
+tags:
+- Age of Conan
+- Funcom
+- MMOs
+- Game Balance
+- RPGs
 image: /assets/images/2008/06/age_of_conan_cover.jpg
 ribbon:
 private: false

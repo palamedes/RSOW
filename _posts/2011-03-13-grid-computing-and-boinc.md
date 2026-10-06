@@ -5,11 +5,12 @@ title: Grid Computing and BOINC
 description: "Why I run BOINC grid computing on my idle PC. It costs me nothing and contributes to projects like SETI@home and cancer research."
 excerpt: I really like the idea of community computing, or grid computing..  I've always thought it was a damn good idea and I always try to leave one running.
 layout: post
-tags:
-- Boinc
 categories:
-- Hobbies
-- Software
+- Technology
+- Science
+tags:
+- Computer Hardware
+- Internet
 image: http://www.boincstats.com/signature/user_238192.gif
 ribbon:
 private: false

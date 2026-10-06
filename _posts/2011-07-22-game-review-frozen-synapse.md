@@ -5,10 +5,13 @@ title: 'Game Review: Frozen Synapse'
 description: "Frozen Synapse is the turn-based tactical multiplayer game I've been craving since XCom. Simple to learn, brutally hard to master."
 excerpt: I have always been a huge fan of the turn based tactical isometric games such as Jagged Alliance, JA2, Xcom..etc..  So this new one excited me!
 layout: post
-tags:
-- Review
 categories:
 - Games
+tags:
+- Reviews
+- Strategy Games
+- PC Gaming
+- Game Design
 image: /assets/images/2011/07/frozensynapse.jpg
 ribbon:
 private: false

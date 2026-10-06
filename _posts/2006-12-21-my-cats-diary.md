@@ -5,9 +5,10 @@ title: My Cats Diary
 description: "A cat's secret diary documenting life as a captive, from plotting escape to decapitating mice and vomiting on furniture as psychological warfare."
 excerpt:
 layout: post
-tags:
 categories:
 - Comedy
+tags:
+- Pets
 image: /assets/images/2006/12/deadmancat.jpg
 ribbon:
 tile_size: 1x1

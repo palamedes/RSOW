@@ -5,9 +5,13 @@ title: Carl Sagan - A Glorious Dawn
 description: "A beautiful music video tribute to Carl Sagan using clips from Cosmos, created by John Boswell at ColorPulse Music."
 excerpt: The following is a wonderful and fitting tribute to Carl Sagan created by John Boswell over at ColorPulse Music.
 layout: post
-tags:
 categories:
+- Science
+- Media
+tags:
 - Rant
+- YouTube
+- Music
 image: /assets/images/2009/09/carl.jpg
 ribbon:
 private: false
