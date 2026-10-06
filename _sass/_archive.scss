@@ -390,6 +390,41 @@ $arc-control-w-min: 11rem;
   }
 }
 
+// ════════════════ MULTI-SELECT ITEMS ════════════════
+// Value items in the Topic and Tag menus are checkboxes: a small box before
+// the name, ticked when checked. Checked items get a light tint instead of
+// the solid fill a single choice used, so several can be on at once without
+// the menu turning into a wall of blue.
+.arc .arc-topic-item[role="menuitemcheckbox"] {
+  .arc-topic-item-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    &::before {
+      content: "";
+      flex: none;
+      width: 0.95rem;
+      height: 0.95rem;
+      border: 1.5px solid #b8c2d3;
+      border-radius: 4px;
+      background: #fff center / 0.7rem no-repeat;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+    }
+  }
+  &.is-active {
+    background: #eaf1fc;
+    color: #1c2330;
+    .arc-topic-item-name::before {
+      background-color: #2673da;
+      border-color: #2673da;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .arc-topic-item-count { color: #2673da; }
+  }
+  &:hover { background: #f2f5f9; }
+  &.is-active:hover { background: #dfeafa; }
+}
+
 // ════════════════ TAG FILTER ════════════════
 // Reuses the Topic dropdown wholesale; only the extras live here.
 .arc .arc-tag-cloud-link {

@@ -51,15 +51,15 @@ full_width: true
         </button>
         <div class="arc-topic-menu" id="arc-topic-menu" role="menu"
              aria-labelledby="arc-topic-trigger" hidden>
-          <button type="button" class="arc-topic-item is-active" role="menuitemradio"
-                  aria-checked="true" data-filter="all" data-label="All">
+          <button type="button" class="arc-topic-item arc-topic-reset is-active" role="menuitem"
+                  data-filter="all" data-label="All">
             <span class="arc-topic-item-name">All</span>
             <span class="arc-topic-item-count">{{ listed.size }}</span>
           </button>
           {% for cat in cats %}
           {% assign n = site.categories[cat] | where_exp: "p", "p.archive != false" | size %}
           {% if n > 0 %}
-          <button type="button" class="arc-topic-item" role="menuitemradio"
+          <button type="button" class="arc-topic-item" role="menuitemcheckbox"
                   aria-checked="false" data-filter="{{ cat }}" data-label="{{ cat }}">
             <span class="arc-topic-item-name">{{ cat }}</span>
             <span class="arc-topic-item-count">{{ n }}</span>
@@ -70,7 +70,8 @@ full_width: true
       </div>
 
       {%- comment -%} Tag filter: the same dropdown as Topic, most-used tags
-      first. Combines with the topic and the search (all three must match). {%- endcomment -%}
+      first. Both dropdowns are multi-select: any checked topic and any checked tag,
+      combined with the search (all three must match). {%- endcomment -%}
       <div class="arc-topic arc-tagpick" id="arc-tag">
         <button type="button" class="arc-topic-trigger" id="arc-tag-trigger"
                 aria-haspopup="true" aria-expanded="false" aria-controls="arc-tag-menu">
@@ -81,13 +82,13 @@ full_width: true
         </button>
         <div class="arc-topic-menu" id="arc-tag-menu" role="menu"
              aria-labelledby="arc-tag-trigger" hidden>
-          <button type="button" class="arc-topic-item is-active" role="menuitemradio"
-                  aria-checked="true" data-filter="all" data-label="Any">
+          <button type="button" class="arc-topic-item arc-topic-reset is-active" role="menuitem"
+                  data-filter="all" data-label="Any">
             <span class="arc-topic-item-name">Any tag</span>
             <span class="arc-topic-item-count">{{ listed.size }}</span>
           </button>
           {% for t in tag_list %}
-          <button type="button" class="arc-topic-item" role="menuitemradio"
+          <button type="button" class="arc-topic-item" role="menuitemcheckbox"
                   aria-checked="false" data-filter="{{ t.name | escape }}" data-label="{{ t.name | escape }}">
             <span class="arc-topic-item-name">{{ t.name }}</span>
             <span class="arc-topic-item-count">{{ t.count }}</span>
@@ -145,28 +146,35 @@ full_width: true
   var gridWrap = grid.parentElement;
 
   var total = cards.length;
-  var activeTopic = 'all';
-  var activeTag = 'all';
+  // Each filter is a list of checked values; empty means no restriction.
+  // Within a list any value may match; across lists everything must.
+  var activeTopics = [];
+  var activeTags = [];
   var batchSize = 8;
   var initialLoad = 16;
   var visibleCount = 0;
 
+  function anyIn(have, want){
+    if(!want.length) return true;
+    for(var i = 0; i < want.length; i++){ if(have.indexOf(want[i]) !== -1) return true; }
+    return false;
+  }
+  function cardCats(card){ return (card.dataset.categories || '').split(','); }
+  function cardTags(card){ return (card.dataset.tags || '').split('|'); }
+
   function getFiltered(){
     var q = search.value.trim().toLowerCase();
     return cards.filter(function(card){
-      var cats = card.dataset.categories || '';
-      var tags = card.dataset.tags || '';
       var text = card.dataset.search || '';
-      var matchCat = activeTopic === 'all' || cats.split(',').indexOf(activeTopic) !== -1;
-      var matchTag = activeTag === 'all' || tags.split('|').indexOf(activeTag) !== -1;
-      var matchSearch = !q || text.indexOf(q) !== -1;
-      return matchCat && matchTag && matchSearch;
+      return anyIn(cardCats(card), activeTopics) &&
+             anyIn(cardTags(card), activeTags) &&
+             (!q || text.indexOf(q) !== -1);
     });
   }
 
   function updateMeta(shown){
     var q = search.value.trim();
-    var pristine = activeTopic === 'all' && activeTag === 'all' && !q;
+    var pristine = !activeTopics.length && !activeTags.length && !q;
     countEl.textContent = pristine
       ? 'Showing all ' + total + ' posts'
       : 'Showing ' + shown + ' of ' + total + ' post' + (total === 1 ? '' : 's');
@@ -216,59 +224,84 @@ full_width: true
     toolbar.classList.toggle('is-stuck', window.scrollY > toolbarTop);
   }, { passive: true });
 
-  // ── dropdowns (Topic and Tag) ──────────────────────────────────────────
-  // Both use the same markup. Selection lives on the menu items; the trigger
-  // just mirrors whichever one is checked, so select() is the single place
-  // that state changes. onPick receives the chosen data-filter value.
-  function Dropdown(prefix, onPick){
+  // ── multi-select dropdowns (Topic and Tag) ─────────────────────────────
+  // Both use the same markup: a reset item ("All" / "Any") and one checkbox
+  // item per value. Clicking a value toggles it and leaves the menu open so
+  // several can be picked; the reset item clears them and closes the menu.
+  // setValues() is the single place a dropdown's state changes. cardValues
+  // reads a card's values for this dropdown, so the trigger can show how many
+  // posts the current selection covers.
+  function Dropdown(prefix, cardValues, onChange){
     var wrap = document.getElementById(prefix);
     var trigger = document.getElementById(prefix + '-trigger');
     var menu = document.getElementById(prefix + '-menu');
     var valueEl = document.getElementById(prefix + '-value');
     var countOut = document.getElementById(prefix + '-count');
     var items = Array.prototype.slice.call(menu.querySelectorAll('.arc-topic-item'));
-    var self = { wrap: wrap, items: items };
+    var resetItem = items.filter(function(b){ return b.dataset.filter === 'all'; })[0];
+    var valueItems = items.filter(function(b){ return b !== resetItem; });
+    var self = { wrap: wrap, values: [] };
 
     function isOpen(){ return trigger.getAttribute('aria-expanded') === 'true'; }
     function open(){
       Dropdown.closeAll(self);
       trigger.setAttribute('aria-expanded', 'true');
       menu.hidden = false;
-      var active = menu.querySelector('.arc-topic-item.is-active') || items[0];
-      if(active) active.focus();
+      var first = menu.querySelector('.arc-topic-item.is-active') || items[0];
+      if(first) first.focus();
     }
     function close(opts){
       trigger.setAttribute('aria-expanded', 'false');
       menu.hidden = true;
       if(opts && opts.focusTrigger) trigger.focus();
     }
-    function select(item, opts){
-      items.forEach(function(b){
-        var on = b === item;
+
+    function setValues(values, opts){
+      opts = opts || {};
+      var want = values.map(function(v){ return v.toLowerCase(); });
+      var picked = [];
+      valueItems.forEach(function(b){
+        var on = want.indexOf(b.dataset.filter.toLowerCase()) !== -1;
         b.classList.toggle('is-active', on);
         b.setAttribute('aria-checked', on ? 'true' : 'false');
+        if(on) picked.push(b.dataset.filter);
       });
-      valueEl.textContent = item.dataset.label;
-      var c = item.querySelector('.arc-topic-item-count');
-      countOut.textContent = c ? c.textContent : '';
-      wrap.classList.toggle('is-filtered', item.dataset.filter !== 'all');
-      onPick(item.dataset.filter, opts || {});
-    }
-    function find(value){
-      var v = (value || '').toLowerCase();
-      return v ? items.filter(function(p){ return p.dataset.filter.toLowerCase() === v; })[0] : items[0];
+      resetItem.classList.toggle('is-active', !picked.length);
+      self.values = picked;
+
+      // trigger: "All", one name, or "First +2"; the bubble counts the posts
+      // the selection covers on its own (before the other filters apply)
+      if(!picked.length){
+        valueEl.textContent = resetItem.dataset.label;
+        countOut.textContent = total;
+      } else {
+        valueEl.textContent = picked[0] + (picked.length > 1 ? ' +' + (picked.length - 1) : '');
+        countOut.textContent = cards.filter(function(c){ return anyIn(cardValues(c), picked); }).length;
+      }
+      wrap.classList.toggle('is-filtered', picked.length > 0);
+      onChange(picked, opts);
     }
 
     trigger.addEventListener('click', function(e){
       e.stopPropagation();
       if(isOpen()) close(); else open();
     });
-    items.forEach(function(p, i){
-      p.addEventListener('click', function(){
-        select(this);
-        close({ focusTrigger: true });
+    resetItem.addEventListener('click', function(){
+      setValues([]);
+      close({ focusTrigger: true });
+    });
+    valueItems.forEach(function(b){
+      b.addEventListener('click', function(e){
+        e.stopPropagation();
+        var v = this.dataset.filter;
+        var next = self.values.slice();
+        var at = next.indexOf(v);
+        if(at === -1) next.push(v); else next.splice(at, 1);
+        setValues(next);
       });
-      // roving focus so the menu is usable without a mouse
+    });
+    // roving focus so the menu is usable without a mouse
+    items.forEach(function(p, i){
       p.addEventListener('keydown', function(e){
         var next = null;
         if(e.key === 'ArrowDown') next = items[(i + 1) % items.length];
@@ -279,7 +312,7 @@ full_width: true
       });
     });
 
-    self.isOpen = isOpen; self.close = close; self.select = select; self.find = find;
+    self.isOpen = isOpen; self.close = close; self.setValues = setValues;
     Dropdown.all.push(self);
     return self;
   }
@@ -288,13 +321,13 @@ full_width: true
     Dropdown.all.forEach(function(d){ if(d !== except && d.isOpen()) d.close(); });
   };
 
-  var topic = Dropdown('arc-topic', function(value, opts){
-    activeTopic = value;
+  var topic = Dropdown('arc-topic', cardCats, function(values, opts){
+    activeTopics = values;
     reset({ correct: !opts.silent });
     if(!opts.fromUrl) syncUrl();
   });
-  var tag = Dropdown('arc-tag', function(value, opts){
-    activeTag = value;
+  var tag = Dropdown('arc-tag', cardTags, function(values, opts){
+    activeTags = values;
     reset({ correct: !opts.silent });
     if(!opts.fromUrl) syncUrl();
   });
@@ -310,15 +343,16 @@ full_width: true
   });
 
   // Mirror the filters into the URL in the same shapes post pages link to:
-  // the topic as the hash (/archive/#Conspiracy%20Theory) and the tag as a
-  // query parameter (/archive/?tag=Taxes), so a filtered view can be
-  // bookmarked or shared, and Back steps out of it. pushState rather than
-  // setting location.hash, which would also try to scroll to a matching id.
+  // topics as the hash (/archive/#Games,Hobbies) and tags as a query
+  // parameter (/archive/?tag=Taxes,Government), so a filtered view can be
+  // bookmarked or shared and Back steps out of it. A single value is the same
+  // URL post pages and the tag cloud already use. replaceState while picking
+  // inside an open menu would lose history; pushState per change is fine.
   function syncUrl(){
     var params = new URLSearchParams(location.search);
-    if(activeTag === 'all') params.delete('tag'); else params.set('tag', activeTag);
-    var qs = params.toString();
-    var hash = activeTopic === 'all' ? '' : '#' + encodeURIComponent(activeTopic);
+    if(activeTags.length) params.set('tag', activeTags.join(',')); else params.delete('tag');
+    var qs = params.toString().replace(/%2C/g, ',');
+    var hash = activeTopics.length ? '#' + activeTopics.map(encodeURIComponent).join(',') : '';
     var url = location.pathname + (qs ? '?' + qs : '') + hash;
     if(url === location.pathname + location.search + location.hash) return;
     history.pushState(null, '', url);
@@ -329,21 +363,27 @@ full_width: true
 
   if(emptyReset) emptyReset.addEventListener('click', function(){
     search.value = '';
-    tag.select(tag.items[0], { silent: true });
-    topic.select(topic.items[0]);
+    tag.setValues([], { silent: true });
+    topic.setValues([]);
   });
 
-  // Deep links: /archive/#Software pre-selects a topic, /archive/?tag=Taxes
-  // a tag (both used by post pages, the tag cloud uses the second). select()
-  // rather than click() so arriving with a filter doesn't yank focus into a
-  // closed menu. Missing values mean All, so Back out of a filter that
-  // syncUrl() pushed lands on the unfiltered list again.
+  // Deep links: /archive/#Software (or #Software,Games) pre-selects topics,
+  // /archive/?tag=Taxes (or ?tag=Taxes,Government) tags. Missing values mean
+  // no filter, so Back out of a filter that syncUrl() pushed lands on the
+  // unfiltered list again.
+  function split(s){
+    return s.split(',').map(function(v){ return v.trim(); }).filter(Boolean);
+  }
+  function same(a, b){
+    return a.length === b.length && a.every(function(v){ return b.indexOf(v) !== -1; });
+  }
   function applyUrl(){
-    var h = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim();
-    var t = (new URLSearchParams(location.search).get('tag') || '').trim();
-    var tm = topic.find(h), gm = tag.find(t);
-    if(gm && !gm.classList.contains('is-active')) tag.select(gm, { fromUrl: true, silent: true });
-    if(tm && !tm.classList.contains('is-active')) topic.select(tm, { fromUrl: true });
+    var hashVals = split((location.hash || '').replace(/^#/, '')).map(function(v){
+      try { return decodeURIComponent(v); } catch(e){ return v; }
+    });
+    var tagVals = split(new URLSearchParams(location.search).get('tag') || '');
+    if(!same(tagVals, tag.values)) tag.setValues(tagVals, { fromUrl: true, silent: true });
+    if(!same(hashVals, topic.values)) topic.setValues(hashVals, { fromUrl: true });
   }
   // Back/Forward across pushState entries fires popstate; a hand-edited hash
   // fires hashchange. Both can fire for one traversal, and applyUrl is a
