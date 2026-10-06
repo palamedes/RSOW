@@ -1,0 +1,30 @@
+{%- comment -%}
+Captioned image: a lightbox-aware image with a visible caption underneath.
+Use this when the caption should show on the page; use img.html when the
+caption should only appear in the lightbox.
+
+Usage:
+  {% include figure.html src="/assets/images/foo.jpg" alt="A bee hovering over a yellow flower" caption="Bee in flight, summer 2013" %}
+  {% include figure.html src="/assets/images/foo.jpg" alt="..." caption="..." align="right" %}
+
+Params:
+  src       — image path (required)
+  alt       — what the image shows, for screen readers and search (recommended;
+              falls back to the caption's plain text)
+  caption   — the line shown under the image and in the lightbox; may contain
+              simple HTML like <strong>. Leave it out for no caption.
+  align     — "right" or "left" floats a half-width figure beside the text;
+              omit for full width
+  width     — max width of the figure, e.g. "420px" (optional)
+  title     — lightbox heading (optional)
+  data_full — full-size image path for the lightbox (defaults to src)
+{%- endcomment -%}
+{%- assign fig_class = "post-figure" -%}
+{%- if include.align == "right" -%}{%- assign fig_class = fig_class | append: " post-figure--right" -%}
+{%- elsif include.align == "left" -%}{%- assign fig_class = fig_class | append: " post-figure--left" -%}{%- endif -%}
+<figure class="{{ fig_class }}"{% if include.width %} style="max-width:{{ include.width }}"{% endif %}>
+  {% include img.html src=include.src alt=include.alt caption=include.caption title=include.title data_full=include.data_full class="post-figure-img" %}
+  {%- if include.caption %}
+  <figcaption class="post-figure-cap">{{ include.caption }}</figcaption>
+  {%- endif %}
+</figure>
