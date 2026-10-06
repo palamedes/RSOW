@@ -3,6 +3,7 @@ title: "Apparently I'm a Wolverine?!"
 layout: post
 date: 2026-10-04
 image: /assets/images/2026/apparently-im-a-wolverine.png
+image_caption: "Apparently this isn't an avatar, it's a surveillance photo..."
 categories:
 - About Me
 - Comedy
