@@ -4,26 +4,26 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
-  # Daily rebuilds so future-dated posts appear on their date (the site
+  # Daily rebuilds so future-dated posts appear on their date. The site's
   # timezone is America/New_York, so a post dated today counts from midnight
-  # Eastern). GitHub runs schedules best-effort: it dropped the Oct 6, 2026
-  # run outright and ran the Oct 7 ones 6-9 hours late. So the first run is
-  # just after midnight and the rest are backups every few hours; with a
-  # delay like that a post still lands by morning, and a rebuild with nothing
-  # new changes nothing.
+  # Eastern.
+  #
+  # These are plain UTC crons on purpose. Oct 5-8, 2026 the schedule used
+  # GitHub's newer per-entry `timezone:` setting, and its runs came 5-9 hours
+  # late or not at all, while a plain-UTC daily schedule in github/docs ran
+  # within minutes on the same days. The times avoid the top of the hour
+  # (GitHub's busiest moment for schedules) and stay after midnight Eastern
+  # in both EDT and EST:
+  #   05:17 UTC = 1:17 AM EDT / 12:17 AM EST   (the one that publishes)
+  #   09:17 UTC = 5:17 AM EDT /  4:17 AM EST   (backup)
+  #   12:17 UTC = 8:17 AM EDT /  7:17 AM EST   (backup)
+  #   16:17 UTC = 12:17 PM EDT / 11:17 AM EST  (backup)
+  # A rebuild with nothing new to publish changes nothing.
   schedule:
-    - cron: "15 0 * * *"
-      timezone: "America/New_York"
-    - cron: "0 3 * * *"
-      timezone: "America/New_York"
-    - cron: "0 6 * * *"
-      timezone: "America/New_York"
-    - cron: "0 8 * * *"
-      timezone: "America/New_York"
-    - cron: "0 10 * * *"
-      timezone: "America/New_York"
-    - cron: "0 12 * * *"
-      timezone: "America/New_York"
+    - cron: "17 5 * * *"
+    - cron: "17 9 * * *"
+    - cron: "17 12 * * *"
+    - cron: "17 16 * * *"
 
 permissions:
   contents: read
