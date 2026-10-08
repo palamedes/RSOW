@@ -4,11 +4,20 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
-  # Daily rebuild so future-dated posts appear on their date. GitHub runs
-  # schedules best-effort and can drop one under load (it skipped Oct 6,
-  # 2026), so 10:00 and 12:00 are backups; a rebuild with nothing new is
-  # harmless.
+  # Daily rebuilds so future-dated posts appear on their date (the site
+  # timezone is America/New_York, so a post dated today counts from midnight
+  # Eastern). GitHub runs schedules best-effort: it dropped the Oct 6, 2026
+  # run outright and ran the Oct 7 ones 6-9 hours late. So the first run is
+  # just after midnight and the rest are backups every few hours; with a
+  # delay like that a post still lands by morning, and a rebuild with nothing
+  # new changes nothing.
   schedule:
+    - cron: "15 0 * * *"
+      timezone: "America/New_York"
+    - cron: "0 3 * * *"
+      timezone: "America/New_York"
+    - cron: "0 6 * * *"
+      timezone: "America/New_York"
     - cron: "0 8 * * *"
       timezone: "America/New_York"
     - cron: "0 10 * * *"
