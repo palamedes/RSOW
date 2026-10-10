@@ -1,0 +1,54 @@
+---
+layout: default
+title: "Work: Projects & Case Studies"
+description: "Case studies from Jason Ellis: AI agents, local AI voice and video, a self-hosted camera system, web applications, and the design and engineering of this site."
+permalink: /build/work/
+full_width: true
+---
+{%- assign b = site.data.build -%}
+{%- assign works = site.build_work | sort: "order" -%}
+<div class="bld">
+  {% include build/nav.html active="work" %}
+
+  <header class="bld-pagehead">
+    <div class="bld-wrap">
+      <p class="bld-eyebrow">Work</p>
+      <h1 class="bld-h1">Things I've built</h1>
+      <p class="bld-lede">Recent projects, most with public source code you can read for yourself. Client work for my employers stays private, so the highlights from my career are on the <a href="{{ b.base | append: '/about/' | relative_url }}">about page</a>.</p>
+      <div class="bld-filter" role="group" aria-label="Filter by service">
+        <button type="button" class="bld-filter-btn is-active" data-filter="all">All</button>
+        {%- for s in b.services %}
+        {%- assign n = works | where_exp: "w", "w.services contains s.key" | size %}
+        {%- if n > 0 %}<button type="button" class="bld-filter-btn" data-filter="{{ s.key }}">{{ s.title }} <span>{{ n }}</span></button>{% endif %}
+        {%- endfor %}
+      </div>
+    </div>
+  </header>
+
+  <section class="bld-section bld-section--tight">
+    <div class="bld-wrap">
+      <div class="bld-grid bld-grid--3" id="bld-work-grid">
+        {%- for w in works %}
+        <div class="bld-grid-item" data-services="{{ w.services | join: ' ' }}">{% include build/work-card.html work=w %}</div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include build/cta.html %}
+</div>
+<script>
+(function(){
+  var btns = document.querySelectorAll('.bld-filter-btn');
+  var items = document.querySelectorAll('#bld-work-grid .bld-grid-item');
+  btns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      btns.forEach(function(b){ b.classList.toggle('is-active', b === btn); });
+      var f = btn.dataset.filter;
+      items.forEach(function(it){
+        it.hidden = !(f === 'all' || (' ' + it.dataset.services + ' ').indexOf(' ' + f + ' ') !== -1);
+      });
+    });
+  });
+})();
+</script>

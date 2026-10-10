@@ -1,0 +1,112 @@
+---
+layout: default
+title: "Software, Web & AI Development"
+description: "Custom web applications, web design, AI integration and technical leadership from Jason Ellis: 25+ years shipping software, from IBM to a healthcare EMR. Tell me what you're trying to build."
+permalink: /build/
+full_width: true
+---
+{%- assign b = site.data.build -%}
+{%- assign works = site.build_work | sort: "order" -%}
+<div class="bld">
+  {% include build/nav.html active="" %}
+
+  <section class="bld-hero">
+    <div class="bld-hero-bg" aria-hidden="true"></div>
+    <div class="bld-wrap bld-hero-inner">
+      <div class="bld-hero-copy">
+        <p class="bld-eyebrow">Software · Web design · AI · Technical leadership</p>
+        <h1 class="bld-h1 bld-h1--hero">You know what you need built.<br><span>I've been building it since 1997.</span></h1>
+        <p class="bld-lede">I'm {{ b.name }}, Head of Development at a healthcare software company by day. I design and build web applications, websites and practical AI for businesses that want it done right the first time, explained in plain English.</p>
+        <div class="bld-hero-actions">
+          <a class="bld-btn" href="{{ b.base | append: '/start/' | relative_url }}">Start a project {% include build/icon.html name="arrow" %}</a>
+          <a class="bld-btn bld-btn--ghost-light" href="{{ b.base | append: '/work/' | relative_url }}">See the work</a>
+        </div>
+      </div>
+      <div class="bld-hero-term" aria-hidden="true">
+        <div class="bld-term-bar"><span></span><span></span><span></span><em>~/your-idea</em></div>
+<pre class="bld-term-body"><b>$</b> describe "the thing my business needs"
+<i>→ talk</i>      plain English, no spec required
+<i>→ plan</i>      scope, order, cost, timeline
+<i>→ build</i>     working pieces, every week
+<i>→ launch</i>    deployed, monitored, documented
+<b>$</b> <span class="bld-caret"></span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section class="bld-proof" aria-label="Credentials">
+    <div class="bld-wrap bld-proof-inner">
+      {%- for p in b.proof %}
+      <div class="bld-proof-item"><strong>{{ p.figure }}</strong><span>{{ p.label }}</span></div>
+      {%- endfor %}
+    </div>
+  </section>
+
+  <section class="bld-section">
+    <div class="bld-wrap">
+      <div class="bld-section-head">
+        <p class="bld-eyebrow">What I do</p>
+        <h2 class="bld-h2">Six ways I can help</h2>
+        <p>From a single landing page to a product your customers log into every day, and the AI and leadership around it.</p>
+      </div>
+      <div class="bld-grid bld-grid--3">
+        {%- for s in b.services %}
+        <a class="bld-svc" href="{{ b.base | append: '/services/#' | append: s.key | relative_url }}">
+          <span class="bld-svc-icon">{% include build/icon.html name=s.icon %}</span>
+          <h3>{{ s.title }}</h3>
+          <p>{{ s.short }}</p>
+          <span class="bld-more">Learn more {% include build/icon.html name="arrow" %}</span>
+        </a>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bld-section bld-section--tint">
+    <div class="bld-wrap">
+      <div class="bld-section-head">
+        <p class="bld-eyebrow">Recent work</p>
+        <h2 class="bld-h2">Things I've built lately</h2>
+        <p>Real projects, with real source code you can read. From AI agents to camera systems to the site you're on right now.</p>
+      </div>
+      <div class="bld-grid bld-grid--3">
+        {%- for w in works limit: 6 %}{% include build/work-card.html work=w %}{% endfor %}
+      </div>
+      <p class="bld-center"><a class="bld-btn bld-btn--ghost" href="{{ b.base | append: '/work/' | relative_url }}">All {{ works.size }} projects {% include build/icon.html name="arrow" %}</a></p>
+    </div>
+  </section>
+
+  <section class="bld-section">
+    <div class="bld-wrap">
+      <div class="bld-section-head">
+        <p class="bld-eyebrow">How it works</p>
+        <h2 class="bld-h2">No mystery, no big reveal</h2>
+      </div>
+      <ol class="bld-steps">
+        {%- for p in b.process %}
+        <li class="bld-step"><span class="bld-step-n">{{ forloop.index }}</span><h3>{{ p.title }}</h3><p>{{ p.body }}</p></li>
+        {%- endfor %}
+      </ol>
+      <p class="bld-center"><a class="bld-link" href="{{ b.base | append: '/how-i-work/' | relative_url }}">How I work, ways to engage, and FAQ {% include build/icon.html name="arrow" %}</a></p>
+    </div>
+  </section>
+
+  <section class="bld-section bld-section--ink">
+    <div class="bld-wrap bld-split">
+      <div>
+        <p class="bld-eyebrow">Who you'd be working with</p>
+        <h2 class="bld-h2">Twenty-five years, and the scars to prove it</h2>
+        <p>I've architected the UI for an IBM flagship product, run engineering as a CTO, helped build a coding bootcamp, built and sold my own company, and today lead development on a healthcare EMR used by therapists across the country.</p>
+        <p>Before all that, I was an Army signals intelligence analyst and Korean linguist. I've also worked patrol as a police officer. I don't rattle easily, and I explain things like a person.</p>
+        <a class="bld-link bld-link--light" href="{{ b.base | append: '/about/' | relative_url }}">The full story {% include build/icon.html name="arrow" %}</a>
+      </div>
+      <ul class="bld-timeline bld-timeline--compact">
+        {%- for c in b.career limit: 5 %}
+        <li><span class="bld-tl-when">{{ c.when }}</span><strong>{{ c.role }}</strong><span class="bld-tl-org">{{ c.org }}</span></li>
+        {%- endfor %}
+      </ul>
+    </div>
+  </section>
+
+  {% include build/cta.html %}
+</div>

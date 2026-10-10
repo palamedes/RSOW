@@ -1,0 +1,182 @@
+---
+layout: default
+title: "Start a Project"
+description: "Tell Jason Ellis what you'd like built: a website, a web application, AI features, help with existing code or technical advice. A few short steps; no spec required."
+permalink: /build/start/
+full_width: true
+---
+{%- comment -%}
+  The project request form: four short steps, then a review. Links can
+  pre-fill it: ?need=<service key> ticks a need, ?ref=<case study slug> notes
+  which project sent them. Submits to site.data.build.form_endpoint; while
+  that's blank the form still works but says so honestly and offers to copy
+  the request (or email it, if build.email is set) instead of pretending to
+  send. Script: assets/js/build-form.js.
+{%- endcomment -%}
+{%- assign b = site.data.build -%}
+<div class="bld">
+  {% include build/nav.html active="start" %}
+
+  <header class="bld-pagehead bld-pagehead--form">
+    <div class="bld-wrap">
+      <p class="bld-eyebrow">Start a project</p>
+      <h1 class="bld-h1">Tell me what you're trying to build</h1>
+      <p class="bld-lede">Four quick steps. You don't need a spec, a budget or the right vocabulary, just the problem you want solved. I read every request myself.</p>
+    </div>
+  </header>
+
+  <section class="bld-section bld-section--tight">
+    <div class="bld-wrap bld-form-layout">
+      <form class="bld-form" id="bld-form" novalidate
+            data-endpoint="{{ b.form_endpoint }}" data-email="{{ b.email }}"
+            {% if b.form_endpoint != "" %}action="{{ b.form_endpoint }}" method="post"{% endif %}>
+
+        <ol class="bld-progress" aria-label="Progress">
+          <li class="is-current" data-step-dot="1"><span>1</span> Need</li>
+          <li data-step-dot="2"><span>2</span> Project</li>
+          <li data-step-dot="3"><span>3</span> Timing</li>
+          <li data-step-dot="4"><span>4</span> You</li>
+        </ol>
+
+        <p class="bld-form-ref" id="bld-ref" hidden></p>
+        <input type="hidden" name="referred_by" id="bld-ref-input" value="">
+        {%- comment -%} spam trap: humans never see or fill this {%- endcomment -%}
+        <div class="bld-hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+        <!-- ── Step 1 ── -->
+        <fieldset class="bld-step-panel" data-step="1">
+          <legend class="bld-legend">What do you need help with?</legend>
+          <p class="bld-hint">Pick as many as apply.</p>
+          <div class="bld-choices bld-choices--cards">
+            {%- for n in b.form.needs %}
+            {%- assign svc = b.services | where: "key", n.key | first %}
+            <label class="bld-choice">
+              <input type="checkbox" name="needs" value="{{ n.label }}" data-key="{{ n.key }}">
+              <span class="bld-choice-box">
+                <span class="bld-choice-ico">{% if svc %}{% include build/icon.html name=svc.icon %}{% else %}{% include build/icon.html name="chat" %}{% endif %}</span>
+                <span>{{ n.label }}</span>
+              </span>
+            </label>
+            {%- endfor %}
+          </div>
+          <p class="bld-error" data-error-for="needs" hidden>Pick at least one, even "Not sure yet."</p>
+        </fieldset>
+
+        <!-- ── Step 2 ── -->
+        <fieldset class="bld-step-panel" data-step="2" hidden>
+          <legend class="bld-legend">Tell me about the project</legend>
+          <div class="bld-field">
+            <span class="bld-label" id="stage-label">Where is it today?</span>
+            <div class="bld-choices bld-choices--pills" role="radiogroup" aria-labelledby="stage-label">
+              {%- for s in b.form.stages %}
+              <label class="bld-pill"><input type="radio" name="stage" value="{{ s }}"><span>{{ s }}</span></label>
+              {%- endfor %}
+            </div>
+          </div>
+          <div class="bld-field">
+            <label class="bld-label" for="bld-desc">What are you trying to do? <em>(required)</em></label>
+            <textarea class="bld-input" id="bld-desc" name="description" rows="7" required
+                      placeholder="In plain language: what problem are you solving, who is it for, and what would 'done' look like? Links and examples welcome."></textarea>
+            <p class="bld-error" data-error-for="description" hidden>A sentence or two is plenty to start.</p>
+          </div>
+          <div class="bld-field">
+            <label class="bld-label" for="bld-url">Existing website or app <em>(optional)</em></label>
+            <input class="bld-input" id="bld-url" name="existing_url" type="url" inputmode="url" placeholder="https://">
+          </div>
+        </fieldset>
+
+        <!-- ── Step 3 ── -->
+        <fieldset class="bld-step-panel" data-step="3" hidden>
+          <legend class="bld-legend">Timing and budget</legend>
+          <p class="bld-hint">Rough answers are fine. They help me suggest an approach that fits, not set a price.</p>
+          <div class="bld-field">
+            <span class="bld-label" id="time-label">When would you like it?</span>
+            <div class="bld-choices bld-choices--pills" role="radiogroup" aria-labelledby="time-label">
+              {%- for t in b.form.timelines %}
+              <label class="bld-pill"><input type="radio" name="timeline" value="{{ t }}"><span>{{ t }}</span></label>
+              {%- endfor %}
+            </div>
+          </div>
+          <div class="bld-field">
+            <span class="bld-label" id="budget-label">Budget range</span>
+            <div class="bld-choices bld-choices--pills" role="radiogroup" aria-labelledby="budget-label">
+              {%- for t in b.form.budgets %}
+              <label class="bld-pill"><input type="radio" name="budget" value="{{ t }}"><span>{{ t }}</span></label>
+              {%- endfor %}
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- ── Step 4 ── -->
+        <fieldset class="bld-step-panel" data-step="4" hidden>
+          <legend class="bld-legend">How do I reach you?</legend>
+          <div class="bld-row-2">
+            <div class="bld-field">
+              <label class="bld-label" for="bld-name">Name <em>(required)</em></label>
+              <input class="bld-input" id="bld-name" name="name" type="text" autocomplete="name" required>
+              <p class="bld-error" data-error-for="name" hidden>What should I call you?</p>
+            </div>
+            <div class="bld-field">
+              <label class="bld-label" for="bld-email">Email <em>(required)</em></label>
+              <input class="bld-input" id="bld-email" name="email" type="email" autocomplete="email" required>
+              <p class="bld-error" data-error-for="email" hidden>I need a working email to reply.</p>
+            </div>
+          </div>
+          <div class="bld-row-2">
+            <div class="bld-field">
+              <label class="bld-label" for="bld-company">Company or organization <em>(optional)</em></label>
+              <input class="bld-input" id="bld-company" name="company" type="text" autocomplete="organization">
+            </div>
+            <div class="bld-field">
+              <label class="bld-label" for="bld-heard">How did you find me? <em>(optional)</em></label>
+              <input class="bld-input" id="bld-heard" name="heard_about" type="text">
+            </div>
+          </div>
+          <div class="bld-review" id="bld-review" aria-live="polite"></div>
+        </fieldset>
+
+        <div class="bld-form-nav">
+          <button type="button" class="bld-btn bld-btn--ghost" id="bld-back" hidden>Back</button>
+          <span class="bld-form-step-label" id="bld-step-label">Step 1 of 4</span>
+          <button type="button" class="bld-btn" id="bld-next">Next {% include build/icon.html name="arrow" %}</button>
+          <button type="submit" class="bld-btn" id="bld-submit" hidden>Send request</button>
+        </div>
+      </form>
+
+      <!-- Shown after submitting -->
+      <div class="bld-done" id="bld-done" hidden tabindex="-1">
+        <span class="bld-done-ico">{% include build/icon.html name="check" %}</span>
+        <h2 class="bld-h2" id="bld-done-title">Request sent. Thank you!</h2>
+        <p id="bld-done-text">I read every request myself and will reply by email, usually within a couple of business days.</p>
+        <div class="bld-offline" id="bld-offline" hidden>
+          <p>The online form isn't connected yet, so nothing was sent. Here's your request, ready to copy into an email or a message:</p>
+          <textarea class="bld-input bld-offline-text" id="bld-offline-text" rows="12" readonly></textarea>
+          <div class="bld-offline-actions">
+            <button type="button" class="bld-btn bld-btn--sm" id="bld-copy">Copy request</button>
+            <a class="bld-btn bld-btn--sm bld-btn--ghost" id="bld-mailto" hidden>Email it instead</a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="bld-form-aside">
+        <h2 class="bld-side-h">What happens next</h2>
+        <ol class="bld-next-steps">
+          <li><strong>I read it.</strong> Personally, not a sales team.</li>
+          <li><strong>I reply</strong> with questions, or a time to talk.</li>
+          <li><strong>You get a plan</strong>: what I'd build, in what order, and roughly what it costs.</li>
+        </ol>
+        <p class="bld-muted">No obligation, and if I'm not the right fit I'll say so.</p>
+        <p class="bld-muted">Prefer to look around first? <a href="{{ b.base | append: '/work/' | relative_url }}">See the work</a> or read the <a href="{{ b.base | append: '/how-i-work/#faq' | relative_url }}">FAQ</a>.</p>
+      </aside>
+    </div>
+  </section>
+</div>
+
+<script type="application/json" id="bld-refs">
+{
+  {%- for w in site.build_work %}
+  {{ w.url | split: '/' | last | jsonify }}: {{ w.title | jsonify }}{% unless forloop.last %},{% endunless %}
+  {%- endfor %}
+}
+</script>
+<script src="{{ '/assets/js/build-form.js' | relative_url }}" defer></script>

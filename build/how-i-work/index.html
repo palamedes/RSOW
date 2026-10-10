@@ -1,0 +1,73 @@
+---
+layout: default
+title: "How I Work: Process, Engagements & FAQ"
+description: "How a project with Jason Ellis runs: a conversation, a written plan, weekly working builds, and a documented launch. Project, ongoing and advisory engagements, plus answers to common questions."
+permalink: /build/how-i-work/
+full_width: true
+---
+{%- assign b = site.data.build -%}
+<div class="bld">
+  {% include build/nav.html active="how-i-work" %}
+
+  <header class="bld-pagehead">
+    <div class="bld-wrap">
+      <p class="bld-eyebrow">How I work</p>
+      <h1 class="bld-h1">Straightforward, start to finish</h1>
+      <p class="bld-lede">You should always know what's being built, why, and what it costs. Here's how that works in practice.</p>
+    </div>
+  </header>
+
+  <section class="bld-section">
+    <div class="bld-wrap">
+      <h2 class="bld-h2">The process</h2>
+      <ol class="bld-steps">
+        {%- for p in b.process %}
+        <li class="bld-step"><span class="bld-step-n">{{ forloop.index }}</span><h3>{{ p.title }}</h3><p>{{ p.body }}</p></li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </section>
+
+  <section class="bld-section bld-section--tint">
+    <div class="bld-wrap">
+      <h2 class="bld-h2">Ways to work together</h2>
+      <div class="bld-grid bld-grid--3">
+        {%- for e in b.engagements %}
+        <div class="bld-engage">
+          <h3>{{ e.title }}</h3>
+          <p>{{ e.blurb }}</p>
+          <p class="bld-engage-best"><strong>Best for:</strong> {{ e.best }}</p>
+        </div>
+        {%- endfor %}
+      </div>
+      <p class="bld-muted bld-center">{% if b.rates_note != "" %}{{ b.rates_note }}{% else %}Every project is quoted after a conversation, because "it depends" is the honest answer until I know what you need.{% endif %}</p>
+    </div>
+  </section>
+
+  <section class="bld-section">
+    <div class="bld-wrap">
+      <h2 class="bld-h2">What you can count on</h2>
+      <div class="bld-grid bld-grid--3">
+        {%- for p in b.principles %}
+        <div class="bld-principle"><h3>{{ p.title }}</h3><p>{{ p.body }}</p></div>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bld-section bld-section--tint" id="faq">
+    <div class="bld-wrap bld-narrow">
+      <h2 class="bld-h2">Questions people ask</h2>
+      <div class="bld-faq">
+        {%- for f in b.faq %}
+        <details class="bld-faq-item"{% if forloop.first %} open{% endif %}>
+          <summary>{{ f.q }}</summary>
+          <p>{{ f.a }}</p>
+        </details>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include build/cta.html %}
+</div>

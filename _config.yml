@@ -70,6 +70,12 @@ collections:
     # Keep page URLs at the site root (e.g. /hire/) instead of /pages/hire/.
     # Per-page `permalink:` front matter still overrides this.
     permalink: /:path/
+  # /build/ — the "work with me" section. One file per case study; the work
+  # grid, service pages and detail pages read from here. Settings and copy
+  # live in _data/build.yml.
+  build_work:
+    output: true
+    permalink: /build/work/:name/
   # Tinkered Tactile — the maker-shop site at /tinkered-tactile/. One file per
   # piece of work; the gallery, category pages and detail pages all read from
   # here. See _tools/README-tinkered-tactile.md.
@@ -104,6 +110,11 @@ defaults:
       type: tt_work
     values:
       layout: tt-work
+  - scope:
+      path: ""
+      type: build_work
+    values:
+      layout: build-work
 
 # Plugins
 plugins:

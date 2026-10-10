@@ -1,0 +1,20 @@
+{%- comment -%}
+  The /build/ section bar: sticky under the site header, with the section's
+  own links and a "Start a project" button. Pass active="services" etc.
+{%- endcomment -%}
+{%- assign b = site.data.build -%}
+<nav class="bld-nav" aria-label="Work with me">
+  <div class="bld-wrap bld-nav-inner">
+    <a class="bld-nav-brand" href="{{ b.base | append: '/' | relative_url }}">
+      <span class="bld-nav-mark" aria-hidden="true">{% include build/icon.html name="code" %}</span>
+      <span><strong>{{ b.name }}</strong> <span class="bld-nav-sub">Software · Web · AI</span></span>
+    </a>
+    <ul class="bld-nav-links">
+      {%- for item in b.nav %}
+      {%- assign slug = item.url | split: '/' | last %}
+      <li><a href="{{ item.url | relative_url }}"{% if include.active == slug %} class="is-active" aria-current="page"{% endif %}>{{ item.title }}</a></li>
+      {%- endfor %}
+    </ul>
+    <a class="bld-btn bld-btn--sm" href="{{ b.base | append: '/start/' | relative_url }}">Start a project</a>
+  </div>
+</nav>

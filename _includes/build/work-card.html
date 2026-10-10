@@ -1,0 +1,26 @@
+{%- comment -%}
+  A case-study card. The cover is either a real screenshot (page.shot) or a
+  designed cover built from the project's color, icon and headline stat.
+  Usage: {% include build/work-card.html work=w %}
+{%- endcomment -%}
+{%- assign w = include.work -%}
+<a class="bld-card" href="{{ w.url | relative_url }}">
+  {%- if w.shot %}
+  <div class="bld-card-cover bld-card-cover--shot" style="--bld-hue: {{ w.hue | default: 215 }}">
+    <img src="{{ w.shot | relative_url }}" alt="{{ w.shot_alt | default: w.title | escape }}" loading="lazy">
+  </div>
+  {%- else %}
+  <div class="bld-card-cover" style="--bld-hue: {{ w.hue | default: 215 }}">
+    <span class="bld-card-icon">{% include build/icon.html name=w.icon %}</span>
+    {%- if w.stat %}<span class="bld-card-stat">{{ w.stat }}</span>{% endif %}
+  </div>
+  {%- endif %}
+  <div class="bld-card-body">
+    <p class="bld-card-kind">{{ w.kind }}</p>
+    <h3 class="bld-card-title">{{ w.title }}</h3>
+    <p class="bld-card-summary">{{ w.summary }}</p>
+    <ul class="bld-chips">
+      {%- for t in w.stack limit: 4 %}<li>{{ t }}</li>{% endfor -%}
+    </ul>
+  </div>
+</a>

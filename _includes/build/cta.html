@@ -1,0 +1,12 @@
+{%- comment -%} Closing call to action used at the bottom of every /build/ page. {%- endcomment -%}
+{%- assign b = site.data.build -%}
+<section class="bld-cta">
+  <div class="bld-wrap bld-cta-inner">
+    <div>
+      <h2>{{ include.title | default: "Have something in mind?" }}</h2>
+      <p>{{ include.text | default: "Tell me what you're trying to do in plain language. No spec, no jargon required. I'll read it myself and get back to you." }}</p>
+      {%- if b.availability != "" %}<p class="bld-cta-avail">{{ b.availability }}</p>{% endif %}
+    </div>
+    <a class="bld-btn bld-btn--light" href="{{ b.base | append: '/start/' | relative_url }}">Start a project {% include build/icon.html name="arrow" %}</a>
+  </div>
+</section>

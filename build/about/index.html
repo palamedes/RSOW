@@ -1,0 +1,48 @@
+---
+layout: default
+title: "About Jason Ellis: Developer, Leader, Former Soldier & Cop"
+description: "Jason Ellis has shipped software since 1997: IBM Rational Build Forge, CTO of Grok Interactive, founder of Palavista, and Head of Development at Ambiki, with stints in Army signals intelligence and law enforcement."
+permalink: /build/about/
+full_width: true
+---
+{%- assign b = site.data.build -%}
+<div class="bld">
+  {% include build/nav.html active="about" %}
+
+  <header class="bld-pagehead">
+    <div class="bld-wrap bld-about-head">
+      <div>
+        <p class="bld-eyebrow">About</p>
+        <h1 class="bld-h1">Hi, I'm Jason.</h1>
+        <p class="bld-lede">A calm, considerate problem solver who has been writing software professionally since 1997. I'm self-taught, I've led teams and companies, and I still love the moment something I built starts working.</p>
+        <p class="bld-about-links"><a href="/resume/">Full résumé</a> · <a href="https://www.linkedin.com/in/jasonellis">LinkedIn</a> · <a href="https://github.com/palamedes">GitHub</a></p>
+      </div>
+      <figure class="bld-portrait">
+        <img src="{{ '/assets/images/jason-headshot-2026.jpg' | relative_url }}" alt="Jason Ellis">
+      </figure>
+    </div>
+  </header>
+
+  <section class="bld-section">
+    <div class="bld-wrap bld-split bld-split--wide">
+      <div class="bld-prose">
+        <h2>The short version</h2>
+        <p>Today I'm <strong>Head of Development at Ambiki</strong>, an EMR built for pediatric speech, occupational and physical therapists, and a senior engineer at its sister company, Sidekick Therapy Partners. Before that I co-founded and ran engineering at a web shop, architected the web interface for an IBM product, and built and sold my own company in 2000.</p>
+        <p>My path hasn't been a straight line. I learned discipline and Korean as an <strong>Army signals intelligence analyst</strong>, and I've twice stepped away from software to work as a <strong>police officer and sheriff's deputy</strong>. Each time I came back to building things, which is the part I can't stay away from.</p>
+        <p>What that adds up to for you: someone who has seen how software succeeds and fails across a quarter century, who stays calm when things go sideways, and who will tell you the truth about your project, including when the right answer is not to build it.</p>
+        <h2>How I build today</h2>
+        <p>Ruby on Rails and PostgreSQL for most applications, Hotwire and modern JavaScript on the front end, static sites when a server isn't needed, and boring, inexpensive infrastructure. I use modern AI tools every day. I'm faster and more thorough for it, and every line still gets my review.</p>
+      </div>
+      <div>
+        <h3 class="bld-side-h">Career highlights</h3>
+        <ul class="bld-timeline">
+          {%- for c in b.career %}
+          <li><span class="bld-tl-when">{{ c.when }}</span><strong>{{ c.role }}</strong><span class="bld-tl-org">{{ c.org }}</span><p>{{ c.note }}</p></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {% include build/cta.html title="Let's talk about your project" %}
+</div>

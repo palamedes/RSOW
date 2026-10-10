@@ -1,0 +1,74 @@
+---
+layout: default
+full_width: true
+---
+{%- comment -%}
+  A /build/ case study (one file in _build_work/). Front matter supplies the
+  header (kind, summary, facts, links, cover); the body is the story.
+{%- endcomment -%}
+{%- assign b = site.data.build -%}
+{%- assign w = page -%}
+<div class="bld">
+  {% include build/nav.html active="work" %}
+
+  <header class="bld-case-head" style="--bld-hue: {{ w.hue | default: 215 }}">
+    <div class="bld-wrap bld-case-head-inner">
+      <div>
+        <p class="bld-eyebrow"><a href="{{ b.base | append: '/work/' | relative_url }}">Work</a> · {{ w.kind }}</p>
+        <h1 class="bld-h1">{{ w.title }}</h1>
+        <p class="bld-lede">{{ w.summary }}</p>
+        <div class="bld-case-links">
+          {%- if w.live %}<a class="bld-btn bld-btn--sm" href="{{ w.live }}">See it live {% include build/icon.html name="arrow" %}</a>{% endif %}
+          {%- if w.repo %}<a class="bld-btn bld-btn--sm bld-btn--ghost" href="{{ w.repo }}">{% include build/icon.html name="github" %} Source on GitHub</a>{% endif %}
+        </div>
+      </div>
+      <div class="bld-case-cover">
+        {%- if w.shot %}
+        <img src="{{ w.shot | relative_url }}" alt="{{ w.shot_alt | default: w.title | escape }}">
+        {%- else %}
+        <div class="bld-card-cover bld-card-cover--big">
+          <span class="bld-card-icon">{% include build/icon.html name=w.icon %}</span>
+          {%- if w.stat %}<span class="bld-card-stat">{{ w.stat }}</span>{% endif %}
+        </div>
+        {%- endif %}
+      </div>
+    </div>
+  </header>
+
+  <div class="bld-wrap bld-case">
+    <article class="bld-prose">
+      {{ content }}
+    </article>
+
+    <aside class="bld-case-side">
+      <dl class="bld-facts">
+        <div><dt>Year</dt><dd>{{ w.year }}</dd></div>
+        {%- for f in w.facts %}
+        <div><dt>{{ f.k }}</dt><dd>{{ f.v }}</dd></div>
+        {%- endfor %}
+      </dl>
+      <h3 class="bld-side-h">Built with</h3>
+      <ul class="bld-chips">{% for t in w.stack %}<li>{{ t }}</li>{% endfor %}</ul>
+      <h3 class="bld-side-h">Services involved</h3>
+      <ul class="bld-side-links">
+        {%- for key in w.services %}
+        {%- assign svc = b.services | where: "key", key | first %}
+        {%- if svc %}<li><a href="{{ b.base | append: '/services/#' | append: svc.key | relative_url }}">{% include build/icon.html name=svc.icon %} {{ svc.title }}</a></li>{% endif %}
+        {%- endfor %}
+      </ul>
+      <a class="bld-btn bld-btn--block" href="{{ b.base | append: '/start/' | relative_url }}?ref={{ w.slug | default: page.name | remove: '.md' }}">Want something like this?</a>
+    </aside>
+  </div>
+
+  {%- assign others = site.build_work | sort: "order" | where_exp: "o", "o.url != page.url" %}
+  <section class="bld-section bld-section--tint">
+    <div class="bld-wrap">
+      <h2 class="bld-h2">More work</h2>
+      <div class="bld-grid bld-grid--3">
+        {%- for o in others limit: 3 %}{% include build/work-card.html work=o %}{% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include build/cta.html %}
+</div>

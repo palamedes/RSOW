@@ -1,0 +1,56 @@
+---
+layout: default
+title: "Services: Web Design, Web Apps, AI & Leadership"
+description: "Web design and UX, custom web applications in Ruby on Rails, AI integration and automation, legacy code rescue, technical leadership and small-business sites, from a developer with 25+ years of experience."
+permalink: /build/services/
+full_width: true
+---
+{%- assign b = site.data.build -%}
+<div class="bld">
+  {% include build/nav.html active="services" %}
+
+  <header class="bld-pagehead">
+    <div class="bld-wrap">
+      <p class="bld-eyebrow">Services</p>
+      <h1 class="bld-h1">What I can build for you</h1>
+      <p class="bld-lede">Six kinds of work, often mixed together. Not sure which you need? That's normal. <a href="{{ b.base | append: '/start/' | relative_url }}">Describe the problem</a> and I'll tell you.</p>
+      <ul class="bld-jump">
+        {%- for s in b.services %}<li><a href="#{{ s.key }}">{% include build/icon.html name=s.icon %} {{ s.title }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </header>
+
+  {%- for s in b.services %}
+  <section class="bld-section bld-svc-detail{% cycle '', ' bld-section--tint' %}" id="{{ s.key }}">
+    <div class="bld-wrap bld-split bld-split--wide">
+      <div>
+        <span class="bld-svc-icon bld-svc-icon--lg">{% include build/icon.html name=s.icon %}</span>
+        <h2 class="bld-h2">{{ s.title }}</h2>
+        <p class="bld-lede-sm">{{ s.short }}</p>
+        <p>{{ s.body }}</p>
+        <a class="bld-btn bld-btn--sm" href="{{ b.base | append: '/start/' | relative_url }}?need={{ s.key }}">Ask about {{ s.title }} {% include build/icon.html name="arrow" %}</a>
+      </div>
+      <div>
+        <h3 class="bld-side-h">What you get</h3>
+        <ul class="bld-checks">
+          {%- for g in s.gets %}<li>{% include build/icon.html name="check" %}<span>{{ g }}</span></li>{% endfor %}
+        </ul>
+        {%- if s.examples.size > 0 %}
+        <h3 class="bld-side-h">Examples</h3>
+        <ul class="bld-mini-work">
+          {%- for key in s.examples %}
+          {%- assign w = site.build_work | where_exp: "x", "x.url contains key" | first %}
+          {%- if w %}<li><a href="{{ w.url | relative_url }}"><span class="bld-mini-ico" style="--bld-hue: {{ w.hue | default: 215 }}">{% include build/icon.html name=w.icon %}</span><span><strong>{{ w.title }}</strong><em>{{ w.kind }}</em></span></a></li>{% endif %}
+          {%- endfor %}
+        </ul>
+        {%- else %}
+        <h3 class="bld-side-h">Background</h3>
+        <p class="bld-muted">CTO of Grok Interactive, now Head of Development at Ambiki. See the <a href="{{ b.base | append: '/about/' | relative_url }}">full history</a>.</p>
+        {%- endif %}
+      </div>
+    </div>
+  </section>
+  {%- endfor %}
+
+  {% include build/cta.html title="Not sure which of these you need?" text="Most projects are a mix. Tell me what you're trying to accomplish and I'll suggest the simplest way to get there." %}
+</div>

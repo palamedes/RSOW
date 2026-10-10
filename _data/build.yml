@@ -1,0 +1,239 @@
+# ════════════════════════════════════════════════════════════════════════
+#  /build/ — the "work with me" section: services, examples, a project form.
+#  Everything about Jason here comes from the résumé (/resume/) and /hire/.
+#  Anything left blank is a placeholder: it doesn't render until filled in.
+# ════════════════════════════════════════════════════════════════════════
+
+base: /build
+name: Jason Ellis
+tagline: Software, web and AI, built by someone who has been shipping since 1997.
+
+# ── Contact & form (placeholders) ───────────────────────────────────────
+# A form-service endpoint (Formspree, Basin or similar). While blank, the
+# request form still works end to end but says it isn't connected yet and
+# offers to copy the request instead of pretending to send it.
+form_endpoint: ""
+email: ""
+# e.g. "I'm taking on two new projects for early 2027." Blank = hidden.
+availability: ""
+
+nav:
+  - { title: Services, url: /build/services/ }
+  - { title: Work, url: /build/work/ }
+  - { title: How I Work, url: /build/how-i-work/ }
+  - { title: About, url: /build/about/ }
+
+# ── Credentials strip (from the résumé) ─────────────────────────────────
+proof:
+  - { figure: "1997", label: "Shipping software since" }
+  - { figure: "Head of Dev", label: "Ambiki, a pediatric therapy EMR" }
+  - { figure: "IBM", label: "UI architect, Rational Build Forge" }
+  - { figure: "CTO", label: "Grok Interactive & Codeup" }
+  - { figure: "$330k", label: "Exit: Palavista, sold 2000" }
+
+# ── Career highlights (from the résumé) ─────────────────────────────────
+career:
+  - when: "2024 – now"
+    role: Head of Development
+    org: Ambiki (Ambitious Idea Labs)
+    note: Leading engineering on an EMR built by and for pediatric speech, occupational and physical therapists.
+  - when: "2020 – now"
+    role: Senior Software Engineer
+    org: Sidekick Therapy Partners
+    note: Teletherapy and clinical tooling that helps therapists help developing kids.
+  - when: "2013 – 2016"
+    role: CTO / Co-founder
+    org: Grok Interactive
+    note: A full-stack web shop. Built XChangeClub (vacation home exchange) and Dynasty Owner (fantasy football meets a commodity market), and the engineering side of Codeup, a coding bootcamp in San Antonio.
+  - when: "2011 – 2012"
+    role: Lead Software Engineer
+    org: Liveoak 360
+    note: Faithvillage.com, a faith-based social network for the Baptist Standard.
+  - when: "2005 – 2011"
+    role: UI Architect & Team Lead
+    org: IBM Rational Build Forge
+    note: One of two core developers on the web half of IBM's flagship build-management product, then architect of its all-new rich-client UI, built to accessibility and globalization standards.
+  - when: "2005"
+    role: Contract Developer
+    org: Hoover's
+    note: Sole owner of the payment system on a platform covering 17 million companies.
+  - when: "1997 – 2000"
+    role: Founder
+    org: Palavista
+    note: The first digital-music meta-crawler on the internet, handling 10,000+ queries an hour. Sold to ChangeMusic Inc.
+  - when: "1992 – 1997"
+    role: Signals Intelligence Analyst & Korean Linguist
+    org: U.S. Army
+    note: Top-secret clearance, time-sensitive analysis, and building tools for classified networks.
+
+# ── Services ────────────────────────────────────────────────────────────
+# key matches the anchors on /build/services/ and the form's checkboxes.
+services:
+  - key: web-design
+    icon: layout
+    title: Web Design & UX
+    short: Sites and interfaces that are fast, readable and easy to use, on every screen.
+    body: >-
+      Good design is mostly clarity: what a visitor needs, in the order they need
+      it, loading fast and working for everybody. I design and build marketing
+      sites, product interfaces and dashboards with accessibility and performance
+      treated as requirements, not extras.
+    gets:
+      - Information architecture and page layouts
+      - A responsive, accessible build (keyboard, screen readers, phones)
+      - Performance work, so pages load fast on bad connections
+      - A design you can keep editing without calling me
+    examples: [rsow, tinkered-tactile]
+
+  - key: web-apps
+    icon: code
+    title: Custom Web Applications
+    short: From a napkin idea to a product people log into, pay for and depend on.
+    body: >-
+      This is my day job. I build web applications in Ruby on Rails with
+      PostgreSQL, Hotwire and modern JavaScript where it earns its keep, and I
+      take them from first sketch through launch and the years after. Boring,
+      dependable infrastructure; interesting product.
+    gets:
+      - Product scoping that turns "it should do everything" into a first release
+      - A Rails application with tests that actually run
+      - Accounts, billing, admin tools, background jobs, integrations
+      - Deployment, monitoring and a codebase the next developer will thank you for
+    examples: [cardinal, media-downloader, home-camera-system]
+
+  - key: ai
+    icon: spark
+    title: AI Integration & Automation
+    short: Practical AI features, agents and automations that do real work, not demos.
+    body: >-
+      I build with large language models every day, and I've built tools that run
+      AI entirely on local hardware. The useful part is rarely the model; it's
+      fitting it into a real workflow with guardrails, sources and a human in the
+      loop. I can add AI to a product you have, or automate the tedious part of
+      your business.
+    gets:
+      - An honest read on where AI helps your product and where it doesn't
+      - Features built on Claude and other models, with sourcing and review
+      - Agents and automations that work inside your existing tools
+      - Private, on-device AI when your data can't leave the building
+    examples: [cardinal, voice, cage, talker]
+
+  - key: rescue
+    icon: wrench
+    title: Rescue & Modernization
+    short: Inherited a tangled codebase? I find the load-bearing weirdness and fix it.
+    body: >-
+      Plenty of good businesses run on code nobody wants to touch. I walk into
+      existing applications, map what's actually going on, add the tests that
+      make change safe, and upgrade, untangle or rebuild the pieces that hold you
+      back, without stopping the business while I do it.
+    gets:
+      - A written assessment of what's healthy, risky and urgent
+      - Framework and dependency upgrades (Rails, Ruby, JavaScript)
+      - Test coverage around the parts that make money
+      - Performance and reliability fixes you can measure
+    examples: [rsow]
+
+  - key: leadership
+    icon: compass
+    title: Technical Leadership
+    short: A seasoned head of development, for an architecture review or a few months.
+    body: >-
+      I've been a CTO, a co-founder and a head of development, and I helped build
+      a coding bootcamp. If you're a founder without a technical
+      partner, or a small team that needs senior judgment, I can review your
+      architecture, set up the engineering basics, help you hire and mentor the
+      people you have.
+    gets:
+      - Architecture and code reviews with plain-English findings
+      - Roadmaps, estimates and build-or-buy calls you can defend
+      - Code review, CI and team habits that keep quality up
+      - Interviewing, hiring help and mentoring
+    examples: []
+
+  - key: small-business
+    icon: store
+    title: Small Business Sites & Tools
+    short: Fast sites, booking and request forms, and little tools that save hours.
+    body: >-
+      Not every project needs a platform. Sometimes the win is a fast, good-looking
+      site that's cheap to host, a request form that lands in your inbox, or a
+      small tool that does in seconds what used to eat an afternoon. I build those
+      too, with the same care.
+    gets:
+      - A fast site you own outright, hosted for little or nothing
+      - Request, quote and contact forms that reach you
+      - Small internal tools and spreadsheets-to-software upgrades
+      - Help leaving platforms that won't let you go
+    examples: [tinkered-tactile, rsow]
+
+# ── Ways to work together (no prices here on purpose) ───────────────────
+engagements:
+  - title: A Project
+    blurb: A defined thing, built and delivered. You get a written scope and estimate up front, regular demos while it's built, and a handoff you can live with.
+    best: New products, sites, features and rebuilds.
+  - title: Ongoing Help
+    blurb: "A set amount of my time each month for a product that keeps moving: features, fixes, upgrades and someone senior to ask."
+    best: Products in production that need a steady hand.
+  - title: Advice
+    blurb: Architecture reviews, code reviews, AI strategy and second opinions, by the hour.
+    best: Founders and teams who mostly need judgment.
+# Shown under the engagement cards. Blank = a default "quoted after a
+# conversation" line.
+rates_note: ""
+
+# ── Process ─────────────────────────────────────────────────────────────
+process:
+  - title: Talk
+    body: Tell me what you're trying to do, in plain language. No spec required. We'll figure out together whether I'm the right fit.
+  - title: Plan
+    body: I write up what I'd build, in what order, roughly what it costs and how long it takes, so you can decide with real numbers.
+  - title: Build
+    body: Small, working pieces you can click on, early and often. You see progress every week, not a big reveal at the end.
+  - title: Launch & Support
+    body: Deployment, monitoring and a handoff written for whoever comes next, whether that's me, your team or a future hire.
+
+# ── How I work (principles, from /hire/) ────────────────────────────────
+principles:
+  - title: Pragmatic over purist
+    body: I love elegant code; I love shipped code more. You'll get the simplest thing that solves the real problem.
+  - title: Boring infrastructure
+    body: Proven, inexpensive hosting and tools, so your money goes into the product instead of the plumbing.
+  - title: Plain English
+    body: You'll always know what I'm doing, why and what it costs. No jargon walls, no surprises.
+  - title: AI as a power tool
+    body: I use modern AI tools every day and I'm faster and more careful for it. Every line still gets reviewed by someone with 25+ years of judgment.
+  - title: Calm under pressure
+    body: Five years in the Army and years of police patrol leave you very hard to rattle.
+  - title: Long-term relationships
+    body: Most of the people I've worked with, I've worked with for years. I'd like to be the developer you keep.
+
+# ── FAQ ─────────────────────────────────────────────────────────────────
+faq:
+  - q: I'm not technical. Can I still work with you?
+    a: Absolutely. Most of my best projects started with someone who knew their business cold and had never written a line of code. Describe the problem; translating it into software is my job.
+  - q: What do you build with?
+    a: Usually Ruby on Rails and PostgreSQL for applications, modern JavaScript where it earns its place, and static sites for content that doesn't need a server. I'll recommend whatever is simplest for your situation, and I'll tell you if that's an off-the-shelf tool instead of custom work.
+  - q: Do you use AI to write code?
+    a: Yes, as a power tool, the way a woodworker uses a table saw. It makes me faster and lets me spend more time on the parts that need judgment. Nothing ships that I haven't read, tested and understood.
+  - q: Where are you?
+    a: Oriental, North Carolina. I work remotely and keep a real schedule that overlaps generously with every US time zone.
+  - q: How much does it cost?
+    a: It depends entirely on what we're building, so every project is quoted after a conversation. The request form asks for a rough budget range so I can suggest an approach that fits it.
+  - q: What happens after I send a request?
+    a: I read it personally and reply with questions or a time to talk. If I'm not the right fit, I'll say so and, when I can, point you to someone who is.
+
+# ── Request form choices ────────────────────────────────────────────────
+form:
+  # keys match services[].key; "other" and "unsure" are extra choices
+  needs:
+    - { key: web-design, label: "A website or redesign" }
+    - { key: web-apps, label: "A web application" }
+    - { key: ai, label: "AI features or automation" }
+    - { key: rescue, label: "Help with existing code" }
+    - { key: leadership, label: "Technical leadership or advice" }
+    - { key: small-business, label: "A small-business site or tool" }
+    - { key: unsure, label: "Not sure yet" }
+  stages: ["Just an idea", "Planned or designed", "Already built and running", "Something's broken"]
+  timelines: ["As soon as possible", "Within 1–3 months", "Within 3–6 months", "Flexible"]
+  budgets: ["Not sure yet", "Under $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Ongoing / monthly"]
