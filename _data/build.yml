@@ -29,7 +29,36 @@ proof:
   - { figure: "Head of Dev", label: "Ambiki, a pediatric therapy EMR" }
   - { figure: "IBM", label: "UI architect, Rational Build Forge" }
   - { figure: "CTO", label: "Grok Interactive & Codeup" }
-  - { figure: "$330k", label: "Exit: Palavista, sold 2000" }
+
+# ── The elephant in the room: why hire a person when AI writes code ────
+ai_question:
+  eyebrow: The elephant in the room
+  title: Why not just ask an AI?
+  lede: >-
+    Honestly? For some things, you should, and if that's you, I'll tell you.
+    But AI builds the first 80% fast, and the last 20% is where projects die.
+  points:
+    - title: AI writes code. It doesn't own the result.
+      body: >-
+        Real users, real data, logins, payments, security, hosting, and the bug
+        that shows up in month three. Somebody has to know what's wrong and be
+        on the hook to fix it.
+    - title: It's confidently wrong.
+      body: >-
+        AI doesn't know when it's wrong, and it won't tell you. Spotting the
+        mistake before it ships takes the judgment you get from shipping
+        software since before these tools existed.
+    - title: I use it every day.
+      body: >-
+        You get AI's speed and someone who knows when to overrule it. That makes
+        me faster than a developer who won't touch it, and safer than betting
+        your business on its guesses.
+    - title: If AI alone will do, I'll say so.
+      body: >-
+        If your project is simple enough for ChatGPT, I'll tell you and point
+        you in the right direction. I'd rather earn your trust than bill for
+        something you don't need.
+  link: More on how I use AI
 
 # ── Career highlights (from the résumé) ─────────────────────────────────
 career:
@@ -106,8 +135,9 @@ services:
     title: AI Integration & Automation
     short: Practical AI features, agents and automations that do real work, not demos.
     body: >-
-      I build with large language models every day, and I've built tools that run
-      AI entirely on local hardware. The useful part is rarely the model; it's
+      I build with large language models every day, which is exactly how I know
+      where they break. I've also built tools that run AI entirely on local
+      hardware. The useful part is rarely the model; it's
       fitting it into a real workflow with guardrails, sources and a human in the
       loop. I can add AI to a product you have, or automate the tedious part of
       your business.
@@ -212,10 +242,20 @@ principles:
 faq:
   - q: I'm not technical. Can I still work with you?
     a: Absolutely. Most of my best projects started with someone who knew their business cold and had never written a line of code. Describe the problem; translating it into software is my job.
+  - q: Why not just ask an AI to build it?
+    id: ai
+    a: >-
+      Sometimes you should. If what you need is simple enough for ChatGPT or Claude to
+      handle, I'll tell you, and point you to how. But AI is great at the first 80% of a
+      project and unreliable at the last 20%, which is where projects actually succeed or
+      fail: real users, real data, logins, payments, security, hosting and the bug that
+      shows up three months in. It's also confidently wrong, in ways you can't catch
+      unless you already know how to build the thing yourself. I use AI every day, as a
+      power tool, the way a woodworker uses a table saw. It makes me faster and leaves
+      more time for the parts that need judgment. Nothing ships that I haven't read,
+      tested and understood, and I'm accountable for it after it ships. The AI isn't.
   - q: What do you build with?
     a: Usually Ruby on Rails and PostgreSQL for applications, modern JavaScript where it earns its place, and static sites for content that doesn't need a server. I'll recommend whatever is simplest for your situation, and I'll tell you if that's an off-the-shelf tool instead of custom work.
-  - q: Do you use AI to write code?
-    a: Yes, as a power tool, the way a woodworker uses a table saw. It makes me faster and lets me spend more time on the parts that need judgment. Nothing ships that I haven't read, tested and understood.
   - q: Where are you?
     a: Oriental, North Carolina. I work remotely and keep a real schedule that overlaps generously with every US time zone.
   - q: How much does it cost?

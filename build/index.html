@@ -62,6 +62,25 @@ full_width: true
     </div>
   </section>
 
+  {%- assign aq = b.ai_question %}
+  <section class="bld-section bld-section--tight" id="why-not-ai">
+    <div class="bld-wrap">
+      <div class="bld-aiq">
+        <div class="bld-aiq-head">
+          <p class="bld-eyebrow">{{ aq.eyebrow }}</p>
+          <h2 class="bld-h2">{{ aq.title }}</h2>
+          <p class="bld-aiq-lede">{{ aq.lede }}</p>
+          <a class="bld-link" href="{{ b.base | append: '/how-i-work/#faq-ai' | relative_url }}">{{ aq.link }} {% include build/icon.html name="arrow" %}</a>
+        </div>
+        <ol class="bld-aiq-points">
+          {%- for pt in aq.points %}
+          <li><h3>{{ pt.title }}</h3><p>{{ pt.body }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </div>
+  </section>
+
   <section class="bld-section bld-section--tint">
     <div class="bld-wrap">
       <div class="bld-section-head">

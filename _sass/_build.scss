@@ -216,7 +216,7 @@ $bld-radius:  14px;
 
   // ── credentials strip ──
   .bld-proof { background: $bld-ink-2; color: #fff; border-top: 1px solid rgba(255,255,255,0.06); }
-  .bld-proof-inner { display: grid; grid-template-columns: repeat(5, 1fr); }
+  .bld-proof-inner { display: grid; grid-template-columns: repeat(4, 1fr); }
   .bld-proof-item {
     padding: 1.4rem 1rem;
     border-left: 1px solid rgba(255,255,255,0.08);
@@ -414,6 +414,35 @@ $bld-radius:  14px;
   .bld-principle h3::before { content: "› "; color: $bld-accent; font-family: $bld-mono; }
 
   // ── FAQ ──
+  // ── "Why not just ask an AI?" ──
+  .bld-aiq {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem;
+    background: $bld-ink; color: rgba(255,255,255,0.78);
+    border-radius: $bld-radius; padding: 2.6rem;
+    .bld-eyebrow { color: $bld-amber; }
+    .bld-h2 { color: #fff; }
+    .bld-link { color: $bld-accent-2; }
+  }
+  .bld-aiq-lede { font-size: 1.12rem; line-height: 1.6; margin: 0 0 1.4rem; }
+  .bld-aiq-points {
+    list-style: none; margin: 0; padding: 0; counter-reset: aiq;
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 2rem;
+    li { counter-increment: aiq; position: relative; padding-top: 2.2rem; }
+    li::before {
+      content: counter(aiq, decimal-leading-zero);
+      position: absolute; top: 0; left: 0;
+      font-family: $bld-mono; font-size: 0.85rem; color: $bld-amber;
+    }
+    h3 { margin: 0 0 0.4rem; font-size: 1.05rem; color: #fff; line-height: 1.35; }
+    p { margin: 0; font-size: 0.95rem; line-height: 1.6; }
+  }
+  @media (max-width: 900px) {
+    .bld-aiq { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.4rem; }
+  }
+  @media (max-width: 560px) {
+    .bld-aiq-points { grid-template-columns: 1fr; }
+  }
+
   .bld-faq { display: grid; gap: 0.7rem; }
   .bld-faq-item {
     background: #fff; border: 1px solid $bld-line; border-radius: 12px; padding: 0 1.2rem;

@@ -60,7 +60,7 @@ full_width: true
       <h2 class="bld-h2">Questions people ask</h2>
       <div class="bld-faq">
         {%- for f in b.faq %}
-        <details class="bld-faq-item"{% if forloop.first %} open{% endif %}>
+        <details class="bld-faq-item"{% if f.id %} id="faq-{{ f.id }}"{% endif %}{% if forloop.first or f.id %} open{% endif %}>
           <summary>{{ f.q }}</summary>
           <p>{{ f.a }}</p>
         </details>
