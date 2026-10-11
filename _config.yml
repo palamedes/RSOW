@@ -115,6 +115,13 @@ defaults:
       type: build_work
     values:
       layout: build-work
+      sitemap: false
+  # /build/ is unlisted until it launches: keep it out of the sitemap too
+  # (the layout adds noindex and the ?p= gate).
+  - scope:
+      path: "build"
+    values:
+      sitemap: false
 
 # Plugins
 plugins:

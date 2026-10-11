@@ -3,6 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  {%- assign url_head = page.url | slice: 0, 7 %}
+  {%- if url_head == "/build/" %}
+  {%- comment -%}
+    /build/ is unlisted: not linked, indexed or in the sitemap. Opening it
+    needs ?p=shad0w once; the browser then remembers it. This only hides the
+    pages from casual visitors; it is not access control.
+  {%- endcomment %}
+  <meta name="robots" content="noindex, nofollow">
+  <script>(function(){var k='bld-pass',q=new URLSearchParams(location.search),ok=false;if(q.get('p')==='shad0w'){ok=true;try{localStorage.setItem(k,'1')}catch(e){}q.delete('p');var s=q.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}else{try{ok=localStorage.getItem(k)==='1'}catch(e){}}if(!ok){document.documentElement.style.display='none';location.replace('/404.html')}})();</script>
+  {%- endif %}
   {% seo %}
   {%- comment -%}
     jekyll-seo-tag stops at og:image. Facebook needs the size too, or it leaves
