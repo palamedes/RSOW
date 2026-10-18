@@ -13,7 +13,7 @@ tags:
 - Pet Peeves
 - Capitalism
 - Tipping
-description: "Tipping is a gratuity — a thank you, optional — not a tax enforced by touchscreen shame. Tipflation, guilt-trip kiosks, and 20% defaults for handing me a bag. Enough."
+description: "Tipping is a gratuity: a thank you, optional. Not a tax enforced by touchscreen shame. Tipflation, guilt-trip kiosks and 20% defaults for handing me a bag."
 excerpt: "Tipping is a gratuity. As in a thank you. As in optional. We've moved past tipping for service — now we're tipping for existence."
 ai_notes:
   - quote: "Your boss decided to underpay you and offload the difference onto me"

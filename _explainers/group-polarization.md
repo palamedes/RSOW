@@ -4,7 +4,7 @@ kind: "Group failure"
 aka: "the risky shift, the group as a polarizer"
 tagline: "A group of people who broadly agree talk it over, and every one of them comes out holding a more extreme version of what they walked in with — including the moderates."
 tell: "The room ended up further out than the most extreme person who entered it."
-description: "Discussion among people who already agree moves the whole group outward. The two mechanisms behind it, why it isn’t groupthink, and why a meeting can leave everybody more certain and nobody better informed."
+description: "Group polarization: people who already agree talk each other further out. The two mechanisms, why it isn’t groupthink, and why all leave more certain."
 ---
 
 ## The short version

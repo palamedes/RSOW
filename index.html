@@ -7,7 +7,7 @@ full_width: true
 <div class="home">
   <section class="home-hero">
     <div class="hero-inner">
-      <img class="profile-image" src="{{ '/assets/images/profile.png' | relative_url }}" alt="Jason Ellis">
+      <img class="profile-image" src="{{ '/assets/images/profile.webp' | relative_url }}" width="250" height="250" alt="Jason Ellis">
       <div class="hero-text">
         <h1 class="hero-name">Jason Ellis</h1>
         <p class="hero-site-name">RandomStringOfWords.com</p>
@@ -26,13 +26,13 @@ full_width: true
     <div class="post-grid">
       {%- comment -%} the paginator already leaves out posts marked `index: false` (_plugins/listing_flags.rb) {%- endcomment %}
       {% for post in paginator.posts %}
-      {% include post-card.html post=post %}
+      {% include post-card.html post=post eager=forloop.first %}
       {% endfor %}
     </div>
     {% include card-narration.html %}
 
     <div class="view-more">
-      <a href="{{ '/archive/' | relative_url }}">View More</a>
+      <a href="{{ '/archive/' | relative_url }}">View all posts</a>
     </div>
 
   </div>

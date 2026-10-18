@@ -4,7 +4,7 @@ kind: "Group failure"
 aka: "concurrence-seeking, closing ranks"
 tagline: "The group values its own agreement more than it values being right, so the doubts stop being spoken — and eventually stop being had."
 tell: "Nobody has raised an objection in an hour, and the decision is enormous."
-description: "Groupthink is a cohesive group protecting its consensus at the cost of its judgement. Janis’s symptoms, why the dissent disappears before the dissenters do, and the fixes he proposed."
+description: "Groupthink is a close group protecting its consensus at the cost of its judgement. Janis’s symptoms, why dissent vanishes before dissenters do, and fixes."
 ---
 
 ## The short version

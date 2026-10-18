@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "circular reasoning, petitio principii, assuming the conclusion"
 tagline: "The reason given for a claim turns out to be the claim again, wearing a different coat."
 tell: "Take the reason apart and there’s nothing in it that wasn’t already in the conclusion."
-description: "Begging the question assumes its conclusion inside its own premise, so the argument proves nothing. What circular reasoning looks like in practice, why it can be hard to spot, and the one question that breaks it."
+description: "Begging the question hides the conclusion inside the premise, so it proves nothing. What circular reasoning looks like, and the question that breaks it."
 ---
 
 ## The short version

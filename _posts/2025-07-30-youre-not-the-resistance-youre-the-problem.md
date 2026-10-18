@@ -11,7 +11,7 @@ tags:
 - Protests
 - Government
 - Elections
-description: "If you cheer for an assassination — out loud or in cowardly 'won't someone rid me of this meddlesome priest' code — you're not the resistance. You're the villain in the story you think you're heroing."
+description: "If you cheer for an assassination, out loud or in cowardly 'meddlesome priest' code, you're not the resistance. You're the villain of your own story."
 excerpt: "There are actual citizens openly hoping the president is assassinated. Not in code. Out loud. That's not edgy. That's not righteous anger. That's evil."
 ai_notes:
   - quote: "Henry II said it"

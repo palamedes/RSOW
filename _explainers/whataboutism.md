@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "tu quoque, the appeal to hypocrisy"
 tagline: "Answer a criticism by pointing at somebody else’s — so the original one never has to be addressed."
 tell: "Your point got answered with a different point about somebody else, and yours is still sitting there."
-description: "Whataboutism deflects a criticism by raising a different one instead of answering it. What it looks like, why hypocrisy doesn't settle anything, and how to get the conversation back."
+description: "Whataboutism deflects a criticism by raising a different one instead of answering it. Why hypocrisy settles nothing, and how to get the conversation back."
 ---
 
 ## The short version

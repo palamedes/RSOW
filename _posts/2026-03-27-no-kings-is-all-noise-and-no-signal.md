@@ -12,7 +12,7 @@ tags:
 - Government
 - Critical Thinking
 - Free Speech
-description: "The \"No Kings\" rallies are all noise and no signal. No specific demands, no actionable solutions, just performative outrage dressed up in revolutionary language. Here's why vague slogans hurt more than they help."
+description: "The \"No Kings\" rallies are all noise and no signal: no specific demands, no solutions, just performative outrage. Why vague slogans hurt more than help."
 excerpt: "I'm for peaceful protest, full stop. But the \"No Kings\" rallies aren't a message, they're a bumper sticker pretending to be a thought. No specific demand, no clear solution, no follow-through. Just vibes, virtue signaling, and a catchy slogan that means almost nothing."
 ai_notes:
   - quote: "a system specifically designed to prevent"

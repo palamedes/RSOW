@@ -10,7 +10,7 @@ tags:
 - Capitalism
 - Entrepreneurship
 - Careers
-description: "A debate about 'wage slavery' and the widening wealth gap. My answer: stop working for the man, take a risk, start a business. Risk takers get rich; wage earners never will."
+description: "A debate about 'wage slavery' and the wealth gap. My answer: stop working for the man, take a risk, start a business. Wage earners never get rich."
 excerpt: "I got into a debate about 'wage slavery.' My answer — do what the rich did: stop working for the man and take some risks. You'd think I pissed in their cereal."
 ---
 

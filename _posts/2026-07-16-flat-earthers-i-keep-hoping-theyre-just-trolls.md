@@ -12,7 +12,7 @@ tags:
 - Social Media
 - YouTube
 words: [psyop, oblate-spheroid, object-permanence, order-of-magnitude]
-description: "I keep hoping flat earthers are just trolls, because that's the easy version. The Earth is an oblate spheroid — we settled this a very long time ago. So this isn't an argument about the shape of the planet. It's an honest walk backward: from an innocent problem of scale, past all the evidence, to the exact moment ignorance stops being ignorance and becomes a choice not to know."
+description: "I keep hoping flat earthers are just trolls. This isn't about the planet's shape. It's the walk from an honest problem of scale to ignorance by choice."
 excerpt: "I really do hope they're trolls, because trolling has a motive I can hold in my hand. The problem is I don't think all of them are joking. 'You're wrong' isn't an explanation, though, so I tried to work backward and figure out how a person actually gets here. Most don't start at stupid. They start at ignorant — at a problem of scale, an ant that thinks the car is flat — and then, somewhere after the evidence keeps landing, it curdles into something with a security system."
 ai_notes:
   - quote: "water always finds its level"

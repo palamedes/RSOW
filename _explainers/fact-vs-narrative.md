@@ -3,7 +3,7 @@ title: "Fact vs. Narrative"
 kind: "Faulty reasoning"
 tagline: "Whether something happened and what it means are two different arguments — and running them together is how both of them go bad."
 tell: "A fact is being argued with as though it were an opinion, or an opinion is being stated as though it were a fact."
-description: "What happened and what it means are separate arguments with separate rules. Why collapsing them makes people fight the facts, and how to pull the two apart mid-conversation."
+description: "What happened and what it means are separate arguments with separate rules. Why collapsing them makes people fight the facts, and how to pull them apart."
 ---
 
 ## The short version

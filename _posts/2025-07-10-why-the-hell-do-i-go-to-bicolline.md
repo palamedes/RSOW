@@ -8,7 +8,7 @@ categories:
 tags:
 - RPGs
 - Travel
-description: "Once a year I vanish into a medieval village in Quebec, become Angus Lachlen of the Horse and Hound, and haul a Nerf cannon across a battlefield. Here's why it makes me more human."
+description: "Once a year I vanish into a medieval village in Quebec, become Angus Lachlen of the Horse and Hound, and haul a Nerf cannon into battle. Here's why."
 excerpt: "Once a year, I disappear. No laptop, no meetings, no glowing rectangle. I drive north and step into a medieval village in the woods of Quebec."
 ai_notes:
   - quote: "Company Sergeant of the Horse and Hound"

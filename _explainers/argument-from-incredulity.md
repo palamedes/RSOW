@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "the appeal to personal incredulity"
 tagline: "“I can’t imagine how that could be true, therefore it isn’t” — treating the limits of your own imagination as a measurement of the world."
 tell: "The evidence on offer is a feeling of disbelief."
-description: "Argument from incredulity mistakes 'I can't see how' for 'it can't be'. Why the reaction is useful but the conclusion isn't, and why expertise makes this one worse rather than better."
+description: "Argument from incredulity mistakes 'I can't see how' for 'it can't be'. Why the reaction is useful, the conclusion isn't, and why expertise makes it worse."
 ---
 
 ## The short version

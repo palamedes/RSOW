@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "the thin end of the wedge, the camel’s nose"
 tagline: "The first step gets objected to on the strength of the last one, and every step in between is assumed rather than argued — so a modest proposal is answered as though it were the extreme one."
 tell: "The thing being argued against is several steps further along than the thing being proposed."
-description: "A slippery slope asserts a chain instead of arguing one. Why the middle steps are the whole argument, what the probabilities actually do, and the question that turns it into a real conversation."
+description: "A slippery slope asserts a chain of consequences instead of arguing one. Why the middle steps are the whole argument, and the question to ask instead."
 ---
 
 ## The short version

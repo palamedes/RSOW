@@ -11,7 +11,7 @@ tags:
 - Media Bias
 - Critical Thinking
 - Advertising
-description: "The left and right can take the exact same facts and spin two competing, 100%-true stories. A two-horse race, two newspapers, and why listening to only one side breaks the country."
+description: "The left and right can take the same facts and spin two competing, 100%-true stories. Why getting your news from only one side breaks the country."
 excerpt: "Both sides take the facts and massage the narrative to fit their politics. It's entirely possible to tell two completely true, completely opposite stories. Let me explain with a horse race."
 ---
 

@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "the lump of labour fallacy, technological unemployment, they said that about ATMs"
 tagline: "Automatic elevators worked for fifty years before anyone would ride one alone. Then the operators were gone inside a decade. Neither the delay nor the speed had much to do with the technology."
 tell: "Somebody settles the future of an entire occupation with one historical example, and it's always the example that came out their way."
-description: "Elevator operators were wiped out. Bank tellers grew straight through the ATM and are collapsing now. Telephone operators went from one in thirteen working women to a rounding error. Why you can't read an occupation's fate off whether its tasks can be automated."
+description: "The elevator problem: you can't read a job's fate off whether its tasks can be automated. Elevator operators vanished; bank tellers grew through the ATM."
 ---
 
 ## The short version

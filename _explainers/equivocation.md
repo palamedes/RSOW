@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "trading on ambiguity, the shifting word"
 tagline: "One word appears twice meaning two different things, and the argument only works for as long as nobody notices it changed jobs in the middle."
 tell: "Swap the word for its definition and the argument stops making sense."
-description: "Equivocation is two arguments wearing one word. Aristotle’s oldest fallacy, why the dangerous cases are the ones where the meanings are close, and the substitution test that settles it."
+description: "Equivocation is two arguments wearing one word. Aristotle’s oldest fallacy, why the dangerous cases are the close meanings, and the test that settles it."
 ---
 
 ## The short version

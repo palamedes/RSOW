@@ -12,7 +12,7 @@ tags:
 - Gender
 - Star Wars
 - Movies & TV
-description: "Fox owned M*A*S*H. Disney bought Fox. Which makes Corporal Max Klinger — Section 8 hustler in heels — technically a Disney Princess. And he earned that crown."
+description: "Fox owned M*A*S*H. Disney bought Fox. So Corporal Max Klinger, Section 8 hustler in heels, is technically a Disney Princess. And he earned that crown."
 excerpt: "M*A*S*H was owned by Fox. Fox got bought by Disney. You know what that means? Max Klinger is now, technically, a Disney Princess. Let that sink in."
 ai_notes:
   - quote: "watched it religiously with my dad"

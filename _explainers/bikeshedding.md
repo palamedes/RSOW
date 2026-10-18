@@ -4,7 +4,7 @@ kind: "Group failure"
 aka: "Parkinson’s law of triviality, the colour of the bike shed (which is not Parkinson’s)"
 tagline: "The enormous, expensive, irreversible decision goes through in four minutes. The small one everybody understands eats the rest of the meeting."
 tell: "Time spent on an item is running inversely to what the item costs."
-description: "Bikeshedding is a group spending its attention on the trivial item because it’s the only one everyone can evaluate. Why the wasted hour isn’t the damage, and how to run the meeting so it can’t happen."
+description: "Bikeshedding is a group spending its attention on the trivial item because it’s the only one everyone can judge. Why it happens, and how to stop it."
 ---
 
 ## The short version

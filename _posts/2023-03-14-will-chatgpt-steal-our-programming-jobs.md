@@ -11,7 +11,7 @@ tags:
 - Programming
 - Careers
 - JavaScript
-description: "I fed ChatGPT my website and told it to argue, in my voice, that it won't steal our jobs. Then I fact-checked it line by line. Turns out it's a handy augmenting tool — but no replacement."
+description: "I had ChatGPT argue, in my voice, that it won't steal our jobs, then fact-checked it line by line. Verdict: a handy augmenting tool, not a replacement."
 excerpt: "For fun, I gave ChatGPT text from my site and told it to write a post in my voice on why it won't steal our jobs. Let's see how it did."
 ---
 

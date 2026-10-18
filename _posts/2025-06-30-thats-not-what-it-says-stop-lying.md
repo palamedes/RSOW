@@ -13,7 +13,7 @@ tags:
 - Donald Trump
 - Religion
 - Social Media
-description: "A viral 'fatwa against Trump and Netanyahu' was making the rounds on the right. I ran the actual letter through translation — twice. The quote isn't in there. Call out your own side."
+description: "A 'fatwa against Trump and Netanyahu' went viral on the right. I translated the real letter twice. The quote isn't there. Call out your own side."
 excerpt: "I call it out when the left spins a narrative from thin air. This time I caught the right doing it — same shenanigans, different color jersey."
 ---
 

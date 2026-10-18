@@ -14,7 +14,7 @@ tags:
 - Donald Trump
 - Critical Thinking
 words: [paternalistic]
-description: "Lake America is silly. But watching people who spent a decade renaming master bedrooms, unhousing the homeless and handing out 'Latinx' suddenly discover that changing a name doesn't change anything is priceless. Sometimes a new word is progress. Sometimes it's a new label on the same old box, and reality doesn't care what you named the box."
+description: "Lake America is silly. But watching the people who renamed master bedrooms and pushed 'Latinx' discover renaming changes nothing? Priceless."
 excerpt: "I think \"Lake America\" is silly, and I'd rather get that out of the way up front. Watching parts of the left absolutely lose their minds over it, though, is hilarious. Suddenly these people have discovered an incredibly important principle: you can't just change the name of something because you don't like the old word. Oh, really? Welcome to the party, pal. Where have you been for the last ten years?"
 ai_notes:
   - quote: "On August 27 he signed an executive order"

@@ -13,7 +13,7 @@ tags:
 - Social Media
 - Capitalism
 - Family
-description: "A $600 billion industry that doesn't sell beauty — it sells insecurity. Concave mirrors, six-year-olds worried about 'pretty,' and preventative-aging serums for kids."
+description: "A $600 billion industry that doesn't sell beauty, it sells insecurity. Six-year-olds worried about being 'pretty' and preventative-aging serums for kids."
 excerpt: "My beautiful wife thinks she's got the face of an alley troll without a dozen creams and potions. She's been convinced by a billion-dollar machine. And she's not alone."
 ai_notes:
   - quote: "the beauty industry rakes in over $600 billion a year"

@@ -14,7 +14,7 @@ tags:
 - Government
 - Free Speech
 words: [due-process, furniture-firearms, muzzle-energy, grain-unit, assault-weapon]
-description: "Gun control keeps landing on the one person guaranteed to obey it — the law-abiding citizen — while the criminal walks around the whole system. Signs don't stop killers, cosmetic features don't determine lethality, and you can't confiscate 393 million guns with a slogan. The problem was never the peaceful people who followed the rules."
+description: "Gun control lands on the one person sure to obey it, the law-abiding citizen, while criminals walk around it. Signs don't stop killers. Neither do slogans."
 excerpt: "'Common sense gun control' is the polite name for making the law harder on the people who already obey it, while the criminal keeps getting his guns the way he always has. A sign is not a force field. A .223 is not a magic death ray. And nobody has explained how you take 393 million guns away from people who never broke a law to begin with."
 ai_notes:
   - quote: "demand authority over the people who know the most"

@@ -15,7 +15,7 @@ tags:
 - Critical Thinking
 - Government
 words: [ultramafic, abiotic, hydrocarbon, hydrothermal, biomarker-petroleum, baseload]
-description: "Oil isn't dead dinosaurs: conventional petroleum comes mostly from ancient algae, plankton and plant matter, and the Earth can even make some hydrocarbons with no life involved. That doesn't make oil fields bottomless, and neither fairy tale is an energy policy. Cheap, reliable energy is civilization, and when anyone messes with it, everyone gets the bill."
+description: "Oil isn't dead dinosaurs; it's mostly ancient algae and plankton. That doesn't make it bottomless either. Cheap, reliable energy is civilization."
 excerpt: "Somewhere along the way, one of the most important substances in modern civilization got reduced to a children's-book explanation: oil is dead dinosaurs. It isn't. Conventional petroleum comes mostly from ancient algae, plankton and plant matter, much of it older than the dinosaurs, and the Earth can even make some hydrocarbons without anything ever having been alive. That doesn't make oil fields bottomless. It does mean energy is too important for fairy tales, because cheap energy is civilization, and when anyone messes with its cost, every one of us gets the bill."
 ---
 

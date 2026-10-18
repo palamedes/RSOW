@@ -11,7 +11,7 @@ tags:
 - Cancel Culture
 - Religion
 - Government
-description: "Charlie Kirk was assassinated for speaking his mind. Politicians booed his moment of silence. When you martyr a man, you don't end the message — you amplify it."
+description: "Charlie Kirk was killed for speaking his mind, and politicians booed his moment of silence. Martyr a man and you don't end his message. You amplify it."
 excerpt: "They killed a man who debated with civility and changed minds without violence. Then they cheered. That tells you everything about who the real extremists are."
 ai_notes:
   - quote: "Charlie Kirk is dead. Shot. Murdered. Assassinated."

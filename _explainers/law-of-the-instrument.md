@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "Maslow’s hammer, the golden hammer"
 tagline: "You already have a favourite tool, so every problem starts arriving pre-shaped to fit it."
 tell: "The solution was picked before the problem finished being described."
-description: "Maslow's hammer: when you're good at one tool, problems start looking like the kind that tool solves. Why it compounds with expertise, and the question that breaks the groove."
+description: "Maslow's hammer: when you're good at one tool, every problem looks like the kind it solves. Why expertise makes it worse, and how to break the groove."
 ---
 
 ## The short version

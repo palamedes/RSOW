@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "throwing good money after bad, the Concorde fallacy"
 tagline: "The reason given for continuing is everything already spent — which is gone whatever happens next, and therefore cannot be a reason for anything."
 tell: "The argument for going on is entirely about the past."
-description: "Sunk costs are identical across every option, so they can’t choose between them. Why quitting feels like wasting what you spent, and the question that resets the decision."
+description: "The sunk cost fallacy: past spending is the same under every option, so it can’t choose between them. Why quitting feels like waste, and what to ask."
 ---
 
 ## The short version

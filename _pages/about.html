@@ -5,6 +5,28 @@ layout: default
 permalink: /about/
 full_width: true
 ---
+{%- comment -%}
+  The canonical "who is Jason Ellis" page: post bylines in structured data
+  point here (site.author.url), so it carries the full Person, profile links
+  included, for search and answer engines.
+{%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": {{ page.url | absolute_url | jsonify }},
+  "mainEntity": {
+    "@type": "Person",
+    "@id": {{ site.author.url | append: "#jason" | jsonify }},
+    "name": {{ site.author.name | jsonify }},
+    "url": {{ site.author.url | jsonify }},
+    "image": {{ "/assets/images/jason-headshot-2026.jpg" | absolute_url | jsonify }},
+    "jobTitle": "Software engineer",
+    "description": {{ page.description | jsonify }},
+    "sameAs": {{ site.social.links | jsonify }}
+  }
+}
+</script>
 <div class="abt" id="abt">
 
   <!-- ══════════════ HERO ══════════════ -->

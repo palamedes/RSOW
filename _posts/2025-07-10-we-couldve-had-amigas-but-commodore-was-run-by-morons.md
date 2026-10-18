@@ -11,7 +11,7 @@ tags:
 - Computer Hardware
 - Apple
 - Microsoft
-description: "From a VIC-20 in '83 to the Amiga 500's custom-silicon wizardry — Commodore had the future in its hands and flushed it. Bad marketing, rotted R&D, and a boardroom of clowns."
+description: "From a VIC-20 in '83 to the Amiga 500's custom silicon, Commodore had the future in its hands and flushed it. Bad marketing, a boardroom of clowns."
 excerpt: "I'll die on this hill: if Commodore had half a clue, we'd all be using Amigas today. Not Windows. Not Mac. Amigas. And they threw it all away."
 ai_notes:
   - quote: "Got my start on a VIC-20 back in '83"

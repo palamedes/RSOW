@@ -13,7 +13,7 @@ tags:
 - Government
 - Personal Finance
 words: [tax-certificate, tax-deed, unrealized-gain, homestead-property, just-value, liquidity, taxable-event]
-description: "Pay off your mortgage, burn the paperwork, and you still owe the government an annual fee to keep possessing your own house, based on what somebody guesses it's worth. Why property tax may be the most fundamentally broken tax of them all: from a Florida couple whose renovation turned a $15,000 bill into a $90,000 one, to retirees being priced out of homes they paid off decades ago."
+description: "Pay off your mortgage, burn the paperwork, and you still owe the government yearly rent on your own house. Property tax may be the most broken tax of all."
 excerpt: "We're told our whole lives to work hard, buy a house and spend thirty years paying it off so we'll have someplace secure to live when we're old. Except you can pay the bank every penny, burn the mortgage paperwork in the backyard, and still lose the house if you stop paying the government its annual fee for letting you keep it. We just don't call it rent. We call it a property tax, which apparently makes the whole arrangement sound more civilized."
 ---
 

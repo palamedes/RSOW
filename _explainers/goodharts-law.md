@@ -4,7 +4,7 @@ kind: "Bad evidence"
 aka: "when a measure becomes a target, teaching to the test"
 tagline: "The number was useful because it tracked the thing you cared about. Then you started rewarding the number, and people optimised the number — which is precisely what stopped it tracking anything."
 tell: "The metric is improving and nobody can point at anything that got better."
-description: "A proxy earns its usefulness in the wild and loses it the moment it becomes a target. Goodhart’s actual sentence, Strathern’s famous one, and the question to ask before adopting any metric."
+description: "Goodhart's law: a measure stops being useful once it becomes a target. Goodhart’s real sentence, Strathern’s famous one, and the question for any metric."
 ---
 
 ## The short version

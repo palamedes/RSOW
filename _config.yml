@@ -9,6 +9,22 @@ timezone: America/New_York
 
 permalink: /post/:title/
 
+# Author of every page: jekyll-seo-tag puts this in each page's structured
+# data (schema.org BlogPosting author), and `social` adds the profile links
+# (sameAs) to the homepage's. Search and answer engines use both to tie the
+# writing to one known person.
+author:
+  name: Jason Ellis
+  url: https://randomstringofwords.com/about/
+social:
+  name: Jason Ellis
+  links:
+    - https://github.com/palamedes
+    - https://www.linkedin.com/in/jasonellis
+    - https://twitter.com/JasonEllis72
+    - https://www.youtube.com/c/JasonEllisBuilds/
+    - https://www.facebook.com/jason.r.ellis
+
 # Fallback image for posts without a featured image
 default_image: /assets/images/rsow-default.jpg
 
@@ -133,6 +149,7 @@ plugins:
 
 # Exclude from build
 exclude:
+  - CLAUDE.md
   - Gemfile
   - Gemfile.lock
   - README.md

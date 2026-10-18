@@ -12,7 +12,7 @@ tags:
 - Pet Peeves
 - Food & Nutrition
 words: [volatile-chemistry, glucosinolate, alkaloid, bioavailability, cassava, enzyme-inhibitor]
-description: "Everyone says eat your vegetables, but the plant doesn't want to be eaten. Bolted to the ground with no way to run, plants turned to chemical warfare: oxalates, lectins, phytates, alkaloids, even cyanide. That doesn't make spinach evil. It means plants aren't biologically neutral, and humans got very good at eating things that objected."
+description: "Everyone says eat your vegetables, but the plant doesn't want to be eaten. Unable to run, plants went chemical: oxalates, lectins, alkaloids, even cyanide."
 excerpt: "For my entire life, I've been told to eat my vegetables. Except there's one small problem nobody mentions: the plant doesn't want you to eat it. A rabbit can run and a porcupine carries its own roofing nails, but a lettuce plant is bolted to the ground, so plants went with chemical warfare. Kidney beans that poison you raw, cassava that can release cyanide, caffeine and nicotine as natural pesticides. None of that makes vegetables evil. It means plants aren't biologically neutral, and humans are unbelievably good at eating things that objected to the arrangement."
 ---
 

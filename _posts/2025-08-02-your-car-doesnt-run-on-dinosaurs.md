@@ -10,7 +10,7 @@ tags:
 - Energy
 - Cars
 - Critical Thinking
-description: "Oil isn't liquified T. rex. It's plankton, algae, and ancient ocean death-stew cooked under a billion tons of rock. A rant about the dumbest myth in your gas tank."
+description: "Oil isn't liquified T. rex. It's plankton, algae and ancient ocean death-stew cooked under a billion tons of rock. The dumbest myth in your gas tank."
 excerpt: "Somewhere along the way someone told you a car runs on liquified T. rex. That nonsense stuck. It stuck hard. Oil comes from pond scum and pressure — read something once in a while."
 ai_notes:
   - quote: "It comes from plankton and algae"

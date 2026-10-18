@@ -433,6 +433,7 @@ $card-listen-me-h: #d18d17;
 
   .card-image {
     width: 100%;
+    height: auto; // the img's width/height attributes are for layout reservation only
     aspect-ratio: 3 / 2;
     object-fit: cover;
     background: #e8e8e8;

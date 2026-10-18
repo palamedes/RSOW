@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "dissonance reduction, effort justification"
 tagline: "Holding two things that don’t fit is genuinely uncomfortable, so one of them quietly gives — and it’s never the one that already cost you something."
 tell: "The belief changed right after the decision, not before it."
-description: "Cognitive dissonance resolves itself by moving whichever belief is cheapest to move. Festinger’s dollar, why commitment produces conviction, and the timing that gives it away."
+description: "Cognitive dissonance resolves itself by moving whichever belief is cheapest to move. Festinger’s dollar, why commitment breeds conviction, and the tell."
 ---
 
 ## The short version

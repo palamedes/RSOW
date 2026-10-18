@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "asking about your guess instead of your goal"
 tagline: "You need X, you decide Y will get you there, and you only ever ask about Y — so everybody helps you perfect an approach that was never going to work."
 tell: "The question is about a solution, and nobody has said what it's for."
-description: "The XY problem is asking about your attempted solution instead of your actual problem. Why hiding the goal wastes the one thing the helper needed, and the single question that unpicks it."
+description: "The XY problem is asking about your attempted fix instead of your actual problem. Why hiding the goal wastes the helper's time, and the question to ask."
 ---
 
 ## The short version

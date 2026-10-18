@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "the bait-and-switch argument"
 tagline: "Make a bold claim. Get challenged. Retreat to an obvious one. Then pretend the bold claim was never in question."
 tell: "The claim you’re being asked to argue with just got smaller — and nobody admitted it changed."
-description: "A motte-and-bailey argument defends a bold, hard-to-support claim by swapping in a weak, obvious one the moment it's challenged — then quietly swapping back. What it looks like, why it fails, and how to call it out."
+description: "Motte and bailey: defend a bold claim by retreating to an obvious one when challenged, then quietly swapping back. What it looks like, and how to call it."
 ---
 
 ## The short version

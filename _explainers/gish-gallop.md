@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "more claims than anyone can answer"
 tagline: "Bury the other side in so many claims at once that answering all of them is impossible — and then let “unanswered” get scored as “unanswerable.”"
 tell: "Each claim took four seconds to make and would take ten minutes to check. There are fourteen of them."
-description: "The Gish Gallop wins by volume: more claims than anyone can rebut in the time available, so whatever goes unaddressed looks conceded. Why it works, and the only response that doesn't lose."
+description: "The Gish Gallop wins by volume: more claims than anyone can rebut in time, so whatever goes unanswered looks conceded. Why it works, and how to respond."
 ---
 
 ## The short version

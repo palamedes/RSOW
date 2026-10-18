@@ -11,7 +11,7 @@ categories:
 tags:
 - Computer Hardware
 - Internet
-image: http://www.boincstats.com/signature/user_238192.gif
+image:
 ribbon:
 private: false
 allow_comments: true

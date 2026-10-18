@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "the personal attack, playing the man"
 tagline: "The argument doesn’t get answered. The person who made it gets discussed instead, and the two activities are allowed to feel like the same one."
 tell: "The reply is about who’s speaking, not about what they said."
-description: "Ad hominem answers an argument by discussing the arguer. Why motive is a reason to check a claim and never a reason to dismiss it, and the one move that defuses it instantly."
+description: "Ad hominem answers an argument by discussing the arguer. Why motive is a reason to check a claim, never to dismiss it, and the move that defuses it."
 ---
 
 ## The short version

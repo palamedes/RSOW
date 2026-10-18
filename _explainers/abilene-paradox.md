@@ -4,7 +4,7 @@ kind: "Group failure"
 aka: "the drive to Abilene, agreement nobody wanted"
 tagline: "Everybody goes along with a plan that not one of them wanted, because each believes the others are keen — and the group does something every single member was against."
 tell: "Afterwards, every person says they were only doing it for everybody else."
-description: "The Abilene paradox is a group agreeing to something none of its members wanted. Why it isn’t conformity, why silence gets read as enthusiasm, and how to find out what the room actually thinks."
+description: "The Abilene paradox is a group agreeing to something none of its members wanted. Why silence reads as enthusiasm, and how to find out what the room thinks."
 ---
 
 ## The short version

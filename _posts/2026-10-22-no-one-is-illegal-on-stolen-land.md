@@ -12,7 +12,7 @@ tags:
 - Government
 - Critical Thinking
 words: [annexation, sovereignty]
-description: "The bumper sticker thinks it's checkmate: NO ONE IS ILLEGAL ON STOLEN LAND. Native Americans really were screwed over, and that's worth talking about honestly. But it has nothing to do with whether somebody can illegally enter the United States today, and if conquest erases borders, you've just abolished most of the borders on Earth."
+description: "NO ONE IS ILLEGAL ON STOLEN LAND thinks it's checkmate. Native Americans were wronged, but that says nothing about illegal entry today."
 excerpt: "You've probably seen the bumper sticker: NO ONE IS ILLEGAL ON STOLEN LAND. It usually comes with a smug little sense that somebody just delivered the intellectual equivalent of checkmate. Native Americans were absolutely screwed over through large parts of American history. It still has nothing to do with whether somebody can illegally enter the United States today, and that's where this bumper-sticker philosophy drives straight through the guardrail."
 ai_notes:
   - quote: "You've probably seen the bumper sticker"

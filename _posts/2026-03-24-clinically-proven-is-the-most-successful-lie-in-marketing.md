@@ -10,7 +10,7 @@ tags:
 - Rant
 - Advertising
 - Critical Thinking
-description: "\"Clinically proven\" is an unregulated phrase. No governing body checks it. No standard exists. Here's what it actually means and how to read the fine print."
+description: "\"Clinically proven\" is an unregulated phrase. No governing body checks it and no standard exists. What it actually means and how to read the fine print."
 excerpt: "Two words that sound like science but operate like a magic spell. Designed to make you stop thinking and start buying. Unlike \"FDA-approved,\" which requires surviving years of rigorous trials, independent review, and public data disclosure ... \"clinically proven\" requires basically nothing. Here's the full spectrum, from legitimate peer-reviewed research to pure marketing theater."
 ai_notes:
   - quote: "operate like a magic spell"

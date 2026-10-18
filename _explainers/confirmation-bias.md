@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "the positive test strategy, looking where the answer already is"
 tagline: "You go and check, you find support, and you stop — because the search was shaped by the answer before it started, and a search for confirmations returns confirmations."
 tell: "The evidence was gathered after the conclusion, and all of it points one way."
-description: "Confirmation bias is a search that couldn’t have come back negative. Wason’s 2-4-6 task, the three different things the name covers, and why every step of it feels like being careful."
+description: "Confirmation bias is a search that couldn’t have come back negative. Wason’s 2-4-6 task, what the name covers, and why every step feels like being careful."
 ---
 
 ## The short version

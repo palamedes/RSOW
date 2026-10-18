@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "collective false memory, shared misremembering, the Berenstain Bears thing"
 tagline: "A large number of people remember the same detail that was never there. That is a real, measurable, partly unexplained finding about memory — and it is not evidence that the detail used to be there."
 tell: "The argument offered is that lots of people remember it the same way, when remembering it the same way is exactly what the ordinary explanation predicts."
-description: "Mr Monopoly's monocle, Mickey's suspenders, the Fruit of the Loom cornucopia. Where the name came from, what the lab actually shows, why agreement isn't corroboration, and the one part researchers genuinely can't explain yet."
+description: "The Mandela effect is many people sharing the same false memory. Mr Monopoly's monocle, what the lab shows, and why agreement isn't corroboration."
 ---
 
 ## The short version

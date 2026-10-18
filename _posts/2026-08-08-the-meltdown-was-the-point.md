@@ -10,7 +10,7 @@ tags:
 - Gender
 - Law Enforcement
 - Social Media
-description: "A viral video of a grown adult melting down during an arrest — screaming to be called 'she' — is easy to laugh at. But the tantrum wasn't a glitch. It was the finished product of a culture that teaches people distress is leverage, fragility is status, and reality is supposed to reorganize itself around their feelings. Then the real world showed up wearing a badge."
+description: "A grown adult melting down during an arrest is easy to laugh at. But it wasn't a glitch. It's what a culture that treats distress as leverage produces."
 excerpt: "He learned that crying louder gives you power over the room — that the second the tears start, everyone else is supposed to soften up and rearrange reality around his feelings. It worked on teachers, on HR, on social media. Then he met police officers who just needed him to stop causing a scene. The meltdown didn't strengthen his case. It destroyed it."
 ai_notes:
   - quote: "demanding to be called"

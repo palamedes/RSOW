@@ -4,7 +4,7 @@ kind: "Bad evidence"
 aka: "argumentum ad verecundiam, the credential as proof"
 tagline: "The reason to believe it is who said it. Nothing the expert actually knows has been passed along — only the fact that they’re the sort of person who would know."
 tell: "The evidence on offer is a qualification, and you still haven’t heard the argument."
-description: "Appeal to authority offers a person’s standing in place of their reasoning. Why deferring to experts is usually correct, exactly where it stops being, and the question that separates the two."
+description: "Appeal to authority offers a person’s standing in place of their reasoning. Why deferring to experts is usually right, and exactly where it stops being."
 ---
 
 ## The short version

@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "strawmanning"
 tagline: "Swap somebody’s actual argument for a dumber one, knock the dumb one down, and act like the job is finished."
 tell: "The thing being demolished is not the thing that was said."
-description: "A straw man replaces someone's real argument with a weaker or more extreme version that's easier to attack. What it looks like, why the refutation proves nothing, and how to shut it down in one sentence."
+description: "A straw man swaps someone's real argument for a weaker, more extreme one that's easier to attack. Why the rebuttal proves nothing, and how to shut it down."
 ---
 
 ## The short version

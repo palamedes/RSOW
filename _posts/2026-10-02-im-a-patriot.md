@@ -12,7 +12,7 @@ tags:
 - Taxes
 - Guns
 words: [committee-assignment, deficit-budget]
-description: "Patriotism isn't picking a political team and defending whatever your side did this week. Both parties built the same ever-growing government machine, and loving your country is not the same as trusting your government: term limits, programs with expiration dates, and every tax made to justify itself."
+description: "Patriotism isn't defending whatever your team did this week. Both parties built one bloated machine. Loving your country isn't trusting the government."
 excerpt: "Somewhere along the way, being a patriot came to mean picking a political team, buying the right bumper sticker and defending whatever ridiculous thing your side did this week. I'm tired of red versus blue. Maybe the problem isn't the team running the machine; maybe the machine itself has gotten out of control. Republicans helped build it, Democrats sell it with a different pitch, and it grows no matter who wins. Loving your country and loving your government are two different things, and this country belongs to the people who live here."
 ---
 

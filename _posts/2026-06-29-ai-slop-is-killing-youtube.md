@@ -12,7 +12,7 @@ tags:
 - YouTube
 - Social Media
 words: [faceless-channel, content-farm]
-description: "YouTube is getting harder to watch, and it's not because people forgot how to make videos. It's because the feed is drowning in mass-produced AI slop: fake voices, fake scripts, fake everything — content made by nobody, for nobody, about nothing."
+description: "YouTube is drowning in mass-produced AI slop: fake voices, fake scripts, fake everything. Content made by nobody, for nobody, about nothing."
 excerpt: "YouTube is getting harder and harder to watch, and it's not because people suddenly forgot how to make videos. It's because the platform is being flooded with AI slop: faceless channels, robot narration, recycled filler scripts, and an infinite sewage pipe of algorithm bait drowning out the humans who actually give a damn."
 ai_notes:
   - quote: "The AI voice mispronounces simple words"

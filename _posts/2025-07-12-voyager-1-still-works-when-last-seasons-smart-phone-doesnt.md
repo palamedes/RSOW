@@ -12,7 +12,7 @@ tags:
 - Computer Hardware
 - Capitalism
 - Cars
-description: "A 1977 space probe running on less power than a key fob is still phoning home 24 billion km away. Meanwhile your $1,200 phone chokes in three years. Planned obsolescence dressed as progress."
+description: "A 1977 probe is still phoning home from 24 billion km away. Your $1,200 phone chokes in three years. Planned obsolescence dressed up as progress."
 excerpt: "Voyager 1 was built in 1977. Forty-eight years later it's still doing its job. Meanwhile a $1,200 smartphone can't survive three years. Funny how that works."
 ai_notes:
   - quote: "Forty-eight years later, it's still out there"

@@ -4,7 +4,7 @@ kind: "Rhetorical move"
 aka: "the complex question, the trick question"
 tagline: "A question with a claim smuggled inside it, so that any straight answer concedes something you never agreed to."
 tell: "There is no way to answer it without conceding something nobody has shown."
-description: "A loaded question hides an unproven assumption inside itself, so any straight answer grants it. What it looks like, why it works on an audience, and how to defuse one without looking evasive."
+description: "A loaded question hides an unproven assumption, so any straight answer grants it. What it looks like, why it works, and how to defuse one without dodging."
 ---
 
 ## The short version

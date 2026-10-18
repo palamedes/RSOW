@@ -10,7 +10,7 @@ tags:
 - Books
 - Pet Peeves
 words: [gatekeeping, unabridged]
-description: "\"Oh. So you didn't read it. You listened to it.\" I own hundreds of audiobooks, I read on an e-reader constantly, and I'm done with the idea that the route the words took into my skull decides whether I read the book. Nobody gets bonus points for unnecessary labor."
+description: "\"Oh. So you didn't read it. You listened to it.\" I own hundreds of audiobooks, and how the words got into my skull doesn't decide whether I read the book."
 excerpt: "We were talking about books, I mentioned I'd read something, and at some point it came out that what I'd actually done was listen to the audiobook, which is when I got that little look. \"Oh. So you didn't read it. You listened to it.\" Yes, thank you, I'm aware that my ears and my eyeballs are different pieces of equipment. I have questions about that, and the main one is: why the hell not?"
 ai_notes:
   - quote: "Frankenstein was actually the doctor"

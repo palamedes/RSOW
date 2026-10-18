@@ -4,7 +4,7 @@ kind: "Thinking trap"
 aka: "the anchoring effect, anchor-and-adjust"
 tagline: "The first number said drags every judgement that follows toward it — including when it was obviously arbitrary, and including when you watched it being made up."
 tell: "Everyone is arguing about how far to move from a number nobody has justified."
-description: "Anchoring moves your estimate toward a number that carries no information. Why knowing about it barely helps, and why the fix has to be a procedure rather than an intention."
+description: "Anchoring drags your estimate toward a number that carries no information. Why knowing about it barely helps, and why the fix has to be a procedure."
 ---
 
 ## The short version

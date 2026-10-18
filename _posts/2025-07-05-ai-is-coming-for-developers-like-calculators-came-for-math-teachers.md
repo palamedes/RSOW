@@ -11,7 +11,7 @@ tags:
 - AI
 - Programming
 - Careers
-description: "AI isn't replacing developers — it's surfacing the dead weight. It eats the boilerplate and the stackoverflow-on-autopilot garbage. The real work still needs brain cells."
+description: "AI isn't replacing developers; it's exposing the dead weight. It eats boilerplate and Stack Overflow-on-autopilot code. Real work still needs brain cells."
 excerpt: "The robots are coming, ChatGPT and Claude are going to replace software developers. Except... no. Saying AI will replace developers is like saying calculators replaced math teachers."
 ---
 

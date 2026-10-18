@@ -13,7 +13,7 @@ tags:
 - Media Bias
 - Critical Thinking
 words: [affidavit]
-description: "The panic over the SAVE America Act says 69 million married women will lose the vote because their birth certificates show their maiden names. The bill has a process for exactly that. You can oppose it. Just stop telling women Republicans are taking their vote because they got married."
+description: "The SAVE America Act panic says 69 million married women lose the vote over maiden names. The bill has a process for that. Oppose it, but stop lying."
 excerpt: "Apparently Republicans are trying to take away women's right to vote again. At least that's what's being shoveled around about the SAVE America Act: married women changed their names, their birth certificates show their maiden names, and so tens of millions of women supposedly won't be able to register. There's just one tiny problem. The bill has a process for exactly that."
 ai_notes:
   - quote: "Rep. Lauren Underwood has even claimed"

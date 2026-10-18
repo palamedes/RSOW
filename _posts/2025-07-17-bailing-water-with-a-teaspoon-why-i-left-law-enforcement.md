@@ -11,7 +11,7 @@ tags:
 - Law Enforcement
 - Careers
 - Military
-description: "Being a cop is one of the worst jobs in America. The idealism burns off fast. A story about Jenny, the hundreds of Jennys, and shoveling water out of a sinking boat with a teaspoon."
+description: "Being a cop is one of the worst jobs in America, and the idealism burns off fast. About Jenny, the hundreds of Jennys, and bailing water with a teaspoon."
 excerpt: "I'm not a cop anymore. I get asked why I left, why I didn't stick it out for the pension. Here's the truth: being a cop is one of the worst jobs in America."
 ai_notes:
   - quote: "no one warns you how fast that idealism burns off"

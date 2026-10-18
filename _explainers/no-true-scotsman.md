@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "the appeal to purity"
 tagline: "A counterexample turns up, so the definition quietly grows a new requirement that excludes it — and the original claim survives by no longer meaning anything."
 tell: "The word gained a new condition at the exact moment it needed one."
-description: "No True Scotsman defends a generalisation by redefining the group to exclude any counterexample. Why it makes the claim unfalsifiable, and the one question that settles it."
+description: "No True Scotsman saves a generalisation by redefining the group to exclude any counterexample. Why that makes it unfalsifiable, and the question to ask."
 ---
 
 ## The short version

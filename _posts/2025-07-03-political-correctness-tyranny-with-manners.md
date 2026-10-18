@@ -12,7 +12,7 @@ tags:
 - Free Speech
 - Censorship
 - Language
-description: "When did being polite become mandatory and being honest become offensive? The term has older, more totalitarian roots than you think — and discomfort is where growth happens."
+description: "When did being polite become mandatory and being honest offensive? 'Political correctness' has older, more totalitarian roots than you think."
 excerpt: "Politeness isn't the problem. Forced conformity is. Somewhere along the line, political correctness stopped being about decency and became a straightjacket."
 ---
 

@@ -214,6 +214,7 @@
   </main>
 
   <footer class="site-footer">
+    {%- comment -%} Small WebPs from _tools/make-thumbs.sh; data-full opens the original. {%- endcomment %}
     <div class="footer-photo-strip">
       <div class="strip-track">
         {% for i in (1..25) %}
@@ -221,14 +222,16 @@
           {% if i == 2 or i == 9 or i == 11 or i == 25 %}{% assign ext = "png" %}{% endif %}
           {% assign num = i | prepend: "00" | slice: -2, 2 %}
           {% assign src = '/assets/images/gallery/gallery-' | append: num | append: '.' | append: ext | relative_url %}
-          <img src="{{ src }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}">
+          {% assign thumb = '/assets/images/gallery/thumbs/gallery-' | append: num | append: '.webp' | relative_url %}
+          <img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async">
         {% endfor %}
         {% for i in (1..25) %}
           {% assign ext = "jpg" %}
           {% if i == 2 or i == 9 or i == 11 or i == 25 %}{% assign ext = "png" %}{% endif %}
           {% assign num = i | prepend: "00" | slice: -2, 2 %}
           {% assign src = '/assets/images/gallery/gallery-' | append: num | append: '.' | append: ext | relative_url %}
-          <img src="{{ src }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}">
+          {% assign thumb = '/assets/images/gallery/thumbs/gallery-' | append: num | append: '.webp' | relative_url %}
+          <img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async">
         {% endfor %}
       </div>
     </div>
@@ -338,7 +341,7 @@
             <h3>About Me</h3>
             <p>Hey everyone! Glad to see you here. Welcome to my peripheral brain on the internet, the virtual oubliette of crap where I store my thoughts, feelings and opinions. Lots to read if you're so inclined.</p>
             <div class="footer-about-actions">
-              <a href="{{ '/about/' | relative_url }}" class="read-more">Read More</a>
+              <a href="{{ '/about/' | relative_url }}" class="read-more">More about me</a>
               <div class="footer-about-social">
                 {% include social-icons.html %}
               </div>

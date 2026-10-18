@@ -4,7 +4,7 @@ kind: "Bad evidence"
 aka: "cum hoc ergo propter hoc, post hoc ergo propter hoc"
 tagline: "Two things move together, so one gets announced as the cause of the other — and the third thing driving both is never mentioned, because nobody went looking for it."
 tell: "A relationship in the data was upgraded to a mechanism, and nobody proposed one."
-description: "Two things moving together is consistent with four different explanations, and the data can’t choose between them. Why reverse causation is the underrated one, and what separates predicting from intervening."
+description: "Correlation isn’t causation: two things moving together fit four explanations, and the data can’t choose. Why reverse causation is the underrated one."
 ---
 
 ## The short version

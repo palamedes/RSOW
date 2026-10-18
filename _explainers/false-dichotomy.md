@@ -4,7 +4,7 @@ kind: "Faulty reasoning"
 aka: "false dilemma, the either/or fallacy"
 tagline: "Two options get put on the table as though they’re the only two, and the entire middle of the range quietly disappears."
 tell: "You were handed two doors in a room that has more than two doors."
-description: "A false dichotomy presents a limited set of options as if it were the complete set, so rejecting one counts as choosing the other. What it looks like, when a binary is real, and how to break the frame."
+description: "A false dichotomy presents two options as the whole list, so rejecting one counts as picking the other. When a binary is real, and how to break the frame."
 ---
 
 ## The short version

@@ -4,7 +4,7 @@ kind: "Bad evidence"
 aka: "the plural of anecdote, it worked for me"
 tagline: "One vivid case, well told, outweighs a study of ten thousand — because the case has a face and the study has a table."
 tell: "The evidence is a story, and its force is coming from how well it’s told."
-description: "A single case answers whether something can happen and never how often. Why the stories that reach you are unrepresentative by construction, and how to push back without calling anyone a liar."
+description: "Anecdotal evidence: one case shows something can happen, never how often. Why the stories that reach you are unrepresentative, and how to push back kindly."
 ---
 
 ## The short version

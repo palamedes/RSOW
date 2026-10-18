@@ -10,7 +10,7 @@ tags:
 - Rant
 - Generations
 - Law Enforcement
-description: "Gen X learned to bury it, cops learned to say 'I'm fine,' and PTSD is rarely one shell-shock moment — it's erosion. Therapy isn't weakness; staying broken to look strong is."
+description: "Gen X learned to bury it, cops learned to say 'I'm fine,' and PTSD is usually erosion, not one moment. Therapy isn't weakness; staying broken is."
 excerpt: "I grew up in the age of 'shut the hell up and deal with it.' Gen X didn't get therapy — we got sarcasm and the emotional toolkit of a half-melted G.I. Joe."
 ai_notes:
   - quote: "latchkey independence"
