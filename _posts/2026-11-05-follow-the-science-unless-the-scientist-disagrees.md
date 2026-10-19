@@ -11,6 +11,8 @@ tags:
 - Media Bias
 - Energy
 - Government
+- AI
+- Censorship
 words: [peer-review, natural-variability, tenure]
 description: "Trust the experts, we're told. Then a climatologist with nearly 200 papers questions the certainty, and suddenly that expert stops counting."
 excerpt: "We've all heard it a thousand times: trust the science, listen to the experts, the science is settled. What I've always found interesting is what happens when an actual scientist disagrees with the approved narrative: someone with decades of experience, nearly 200 peer-reviewed papers, and credentials coming out of her ears. Apparently we just stop listening to that particular scientist."
@@ -139,6 +141,32 @@ The meme is still getting at something real, though. Emotional appeals about imp
 Put a frightened teenager warning that our future is being stolen up against a climatologist spending 45 minutes explaining uncertainty in climate models, and we all know which one makes better television. Fear sells, and so do outrage and catastrophe. As for a thoughtful discussion about probabilities and economic tradeoffs, good luck squeezing that into a 30-second segment between commercials.
 
 To be fair, journalists shouldn't pretend one dissenting scientist represents half the scientific community. That would mislead people too. But reporting a consensus accurately is a different thing from treating every challenge to its conclusions as forbidden territory.
+
+## And Then the AI Proved My Point. Sort Of.
+
+Here's something almost too ridiculous to make up.
+
+While writing this very article, I asked ChatGPT to generate a thumbnail for it. Nothing particularly outrageous. Just an image representing the idea that scientists who challenge the prevailing narrative don't always get a fair hearing.
+
+The AI refused to generate it.
+
+So we tried again.
+
+Rejected. Again.
+
+One rejection suggested the image might resemble copyrighted or third-party content. The other vaguely cited content policies.
+
+Now, was the system deliberately censoring climate skepticism? I can't prove that. It could just be an overzealous automated filter that doesn't understand context.
+
+But isn't that interesting?
+
+I'm writing about the danger of allowing institutions to decide which viewpoints are acceptable, and an AI system won't even let me illustrate the article. Worse, it can't tell me exactly why.
+
+And that's the larger concern. **When algorithms become the gatekeepers of public expression, they don't have to intentionally censor an idea to effectively suppress it.** They just have to keep rejecting it without explanation.
+
+Apparently, even questioning whether we're allowed to question the narrative can be a problem.
+
+You really can't make this shit up.
 
 ## Follow the money, and the policy
 
