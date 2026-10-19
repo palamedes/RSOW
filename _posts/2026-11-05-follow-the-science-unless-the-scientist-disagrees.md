@@ -7,6 +7,7 @@ categories:
 - Science
 - Political
 tags:
+- Rant
 - Critical Thinking
 - Media Bias
 - Energy

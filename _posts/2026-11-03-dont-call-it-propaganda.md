@@ -7,6 +7,7 @@ categories:
 - Political
 - Media
 tags:
+- Rant
 - Government
 - Media Bias
 - Critical Thinking
