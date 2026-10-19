@@ -1,7 +1,7 @@
 ---
 title: "I Read Books with My Ears"
 layout: post
-date: 2026-10-20
+date: 2026-11-07
 image: /assets/images/2026/i-read-books-with-my-ears.png
 categories:
 - Media
