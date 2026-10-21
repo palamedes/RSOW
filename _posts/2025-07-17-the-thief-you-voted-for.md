@@ -109,7 +109,7 @@ The government doesn't earn money. It doesn't create value. Every dollar it hand
 
 And like the thief, they don't care. Easy come, easy go. Billions burned on bullshit programs, foreign aid, and pork projects you didn't ask for. Trillions in debt like it's Monopoly money. Because it's not their money. It's mine. And, it's yours.
 
-And here's the kicker… they don't just take once. Oh no. They take every chance they get.
+And here's the thing… they don't just take once. Oh no. They take every chance they get.
 
 - Taxed when you earn it (income tax).
 - Taxed when you spend it (sales tax, excise tax).

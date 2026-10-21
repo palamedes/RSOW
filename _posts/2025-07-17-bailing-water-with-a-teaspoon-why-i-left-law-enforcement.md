@@ -103,7 +103,7 @@ For me, it wasn't about power or authority. It wasn't because I wanted to play h
 
 And let's be honest ... there's also a tiny part of you that wants to believe you can make a difference. That you can step in when others won't. That you can protect the good people from the bad ones.
 
-**But here's the kicker: no one warns you how fast that idealism burns off.**
+**But here's the thing: no one warns you how fast that idealism burns off.**
 
 Long hours. Crap pay. The kind of stress that rewires your brain and poisons your relationships. A front-row seat to humanity at its absolute lowest. Oh, and everyone hates you. You can't forget that part. You're the villain in every news story, every viral video, every movie where the cops are always corrupt or racist or both. Doesn't matter that most of us signed up because we actually gave a damn.
 

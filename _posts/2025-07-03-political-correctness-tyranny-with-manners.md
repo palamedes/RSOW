@@ -24,7 +24,7 @@ Somewhere along the line, "political correctness" stopped being about decency an
 
 What began, allegedly, as a push to avoid needlessly hurting people's feelings has morphed into a rigid, self-policing culture where saying the wrong thing (even if it's true) can get you fired, banned, or publicly flayed by a digital mob armed with hashtags and zero sense of irony.
 
-Here's the kicker; this isn't a new idea. The term "politically correct" didn't come out of California in the '90s with granola and safe spaces. It's got much older, more totalitarian roots.
+Here's the thing; this isn't a new idea. The term "politically correct" didn't come out of California in the '90s with granola and safe spaces. It's got much older, more totalitarian roots.
 
 It was used sarcastically among communists in early 20th-century Russia to describe someone who toed the party line regardless of truth or nuance. Nazi Germany had their own flavor of it too where ideological conformity wasn't just encouraged, it was expected, and any deviation was dangerous. Tyranny with manners. Smile while you goose-step, or else.
 

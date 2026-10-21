@@ -83,7 +83,7 @@ Let's talk numbers. Around 72% of women in the U.S. say they feel pressure to we
 
 And it gets even more ridiculous. Women buy these concave, magnifying mirrors that make every pore look like a crater and every stray hair like a redwood tree. They're examining their faces at a microscopic level, then wondering why they don't look like a goddamn Instagram filter in real life. The expectations are completely out of whack with reality.
 
-Why do women do this to themselves? Oh right… because greedy corporations have spent decades convincing them it's what men want. But here's the kicker: we don't. I've told my wife time and time again that she absolutely doesn't need all this shit. She's gorgeous without it. But she won't listen. That's how deep the brainwashing goes.
+Why do women do this to themselves? Oh right… because greedy corporations have spent decades convincing them it's what men want. But here's the thing: we don't. I've told my wife time and time again that she absolutely doesn't need all this shit. She's gorgeous without it. But she won't listen. That's how deep the brainwashing goes.
 
 Women slather on product after product, then complain when they don't get the results they were promised – results that don't even exist outside of a Photoshop session or a TikTok filter. Meanwhile, men are out here using the same 3-in-1 body wash they use to clean a trailer hitch, and somehow their hair and skin look fine. And what do women do? Double down with the 15th bottle of crap they already said "doesn't work." That's not self-care. That's insanity.
 

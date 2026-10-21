@@ -85,7 +85,7 @@ Naturally, I started wondering what the hell was going on.
 
 That led me down a rabbit hole about bile acid diarrhea, fat malabsorption, and the surprisingly complicated job that little green organ used to perform.
 
-And here's the kicker: these aren't necessarily imaginary problems invented by the supplement industry. Some are well-documented medical conditions that can develop after gallbladder removal.
+And here's the thing: these aren't necessarily imaginary problems invented by the supplement industry. Some are well-documented medical conditions that can develop after gallbladder removal.
 
 Now, I'm not claiming my surgery was unnecessary. Quite the opposite. My gallbladder had apparently decided to open a gravel quarry inside my abdomen.
 
