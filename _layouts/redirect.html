@@ -1,0 +1,19 @@
+<!doctype html>
+{%- comment -%}
+  A page that has moved off this site. Front matter sets `redirect_to`; the
+  meta refresh covers browsers without JavaScript. Keep these pages out of the
+  sitemap with `sitemap: false`.
+{%- endcomment %}
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ page.title }}</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ page.redirect_to | split: "?" | first }}">
+<meta http-equiv="refresh" content="0; url={{ page.redirect_to }}">
+<script>location.replace({{ page.redirect_to | jsonify }});</script>
+</head>
+<body>
+<p>This page moved. <a href="{{ page.redirect_to }}">{{ page.link_text }}</a>.</p>
+</body>
+</html>
