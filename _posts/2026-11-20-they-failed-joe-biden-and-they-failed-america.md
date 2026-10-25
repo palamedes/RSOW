@@ -1,7 +1,7 @@
 ---
 title: "They Failed Joe Biden. And They Failed America."
 layout: post
-date: 2026-11-11
+date: 2026-11-20
 image: /assets/images/2026/they-failed-joe-biden-and-they-failed-america.jpg
 categories:
 - Political
