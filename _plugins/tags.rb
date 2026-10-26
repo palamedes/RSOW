@@ -22,6 +22,19 @@ Jekyll::Hooks.register :site, :post_read do |site|
   end
 end
 
+# Tag pages (/tag/<name>/, from jekyll-archives) are bare lists of titles:
+# handy for browsing, too thin for search. Google filed most of them under
+# "Discovered - currently not indexed", so keep them out of the sitemap and
+# mark them noindex (the default layout reads `noindex`). Category pages stay
+# indexable; there are only a handful of those shelves.
+Jekyll::Hooks.register :site, :pre_render do |site|
+  site.pages.each do |page|
+    next unless page.is_a?(Jekyll::Archives::Archive) && page.type == "tag"
+    page.data["sitemap"] = false
+    page.data["noindex"] = true
+  end
+end
+
 # Clouds for tags and topics (categories), computed once per build:
 #
 # site.data["tags_by_count"] / ["topics_by_count"]: every tag / category on a

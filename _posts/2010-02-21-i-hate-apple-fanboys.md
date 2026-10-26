@@ -22,7 +22,7 @@ allow_comments: true
 
 <a rel="lightbox" href="/assets/images/2010/02/apple_fanboy.jpg" class='pull-right fancybox'><img title="apple_fanboy" src="/assets/images/2010/02/apple_fanboy-150x150.jpg" alt="" width="150" height="150" /><br /><span>Apple Fanboy</span></a>
 
-I understand brand loyalty, but Apple fanatics take it to extremes..  Buying something just because it has an Apple logo on the side is ludicrous..  Recently I had (via a forum) a conversation with someone who was in the market for a new monitor and they had their heart set on either the 24" or 30" Apple Cinema Display..   I pointed out the <a href="/28-hdmi-monitor/">28" monitor that I use</a> and offered it as a possible alternative simply because the ACD's are stupidly expensive..
+I understand brand loyalty, but Apple fanatics take it to extremes..  Buying something just because it has an Apple logo on the side is ludicrous..  Recently I had (via a forum) a conversation with someone who was in the market for a new monitor and they had their heart set on either the 24" or 30" Apple Cinema Display..   I pointed out the <a href="/post/28-hdmi-monitor/">28" monitor that I use</a> and offered it as a possible alternative simply because the ACD's are stupidly expensive..
 
 I told him that my monitor was much less than the 30" ACD he was leaning towards, and in fact you could likely get 6 of mine for one of those.. Plus I pointed out that the majority of the stats for my monitor was actually better than the ACD.  To which he said that the monitor I used was cheap and ugly.   And compared the Apple Cinema Display to a fine bottle of wine, where as my monitor was a cheap sixpack.
 

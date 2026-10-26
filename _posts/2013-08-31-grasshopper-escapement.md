@@ -25,7 +25,7 @@ allow_comments: true
 
 <a href="/assets/images/2013/08/grasshopper-escapement00.gif" rel="lightbox" class='pull-right fancybox'><img title="Grasshopper Escapement" src="/assets/images/2013/08/grasshopper-escapement00.gif" alt="Grasshopper Escapement" width="150" /><br /><span>Grasshopper Escapement</span></a>
 
-I'm still quite keen on making an all wood clock.  I have the [MLT13 Clock](/scroll-saw-and-mlt-13-wooden-clock) up on the wall in my garage and it "mostly" works.  Seriously it's so close!  It just wont stay ticking, and then the move caused some of the joints to swell a little so it needs work.  (Humidity + Wood == Movement)
+I'm still quite keen on making an all wood clock.  I have the [MLT13 Clock](/post/scroll-saw-and-mlt-13-wooden-clock/) up on the wall in my garage and it "mostly" works.  Seriously it's so close!  It just wont stay ticking, and then the move caused some of the joints to swell a little so it needs work.  (Humidity + Wood == Movement)
 
 The issue with the MLT13 is that it was likely a bit more challenging than I realized and wasn't a good first clock project primarily because the escapement is fairly small.  I have recut the both the escape wheel and the pallets a number of times and still not gotten it 100% correct.  Either the tolerances are extremely tight or I just don't have a clue how to tune it.
 

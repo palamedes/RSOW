@@ -19,7 +19,7 @@ allow_comments: true
 ---
 <a href="/assets/images/2011/07/mandolin101.jpg" rel="lightbox" class='pull-right fancybox'><img title="Ibanez Mandolin" src="/assets/images/2011/07/mandolin101-150x150.jpg" alt="Ibanez Mandolin" width="150" height="150" /><br /><span>Ibanez Mandolin</span></a>
 
-I have always enjoyed wood working and have done a bit of wood turning in my time.   And as I have <a title="I can play the radio..." href="/play-the-radio/">mentioned before</a> (<a title="Play the radio 2" href="/play-the-radio-2/">more than once</a>), I have always wanted to play an instrument of some kind..   Recently it occurred to me that there was no reason I couldn't combine these two activities..
+I have always enjoyed wood working and have done a bit of wood turning in my time.   And as I have <a title="I can play the radio..." href="/post/play-the-radio/">mentioned before</a> (<a title="Play the radio 2" href="/post/play-the-radio-2/">more than once</a>), I have always wanted to play an instrument of some kind..   Recently it occurred to me that there was no reason I couldn't combine these two activities..
 
 To that end, I decided to try my hand at becoming a hobby luthier (a maker of stringed instruments) and make myself something to play..    I went back and forth considering all the options and decided that for my first instrument I'd like to make a Mandolin.  ( Dulcimer was a close second and I'll likely make one of those in the future, as well as making a Viola if I can manage to do this with any proficiency.  )
 

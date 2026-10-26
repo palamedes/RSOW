@@ -45,7 +45,7 @@ She was diagnosed with a hyperthyroid problem and given 6 months to live.  We ke
 
 It didn't.  In fact, nothing seemed to help.  She was wasting away before our eyes, getting sicker and sicker.   The final visit to the vet proved the medications and what not we had her own weren't doing anything and in fact the thyroid problem was an ancillary problem.
 
-Babie had some how contracted <a href="http://www.vet.cornell.edu/fhc/brochures/felv.html" target="_blank">feline leukemia</a>, an extremely nasty virus that is basically "kitty HIV".  I don't know where or how she got it as our cats never go outside.  But now we have to get the other two <a href="/my-cats-diary/" target="_blank">captives</a>.. er cats checked and make sure they are okay.   I seriously hope they don't have anything -- this sucked.
+Babie had some how contracted <a href="http://www.vet.cornell.edu/fhc/brochures/felv.html" target="_blank">feline leukemia</a>, an extremely nasty virus that is basically "kitty HIV".  I don't know where or how she got it as our cats never go outside.  But now we have to get the other two <a href="/post/my-cats-diary/" target="_blank">captives</a>.. er cats checked and make sure they are okay.   I seriously hope they don't have anything -- this sucked.
 
 By the end, babie was hurting.  She was weak and unable to lift her head.  She had lost a ton of weight, and couldn't keep any food or water down.  She was having a very hard time breathing due to the leukemia and her liver had likely developed cancer.  Her body was failing her.  All around she wasn't her usual happy self, and it broke my heart.
 

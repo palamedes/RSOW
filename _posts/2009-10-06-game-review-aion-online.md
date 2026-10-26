@@ -21,7 +21,7 @@ allow_comments: true
 
 <img title="Aion Online" src="/assets/images/2009/10/aion_wall_robe-150x150.jpg" alt="Aion Online" width="150" height="150" class='pull-right' />
 
-I have <a href="/past-mmos-i-have-played/" target="_self">played a lot of MMO's</a> in my time.. I feel I have a pretty good handle on the genre and have a very good idea of what makes a game good, and what makes a game bad.  Both in terms of what I personally feel, and as well as taking a broader view as a whole.  I can readily recognize why one game or another may not appeal to me, but be appealing to others.
+I have <a href="/post/past-mmos-i-have-played/" target="_self">played a lot of MMO's</a> in my time.. I feel I have a pretty good handle on the genre and have a very good idea of what makes a game good, and what makes a game bad.  Both in terms of what I personally feel, and as well as taking a broader view as a whole.  I can readily recognize why one game or another may not appeal to me, but be appealing to others.
 
 What's interesting is that I find that as time has gone on I have had to lower my expectations because none of contemporary games are ever as good as the now lofty memories of the games of old..
 

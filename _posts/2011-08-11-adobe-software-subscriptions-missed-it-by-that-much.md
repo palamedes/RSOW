@@ -21,7 +21,7 @@ allow_comments: true
 
 <img class="pull-right" title="" src="/assets/images/2011/08/adobe-logo-150x150.png" alt="" width="150" height="150" />
 
-I'm pretty strong supporter of Adobe products or at least I think I must be because I have purchased Adobe Photoshop, Adobe Premiere and Adobe After Effects as well as upgrading each many times.  I'm on my 4th or 5th iteration of photoshop at this point and after some quick and dirty math  I think Adobe has gotten well over $5000 of my hard earned money over the years.  These are all for my own personal use and because as a software engineer I think <a title="Software Piracy" href="/software-piracy/">software piracy is just wrong</a>.  Even so that still hurts a tad.
+I'm pretty strong supporter of Adobe products or at least I think I must be because I have purchased Adobe Photoshop, Adobe Premiere and Adobe After Effects as well as upgrading each many times.  I'm on my 4th or 5th iteration of photoshop at this point and after some quick and dirty math  I think Adobe has gotten well over $5000 of my hard earned money over the years.  These are all for my own personal use and because as a software engineer I think <a title="Software Piracy" href="/post/software-piracy/">software piracy is just wrong</a>.  Even so that still hurts a tad.
 
 Recently Adobe announced that they would be offering their software at rental subscription prices and I was excited!   What a great idea!!  But did they do it right?  I don't think so.. but they are so close!
 
@@ -29,7 +29,7 @@ Lets take Adobe Flash Professional as an example of whats going on, and their li
 
 At that price point they have completely alienated the casual user.   More over that price point only serves to encourage the casual user to pirate the software because its not even remotely affordable.  I'm not saying its right to pirate by any stretch, but I am saying that even an honest person can rationalize doing so when the price point is so far out of their reach.   Many would say eight hundred or eight million, it makes no matter so screw it.
 
-More over, most software companies look at each pirated copy of their software as lost revenue, thus as a general rule they resort to raising the price even higher so that the companies that do make the purchase help to recoup costs and offset the fact that the software is pirated so much.. causing a vicious cycle.  <a href="/ubisoft-and-their-drm/">Ubisoft is very guilty of this</a>..
+More over, most software companies look at each pirated copy of their software as lost revenue, thus as a general rule they resort to raising the price even higher so that the companies that do make the purchase help to recoup costs and offset the fact that the software is pirated so much.. causing a vicious cycle.  <a href="/post/ubisoft-and-their-drm/">Ubisoft is very guilty of this</a>..
 
 So the question becomes, how do you get the casual user?   What is the price point most people are willing to throw at a piece of software?  And in the subscription model;  How much are people willing to spend monthly on something?
 

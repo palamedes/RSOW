@@ -20,7 +20,7 @@ allow_comments: true
 
 <a rel='lightbox' href="/assets/images/2010/01/nexusone.png" class='pull-right fancybox'><img title="nexusone" src="/assets/images/2010/01/nexusone-151x300.png" alt="" width="151" height="300" /></a>
 
-So I had <a href="/xperia-x10-my-next-phone/" target="_blank">stated previously</a> that I was tired of my original iPhone and that would be getting the Sony Ericsson Xperia X10 when it came out some time later this year.   That was before I heard/read about Google's offering; the <a href="http://www.google.com/phone" target="_blank">Nexus One</a>.
+So I had <a href="/post/xperia-x10-my-next-phone/" target="_blank">stated previously</a> that I was tired of my original iPhone and that would be getting the Sony Ericsson Xperia X10 when it came out some time later this year.   That was before I heard/read about Google's offering; the <a href="http://www.google.com/phone" target="_blank">Nexus One</a>.
 
 I weighed all the numbers and researched all the sites and came to the conclusion that the only thing the X10 had over the Nexus One was the price tag.   From what one site was guessing the SE offering was going to be pretty pricey.  Plus, SE has done a lot to customize their interface but I think they are over doing it a tad.  It looks cool, sure but every video I watched showed the interface to be laggy and/or buggy.  And while I'm sure it was still very early in their development cycle it still put me off.
 

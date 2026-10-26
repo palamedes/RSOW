@@ -13,6 +13,9 @@
   <meta name="robots" content="noindex, nofollow">
   <script>(function(){var k='bld-pass',q=new URLSearchParams(location.search),ok=false;if(q.get('p')==='shad0w'){ok=true;try{localStorage.setItem(k,'1')}catch(e){}q.delete('p');var s=q.toString();history.replaceState(null,'',location.pathname+(s?'?'+s:'')+location.hash)}else{try{ok=localStorage.getItem(k)==='1'}catch(e){}}if(!ok){document.documentElement.style.display='none';location.replace('/404.html')}})();</script>
   {%- endif %}
+  {%- if page.noindex %}
+  <meta name="robots" content="noindex, follow">
+  {%- endif %}
   {% seo %}
   {%- comment -%}
     jekyll-seo-tag stops at og:image. Facebook needs the size too, or it leaves

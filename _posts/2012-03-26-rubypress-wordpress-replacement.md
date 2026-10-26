@@ -22,7 +22,7 @@ private: false
 ---
 <a href="/assets/images/2012/03/rubypress01.jpg" rel="lightbox" class='pull-right fancybox'><img title="RubyPress" src="/assets/images/2012/03/rubypress01-150x150.jpg" alt="RubyPress" width="150" height="150" /><br /><span>RubyPress</span></a>
 
-So a while back I had thought my WordPress install was getting exploited through some bug and decided I wanted to write my own replacement.. Turns out that bug had nothing to do with WordPress but was rather an issue with my host.. It's been resolved, but that niggling desire to [create my own blogging software](/my-own-custom-blogging-software/ "My own custom blogging software") stuck..
+So a while back I had thought my WordPress install was getting exploited through some bug and decided I wanted to write my own replacement.. Turns out that bug had nothing to do with WordPress but was rather an issue with my host.. It's been resolved, but that niggling desire to [create my own blogging software](/post/my-own-custom-blogging-software/ "My own custom blogging software") stuck..
 
 This is something I wanted to create from the ground up that would be a 100% "my own" solution to include even the look&amp;feel theme of the thing and I decided that it would also be 100% open source from the start.
 

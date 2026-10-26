@@ -20,7 +20,7 @@ allow_comments: true
 
 <a rel="lightbox" href="/assets/images/2011/03/Dragon-Age-2-Wallpaper.jpg" class='pull-right fancybox'><img title="Dragon Age II" src="/assets/images/2011/03/Dragon-Age-2-Wallpaper-150x150.jpg" alt="Dragon Age II" width="150" height="150" /><br /><span>Dragon Age II</span></a>
 
-So in my <a href="/game-review-dragon-age-origins/">Dragon Age review</a> I began by asking "Can Bioware do no wrong?"   Apparently the answer is "Yes."
+So in my <a href="/post/game-review-dragon-age-origins/">Dragon Age review</a> I began by asking "Can Bioware do no wrong?"   Apparently the answer is "Yes."
 
 I had originally mocked Bioware in my first review for taking 4 years to produce the first game.. Now suddenly that didn't seem like such a bad idea, as Dragon Age II (DA2) the supposed successor, was rushed out the door in just over 8 months and it shows.  DA2 just doesn't compare to Dragon Age - Origins (DA:O).
 

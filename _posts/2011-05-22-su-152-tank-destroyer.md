@@ -20,7 +20,7 @@ allow_comments: true
 
 <a rel="lightbox" href="/assets/images/2011/05/SU152-hour17-18.jpg" class="pull-right fancybox"><img title="SU 152 -- Current Render" src="/assets/images/2011/05/SU152-hour17-18-150x150.jpg" alt="SU 152 -- Current Render" width="150" height="150" /><br /><span>SU 152 -- Current Render</span></a>
 
-I have been playing a lot of <a title="Game Review: World of Tanks (Beta)" href="/game-review-world-of-tanks-beta/">World of Tanks</a> lately -- more specifically, I have been playing the Soviet Tank Destroyers and I finally got into the tier 7 vehicle;  The SU-152.   I liked the look of the vehicle enough that I thought it would be fun to model one up.
+I have been playing a lot of <a title="Game Review: World of Tanks (Beta)" href="/post/game-review-world-of-tanks-beta/">World of Tanks</a> lately -- more specifically, I have been playing the Soviet Tank Destroyers and I finally got into the tier 7 vehicle;  The SU-152.   I liked the look of the vehicle enough that I thought it would be fun to model one up.
 
 I also thought I would twist this project up a bit and do two things I haven't done before;
 * I will be creating this model in 1 hour increments, and will only spend a grand total of 10 hours on it.

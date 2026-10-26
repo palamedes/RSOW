@@ -72,7 +72,7 @@ ai_notes:
 
 I love being a programmer.  It's one of those things that I truly enjoy and get a real sense of accomplish out of when I can make something work the way I want it to.
 
-I switched to [Jekyll](http://jekyllrb.com/) as my primary blogging system a [while back](http://randomstringofwords.com/blogging-like-its-1999/) and haven't looked back.  It's been great.  Just like my early post says; Blogging like it's 1999!  Each page is built as raw html and then pushed to the servers.  Fast, secure, easy.  
+I switched to [Jekyll](http://jekyllrb.com/) as my primary blogging system a [while back](/post/blogging-like-its-1999/) and haven't looked back.  It's been great.  Just like my early post says; Blogging like it's 1999!  Each page is built as raw html and then pushed to the servers.  Fast, secure, easy.  
    
 But I wanted to add a special post type "build-log" to my blog so that I could write all about my RV-10 build experience and have it track just like any other blog, but in a different directory structure.  This would be basically a blog, within a blog.  
 
