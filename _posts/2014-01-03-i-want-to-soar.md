@@ -23,7 +23,7 @@ private: false
 allow_comments: true
 ---
 
-So I mentioned back in Feb of 2013 that [I wanted to fly](/i-want-to-fly) and that I specifically wanted to get a Diamond DA42.  That dream still holds true and I have begun the process.  But my plans might be changing.
+So I mentioned back in Feb of 2013 that [I wanted to fly](/post/i-want-to-fly/) and that I specifically wanted to get a Diamond DA42.  That dream still holds true and I have begun the process.  But my plans might be changing.
 
 I still want to get a DA42, or a Cirrus SR22 or even a Cessna 400 but the simple fact of the matter is they are amazingly, stunningly and astronomically expensive.   Even so, I still started the process of getting my pilots license.  I have taken a couple lessons since then looking for a good instructor, got my 3rd class medical that is required for aviation and outfitted myself with all the accoutrements I would need to make it happen.   It's still a very real possibility.
 

@@ -39,7 +39,7 @@ To save you the trouble, here are the steps to fix it;
 
 * <a href="http://support.microsoft.com/kb/322756/" target="_blank">Backup your registry.</a>
 * <a href="http://www.microsoft.com/downloads/details.aspx?FamilyID=e8ba3e56-d8fe-4a91-93cf-ed6985e3927b&amp;displaylang=en" target="_blank">Download Microsofts Subinacl.</a>
-* <a href="/assets/images/2008/09/reset.cmd" target="_blank">Download this file and double click it.</a>
+* Download this file and double click it. (This file is no longer available.)
 * <a href="http://support.microsoft.com/kb/322389/" target="_blank">Install Service Pack 3 from the FULL install.</a>
 
 It works.  Step 1 is vital just in case, 2 is a microsoft tool that enables the script that is step three.  Step three is just what passes for a shell script, feel free to read it via notepad.  Also, step three takes about 10 minutes to run so go have a coke and a smile.

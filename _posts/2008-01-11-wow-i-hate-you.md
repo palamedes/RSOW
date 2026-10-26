@@ -22,7 +22,7 @@ World of Warcraft, I hate you!   Okay I don't actually.. In fact, I think the ga
 
 Except one major detail -- the game looks like ass.
 
-But I get ahead of myself.  I have played <a href="/past-mmos-i-have-played/">MMO games for a long time</a>, so I have a pretty darn good idea of what a good game is.  And just about across the board, World of Warcraft (WoW) has done some very nice things.  I think blizzard did a great job in capturing everything that makes a game fun to play.   Since my wife has decided to play the game again, that meant I was going to have to play the game too.. (I swear Scott Kurtz has a <a href="http://www.pvponline.com/2008/01/08/wow-frau/">camera in my house</a>..)
+But I get ahead of myself.  I have played <a href="/post/past-mmos-i-have-played/">MMO games for a long time</a>, so I have a pretty darn good idea of what a good game is.  And just about across the board, World of Warcraft (WoW) has done some very nice things.  I think blizzard did a great job in capturing everything that makes a game fun to play.   Since my wife has decided to play the game again, that meant I was going to have to play the game too.. (I swear Scott Kurtz has a <a href="http://www.pvponline.com/2008/01/08/wow-frau/">camera in my house</a>..)
 
 Now there are a lot of people (especially in EVE) that hate WoW just because they need something to hate.  They hate everything about it, and when you complain that they are doing something stupid they will tell you to; "Go back to Wow!"  Or some such rubbish..  These people are the opposite of <a href="http://en.wikipedia.org/wiki/Fanboy" target="_blank">fanboi's</a> in that they hate WoW with a fervor and passion unparalleled (and unexplained.)  I'm not one of those folks.
 

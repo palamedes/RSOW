@@ -21,7 +21,7 @@ allow_comments: true
 ---
 <a href="/assets/images/2012/03/signone.jpg" rel="lightbox" class='pull-right fancybox'><img title="Tellico Turnings Sign" src="/assets/images/2012/03/signone-e1330746540276-150x102.jpg" alt="Tellico Turnings Sign" width="150" height="102" /><br /><span>Tellico Turnings Sign</span></a>
 
-So while in [Tennessee with my father](/dads-new-store/ "My latest trip to TN and Dads new store"), I told him I'd make him some signs for his shop.   This was the first time I had ever attempted to do something like this and it took me the better part of 4 days working a couple hours a night to get one done.
+So while in [Tennessee with my father](/post/dads-new-store/ "My latest trip to TN and Dads new store"), I told him I'd make him some signs for his shop.   This was the first time I had ever attempted to do something like this and it took me the better part of 4 days working a couple hours a night to get one done.
 
 <a href="/assets/images/2012/03/signtemplate.jpg" rel="lightbox" class='pull-left fancybox'><img title="Sign Template" src="/assets/images/2012/03/signtemplate-e1330746875648-150x89.jpg" alt="Sign Template" width="150" height="89" /><br /><span>Sign Template</span></a>
 

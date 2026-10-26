@@ -18,7 +18,7 @@ allow_comments: true
 
 <img title="Electric Violin" src="/assets/images/2009/12/eviolin-150x150.jpg" alt="Electric Violin" width="150" height="150" class='pull-right' />
 
-So I had said previously that my musical talent ended pretty much at the ability to <a href="/play-the-radio/" target="_self">play the radio</a>, and that I hated that..  I wrote that entry back in July of '08 and I still hate it..
+So I had said previously that my musical talent ended pretty much at the ability to <a href="/post/play-the-radio/" target="_self">play the radio</a>, and that I hated that..  I wrote that entry back in July of '08 and I still hate it..
 
 I have been looking around for ideas of what to play and am still undecided.. I have a nice piano so my investment there at this point would be only time, but I am not interested in it -- it still doesn't inspire me..  I still like the idea of the Chapman stick but the cost is just unreasonable and frankly the alternative is not as pretty (yes that matters) not to mention they have horrible business tactics which I don't appreciate..
 
