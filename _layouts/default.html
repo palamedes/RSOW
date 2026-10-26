@@ -365,5 +365,14 @@
   </footer>
 
   {% include audio-player.html %}
+  {%- comment -%}
+    The Support widget from my tip jar at jasonellisbuilds.com, loaded live
+    from there. It sets no cookies and tracks nothing; payment sites open only
+    when someone clicks one. data-position="none" leaves out its corner
+    button: the heart in the header and footer (_includes/social-icons.html)
+    opens the panel, or goes to the support page if the widget didn't load.
+  {%- endcomment %}
+  <script>window.supportHub=window.supportHub||function(){(supportHub.q=supportHub.q||[]).push(arguments)}</script>
+  <script async src="https://jasonellisbuilds.com/widget.js" data-tool="blog" data-position="none"></script>
 </body>
 </html>
