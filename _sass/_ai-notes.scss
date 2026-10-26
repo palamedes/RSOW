@@ -64,6 +64,9 @@
 .post-content {
   .ai-note { display: none; }
   &.ai-notes-on .ai-note { display: flex; }
+  // `always: true` notes show with AI Notes off too, minus their number
+  .ai-note--always { display: flex; }
+  &:not(.ai-notes-on) .ai-note--always .ai-note-num { display: none; }
 
   .ai-note {
     gap: .75rem;

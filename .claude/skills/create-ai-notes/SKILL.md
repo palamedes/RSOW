@@ -88,6 +88,9 @@ target post and verify the anchors resolve. Do not touch the prose or the plumbi
      capture real URLs with WebSearch/WebFetch — never invent a URL.** Prefer
      primary/authoritative sources (National Archives, State Dept Office of the
      Historian, Library of Congress, UNESCO, Britannica, court opinions).
+   - `always: true` (rare) — shows this note even when the reader hasn't
+     turned AI Notes on. Use it only when the user asks for it, such as for a
+     crisis line on a post about suicide.
 
 4. **Format as YAML** using folded block scalars (`>-`) so you don't have to
    escape apostrophes or quotes inside the note text:

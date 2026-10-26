@@ -1,7 +1,7 @@
 <script type="application/json" id="ai-notes-data">
 [
 {%- for n in page.ai_notes -%}
-{"quote": {{ n.quote | jsonify }}, "rating": {{ n.rating | jsonify }}, "note": {{ n.note | strip_newlines | jsonify }}, "sources": {{ n.sources | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
+{"quote": {{ n.quote | jsonify }}, "rating": {{ n.rating | jsonify }}, "note": {{ n.note | strip_newlines | jsonify }}, "sources": {{ n.sources | jsonify }}, "always": {{ n.always | jsonify }}}{%- unless forloop.last -%},{%- endunless -%}
 {%- endfor -%}
 ]
 </script>
