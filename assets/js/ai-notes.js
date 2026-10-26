@@ -104,7 +104,7 @@
         num++;
         highlight(target, note.quote, num);
         var aside = document.createElement('aside');
-        aside.className = 'ai-note';
+        aside.className = note.always ? 'ai-note ai-note--always' : 'ai-note';
         aside.setAttribute('data-ai-note', num);
         aside.innerHTML = bubbleHtml(note, num);
         target.parentNode.insertBefore(aside, target.nextSibling);
@@ -122,6 +122,11 @@
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       if (lead) lead.textContent = on ? 'Hide AI Notes' : labelOff;
     }
+
+    // A note marked `always: true` (like a crisis line on a post about
+    // suicide) shows even with AI Notes off, so build every note up front;
+    // the CSS keeps the rest hidden until the reader turns notes on.
+    if (notes.some(function (n) { return n.always; })) { build(); built = true; }
 
     // Notes always start closed on each page load — the reader must click to
     // open them; the state deliberately does not persist across pages.

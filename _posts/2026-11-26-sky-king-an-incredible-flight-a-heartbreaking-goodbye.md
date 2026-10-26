@@ -84,6 +84,7 @@ ai_notes:
         url: "https://www.cdc.gov/nchs/products/databriefs/db572.htm"
   - quote: "So if you're reading this from a dark place"
     rating: "FYI"
+    always: true
     note: >-
       In the U.S., the 988 Suicide & Crisis Lifeline answers calls and texts to
       988, and chats at chat.988lifeline.org, around the clock, free and
