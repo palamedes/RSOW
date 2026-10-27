@@ -36,7 +36,7 @@ ai_notes:
       - title: "Wikipedia — History of the Republican Party (United States)"
         url: "https://en.wikipedia.org/wiki/History_of_the_Republican_Party_(United_States)"
   - quote: "the parties switched sides"
-    rating: "Needs Context"
+    rating: "Context"
     note: >-
       Historians and political scientists describe a gradual realignment of
       voters rather than a swap of parties. Black voters outside the South
