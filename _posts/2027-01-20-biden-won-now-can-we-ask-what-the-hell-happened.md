@@ -11,7 +11,7 @@ tags:
 - Georgia
 - Donald Trump
 description: "Biden won, and I'm not disputing it. But unsigned tabulator tapes, duplicate ballot images and missing records still deserve real answers."
-excerpt: "Let's put this fucking question to rest once and for all. Joe Biden won the 2020 presidential election. There. I said it. He was certified, inaugurated, and spent four years sitting in the Oval Office napping on the job. Georgia even counted its presidential ballots three separate times, including a statewide hand tally, and confirmed his victory."
+excerpt: "Let's put this fucking question to rest once and for all. Joe Biden won the 2020 presidential election. There. I said it. He was certified, inaugurated, and spent four years sitting in the Oval Office napping on the job. (I've written about how the people around him did him an incredible disservice, but that's an aside.) But whatever, Georgia even counted its presidential ballots three separate times, including a statewide hand tally, and confirmed his victory."
 words: [tabulator, chain-of-custody]
 ai_notes:
   - quote: "counted its presidential ballots three separate times"
@@ -89,7 +89,7 @@ Let's put this fucking question to rest once and for all.
 
 Joe Biden won the 2020 presidential election.
 
-There. I said it. He was certified, inaugurated, and spent four years sitting in the Oval Office napping on the job. Georgia even counted its presidential ballots three separate times, including a statewide hand tally, and confirmed his victory.
+There. I said it. He was certified, inaugurated, and spent four years sitting in the Oval Office napping on the job. (I've written about how [the people around him did him an incredible disservice](/post/they-failed-joe-biden-and-they-failed-america/), but that's an aside.) But whatever, Georgia even counted its presidential ballots three separate times, including a statewide hand tally, and confirmed his victory.
 
 Apparently, that's supposed to be the end of the conversation.
 
