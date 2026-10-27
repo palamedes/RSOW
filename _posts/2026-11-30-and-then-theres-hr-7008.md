@@ -2,6 +2,7 @@
 title: "And Then There's H.R. 7008"
 layout: post
 date: 2026-11-30
+image: /assets/images/2026/and-then-theres-hr-7008.jpg
 categories:
 - Political
 tags:
