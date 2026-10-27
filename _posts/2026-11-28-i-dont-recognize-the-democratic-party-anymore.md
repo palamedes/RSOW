@@ -9,7 +9,6 @@ tags:
 - Rant
 - Race
 - Immigration
-- Elections
 - Religion
 - Guns
 description: "You used to be able to disagree with a Democrat and still have a conversation. Now asking what a policy actually does says what kind of person you are."
@@ -137,29 +136,6 @@ ai_notes:
     sources:
       - title: "Pew Research Center — Decline of Christianity in the U.S. Has Slowed, May Have Leveled Off (February 2025)"
         url: "https://www.pewresearch.org/religion/2025/02/26/decline-of-christianity-in-the-us-has-slowed-may-have-leveled-off/"
-  - quote: "the House passed H.R. 7008, the Stop Insider Trading Act"
-    rating: "True"
-    note: >-
-      The House passed it on July 22, 2026. Members could keep stocks they
-      already own but would have to give public notice 7 to 14 days before
-      selling, with fines of $2,000 or 10% of the trade, whichever is greater.
-      The voter ID language came from Rep. Bryan Steil's Voter ID Act
-      (H.R. 9368).
-    sources:
-      - title: "Roll Call — Lawmakers' stock trading bill falls short in Senate (September 30, 2026)"
-        url: "https://rollcall.com/2026/09/30/lawmakers-stock-trading-bill-falls-short-in-senate/"
-      - title: "Congress.gov — H.R.7008, Stop Insider Trading Act"
-        url: "https://www.congress.gov/bill/119th-congress/house-bill/7008"
-  - quote: "proving your identity before casting a ballot"
-    rating: "Context"
-    note: >-
-      According to NCSL, 36 states ask voters to show some form of ID at the
-      polls under laws in effect as of August 2026. The other 14 states and
-      D.C. verify voters in other ways, most often by checking a signature or
-      other details against the voter rolls.
-    sources:
-      - title: "National Conference of State Legislatures — Voter ID Laws"
-        url: "https://www.ncsl.org/elections-and-campaigns/voter-id"
   - quote: "The Democratic Party has an actual platform"
     rating: "Random Fact"
     note: >-
@@ -231,22 +207,6 @@ If we decide the existing enforcement system is unacceptable, what replaces it? 
 America has an extraordinary Christian heritage. Christianity shaped much of our culture, our communities and charitable institutions, and generations of American thinking about moral responsibility. Our Constitution protects religious liberty rather than establishing Christianity as an official state religion, and that's a good thing, since religious freedom protects Christians too. But defending religious liberty shouldn't require pretending Christianity had nothing to do with the American experience.
 
 I believe traditions of faith, family, community responsibility, and personal accountability are worth preserving, and I don't believe progress automatically means treating everything that came before us as an embarrassment to be thrown out. **A nation can embrace people of every faith, or of no faith at all, without becoming ashamed of its own history.**
-
-## And then there's H.R. 7008
-
-Here's another congressional vote worth a close look. In July 2026, the House passed H.R. 7008, the Stop Insider Trading Act, which would restrict members of Congress, their spouses, and their dependent children from buying individual stocks and require advance public notice before they sell existing holdings. It also included a separate provision requiring photo identification for federal elections.
-
-The House vote was 232 to 198. Every voting Republican supported it, along with thirteen Democrats, while 198 Democrats voted no. Then it went to the Senate, where on September 30, 2026, senators voted on whether to advance the bill for consideration. Every Republican voted yes, and every Democrat and both independents voted no. That came to 53 in favor and 47 against, not enough to clear the Senate's 60-vote threshold.
-
-Democratic opponents criticized the voter-ID provision, and I'd seriously like to know why proving your identity before casting a ballot is such a controversial concept. Think about who we're electing. These are the people who write our laws and spend trillions of dollars, and their decisions affect every American, yet asking voters to show who they are before choosing them is supposed to be an outrageous burden?
-
-Their stated objection was that the bill accepted too few forms of identification and would create extra obstacles for mail-in voters, and they also argued that the stock-trading restrictions were too weak. Those are at least specific objections, which means they can be argued over and worked out: broaden the acceptable IDs, make identification free and accessible, set up practical verification procedures for absentee voters. But if you oppose this particular approach, what election-security alternative are you willing to support?
-
-The question that inevitably comes up is whether politicians are concerned about legitimate voters being turned away or about tighter verification catching ballots that shouldn't count. Voting against this bill isn't proof that anyone plans to cheat, I'll grant that much, but demanding an answer about election security isn't some outrageous accusation either, and it's a fair thing to ask of the people responsible for writing our election laws.
-
-I want two things, and I don't think either one should be controversial: **every eligible American should be able to vote, and every ballot should be verified as a legitimate vote.** We ought to be capable of accomplishing both.
-
-Stock ownership in Congress is a conflict-of-interest question, and an obvious one. Federal voter ID is a separate matter entirely, about election security and access and how you'd actually carry it out. Each deserves serious consideration on its own merits, which makes me wonder why these two unrelated issues got bundled together at all. Once they're in the same bill, a single vote can be portrayed as opposition to either one, even when a member only objects to one provision. That's a flaw in the way Congress writes laws, and voters should understand it before they believe either party's account of what happened.
 
 ## The real question
 
