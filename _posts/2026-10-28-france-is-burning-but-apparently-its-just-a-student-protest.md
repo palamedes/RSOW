@@ -82,7 +82,9 @@ ai_notes:
         url: "https://www.noovo.info/nouvelles/international/article/incendie-de-la-mairie-de-limoges-en-france-un-service-anti-terroriste-saisi-et-un-suspect-arrete/"
 ---
 
-France is having a student protest, and we all know how those go. Students march, wave signs, demand better schools, gripe about tuition, and every so often burn down a 143-year-old city hall. Wait, what? Oh, and they're also looting stores, smashing windows, torching cars and going after police officers, generally treating whole French cities as if somebody had just announced the Purge.
+France is having a student protest, and we all know how those go. Students march, wave signs, demand better schools, gripe about tuition, and every so often burn down a 143-year-old city hall. Wait, what? 
+
+Oh, and they're also looting stores, smashing windows, torching cars and going after police officers, generally treating whole French cities as if somebody had just announced the Purge.
 
 But don't worry, folks, it's a student protest, so there's nothing to see here.
 
@@ -102,7 +104,7 @@ What really gets under my skin is how ready certain political commentators are t
 
 We saw versions of this in America during the 2020 riots, and we're watching it again in France. Somebody smashes up private property and it gets written up as an expression of legitimate frustration; somebody loots a store and we're told it's a symptom of inequality; and attacking police has apparently been promoted to resistance. I think that's bullshit. **A crime doesn't become a political statement because the person committing it has a grievance**, and you can make that grievance as legitimate as you like without it magically converting criminal behavior into legitimate protest.
 
-We should also be careful about claiming to know who's behind every mask. French authorities have pointed toward violent far-left groups, and reporting has documented opportunistic looters as well, which is evidence worth talking about. It isn't evidence of some coordinated religious jihad, though, and nobody needs to invent one to see how serious this already is.
+We should also be careful about claiming to know who's behind every mask. French authorities have pointed toward violent far-left groups, and reporting has documented opportunistic looters as well, which is evidence worth talking about. 
 
 The real problem is that some people are so set on defending the politics around a protest that they can no longer tell the peaceful participants from the criminals exploiting them. It's almost as though their vision has been completely occluded by rectal tissue (for those unfamiliar with the medical terminology, their heads are so far up their asses they've mistaken their colon for a window).
 
@@ -111,3 +113,7 @@ The real problem is that some people are so set on defending the politics around
 Nobody's disputing that France has real problems, that its students have real complaints, or that its citizens have legitimate reasons to be furious with their government. But once masked gangs are burning public buildings, attacking people and looting businesses, we've stopped talking about citizens exercising their right to peaceful assembly and started talking about riots, and slapping a more socially acceptable name on them doesn't change what happened. You don't have to pick between supporting students and condemning criminals. **It's entirely consistent to demand better schools and also demand that arsonists go to prison.** I'd actually go further and say that protecting peaceful protesters from violent opportunists is one of the most important jobs a government has, because a society that can't tell dissent from destruction eventually can't protect either its citizens or their rights.
 
 When your student protest needs riot police, hundreds of firefighters and an army of insurance adjusters to clean up after it, maybe it's time to stop calling it a student protest. **It's a crime scene.**
+
+**And if the majority of the bad actors are foreign born, then you might just have an invasion.**
+
+
