@@ -1,7 +1,7 @@
 ---
 title: "Don't Call It Propaganda"
 layout: post
-date: 2026-11-03
+date: 2026-11-11
 image: /assets/images/2026/dont-call-it-propaganda.png
 categories:
 - Political
