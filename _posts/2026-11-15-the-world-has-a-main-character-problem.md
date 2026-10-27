@@ -1,7 +1,7 @@
 ---
 title: "The World Has a Main Character Problem"
 layout: post
-date: 2026-10-28
+date: 2026-11-15
 image: /assets/images/2026/the-world-has-a-main-character-problem.png
 categories:
 - Society

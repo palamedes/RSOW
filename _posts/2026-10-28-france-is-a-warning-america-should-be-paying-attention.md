@@ -1,7 +1,7 @@
 ---
 title: "France Is a Warning. America Should Be Paying Attention."
 layout: post
-date: 2026-11-15
+date: 2026-10-28
 image: /assets/images/2026/france-is-a-warning-america-should-be-paying-attention.jpg
 categories:
 - Political
