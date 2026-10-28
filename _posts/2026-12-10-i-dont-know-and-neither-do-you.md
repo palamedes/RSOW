@@ -1,8 +1,8 @@
 ---
-title: "The Church of I Know There's No God"
+title: "I Don't Know. And Neither Do You."
 layout: post
 date: 2026-12-10
-image: /assets/images/2026/the-church-of-i-know-theres-no-god.jpg
+image: /assets/images/2026/i-dont-know-and-neither-do-you.jpg
 categories:
 - Society
 tags:
