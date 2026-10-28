@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Nunito Sans, Arial, Helvetica, sans-serif">
+  <title>The Mount Stupid curve</title>
+  <rect width="800" height="500" rx="14" fill="#fdf8f1"/>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3a3a3a"/>
+    </marker>
+  </defs>
+  <!-- axes -->
+  <path d="M70 440 V40" stroke="#3a3a3a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <path d="M70 440 H770" stroke="#3a3a3a" stroke-width="2.5" fill="none" marker-end="url(#arrow)"/>
+  <text x="38" y="240" font-size="20" font-weight="700" fill="#3a3a3a" text-anchor="middle" transform="rotate(-90 38 240)">Confidence</text>
+  <text x="420" y="474" font-size="20" font-weight="700" fill="#3a3a3a" text-anchor="middle">Actual knowledge and experience</text>
+  <text x="80" y="462" font-size="14" fill="#6b6b6b">None</text>
+  <text x="760" y="462" font-size="14" fill="#6b6b6b" text-anchor="end">Expert</text>
+  <!-- the curve -->
+  <path d="M80 425 C120 420 135 110 175 110 C215 110 250 372 330 374 C420 376 520 262 600 214 C660 180 700 172 750 170"
+        stroke="#e8761c" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Mount Stupid -->
+  <circle cx="175" cy="110" r="7" fill="#c0392b"/>
+  <text x="175" y="70" font-size="24" font-weight="800" fill="#c0392b" text-anchor="middle">Mount Stupid</text>
+  <text x="175" y="94" font-size="16" font-style="italic" fill="#3a3a3a" text-anchor="middle">“I know everything.”</text>
+  <!-- Valley of Despair -->
+  <circle cx="330" cy="374" r="7" fill="#2c6e9b"/>
+  <text x="330" y="408" font-size="20" font-weight="800" fill="#2c6e9b" text-anchor="middle">Valley of Despair</text>
+  <text x="330" y="429" font-size="16" font-style="italic" fill="#3a3a3a" text-anchor="middle">“I know nothing.”</text>
+  <!-- Slope of Enlightenment -->
+  <text x="500" y="232" font-size="20" font-weight="800" fill="#3d8b40" text-anchor="end">Slope of Enlightenment</text>
+  <text x="500" y="253" font-size="16" font-style="italic" fill="#3a3a3a" text-anchor="end">“Huh, there’s more to this.”</text>
+  <!-- Plateau -->
+  <text x="755" y="128" font-size="20" font-weight="800" fill="#6a4c93" text-anchor="end">Plateau of Sustainability</text>
+  <text x="755" y="150" font-size="16" font-style="italic" fill="#3a3a3a" text-anchor="end">“Well, it’s complicated.”</text>
+</svg>
