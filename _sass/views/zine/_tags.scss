@@ -1,0 +1,116 @@
+@use "kit" as *;
+
+// ════════════════ TAG AND TOPIC CLOUDS (/tags/, /topics/) ════════════════
+// Both pages open with the archive's header (_includes/archive-hero.html);
+// this is the body underneath: a ransom-note collage. _plugins/tags.rb orders
+// the words center-out and sizes them, so a centered wrapping row puts the big
+// ones in the middle. Every word is cut from a different "magazine": the
+// paper, ink and type rotate through a few looks, and --tc-nudge (a few px,
+// fixed per tag) knocks the baseline around.
+
+.tc-head {
+  max-width: 980px;
+  margin: 2.6rem auto 0;
+  text-align: center;
+  h2 {
+    @include poster(clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem));
+    display: inline-block;
+    margin: 0 0 0.8rem;
+    padding: 0.28rem 0.7rem 0.2rem;
+    background: $ink;
+    color: $hazard;
+    transform: rotate(-1.2deg);
+    box-shadow: 5px 5px 0 0 $red;
+  }
+  p { margin: 0; font-family: $serif; font-size: 1.05rem; color: #2b2b2b; }
+  a {
+    color: $ink;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: $red;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    &:hover { background: $hazard; }
+  }
+}
+
+.tc-cloud {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem 0.75rem;
+  max-width: 1040px;
+  margin: 2rem auto 3rem;
+  padding: 2.8rem 1.8rem 2.6rem;
+  background-color: $sheet;
+  border: 3px solid $ink;
+  box-shadow: 10px 10px 0 0 $ink;
+
+  &::before { @include tape(140px, 30px, -3deg); top: -16px; left: calc(50% - 70px); }
+}
+
+.tc-tag {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  padding: 0.12em 0.22em 0.08em;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: $display;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  color: $ink;
+  background: #fff;
+  border: 2px solid $ink;
+  transform: translateY(var(--tc-nudge, 0px)) rotate(var(--tc-r, -1deg));
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+
+  &:nth-child(5n+1) { --tc-r: -2deg; }
+  &:nth-child(5n+2) { --tc-r: 1.5deg; background: $hazard; font-family: $mono; font-weight: 700; text-transform: none; letter-spacing: -0.02em; }
+  &:nth-child(5n+3) { --tc-r: -0.5deg; background: $ink; color: $sheet; }
+  &:nth-child(5n+4) { --tc-r: 2.5deg; font-family: $serif; font-style: italic; font-weight: 700; text-transform: none; }
+  &:nth-child(5n)   { --tc-r: -3deg; background: $red; color: #fff; border-color: $red; }
+
+  &:hover, &:focus-visible {
+    z-index: 2;
+    transform: translateY(var(--tc-nudge, 0px)) rotate(0deg) scale(1.06);
+    box-shadow: 4px 4px 0 0 $ink;
+    .tc-count { opacity: 1; }
+  }
+  &:focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+}
+// The biggest words get a hard shadow of their own.
+.tc-tier-4 { box-shadow: 4px 4px 0 0 $ink; }
+.tc-tier-3 { box-shadow: 3px 3px 0 0 $ink; }
+
+// the count, as a little superscript tab
+.tc-count {
+  display: inline-block;
+  font-family: $mono;
+  font-style: normal;
+  font-size: max(0.4em, 0.62rem);
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 0.2em;
+  opacity: 0.75;
+  transition: opacity 0.15s ease;
+}
+@media (hover: none) {
+  .tc-count { opacity: 0.85; }
+}
+
+@media (max-width: 620px) {
+  .tc-cloud { padding: 2rem 0.9rem 1.8rem; gap: 0.55rem 0.5rem; box-shadow: 6px 6px 0 0 $ink; }
+  .tc-head { margin-top: 1.8rem; }
+  .tc-tag { white-space: normal; max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tc-tag, .tc-count { transition: none; }
+}
+
+// Only fifteen or so topics, so space them out more than the tags.
+.tc-cloud--topic { gap: 1.1rem 1.3rem; padding: 3rem 2rem; }

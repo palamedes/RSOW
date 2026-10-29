@@ -1,0 +1,1060 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Single post, scoped under `.post`.
+//  Up top a street poster: cut-out headline strips, stickers, and
+//  the cover image photocopied in black and yellow. Then one sheet
+//  of paper pasted on the wall, where it goes quiet and readable.
+//  The shared prose rules (.post-content) live in _layout.scss.
+//  On the shared HTML the cover is the .post-hero-art view-extra; the
+//  article's own copy of the lead image is hidden (see THE COVER).
+// ════════════════════════════════════════════════════════════════
+
+
+.post {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // ════════════════ POSTER HERO ════════════════
+  .post-hero {
+    position: relative;
+    overflow: hidden;
+    background-color: $paper;
+    border-bottom: 4px solid $ink;
+    padding: 2.8rem 0 3.4rem;
+    @media (max-width: 860px) { padding: 2rem 0 2.6rem; }
+  }
+  // halftone screen fading in from the top left, and the yellow slab the
+  // cover image is pasted onto
+  .post-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      @include halftone(rgba(17, 17, 17, 0.8), 13px, 3px);
+      -webkit-mask-image: radial-gradient(circle at 0% 0%, #000 0%, rgba(0,0,0,0.55) 20%, transparent 52%);
+      mask-image: radial-gradient(circle at 0% 0%, #000 0%, rgba(0,0,0,0.55) 20%, transparent 52%);
+      opacity: 0.35;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      top: -10%;
+      bottom: -10%;
+      right: -6%;
+      width: 44%;
+      background-color: $hazard;
+      background-image: $grain;
+      border-left: 4px solid $ink;
+      transform: skewX(-9deg);
+      @media (max-width: 860px) {
+        top: auto;
+        right: -10%;
+        left: -10%;
+        width: auto;
+        height: 42%;
+        bottom: -4%;
+        border-left: 0;
+        border-top: 4px solid $ink;
+        transform: skewY(-4deg);
+      }
+    }
+  }
+  .post-hero-inner {
+    position: relative;
+    max-width: $wrap;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+    gap: 3.2rem;
+    align-items: center;
+    @media (max-width: 860px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.2rem;
+      padding: 0 1rem;
+    }
+  }
+  .post-hero-text { min-width: 0; }
+
+  // topic stickers
+  .post-hero-cats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+    a {
+      @include label(0.72rem);
+      color: #fff;
+      background: $red;
+      border: 2px solid $ink;
+      padding: 0.32rem 0.6rem 0.28rem;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 0 $ink;
+      transform: rotate(-3deg);
+      transition: background-color 0.12s ease, color 0.12s ease;
+      // of-type: hidden " & " spans (.post-hero-cat-sep) sit between the links
+      &:nth-of-type(2) { background: $hazard; color: $ink; transform: rotate(2deg); }
+      &:nth-of-type(3) { background: $ink; color: $hazard; transform: rotate(-1deg); }
+      &:hover { background: $ink; color: $hazard; }
+      &:nth-of-type(3):hover { background: $hazard; color: $ink; }
+    }
+  }
+
+  // the headline: cut-out strips of black, one per line. The h1 itself runs
+  // inline so each line gets its own strip (the shared title has no inner
+  // span); the meta row below carries the gap under it.
+  .post-hero-title {
+    @include poster(clamp(2.3rem, 1rem + 3.6vw, 4.4rem));
+    display: inline;
+    line-height: 1.24;
+    margin: 0;
+    color: $sheet;
+    background: $ink;
+    padding: 0.02em 0.16em 0.01em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  // keeps the anonymous line box around the inline title from adding a
+  // body-text strut to each line
+  .post-hero-text { line-height: 1.24; }
+
+  .post-hero-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.6rem;
+    margin-top: 1.3rem;
+    line-height: 1.7;
+    font-family: $mono;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $ink;
+    // byline, date and read time as three little pasted-on labels
+    > .post-hero-author,
+    > .post-hero-date,
+    > .post-hero-read {
+      background: $sheet;
+      padding: 0.2rem 0.45rem 0.16rem;
+      border: 2px solid $ink;
+    }
+    > .post-hero-author { background: $hazard; transform: rotate(-1.5deg); }
+    > .post-hero-date { transform: rotate(1deg); }
+    .post-hero-dot { display: none; }
+    // the hero's own AI Notes toggle stays hidden (Zine's is the sticker on
+    // the article); the listen button lays out as a child of this row
+    .post-hero-tools { display: contents; }
+    // Clickable (it toggles playback) but deliberately still looks like text.
+    .post-hero-listen-note {
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-color: $red;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+      &:hover { background: $hazard; }
+      &:focus-visible { outline: 3px solid $red; outline-offset: 2px; }
+    }
+  }
+
+  // ════════════════ LISTEN BUTTON ════════════════
+  // The narration's call to action, on its own line under the byline: the
+  // loudest thing in the poster after the headline. Black and yellow for the
+  // AI read, red for Jason's own voice; the small label says which. The
+  // bottom player bar is separate (_includes/audio-player.html).
+  .post-hero-meta .post-listen-group {
+    flex-basis: 100%;
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.1rem;
+    .post-listen-time { order: 1; }
+  }
+  // elapsed / total, beside the button while it plays
+  .post-listen-time {
+    font-family: $mono;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-variant-numeric: tabular-nums;   // keeps the digits from jittering
+    color: $ink;
+    background: $sheet;
+    border: 2px solid $ink;
+    padding: 0.2rem 0.45rem;
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
+
+  .post-listen {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.45rem 1.25rem 0.45rem 0.45rem;
+    border-radius: 0;
+    border: 3px solid $ink;
+    font: inherit;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+    color: $hazard;
+    background: $ink;
+    box-shadow: 5px 5px 0 0 $red;
+    transform: rotate(-1deg);
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    &:hover {
+      transform: rotate(0deg) translate(-2px, -2px);
+      box-shadow: 7px 7px 0 0 $red;
+    }
+    &:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 0 $red; }
+    &:focus-visible { outline: 3px solid $red; outline-offset: 4px; }
+  }
+  // Big play triangle → pause bars when .is-playing. The glyph is drawn in
+  // currentColor so each variant only has to set `color` on the disc.
+  .post-listen-ico {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: $hazard;
+    color: $ink;
+    &::before {
+      content: "";
+      width: 0; height: 0;
+      margin-left: 3px;
+      border-style: solid;
+      border-width: 7px 0 7px 11px;
+      border-color: transparent transparent transparent currentColor;
+    }
+    // A ring that pulses out from the disc a few times after load, as a nudge
+    // to press play. Stops for good once it's playing.
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      animation: post-listen-pulse 2.4s ease-out 0.8s 4;
+    }
+  }
+  .post-listen.is-playing .post-listen-ico {
+    &::before {
+      width: 11px; height: 13px;
+      margin-left: 0;
+      border: 0;
+      background:
+        linear-gradient(currentColor, currentColor) left / 4px 100% no-repeat,
+        linear-gradient(currentColor, currentColor) right / 4px 100% no-repeat;
+    }
+    &::after { animation: none; }
+  }
+  @keyframes post-listen-pulse {
+    0%        { box-shadow: 0 0 0 0 rgba(255, 230, 0, 0.7); }
+    80%, 100% { box-shadow: 0 0 0 12px rgba(255, 230, 0, 0); }
+  }
+  .post-listen-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .post-listen-lead {
+    font-family: $display;
+    font-size: 1.3rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .post-listen-sub {
+    font-family: $mono;
+    font-size: 0.64rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $sheet;
+    white-space: nowrap;
+  }
+  // Human-read narration: red instead of black, so a reader can tell at a
+  // glance that this one isn't text-to-speech.
+  .post-listen--human {
+    color: #fff;
+    background: $red;
+    box-shadow: 5px 5px 0 0 $ink;
+    &:hover { box-shadow: 7px 7px 0 0 $ink; }
+    &:active { box-shadow: 1px 1px 0 0 $ink; }
+    &:focus-visible { outline-color: $ink; }
+    .post-listen-ico { background: #fff; color: $red; }
+    .post-listen-sub { color: #fff; }
+  }
+  .post-listen.is-error {
+    color: $red;
+    background: #fff;
+    border-color: $red;
+    box-shadow: none;
+    transform: none;
+    cursor: default;
+    .post-listen-sub { color: $red; }
+    .post-listen-ico { background: $red; color: #fff; }
+    .post-listen-ico::after { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-listen { transition: none; }
+    .post-listen:hover { transform: rotate(-1deg); }
+    .post-listen-ico::after { animation: none; }
+  }
+
+  // ════════════════ THE COVER, PHOTOCOPIED ════════════════
+  // Black and yellow duotone (a yellow sheet multiplied over a grayscale
+  // print) plus a dot screen. Hovering peels it back to full colour; the
+  // lightbox always shows the original. On a touch screen there's no hover
+  // to peel it with, so there the colour shows from the start, under a
+  // lighter dot screen that keeps the photocopy feel.
+  // The cover lives here, in the poster, so the article's own copy of the
+  // lead image (the first thing in .post-content, after the AI Notes
+  // toggle when there is one) stays hidden.
+  .post-content > :is(.post-body-img, .post-body-figure):is(:first-child, .post-actions + *) { display: none; }
+  .post-hero-art {
+    position: relative;
+    margin: 0;
+    transform: rotate(1.8deg);
+    &::before { @include tape(110px, 28px, -8deg); top: -14px; left: -18px; }
+    &::after  { @include tape(96px, 26px, -6deg); bottom: -10px; right: -20px; }
+    @media (max-width: 860px) {
+      max-width: 34rem;
+      &::before { left: -6px; }
+      &::after { right: -6px; }
+    }
+  }
+  .post-hero-print {
+    position: relative;
+    display: block;
+    background: #fff;
+    border: 4px solid $ink;
+    box-shadow: 11px 11px 0 0 $ink;
+    overflow: hidden;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      transition: opacity 0.35s ease;
+    }
+    &::before { background: $hazard; }
+    &::after { @include halftone(rgba(17, 17, 17, 0.6), 5px, 1.15px); opacity: 0.6; }
+  }
+  .post-hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    cursor: zoom-in;
+    filter: grayscale(1) contrast(1.45) brightness(1.08);
+    transition: filter 0.35s ease;
+  }
+  .post-hero-art:hover,
+  .post-hero-art:focus-within {
+    .post-hero-print::before,
+    .post-hero-print::after { opacity: 0; }
+    .post-hero-img { filter: none; }
+  }
+  @media (hover: none) {
+    .post-hero-print::before { opacity: 0; }
+    .post-hero-print::after { opacity: 0.22; }
+    .post-hero-img { filter: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-hero-print::before,
+    .post-hero-print::after,
+    .post-hero-img { transition: none; }
+  }
+  // caption on a strip of black tape under the print
+  .post-hero-art .post-body-cap {
+    display: inline-block;
+    max-width: 100%;
+    margin-top: 1.2rem;
+    padding: 0.4rem 0.65rem;
+    background: $ink;
+    color: $sheet;
+    font-family: $mono;
+    font-size: 0.74rem;
+    font-style: normal;
+    line-height: 1.45;
+    text-align: left;
+    transform: rotate(-1.5deg);
+    a { color: $hazard; }
+  }
+
+  // ════════════════ THE SHEET ════════════════
+  // One page pasted on the wall. Narrow on purpose: about 68 characters a
+  // line at reading size.
+  .post-wrap {
+    max-width: $wrap;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    @media (max-width: 600px) { padding: 0 0.85rem; }
+  }
+  .post-article {
+    --pad-x: 3.4rem;
+    --pad-top: 3.2rem;
+    position: relative;
+    max-width: 50rem;
+    margin: 3.2rem auto 0;
+    padding: var(--pad-top) var(--pad-x) 2.8rem;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(10px);
+    &::before { @include tape(120px, 28px, -4deg); top: -15px; left: -26px; }
+    &::after  { @include tape(120px, 28px, 5deg); bottom: -12px; right: -26px; }
+    @media (max-width: 700px) {
+      --pad-x: 1.15rem;
+      --pad-top: 2.3rem;
+      margin-top: 2.4rem;
+      @include hard-shadow(6px);
+      &::before { left: -8px; width: 90px; }
+      &::after { right: -8px; width: 90px; }
+    }
+  }
+  // first heading/paragraph shouldn't add extra top space inside the card
+  .post-content > :first-child { margin-top: 0; }
+
+  // a red poster-face initial to open the piece
+  .post-content > p:first-of-type::first-letter {
+    float: left;
+    margin: 0.1em 0.12em 0 0;
+    font-family: $display;
+    font-size: 3.35em;
+    font-weight: 400;
+    line-height: 0.8;
+    text-transform: uppercase;
+    color: $red;
+  }
+
+  // "Will ChatGPT steal our programming jobs" post: the AI-generated copy is
+  // tinted (matching the original), the author's inline replies stay in the
+  // default body color so the two voices are easy to tell apart.
+  .post-content .ai-said { color: #1d4fa3; }
+
+  // In-body photo floated right (the cruise post); text wraps around it.
+  .post-body-img {
+    float: right;
+    width: 50%;
+    max-width: 50%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    cursor: pointer;
+    clear: right;
+    margin: 0.35rem 0 1.1rem 1.6rem;
+    border: 3px solid $ink;
+    box-shadow: 6px 6px 0 0 $ink;
+    transform: rotate(1deg);
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      max-width: none;
+      margin: 0 0 1.2rem;
+    }
+  }
+
+  // Shared caption style: the cover caption and figure.html captions.
+  .post-body-cap,
+  .post-figure-cap {
+    margin-top: 0.7rem;
+    font-family: $mono;
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: #333;
+    text-align: left;
+  }
+  .post-figure-cap {
+    position: relative;
+    padding-left: 1.6rem;
+    &::before {
+      content: "\25B2" / "";
+      position: absolute;
+      left: 0.2rem;
+      top: 0;
+      color: $red;
+      font-size: 0.75rem;
+    }
+    strong { background: none; padding: 0; }
+  }
+
+  // figure.html: an in-body image with a visible caption. Full width by
+  // default; align="right"/"left" floats it beside the text at half width.
+  .post-figure {
+    clear: both;
+    margin: 2rem auto;
+    .post-figure-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      border: 3px solid $ink;
+      box-shadow: 7px 7px 0 0 $ink;
+    }
+  }
+  .post-figure--right,
+  .post-figure--left {
+    width: 45%;
+    margin-top: 0.35rem;
+    margin-bottom: 1.1rem;
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      margin: 1.2rem 0;
+    }
+  }
+  .post-figure--right { float: right; clear: right; margin-left: 1.6rem; }
+  .post-figure--left  { float: left;  clear: left;  margin-right: 1.6rem; }
+
+  // Full-width photo inside the article body, dressed like a figure.
+  .post-photo {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: auto;
+    margin: 1.8rem 0;
+    border: 3px solid $ink;
+    box-shadow: 7px 7px 0 0 $ink;
+  }
+
+  // ════════════════ PHOTO-SET GALLERIES (cruise post) ════════════════
+  // Each labeled photo set becomes a captioned grid of square snapshots
+  // that open the site lightbox.
+  .cruise-set {
+    clear: both;
+    margin: 1.4rem 0 1.8rem;
+  }
+  .cruise-setcap {
+    @include label(0.8rem);
+    color: $ink;
+    margin: 0 0 0.7rem;
+    padding: 0.3rem 0.55rem;
+    background: $hazard;
+    border: 2px solid $ink;
+    width: fit-content;
+    a { color: $ink; }
+  }
+  .cruise-note {
+    font-family: $mono;
+    font-size: 0.78rem;
+    color: $grey;
+    margin: -0.25rem 0 0.6rem;
+  }
+  .cruise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+    gap: 10px;
+  }
+  .cruise-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0;
+    cursor: pointer;
+    background: #ddd7c8;
+    border: 2px solid $ink;
+    box-shadow: 3px 3px 0 0 $ink;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+    &:hover {
+      transform: translate(-2px, -2px) rotate(-1deg);
+      box-shadow: 5px 5px 0 0 $ink;
+    }
+  }
+  .cruise-setlabel {
+    @include label(0.8rem);
+    color: $ink;
+    margin: 1.4rem 0 0.4rem;
+    padding-left: 0.6rem;
+    border-left: 4px solid $red;
+    .cruise-nopics { font-weight: 400; text-transform: none; color: $grey; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cruise-thumb { transition: none; }
+    .cruise-thumb:hover { transform: none; }
+  }
+
+  // ════════════════ TOPIC + TAG STICKERS ════════════════
+  .post-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin-top: 2.6rem;
+    padding-top: 1.6rem;
+    border-top: 3px dashed $ink;
+    .post-tags-label {
+      @include label(0.68rem);
+      color: $sheet;
+      background: $ink;
+      padding: 0.28rem 0.5rem;
+      margin-right: 0.3rem;
+    }
+    a {
+      @include label(0.7rem);
+      color: #fff;
+      background: $red;
+      border: 2px solid $ink;
+      padding: 0.3rem 0.55rem 0.26rem;
+      text-decoration: none;
+      box-shadow: 2px 2px 0 0 $ink;
+      transform: rotate(-2deg);
+      transition: background-color 0.12s ease, color 0.12s ease;
+      &:hover { background: $hazard; color: $ink; }
+    }
+  }
+  // Each footer row (categories, then tags) wraps on its own.
+  .post-tags-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 0.55rem;
+  }
+  // Tags are paper stickers; categories stay red.
+  // counted among the links (hidden ", " spans, .post-tags-sep, sit between)
+  .post-tags .post-tag {
+    background: $sheet;
+    color: $ink;
+    &:nth-of-type(even)  { transform: rotate(1.5deg); }
+    &:nth-of-type(3n+2)  { transform: rotate(-1deg); background: $hazard; }
+    &:hover { background: $ink; color: $hazard; }
+  }
+  .post-tags .post-tags-all {
+    background: none;
+    border: none;
+    box-shadow: none;
+    transform: none;
+    color: $ink;
+    text-decoration: underline;
+    text-decoration-color: $red;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    &:hover { background: $hazard; color: $ink; }
+  }
+
+  // ════════════════ GISCUS COMMENTS ════════════════
+  // Wrapper around the giscus iframe (which is themed separately via
+  // /assets/css/giscus-imessage.css). This only adds the stamped heading.
+  .post-comments {
+    max-width: 50rem;
+    margin: 3.4rem auto 0;
+    padding-top: 0;
+    border-top: 0;
+    &::before {
+      content: "Sound off";
+      @include poster(clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem));
+      display: block;
+      width: fit-content;
+      margin: 0 0 1.4rem;
+      padding: 0.3rem 0.75rem 0.22rem;
+      background: $hazard;
+      color: $ink;
+      border: 3px solid $ink;
+      box-shadow: 5px 5px 0 0 $ink;
+      transform: rotate(-1.2deg);
+    }
+  }
+
+  // ════════════════ LEGACY COMMENTS ════════════════
+  // The old blog's comment thread, rendered as a chat: the author's
+  // replies ("me") are black notes on the right, everyone else's are
+  // paper notes on the left.
+  .legacy-comments {
+    margin-top: 2.6rem;
+    padding-top: 1.6rem;
+    border-top: 3px dashed $ink;
+  }
+  .lc-heading {
+    @include poster(1.6rem);
+    margin: 0 0 0.3rem;
+    color: $ink;
+  }
+  .lc-note {
+    font-family: $mono;
+    font-size: 0.8rem;
+    color: $grey;
+    margin: 0 0 1.4rem;
+  }
+  .lc-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .lc-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 82%;
+    @media (max-width: 600px) { max-width: 92%; }
+    &.them { align-self: flex-start; align-items: flex-start; }
+    &.me   { align-self: flex-end;   align-items: flex-end; }
+    & + &.them, & + &.me { margin-top: -0.35rem; }
+  }
+  .lc-meta {
+    font-family: $mono;
+    font-size: 0.72rem;
+    color: $grey;
+    margin: 0 0.3rem 0.3rem;
+    .lc-name { font-weight: 700; color: $ink; }
+  }
+  .me .lc-meta .lc-name { color: $red; }
+  .lc-bubble {
+    position: relative;
+    padding: 0.65rem 0.9rem;
+    border: 2px solid $ink;
+    line-height: 1.45;
+    font-size: 1rem;
+    word-wrap: break-word;
+    box-shadow: 3px 3px 0 0 $ink;
+    p { margin: 0 0 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+    strong { background: none; padding: 0; }
+  }
+  .them .lc-bubble {
+    background: #fff;
+    color: $ink;
+    transform: rotate(-0.4deg);
+  }
+  .me .lc-bubble {
+    background: $ink;
+    color: $sheet;
+    box-shadow: 3px 3px 0 0 $red;
+    transform: rotate(0.4deg);
+    a { color: $hazard; text-decoration: underline; }
+  }
+
+  // ════════════════ AI SLOP-O-VISION BAND ════════════════
+  // Full-width dark band that breaks out of the .post-article
+  // padding (2.5rem desktop / 1.5rem mobile) to run edge-to-edge.
+  .slop-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem calc(-1 * var(--pad-x));
+    padding: 2.4rem var(--pad-x) 2.6rem;
+    border-radius: 0;
+    border-top: 3px solid $ink;
+    border-bottom: 3px solid $ink;
+    color: #e9edf6;
+    background:
+      radial-gradient(130% 150% at 12% 0%, #1c2946 0%, transparent 55%),
+      linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #1a1030 100%);
+    @media (max-width: 600px) {
+      margin: 2rem calc(-1 * var(--pad-x));
+      padding: 1.8rem var(--pad-x) 2rem;
+    }
+    // faint scan-grid texture, faded top-down
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+    }
+    > * { position: relative; z-index: 1; }
+  }
+  .slop-eyebrow {
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #9fb4e6;
+    background: rgba(120,150,220,0.12);
+    border: 1px solid rgba(140,170,235,0.28);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  // an h2 in the post body, so it wears the stamped label; this just gives it
+  // room inside the dark band
+  .slop-title {
+    margin: 1rem 0 1rem;
+    @media (max-width: 600px) { font-size: 1.4rem; }
+  }
+  .slop-sub {
+    margin: 0 0 1.4rem;
+    max-width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #aeb9cf;
+  }
+  .slop-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.7rem;
+    @media (max-width: 720px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .slop-voice {
+    --v: #4a9aff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    text-align: center;
+    font: inherit;
+    color: #e9edf6;
+    cursor: pointer;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--v) 10%, #0f1626);
+    border: 1px solid color-mix(in srgb, var(--v) 30%, transparent);
+    transition: transform 0.15s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease, background 0.2s ease;
+    &:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--v) 55%, transparent);
+      box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--v) 70%, transparent);
+    }
+    &:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--v) 70%, #fff);
+      outline-offset: 2px;
+    }
+    &.is-playing {
+      background: color-mix(in srgb, var(--v) 18%, #0f1626);
+      border-color: color-mix(in srgb, var(--v) 65%, transparent);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--v) 45%, transparent),
+                  0 10px 28px -12px color-mix(in srgb, var(--v) 80%, transparent);
+    }
+  }
+  .sv-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.15;
+    color: #fff;
+  }
+  .sv-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+  }
+  .sv-style {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, var(--v) 55%, #9aa7c2);
+  }
+  .sv-eq {
+    flex: none;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+    opacity: 0.35;
+    i {
+      display: block;
+      width: 3px;
+      height: 4px;
+      border-radius: 1px;
+      background: var(--v);
+    }
+  }
+  .slop-voice.is-playing .sv-eq {
+    opacity: 1;
+    i { animation: slopEq 0.7s ease-in-out infinite; }
+    i:nth-child(2) { animation-delay: 0.15s; }
+    i:nth-child(3) { animation-delay: 0.3s; }
+    i:nth-child(4) { animation-delay: 0.45s; }
+  }
+  .sv-ctrl {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--v);
+    &::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      border-style: solid;
+      border-width: 6px 0 6px 10px;
+      border-color: transparent transparent transparent #0b1120;
+    }
+  }
+  .slop-voice.is-playing .sv-ctrl::before {
+    width: 9px;
+    height: 11px;
+    margin-left: 0;
+    border: 0;
+    background:
+      linear-gradient(#0b1120, #0b1120) left / 3px 100% no-repeat,
+      linear-gradient(#0b1120, #0b1120) right / 3px 100% no-repeat;
+  }
+  .slop-now {
+    margin-top: 1.1rem;
+    min-height: 1.2em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #cbd6ee;
+  }
+  .slop-fineprint {
+    margin: 1.2rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.76rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: #7f8aa3;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slop-voice { transition: none; }
+    .slop-voice:hover { transform: none; }
+    .slop-voice.is-playing .sv-eq i { animation: none; height: 10px; }
+  }
+
+  // ════════════════ EMISSIONS DATA TABLE ════════════════
+  // Dark breakout band (same edge-to-edge trick as .slop-band) that
+  // frames the land-area-flattened emissions table as a real table.
+  .post-content .emit-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem calc(-1 * var(--pad-x));
+    padding: 2rem var(--pad-x) 1.6rem;
+    border-radius: 0;
+    border-top: 3px solid $ink;
+    border-bottom: 3px solid $ink;
+    color: #e9edf6;
+    background:
+      radial-gradient(130% 150% at 12% 0%, #1c2946 0%, transparent 55%),
+      linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #101a30 100%);
+    @media (max-width: 600px) {
+      margin: 2rem calc(-1 * var(--pad-x));
+      padding: 1.6rem var(--pad-x) 1.4rem;
+    }
+    // faint scan-grid texture, faded top-down (matches .slop-band)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+    }
+    > * { position: relative; z-index: 1; }
+  }
+  .post-content .emit-eyebrow {
+    display: block;
+    margin-bottom: 1.1rem;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #9fb4e6;
+  }
+  // horizontal scroll on narrow screens so the table never squishes
+  .post-content .emit-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-content .emit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+
+    thead th {
+      padding: 0 0.7rem 0.7rem;
+      text-align: right;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8fa3cc;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; }
+
+    tbody th,
+    tbody td {
+      padding: 0.72rem 0.7rem;
+      text-align: right;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+    }
+    tbody th {
+      text-align: left;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    tbody td { color: #c6d1e8; }
+    tbody tr:last-child th,
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td,
+    tbody tr:hover th { background: rgba(255,255,255,0.03); }
+
+    // the "money" column — the whole point of the table
+    .emit-key {
+      color: #eaf1ff;
+      font-weight: 700;
+    }
+    thead .emit-key { color: #bcd0ff; }
+
+    // France's per-km² — the "would you look at that" cell
+    .emit-flag {
+      background: rgba(240,196,64,0.20);
+      box-shadow: inset 0 0 0 1px rgba(240,196,64,0.45);
+      color: #ffe9a6;
+      border-radius: 3px;
+    }
+
+    // China: the elephant eating the curtains
+    .emit-standout th,
+    .emit-standout td {
+      background: rgba(226,59,59,0.12);
+    }
+    .emit-standout th { color: #ffd7d7; }
+    .emit-standout .emit-key { color: #ff9f9f; }
+  }
+  .post-content .emit-source {
+    display: block;
+    margin-top: 0.95rem;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #7f8aa3;
+  }
+}
+
+@keyframes slopEq {
+  0%, 100% { height: 4px; }
+  50%      { height: 15px; }
+}
+
+// Inside the dark inserts the paper-page link and marker styles would vanish:
+// light ink there, and bold stays plain bold.
+.post .slop-band,
+.post .post-content .emit-band {
+  a { color: #fff; text-decoration-color: $hazard; }
+  a:hover { background: $hazard; color: $ink; }
+  strong, b { background: none; padding: 0; color: #fff; }
+}

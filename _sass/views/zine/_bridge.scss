@@ -1,0 +1,58 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Bridge: the special pages (/games/, /explain/ and its explainers,
+//  /investments/, /palamedes-historical-reference/) keep their own
+//  insides. This only re-papers their dark hero bands as the zine's
+//  black poster band, so they sit in the new shell without looking
+//  like a different site. Their accents were swapped to the zine
+//  red (ink on /investments/) in their own files.
+// ════════════════════════════════════════════════════════════════
+
+.gam .gam-hero,
+.exp .exp-hero,
+.inv .inv-hero,
+.pal .pal-hero {
+  background-color: $ink;
+  background-image: $grain;
+  border-bottom: 4px solid $ink;
+}
+// Palamedes' other two navy blocks
+.pal .pal-outro {
+  background-color: $ink;
+  background-image: $grain;
+  border-top: 4px solid $ink;
+}
+.pal .pal-tldr-card {
+  background-color: $ink;
+  background-image: $grain;
+  border-radius: 0;
+  box-shadow: 8px 8px 0 0 $red;
+}
+
+// the old blue glow and grid become a yellow halftone fading in from a corner
+.gam .gam-hero-bg,
+.exp .exp-hero-bg,
+.pal .pal-hero-bg {
+  background: none;
+  @include halftone(rgba(255, 230, 0, 0.75), 13px, 3px);
+  -webkit-mask-image: radial-gradient(circle at 100% 100%, #000 0%, rgba(0, 0, 0, 0.5) 22%, transparent 55%);
+  mask-image: radial-gradient(circle at 100% 100%, #000 0%, rgba(0, 0, 0, 0.5) 22%, transparent 55%);
+  opacity: 0.5;
+  &::after { content: none; }
+}
+
+// hero headlines in the poster face
+.gam .gam-hero h1,
+.exp .exp-hero h1,
+.inv .inv-hero h1,
+.pal .pal-hero h1 {
+  font-family: $display;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.005em;
+  line-height: 0.95;
+  color: $hazard;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}

@@ -1,0 +1,64 @@
+@use "kit" as *;
+
+// Clap back — highlight article text to quote it into the comments.
+// Floating button + toast + the blue selection/highlight treatment.
+
+// Black-and-yellow selection inside the article signals "this is quotable".
+.post-content ::selection { background: $ink; color: $hazard; }
+.post-content ::-moz-selection { background: $ink; color: $hazard; }
+
+// Persistent highlight after the reader clicks "Clap back"
+// (CSS Custom Highlight API; ignored where unsupported).
+::highlight(clapback) { background: $ink; color: $hazard; }
+
+.clapback-btn {
+  position: absolute;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: 6px 12px;
+  border: 3px solid $ink;
+  border-radius: 0;
+  background: $hazard;
+  color: $ink;
+  font-family: $mono;
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 0 $ink;
+  transition: background .15s ease, transform .1s ease;
+
+  svg { width: 15px; height: 15px; }
+
+  &:hover { background: $ink; color: $hazard; transform: translate(-1px, -1px); }
+  &:active { transform: translateY(0); }
+}
+
+.clapback-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(8px);
+  z-index: 70;
+  max-width: min(92vw, 460px);
+  padding: .7rem 1rem;
+  background: $ink;
+  color: #fff;
+  border: 3px solid $hazard;
+  border-radius: 0;
+  font-family: $mono;
+  font-size: .8rem;
+  line-height: 1.45;
+  box-shadow: 5px 5px 0 0 $red;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

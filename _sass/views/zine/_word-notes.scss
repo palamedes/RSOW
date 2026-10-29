@@ -1,0 +1,177 @@
+@use "kit" as *;
+
+// Word Notes — uncommon words get a squiggly red underline; hovering,
+// focusing or tapping one opens an index card that explains it. The card is
+// a single element appended to <body> by assets/js/word-notes.js, so it is
+// styled here in full rather than inheriting from .post-content.
+
+// ── The underlined word ──
+.word-note {
+  text-decoration-line: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: $red;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .3em;
+  text-decoration-skip-ink: none;
+  cursor: help;
+  transition: background-color .15s ease;
+
+  &:hover,
+  &.is-open { background-color: rgba(255, 230, 0, .55); }
+  &:focus { outline: none; }
+  &:focus-visible {
+    outline: 3px solid $red;
+    outline-offset: 2px;
+  }
+}
+
+// ── The card: an index card with a yellow strip across the top ──
+.word-card {
+  position: absolute;
+  z-index: 1200;
+  width: 340px;
+  max-width: calc(100vw - 24px);
+  border: 3px solid $ink;
+  border-radius: 0;
+  background: $sheet;
+  box-shadow: 6px 6px 0 0 $ink;
+  color: $ink;
+  font-family: $serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  text-align: left;
+  pointer-events: auto;
+
+  &[hidden] { display: none; }
+
+  // The arrow hangs off the outer box, so only the inside scrolls.
+  .word-card__body {
+    padding: 0 15px 13px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: $ink transparent;
+  }
+
+  // Arrow pointing at the word (above by default, flipped when below).
+  &::after {
+    content: "";
+    position: absolute;
+    left: var(--arrow-x, 50%);
+    bottom: -10px;
+    width: 16px;
+    height: 16px;
+    margin-left: -8px;
+    background: $sheet;
+    border-right: 3px solid $ink;
+    border-bottom: 3px solid $ink;
+    transform: rotate(45deg);
+  }
+  &.is-below::after {
+    top: -10px;
+    bottom: auto;
+    background: $hazard;
+    border: 0;
+    border-left: 3px solid $ink;
+    border-top: 3px solid $ink;
+  }
+
+  p { margin: 0; }
+  svg { display: block; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .word-card.is-in { animation: word-card-in .16s ease-out both; }
+  .word-card.is-in.is-below { animation-name: word-card-in-below; }
+}
+@keyframes word-card-in { from { opacity: 0; transform: translateY(4px); } }
+@keyframes word-card-in-below { from { opacity: 0; transform: translateY(-4px); } }
+
+.word-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin: 0 -15px .6rem;
+  padding: .5rem 15px .45rem;
+  background: $hazard;
+  border-bottom: 3px solid $ink;
+}
+.word-card__label,
+.word-card__topic {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  @include label(.64rem);
+  letter-spacing: .1em;
+  line-height: 1;
+  white-space: nowrap;
+
+  svg { width: 14px; height: 14px; flex: none; }
+}
+.word-card__label { color: $ink; }
+.word-card__topic {
+  padding: 4px 7px 4px 5px;
+  background: $ink;
+  color: $hazard;
+  letter-spacing: .08em;
+}
+
+.word-card__word {
+  @include poster(1.9rem);
+  line-height: 1;
+  color: $ink;
+}
+.word-card__meta {
+  margin-top: .3rem !important;
+  font-family: $mono;
+  font-size: .8rem;
+  color: $grey;
+}
+.word-card__say { letter-spacing: .02em; }
+.word-card__dot { margin: 0 .4rem; color: $red; }
+
+.word-card__fig {
+  margin: .65rem 0 0;
+  padding: 5px 6px;
+  border: 2px solid $ink;
+  background: #fff;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.word-card__def {
+  margin-top: .55rem !important;
+  font-size: .98rem;
+  line-height: 1.5;
+}
+.word-card__origin {
+  margin-top: .7rem !important;
+  padding-top: .55rem;
+  border-top: 2px dashed $ink;
+  font-size: .88rem;
+  line-height: 1.45;
+  color: #333;
+
+  span {
+    margin-right: .4rem;
+    @include label(.62rem);
+    color: $red;
+  }
+}
+
+.word-notes-sr { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .word-note { transition: none; }
+}
+
+@media print {
+  .word-note { text-decoration: none; background: none; }
+  .word-card { display: none !important; }
+}

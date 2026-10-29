@@ -1,0 +1,1827 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  The shell: masthead, ticker, the home poster and its wall of
+//  flyers, the back cover footer, the lightbox. Loud on purpose;
+//  the reading column (_post.scss) is where it calms down.
+//
+//  Ported onto the shared HTML (_data/views.yml): the branch's .zl-*
+//  logo pieces are .stw-*, its ticker is .ticker, .hero-mug is
+//  .hero-photo, .home-wall is .home-body, .card-sticker is .card-kicker,
+//  .footer-about-snap is .footer-about-photo, and the hazard strip over
+//  the footer is drawn as .site-footer::before. Wrappers Zine doesn't
+//  need are display:contents in _views.scss.
+// ════════════════════════════════════════════════════════════════
+
+.site-wrapper {
+  max-width: $wrap;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  @media (max-width: 600px) { padding: 0 1rem; }
+}
+
+// Rotated flyers, tape and offset shadows poke a few px past their
+// boxes; clip (not hide) so nothing scrolls sideways and sticky still works.
+.site-content {
+  min-height: 60vh;
+  padding: 0;
+  overflow-x: clip;
+}
+
+// ════════════════ MASTHEAD ════════════════
+.dark-header-wrap {
+  position: relative;
+  z-index: 50;
+  background: transparent;
+}
+
+.site-header {
+  position: relative;
+  border-bottom: 4px solid $ink;
+
+  // The header's parts are all direct children of .header-inner (the
+  // view-extras Zine doesn't show are display:none, so they take no cell).
+  .header-inner {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas:
+      "logo nav    nav    nav"
+      "logo resume social picker";
+    align-items: center;
+    column-gap: 1.25rem;
+    row-gap: 0.7rem;
+    padding: 1.1rem 0 1rem;
+  }
+
+  // ── Ransom-note logo ──
+  // The shared link carries Default's "RSOW.com | Home" and the long name in
+  // words (.site-title-long > .site-title-line > .stw); Zine cuts up the long one.
+  .site-title {
+    grid-area: logo;
+    justify-self: start;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    max-width: 100%;
+    color: $ink;
+    text-decoration: none;
+    padding: 4px 6px 6px 2px;
+
+    &:hover { color: $ink; }
+    &:focus-visible { outline: 3px solid $red; outline-offset: 4px; }
+
+    .site-title-short { display: none; }
+    .site-title-long { display: contents; }
+  }
+  .stw-string { text-transform: lowercase; }
+  .stw {
+    display: inline-block;
+    line-height: 1;
+    transition: transform 0.15s ease;
+  }
+  .site-title-line {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  .site-title-line + .site-title-line { padding-left: 0.9rem; }
+  .stw-random {
+    font-family: $display;
+    text-transform: uppercase;
+    font-size: 2.6rem;
+    padding: 0.1em 0.22em 0.06em;
+    background: $ink;
+    color: $sheet;
+    transform: rotate(-2.2deg);
+  }
+  .stw-string {
+    font-family: $mono;
+    font-weight: 700;
+    font-size: 1.6rem;
+    padding: 0.18em 0.3em 0.12em;
+    background: $hazard;
+    color: $ink;
+    border: 2px solid $ink;
+    transform: rotate(2deg) translateY(3px);
+  }
+  .stw-of {
+    font-family: $serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.7rem;
+    padding: 0.02em 0.28em 0.1em;
+    background: $red;
+    color: #fff;
+    transform: rotate(-6deg);
+  }
+  .stw-words {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+
+    span {
+      display: inline-block;
+      line-height: 1;
+      border: 2px solid $ink;
+      transition: transform 0.15s ease;
+    }
+    span:nth-child(1) {
+      font-family: $display;
+      font-size: 2.5rem;
+      padding: 0.04em 0.12em 0;
+      background: $sheet;
+      transform: rotate(3deg);
+    }
+    span:nth-child(2) {
+      font-family: $serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 2.1rem;
+      padding: 0 0.16em 0.08em;
+      background: $ink;
+      color: $hazard;
+      transform: rotate(-5deg) translateY(3px);
+    }
+    span:nth-child(3) {
+      font-family: $mono;
+      font-weight: 700;
+      font-size: 1.85rem;
+      padding: 0.06em 0.14em;
+      background: $hazard;
+      transform: rotate(2deg) translateY(-2px);
+    }
+    span:nth-child(4) {
+      font-family: $display;
+      font-size: 2.35rem;
+      padding: 0.04em 0.12em 0;
+      background: $sheet;
+      color: $red;
+      transform: rotate(-3deg);
+    }
+    span:nth-child(5) {
+      font-family: $serif;
+      font-weight: 700;
+      font-size: 2.15rem;
+      padding: 0 0.14em 0.06em;
+      background: $red;
+      color: #fff;
+      transform: rotate(6deg) translateY(2px);
+    }
+  }
+  // a little rattle when you point at it
+  .site-title:hover {
+    .stw-random { transform: rotate(1deg); }
+    .stw-string { transform: rotate(-2deg) translateY(1px); }
+    .stw-of { transform: rotate(4deg); }
+    .stw-words span:nth-child(odd) { transform: rotate(-3deg); }
+    .stw-words span:nth-child(even) { transform: rotate(4deg); }
+  }
+
+  // ── Nav: stamped buttons ──
+  .nav-links {
+    grid-area: nav;
+    justify-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.6rem 0.7rem;
+
+    a {
+      @include stamp-button($sheet, $ink);
+      padding: 0.42rem 0.75rem 0.38rem;
+      font-size: 0.76rem;
+      @include hard-shadow(3px);
+
+      &:nth-child(odd)  { transform: rotate(-1.2deg); }
+      &:nth-child(even) { transform: rotate(0.9deg); }
+      &:nth-child(3n)   { transform: rotate(-0.4deg); }
+
+      &:hover {
+        transform: translate(-2px, -2px) rotate(0deg);
+        @include hard-shadow(5px);
+      }
+      // you are here: the page itself, or the section a page sits in
+      &[aria-current] {
+        background: $ink;
+        color: $hazard;
+        box-shadow: 3px 3px 0 0 $red;
+      }
+    }
+  }
+
+  .social-icons {
+    grid-area: social;
+    justify-self: end;
+    display: flex;
+    gap: 0.4rem;
+  }
+
+  // ── Mobile menu button ──
+  .nav-toggle {
+    grid-area: toggle;
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+    height: 44px;
+    padding: 0 0.8rem;
+    background: $hazard;
+    color: $ink;
+    border: 3px solid $ink;
+    border-radius: 0;
+    @include hard-shadow(3px);
+    @include label(0.78rem);
+    cursor: pointer;
+
+    &:focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+  }
+  .nav-toggle[aria-expanded="true"] { background: $ink; color: $hazard; }
+
+  .nav-toggle-bars {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 14px;
+
+    span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: currentColor;
+      transition: transform 0.18s ease, opacity 0.18s ease, top 0.18s ease;
+
+      &:nth-child(1) { top: 0; }
+      &:nth-child(2) { top: 5.5px; }
+      &:nth-child(3) { top: 11px; }
+    }
+  }
+  // Bars fold into an X while the panel is open.
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars span {
+    &:nth-child(1) { top: 5.5px; transform: rotate(45deg); }
+    &:nth-child(2) { opacity: 0; }
+    &:nth-child(3) { top: 5.5px; transform: rotate(-45deg); }
+  }
+
+  @media (max-width: 960px) {
+    .header-inner {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "logo   toggle"
+        "resume resume"
+        "nav    nav"
+        "social social"
+        "picker picker";
+      row-gap: 0;
+      padding: 0.8rem 0 0.75rem;
+    }
+    .nav-toggle { display: inline-flex; }
+    .resume-slot:not(:empty) { margin-top: 0.75rem; justify-self: start; }
+
+    // Full-width stacked stamps under the bar.
+    .nav-links {
+      flex-direction: column;
+      justify-self: stretch;
+      gap: 0.55rem;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 3px dashed $ink;
+
+      a {
+        justify-content: flex-start;
+        width: calc(100% - 4px);
+        font-size: 0.92rem;
+        padding: 0.75rem 0.9rem;
+      }
+    }
+    .social-icons {
+      justify-self: start;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin: 1rem 0 0.4rem;
+
+      .social-icon { width: 40px; height: 40px; svg { width: 18px; height: 18px; } }
+    }
+    .header-inner:not(.is-nav-open) .nav-links,
+    .header-inner:not(.is-nav-open) .social-icons,
+    .header-inner:not(.is-nav-open) .view-picker { display: none; }
+  }
+
+  @media (max-width: 420px) {
+    .stw-random { font-size: 1.75rem; }
+    .stw-string { font-size: 1.1rem; }
+    .stw-of { font-size: 1.15rem; }
+    .stw-words span:nth-child(1) { font-size: 1.7rem; }
+    .stw-words span:nth-child(2) { font-size: 1.45rem; }
+    .stw-words span:nth-child(3) { font-size: 1.3rem; }
+    .stw-words span:nth-child(4) { font-size: 1.6rem; }
+    .stw-words span:nth-child(5) { font-size: 1.5rem; }
+  }
+
+  // ── "Continue game" slot (filled by the inline script in default.html) ──
+  .adv-resume-btn {
+    @include stamp-button($hazard, $ink);
+    padding: 0.32rem 0.7rem;
+    font-size: 0.7rem;
+    @include hard-shadow(3px);
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
+
+  .resume-slot {
+    grid-area: resume;
+    justify-self: end;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .resume-dropdown { position: relative; }
+
+  .resume-trigger {
+    .resume-caret {
+      display: inline-block;
+      margin-left: 0.25rem;
+      transition: transform 0.15s ease;
+    }
+    &[aria-expanded="true"] .resume-caret { transform: rotate(180deg); }
+  }
+
+  .resume-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 230px;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(5px);
+    z-index: 1000;
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+
+    &[hidden] { display: none; }
+    @media (max-width: 960px) { right: auto; left: 0; }
+  }
+
+  .resume-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: transparent;
+    color: $ink;
+    border: 0;
+    padding: 0.5rem 0.6rem;
+    font-family: $mono;
+    font-size: 0.78rem;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+
+    &:hover, &:focus-visible { background: $hazard; }
+
+    .resume-item-name   { font-weight: 700; }
+    .resume-item-detail { color: $grey; font-size: 0.72rem; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header .stw,
+  .site-header .stw-words span,
+  .site-header .nav-links a,
+  .site-header .nav-toggle-bars span { transition: none; }
+  .site-header .site-title:hover {
+    .stw-random { transform: rotate(-2.2deg); }
+    .stw-string { transform: rotate(2deg) translateY(3px); }
+    .stw-of { transform: rotate(-6deg); }
+    .stw-words span:nth-child(1) { transform: rotate(3deg); }
+    .stw-words span:nth-child(2) { transform: rotate(-5deg) translateY(3px); }
+    .stw-words span:nth-child(3) { transform: rotate(2deg) translateY(-2px); }
+    .stw-words span:nth-child(4) { transform: rotate(-3deg); }
+    .stw-words span:nth-child(5) { transform: rotate(6deg) translateY(2px); }
+  }
+}
+
+// ════════════════ TICKER ════════════════
+.ticker {
+  display: flex;
+  align-items: stretch;
+  background: $ink;
+  color: $sheet;
+  border-bottom: 4px solid $ink;
+  overflow: hidden;
+}
+.ticker-label {
+  flex: none;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0.5rem 1.6rem 0.5rem 1rem;
+  background: $red;
+  color: #fff;
+  @include label(0.72rem);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+  position: relative;
+  z-index: 1;
+  @media (max-width: 600px) { display: none; }
+}
+.ticker-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+}
+.ticker-belt {
+  display: flex;
+  width: max-content;
+  animation: zine-ticker 80s linear infinite;
+}
+.ticker:hover .ticker-belt { animation-play-state: paused; }
+// keyboard: park the belt at the start so the focused title is on screen
+.ticker:focus-within .ticker-belt { animation: none; }
+.ticker-track {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0.5rem 0;
+    font-family: $mono;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+
+    &::after {
+      content: "\2736" / "";
+      color: $hazard;
+      margin: 0 1.1rem;
+    }
+  }
+  a {
+    color: $sheet;
+    text-decoration: none;
+    &:hover, &:focus-visible { color: $hazard; text-decoration: underline; text-underline-offset: 3px; }
+    &:focus-visible { outline: 2px solid $hazard; outline-offset: 2px; }
+  }
+}
+@keyframes zine-ticker { to { transform: translateX(-50%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-belt { animation: none; }
+  .ticker-copy { display: none; }
+  .ticker-window { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
+// ════════════════ HOME: THE COVER POSTER ════════════════
+.home-hero {
+  position: relative;
+  overflow: hidden;
+  background-color: $hazard;
+  background-image: $grain;
+  border-bottom: 4px solid $ink;
+
+  // a halftone screen bleeding in from the top right
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    @include halftone(rgba(17, 17, 17, 0.85), 14px, 3.4px);
+    -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, rgba(0, 0, 0, 0.6) 22%, transparent 58%);
+    mask-image: radial-gradient(circle at 100% 0%, #000 0%, rgba(0, 0, 0, 0.6) 22%, transparent 58%);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: $wrap;
+    margin: 0 auto;
+    padding: 3.2rem 1.5rem 3.6rem;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 3.2rem;
+    align-items: center;
+
+    @media (max-width: 760px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2.4rem 1rem 2.8rem;
+    }
+  }
+
+  // the portrait, pasted up like a photocopy
+  .hero-photo {
+    position: relative;
+    justify-self: start;
+    background: $sheet;
+    padding: 10px 10px 36px;
+    border: 3px solid $ink;
+    @include hard-shadow(9px);
+    transform: rotate(-3.5deg);
+
+    &::before { @include tape(112px, 28px, -5deg); top: -15px; left: calc(50% - 56px); }
+    &::after {
+      content: "Fig. 1 \2014  the author" / "";
+      position: absolute;
+      left: 12px;
+      bottom: 9px;
+      @include label(0.66rem);
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: $grey;
+    }
+    @media (max-width: 760px) { justify-self: center; }
+  }
+
+  .profile-image {
+    display: block;
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.25);
+    @media (max-width: 760px) { width: 190px; height: 190px; }
+  }
+
+  .hero-text { min-width: 0; }
+
+  .hero-name {
+    @include poster(clamp(3.6rem, 1rem + 8.6vw, 9.6rem));
+    line-height: 0.86;
+    margin: 0;
+    color: $ink;
+    // misregistered second ink, like a cheap two-colour print run
+    text-shadow: 0.035em 0.035em 0 $red;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-site-name {
+    display: inline-block;
+    margin: 1.1rem 0 1.4rem;
+    padding: 0.4rem 0.8rem 0.35rem;
+    background: $ink;
+    color: $hazard;
+    font-family: $mono;
+    font-weight: 700;
+    font-size: clamp(0.95rem, 0.8rem + 0.6vw, 1.25rem);
+    letter-spacing: 0.03em;
+    transform: rotate(-1.5deg);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  // the tagline, typed on a strip and taped under the name
+  .hero-tagline {
+    position: relative;
+    max-width: 40rem;
+    margin: 0;
+    padding: 1.1rem 1.3rem 1.15rem;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(6px);
+    color: $ink;
+    font-family: $serif;
+    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+    line-height: 1.55;
+    transform: rotate(0.6deg);
+
+    &::first-letter {
+      font-family: $display;
+      font-size: 1.5em;
+      text-transform: uppercase;
+      color: $red;
+      line-height: 0.8;
+    }
+    &::before { @include tape(84px, 24px, 8deg); top: -13px; right: 24px; }
+  }
+
+  // the rubber stamp slapped across the corner
+  .hero-stamp {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.8rem;
+    margin: 0;
+    padding: 0.45rem 0.8rem 0.35rem;
+    border: 4px solid $red;
+    outline: 2px solid $red;
+    outline-offset: 3px;
+    color: $red;
+    font-family: $display;
+    font-size: 1.35rem;
+    line-height: 0.95;
+    text-transform: uppercase;
+    text-align: center;
+    transform: rotate(11deg);
+    opacity: 0.88;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    // mid widths: the name fills the row and the stamp would land on it
+    @media (min-width: 761px) and (max-width: 1180px) { display: none; }
+    @media (max-width: 760px) { top: 1.3rem; right: 0.9rem; font-size: 0.95rem; }
+  }
+}
+
+// ── Hazard tape between the poster and the wall ──
+.sub-hero {
+  height: 18px;
+  background: repeating-linear-gradient(-45deg, $ink 0 14px, $hazard 14px 28px);
+  border-bottom: 4px solid $ink;
+}
+
+// ════════════════ THE WALL ════════════════
+.home-body { padding-top: 0.6rem; }
+
+.recent-posts-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.25rem;
+  margin-top: 2rem;
+}
+
+.recent-posts-heading {
+  @include poster(clamp(1.7rem, 1.2rem + 1.6vw, 2.5rem));
+  display: inline-block;
+  margin: 0;
+  padding: 0.3rem 0.75rem 0.22rem;
+  background: $ink;
+  color: $sheet;
+  transform: rotate(-1.2deg);
+  box-shadow: 6px 6px 0 0 $red;
+
+  &::after { content: none; }
+}
+
+// ── Flyer grid ──────────────────────────────────────────
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2.6rem 1.9rem;
+  padding: 2.4rem 0 2.2rem;
+  align-items: start;
+
+  @media (max-width: 1100px) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  @media (max-width: 800px)  { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.4rem 1.4rem; }
+  @media (max-width: 540px)  { grid-template-columns: minmax(0, 1fr); gap: 2.6rem; }
+}
+
+// The wrapper is the grid item (and on /archive/, the element the filter
+// script shows and hides). It carries the tilt and the tape, because
+// .post-card clips its overflow.
+.post-card-wrap {
+  --tilt: 0deg;
+  position: relative;
+  display: flex;
+  transform: rotate(var(--tilt));
+  transition: transform 0.15s ease;
+
+  &::before { @include tape(92px, 24px, -3deg); top: -12px; left: calc(50% - 46px); }
+
+  &:hover { transform: rotate(0deg) translateY(-3px); }
+}
+// Counted among the cards only (`of .post-card-wrap`): the home grid has
+// view-extras between them, and on /archive/ the cards sit in per-year
+// groups (.arc-year-list, display:contents here), so the rhythm restarts
+// each year.
+.post-grid .post-card-wrap:nth-child(4n+1 of .post-card-wrap) { --tilt: -1.1deg; }
+.post-grid .post-card-wrap:nth-child(4n+2 of .post-card-wrap) { --tilt: 0.8deg; margin-top: 0.9rem; }
+.post-grid .post-card-wrap:nth-child(4n+3 of .post-card-wrap) { --tilt: -0.5deg; }
+.post-grid .post-card-wrap:nth-child(4n+4 of .post-card-wrap) { --tilt: 1.3deg; margin-top: 0.45rem; }
+// some flyers are taped at two corners instead of the middle
+.post-grid .post-card-wrap:nth-child(3n+2 of .post-card-wrap) {
+  &::before { top: -8px; left: -22px; width: 74px; transform: rotate(-38deg); }
+  &::after  { @include tape(74px, 24px, 38deg); top: -8px; right: -22px; }
+}
+@media (max-width: 540px) {
+  .post-grid .post-card-wrap { margin-top: 0 !important; }
+  .post-grid .post-card-wrap:nth-child(3n+2 of .post-card-wrap) {
+    &::before { left: -8px; }
+    &::after  { right: -8px; }
+  }
+}
+
+.post-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  background: $sheet;
+  border: 3px solid $ink;
+  border-radius: 0;
+  overflow: hidden;
+  color: $ink;
+  @include hard-shadow(6px);
+  transition: box-shadow 0.15s ease;
+
+  .post-card-wrap:hover & { @include hard-shadow(9px); }
+
+  // The title is the real link; this stretches its hit area over the whole
+  // card so the card still behaves like one big link.
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    &::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    &:focus-visible { outline: none; }
+  }
+
+  .card-image {
+    width: 100%;
+    height: auto; // the img's width/height attributes are for layout reservation only
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    background: #ddd7c8;
+    display: block;
+    border-bottom: 3px solid $ink;
+  }
+
+  .card-body {
+    position: relative;
+    padding: 0.95rem 1.05rem 1.15rem;
+  }
+
+  // date stamp on the left, narration chip on the right
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    min-height: 1.6rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .card-date {
+    @include rubber-stamp($red, -2deg);
+    font-size: 0.64rem;
+    white-space: nowrap;
+  }
+
+  .card-title {
+    @include poster(1.5rem);
+    line-height: 1.04;
+    color: $ink;
+    margin: 0 0 0.6rem;
+    overflow-wrap: break-word;
+
+    a { color: inherit; }
+  }
+
+  .card-excerpt {
+    font-family: $serif;
+    font-size: 0.98rem;
+    color: #2b2b2b;
+    line-height: 1.5;
+    margin: 0;
+  }
+}
+// Pointing at a flyer runs the marker over its headline.
+.post-card:hover .card-link,
+.post-card .card-link:focus-visible {
+  background: $hazard;
+  color: $ink;
+  box-shadow: 0 0 0 2px $hazard;
+}
+.post-card-wrap:focus-within .post-card {
+  outline: 3px solid $red;
+  outline-offset: 4px;
+}
+
+// Topic sticker slapped across the bottom edge of the photo
+.card-kicker {
+  position: absolute;
+  top: -15px;
+  right: 12px;
+  margin: 0;
+  z-index: 2;
+  max-width: calc(100% - 24px);
+  padding: 0.28rem 0.5rem 0.24rem;
+  background: $red;
+  color: #fff;
+  border: 2px solid $ink;
+  @include label(0.64rem);
+  box-shadow: 2px 2px 0 0 $ink;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.post-grid .post-card-wrap:nth-child(3n+2 of .post-card-wrap) .card-kicker { background: $hazard; color: $ink; transform: rotate(3deg); }
+.post-grid .post-card-wrap:nth-child(3n of .post-card-wrap) .card-kicker { background: $ink; color: $hazard; transform: rotate(-2deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card-wrap, .post-card { transition: none; }
+  .post-card-wrap:hover { transform: rotate(var(--tilt)); }
+}
+
+// ── Home: the lead poster and the two half-sheets ──
+// The shared slots: --lead (1st), --second (2nd), then --standard and
+// --brief; Zine runs the 2nd and 3rd as half-sheets and the rest three up.
+.home .post-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  > .post-card-wrap { grid-column: span 2; }
+  > .post-card-wrap--second,
+  > .post-card-wrap:nth-child(3 of .post-card-wrap) {
+    grid-column: span 3;
+    .card-title { font-size: 2rem; }
+    .card-excerpt { font-size: 1.05rem; }
+  }
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    > .post-card-wrap,
+    > .post-card-wrap--second,
+    > .post-card-wrap:nth-child(3 of .post-card-wrap) { grid-column: span 1; }
+  }
+  @media (max-width: 540px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  // the newest post: a full-width poster
+  > .post-card-wrap--lead {
+    grid-column: 1 / -1;
+    --tilt: -0.6deg;
+    margin-bottom: 0.8rem;
+
+    &::before { @include tape(150px, 30px, -2deg); top: -15px; left: 18%; }
+    &::after {
+      content: "New!" / "";
+      position: absolute;
+      top: -26px;
+      right: -18px;
+      z-index: 5;
+      width: 104px;
+      height: 104px;
+      display: grid;
+      place-items: center;
+      background: $red;
+      color: #fff;
+      font-family: $display;
+      font-size: 1.55rem;
+      text-transform: uppercase;
+      clip-path: polygon(50% 0%, 58% 13%, 71% 4%, 74% 19%, 89% 15%, 86% 30%, 100% 33%, 91% 45%, 100% 57%, 87% 63%, 93% 78%, 78% 79%, 76% 94%, 63% 87%, 54% 100%, 45% 88%, 32% 96%, 28% 82%, 13% 85%, 16% 70%, 2% 64%, 11% 52%, 0% 41%, 13% 34%, 8% 20%, 23% 18%, 25% 4%, 39% 11%);
+      transform: rotate(12deg);
+    }
+
+    .post-card {
+      flex-direction: row;
+      border-width: 4px;
+      @include hard-shadow(11px);
+    }
+    .card-image {
+      flex: none;
+      width: 56%;
+      align-self: stretch;
+      aspect-ratio: auto;
+      min-height: 100%;
+      border-bottom: 0;
+      border-right: 4px solid $ink;
+    }
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.2rem 2.4rem 2.3rem;
+    }
+    .card-kicker {
+      position: static;
+      align-self: flex-start;
+      margin: 0 0 1rem;
+      font-size: 0.78rem;
+      padding: 0.36rem 0.65rem 0.3rem;
+    }
+    .card-date { font-size: 0.74rem; }
+    .card-title { font-size: clamp(2.2rem, 1rem + 2.6vw, 3.5rem); line-height: 0.96; margin-bottom: 1rem; }
+    .card-excerpt { font-size: 1.18rem; line-height: 1.55; }
+
+    @media (max-width: 800px) {
+      .post-card { flex-direction: column; }
+      .card-image {
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 4px solid $ink;
+      }
+      .card-body { padding: 1.3rem 1.25rem 1.5rem; }
+    }
+    @media (max-width: 540px) {
+      &::after { top: -20px; right: -6px; width: 78px; height: 78px; font-size: 1.15rem; }
+      .card-title { font-size: 2.1rem; }
+      .card-excerpt { font-size: 1.05rem; }
+    }
+  }
+}
+
+// ── Narration chip on a card ────────────────────────────
+// Black and yellow = AI read; red = read by Jason. The label underneath
+// says which, so colour is never the only cue. It rides above the card's
+// stretched link so its own clicks land.
+.card-listen {
+  --chip-bg: #{$ink};
+  --chip-fg: #{$hazard};
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.24rem 0.5rem 0.22rem 0.3rem;
+  border: 2px solid $ink;
+  border-radius: 0;
+  cursor: pointer;
+  color: var(--chip-fg);
+  background: var(--chip-bg);
+  box-shadow: 2px 2px 0 0 $ink;
+  transition: background-color 0.12s ease, color 0.12s ease;
+
+  &:hover { --chip-bg: #{$hazard}; --chip-fg: #{$ink}; }
+  &:focus-visible { outline: 3px solid $red; outline-offset: 2px; }
+
+  &--human {
+    --chip-bg: #{$red};
+    --chip-fg: #fff;
+    &:hover { --chip-bg: #fff; --chip-fg: #{$red}; }
+  }
+
+  &.is-error {
+    --chip-bg: #fff;
+    --chip-fg: #{$red};
+    border-color: $red;
+    cursor: default;
+  }
+}
+
+// ── Tooltip: says out loud whose voice this is ──────────
+// Anchored to the wrapper (not .post-card, which clips overflow) and pinned to
+// the chip's row, so it can sit clear of the card edge without being cut off.
+.post-card-wrap {
+  .card-tip {
+    position: absolute;
+    z-index: 5;
+    right: 0.75rem;
+    padding: 0.35rem 0.55rem;
+    border: 2px solid $ink;
+    background: $hazard;
+    color: $ink;
+    font-family: $mono;
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.25;
+    text-transform: none;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0 0 $ink;
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.13s ease, transform 0.13s ease;
+    pointer-events: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 14px;
+      border: 6px solid transparent;
+      border-top-color: $ink;
+    }
+    &.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 380px) { white-space: normal; max-width: 12rem; }
+  }
+}
+
+.card-listen-ico {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 50%;
+  background: var(--chip-fg);
+  &::before {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent var(--chip-bg);
+  }
+}
+// play triangle → pause bars
+.card-listen.is-playing .card-listen-ico::before {
+  width: 5px; height: 6px;
+  margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(currentColor, currentColor) left / 2px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) right / 2px 100% no-repeat;
+  color: var(--chip-bg);
+}
+
+.card-listen-lead {
+  font-family: $mono;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;   // stops the timer digits jittering
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-listen, .post-card-wrap .card-tip { transition: none; }
+}
+
+// ── View all posts ──────────────────────────────────────
+.view-more {
+  text-align: center;
+  padding: 0.8rem 0 3.2rem;
+
+  a {
+    @include stamp-button($hazard, $ink);
+    font-size: 1rem;
+    padding: 0.9rem 2.2rem;
+    @include hard-shadow(6px);
+    transform: rotate(-1deg);
+    &:hover { background: $ink; color: $hazard; }
+  }
+}
+
+// ── Pagination ──────────────────────────────────────────
+.pagination {
+  margin: 0.5rem 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  a { @include stamp-button($sheet, $ink); padding: 0.45rem 0.9rem; }
+  .page-info { @include label(0.75rem); color: $grey; }
+}
+
+// ════════════════ SHARED PROSE ════════════════
+// The calm part: a sturdy serif at reading size, generous leading, and
+// just enough zine in the furniture (stamped headings, marker-pen bold).
+.post-content,
+.page {
+  font-family: $serif;
+  font-optical-sizing: auto;
+
+  // display: table shrink-wraps the label and, being its own block
+  // formatting context, sits beside a floated image instead of under it.
+  h2 {
+    @include poster(clamp(1.55rem, 1.2rem + 1vw, 2rem));
+    display: table;
+    max-width: 100%;
+    margin: 2.1em 0 0.85em;
+    padding: 0.2em 0.45em 0.14em;
+    background: $ink;
+    color: $hazard;
+    line-height: 1.05;
+    transform: rotate(-1deg);
+    box-shadow: 5px 5px 0 0 $red;
+    strong { background: none; padding: 0; }
+  }
+  h3 {
+    font-family: $display;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(1.3rem, 1.1rem + 0.5vw, 1.5rem);
+    letter-spacing: 0.01em;
+    line-height: 1.1;
+    display: table;
+    max-width: 100%;
+    margin: 1.9em 0 0.6em;
+    padding-bottom: 0.08em;
+    border-bottom: 4px solid $red;
+  }
+  h4, h5, h6 {
+    @include label(0.9rem);
+    margin: 1.8em 0 0.5em;
+    color: $red;
+  }
+
+  hr {
+    position: relative;
+    clear: both;
+    height: 0;
+    margin: 2.6em 0;
+    border: 0;
+    border-top: 3px dashed $ink;
+    overflow: visible;
+    &::after {
+      content: "\2702" / "";
+      position: absolute;
+      left: 0;
+      top: -0.78em;
+      padding-right: 0.35em;
+      background: $sheet;
+      font-size: 1.3rem;
+      line-height: 1;
+      color: $ink;
+    }
+  }
+
+  ul li::marker { color: $red; }
+  ol li::marker { font-family: $mono; font-weight: 700; color: $red; font-size: 0.9em; }
+  li { margin-bottom: 0.35em; }
+  li > ul, li > ol { margin-top: 0.35em; margin-bottom: 0.35em; }
+
+  blockquote {
+    position: relative;
+    margin: 1.8em 0;
+    padding: 1em 1.3em 1em 1.4em;
+    border-left: 8px solid $ink;
+    background-color: rgba(255, 230, 0, 0.16);
+    @include halftone(rgba(17, 17, 17, 0.07), 8px, 1.2px);
+    font-style: italic;
+    color: #1f1f1f;
+    p:last-child { margin-bottom: 0; }
+  }
+
+  table:not(.emit-table) {
+    width: 100%;
+    margin: 1.6em 0;
+    border-collapse: collapse;
+    font-size: 0.92em;
+    border: 3px solid $ink;
+    th {
+      background: $ink;
+      color: $sheet;
+      @include label(0.72rem);
+      text-align: left;
+      padding: 0.55rem 0.7rem;
+    }
+    td {
+      padding: 0.55rem 0.7rem;
+      border-top: 2px solid $ink;
+      vertical-align: top;
+    }
+  }
+
+  img { border-radius: 0; }
+}
+
+// Marker-pen bold: the yellow swipe that makes a key line jump off the page.
+.post-content strong,
+.post-content b,
+.page strong {
+  font-weight: 700;
+  background-image: linear-gradient(100deg,
+    rgba($hazard, 0) 0.3%, rgba($hazard, 0.95) 1.4%,
+    rgba($hazard, 0.82) 50%, rgba($hazard, 0.95) 98.4%, rgba($hazard, 0) 99.7%);
+  background-repeat: no-repeat;
+  background-size: 100% 64%;
+  background-position: 0 92%;
+  padding: 0 0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.post-content {
+  font-size: 1.2rem;
+  line-height: 1.72;
+  color: #1b1b1b;
+  margin-bottom: 2rem;
+  @media (max-width: 600px) { font-size: 1.125rem; line-height: 1.7; }
+
+  p, ul, ol { margin-bottom: 1.15em; }
+
+  img {
+    margin: 1rem 0;
+  }
+}
+
+// ── Recent posts (below a single post) ──────────────────
+.recent-posts {
+  padding: 3rem 0 3.4rem;
+  border-top: 4px solid $ink;
+
+  .recent-posts-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+
+    h3 {
+      @include poster(clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem));
+      display: inline-block;
+      margin: 0;
+      padding: 0.3rem 0.75rem 0.22rem;
+      background: $ink;
+      color: $sheet;
+      transform: rotate(-1.2deg);
+      box-shadow: 6px 6px 0 0 $red;
+    }
+
+    a {
+      @include stamp-button($sheet, $ink);
+      padding: 0.5rem 0.95rem;
+      font-size: 0.78rem;
+    }
+  }
+
+  .recent-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.4rem 1.9rem;
+    padding-top: 2rem;
+    align-items: start;
+
+    > .post-card:nth-child(3n+1) { --tilt: -1deg; }
+    > .post-card:nth-child(3n+2) { --tilt: 0.9deg; margin-top: 0.8rem; }
+    > .post-card:nth-child(3n)   { --tilt: -0.4deg; }
+    > .post-card:nth-child(2) .card-kicker { background: $hazard; color: $ink; transform: rotate(3deg); }
+    > .post-card:nth-child(3) .card-kicker { background: $ink; color: $hazard; }
+
+    @media (max-width: 860px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 540px) {
+      grid-template-columns: minmax(0, 1fr);
+      > .post-card { margin-top: 0 !important; }
+    }
+  }
+
+  // Here each flyer is one link with no wrapper (no listen chip), so the
+  // card carries its own tilt and tape: nothing in it needs clipping.
+  .post-card {
+    --tilt: 0deg;
+    overflow: visible;
+    transform: rotate(var(--tilt));
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    text-decoration: none;
+
+    &::before { @include tape(92px, 24px, -3deg); top: -12px; left: calc(50% - 46px); }
+    &:hover {
+      color: $ink;
+      transform: rotate(0deg) translateY(-3px);
+      @include hard-shadow(9px);
+    }
+    &:focus-visible { outline: 3px solid $red; outline-offset: 4px; }
+
+    // the date and title as the flyers above have them: a stamp on its own
+    // line, then the headline as an inline run so the marker can sweep it
+    .card-body { line-height: 1; }
+    .card-date { display: table; margin-bottom: 0.65rem; }
+    .card-title {
+      display: inline;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    .card-excerpt { margin-top: 0.6rem; }
+    &:hover .card-title,
+    &:focus-visible .card-title {
+      background: $hazard;
+      box-shadow: 0 0 0 2px $hazard;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-card { transition: none; }
+    .post-card:hover { transform: rotate(var(--tilt)); }
+  }
+}
+
+// ════════════════ FOOTER: THE BACK COVER ════════════════
+.site-footer {
+  margin-top: 0;
+  background-color: $ink;
+  background-image: $grain;
+  color: #e9e4d8;
+}
+
+// hazard tape across the top of the back cover
+.site-footer::before {
+  content: "";
+  display: block;
+  height: 22px;
+  background: repeating-linear-gradient(-45deg, $ink 0 16px, $hazard 16px 32px);
+  border-top: 4px solid $ink;
+  border-bottom: 4px solid $ink;
+}
+
+// The photo strip: photobooth snaps taped up in a crooked row.
+.footer-photo-strip {
+  overflow: hidden;
+  position: relative;
+  padding: 26px 0 30px;
+  border-bottom: 3px dashed #4a4a4a;
+
+  .strip-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scroll-strip 110s linear infinite;
+  }
+  &:hover .strip-track { animation-play-state: paused; }
+
+  .snap {
+    --r: -2deg;
+    position: relative;
+    flex: none;
+    margin-right: 24px;
+    padding: 7px 7px 24px;
+    background: $sheet;
+    box-shadow: 4px 4px 0 0 rgba(0, 0, 0, 0.65);
+    transform: rotate(var(--r));
+
+    &::before { @include tape(56px, 18px, -6deg); top: -9px; left: calc(50% - 28px); }
+    &:nth-child(even) { --r: 2.2deg; }
+    &:nth-child(3n)   { --r: -0.8deg; }
+    &:nth-child(5n)   { --r: 3deg; }
+    &:nth-child(4n)::before { transform: rotate(7deg); }
+  }
+
+  img {
+    display: block;
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    border: 0;
+    filter: grayscale(0.25) contrast(1.06);
+  }
+}
+
+@keyframes scroll-strip {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-photo-strip { overflow-x: auto; }
+  .footer-photo-strip .strip-track { animation: none; padding-left: 1rem; }
+}
+
+// ── Gallery lightbox ───────────────────────────────────
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 17, 17, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+
+  &.active { display: flex; }
+
+  .gallery-modal-card {
+    position: relative;
+    background: $sheet;
+    border: 4px solid $ink;
+    border-radius: 0;
+    box-shadow: 10px 10px 0 0 $hazard;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .gallery-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 3px solid $ink;
+    background: $hazard;
+  }
+
+  &.active .gallery-modal-card.no-title .gallery-modal-header {
+    justify-content: flex-end;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 0;
+    background: transparent;
+  }
+
+  .gallery-modal-title {
+    margin: 0;
+    @include poster(1.35rem);
+    line-height: 1.1;
+    color: $ink;
+
+    &:empty { display: none; }
+  }
+
+  .gallery-modal-body {
+    position: relative;
+    padding: 0 1rem 1rem;
+    overflow: auto;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $sheet;
+  }
+
+  // Prev/next arrows — hidden unless the current group has >1 image.
+  .gallery-modal-count {
+    margin-left: auto;
+    @include label(0.75rem);
+    color: $ink;
+    white-space: nowrap;
+    &:empty { display: none; }
+  }
+  .gallery-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 3px solid $ink;
+    border-radius: 0;
+    background: $hazard;
+    color: $ink;
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    box-shadow: 3px 3px 0 0 $ink;
+    &:hover { background: $ink; color: $hazard; }
+    &.prev { left: 1.25rem; }
+    &.next { right: 1.25rem; }
+    @media (max-width: 600px) {
+      width: 38px; height: 38px; font-size: 1.4rem;
+      &.prev { left: 0.4rem; } &.next { right: 0.4rem; }
+    }
+  }
+  .gallery-modal-card.has-nav .gallery-modal-nav { display: flex; }
+
+  img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    border: 3px solid $ink;
+    background: $ink;
+  }
+
+  .gallery-modal-footer {
+    padding: 0.75rem 1rem;
+    border-top: 3px solid $ink;
+    background: $sheet;
+    color: $ink;
+    font-family: $serif;
+    font-size: 1rem;
+    line-height: 1.45;
+    max-height: 18vh;
+    overflow-y: auto;
+
+    &[hidden] { display: none; }
+
+    a { color: $ink; text-decoration: underline; text-decoration-color: $red; }
+    p { margin: 0 0 0.5em; &:last-child { margin-bottom: 0; } }
+  }
+
+  .gallery-modal-close {
+    background: transparent;
+    border: 0;
+    color: $ink;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.3rem;
+
+    &:hover { color: $red; }
+  }
+}
+
+// ── About, on the back cover ──
+.footer-main {
+  padding: 3.6rem 0 3.2rem;
+  color: #e9e4d8;
+
+  .footer-about {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 2.75rem;
+    align-items: center;
+
+    @media (max-width: 900px) {
+      grid-template-columns: auto minmax(0, 1fr);
+      .footer-stamp { display: none; }
+    }
+    @media (max-width: 640px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.2rem;
+    }
+  }
+
+  .footer-about-photo {
+    position: relative;
+    justify-self: start;
+    padding: 9px 9px 30px;
+    background: $sheet;
+    transform: rotate(-3deg);
+    box-shadow: 7px 7px 0 0 $hazard;
+
+    &::before { @include tape(88px, 24px, 6deg); top: -12px; left: calc(50% - 44px); }
+    @media (max-width: 640px) { margin-left: 0.5rem; }
+  }
+
+  .footer-about-img {
+    display: block;
+    width: 168px;
+    height: 168px;
+    object-fit: cover;
+    border-radius: 0;
+    filter: grayscale(1) contrast(1.15);
+  }
+
+  .footer-about-text {
+    min-width: 0;
+
+    h3 {
+      @include poster(clamp(2.4rem, 1.6rem + 2.4vw, 3.6rem));
+      color: $hazard;
+      margin: 0 0 0.7rem;
+      font-style: normal;
+    }
+
+    p {
+      max-width: 40rem;
+      font-family: $serif;
+      font-size: 1.12rem;
+      line-height: 1.6;
+      color: #e9e4d8;
+      margin-bottom: 1.4rem;
+    }
+
+    .read-more {
+      @include stamp-button($hazard, $ink);
+      box-shadow: 4px 4px 0 0 $red;
+      &:hover { background: $sheet; box-shadow: 6px 6px 0 0 $red; }
+      &:active { box-shadow: 1px 1px 0 0 $red; }
+      &:focus-visible { outline-color: $hazard; }
+    }
+  }
+
+  .footer-about-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem 1.6rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-about-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      background: $sheet;
+      color: $ink;
+      border-color: $sheet;
+      &:nth-child(odd) { transform: rotate(-3deg); }
+      &:nth-child(even) { transform: rotate(2deg); }
+      &:hover { background: $hazard; border-color: $hazard; color: $ink; }
+      &:focus-visible { outline-color: $hazard; }
+      svg { width: 18px; height: 18px; }
+    }
+    .social-icon[aria-label="Leave a tip"] {
+      background: $red;
+      border-color: $red;
+      color: #fff;
+      &:hover { background: $hazard; border-color: $hazard; color: $red; }
+    }
+  }
+
+  // the "free, take one" stamp
+  .footer-stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 148px;
+    height: 148px;
+    margin: 0;
+    border: 4px solid $hazard;
+    border-radius: 50%;
+    outline: 2px solid $hazard;
+    outline-offset: 4px;
+    color: $hazard;
+    text-align: center;
+    transform: rotate(-12deg);
+
+    span:nth-child(1) { font-family: $display; font-size: 2.6rem; line-height: 0.9; text-transform: uppercase; }
+    span:nth-child(2) { @include label(0.72rem); margin-top: 0.2rem; }
+    span:nth-child(3) { @include label(0.66rem); margin-top: 0.35rem; padding-top: 0.3rem; border-top: 2px solid $hazard; }
+  }
+}
+
+.footer-bottom {
+  padding: 1rem 0 1.1rem;
+  border-top: 3px dashed #4a4a4a;
+  font-family: $mono;
+  font-size: 0.76rem;
+  color: #c9c3b6;
+
+  .footer-bottom-inner {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.8rem;
+  }
+
+  .footer-copy {
+    margin: 0 auto 0 0;
+  }
+
+  a {
+    color: $hazard;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    &:hover { color: $sheet; }
+    &:focus-visible { outline-color: $hazard; }
+  }
+
+  // "Select a design" and the RSS link
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.8rem;
+  }
+
+  .back-to-top { white-space: nowrap; }
+}
+
+// ── Social icon shared styles ───────────────────────────
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: $ink;
+  background: $sheet;
+  border: 2px solid $ink;
+  transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+
+  &:hover { color: $ink; background: $hazard; }
+}
+.site-header .social-icon[aria-label="Leave a tip"] {
+  background: $red;
+  color: #fff;
+  &:hover { background: $hazard; color: $red; }
+}
+
+// ── Resume page ─────────────────────────────────────────
+.resume-links-row {
+  float: right;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.resume-date {
+  font-family: $mono;
+  font-size: 0.8rem;
+  color: $grey;
+}
+
+// ── About page floats ───────────────────────────────────
+.about-float-left {
+  float: left;
+  width: 200px;
+  margin: 0 1.5rem 1rem 0;
+  object-fit: cover;
+  border: 3px solid $ink;
+  box-shadow: 5px 5px 0 0 $ink;
+  transform: rotate(-1.5deg);
+}
+
+.about-float-right {
+  float: right;
+  width: 280px;
+  margin: 0 0 1rem 1.5rem;
+  object-fit: cover;
+  border: 3px solid $ink;
+  box-shadow: 5px 5px 0 0 $ink;
+  transform: rotate(1.5deg);
+}
+
+// ── Generic page: one sheet pasted on the wall ──────────
+.page.page-bare {
+  background: none;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  box-shadow: none;
+  max-width: none;
+  &::before { content: none; }
+}
+
+.page {
+  position: relative;
+  max-width: 920px;
+  margin: 2.6rem auto 3.4rem;
+  padding: 2.6rem 3rem 3rem;
+  background: $sheet;
+  border: 3px solid $ink;
+  @include hard-shadow(10px);
+  font-size: 1.12rem;
+  line-height: 1.7;
+  color: #1b1b1b;
+
+  &::before { @include tape(130px, 28px, -2deg); top: -15px; left: calc(50% - 65px); }
+
+  h1 {
+    @include poster(clamp(2.4rem, 1.4rem + 3.4vw, 4.2rem));
+    line-height: 0.95;
+    margin: 0 0 1.6rem;
+    color: $ink;
+    text-shadow: 0.04em 0.04em 0 $hazard;
+  }
+
+  @media (max-width: 600px) {
+    margin: 1.8rem 0 2.4rem;
+    padding: 2rem 1.15rem 2.2rem;
+    @include hard-shadow(6px);
+    font-size: 1.06rem;
+  }
+}
+
+.post-list {
+  list-style: none;
+
+  li {
+    padding: 0.55rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    border-bottom: 2px dashed rgba(17, 17, 17, 0.25);
+  }
+
+  time {
+    font-family: $mono;
+    color: $red;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+}
+
+// ── 404: the torn-down poster ───────────────────────────
+.error-404 {
+  background: $ink;
+  text-align: center;
+  padding: 0 0 3.4rem;
+  border-bottom: 4px solid $ink;
+
+  .error-404-image {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .error-404-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    padding: 2.2rem 1rem 0;
+  }
+
+  .error-404-btn {
+    @include stamp-button($hazard, $ink);
+    font-size: 0.95rem;
+    padding: 0.85rem 1.8rem;
+    box-shadow: 5px 5px 0 0 $red;
+    &:hover { background: $sheet; box-shadow: 7px 7px 0 0 $red; }
+    &:focus-visible { outline-color: $hazard; }
+  }
+
+  .error-404-btn-secondary {
+    background: $sheet;
+    &:hover { background: $hazard; }
+  }
+}

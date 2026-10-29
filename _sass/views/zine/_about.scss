@@ -1,0 +1,534 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  About — /about. Scoped under `.abt`.
+//  A wanted-poster cover, the four names as pinned flyers, the life
+//  story as a strip of pasted-up clippings, and the outro as a black
+//  back page.
+// ════════════════════════════════════════════════════════════════
+
+.abt {
+  color: $ink;
+  overflow-x: clip;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .abt-wrap {
+    max-width: $wrap;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    @media (max-width: 600px) { padding: 0 1rem; }
+  }
+
+  // ── shared section scaffolding ───────────────────────
+  .abt-section { padding: 4rem 0; border-bottom: 4px solid $ink; }
+
+  .abt-section-head {
+    width: 100%;
+    margin: 0 0 2.6rem;
+  }
+  .abt-kicker {
+    display: inline-block;
+    @include label(0.72rem);
+    color: #fff;
+    background: $red;
+    padding: 0.3rem 0.55rem 0.26rem;
+    margin: 0 0 0.9rem;
+    transform: rotate(-1.5deg);
+  }
+  .abt-section-head h2 {
+    @include poster(clamp(2rem, 1.2rem + 2.6vw, 3.4rem));
+    width: fit-content;
+    max-width: 100%;
+    color: $ink;
+    margin: 0 0 0.8rem;
+    padding: 0.18rem 0.55rem 0.1rem;
+    background: $hazard;
+    border: 3px solid $ink;
+    box-shadow: 6px 6px 0 0 $ink;
+    transform: rotate(-0.8deg);
+  }
+  .abt-section-sub {
+    max-width: 44rem;
+    font-family: $serif;
+    font-size: 1.15rem;
+    line-height: 1.55;
+    color: #2b2b2b;
+    margin: 0;
+  }
+
+  // ── shared buttons ───────────────────────────────────
+  .abt-btn {
+    @include stamp-button($sheet, $ink);
+    font-size: 0.85rem;
+    padding: 0.7rem 1.3rem;
+  }
+  .abt-btn-primary {
+    background: $ink;
+    color: $hazard;
+    box-shadow: 4px 4px 0 0 $red;
+    &:hover { background: $hazard; color: $ink; box-shadow: 6px 6px 0 0 $red; }
+  }
+
+  // ════════════════ HERO: THE WANTED POSTER ════════════════
+  .abt-hero {
+    position: relative;
+    background-color: $hazard;
+    background-image: $grain;
+    color: $ink;
+    padding: 3.6rem 0 3rem;
+    overflow: hidden;
+    border-bottom: 4px solid $ink;
+  }
+  .abt-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    @include halftone(rgba(17, 17, 17, 0.85), 14px, 3.4px);
+    -webkit-mask-image: radial-gradient(circle at 100% 0%, #000 0%, rgba(0,0,0,0.55) 22%, transparent 55%);
+    mask-image: radial-gradient(circle at 100% 0%, #000 0%, rgba(0,0,0,0.55) 22%, transparent 55%);
+    opacity: 0.4;
+  }
+
+  .abt-hero-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 2.8rem;
+    @media (max-width: 760px) {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+    }
+  }
+
+  .abt-portrait-frame {
+    position: relative;
+    flex-shrink: 0;
+    width: 250px;
+    padding: 10px 10px 34px;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(9px);
+    transform: rotate(-3deg);
+    &::before { @include tape(110px, 28px, -6deg); top: -15px; left: calc(50% - 55px); }
+    @media (max-width: 760px) { width: 200px; margin-left: 0.4rem; }
+  }
+  .abt-portrait {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(1) contrast(1.2);
+  }
+
+  .abt-hero-text { flex: 1; min-width: 0; }
+  .abt-eyebrow {
+    display: inline-block;
+    @include label(0.72rem);
+    color: $hazard;
+    background: $ink;
+    padding: 0.35rem 0.6rem 0.3rem;
+    margin: 0 0 1rem;
+    transform: rotate(-1deg);
+    max-width: 100%;
+  }
+  .abt-name {
+    @include poster(clamp(3.4rem, 1.4rem + 6.6vw, 7.4rem));
+    line-height: 0.86;
+    margin: 0 0 1.2rem;
+    color: $ink;
+    text-shadow: 0.035em 0.035em 0 $red;
+  }
+  .abt-lede {
+    max-width: 40rem;
+    font-family: $serif;
+    font-size: 1.18rem;
+    line-height: 1.6;
+    color: $ink;
+    margin: 0 0 1.6rem;
+    strong {
+      font-weight: 700;
+      background: $ink;
+      color: $hazard;
+      padding: 0 0.2em;
+    }
+  }
+  .abt-hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  // hero stat tiles: stamped tickets
+  .abt-stat-row {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+    @media (max-width: 620px) { grid-template-columns: repeat(2, 1fr); }
+  }
+  .abt-kpi {
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(5px);
+    padding: 0.95rem 0.85rem 0.85rem;
+    text-align: center;
+    &:nth-child(odd)  { transform: rotate(-1.2deg); }
+    &:nth-child(even) { transform: rotate(1deg); }
+    &:nth-child(2) { background: $ink; color: $sheet; box-shadow: 5px 5px 0 0 $red; }
+    .abt-kpi-val {
+      display: block;
+      font-family: $display;
+      font-size: 2.1rem;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    .abt-kpi-sub { color: $red; font-size: 1.2rem; }
+    &:nth-child(2) .abt-kpi-sub { color: $hazard; }
+    .abt-kpi-label {
+      display: block;
+      @include label(0.66rem);
+      margin-top: 0.45rem;
+    }
+  }
+
+  // ════════════════ THE MANY NAMES ════════════════
+  .abt-names-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+    align-items: start;
+    @media (max-width: 960px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 560px) { grid-template-columns: minmax(0, 1fr); }
+  }
+  .abt-name-card {
+    position: relative;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(6px);
+    padding: 1.6rem 1.3rem 1.4rem;
+    &:nth-child(odd)  { transform: rotate(-1deg); }
+    &:nth-child(even) { transform: rotate(1.1deg); margin-top: 1rem; }
+    &::before { @include tape(84px, 24px, -4deg); top: -12px; left: calc(50% - 42px); }
+    h3 {
+      @include poster(2rem);
+      color: $ink;
+      margin: 0.7rem 0 0.7rem;
+    }
+    p {
+      font-family: $serif;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #222;
+      margin: 0 0 1rem;
+    }
+    @media (max-width: 560px) { &:nth-child(even) { margin-top: 0; } }
+  }
+  // the big initial, printed faint behind the card
+  .abt-name-mark {
+    position: absolute;
+    bottom: -0.3rem;
+    right: 0.6rem;
+    font-family: $display;
+    font-size: 7rem;
+    line-height: 1;
+    color: rgba(17, 17, 17, 0.07);
+    pointer-events: none;
+    user-select: none;
+  }
+  .abt-name-role {
+    display: inline-block;
+    @include rubber-stamp($red, -2deg);
+  }
+  .abt-name-card-real {
+    background: $ink;
+    color: $sheet;
+    box-shadow: 6px 6px 0 0 $red;
+    h3 { color: $hazard; }
+    p { color: #e9e4d8; }
+    .abt-name-mark { color: rgba(255, 230, 0, 0.12); }
+    .abt-name-role { color: $hazard; }
+    .abt-name-link { color: $hazard; text-decoration-color: $hazard; }
+  }
+  .abt-name-link {
+    position: relative;
+    @include label(0.74rem);
+    color: $ink;
+    text-decoration: underline;
+    text-decoration-color: $red;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    &:hover { background: $hazard; color: $ink; }
+  }
+
+  // ════════════════ TIMELINE: CLIPPINGS ════════════════
+  .abt-timeline-section {
+    background-color: $paper;
+  }
+  .abt-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    // the spine: a strip of black tape
+    &::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 6px;
+      bottom: 6px;
+      width: 6px;
+      background: $ink;
+      @media (min-width: 781px) { left: 18px; }
+    }
+  }
+  .abt-tl-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 270px);
+    align-items: start;
+    gap: 2rem;
+    padding: 0 0 2.6rem 3rem;
+    &:last-child { padding-bottom: 0; }
+    @media (max-width: 780px) {
+      grid-template-columns: minmax(0, 1fr);
+      padding-left: 2.4rem;
+      gap: 1.2rem;
+    }
+  }
+  .abt-tl-solo { grid-template-columns: minmax(0, 1fr); }
+  .abt-tl-dot {
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    background: $hazard;
+    border: 4px solid $ink;
+    transform: rotate(45deg);
+    @media (min-width: 781px) { left: 9px; }
+  }
+  .abt-tl-body {
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(6px);
+    padding: 1.3rem 1.5rem 1.4rem;
+    .abt-tl-item:nth-child(odd) & { transform: rotate(-0.4deg); }
+    .abt-tl-item:nth-child(even) & { transform: rotate(0.4deg); }
+    h3 {
+      @include poster(clamp(1.45rem, 1.2rem + 0.7vw, 1.8rem));
+      color: $ink;
+      margin: 0.6rem 0 0.6rem;
+      line-height: 1.02;
+    }
+    p {
+      font-family: $serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #222;
+      margin: 0;
+      strong { color: $ink; font-weight: 700; background: rgba(255, 230, 0, 0.75); padding: 0 0.12em; }
+    }
+  }
+  .abt-tl-era {
+    display: inline-block;
+    @include label(0.72rem);
+    color: $sheet;
+    background: $ink;
+    padding: 0.28rem 0.5rem 0.24rem;
+  }
+  .abt-tl-photo {
+    position: relative;
+    margin: 0;
+    padding: 8px 8px 0;
+    background: $sheet;
+    border: 2px solid $ink;
+    box-shadow: 5px 5px 0 0 $ink;
+    transform: rotate(2deg);
+    &::before { @include tape(76px, 22px, 6deg); top: -11px; left: calc(50% - 38px); }
+    @media (max-width: 780px) { max-width: 320px; margin-left: 0.4rem; }
+    .abt-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+    }
+    figcaption {
+      font-family: $mono;
+      font-size: 0.72rem;
+      color: #333;
+      text-align: left;
+      padding: 0.45rem 0.1rem 0.55rem;
+    }
+  }
+
+  // ════════════════ MAKER / HOBBIES ════════════════
+  .abt-maker-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem 1.6rem;
+    align-items: start;
+    @media (max-width: 880px) { grid-template-columns: minmax(0, 1fr); }
+  }
+  .abt-craft-card {
+    position: relative;
+    background: $sheet;
+    border: 3px solid $ink;
+    @include hard-shadow(6px);
+    padding: 1.6rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    &:nth-child(1) { transform: rotate(-0.8deg); }
+    &:nth-child(2) { transform: rotate(0.7deg); }
+    &:nth-child(3) { transform: rotate(-0.4deg); }
+    h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      @include poster(1.8rem);
+      color: $ink;
+      margin: 0 0 0.8rem;
+    }
+    p {
+      font-family: $serif;
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: #222;
+      margin: 0 0 1.1rem;
+    }
+    .abt-name-link { margin-top: auto; align-self: flex-start; }
+  }
+  .abt-craft-ico {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    width: 2.2rem;
+    height: 2.2rem;
+    background: $hazard;
+    border: 2px solid $ink;
+    color: $ink;
+    font-family: $serif;
+    font-size: 1.15rem;
+    text-transform: none;
+  }
+  .abt-chip-row {
+    list-style: none;
+    margin: 0 0 1.2rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+  .abt-chip {
+    @include label(0.66rem);
+    color: $ink;
+    background: #fff;
+    border: 2px solid $ink;
+    padding: 0.24rem 0.5rem 0.2rem;
+    &:nth-child(3n+1) { background: $hazard; }
+    &:nth-child(odd) { transform: rotate(-1.5deg); }
+    &:nth-child(even) { transform: rotate(1deg); }
+  }
+
+  // ════════════════ GALLERY: SNAPSHOTS ════════════════
+  .abt-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+    @media (max-width: 700px) { grid-template-columns: minmax(0, 1fr); }
+  }
+  .abt-gallery-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    cursor: pointer;
+    display: block;
+    padding: 9px 9px 30px;
+    background: $sheet;
+    border: 2px solid $ink;
+    box-shadow: 6px 6px 0 0 $ink;
+    transition: transform 0.15s ease;
+    &:nth-child(1) { transform: rotate(-2deg); }
+    &:nth-child(2) { transform: rotate(1.5deg); }
+    &:nth-child(3) { transform: rotate(-1deg); }
+    &:hover { transform: rotate(0deg) scale(1.02); }
+  }
+
+  // ════════════════ IN MY OWN WORDS ════════════════
+  // Reuses the site-wide .post-grid / .post-card flyers untouched.
+  .abt-writing-more {
+    margin: 0.75rem 0 0;
+    text-align: center;
+
+    a {
+      @include stamp-button($hazard, $ink);
+      font-size: 0.9rem;
+    }
+  }
+
+  // ════════════════ OUTRO: THE BACK PAGE ════════════════
+  .abt-outro {
+    position: relative;
+    background-color: $ink;
+    background-image: $grain;
+    color: $sheet;
+    padding: 4.2rem 0 4.4rem;
+    border-top: 0;
+  }
+  .abt-outro-inner {
+    text-align: center;
+    .abt-kicker-light { color: $ink; background: $hazard; }
+    h2 {
+      @include poster(clamp(2.2rem, 1.4rem + 3vw, 3.8rem));
+      color: $hazard;
+      margin: 0 0 1.2rem;
+    }
+    p {
+      max-width: 44rem;
+      font-family: $serif;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: #e9e4d8;
+      margin: 0 auto 1rem;
+    }
+  }
+  .abt-outro-note {
+    font-family: $mono !important;
+    font-size: 0.82rem !important;
+    color: #c9c3b6 !important;
+    margin-top: 1.4rem !important;
+  }
+  .abt-outro-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    .abt-btn-primary { background: $hazard; color: $ink; }
+    .abt-btn-primary:hover { background: $sheet; }
+    .abt-btn:focus-visible { outline-color: $hazard; }
+  }
+  .abt-btn-ghost {
+    background: transparent;
+    color: $sheet;
+    border-color: $sheet;
+    box-shadow: 4px 4px 0 0 $red;
+    &:hover { background: $sheet; color: $ink; box-shadow: 6px 6px 0 0 $red; }
+  }
+
+  // ── scroll-reveal (only active once JS opts in) ──────
+  &.abt-js .abt-reveal {
+    opacity: 0;
+    translate: 0 22px;
+    transition: opacity 0.6s ease, translate 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    &.is-in { opacity: 1; translate: 0 0; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abt * { transition: none !important; animation: none !important; }
+}
