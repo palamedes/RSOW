@@ -1,0 +1,72 @@
+---
+---
+// Broadsheet, by Claude: the opinion section of an old-school newspaper.
+// Newsprint and ink, a blackletter nameplate between two ears, ruled
+// columns, AP datelines and one deep red. One stylesheet for the whole
+// site, loaded instead of main.css when a visitor picks it
+// (_data/views.yml). Its partials live in _sass/views/broadsheet/; the
+// special pages it leaves alone come from _sass/.
+
+// The view-extras Broadsheet shows (everything else marked .view-extra
+// stays hidden); see _sass/views/_extras.scss for the full list.
+@use "views/extras" with ($show: (
+  // masthead: the rail, the ears, the nameplate, the dateline
+  ".mast-rail-vol",
+  ".mast-rail-date",
+  ".mast-ear",
+  ".site-title-long",
+  ".mast-dateline",
+  ".nav-toggle-label",
+  ".nav-ext",
+  // footer: the photo desk's head, the colophon columns, "Back to top"
+  ".photo-desk-head",
+  ".colophon-sections",
+  ".colophon-note",
+  ".back-to-top-text",
+  // front page: the editor's desk, Inside This Edition, the rules
+  ".fp-editor-label",
+  ".fp-editor-more",
+  ".fp-inside",
+  ".fp-head-kicker",
+  ".fp-rule",
+  ".fp-briefs-label",
+  ".view-more-note",
+  // story cards: kicker, byline, the lead stories' longer excerpt
+  ".card-kicker",
+  ".card-byline",
+  ".card-excerpt-more",
+  // dates set in pieces (AP style)
+  ".date-parts",
+  // the article: dek, byline, the AI Notes toggle in the byline rail,
+  // Letters to the Editor
+  ".post-dek",
+  ".post-hero-by",
+  ".post-actions--hero",
+  ".post-comments-head",
+  ".post-comments-sub",
+  // the archive's year headings
+  ".arc-year-label",
+));
+@use "views/picker";
+
+@use "views/broadsheet/base";
+@use "views/broadsheet/layout";
+@use "views/broadsheet/front";
+@use "adventure";
+@use "scorched";
+@use "paradroid";
+@use "views/broadsheet/investments";
+@use "views/broadsheet/about";
+@use "views/broadsheet/archive";
+@use "views/broadsheet/tags";
+@use "build";
+@use "views/broadsheet/post";
+@use "views/broadsheet/player";
+@use "views/broadsheet/ai-notes";
+@use "views/broadsheet/word-notes";
+@use "clapback";
+@use "views/broadsheet/explain";
+@use "views/broadsheet/palamedes";
+@use "views/broadsheet/games";
+@use "views/broadsheet/special";
+@use "views/broadsheet/views";

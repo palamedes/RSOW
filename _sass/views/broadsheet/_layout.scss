@@ -1,0 +1,924 @@
+// ════════════════════════════════════════════════════════════════
+//  Broadsheet — the shell: masthead, colophon footer, photo desk,
+//  lightbox, plain pages, 404. The front page and story cards are in
+//  _front.scss.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+$nav-bp: 860px;
+
+.site-wrapper {
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+// ════════════════ MASTHEAD ════════════════
+// The shared header (_layouts/default.html) is one flat row of parts inside
+// .header-inner; a wrapping flex line per masthead row, in this order:
+//   1  the rail: volume and number (phones: the short date), the game
+//      resume button, the social icons and the design picker
+//   2  ::before, the rail's hairline (a full-width break)
+//   3  the nameplate between its two ears
+//   4  the dateline, under a thick-and-thin rule
+//   5  the Sections button (phones)
+//   6  the section band
+//   7  the design picker, in the phone panel
+//   9  ::after, the closing rule under it all
+.dark-header-wrap { position: relative; z-index: 40; }
+
+.site-header {
+  padding-top: 0.35rem;
+
+  .header-inner {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    &::before {
+      content: "";
+      order: 2;
+      flex: 0 0 100%;
+      height: 0;
+      border-top: 1px solid var(--hair);
+    }
+    &::after {
+      content: "";
+      order: 9;
+      flex: 0 0 100%;
+      height: 3px;
+      margin-top: 2px;
+      background: var(--ink);
+    }
+  }
+
+  // ── top rail: volume and number, game resume, social icons, picker ──
+  .mast-rail-vol,
+  .mast-rail-date {
+    order: 1;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    min-height: 2.1rem;
+    margin: 0 1rem 0 0;
+    @include label(0.7rem, 0.16em);
+    color: var(--ink-3);
+  }
+  .mast-rail-date { display: none; }
+
+  .resume-slot,
+  .social-icons,
+  .view-picker { order: 1; }
+
+  .social-icons {
+    display: flex;
+    gap: 0.1rem;
+    margin-left: 0.75rem;
+    .social-icon {
+      width: 26px;
+      height: 26px;
+      color: var(--ink-2);
+      svg { width: 15px; height: 15px; }
+      &:hover { color: var(--red); }
+    }
+  }
+
+  // ── nameplate with its two ears ──
+  .site-title {
+    order: 3;
+    flex: 0 1 auto;
+    margin: 1.15rem auto 1rem;
+    font-family: var(--f-plate);
+    font-weight: 400;
+    font-size: clamp(2.35rem, 0.9rem + 4.6vw, 4.9rem);
+    line-height: 1;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+    text-align: center;
+    white-space: nowrap;
+    text-decoration: none;
+    .site-title-short { display: none; }
+    &:hover { color: var(--ink); text-shadow: 0 0 0.02em var(--ink); }
+    &:focus-visible { outline-offset: 6px; }
+  }
+
+  .mast-ear {
+    order: 3;
+    flex: 1 1 0;
+    max-width: 12.5rem;
+    padding: 0.5rem 0.7rem 0.55rem;
+    border: 1px solid var(--ink);
+    outline: 1px solid var(--ink);
+    outline-offset: 2px;
+    font-size: 0.8rem;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--ink-2);
+    text-align: center;
+    p { margin: 0; }
+  }
+  // the plate row's padding rides on its parts (it has no box of its own)
+  .mast-ear { margin-top: 1.15rem; margin-bottom: 1rem; }
+  .mast-ear--left  { margin-right: 1.75rem; }
+  .mast-ear--right { margin-left: 1.75rem; }
+  .mast-ear-head {
+    @include label(0.66rem, 0.18em);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.2rem !important;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  // ── the dateline, between the thick-and-thin rule and a hairline ──
+  .mast-dateline {
+    order: 4;
+    flex: 0 0 100%;
+    @include double-rule(3px, 2px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 0.4rem;
+    margin-top: 0;
+    border-bottom: 1px solid var(--ink);
+    @include label(0.72rem, 0.16em);
+    color: var(--ink);
+
+    > span { padding-top: 0.35rem; white-space: nowrap; }
+    .mast-dl-motto { font-style: italic; text-transform: none; letter-spacing: 0.02em; font-size: 0.9rem; font-weight: 500; }
+  }
+
+  // ── section band ──
+  .nav-links {
+    order: 6;
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--ink);
+
+    a {
+      position: relative;
+      padding: 0.6rem 1.35rem 0.55rem;
+      @include label(0.78rem, 0.16em);
+      font-weight: 700;
+      color: var(--ink);
+      & + a { border-left: 1px solid var(--hair); }
+      &:hover { color: var(--red); }
+      // "you are here": the page itself, or the section it's in
+      &[aria-current] {
+        color: var(--red);
+        &::after {
+          content: "";
+          position: absolute;
+          left: 1.35rem;
+          right: 1.35rem;
+          bottom: -1px;
+          height: 3px;
+          background: var(--red);
+        }
+      }
+    }
+  }
+
+  .nav-toggle { display: none; }
+
+  // ── game resume (#resume-slot, filled by the inline script) ──
+  .resume-slot {
+    position: relative;
+    display: flex;
+    align-items: center;
+    &:empty { display: none; }
+  }
+  .resume-dropdown { position: relative; }
+  .adv-resume-btn {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 0.2rem 0.55rem;
+    font: inherit;
+    @include label(0.66rem, 0.12em);
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+    &:hover { background: var(--ink); color: var(--paper); }
+    &[hidden] { display: none; }
+  }
+  .resume-trigger {
+    .resume-caret { display: inline-block; margin-left: 0.25rem; transition: transform 0.15s ease; }
+    &[aria-expanded="true"] .resume-caret { transform: rotate(180deg); }
+  }
+  .resume-menu {
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    min-width: 230px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    box-shadow: 4px 4px 0 var(--ink);
+    z-index: 1000;
+    padding: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    &[hidden] { display: none; }
+  }
+  .resume-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    background: transparent;
+    color: var(--ink);
+    border: 0;
+    border-bottom: 1px solid var(--hair-2);
+    padding: 0.45rem 0.6rem;
+    font: inherit;
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+    white-space: nowrap;
+    &:last-child { border-bottom: 0; }
+    &:hover { background: var(--paper-2); color: var(--red); }
+    .resume-item-name { font-weight: 700; }
+    .resume-item-detail { color: var(--ink-3); font-size: 0.78rem; font-style: italic; }
+  }
+
+  // ════════ narrow screens: one-line rail, nameplate, Sections button ════════
+  @media (max-width: 1100px) {
+    .mast-ear { display: none; }
+    .site-title { margin: 0.9rem auto 0.8rem; }
+    .mast-dateline .mast-dl-site { display: none; }
+  }
+
+  @media (max-width: $nav-bp) {
+    .mast-rail-vol { display: none; }
+    .mast-rail-date { display: flex; min-height: 2.4rem; }
+
+    .site-title {
+      flex-basis: 100%;
+      white-space: normal;
+      font-size: clamp(2.2rem, 1rem + 6.4vw, 3.4rem);
+      line-height: 1.02;
+      // "Random String" over "of Words"
+      .site-title-line { display: block; }
+    }
+
+    .mast-dateline {
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0 0.6rem;
+      .mast-dl-date { display: none; }
+      .mast-dl-est::after { content: "\00b7"; margin-left: 0.6rem; }
+      > span { white-space: normal; text-align: center; }
+    }
+
+    // the Sections button: a full-width band under the dateline
+    .nav-toggle {
+      order: 5;
+      flex: 0 0 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 2.75rem;
+      padding: 0.5rem;
+      background: none;
+      border: 0;
+      border-bottom: 1px solid var(--ink);
+      color: var(--ink);
+      cursor: pointer;
+      &:hover { color: var(--red); }
+      &:focus-visible { outline-offset: -3px; }
+    }
+    // the shared label says "Menu"; the paper calls them Sections (the
+    // label is aria-hidden: the button's name is its aria-label)
+    .nav-toggle-label {
+      font-size: 0;
+      &::before {
+        content: "Sections";
+        @include label(0.8rem, 0.18em);
+        font-weight: 700;
+      }
+    }
+
+    .nav-links {
+      flex-direction: column;
+      border-bottom: 1px solid var(--ink);
+      a {
+        padding: 0.75rem 0.25rem;
+        text-align: center;
+        font-size: 0.85rem;
+        & + a { border-left: 0; border-top: 1px solid var(--hair-2); }
+        &[aria-current]::after { left: 40%; right: 40%; bottom: 0.35rem; height: 2px; }
+      }
+    }
+    .header-inner:not(.is-nav-open) {
+      .nav-links, .view-picker { display: none; }
+    }
+  }
+
+  @media (max-width: 400px) {
+    .mast-rail-date { margin-right: 0.4rem; }
+    .social-icons { margin-left: 0.3rem; }
+    .social-icons .social-icon { width: 22px; height: 22px; svg { width: 13px; height: 13px; } }
+  }
+}
+
+.nav-toggle-bars {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 12px;
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transition: transform 0.18s ease, opacity 0.18s ease, top 0.18s ease;
+    &:nth-child(1) { top: 0; }
+    &:nth-child(2) { top: 5px; }
+    &:nth-child(3) { top: 10px; }
+  }
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bars span {
+  &:nth-child(1) { top: 5px; transform: rotate(45deg); }
+  &:nth-child(2) { opacity: 0; }
+  &:nth-child(3) { top: 5px; transform: rotate(-45deg); }
+}
+
+.nav-ext { margin-left: 0.2em; font-size: 0.85em; }
+
+// ── Main content ────────────────────────────────────────
+.site-content {
+  min-height: 60vh;
+  padding: 0;
+}
+
+// ════════════════ ARTICLE BODY (shared) ════════════════
+// The post layout lives in _sass/_post.scss; the shared body type for
+// .post-content and plain pages is here.
+.post-content {
+  margin-bottom: 2rem;
+
+  img { margin: 1rem 0; }
+
+  h2, h3, h4 { margin-top: 2.2rem; }
+}
+
+// ════════════════ FOOTER: PHOTO DESK + COLOPHON ════════════════
+.site-footer {
+  margin-top: 0;
+}
+
+.photo-desk {
+  border-top: 3px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.55rem 0 0.9rem;
+}
+.photo-desk-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.55rem;
+}
+.photo-desk-label {
+  margin: 0;
+  @include label(0.72rem, 0.2em);
+  font-weight: 700;
+  color: var(--paper);
+}
+.photo-desk-note {
+  margin: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: #c9c0ad;
+  @media (max-width: 520px) { display: none; }
+}
+
+// a contact sheet: frames in black-and-white, sprocket edges above and below
+.footer-photo-strip {
+  overflow: hidden;
+  position: relative;
+  padding: 9px 0;
+  background:
+    radial-gradient(circle, #f5f1e6 0 1.6px, transparent 2px) 0 2px / 14px 6px repeat-x,
+    radial-gradient(circle, #f5f1e6 0 1.6px, transparent 2px) 0 calc(100% - 2px) / 14px 6px repeat-x,
+    #0d0c0a;
+  opacity: 0.98;
+
+  .strip-track {
+    display: flex;
+    gap: 6px;
+    width: max-content;
+    animation: scroll-strip 90s linear infinite;
+  }
+  &:hover .strip-track,
+  &:focus-within .strip-track { animation-play-state: paused; }
+
+  img {
+    width: auto;
+    height: 132px;
+    object-fit: cover;
+    display: block;
+    flex-shrink: 0;
+    filter: grayscale(1) contrast(1.08) brightness(0.96);
+    transition: filter 0.25s ease;
+    &:hover { filter: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    overflow-x: auto;
+    .strip-track { animation: none; }
+  }
+}
+
+@keyframes scroll-strip {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.footer-main {
+  padding: 2.2rem 0 1.6rem;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--ink);
+
+  .colophon {
+    display: grid;
+    grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr) minmax(0, 1.25fr);
+  }
+  .colophon > * {
+    padding: 0 1.5rem;
+    border-left: 1px solid var(--hair);
+    &:first-child { padding-left: 0; border-left: 0; }
+    &:last-child { padding-right: 0; }
+  }
+
+  h3 {
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--ink);
+    @include label(0.74rem, 0.2em);
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .footer-about {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+  .footer-about-img {
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    flex-shrink: 0;
+    filter: grayscale(1) contrast(1.05);
+    border: 1px solid var(--ink);
+    padding: 3px;
+    background: var(--paper);
+  }
+  .footer-about-text {
+    flex: 1;
+    min-width: 0;
+    h3 {
+      font-family: var(--f-head);
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0.4rem;
+    }
+    p {
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: var(--ink-2);
+      margin-bottom: 0.9rem;
+    }
+    .read-more {
+      display: inline-block;
+      padding: 0.45rem 1.2rem;
+      border: 1px solid var(--ink);
+      @include label(0.72rem, 0.16em);
+      font-weight: 700;
+      color: var(--ink);
+      transition: background 0.15s ease, color 0.15s ease;
+      &:hover { background: var(--ink); color: var(--paper); }
+    }
+  }
+  .footer-about-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-about-social {
+    display: flex;
+    gap: 0.3rem;
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--hair);
+      color: var(--ink);
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      &:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+      svg { width: 14px; height: 14px; }
+    }
+  }
+
+  .colophon-sections ul {
+    list-style: none;
+    margin: 0;
+    li {
+      padding: 0.28rem 0;
+      border-bottom: 1px dotted var(--hair);
+      font-size: 0.95rem;
+      &:last-child { border-bottom: 0; }
+    }
+    a { color: var(--ink); &:hover { color: var(--red); } }
+  }
+
+  .colophon-note {
+    p { font-size: 0.9rem; line-height: 1.55; font-style: italic; color: var(--ink-2); margin-bottom: 0.7rem; }
+    .colophon-rss {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-style: normal;
+      @include label(0.72rem, 0.14em);
+      font-weight: 700;
+      color: var(--red);
+      svg { width: 14px; height: 14px; fill: currentColor; }
+      &:hover { color: var(--ink); }
+    }
+  }
+
+  @media (max-width: 960px) {
+    .colophon { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); row-gap: 1.75rem; }
+    .colophon > .footer-about { grid-column: 1 / -1; padding: 0; border: 0; }
+    .colophon > .colophon-sections { padding-left: 0; border-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .colophon { grid-template-columns: minmax(0, 1fr); }
+    .colophon > * { padding: 0 !important; border-left: 0 !important; }
+    .footer-about { flex-direction: column; }
+    .footer-about-img { width: 104px; height: 104px; }
+  }
+}
+
+.footer-bottom {
+  padding: 0.7rem 0 0.9rem;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+
+  .footer-bottom-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .footer-copy {
+    margin: 0;
+    font-style: italic;
+  }
+  // "Select a design", then back to top, at the right
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-left: auto;
+  }
+  .footer-links a,
+  .back-to-top {
+    @include label(0.68rem, 0.16em);
+    font-weight: 700;
+    color: var(--ink-2);
+    &:hover { color: var(--red); }
+  }
+}
+
+// ── Social icon shared styles ───────────────────────────
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--ink-2);
+  transition: color 0.15s ease;
+  svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  &:hover { color: var(--red); }
+}
+
+// ════════════════ GALLERY LIGHTBOX ════════════════
+// A print proof on the light table: paper card, ink frame, caption below.
+.gallery-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 18, 14, 0.78);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+
+  &.active { display: flex; }
+
+  .gallery-modal-card {
+    position: relative;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.35);
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .gallery-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0.9rem;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  &.active .gallery-modal-card.no-title .gallery-modal-header {
+    justify-content: flex-end;
+    padding: 0.3rem 0.5rem;
+    border-bottom: 0;
+  }
+
+  .gallery-modal-title {
+    margin: 0;
+    font-family: var(--f-head);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.25;
+    &:empty { display: none; }
+  }
+
+  .gallery-modal-body {
+    position: relative;
+    padding: 0 1rem 1rem;
+    overflow: auto;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-modal-count {
+    margin-left: auto;
+    @include label(0.7rem, 0.14em);
+    color: var(--ink-3);
+    white-space: nowrap;
+    &:empty { display: none; }
+  }
+  .gallery-modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--paper);
+    border-radius: 0;
+    background: rgba(27, 24, 19, 0.8);
+    color: var(--paper);
+    font-size: 1.7rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    transition: background 0.15s ease;
+    &:hover { background: var(--red); }
+    &.prev { left: 1.25rem; }
+    &.next { right: 1.25rem; }
+    @media (max-width: 600px) {
+      width: 36px; height: 36px; font-size: 1.4rem;
+      &.prev { left: 0.4rem; } &.next { right: 0.4rem; }
+    }
+  }
+  .gallery-modal-card.has-nav .gallery-modal-nav { display: flex; }
+
+  img {
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    display: block;
+    border: 1px solid var(--ink);
+    padding: 4px;
+    background: #fff;
+  }
+
+  .gallery-modal-footer {
+    padding: 0.65rem 1rem 0.75rem;
+    border-top: 1px solid var(--hair);
+    color: var(--ink-2);
+    font-size: 0.92rem;
+    font-style: italic;
+    line-height: 1.45;
+    max-height: 18vh;
+    overflow-y: auto;
+    &[hidden] { display: none; }
+    a { color: var(--red); }
+    p { margin: 0 0 0.5em; &:last-child { margin-bottom: 0; } }
+  }
+
+  .gallery-modal-close {
+    background: transparent;
+    border: 0;
+    color: var(--ink-2);
+    font-size: 1.75rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0.25rem;
+    &:hover { color: var(--red); }
+  }
+}
+
+// ════════════════ PLAIN PAGES (layout: page) ════════════════
+// /hire/, /resume/ and friends: a single column of article type.
+.page.page-bare {
+  background: none;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  max-width: none;
+}
+
+.page {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2.2rem 0 3rem;
+  font-size: 1.12rem;
+  line-height: 1.65;
+
+  > h1:first-child {
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px double var(--ink);
+    font-size: clamp(2.2rem, 1.2rem + 3vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.05;
+    text-align: center;
+    letter-spacing: -0.015em;
+  }
+  h1 { font-size: clamp(2rem, 1.2rem + 2.4vw, 2.9rem); font-weight: 800; line-height: 1.05; }
+  h2 {
+    margin-top: 2.2rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--ink);
+    font-size: 1.55rem;
+  }
+  h3 { font-size: 1.2rem; }
+  ul, ol { margin-bottom: 1.2rem; }
+  li { margin-bottom: 0.3rem; }
+  img { vertical-align: middle; }
+}
+
+.post-list {
+  list-style: none;
+  li {
+    padding: 0.5rem 0;
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    border-bottom: 1px solid var(--hair-2);
+  }
+  time {
+    color: var(--ink-3);
+    font-size: 0.8rem;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
+.archive {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+  h1 { text-align: center; border-bottom: 3px double var(--ink); padding-bottom: 0.8rem; }
+}
+
+// ── Resume page ─────────────────────────────────────────
+.resume-links-row {
+  float: right;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.5rem 1rem;
+}
+
+.resume-date {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--ink-3);
+}
+
+// ── About-style floats (hire, resume) ───────────────────
+.about-float-left {
+  float: left;
+  width: 200px;
+  margin: 0.3rem 1.5rem 1rem 0;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  border: 1px solid var(--ink);
+  padding: 3px;
+  background: #fff;
+}
+
+.about-float-right {
+  float: right;
+  width: 280px;
+  margin: 0.3rem 0 1rem 1.5rem;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+  border: 1px solid var(--ink);
+  padding: 3px;
+  background: #fff;
+}
+
+@media (max-width: 520px) {
+  .page .about-float-right,
+  .page .about-float-left { width: 42% !important; }
+}
+
+// ════════════════ 404: STOP THE PRESSES ════════════════
+.error-404 {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem var(--gutter) 3.5rem;
+
+  &::before {
+    content: "Correction";
+    display: block;
+    margin-bottom: 0.9rem;
+    @include label(0.78rem, 0.24em);
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .error-404-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid var(--ink);
+    padding: 5px;
+    background: #fff;
+  }
+
+  .error-404-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 1.75rem 1rem 0;
+  }
+
+  .error-404-btn {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    color: var(--paper) !important;
+    text-decoration: none !important;
+    @include label(0.82rem, 0.16em);
+    font-weight: 700;
+    transition: background 0.15s ease, color 0.15s ease;
+    &:hover { background: var(--red); border-color: var(--red); }
+  }
+
+  .error-404-btn-secondary {
+    background: transparent;
+    color: var(--ink) !important;
+    &:hover { background: var(--ink); color: var(--paper) !important; }
+  }
+}
+
+// the title's double rule already closes the head; skip the first crosshead's
+.page > h1:first-child ~ h2:first-of-type { border-top: 0; padding-top: 0; }

@@ -1,0 +1,379 @@
+// AI Notes — inline, sourced factual context toggled per post.
+// Broadsheet: the toggle is a small rubber-stamped button in the byline
+// rail; each note is set like a newspaper's correction box, ruled in ink,
+// with its verdict stamped on the corner. Injected by assets/js/ai-notes.js.
+
+@use "mixins" as *;
+
+// ── Toggle button (byline rail) and the explainer pill (front page) ──
+.post-ainotes-btn,
+.ainotes-explain-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.15rem;
+  padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  @include label(0.68rem, 0.14em);
+  font-weight: 700;
+  // after `font: inherit`, which resets line-height
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  .post-ainotes-ico,
+  .ainotes-ico {
+    display: inline-flex;
+    width: 17px;
+    height: 17px;
+    svg { width: 17px; height: 17px; }
+  }
+
+  &:hover { background: var(--ink); color: var(--paper); }
+  &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+}
+
+.ainotes-explain-btn {
+  min-height: 1.9rem;
+  border-style: dashed;
+}
+
+.post-ainotes-btn.is-on {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  &:hover { background: var(--red-dk); border-color: var(--red-dk); }
+}
+
+// ── The notes, in the article body ──
+.post-content {
+  .ai-note { display: none; }
+  &.ai-notes-on .ai-note { display: flex; }
+  // `always: true` notes show with AI Notes off too, minus their number
+  .ai-note--always { display: flex; }
+  &:not(.ai-notes-on) .ai-note--always .ai-note-num { display: none; }
+
+  .ai-note {
+    gap: 0.8rem;
+    align-items: flex-start;
+    margin: 1.2rem 0 1.6rem;
+    padding: 0.8rem 1rem 0.85rem;
+    background: var(--paper-2);
+    border: 1px solid var(--ink);
+    border-top-width: 3px;
+    color: var(--ink);
+    font-size: 0.93rem;
+    line-height: 1.55;
+  }
+
+  .ai-note-avatar {
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    margin-top: 0.1rem;
+    display: grid;
+    place-items: center;
+    background: var(--ink);
+    color: var(--paper);
+    svg { width: 18px; height: 18px; }
+  }
+
+  .ai-note-body { flex: 1 1 auto; min-width: 0; }
+
+  .ai-note-head {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0.1rem 0 0.4rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--hair);
+    @include label(0.66rem, 0.18em);
+    font-weight: 700;
+    color: var(--ink-2);
+  }
+
+  .ai-note-num {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    padding: 0 0.25rem;
+    background: var(--red);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  // The verdict, stamped on the corner of the box.
+  .ai-note-verdict {
+    margin-left: auto;
+    display: inline-grid;
+    grid-auto-flow: column;
+    place-items: center;
+    height: 1.4rem;
+    padding: 0 0.55rem;
+    border: 1.5px solid currentColor;
+    border-radius: 0;
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    color: var(--ink-2);
+    background: transparent;
+    transform: rotate(-2deg);
+  }
+  // Verdict spectrum, in ink and the one red: solid ink holds up, outlined
+  // ink needs context, red is wrong.
+  .ai-note-verdict--true,
+  .ai-note-verdict--accurate      { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .ai-note-verdict--mostly-true   { color: var(--ink); }
+  .ai-note-verdict--needs-context,
+  .ai-note-verdict--partly-true,
+  .ai-note-verdict--mixed         { color: var(--ink); border-style: dashed; }
+  .ai-note-verdict--misleading    { color: var(--red); }
+  .ai-note-verdict--false,
+  .ai-note-verdict--mostly-false  { background: var(--red); color: #fff; border-color: var(--red); }
+  // Neutral / informational (not a verdict, just added context)
+  .ai-note-verdict--random-fact,
+  .ai-note-verdict--fun-fact,
+  .ai-note-verdict--context,
+  .ai-note-verdict--background,
+  .ai-note-verdict--fyi           { color: var(--ink-3); border-width: 1px; transform: none; font-style: italic; }
+
+  .ai-note-text { margin: 0 0 0.5rem; }
+
+  .ai-note-sources {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3rem;
+    margin: 0;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--ink-2);
+
+    a { color: var(--ink); text-decoration-color: var(--red); }
+    a:hover { color: var(--red); }
+  }
+
+  .ai-note-src-label {
+    margin-right: 0.15rem;
+    @include label(0.62rem, 0.16em);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink-3);
+  }
+
+  .ai-note-src-sep { color: var(--ink-3); }
+
+  // ── The anchored phrase inside the prose ──
+  .ai-note-anchor { transition: background 0.15s ease; }
+
+  &.ai-notes-on .ai-note-anchor {
+    background: var(--red-lt);
+    box-shadow: 0 0 0 2px var(--red-lt);
+    border-bottom: 1px solid var(--red);
+    cursor: help;
+  }
+
+  &.ai-notes-on .ai-note-anchor::after {
+    content: attr(data-ai-note);
+    margin-left: 2px;
+    font-size: 0.62em;
+    font-weight: 800;
+    font-style: normal;
+    vertical-align: super;
+    color: var(--red);
+  }
+
+  // ── Footer explainer (shown only while notes are toggled on) ──
+  .ai-notes-about { display: none; }
+  &.ai-notes-on .ai-notes-about {
+    display: block;
+    margin: 2.4rem 0 0.5rem;
+    padding: 0.85rem 1rem 0.95rem;
+    border-top: 3px double var(--ink);
+    border-bottom: 1px solid var(--ink);
+    color: var(--ink-2);
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .ai-notes-about-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.45rem;
+    @include label(0.68rem, 0.18em);
+    font-style: normal;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .ai-notes-about-ico {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    background: var(--ink);
+    color: var(--paper);
+    svg { width: 14px; height: 14px; }
+  }
+
+  .ai-notes-about p { margin: 0; }
+  .ai-notes-about strong { color: var(--ink); font-style: normal; }
+}
+
+
+// ── "What are AI Notes?" explainer modal ──
+// Native <dialog>, so Esc and focus trapping come free.
+.ainotes-explain-btn.is-demo {
+  cursor: default;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.ainotes-modal {
+  // `* { margin: 0 }` beats the UA's auto margins that centre a modal dialog
+  margin: auto;
+  width: min(38rem, calc(100vw - 2rem));
+  max-height: min(85vh, 46rem);
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 10px 10px 0 rgba(27, 24, 19, 0.85);
+  overflow: hidden;
+
+  &::backdrop {
+    background: rgba(20, 18, 14, 0.6);
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    animation: ainotes-modal-in 0.18s ease-out;
+  }
+}
+
+@keyframes ainotes-modal-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ainotes-modal[open] { animation: none; }
+}
+
+.ainotes-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.15rem 0.75rem;
+  border-bottom: 3px double var(--ink);
+  color: var(--ink);
+
+  .ainotes-ico {
+    display: inline-flex;
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    padding: 5px;
+    background: var(--ink);
+    color: var(--paper);
+    svg { width: 18px; height: 18px; }
+  }
+
+  h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-family: var(--f-head);
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--ink);
+  }
+}
+
+.ainotes-modal-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  svg { width: 17px; height: 17px; }
+  &:hover { border-color: var(--ink); }
+  &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+}
+
+.ainotes-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.1rem 1.15rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  p { margin: 0 0 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 700; }
+}
+
+.ainotes-modal-how {
+  margin: 0 0 0.9rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--ink);
+  border-top-width: 3px;
+  background: var(--paper-2);
+  .ainotes-modal-how-lead {
+    margin-bottom: 0.45rem;
+    @include label(0.72rem, 0.16em);
+    font-weight: 700;
+    color: var(--red);
+  }
+}
+
+.ainotes-modal-demo {
+  margin: 0.7rem 0 0.8rem;
+}
+
+.ainotes-modal-honest {
+  padding-left: 0.9rem;
+  border-left: 3px solid var(--red);
+  font-style: italic;
+  strong { font-style: normal; }
+}
+
+.ainotes-modal-foot {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 1.15rem;
+  border-top: 1px solid var(--ink);
+}
+
+.ainotes-modal-ok {
+  padding: 0.5rem 1.4rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  @include label(0.75rem, 0.16em);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  &:hover { background: var(--red); border-color: var(--red); }
+  &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+}

@@ -1,0 +1,232 @@
+// ════════════════════════════════════════════════════════════════
+//  Site-wide narration player — fixed to the bottom of the viewport,
+//  survives navigation (see _includes/audio-player.html).
+//  Broadsheet: printed in reverse, an ink band with paper type. AI
+//  narration plays in paper white; Jason's own reading in red.
+// ════════════════════════════════════════════════════════════════
+
+$pl-bg:    #1b1813;
+$pl-ai:    #f5f1e6;
+$pl-me:    #ef4b54;   // the accent, lifted for contrast on ink
+$pl-dim:   rgba(245, 241, 230, 0.66);
+
+// keeps the footer clear of the fixed bar (taller when it shows a waveform)
+body.has-rsow-player { padding-bottom: 66px; }
+body.has-rsow-player.has-rsow-wave { padding-bottom: 86px; }
+
+.rsow-player {
+  // the waveform the player script draws reads these from the bar
+  --wave-lit: #{$pl-ai};
+  --wave-loaded: rgba(245, 241, 230, 0.38);
+  --wave-rest: rgba(245, 241, 230, 0.2);
+  &.is-human { --wave-lit: #{$pl-me}; }
+  &.is-error { --wave-lit: #c0392b; }
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 900;
+  background: $pl-bg;
+  color: $pl-ai;
+  border-top: 3px solid $pl-bg;
+  box-shadow: 0 -1px 0 rgba(245, 241, 230, 0.9), 0 -3px 0 $pl-bg, 0 -8px 24px rgba(0, 0, 0, 0.25);
+  font-family: var(--f-text);
+
+  &[hidden] { display: none; }
+
+  // ── scrub track: full width along the top edge, easy to grab ──
+  .rsow-scrub {
+    position: relative;
+    height: 6px;
+    background: rgba(245, 241, 230, 0.14);
+    cursor: pointer;
+    touch-action: none;
+    transition: height 0.12s ease;
+    &:hover, &:focus-visible { height: 10px; }
+    &:focus-visible { outline: 2px solid $pl-me; outline-offset: -2px; }
+  }
+  .rsow-scrub-buffered {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: rgba(245, 241, 230, 0.16);
+  }
+  .rsow-scrub-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: $pl-ai;
+  }
+  .rsow-scrub-knob {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: $pl-ai;
+    box-shadow: 0 0 0 2px $pl-bg;
+    transform: translate(50%, -50%) scale(0);
+    transition: transform 0.12s ease;
+  }
+  .rsow-scrub:hover .rsow-scrub-knob,
+  &.is-scrubbing .rsow-scrub-knob { transform: translate(50%, -50%) scale(1); }
+
+  // ── waveform mode ──
+  .rsow-wave { display: none; }
+  &.has-wave {
+    .rsow-scrub,
+    .rsow-scrub:hover,
+    .rsow-scrub:focus-visible {
+      height: 26px;
+      @media (max-width: 600px) { height: 22px; }
+    }
+    .rsow-scrub { background: rgba(245, 241, 230, 0.03); }
+    .rsow-wave {
+      display: block;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .rsow-scrub-buffered { display: none; }
+    .rsow-scrub-fill { background: transparent; }
+    .rsow-scrub-knob {
+      width: 2px;
+      height: 100%;
+      border-radius: 0;
+      box-shadow: none;
+      transform: translate(50%, -50%) scaleY(0);
+    }
+    .rsow-scrub:hover .rsow-scrub-knob,
+    &.is-scrubbing .rsow-scrub-knob { transform: translate(50%, -50%) scaleY(1); }
+  }
+
+  &.is-human {
+    .rsow-scrub-fill { background: $pl-me; }
+    .rsow-badge { background: #b3121b; color: #fff; border-color: #b3121b; }   // 7:1
+    .rsow-scrub:focus-visible { outline-color: $pl-ai; }
+  }
+  &.is-error .rsow-scrub-fill { background: $pl-me; }
+  &.has-wave.is-human .rsow-scrub-fill,
+  &.has-wave.is-error .rsow-scrub-fill { background: transparent; }
+
+  // ── control row ──
+  .rsow-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    max-width: var(--page-w);
+    margin: 0 auto;
+    padding: 0.5rem var(--gutter);
+    @media (max-width: 600px) { padding: 0.45rem 0.75rem; gap: 0.4rem; }
+  }
+
+  .rsow-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: $pl-ai;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    transition: background 0.15s ease, color 0.15s ease;
+    &:hover { background: rgba(245, 241, 230, 0.12); }
+    &:focus-visible { outline: 2px solid $pl-me; outline-offset: 2px; }
+  }
+
+  .rsow-play {
+    width: 34px;
+    height: 34px;
+    background: $pl-ai;
+    color: $pl-bg;
+    &:hover { background: #fff; }
+  }
+  .rsow-play-ico {
+    width: 0; height: 0;
+    margin-left: 3px;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent currentColor;
+  }
+  &.is-playing .rsow-play-ico {
+    width: 10px; height: 12px;
+    margin-left: 0;
+    border: 0;
+    background:
+      linear-gradient(currentColor, currentColor) left / 3.5px 100% no-repeat,
+      linear-gradient(currentColor, currentColor) right / 3.5px 100% no-repeat;
+  }
+
+  .rsow-skip {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    color: $pl-dim;
+    &:hover { color: $pl-ai; }
+    svg { width: 19px; height: 19px; }
+    @media (max-width: 520px) { display: none; }
+  }
+  .rsow-skip-n {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.46rem;
+    font-weight: 800;
+    letter-spacing: 0;
+    pointer-events: none;
+  }
+
+  .rsow-meta {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .rsow-badge {
+    flex-shrink: 0;
+    background: transparent;
+    color: $pl-ai;
+    border: 1px solid rgba(245, 241, 230, 0.6);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    padding: 0.12rem 0.4rem;
+    border-radius: 0;
+  }
+  .rsow-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $pl-ai;
+    font-family: var(--f-head);
+    font-size: 0.98rem;
+    font-weight: 700;
+    text-decoration: none;
+    &:hover { color: #fff; text-decoration: underline; text-decoration-color: $pl-me; }
+  }
+
+  .rsow-time {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $pl-dim;
+    font-variant-numeric: tabular-nums;
+    @media (max-width: 400px) { display: none; }
+  }
+
+  .rsow-close {
+    width: 28px;
+    height: 28px;
+    color: $pl-dim;
+    &:hover { color: $pl-ai; }
+    svg { width: 15px; height: 15px; }
+  }
+}

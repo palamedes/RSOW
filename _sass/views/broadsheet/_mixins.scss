@@ -1,0 +1,48 @@
+// ════════════════════════════════════════════════════════════════
+//  Broadsheet — shared mixins. `@use "mixins" as *;` in a partial.
+// ════════════════════════════════════════════════════════════════
+
+@mixin label($size: 0.72rem, $track: 0.14em) {
+  font-family: var(--f-text);
+  font-size: $size;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: $track;
+  text-transform: uppercase;
+}
+
+// Thick-over-thin rule, the masthead's signature, reused on section heads.
+@mixin double-rule($thick: 3px, $gap: 2px) {
+  background:
+    linear-gradient(var(--ink), var(--ink)) top left / 100% $thick no-repeat,
+    linear-gradient(var(--ink), var(--ink)) 0 #{$thick + $gap} / 100% 1px no-repeat;
+  padding-top: $thick + $gap + 1px;
+}
+
+// Hairlines in a grid's gutters, so every column stays the same width.
+// The grid sets --fp-gap as its column-gap; a story's ::before is the rule
+// to its left, and row-rule's ::after carries a row rule across the gutter.
+@mixin gutter-rule($color: var(--hair)) {
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(var(--fp-gap) / -2);
+    border-left: 1px solid $color;
+  }
+}
+@mixin no-gutter-rule { &::before { content: none; } }
+// a row rule that also runs across the gutter to the left
+@mixin row-rule($color: var(--hair)) {
+  border-top: 1px solid $color;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: calc(var(--fp-gap) * -1);
+    width: var(--fp-gap);
+    border-top: 1px solid $color;
+  }
+}
+@mixin no-row-rule-fill { &::after { content: none; } }
