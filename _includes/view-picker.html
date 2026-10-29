@@ -23,7 +23,7 @@
       {%- for v in vp_list %}
       <li>
         <a class="view-picker-item" href="{{ '/' | relative_url }}?view={{ v.key }}" data-view="{{ v.key }}">
-          <span class="view-picker-swatches" aria-hidden="true">{% for c in v.swatches %}<span style="background:{{ c }}"></span>{% endfor %}</span>
+          <img class="view-picker-shot" src="{{ '/assets/images/views/thumbs/' | append: v.key | append: '.webp' | relative_url }}" width="144" height="90" loading="lazy" decoding="async" alt="">
           <span class="view-picker-text"><span class="view-picker-name">{{ v.name }}</span></span>
           <span class="view-picker-check" aria-hidden="true"></span>
         </a>

@@ -97,12 +97,11 @@
   &.is-current:focus-visible { outline-color: $hazard; }
   &.is-current .view-picker-check::before { border-color: $hazard; }
 }
-.view-picker-swatches {
+.view-picker-shot {
   border: 2px solid $ink;
   border-radius: 0;
   box-shadow: none;
   transform: rotate(-2deg);
-  span { box-shadow: none; }
 }
 .view-picker-name {
   font-family: $display;

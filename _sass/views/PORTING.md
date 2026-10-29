@@ -258,7 +258,7 @@ Broadsheet's eyebrow "The Morgue · …" isn't in the markup: `.arc-eyebrow::bef
 Style `#view-picker` (`.view-picker-btn` with `.view-picker-ico`,
 `.view-picker-label` "Design", `.view-picker-caret`; `.view-picker-menu >
 .view-picker-head + ul.view-picker-list > li > a.view-picker-item(.is-current) >
-.view-picker-swatches + .view-picker-text > .view-picker-name +
+img.view-picker-shot + .view-picker-text > .view-picker-name +
 .view-picker-check`, then `a.view-picker-more`; designs carry no "by"
 credit anywhere) so it
 belongs to your design, and on phones put it in the menu panel (see

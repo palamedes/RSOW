@@ -24,7 +24,8 @@ a design with a light/dark toggle). It fails, loudly, when
 
 Screenshots (the first screenful of each page) go to OUT_DIR, default
 /tmp/rsow-view-check. --thumbs also remakes the /views/ gallery's
-screenshots, assets/images/views/<key>.webp (720x450), from the home page.
+screenshots, assets/images/views/<key>.webp (720x450), from the home page,
+and the picker's small ones, assets/images/views/thumbs/<key>.webp (144x90).
 
 Options:
   --views a,b     only these designs (default: every `ready: true` one)
@@ -319,6 +320,11 @@ def main():
                 subprocess.run(["vips", "thumbnail", png, webp + "[Q=80,strip]", "720", "--height", "450"],
                                check=True, capture_output=True)
                 print(f"  thumb {os.path.relpath(webp, ROOT)}", flush=True)
+                small = os.path.join(out_dir, "thumbs", f"{v['key']}.webp")
+                os.makedirs(os.path.dirname(small), exist_ok=True)
+                subprocess.run(["vips", "thumbnail", png, small + "[Q=82,strip]", "144", "--height", "90"],
+                               check=True, capture_output=True)
+                print(f"  thumb {os.path.relpath(small, ROOT)}", flush=True)
                 ctx.close()
         browser.close()
     httpd.shutdown()

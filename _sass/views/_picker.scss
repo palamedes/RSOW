@@ -117,16 +117,19 @@ main.site-content:focus { outline: none; }
   &:focus-visible { outline: 2px solid var(--vp-accent, #2673da); outline-offset: -2px; }
 }
 
-// four colour bars, a paint-chip of the design
-.view-picker-swatches {
-  display: inline-flex;
+// a small screenshot of the design (assets/images/views/thumbs/, made by
+// _tools/view-check.py --thumbs)
+.view-picker-shot {
+  display: block;
   flex-shrink: 0;
-  width: 2.4rem;
-  height: 1.6rem;
-  overflow: hidden;
+  width: 4.5rem;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top;
   border-radius: 3px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
-  span { flex: 1; box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.06); }
+  background: var(--vp-line, #ddd);
+  box-shadow: 0 0 0 1px var(--vp-line, rgba(0, 0, 0, 0.18));
 }
 
 .view-picker-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }

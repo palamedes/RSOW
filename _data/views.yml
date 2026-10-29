@@ -13,7 +13,7 @@
 #   description  one sentence for the gallery
 #   stylesheet   the design's one CSS file (built from assets/css/...scss)
 #   fonts        the Google Fonts css2 URL it needs, or "" for none
-#   swatches     3-4 colours for the picker's chips
+#   swatches     3-4 colours for the /views/ gallery's paint chip
 #   schemes      true when the design has a light/dark toggle: the header's
 #                theme button is shown and the saved choice is applied
 #                before first paint

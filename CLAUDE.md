@@ -58,7 +58,7 @@ The header's "Design" menu (`_includes/view-picker.html`) and `/views/`
   your own partials plus any shared ones from `_sass/`, or
   `@use "views/default-look"` and your changes on top), style the picker and
   `/views/` (the `--vp-*` properties), then flip `ready: true` and run
-  `uv run --quiet _tools/view-check.py --thumbs` for its gallery shot.
+  `uv run --quiet _tools/view-check.py --thumbs` for its gallery shot and the picker's small one.
   `_sass/views/PORTING.md` maps every hook.
 - **Check every design before pushing any template or design change:**
   `uv run --quiet _tools/view-check.py` builds, loads the key pages in each
