@@ -131,7 +131,6 @@ main.site-content:focus { outline: none; }
 
 .view-picker-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
 .view-picker-name { font-weight: 700; }
-.view-picker-by { font-size: 0.8em; color: var(--vp-muted, #666); }
 
 // the current design: a check mark at the end of its row
 .view-picker-check { width: 1rem; flex-shrink: 0; }

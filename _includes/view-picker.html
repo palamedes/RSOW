@@ -24,7 +24,7 @@
       <li>
         <a class="view-picker-item" href="{{ '/' | relative_url }}?view={{ v.key }}" data-view="{{ v.key }}">
           <span class="view-picker-swatches" aria-hidden="true">{% for c in v.swatches %}<span style="background:{{ c }}"></span>{% endfor %}</span>
-          <span class="view-picker-text"><span class="view-picker-name">{{ v.name }}</span> <span class="view-picker-by">by {{ v.by }}</span></span>
+          <span class="view-picker-text"><span class="view-picker-name">{{ v.name }}</span></span>
           <span class="view-picker-check" aria-hidden="true"></span>
         </a>
       </li>
