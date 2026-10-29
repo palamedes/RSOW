@@ -34,9 +34,10 @@ Link text says where it goes ("More about me", "View all posts"), never a bare
 Visitors can switch the whole site between designs, after the CSS Zen
 Garden: **one HTML, many stylesheets**. `_data/views.yml` lists them (key,
 name, stylesheet, Google Fonts URL, swatches, `schemes` for a
-light/dark toggle, `ready`). The inline loader in `_layouts/default.html`
-`<head>` picks the design before first paint (`?view=<key>`, else the saved
-choice, else Default) and writes only that design's fonts and stylesheet.
+light/dark toggle, an optional `script`, `ready`). The inline loader in
+`_layouts/default.html` `<head>` picks the design before first paint
+(`?view=<key>`, else the saved choice, else Default) and writes only that
+design's fonts and stylesheet (and its script, if it has one).
 The header's "Design" menu (`_includes/view-picker.html`) and `/views/`
 (`_pages/views.html`) list the ready ones; both read `views.yml`.
 
@@ -44,6 +45,14 @@ The header's "Design" menu (`_includes/view-picker.html`) and `/views/`
   its own CSS (and images it brings): `assets/css/views/<key>.scss` built from
   `_sass/views/<key>/`. Default is `assets/css/main.scss` (its partials:
   `_sass/views/_default-look.scss`) and must not move when a template changes.
+- **A design's script (optional).** `script: /assets/js/views/<key>.js` in
+  its `views.yml` entry makes the loader add that one file as a deferred
+  `<script id="view-js">` (same `?v=` stamp) only while the design is
+  active; no other design loads it. It is progressive enhancement: every
+  page must read and work with all its content without it, and it must
+  survive the narration player's soft navigation (which swaps
+  `main.site-content` and then fires `rsow:navigated` on `document`).
+  Windows 95 uses one for its window buttons, dragging and the clock.
 - **`view-extra`.** Markup only some designs use carries `class="view-extra
   …"` and is hidden everywhere except in a design that lists it in its
   `$show` (`@use "views/extras" with ($show: (".post-dek", …))`; the full
@@ -63,5 +72,6 @@ The header's "Design" menu (`_includes/view-picker.html`) and `/views/`
 - **Check every design before pushing any template or design change:**
   `uv run --quiet _tools/view-check.py` builds, loads the key pages in each
   ready design at 1440 and 390 px (and dark), and fails on sideways scroll at
-  390, a missing script hook, the wrong stylesheet, a JS error, or Default
+  390, a missing script hook, the wrong stylesheet, a design script that
+  didn't load (or one loaded under another design), a JS error, or Default
   showing an extra. Screenshots land in `/tmp/rsow-view-check`.

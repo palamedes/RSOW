@@ -18,6 +18,8 @@ a design with a light/dark toggle). It fails, loudly, when
     the archive grid where they belong)
   - the stylesheet in use isn't the design's own (or another site
     stylesheet is loaded alongside it), or <html data-view> is wrong
+  - a design with a `script:` didn't load it, or any design's page loads
+    another design's script (a design without one must load none)
   - the picker can't be reached (on a phone, through the menu)
   - Default shows any .view-extra
   - a page throws a JavaScript error
@@ -97,6 +99,15 @@ HOOKS_JS = r"""
     const u = new URL(l.href, location.href);
     if (u.origin === location.origin) out.sheets.push(u.pathname + (l.sheet ? "" : " (not loaded)"));
   }
+  // design scripts (views.yml `script:`): every one on the page, and whether it arrived
+  out.scripts = [...document.querySelectorAll('script[src]')]
+    .map((x) => new URL(x.src, location.href))
+    .filter((u) => u.origin === location.origin && u.pathname.startsWith("/assets/js/views/"))
+    .map((u) => {
+      const e = performance.getEntriesByType("resource").find((r) => r.name === u.href);
+      const st = e && typeof e.responseStatus === "number" ? e.responseStatus : (e ? 200 : 0);
+      return { path: u.pathname, ok: st >= 200 && st < 400 };
+    });
   out.view = document.documentElement.getAttribute("data-view");
   out.viewCss = (() => { const l = document.getElementById("view-css"); if (!l) return null;
     let n = -1; try { n = l.sheet ? l.sheet.cssRules.length : -1; } catch (e) {}
@@ -275,6 +286,17 @@ def main():
                         others = [s for s in info["sheets"] if s.split(" ")[0] != want_css and "/assets/css/" in s and "giscus" not in s]
                         if others:
                             problems.append("other site stylesheets loaded too: " + ", ".join(others))
+                        want_js = v.get("script")
+                        mine = [x for x in info["scripts"] if x["path"] == want_js]
+                        foreign = sorted({x["path"] for x in info["scripts"] if x["path"] != want_js})
+                        if want_js and not mine:
+                            problems.append(f"{want_js} isn't on the page")
+                        elif want_js and not all(x["ok"] for x in mine):
+                            problems.append(f"{want_js} didn't load")
+                        elif len(mine) > 1:
+                            problems.append(f"{want_js} is on the page {len(mine)} times")
+                        if foreign:
+                            problems.append("another design's script loaded: " + ", ".join(foreign))
                         if info["missing"]:
                             problems.append("missing hooks: " + ", ".join(info["missing"]))
                         if info["extras"]:

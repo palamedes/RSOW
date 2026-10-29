@@ -19,6 +19,13 @@
 #                before first paint
 #   giscus_theme optional: a CSS file for the comments box (giscus); the
 #                default is /assets/css/giscus-imessage.css
+#   script       optional: one small JS file the design adds (e.g.
+#                /assets/js/views/<key>.js). The loader adds it as a deferred
+#                <script id="view-js"> only while this design is active, with
+#                the same ?v= stamp as the stylesheet. Progressive
+#                enhancement only: every page must work and show all its
+#                content without it, and it must survive the narration
+#                player's soft navigation (listen for "rsow:navigated").
 #   ready        false keeps a design out of the picker, the gallery and the
 #                check tool while it's being built; ?view=<key> still loads
 #                it for previewing
