@@ -17,6 +17,9 @@ warning as something to fix before pushing.
   multi-megabyte original. Without it the card falls back to the full image and
   the build warns (`Thumbs:`) (`_plugins/thumbs.rb`). The full-size image stays
   as the post's header and its social share preview.
+- **Long-form features set `longform: true`.** Their cards get the Long Read
+  treatment in every design, and they're exempt from the every-other-day
+  schedule.
 
 ## Structured data
 

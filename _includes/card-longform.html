@@ -1,0 +1,21 @@
+{%- comment -%}
+  The "Long Read" badge on the card of a long-form post (front matter
+  `longform: true`): _includes/post-card.html and the Recent Posts cards in
+  _layouts/post.html put it just after the title. Real text, shown in every
+  design (not a view-extra); each design dresses it, and the card it sits
+  in carries post-card-wrap--longform / post-card--longform
+  (_sass/views/PORTING.md).
+
+    .card-longform-label  "Long Read"
+    .card-longform-sep    " · " (aria-hidden, decoration)
+    .card-longform-time   "31 min read"
+
+  The minutes are the post hero's own sum (_layouts/post.html: words / 250,
+  at least 1), so the card and the post it opens always agree.
+
+  Params:
+    post   the post (required)
+{%- endcomment -%}
+{%- assign lf_min = include.post.content | number_of_words | divided_by: 250 -%}
+{%- if lf_min < 1 %}{% assign lf_min = 1 %}{% endif -%}
+<p class="card-longform"><span class="card-longform-label">Long Read</span><span class="card-longform-sep" aria-hidden="true"> · </span><span class="card-longform-time">{{ lf_min }} min read</span></p>

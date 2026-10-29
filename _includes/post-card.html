@@ -21,6 +21,12 @@
     .card-excerpt-more  words 26-64 of the excerpt, inside .card-excerpt
                      just before the "..." (view-extra; only with long=true)
 
+  A long-form post (front matter `longform: true`) also gets
+  post-card-wrap--longform on the wrapper, post-card--longform on the card
+  and, after the title, the "Long Read · 31 min read" badge
+  (_includes/card-longform.html, shown in every design) and its
+  description as .card-dek (view-extra). Other cards are unchanged.
+
   Params:
     post     the post (required)
     variant  the slot it fills, as post-card-wrap--<variant> and
@@ -36,13 +42,13 @@
 {%- if include.post.audio_narrator == 'human' %}{%- assign card_human = true -%}{%- endif -%}
 {%- assign card_text = include.post.excerpt | strip_html -%}
 {%- assign card_ex = card_text | truncatewords: 25 -%}
-<div class="post-card-wrap post-card-wrap--{{ card_v }}"
+<div class="post-card-wrap post-card-wrap--{{ card_v }}{% if include.post.longform %} post-card-wrap--longform{% endif %}"
      data-year="{{ include.post.date | date: '%Y' }}"
      data-categories="{{ include.post.categories | join: ',' }}"
      data-tags="{{ include.post.tags | join: '|' | escape }}"
      data-title="{{ include.post.title | strip_html | escape | downcase }}"
      data-search="{{ include.post.title | strip_html | escape | downcase }} {{ include.post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
-  <article class="post-card post-card--{{ card_v }}">
+  <article class="post-card post-card--{{ card_v }}{% if include.post.longform %} post-card--longform{% endif %}">
     <div class="card-figure"><img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480"{% unless include.eager %} loading="lazy"{% endunless %} decoding="async" alt="{{ include.post.image_alt | default: include.post.title | strip_html | escape }}"></div>
     <div class="card-body">
       {%- if card_kicker %}
@@ -69,6 +75,12 @@
       <h2 class="card-title">
         <a class="card-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
       </h2>
+      {%- if include.post.longform %}
+      {% include card-longform.html post=include.post %}
+      {%- if include.post.description %}
+      <p class="view-extra card-dek">{{ include.post.description }}</p>
+      {%- endif %}
+      {%- endif %}
       {%- assign card_words = card_text | split: " " -%}
       {%- if include.long and card_words.size > 25 %}
       {%- assign card_cut = card_ex.size | minus: 3 -%}

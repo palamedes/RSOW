@@ -35,6 +35,7 @@
   ".card-kicker",
   ".card-byline",
   ".card-excerpt-more",
+  ".post-card--lead .card-dek",       // a long read's standfirst, as the lead
   // dates set in pieces (AP style)
   ".date-parts",
   // the article: dek, byline, the AI Notes toggle in the byline rail,
@@ -69,4 +70,5 @@
 @use "views/broadsheet/palamedes";
 @use "views/broadsheet/games";
 @use "views/broadsheet/special";
+@use "views/broadsheet/longform";
 @use "views/broadsheet/views";

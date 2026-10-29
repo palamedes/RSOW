@@ -1,0 +1,125 @@
+// ════════════════════════════════════════════════════════════════
+//  Long reads: the card of a long-form post (front matter
+//  `longform: true`). The shared card carries post-card-wrap--longform /
+//  post-card--longform and, after the title, the .card-longform badge
+//  ("Long Read · 31 min read", _includes/card-longform.html).
+//
+//  Default breaks it out of the grid: a full-row card, the photo on the
+//  left and the text on the post hero's dark navy, with a yellow
+//  "LONG READ" ribbon. Narrow screens stack it like any other card.
+//  Under a post (Recent Posts) it keeps its cell and just turns dark.
+// ════════════════════════════════════════════════════════════════
+
+$lf-navy: radial-gradient(120% 150% at 82% -20%, #1e3a6b 0%, #141a2b 55%, #0d111c 100%);
+$lf-blue: #2673da;
+$lf-yellow: #ffff00;
+$lf-ink: #10131a;          // ribbon text on yellow (17:1)
+$lf-text: #c9d2de;         // excerpt on the navy (7.3:1 at its lightest)
+$lf-muted: #a9b4c4;        // date on the navy (5.3:1)
+
+// A full-row card leaves a hole in the row before it; dense placement lets
+// the next cards fill it. With every other card one cell wide this changes
+// nothing, so it can stay on for every grid.
+.post-grid { grid-auto-flow: row dense; }
+
+// The ribbon: yellow, swallow-tailed, pinned to the card's inner edge.
+@mixin lf-ribbon($pad) {
+  order: -1;
+  align-self: flex-start;       // as wide as its words
+  display: block;
+  margin: 0 0 0.9rem calc(#{$pad} * -1);
+  padding: 0.38rem 1.35rem 0.36rem $pad;
+  background: $lf-yellow;
+  color: $lf-ink;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.6rem) 50%, 100% 100%, 0 100%);
+
+  .card-longform-sep { opacity: 0.55; }
+  .card-longform-time { font-weight: 600; }
+}
+
+.post-card-wrap--longform {
+  grid-column: 1 / -1;
+
+  .post-card {
+    flex-direction: row;
+    background: $lf-navy;
+    border: 0;
+    border-bottom: 3px solid $lf-blue;
+    color: #fff;
+    &:hover { box-shadow: 0 6px 22px rgba(13, 17, 28, 0.32); }
+
+    .card-image {
+      flex: none;
+      width: 52%;
+      align-self: stretch;
+      aspect-ratio: auto;
+      min-height: 100%;
+      background: #141a2b;
+    }
+
+    .card-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 2.4rem 2.2rem;
+    }
+
+    .card-longform { @include lf-ribbon(2.4rem); }
+
+    .card-date { color: $lf-muted; font-size: 0.74rem; }
+
+    .card-title {
+      margin: 0.35rem 0 0.75rem;
+      font-size: clamp(1.45rem, 0.9rem + 1.3vw, 2.05rem);
+      font-weight: 700;
+      line-height: 1.18;
+      color: #fff;
+      text-wrap: pretty;
+    }
+    .card-link {
+      &:hover { color: $lf-yellow; }
+      &:focus-visible { outline: 2px solid $lf-yellow; outline-offset: 3px; }
+    }
+
+    .card-excerpt {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: $lf-text;
+    }
+  }
+
+  // phones and narrow grids: stacked, the ribbon at the top of the text
+  @media (max-width: 640px) {
+    .post-card {
+      flex-direction: column;
+      .card-image { width: 100%; aspect-ratio: 3 / 2; min-height: 0; }
+      .card-body { padding: 1rem 1.1rem 1.3rem; }
+      .card-longform { @include lf-ribbon(1.1rem); margin-bottom: 0.75rem; }
+      .card-title { font-size: 1.4rem; }
+      .card-excerpt { font-size: 1rem; }
+    }
+  }
+}
+
+// ── Under a post: the same cell, dark ──
+.recent-posts .post-card--longform {
+  background: $lf-navy;
+  border-color: transparent;
+  border-bottom: 3px solid $lf-blue;
+  color: #fff;
+
+  .card-body { display: flex; flex-direction: column; }
+  .card-longform { @include lf-ribbon(0.75rem); margin-bottom: 0.55rem; font-size: 0.66rem; }
+  .card-date { color: $lf-muted; }
+  .card-title { color: #fff; }
+  .card-excerpt { color: $lf-text; }
+  &:hover .card-title { color: $lf-yellow; }
+  &:focus-visible { outline: 2px solid $lf-blue; outline-offset: 3px; }
+}
