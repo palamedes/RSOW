@@ -1,0 +1,166 @@
+@use "kit" as *;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #{$ink};
+  --paper: #{$paper};
+  --sheet: #{$sheet};
+  --hazard: #{$hazard};
+  --red: #{$red};
+  --grey: #{$grey};
+}
+
+html { scroll-padding-top: 1rem; }
+
+// The wall everything is pasted on: newsprint with photocopier grain.
+body {
+  font-family: $serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: $ink;
+  background-color: $paper;
+  background-image: $grain;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  // Anton ships one weight; never let the browser smear a fake bold onto it
+  font-synthesis: none;
+}
+
+a {
+  color: $ink;
+  text-decoration: none;
+  transition: color 0.15s ease, background-color 0.15s ease;
+  &:hover { color: $red; text-decoration: none; }
+}
+
+:focus-visible {
+  outline: 3px solid $red;
+  outline-offset: 2px;
+}
+
+::selection { background: $ink; color: $hazard; }
+
+.page a, .post-content a {
+  color: $ink;
+  text-decoration: underline;
+  text-decoration-color: $red;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  &:hover { background: $hazard; color: $ink; text-decoration-color: $ink; }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre, code {
+  font-family: $mono;
+  font-size: 0.86em;
+}
+
+pre {
+  background: $ink;
+  color: #f2efe6;
+  padding: 1.25rem;
+  overflow-x: auto;
+  border-radius: 0;
+  border: 3px solid $ink;
+}
+
+code {
+  background: rgba(255, 230, 0, 0.45);
+  padding: 0.1em 0.3em;
+  border-radius: 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+blockquote {
+  border-left: 6px solid $ink;
+  padding-left: 1rem;
+  color: #2b2b2b;
+  margin: 1rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.15;
+  font-weight: 700;
+  color: $ink;
+}
+
+p, ul, ol {
+  margin-bottom: 1rem;
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+// ::highlight:: — see _plugins/highlighter.rb, which turns `::text::` into
+// <mark class="hl">. A hazard-yellow marker swipe: translucent so the words
+// read through it, fading out at both ends, sitting a touch low like a
+// hand-drawn stroke.
+mark.hl {
+  background: linear-gradient(
+    100deg,
+    rgba($hazard, 0)    0.4%,
+    rgba($hazard, 0.9)  2.4%,
+    rgba($hazard, 0.75) 50%,
+    rgba($hazard, 0.88) 94%,
+    rgba($hazard, 0)    99.4%
+  );
+  color: inherit;
+  padding: 0.12em 0.3em 0.18em;
+  margin: 0 -0.18em;
+  border-radius: 0.15em;
+  // keeps the swipe whole on every line when a highlight wraps
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+// The global `* { padding: 0 }` reset kills list indentation; restore it
+// for body content so bullets/numbers sit indented under their text.
+// Skip lists that already opt into an explicit indent (e.g. .ml-4 on the
+// resume), otherwise the padding stacks on top of their margin.
+.page, .post-content {
+  ul:not(.ml-4), ol:not(.ml-4) {
+    padding-left: 1.5rem;
+  }
+}
+
+// Visually hidden until focused: lets keyboard readers jump the chrome.
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 2000;
+  padding: 0.6rem 1rem;
+  background: $hazard;
+  color: $ink;
+  border: 3px solid $ink;
+  @include label(0.8rem);
+  &:focus { top: 1rem; color: $ink; }
+}
+
+.mb-0 { margin-bottom: 0 !important; }
+.mt-0 { margin-top: 0 !important; }
+.ml-4 { margin-left: 2rem !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  a { transition: none; }
+}
