@@ -1,0 +1,29 @@
+// ════════════════════════════════════════════════════════════════
+//  Default's whole look as one module: assets/css/main.scss is this plus
+//  the shared views/extras and views/picker. A new design can start from
+//  it and change only what it wants (see CLAUDE.md, "Designs (views)"):
+//
+//    @use "views/extras" with ($show: (...));
+//    @use "views/picker";
+//    @use "views/default-look";
+//    @use "views/<key>/theme";     // the design's own changes
+// ════════════════════════════════════════════════════════════════
+@use "../base";
+@use "../layout";
+@use "../adventure";
+@use "../scorched";
+@use "../paradroid";
+@use "../investments";
+@use "../about";
+@use "../archive";
+@use "../tags";
+@use "../build";
+@use "../post";
+@use "../player";
+@use "../ai-notes";
+@use "../word-notes";
+@use "../clapback";
+@use "../explain";
+@use "../palamedes";
+@use "../games";
+@use "default";

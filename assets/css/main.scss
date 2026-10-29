@@ -1,20 +1,10 @@
 ---
 ---
-@use "base";
-@use "layout";
-@use "adventure";
-@use "scorched";
-@use "paradroid";
-@use "investments";
-@use "about";
-@use "archive";
-@use "tags";
-@use "build";
-@use "post";
-@use "player";
-@use "ai-notes";
-@use "word-notes";
-@use "clapback";
-@use "explain";
-@use "palamedes";
-@use "games";
+// Default, by Jason Ellis: the site's everyday look. Each design is one
+// stylesheet (_data/views.yml); this is Default's. Its partials are listed
+// in _sass/views/_default-look.scss, so a new design can start from them.
+@use "views/default-look";
+// Every design: hide the view-extras it doesn't show (Default: all of
+// them), and the picker / skip link / gallery structure.
+@use "views/extras";
+@use "views/picker";

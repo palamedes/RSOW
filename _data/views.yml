@@ -1,0 +1,66 @@
+# Designs ("views"): one set of HTML, many stylesheets, after Dave Shea's
+# CSS Zen Garden. Every page is the same markup; a visitor picks the
+# stylesheet from the "Design" menu in the header or from /views/.
+#
+# Everything here feeds three places, so adding a design never means
+# editing them: the loader in _layouts/default.html <head>, the picker in
+# the header, and the gallery at /views/. CLAUDE.md ("Designs (views)") has
+# the how-to; _sass/views/ holds the stylesheets.
+#
+#   key          what ?view=<key> and the saved choice use; also the
+#                stylesheet's file name (assets/css/views/<key>.scss)
+#   name, by     the title and designer credit in the picker and gallery
+#   description  one sentence for the gallery
+#   stylesheet   the design's one CSS file (built from assets/css/...scss)
+#   fonts        the Google Fonts css2 URL it needs, or "" for none
+#   swatches     3-4 colours for the picker's chips
+#   schemes      true when the design has a light/dark toggle: the header's
+#                theme button is shown and the saved choice is applied
+#                before first paint
+#   giscus_theme optional: a CSS file for the comments box (giscus); the
+#                default is /assets/css/giscus-imessage.css
+#   ready        false keeps a design out of the picker, the gallery and the
+#                check tool while it's being built; ?view=<key> still loads
+#                it for previewing
+#
+# Order is the order of the picker and the gallery. Default stays first.
+
+- key: default
+  name: Default
+  by: Jason Ellis
+  description: "The everyday look: a dark hero, a grid of photo cards and Nunito Sans."
+  stylesheet: /assets/css/main.css
+  fonts: "https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap"
+  swatches: ["#2673da", "#1c2330", "#ffff00", "#f2f2f2"]
+  schemes: false
+  ready: true
+
+- key: quiet
+  name: Quiet
+  by: Claude
+  description: "A reading-first literary journal: warm paper, Alegreya type, wide margins and a dark mode for night owls."
+  stylesheet: /assets/css/views/quiet.css
+  fonts: "https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..800;1,400..800&family=Alegreya+SC:wght@500&family=Alegreya+Sans:wght@400;500;700&display=swap"
+  swatches: ["#faf8f3", "#1f1d1a", "#9a3b24", "#3b5878"]
+  schemes: true
+  ready: false
+
+- key: broadsheet
+  name: Broadsheet
+  by: Claude
+  description: "The opinion section of an old-school newspaper: blackletter nameplate, ruled columns and newsprint."
+  stylesheet: /assets/css/views/broadsheet.css
+  fonts: "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..800;1,8..60,300..800&family=UnifrakturMaguntia&display=swap"
+  swatches: ["#f5f1e6", "#1b1813", "#b3121b", "#b4aa95"]
+  schemes: false
+  ready: false
+
+- key: zine
+  name: Zine
+  by: Claude
+  description: "A photocopied punk zine: hazard yellow, ransom-note letters, tape and posters slapped on a wall."
+  stylesheet: /assets/css/views/zine.css
+  fonts: "https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+  swatches: ["#ffe600", "#111111", "#d6121a", "#f3efe6"]
+  schemes: false
+  ready: false

@@ -150,8 +150,16 @@
     try {
       if (audio.buffered.length && isFinite(d) && d > 0) loaded = audio.buffered.end(audio.buffered.length - 1) / d;
     } catch (e) {}
-    var lit = bar.classList.contains('is-error') ? '#c0392b'
-            : bar.classList.contains('is-human') ? '#f0a42a' : '#4a9aff';
+    // Colours come from the active design's stylesheet: custom properties on
+    // the bar (--wave-lit, set per .is-human / .is-error as the design likes,
+    // --wave-loaded and --wave-rest). The literals are Default's and the
+    // fallback for any design that doesn't set them.
+    var cs = getComputedStyle(bar);
+    function tone(name, fb) { return (cs.getPropertyValue(name) || '').trim() || fb; }
+    var lit = tone('--wave-lit', bar.classList.contains('is-error') ? '#c0392b'
+            : bar.classList.contains('is-human') ? '#f0a42a' : '#4a9aff');
+    var loadedTone = tone('--wave-loaded', 'rgba(255,255,255,0.40)');
+    var restTone = tone('--wave-rest', 'rgba(255,255,255,0.24)');
 
     var barW = 2, pitch = 3;                       // 2px bars, 1px gaps
     var n = Math.max(1, Math.floor((w + 1) / pitch));
@@ -163,7 +171,7 @@
       for (var k = a; k < b; k++) if (peaks[k] > v) v = peaks[k];
       var bh = Math.max(2, Math.round(v * room));
       var pos = (i + 0.5) / n;
-      ctx.fillStyle = pos <= played ? lit : (pos <= loaded ? 'rgba(255,255,255,0.40)' : 'rgba(255,255,255,0.24)');
+      ctx.fillStyle = pos <= played ? lit : (pos <= loaded ? loadedTone : restTone);
       ctx.fillRect(i * pitch, Math.round(mid - bh / 2), barW, bh);
     }
   }
@@ -172,6 +180,8 @@
     cancelAnimationFrame(waveFrame);
     waveFrame = requestAnimationFrame(function () { drawWave(); });
   });
+  // a design's light/dark toggle changes the --wave-* colours
+  document.addEventListener('rsow:theme', function () { drawWave(); });
   function paintTrack() {
     if (!track) return;
     titleEl.textContent = track.title || 'Narration';
@@ -406,6 +416,9 @@
     try { u = new URL(a.href, location.href); } catch (e) { return false; }
     if (u.origin !== location.origin) return false;
     if (/\.(zip|pdf|png|jpe?g|gif|svg|ogg|mp3|xml|txt|ico|webp)$/i.test(u.pathname)) return false;
+    // ?view=<key> switches the design, which needs a real page load (the
+    // stylesheet lives in <head>, which soft navigation never touches)
+    if (u.searchParams.has('view')) return false;
     return true;
   }
   function runScripts(root) {

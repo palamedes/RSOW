@@ -1,0 +1,101 @@
+// ════════════════════════════════════════════════════════════════
+//  Default's side of the design system (_data/views.yml).
+//
+//  The shared HTML carries hooks Default doesn't use. The view-extras are
+//  hidden by views/extras (Default shows none); the wrappers below are
+//  display:contents, so their children lay out exactly as they did before
+//  the wrappers existed. Then the picker, the footer's design link and the
+//  /views/ gallery, dressed for today's look.
+// ════════════════════════════════════════════════════════════════
+
+.hero-photo,
+.card-figure,
+.snap,
+.post-hero-tools,
+.arc-year,
+.arc-year-list,
+.colophon,
+.photo-desk,
+.footer-about-photo { display: contents; }
+
+:root {
+  --vp-ink: #333;
+  --vp-muted: #666;
+  --vp-bg: #fff;
+  --vp-line: lightgrey;
+  --vp-hover: #f3f5f8;
+  --vp-accent: #2673da;
+  --vp-radius: 4px;
+  --vp-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+// ── Picker in the header ────────────────────────────────
+// Sits after the social icons and reads like the nav links beside it.
+.site-header {
+  .view-picker-btn {
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0.3rem 0.4rem;   // no taller than the 28px social icons
+    color: #696969;
+    &:hover { color: #2673da; }
+  }
+
+  // Narrow desktops: just the palette, so the bar keeps to one line down to
+  // ~900px; in the last sliver above the phone breakpoint it takes a row of
+  // its own, on the right.
+  @media (max-width: 999px) and (min-width: 861px) {
+    .view-picker { margin-left: auto; }
+    .view-picker-label, .view-picker-caret { display: none; }
+  }
+
+  // Phones: the bar keeps title, icons and the hamburger; the picker joins
+  // the links in the panel (the same breakpoint as the nav), on its own row.
+  @media (max-width: 860px) {
+    .view-picker {
+      order: 7;
+      flex-basis: 100%;
+      flex-wrap: wrap;
+      padding: 0.35rem 0 0.25rem;
+      border-top: 1px solid #f0f2f4;
+    }
+    .header-inner:not(.is-nav-open) .view-picker { display: none; }
+    .view-picker-btn { font-size: 0.95rem; padding: 0.4rem 0.25rem; }
+    .view-picker-menu {
+      position: static;
+      flex-basis: 100%;
+      width: auto;
+      max-width: none;
+      margin: 0.25rem 0 0.5rem;
+      box-shadow: none;
+    }
+  }
+}
+
+// ── Footer ──────────────────────────────────────────────
+.footer-bottom .footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+
+  a {
+    color: #bbb;   // the copyright's #999 is too faint on #444 for a link
+    &:hover { color: #fff; text-decoration: none; }
+  }
+}
+
+// ── /views/ ─────────────────────────────────────────────
+.vg-name { color: #222; }
+.vg-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.vg-links .vg-try {
+  display: inline-block;
+  padding: 0.35rem 1.1rem;
+  border: 1px solid #2673da;
+  border-radius: 3px;
+  color: #2673da;
+  text-decoration: none;
+  &:hover { background: #2673da; color: #fff; }
+}

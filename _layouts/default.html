@@ -34,44 +34,144 @@
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700&display=swap" rel="stylesheet">
   {%- comment -%}
-    ?v= is the build timestamp. /assets/css/main.css is served with
+    Designs ("views", _data/views.yml): every page is this same HTML and the
+    visitor picks the stylesheet. This picks it before first paint: ?view=<key>
+    (which also saves it, then comes back out of the address bar), else the
+    saved choice, else Default. It sets <html data-view="<key>"> (and
+    data-theme for a design with a light/dark toggle), then writes that
+    design's font and stylesheet <link>s with document.write, so they are
+    parser-inserted and render-blocking like ordinary <link>s: no flash of
+    the wrong design. The key -> files map comes from _data/views.yml, so a
+    new design never means editing this.
+
+    ?v= is the build timestamp. The stylesheets are served with
     cache-control: max-age=600 and no fingerprint in the filename, so without
     this a browser can hold a stale stylesheet for ten minutes after a deploy
     and render new markup against old CSS.
   {%- endcomment -%}
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {%- assign view_default = site.data.views | where: "key", "default" | first %}
+  <script>(function(){var V={
+    {%- for v in site.data.views -%}
+    {{ v.key | jsonify }}:[{{ v.stylesheet | relative_url | jsonify }},{{ v.fonts | default: "" | jsonify }},{% if v.schemes %}1{% else %}0{% endif %}]{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+    },K='rsow.view',d=document.documentElement,k='default',q=null,u=null,s;try{u=new URLSearchParams(location.search);q=u.get('view')}catch(e){}if(q&&V.hasOwnProperty(q)){k=q;try{localStorage.setItem(K,q)}catch(e){}u.delete('view');s=u.toString().replace(/%2C/g,',');try{history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash)}catch(e){}}else{try{s=localStorage.getItem(K);if(s&&V.hasOwnProperty(s))k=s}catch(e){}}d.setAttribute('data-view',k);if(V[k][2]){try{s=localStorage.getItem('rsow.theme');if(s==='light'||s==='dark')d.setAttribute('data-theme',s)}catch(e){}}function a(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}document.write((V[k][1]?'<link href="'+a(V[k][1])+'" rel="stylesheet">':'')+'<link rel="stylesheet" id="view-css" href="'+a(V[k][0])+'?v={{ site.time | date: '%s' }}">')})();</script>
+  <noscript>
+    <link href="{{ view_default.fonts }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ view_default.stylesheet | relative_url }}?v={{ site.time | date: '%s' }}">
+  </noscript>
   <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
 </head>
 <body>
+  {%- comment -%}
+    One HTML for every design (see _data/views.yml and CLAUDE.md). Elements
+    marked .view-extra are hooks a design may show; every design hides the
+    rest (_sass/views/_extras.scss), Default hides them all. Wrappers such as
+    .hero-photo or .post-hero-tools are display:contents in Default.
+
+    Which nav link is "you are here": the exact page gets aria-current="page",
+    a page inside that section (a post under Blog) aria-current="true".
+    data-section lists the path prefixes of each section; the script below
+    re-marks the links after the narration player's soft navigation.
+  {%- endcomment -%}
+  {%- assign nav_path = page.url | replace: "index.html", "" -%}
+  {%- assign nav_seg = page.url | split: "/" -%}
+  {%- assign nav_seg = nav_seg[1] | default: "" -%}
+  {%- assign nav_sec = "" -%}
+  {%- if nav_seg == "about" %}{% assign nav_sec = "/about/" %}
+  {%- elsif nav_seg == "archive" or nav_seg == "post" or nav_seg == "tags" or nav_seg == "topics" or nav_seg == "category" or nav_seg == "tag" %}{% assign nav_sec = "/archive/" %}
+  {%- elsif nav_seg == "explain" %}{% assign nav_sec = "/explain/" %}
+  {%- elsif nav_seg == "games" %}{% assign nav_sec = "/games/" %}
+  {%- elsif nav_seg == "investments" %}{% assign nav_sec = "/investments/" %}
+  {%- endif -%}
+  {%- comment -%} Broadsheet's edition line: the volume is years since 1997 in
+  Roman numerals and the number is the day of the year, so every daily build
+  is a new edition. {%- endcomment -%}
+  {%- assign ed_vol = site.time | date: "%Y" | minus: 1996 -%}
+  {%- assign ed_tens = ",X,XX,XXX,XL,L,LX,LXX,LXXX,XC" | split: "," -%}
+  {%- assign ed_ones = ",I,II,III,IV,V,VI,VII,VIII,IX" | split: "," -%}
+  {%- assign ed_t = ed_vol | divided_by: 10 -%}
+  {%- assign ed_o = ed_vol | modulo: 10 -%}
+  {%- assign ed_no = site.time | date: "%j" | plus: 0 %}
+  <a class="skip-link" href="#main">Skip to content</a>
   <div class="dark-header-wrap">
     <header class="site-header">
       <div class="site-wrapper">
         <div class="header-inner">
-          <a class="site-title" href="{{ '/' | relative_url }}">RSOW.com <span>|</span> Home</a>
+          <p class="view-extra mast-rail-vol">Vol. {{ ed_tens[ed_t] }}{{ ed_ones[ed_o] }} &middot; No. {{ ed_no }}</p>
+          <p class="view-extra mast-rail-date"><time datetime="{{ site.time | date: '%Y-%m-%d' }}">{{ site.time | date: "%a., %b. %-d, %Y" }}</time></p>
+          <div class="view-extra mast-ear mast-ear--left">
+            <p class="mast-ear-head">Today&rsquo;s Forecast</p>
+            <p>Overcast with scattered rants. Strong opinions by afternoon.</p>
+          </div>
+          {%- comment -%} The name in two forms: Default's "RSOW.com | Home",
+          and the full name as words (.stw) on two lines (.site-title-line)
+          for designs that set it as a nameplate or a ransom note. The
+          accessible name is whichever one is showing. {%- endcomment %}
+          <a class="site-title" href="{{ '/' | relative_url }}"><span class="site-title-short">RSOW.com <span class="site-title-sep">|</span> Home</span><span class="view-extra site-title-long"><span class="site-title-line"><span class="stw stw-random">Random</span> <span class="stw stw-string">String</span></span> <span class="site-title-line"><span class="stw stw-of">of</span> <span class="stw stw-words"><span>W</span><span>o</span><span>r</span><span>d</span><span>s</span></span></span></span></a>
+          <div class="view-extra mast-ear mast-ear--right">
+            <p class="mast-ear-head">Late Edition</p>
+            <p>Free of charge, and worth every penny.</p>
+          </div>
+          <div class="view-extra mast-dateline">
+            <span class="mast-dl-est">Est. 1997</span>
+            <span class="mast-dl-date"><time datetime="{{ site.time | date: '%Y-%m-%d' }}">{{ site.time | date: "%A, %B %-d, %Y" }}</time></span>
+            <span class="mast-dl-motto">Opinions, Rants &amp; Other Hazards</span>
+            <span class="mast-dl-site">RandomStringOfWords.com</span>
+          </div>
           <button type="button" class="nav-toggle" id="nav-toggle"
                   aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
             <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span class="view-extra nav-toggle-label" aria-hidden="true">Menu</span>
           </button>
-          <nav class="nav-links" id="site-nav">
-            <a href="{{ '/about/' | relative_url }}">About Me</a>
-            <a href="{{ '/archive/' | relative_url }}">Blog</a>
-            <a href="{{ '/explain/' | relative_url }}">Explainers</a>
-            <a href="{{ '/games/' | relative_url }}">Games</a>
-            <a href="{{ '/investments/' | relative_url }}">Investments</a>
+          <nav class="nav-links" id="site-nav" aria-label="Site">
+            <a href="{{ '/about/' | relative_url }}" data-section="/about/"{% if nav_sec == "/about/" %} aria-current="{% if nav_path == '/about/' %}page{% else %}true{% endif %}"{% endif %}>About Me</a>
+            <a href="{{ '/archive/' | relative_url }}" data-section="/archive/ /post/ /tags/ /topics/ /category/ /tag/"{% if nav_sec == "/archive/" %} aria-current="{% if nav_path == '/archive/' %}page{% else %}true{% endif %}"{% endif %}>Blog</a>
+            <a href="{{ '/explain/' | relative_url }}" data-section="/explain/"{% if nav_sec == "/explain/" %} aria-current="{% if nav_path == '/explain/' %}page{% else %}true{% endif %}"{% endif %}>Explainers</a>
+            <a href="{{ '/games/' | relative_url }}" data-section="/games/"{% if nav_sec == "/games/" %} aria-current="{% if nav_path == '/games/' %}page{% else %}true{% endif %}"{% endif %}>Games</a>
+            <a href="{{ '/investments/' | relative_url }}" data-section="/investments/"{% if nav_sec == "/investments/" %} aria-current="{% if nav_path == '/investments/' %}page{% else %}true{% endif %}"{% endif %}>Investments</a>
             <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
             <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
-            <a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store</a>
+            <a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store<span class="view-extra nav-ext" aria-hidden="true">&#8599;</span></a>
           </nav>
           <div id="resume-slot" class="resume-slot"></div>
           <div class="social-icons">
             {% include social-icons.html %}
           </div>
+          {% include view-picker.html %}
+          <button type="button" class="view-extra theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Dark theme" title="Switch between light and dark">
+            <svg class="theme-ico theme-ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <svg class="theme-ico theme-ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
         </div>
       </div>
     </header>
+    {%- comment -%}
+      The ticker: the newest titles crawling past like a news crawl. The
+      second copy only exists to make the loop seamless, so it's hidden from
+      assistive tech and out of the tab order. A design that shows it should
+      stop it on hover and focus, and hold it still for reduced motion.
+    {%- endcomment -%}
+    {%- assign ticker_n = 0 -%}
+    {%- capture ticker_items -%}
+      {%- for p in site.posts limit: 14 -%}
+        {%- if p.hidden or ticker_n >= 7 %}{% continue %}{% endif -%}
+        {%- assign ticker_n = ticker_n | plus: 1 -%}
+        <li><a href="{{ p.url | relative_url }}"@@TAB@@>{{ p.title }}</a></li>
+      {%- endfor -%}
+    {%- endcapture %}
+    <div class="view-extra ticker" role="region" aria-label="Latest posts">
+      <p class="ticker-label" aria-hidden="true">Hot off the press</p>
+      <div class="ticker-window">
+        <div class="ticker-belt">
+          <ul class="ticker-track">{{ ticker_items | replace: "@@TAB@@", "" }}</ul>
+          <ul class="ticker-track ticker-copy" aria-hidden="true">{{ ticker_items | replace: "@@TAB@@", ' tabindex="-1"' }}</ul>
+        </div>
+      </div>
+    </div>
   </div>
+
+  {% include views-script.html %}
 
   <script>
     // Mobile nav. The six links wrap into three stacked rows on a phone, so
@@ -92,9 +192,29 @@
       });
 
       document.addEventListener("keydown", function (e) {
+        // the design picker inside the panel takes its own Escape first
+        if (e.defaultPrevented) return;
         if (e.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
           setOpen(false);
           toggle.focus();
+        }
+      });
+
+      // Soft navigation (while narration plays) swaps only <main>, so fold
+      // the panel away and move the "you are here" mark by hand. Same rule
+      // as the Liquid in the nav: the page itself is aria-current="page", a
+      // page inside a section (data-section prefixes) aria-current="true".
+      document.addEventListener("rsow:navigated", function () {
+        setOpen(false);
+        var path = location.pathname;
+        var links = document.querySelectorAll("#site-nav a[data-section]");
+        for (var i = 0; i < links.length; i++) {
+          var a = links[i];
+          var hit = a.getAttribute("data-section").split(" ").some(function (p) {
+            return p && path.indexOf(p) === 0;
+          });
+          if (!hit) a.removeAttribute("aria-current");
+          else a.setAttribute("aria-current", a.pathname === path ? "page" : "true");
         }
       });
     })();
@@ -206,7 +326,18 @@
     })();
   </script>
 
-  <main class="site-content">
+  {%- comment -%}
+    Pages whose own stylesheets were drawn for a light page (the games
+    arcade, the Drip Fund, explainers, the Palamedes reference, /build/) get
+    .is-light-only, so a design with a dark mode can keep them on paper. It
+    rides on <main> itself so soft navigation carries it along. #main is the
+    skip link's target.
+  {%- endcomment -%}
+  {%- assign light_only = false -%}
+  {%- if page.collection == "explainers" or url_head == "/build/" or page.url == "/games/" or page.url == "/investments/" or page.url == "/explain/" or page.url == "/palamedes-historical-reference/" -%}
+    {%- assign light_only = true -%}
+  {%- endif %}
+  <main class="site-content{% if light_only %} is-light-only{% endif %}" id="main" tabindex="-1">
     {% if page.full_width %}
       {{ content }}
     {% else %}
@@ -217,7 +348,16 @@
   </main>
 
   <footer class="site-footer">
-    {%- comment -%} Small WebPs from _tools/make-thumbs.sh; data-full opens the original. {%- endcomment %}
+    {%- comment -%}
+      Small WebPs from _tools/make-thumbs.sh; data-full opens the original.
+      Each sits in a .snap frame (a photobooth print, a contact-sheet cell);
+      the gallery script still finds the <img> inside.
+    {%- endcomment %}
+    <div class="photo-desk">
+    <div class="view-extra site-wrapper photo-desk-head">
+      <h2 class="photo-desk-label">From the Photo Desk</h2>
+      <p class="photo-desk-note">Contact sheet &middot; select a frame to enlarge</p>
+    </div>
     <div class="footer-photo-strip">
       <div class="strip-track">
         {% for i in (1..25) %}
@@ -226,7 +366,7 @@
           {% assign num = i | prepend: "00" | slice: -2, 2 %}
           {% assign src = '/assets/images/gallery/gallery-' | append: num | append: '.' | append: ext | relative_url %}
           {% assign thumb = '/assets/images/gallery/thumbs/gallery-' | append: num | append: '.webp' | relative_url %}
-          <img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async">
+          <span class="snap"><img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async"></span>
         {% endfor %}
         {% for i in (1..25) %}
           {% assign ext = "jpg" %}
@@ -234,9 +374,10 @@
           {% assign num = i | prepend: "00" | slice: -2, 2 %}
           {% assign src = '/assets/images/gallery/gallery-' | append: num | append: '.' | append: ext | relative_url %}
           {% assign thumb = '/assets/images/gallery/thumbs/gallery-' | append: num | append: '.webp' | relative_url %}
-          <img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async">
+          <span class="snap"><img src="{{ thumb }}" alt="Gallery photo {{ i }}" class="gallery-thumb" data-full="{{ src }}" height="150" loading="lazy" decoding="async"></span>
         {% endfor %}
       </div>
+    </div>
     </div>
 
     <div id="gallery-modal" class="gallery-modal" onclick="if(event.target===this)this.classList.remove('active')">
@@ -338,17 +479,42 @@
 
     <div class="footer-main">
       <div class="site-wrapper">
-        <div class="footer-about">
-          <img class="footer-about-img gallery-thumb" src="{{ '/assets/images/footer-profile.jpg' | relative_url }}" alt="Jason Ellis" data-full="{{ '/assets/images/footer-profile.jpg' | relative_url }}">
-          <div class="footer-about-text">
-            <h3>About Me</h3>
-            <p>Hey everyone! Glad to see you here. Welcome to my peripheral brain on the internet, the virtual oubliette of crap where I store my thoughts, feelings and opinions. Lots to read if you're so inclined.</p>
-            <div class="footer-about-actions">
-              <a href="{{ '/about/' | relative_url }}" class="read-more">More about me</a>
-              <div class="footer-about-social">
-                {% include social-icons.html %}
+        <div class="colophon">
+          <div class="footer-about">
+            <div class="footer-about-photo">
+              <img class="footer-about-img gallery-thumb" src="{{ '/assets/images/footer-profile.jpg' | relative_url }}" alt="Jason Ellis" data-full="{{ '/assets/images/footer-profile.jpg' | relative_url }}" width="400" height="400">
+            </div>
+            <div class="footer-about-text">
+              <h3>About Me</h3>
+              <p>Hey everyone! Glad to see you here. Welcome to my peripheral brain on the internet, the virtual oubliette of crap where I store my thoughts, feelings and opinions. Lots to read if you're so inclined.</p>
+              <div class="footer-about-actions">
+                <a href="{{ '/about/' | relative_url }}" class="read-more">More about me</a>
+                <div class="footer-about-social">
+                  {% include social-icons.html %}
+                </div>
               </div>
             </div>
+            <p class="view-extra footer-stamp" aria-hidden="true"><span>Free</span><span>Take one</span><span>No. {{ site.posts.size }}</span></p>
+          </div>
+
+          <nav class="view-extra colophon-col colophon-sections" aria-label="Sections (footer)">
+            <h3>Sections</h3>
+            <ul>
+              <li><a href="{{ '/about/' | relative_url }}">About Me</a></li>
+              <li><a href="{{ '/archive/' | relative_url }}">The Blog</a></li>
+              <li><a href="{{ '/topics/' | relative_url }}">Topics</a> &amp; <a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+              <li><a href="{{ '/explain/' | relative_url }}">Explainers</a></li>
+              <li><a href="{{ '/games/' | relative_url }}">Games</a></li>
+              <li><a href="{{ '/investments/' | relative_url }}">Investments</a></li>
+              <li><a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store<span class="nav-ext" aria-hidden="true">&#8599;</span></a></li>
+            </ul>
+          </nav>
+
+          <div class="view-extra colophon-col colophon-note">
+            <h3>Colophon</h3>
+            <p>Written, edited and set in type by Jason Ellis. Nameplate in UnifrakturMaguntia, headlines in Playfair Display, text in Source Serif.</p>
+            <p>Printed on recycled electrons since 1997. No ink was spilled, though several opinions were.</p>
+            <p><a class="colophon-rss" href="{{ '/feed.xml' | relative_url }}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="2.2"/><path d="M3 10.5a10.5 10.5 0 0 1 10.5 10.5h-3A7.5 7.5 0 0 0 3 13.5zM3 4a17 17 0 0 1 17 17h-3A14 14 0 0 0 3 7z"/></svg>Subscribe by RSS feed</a></p>
           </div>
         </div>
       </div>
@@ -358,7 +524,11 @@
       <div class="site-wrapper">
         <div class="footer-bottom-inner">
           <p class="footer-copy">&copy; 1997 by Random String of Words on RSOW.com</p>
-          <a href="#" class="back-to-top">&#9650;</a>
+          <nav class="footer-links" aria-label="Footer">
+            <a class="footer-views" href="{{ '/views/' | relative_url }}">Select a design</a>
+            <a class="view-extra footer-feed" href="{{ '/feed.xml' | relative_url }}">Subscribe by RSS</a>
+          </nav>
+          <a href="#" class="back-to-top" aria-label="Back to top"><span class="view-extra back-to-top-text">Back to top </span><span class="back-to-top-ico" aria-hidden="true">&#9650;</span></a>
         </div>
       </div>
     </div>
