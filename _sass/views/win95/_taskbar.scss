@@ -1,0 +1,383 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the taskbar. The site header, fixed along the bottom
+//  of the screen:
+//
+//    [Start] [home] [task buttons ...........] [resume] [tray: Design · icons · clock]
+//
+//  The Start button is the header's menu toggle (#nav-toggle) and the
+//  Start menu is the site nav (#site-nav): the shared script opens it
+//  (.header-inner.is-nav-open) and closes it on Escape; the design's
+//  script (assets/js/views/win95.js) adds outside clicks, arrow keys,
+//  the task buttons (.w95-tasks) and the clock (.w95-clock).
+// ════════════════════════════════════════════════════════════════
+
+.dark-header-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  height: $taskbar-h;
+  background: $face;
+  // the taskbar's raised top edge
+  box-shadow: inset 0 1px $light, inset 0 2px $hi;
+  @include ui(14px);
+}
+
+.site-header,
+.site-header > .site-wrapper {
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-header .header-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto auto auto auto;
+  grid-template-rows: 100%;
+  align-items: center;
+  height: 100%;
+  padding: 4px 3px 2px;
+
+  > * { grid-row: 1; }
+
+  // The tray: one shallow well behind the Design button, the icons and
+  // the clock (columns 5-7). Without the script there's no clock.
+  &::after {
+    content: "";
+    grid-row: 1;
+    grid-column: 5 / 8;
+    align-self: stretch;
+    margin: 1px 0;
+    @include shallow;
+  }
+}
+
+// ── Start ───────────────────────────────────────────────
+.site-header .nav-toggle {
+  grid-column: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 28px;
+  margin-right: 4px;
+  padding: 0 9px 0 5px;
+  border: 0;
+  background: $face;
+  color: $ink;
+  cursor: pointer;
+  @include raised;
+
+  &::after {
+    content: "Start";
+    font-family: $pixel;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  &:focus-visible { @include focus-rect(-4px); }
+  &[aria-expanded="true"] {
+    @include pressed;
+    padding: 1px 8px 0 6px;
+  }
+}
+
+// the four-colour flag, where the hamburger's bars were
+.nav-toggle-bars {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: glyph("flag") center / 20px 20px no-repeat;
+  span { display: none; }
+}
+
+// ── The Start menu ──────────────────────────────────────
+.site-header .nav-links {
+  position: absolute;
+  left: 2px;
+  bottom: calc(100% - 2px);
+  z-index: 1100;
+  display: none;
+  flex-direction: column;
+  min-width: 236px;
+  // the banner strip: the site's name, running up the left edge
+  padding: 3px 3px 3px 33px;
+  background:
+    glyph("banner") left 3px bottom 3px / 28px 320px no-repeat,
+    linear-gradient($shadow, $shadow) 3px 3px / 28px calc(100% - 6px) no-repeat,
+    $face;
+  @include raised-window;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 42px;
+    padding: 4px 22px 4px 6px;
+    color: $ink;
+    text-decoration: none;
+    font-size: 15px;
+    line-height: 1.2;
+    white-space: nowrap;
+
+    &::before {
+      content: "";
+      flex: none;
+      width: 32px;
+      height: 32px;
+      @include ico("doc", 32px);
+    }
+    &:hover,
+    &:focus-visible {
+      background: $navy;
+      color: $hi;
+      outline: none;
+    }
+    &[aria-current] { font-weight: 700; }
+  }
+
+  a[href$="/about/"]::before       { background-image: icon("user"); }
+  a[href$="/archive/"]::before     { background-image: icon("folder"); }
+  a[href$="/explain/"]::before     { background-image: icon("help"); }
+  a[href$="/games/"]::before       { background-image: icon("joystick"); }
+  a[href$="/investments/"]::before { background-image: icon("chart"); }
+  a[href*="etsy.com"]::before      { background-image: icon("globe"); }
+
+  // a separator above the last item, as before "Shut Down..."
+  a:last-child {
+    position: relative;
+    margin-top: 7px;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      top: -5px;
+      height: 2px;
+      border-top: 1px solid $shadow;
+      border-bottom: 1px solid $hi;
+      pointer-events: none;
+    }
+  }
+  .nav-ext { margin-left: auto; padding-left: 10px; font-size: 13px; }
+}
+.site-header .header-inner.is-nav-open .nav-links { display: flex; }
+
+// ── Home: a quick-launch button on the taskbar ──────────
+// (from $icons-bp up it's the first icon on the desktop instead; see
+// _desktop.scss)
+.site-header .site-title {
+  grid-column: 2;
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 28px;
+  margin-right: 4px;
+  color: $ink;
+  text-decoration: none;
+  @include ico("computer", 16px);
+  &:hover { @include raised; }
+  &:active { @include pressed; }
+  &:focus-visible { @include focus-rect(-3px); }
+  .site-title-short { @include visually-hidden; }
+  .site-title-long { display: none; }
+}
+
+// ── Task buttons (the script's) ─────────────────────────
+.w95-tasks {
+  grid-column: 3;
+  display: flex;
+  gap: 3px;
+  min-width: 0;
+  height: 28px;
+  padding-left: 4px;
+  margin-right: 4px;
+  border-left: 1px solid $shadow;
+  box-shadow: inset 1px 0 $hi;
+  overflow: hidden;
+}
+
+.w95-task {
+  flex: 0 1 168px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 34px;
+  height: 28px;
+  padding: 0 8px 0 6px;
+  border: 0;
+  background: $face;
+  color: $ink;
+  @include ui(14px);
+  text-align: left;
+  cursor: pointer;
+  @include raised;
+
+  .w95-task-ico {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    @include ico("doc", 16px);
+  }
+  .w95-task-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .w95-task-state { @include visually-hidden; }
+
+  &:focus-visible { @include focus-rect(-4px); }
+  // the active window's button stays pushed in, on a dithered face
+  &.is-active {
+    @include pressed;
+    font-weight: 700;
+    background-color: $face;
+    background-image: conic-gradient(#fff 25%, transparent 0 50%, #fff 0 75%, transparent 0);
+    background-size: 2px 2px;
+    padding-top: 1px;
+  }
+  // hidden windows: the title in italics, so you can see what's tucked away
+  &.is-hidden .w95-task-text { font-style: italic; }
+}
+
+// ── "Continue game" (the resume slot) ───────────────────
+.site-header .resume-slot {
+  grid-column: 4;
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-right: 4px;
+  &:empty { display: none; }
+}
+.site-header .adv-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 230px;
+  height: 28px;
+  padding: 0 8px 0 6px;
+  border: 0;
+  background: $face;
+  color: $ink;
+  @include ui(14px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  @include raised;
+  &::before {
+    content: "";
+    flex: none;
+    width: 16px;
+    height: 16px;
+    @include ico("joystick", 16px);
+  }
+  &:active, &[aria-expanded="true"] { @include pressed; }
+  &:focus-visible { @include focus-rect(-4px); }
+  &[hidden] { display: none; }
+  .resume-caret { font-size: 0; }
+  .resume-caret::after {
+    content: "";
+    display: inline-block;
+    width: 7px;
+    height: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+    background: glyph("up") center / 7px 4px no-repeat;
+  }
+}
+.site-header .resume-dropdown { position: relative; }
+.site-header .resume-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 3px);
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  min-width: 230px;
+  padding: 3px;
+  background: $face;
+  @include raised-window;
+  &[hidden] { display: none; }
+}
+.site-header .resume-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 10px 6px 28px;
+  border: 0;
+  background: transparent;
+  color: $ink;
+  @include ui(14px);
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  &:hover, &:focus-visible { background: $navy; color: $hi; outline: none; }
+  .resume-item-detail { opacity: 0.85; }
+}
+
+// ── The tray ────────────────────────────────────────────
+.site-header .view-picker {
+  grid-column: 5;
+  position: relative;
+  z-index: 1;
+  padding-left: 3px;
+}
+
+.site-header .social-icons {
+  grid-column: 6;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  padding: 0 2px;
+
+  .social-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: #000;
+    svg { width: 16px; height: 16px; fill: currentColor; }
+    &:hover { @include raised; }
+    &:focus-visible { @include focus-rect(-2px); }
+    // a little colour, in the old sixteen
+    &[href*="facebook"] { color: $navy; }
+    &[href*="linkedin"] { color: #0000a8; }
+    &[href*="youtube"]  { color: #c00000; }
+    &[href*="support"]  { color: #c00000; }
+  }
+}
+
+.w95-clock {
+  grid-column: 7;
+  position: relative;
+  z-index: 1;
+  padding: 0 10px 0 8px;
+  @include ui(14px);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  cursor: default;
+}
+
+.site-header .theme-toggle { display: none; }
+
+// ── Phones ──────────────────────────────────────────────
+@media (max-width: 760px) {
+  .site-header .social-icons { display: none; }
+  .site-header .header-inner::after { grid-column: 5 / 8; }
+  // only the windows you've tucked away get a button here
+  .w95-task:not(.is-hidden) { display: none; }
+  .w95-task { flex-basis: 120px; }
+}
+@media (max-width: 420px) {
+  .w95-task { min-width: 30px; padding: 0 6px; }
+  .w95-task .w95-task-text { display: none; }
+  .w95-clock { padding: 0 6px; }
+}

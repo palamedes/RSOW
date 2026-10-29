@@ -1,0 +1,266 @@
+@use "sass:map";
+@use "icons";
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the kit: the system palette, the type, and the 3D
+//  bevels every control is built from. Nothing here prints CSS on its
+//  own; the partials @use it.
+//
+//  The icons and glyphs in _icons.scss are generated pixel art (16x16 in
+//  the Windows palette) from make-icons.py in this folder, which turns
+//  rows of letters into an SVG of one path per colour: edit the rows
+//  there and rerun it (python3 _sass/views/win95/make-icons.py).
+// ════════════════════════════════════════════════════════════════
+
+// ── The system colours ──────────────────────────────────
+$desktop:   #008080;   // the teal desktop
+$face:      #c0c0c0;   // button face, window body
+$light:     #dfdfdf;   // inner highlight
+$hi:        #ffffff;   // outer highlight
+$shadow:    #808080;   // inner shadow
+$dark:      #0a0a0a;   // outer shadow
+$navy:      #000080;   // active title bar, selection
+$title-to:  #1084d0;   // the title bar's gradient end (Windows 98's)
+$idle-from: #636363;   // inactive title bar (darker than 95's #808080
+$idle-to:   #767676;   //   so its white title passes AA)
+$title-deep: #0b4f9a;  // a darker gradient end, for small white text
+$tip:       #ffffe1;   // tooltip yellow
+$ink:       #000000;
+$muted:     #3b3b3b;   // secondary text on silver (6.5:1)
+$muted-w:   #555555;   // secondary text on white (7.5:1)
+$link:      #0000ee;   // a 1995 hyperlink
+$visited:   #551a8b;
+
+// ── Type ────────────────────────────────────────────────
+// The chrome: the Windows 95 UI face where there is one (Tahoma ships
+// with Windows and macOS), else a plain grotesque. Titles in a pixel face.
+$ui: Tahoma, "Microsoft Sans Serif", "MS Sans Serif", "Segoe UI", "Liberation Sans", Arial, Helvetica, sans-serif;
+$pixel: "Pixelify Sans", $ui;
+// WordPad's default document font
+$serif: "Times New Roman", Times, "Liberation Serif", Tinos, "Noto Serif", serif;
+$mono: "Courier New", Courier, "Liberation Mono", monospace;
+// the blue screen's text-mode font
+$dos: "VT323", "Lucida Console", "Courier New", monospace;
+
+// ── Widths ──────────────────────────────────────────────
+$desk-w: 1080px;       // the widest a window gets on the desktop
+$taskbar-h: 34px;      // the taskbar (Windows 95's was 28px at 640x480)
+$drag-bp: 1100px;      // windows can be dragged from here up
+$icons-bp: 1300px;     // desktop icons down the left edge from here up
+
+// Each icon and glyph is written once, as a custom property on :root
+// (_base.scss); these hand back a reference to it.
+@function icon($name) {
+  @if not map.has-key(icons.$icons, $name) { @error "No icon #{$name}"; }
+  @return var(--w95-i-#{$name});
+}
+@function glyph($name) {
+  @if not map.has-key(icons.$glyphs, $name) { @error "No glyph #{$name}"; }
+  @return var(--w95-g-#{$name});
+}
+
+// ── Bevels (box-shadow, so they never change a box's size) ──
+// A window's outer frame: light top-left, dark bottom-right.
+@mixin raised-window {
+  box-shadow: inset -1px -1px $dark, inset 1px 1px $light, inset -2px -2px $shadow, inset 2px 2px $hi;
+}
+// A push button at rest.
+@mixin raised {
+  box-shadow: inset -1px -1px $dark, inset 1px 1px $hi, inset -2px -2px $shadow, inset 2px 2px $light;
+}
+// A push button held down (or a toggle that's on).
+@mixin pressed {
+  box-shadow: inset -1px -1px $hi, inset 1px 1px $dark, inset -2px -2px $light, inset 2px 2px $shadow;
+}
+// A text field, a list box, a document: sunk into the face.
+@mixin sunken {
+  box-shadow: inset -1px -1px $hi, inset 1px 1px $shadow, inset -2px -2px $light, inset 2px 2px $dark;
+}
+// A status bar panel: a shallow single-pixel dip.
+@mixin shallow {
+  box-shadow: inset -1px -1px $hi, inset 1px 1px $shadow;
+}
+// A group box ("fieldset"): an etched line.
+@mixin etched {
+  box-shadow: inset -1px -1px $hi, inset -2px -2px $shadow, inset 1px 1px $shadow, inset 2px 2px $hi;
+}
+
+// The dotted focus rectangle, drawn inside the control.
+@mixin focus-rect($offset: -4px) {
+  outline: 1px dotted $ink;
+  outline-offset: $offset;
+}
+
+// ── Controls ────────────────────────────────────────────
+@mixin ui($size: 14px, $weight: 400) {
+  font-family: $ui;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+// A push button.
+@mixin button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 4px 14px;
+  border: 0;
+  border-radius: 0;
+  background: $face;
+  color: $ink;
+  @include ui(14px);
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  @include raised;
+  &:hover { color: $ink; text-decoration: none; }
+  &:active { @include pressed; padding: 5px 13px 3px 15px; }
+  &:focus-visible { @include focus-rect; }
+}
+
+// The default button of a dialog: an extra black ring.
+@mixin button-default {
+  box-shadow: inset -1px -1px $ink, inset 1px 1px $ink, inset -2px -2px $dark, inset 2px 2px $hi, inset -3px -3px $shadow, inset 3px 3px $light;
+  &:active { box-shadow: inset 0 0 0 1px $ink, inset -2px -2px $shadow, inset 2px 2px $shadow; }
+}
+
+// A sunken white text field.
+@mixin field {
+  background: $hi;
+  color: $ink;
+  border: 0;
+  border-radius: 0;
+  @include sunken;
+  @include ui(14px);
+}
+
+// A small icon before some text.
+@mixin ico($name, $size: 16px) {
+  background: icon($name) center / $size $size no-repeat;
+  image-rendering: pixelated;
+}
+
+// ── Window chrome ───────────────────────────────────────
+// The frame of a window (the element itself).
+@mixin window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 3px;
+  background: $face;
+  color: $ink;
+  @include raised-window;
+}
+
+// The title bar: the script's real one (.w95-titlebar) and the
+// no-script stand-in (the window's ::before) share this.
+@mixin titlebar {
+  order: -10;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 26px;
+  margin: 0 0 2px;
+  padding: 0 3px 0 4px;
+  background: linear-gradient(90deg, $navy, $title-to);
+  color: $hi;
+  font-family: $pixel;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+
+// The stand-in title bar for a window the script hasn't (or can't)
+// enhance: the title as text, the icon and the three buttons as pictures.
+@mixin fallback-titlebar($title, $icon: "doc") {
+  &::before {
+    content: $title;
+    @include titlebar;
+    padding-left: 26px;
+    padding-right: 70px;
+    text-overflow: ellipsis;
+    background:
+      icon($icon) 5px center / 16px 16px no-repeat,
+      glyph("titlebuttons") right 3px center / 62px 18px no-repeat,
+      linear-gradient(90deg, $navy, $title-to);
+  }
+}
+
+// A menu bar that's only for show (File Edit View Help).
+@mixin menubar($items) {
+  content: $items;
+  display: block;
+  flex: none;
+  height: 24px;
+  padding: 0 6px;
+  @include ui(14px);
+  line-height: 24px;
+  white-space: pre;
+  overflow: hidden;
+  color: $ink;
+}
+
+// A status bar along the bottom of a window.
+@mixin statusbar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  margin-top: 2px;
+  padding: 2px 8px;
+  @include ui(13px);
+  color: $ink;
+  @include shallow;
+}
+
+// Win95 scrollbars for anything that scrolls inside a window.
+@mixin scrollbars {
+  // Chrome ignores the ::-webkit-scrollbar rules once scrollbar-color is
+  // set, so the standard property is only for browsers without them.
+  @supports not selector(::-webkit-scrollbar) { scrollbar-color: $shadow $face; }
+  &::-webkit-scrollbar { width: 17px; height: 17px; background: #e8e8e8; }
+  &::-webkit-scrollbar-track {
+    background-color: $face;
+    background-image: conic-gradient(#fff 25%, transparent 0 50%, #fff 0 75%, transparent 0);
+    background-size: 2px 2px;
+  }
+  &::-webkit-scrollbar-thumb { background: $face; @include raised; }
+  &::-webkit-scrollbar-corner { background: $face; }
+  &::-webkit-scrollbar-button:single-button {
+    display: block;
+    width: 17px;
+    height: 17px;
+    background-color: $face;
+    background-repeat: no-repeat;
+    background-position: center;
+    @include raised;
+    &:active { @include pressed; }
+  }
+  &::-webkit-scrollbar-button:single-button:vertical:decrement { background-image: glyph("up"); background-size: 7px 4px; }
+  &::-webkit-scrollbar-button:single-button:vertical:increment { background-image: glyph("down"); background-size: 7px 4px; }
+  &::-webkit-scrollbar-button:single-button:horizontal:decrement { background-image: glyph("left"); background-size: 4px 7px; }
+  &::-webkit-scrollbar-button:single-button:horizontal:increment { background-image: glyph("right"); background-size: 4px 7px; }
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

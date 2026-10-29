@@ -1,0 +1,361 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the footer: the photo strip in Paint, the About blurb
+//  in a little window beside it, the small print on the desktop, and
+//  (wide screens) the footer's Sections list as desktop icons.
+// ════════════════════════════════════════════════════════════════
+
+.site-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  width: 100%;
+  max-width: $desk-w + 48px;
+  margin: 0 auto;
+  padding: 24px 24px 18px;
+
+  .footer-main,
+  .footer-main > .site-wrapper,
+  .footer-bottom > .site-wrapper { display: contents; }
+  .colophon-note,
+  .footer-stamp { display: none; }
+
+  @media (max-width: 900px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { padding: 14px 8px 12px; }
+}
+
+// ── Photos - Paint ──────────────────────────────────────
+// A grid: title bar / menu bar / tool box + canvas / colour box. The
+// head (a view-extra) lends its ::before (the menu bar) and ::after (the
+// tool box); its heading stays for screen readers.
+.photo-desk {
+  grid-column: 1;
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr auto;
+
+  > .w95-titlebar,
+  &::before { grid-column: 1 / -1; grid-row: 1; }
+
+  .photo-desk-head {
+    display: contents;
+    max-width: none;
+    h2 { @include visually-hidden; }
+    p { display: none; }
+    &::before {
+      @include menubar("File   Edit   View   Image   Options   Help" / "");
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+    &::after {
+      content: "";
+      grid-column: 1;
+      grid-row: 3;
+      background: glyph("toolbox") 4px 4px / 52px 208px no-repeat;
+    }
+  }
+
+  // the colour box along the bottom
+  &::after {
+    content: "";
+    grid-column: 1 / -1;
+    grid-row: 4;
+    height: 40px;
+    margin-top: 2px;
+    background: glyph("palette") 4px 3px / 300px 34px no-repeat;
+  }
+}
+
+.footer-photo-strip {
+  grid-column: 2;
+  grid-row: 3;
+  position: relative;
+  min-width: 0;
+  min-height: 220px;
+  overflow: hidden;
+  padding: 2px;
+  background: $shadow;
+  @include sunken;
+
+  .strip-track {
+    display: flex;
+    gap: 6px;
+    width: max-content;
+    margin: 12px 0 14px 10px;
+    padding: 6px;
+    background: $hi;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.35);
+    animation: w95-strip 180s linear infinite;
+  }
+  &:hover .strip-track,
+  &:focus-within .strip-track { animation-play-state: paused; }
+
+  img {
+    display: block;
+    width: auto;
+    height: 150px;
+    object-fit: cover;
+    cursor: pointer;
+    &:hover { outline: 1px dotted $ink; outline-offset: 2px; }
+  }
+  @media (max-width: 760px) {
+    min-height: 160px;
+    img { height: 110px; }
+  }
+}
+
+@keyframes w95-strip {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 3px)); }
+}
+
+// ── About Me ────────────────────────────────────────────
+.footer-about {
+  grid-column: 2;
+  @media (max-width: 900px) { grid-column: 1; }
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: 14px;
+  align-content: start;
+  padding-bottom: 14px;
+
+  > .w95-titlebar,
+  &::before { grid-column: 1 / -1; }
+
+  .footer-about-photo {
+    grid-column: 1;
+    padding: 10px 0 0 11px;
+  }
+  .footer-about-img {
+    display: block;
+    width: 84px;
+    height: 84px;
+    object-fit: cover;
+    padding: 2px;
+    background: $hi;
+    @include sunken;
+    cursor: pointer;
+  }
+  .footer-about-text {
+    grid-column: 2;
+    padding: 8px 12px 0 0;
+    h3 { @include visually-hidden; }
+    p {
+      margin: 0 0 12px;
+      @include ui(14px);
+      line-height: 1.5;
+    }
+  }
+  .footer-about-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+  }
+  .read-more { @include button; min-height: 28px; padding: 2px 12px; }
+  .footer-about-social {
+    display: flex;
+    gap: 2px;
+    .social-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 28px;
+      height: 28px;
+      background: $face;
+      color: $ink;
+      @include raised;
+      svg { width: 16px; height: 16px; fill: currentColor; }
+      &:active { @include pressed; }
+      &:focus-visible { @include focus-rect(-4px); }
+      &[href*="facebook"] { color: $navy; }
+      &[href*="linkedin"] { color: #0000a8; }
+      &[href*="youtube"], &[href*="support"] { color: #c00000; }
+    }
+  }
+}
+
+// ── The small print, on the desktop ─────────────────────
+.footer-bottom {
+  grid-column: 1 / -1;
+  @include ui(14px);
+  color: $hi;
+
+  .footer-bottom-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 22px;
+  }
+  .footer-copy { margin: 0 auto 0 0; }
+  .footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+  a { color: $hi; text-decoration: underline; &:hover { color: $tip; } &:focus-visible { outline-color: $hi; } }
+  .footer-feed {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    &::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      background: glyph("rss") center / 16px 16px no-repeat;
+    }
+  }
+  .back-to-top-ico { margin-left: 2px; font-size: 11px; }
+}
+
+// ── Desktop icons: the Sections list down the left ──────
+.colophon-sections { display: none !important; }
+
+@media (min-width: $icons-bp) and (min-height: 820px) {
+  .colophon-sections {
+    position: fixed;
+    top: 104px;
+    left: 14px;
+    z-index: 0;
+    display: block !important;
+    h3 { @include visually-hidden; }
+    ul { list-style: none; display: flex; flex-direction: column; margin: 0; font-size: 0; line-height: 0; }
+    li { display: contents; font-size: 0; line-height: 0; color: transparent; }
+    a {
+      margin-bottom: 6px;
+      @include ui(13px);
+      line-height: 1.2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      width: 84px;
+      padding: 2px;
+      color: $hi;
+      text-decoration: none;
+      text-align: center;
+      &::before {
+        content: "";
+        width: 32px;
+        height: 32px;
+        @include ico("doc", 32px);
+      }
+      &:focus-visible { outline: 1px dotted $hi; outline-offset: 0; background: $navy; }
+      &:hover { text-decoration: underline; }
+      .nav-ext { margin-left: 2px; }
+    }
+    a[href$="/about/"]::before       { background-image: icon("user"); }
+    a[href$="/archive/"]::before     { background-image: icon("folder"); }
+    a[href$="/topics/"]::before      { background-image: icon("notepad"); }
+    a[href$="/tags/"]::before        { background-image: icon("tag"); }
+    a[href$="/explain/"]::before     { background-image: icon("help"); }
+    a[href$="/games/"]::before       { background-image: icon("joystick"); }
+    a[href$="/investments/"]::before { background-image: icon("chart"); }
+    a[href*="etsy.com"]::before      { background-image: icon("globe"); }
+  }
+}
+
+// ── The image viewer (gallery lightbox) ─────────────────
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 12px ($taskbar-h + 12px);
+  background: rgba(0, 64, 64, 0.55);
+  &.active { display: flex; }
+
+  .gallery-modal-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: min(92vw, 1100px);
+    max-height: 100%;
+    padding: 3px;
+    background: $face;
+    @include raised-window;
+  }
+  .gallery-modal-header {
+    @include titlebar;
+    padding-left: 26px;
+    background: icon("picture") 5px center / 16px 16px no-repeat, linear-gradient(90deg, $navy, $title-to);
+  }
+  .gallery-modal-title {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font: inherit;
+    color: inherit;
+  }
+  .gallery-modal-card.no-title .gallery-modal-title::before { content: "Imaging"; }
+  .gallery-modal-title:empty { display: block; }
+  .gallery-modal-count { margin-left: auto; padding: 0 8px; font-family: $ui; font-weight: 400; font-size: 13px; }
+  .gallery-modal-close {
+    flex: none;
+    width: 20px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    font-size: 0;
+    background: $face glyph("close") center / 8px 7px no-repeat;
+    cursor: pointer;
+    @include raised;
+    &:active { @include pressed; }
+    &:focus-visible { outline: 1px dotted $ink; outline-offset: -4px; }
+  }
+  .gallery-modal-body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+    flex: 1 1 auto;
+    padding: 8px;
+    background: $shadow;
+    @include sunken;
+    overflow: auto;
+    @include scrollbars;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100vh - 170px);
+    object-fit: contain;
+    background: $hi;
+  }
+  .gallery-modal-nav {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: none;
+    width: 34px;
+    height: 34px;
+    margin-top: -17px;
+    padding: 0;
+    border: 0;
+    background: $face;
+    font-size: 0;
+    cursor: pointer;
+    @include raised;
+    &:active { @include pressed; }
+    &:focus-visible { @include focus-rect(-4px); }
+    &.prev { left: 12px; background: $face glyph("left") center / 6px 10px no-repeat; }
+    &.next { right: 12px; background: $face glyph("right") center / 6px 10px no-repeat; }
+  }
+  .gallery-modal-card.has-nav .gallery-modal-nav { display: block; }
+  .gallery-modal-footer {
+    max-height: 18vh;
+    overflow-y: auto;
+    margin-top: 2px;
+    padding: 6px 10px;
+    @include shallow;
+    @include ui(14px);
+    &[hidden] { display: none; }
+    p { margin: 0 0 4px; }
+  }
+}

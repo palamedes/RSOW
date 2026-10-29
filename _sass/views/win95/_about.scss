@@ -1,0 +1,293 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — /about/ as a desktop of windows: a properties sheet for
+//  Jason, the names as group boxes, the timeline as a tree, the hobbies,
+//  his own posts in Explorer, the photos in an image viewer, and the
+//  outro as a message box. Each section's kicker is its window's title.
+// ════════════════════════════════════════════════════════════════
+
+.abt {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media (max-width: 760px) { gap: 14px; }
+
+  .abt-wrap { min-width: 0; }
+  .abt-hero-bg { display: none; }
+}
+
+// ── Jason Ellis Properties ──────────────────────────────
+.abt-hero {
+  padding-bottom: 12px;
+
+  .abt-hero-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+    margin: 30px 9px 0;
+    padding: 20px;
+    @include raised-window;
+    &::before {
+      content: "General";
+      position: absolute;
+      left: 0;
+      top: -26px;
+      height: 28px;
+      padding: 4px 14px 0;
+      background: $face;
+      @include ui(14px);
+      box-shadow: inset 1px 1px $hi, inset 2px 2px $light, inset -1px 0 $dark, inset -2px 0 $shadow;
+    }
+    @media (max-width: 640px) { grid-template-columns: 1fr; margin: 30px 4px 0; padding: 14px; gap: 14px; }
+  }
+  .abt-portrait {
+    display: block;
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    padding: 2px;
+    background: $hi;
+    @include sunken;
+    @media (max-width: 640px) { width: 130px; height: 130px; }
+  }
+  .abt-eyebrow { margin: 0 0 4px; @include ui(13px); color: $muted; }
+  .abt-name {
+    margin: 0 0 10px;
+    font-family: $pixel;
+    font-size: clamp(30px, 3vw + 14px, 42px);
+    font-weight: 700;
+    line-height: 1.05;
+  }
+  .abt-lede { margin: 0 0 16px; @include ui(16px); line-height: 1.55; }
+  .abt-hero-cta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .abt-stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin: 12px 9px 0;
+    @media (max-width: 640px) { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 12px 4px 0; }
+  }
+  .abt-kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 6px;
+    @include shallow;
+    text-align: center;
+  }
+  .abt-kpi-val { @include ui(24px, 700); line-height: 1.15; color: $navy; }
+  .abt-kpi-sub { font-size: 0.6em; }
+  .abt-kpi-label { @include ui(13px); color: $muted; }
+}
+
+.abt-btn {
+  @include button;
+  &.abt-btn-primary { @include button-default; }
+}
+
+// ── The sections: a window each ─────────────────────────
+.abt-section,
+.abt-outro { padding-bottom: 14px; }
+
+.abt-section-head {
+  padding: 12px 14px 4px;
+  .abt-kicker { @include visually-hidden; }
+  h2 {
+    margin: 0 0 4px;
+    @include ui(19px, 700);
+  }
+  .abt-section-sub { margin: 0 0 12px; @include ui(15px); line-height: 1.5; color: $ink; }
+}
+
+// group boxes: an etched frame with its legend on the line
+@mixin groupbox {
+  position: relative;
+  padding: 22px 14px 14px;
+  @include etched;
+}
+@mixin legend {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  margin: 0;
+  padding: 0 5px;
+  background: $face;
+  @include ui(14px);
+  line-height: 18px;
+}
+
+// ── The many names ──
+.abt-names-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px 14px;
+  margin: 10px 14px 0;
+}
+.abt-name-card {
+  @include groupbox;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  h3 { margin: 0 0 6px; font-family: $pixel; font-size: 22px; font-weight: 700; }
+  p { margin: 0 0 10px; @include ui(14px); line-height: 1.5; }
+}
+.abt-name-role { @include legend; }
+// the big letter becomes the program's icon
+.abt-name-mark {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 8px;
+  background: $navy;
+  color: $hi;
+  font-family: $pixel;
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid $ink;
+  box-shadow: inset 1px 1px $title-to;
+}
+.abt-name-card-real .abt-name-mark { background: #808000; }
+.abt-name-link { @include button; margin-top: auto; }
+
+// ── The timeline: a tree ──
+.abt-timeline {
+  margin: 6px 14px 0;
+  padding: 12px 14px;
+  list-style: none;
+  background: $hi;
+  @include sunken;
+}
+.abt-tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 4px 18px;
+  padding: 0 0 18px 30px;
+  border-left: 1px dotted $shadow;
+  margin-left: 8px;
+  &:last-child { border-left-color: transparent; padding-bottom: 4px; }
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+.abt-tl-dot {
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  @include ico("folder-open", 16px);
+  background-color: $hi;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 16px;
+    top: 8px;
+    width: 12px;
+    border-top: 1px dotted $shadow;
+  }
+}
+.abt-tl-era { display: block; @include ui(13px, 700); color: $navy; }
+.abt-tl-body {
+  h3 { margin: 2px 0 4px; @include ui(16px, 700); }
+  p { margin: 0; @include ui(14px); line-height: 1.55; }
+}
+.abt-tl-photo {
+  width: 200px;
+  margin: 0;
+  img, .abt-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border: 1px solid $ink; cursor: pointer; }
+  figcaption { margin-top: 4px; @include ui(12px); color: $muted-w; text-align: center; }
+  @media (max-width: 640px) { width: 100%; max-width: 280px; }
+}
+
+// ── The maker ──
+.abt-maker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px 14px;
+  margin: 10px 14px 0;
+}
+.abt-craft-card {
+  @include groupbox;
+  h3 { @include legend; display: flex; align-items: center; gap: 6px; }
+  p { margin: 0 0 10px; @include ui(14px); line-height: 1.5; }
+}
+.abt-craft-ico { color: $navy; }
+.abt-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+}
+.abt-chip {
+  padding: 1px 7px;
+  @include ui(12px);
+  background: $face;
+  @include shallow;
+}
+
+// ── In my own words: Explorer icons ──
+.abt-writing-section {
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 22px 18px;
+    margin: 6px 14px 0;
+    padding: 18px 16px 22px;
+    background: $hi;
+    @include sunken;
+  }
+}
+.abt-writing-more {
+  margin: 10px 14px 0;
+  text-align: right;
+  a { @include button; }
+}
+
+// ── Snapshots: an image viewer ──
+.abt-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 6px 14px 0;
+  padding: 14px;
+  background: $shadow;
+  @include sunken;
+  img, .abt-gallery-img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border: 3px solid $hi;
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+}
+
+// ── The outro: a message box ────────────────────────────
+.abt-outro {
+  align-self: center;
+  width: 100%;
+  max-width: 760px;
+}
+.abt-outro-inner {
+  padding: 16px 20px 6px 74px;
+  background: icon("info") 20px 18px / 32px 32px no-repeat;
+  @media (max-width: 600px) { padding: 14px 14px 6px 60px; background-position: 14px 16px; }
+  .abt-kicker { @include visually-hidden; }
+  h2 { margin: 0 0 10px; @include ui(18px, 700); }
+  p { margin: 0 0 10px; @include ui(15px); line-height: 1.55; }
+  .abt-outro-note { color: $muted; font-style: italic; }
+}
+.abt-outro-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 16px 0 6px -54px;
+  @media (max-width: 600px) { margin-left: -46px; }
+}

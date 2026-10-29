@@ -68,3 +68,13 @@
   swatches: ["#ffe600", "#111111", "#d6121a", "#f3efe6"]
   schemes: false
   ready: true
+
+- key: win95
+  name: Windows 95
+  description: "The whole site as a 1995 desktop: teal, a Start menu, and windows you can minimize, maximize, close and drag."
+  stylesheet: /assets/css/views/win95.css
+  script: /assets/js/views/win95.js
+  fonts: "https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=VT323&display=swap"
+  swatches: ["#008080", "#c0c0c0", "#000080", "#ffffe1"]
+  schemes: false
+  ready: false

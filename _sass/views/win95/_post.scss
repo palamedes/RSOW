@@ -1,0 +1,587 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — a post is a document open in WordPad: the menu bar,
+//  the toolbar and format bar and the ruler (all for show), then the
+//  white page in Times New Roman, the comments in a group box under it
+//  and a status bar. The posts around it are an Explorer window.
+// ════════════════════════════════════════════════════════════════
+
+$measure: 648px;   // about 68 characters of 19px Times
+
+.post {
+  // ── The bars over the page ──
+  .post-hero {
+    display: flex;
+    flex-direction: column;
+
+    // menu bar
+    &::before {
+      @include menubar("File   Edit   View   Insert   Format   Help" / "");
+      order: -3;
+    }
+    // toolbar + format bar, then the ruler
+    &::after {
+      content: "";
+      order: -2;
+      height: 92px;
+      border-top: 1px solid $shadow;
+      box-shadow: inset 0 1px $hi;
+      background:
+        glyph("wp-bars") 2px 4px / 560px 56px no-repeat,
+        glyph("wp-ruler") left 2px bottom 6px / 1400px 24px repeat-x;
+    }
+  }
+  .post-hero-bg,
+  .post-hero-art { display: none; }
+
+  // ── The page: white, sunk into the window, from the hero to the tags ──
+  .post-hero-inner {
+    padding: 44px 32px 0;
+    background: $hi;
+    box-shadow: inset 1px 1px $shadow, inset 2px 2px $dark, inset -1px 0 $hi, inset -2px 0 $light;
+    @media (max-width: 760px) { padding: 26px 16px 0; }
+  }
+  .post-hero-text {
+    max-width: $measure;
+    margin: 0 auto;
+    font-family: $serif;
+    font-size: 19px;      // so its ch is the body's, and the columns line up
+  }
+  .post-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+  .post-article {
+    padding: 8px 32px 48px;
+    background: $hi;
+    box-shadow: inset 1px 0 $shadow, inset 2px 0 $dark, inset -1px -1px $hi, inset -2px -2px $light;
+    @media (max-width: 760px) { padding: 8px 16px 32px; }
+  }
+
+  // ── The heading block ──
+  .post-hero-cats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      @include ui(13px);
+      color: $ink;
+      text-decoration: none;
+      padding: 2px 8px 2px 4px;
+      background: $face;
+      @include raised;
+      &::before { content: ""; width: 16px; height: 16px; @include ico("folder", 16px); }
+      &:active { @include pressed; }
+      &:focus-visible { @include focus-rect(-4px); }
+    }
+  }
+
+  .post-hero-title {
+    margin: 0 0 12px;
+    font-family: $serif;
+    font-size: clamp(30px, 2.2vw + 18px, 44px);
+    font-weight: 700;
+    line-height: 1.12;
+    color: $ink;
+    text-wrap: balance;
+  }
+
+  .post-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid $shadow;
+    @include ui(14px);
+    color: $muted-w;
+    .post-hero-author { color: $ink; font-weight: 700; }
+    .post-hero-listen-note {
+      color: $link;
+      text-decoration: underline;
+      cursor: pointer;
+      &:focus-visible { outline: 1px dotted $ink; outline-offset: 2px; }
+      &.is-human { color: #804000; }
+    }
+  }
+
+  // The listen button and the AI Notes toggle: their own row of buttons
+  .post-hero-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 10px;
+    flex-basis: 100%;
+    margin-top: 10px;
+  }
+  .post-actions--hero { display: flex; margin: 0; }
+  .post-content > .post-actions { display: none; }
+
+  .post-listen-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .post-listen {
+    @include button;
+    gap: 8px;
+    min-height: 34px;
+    padding: 3px 14px 3px 8px;
+    text-align: left;
+    &:active { padding: 4px 13px 2px 9px; }
+    &.is-playing { @include pressed; }
+    &.is-error { color: #a00000; cursor: default; }
+  }
+  .post-listen-ico {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    @include ico("speaker", 16px);
+  }
+  .post-listen-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .post-listen-lead { font-weight: 700; font-size: 14px; }
+  .post-listen-sub { font-size: 12px; color: $muted; }
+  .post-listen-time {
+    @include ui(13px);
+    padding: 3px 8px;
+    background: #000;
+    color: #00ff00;
+    font-family: $mono;
+    font-variant-numeric: tabular-nums;
+    &[hidden] { display: none; }
+  }
+  .post-listen-time--human { color: #ffd800; }
+
+  // ── The body text ──
+  .post-content {
+    max-width: $measure;
+    margin: 0 auto;
+    padding-top: 24px;
+    font-family: $serif;
+    font-size: 19px;
+    line-height: 1.62;
+    color: #111;
+    font-variant-ligatures: common-ligatures;
+    overflow-wrap: break-word;
+
+    > :first-child { margin-top: 0; }
+    p, ul, ol { margin: 0 0 1.05em; }
+    h2 {
+      margin: 1.8em 0 0.5em;
+      font-family: $serif;
+      font-size: 1.45em;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    h3 {
+      margin: 1.5em 0 0.4em;
+      font-family: $serif;
+      font-size: 1.2em;
+      font-weight: 700;
+      font-style: italic;
+    }
+    h4 { font-family: $serif; font-size: 1.05em; }
+    a {
+      color: $link;
+      text-decoration: underline;
+      &:visited { color: $visited; }
+      &:focus-visible { outline: 1px dotted $ink; outline-offset: 1px; background: $navy; color: $hi; }
+    }
+    strong, b { font-weight: 700; color: #000; }
+    blockquote {
+      margin: 1.3em 0;
+      padding: 0.1em 0 0.1em 1.1em;
+      border-left: 3px solid $navy;
+      color: #222;
+      font-style: italic;
+      p:last-child { margin-bottom: 0; }
+    }
+    hr { margin: 2em auto; width: 40%; }
+    table {
+      width: 100%;
+      margin: 1.4em 0;
+      font-family: $ui;
+      font-size: 15px;
+      th, td { padding: 5px 8px; border: 1px solid $shadow; text-align: left; }
+      th { background: $face; font-weight: 700; }
+    }
+    pre { font-size: 15px; }
+    .ai-said { color: $navy; }
+  }
+
+  // The lead image: a picture pasted into the document, floated right.
+  .post-body-img {
+    float: right;
+    clear: right;
+    width: 48%;
+    max-width: 48%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    margin: 0.3rem 0 1rem 1.4rem;
+    border: 1px solid $ink;
+    cursor: pointer;
+    @media (max-width: 600px) { float: none; width: 100%; max-width: none; margin: 0 0 1.1rem; }
+  }
+  .post-body-figure {
+    float: right;
+    clear: right;
+    width: 48%;
+    margin: 0.3rem 0 1rem 1.4rem;
+    .post-body-img { float: none; width: 100%; max-width: none; margin: 0; }
+    @media (max-width: 600px) { float: none; width: 100%; margin: 0 0 1.1rem; }
+  }
+  .post-body-cap,
+  .post-figure-cap {
+    margin-top: 6px;
+    @include ui(13px);
+    line-height: 1.4;
+    color: $muted-w;
+    text-align: center;
+  }
+  .post-figure {
+    clear: both;
+    margin: 1.6rem auto;
+    .post-figure-img { display: block; width: 100%; height: auto; border: 1px solid $ink; }
+  }
+  .post-figure--right,
+  .post-figure--left {
+    width: 45%;
+    margin-top: 0.3rem;
+    margin-bottom: 1rem;
+    @media (max-width: 600px) { float: none; width: 100%; margin: 1.2rem 0; }
+  }
+  .post-figure--right { float: right; clear: right; margin-left: 1.4rem; }
+  .post-figure--left { float: left; clear: left; margin-right: 1.4rem; }
+  .post-photo {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: auto;
+    margin: 1.6rem 0;
+    border: 1px solid $ink;
+  }
+
+  // ── Photo sets (the cruise post) ──
+  .cruise-set { clear: both; margin: 1.4rem 0 1.6rem; }
+  .cruise-setcap, .cruise-setlabel {
+    margin: 1.2rem 0 0.5rem;
+    @include ui(14px, 700);
+    a { color: $link; }
+  }
+  .cruise-setcap::before, .cruise-setlabel::before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    vertical-align: -3px;
+    @include ico("folder-open", 16px);
+  }
+  .cruise-note { margin: -0.2rem 0 0.5rem; @include ui(13px); font-style: italic; color: $muted-w; }
+  .cruise-nopics { font-weight: 400; font-style: italic; color: $muted-w; }
+  .cruise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 6px;
+    padding: 6px;
+    background: $face;
+    @include sunken;
+  }
+  .cruise-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid $shadow;
+    &:hover { outline: 1px dotted $ink; outline-offset: 1px; }
+  }
+
+  // ── Tags: small buttons ──
+  .post-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: $measure;
+    margin: 2.2rem auto 0;
+    padding-top: 1rem;
+    border-top: 1px solid $shadow;
+    clear: both;
+  }
+  .post-tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .post-tags-label {
+    min-width: 3.4rem;
+    @include ui(13px, 700);
+    &::after { content: ":"; }
+  }
+  .post-tags a {
+    @include button;
+    min-height: 24px;
+    padding: 1px 9px;
+    font-size: 13px;
+    &:active { padding: 2px 8px 0 10px; }
+  }
+  .post-tags .post-tags-all {
+    min-height: 0;
+    padding: 0 4px;
+    background: none;
+    box-shadow: none;
+    color: $link;
+    text-decoration: underline;
+    &:active { padding: 0 4px; }
+  }
+
+  // ── Comments: a group box under the page ──
+  .post-comments {
+    position: relative;
+    margin: 22px 6px 6px;
+    padding: 22px 14px 14px;
+    @include etched;
+    &::before {
+      content: "Comments";
+      position: absolute;
+      top: -9px;
+      left: 10px;
+      padding: 0 4px;
+      background: $face;
+      @include ui(14px);
+    }
+    iframe { background: $hi; }
+  }
+
+  // ── Legacy comments: the old blog's thread, as a chat ──
+  .legacy-comments {
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid $shadow;
+    font-family: $ui;
+  }
+  .lc-heading { margin: 0 0 0.2rem; font-family: $ui; font-size: 18px; font-weight: 700; }
+  .lc-note { margin: 0 0 1.2rem; font-size: 14px; color: $muted-w; }
+  .lc-thread { display: flex; flex-direction: column; gap: 0.85rem; }
+  .lc-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    &.them { align-self: flex-start; align-items: flex-start; }
+    &.me { align-self: flex-end; align-items: flex-end; }
+  }
+  .lc-meta { margin: 0 0.3rem 0.2rem; font-size: 12px; color: $muted-w; .lc-name { font-weight: 700; color: $ink; } }
+  .lc-bubble {
+    padding: 0.5rem 0.75rem;
+    font-size: 15px;
+    line-height: 1.45;
+    border: 1px solid $ink;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.25);
+    p { margin: 0 0 0.45rem; } p:last-child { margin-bottom: 0; }
+  }
+  .them .lc-bubble { background: $tip; }
+  .me .lc-bubble { background: $navy; color: $hi; a { color: $hi; } }
+
+  // ── The AI Slop-o-Vision band and the emissions table keep their own
+  //    dark looks; just square them off and fit them to the page. ──
+  .slop-band,
+  .post-content .emit-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.2rem 0;
+    padding: 1.8rem 1.6rem 2rem;
+    color: #e9edf6;
+    background: linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #1a1030 100%);
+    border: 2px solid;
+    border-color: $shadow $hi $hi $shadow;
+    font-family: $ui;
+    > * { position: relative; z-index: 1; }
+  }
+  .slop-eyebrow, .post-content .emit-eyebrow {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #9fb4e6;
+  }
+  .slop-title { margin: 0.6rem 0 0.35rem; font-family: $ui; font-size: 1.5rem; font-weight: 700; color: #fff; }
+  .slop-sub { margin: 0 0 1.2rem; font-size: 15px; line-height: 1.5; color: #aeb9cf; }
+  .slop-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.6rem;
+    @media (max-width: 720px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 420px) { grid-template-columns: 1fr; }
+  }
+  .slop-voice {
+    --v: #4a9aff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.7rem 0.6rem;
+    font: inherit;
+    color: $ink;
+    text-align: center;
+    background: $face;
+    border: 0;
+    cursor: pointer;
+    @include raised;
+    &:focus-visible { @include focus-rect(-4px); }
+    &.is-playing { @include pressed; }
+  }
+  .sv-name { font-size: 14px; font-weight: 700; color: $ink; }
+  .sv-row { display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+  .sv-style { font-size: 12px; color: $muted; }
+  .sv-eq {
+    display: inline-flex; align-items: flex-end; gap: 2px; height: 16px; opacity: 0.4;
+    i { display: block; width: 3px; height: 4px; background: $navy; }
+  }
+  .slop-voice.is-playing .sv-eq {
+    opacity: 1;
+    i { animation: w95-eq 0.7s steps(4) infinite; }
+    i:nth-child(2) { animation-delay: 0.15s; }
+    i:nth-child(3) { animation-delay: 0.3s; }
+    i:nth-child(4) { animation-delay: 0.45s; }
+  }
+  .sv-ctrl {
+    width: 22px; height: 22px;
+    display: grid; place-items: center;
+    background: $face;
+    @include raised;
+    &::before {
+      content: "";
+      border-style: solid;
+      border-width: 5px 0 5px 8px;
+      border-color: transparent transparent transparent $ink;
+      margin-left: 2px;
+    }
+  }
+  .slop-voice.is-playing .sv-ctrl::before {
+    width: 8px; height: 10px; margin: 0; border: 0;
+    background: linear-gradient($ink, $ink) left / 3px 100% no-repeat, linear-gradient($ink, $ink) right / 3px 100% no-repeat;
+  }
+  .slop-now { margin-top: 1rem; min-height: 1.2em; font-size: 14px; font-weight: 700; color: #cbd6ee; }
+  .slop-fineprint { margin: 1rem 0 0; padding-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.15); font-size: 12px; font-style: italic; color: #a3acc0; }
+
+  .post-content .emit-scroll { overflow-x: auto; @include scrollbars; }
+  .post-content .emit-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    th, td { border: 0; background: none; }
+    thead th {
+      padding: 0 0.6rem 0.6rem;
+      text-align: right;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8fa3cc;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; }
+    tbody th, tbody td { padding: 0.6rem; text-align: right; border-bottom: 1px solid rgba(255, 255, 255, 0.08); white-space: nowrap; }
+    tbody th { text-align: left; color: #fff; }
+    tbody td { color: #c6d1e8; }
+    .emit-key { color: #eaf1ff; font-weight: 700; }
+    .emit-flag { background: rgba(240, 196, 64, 0.2); box-shadow: inset 0 0 0 1px rgba(240, 196, 64, 0.45); color: #ffe9a6; }
+    .emit-standout th, .emit-standout td { background: rgba(226, 59, 59, 0.14); }
+    .emit-standout th { color: #ffd7d7; }
+    .emit-standout .emit-key { color: #ff9f9f; }
+  }
+  .post-content .emit-source { display: block; margin-top: 0.9rem; font-size: 12px; font-style: italic; color: #a3acc0; }
+}
+
+@keyframes w95-eq {
+  0%, 100% { height: 4px; }
+  50% { height: 15px; }
+}
+
+// the status bar
+.post::after {
+  content: "For Help, press F1";
+  order: 10;
+  @include statusbar;
+}
+
+// ── Phones: the menu bar stays, the toolbars go ─────────
+@media (max-width: 760px) {
+  .post .post-hero::after {
+    height: 30px;
+    background: glyph("wp-ruler") left 2px bottom 3px / 1400px 24px repeat-x;
+  }
+  .post .post-hero-title { font-size: 28px; }
+  .post .post-content { font-size: 18px; }
+}
+
+// ════════════════════════════════════════════════════════
+//  Recent Posts: an Explorer window under the document
+// ════════════════════════════════════════════════════════
+.recent-posts {
+  > .site-wrapper { display: contents; }
+
+  .recent-posts-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 4px 6px;
+    &::before {
+      @include menubar("File   Edit   View   Go   Help" / "");
+      flex: 1 1 auto;
+      padding-left: 2px;
+    }
+    h3 { @include visually-hidden; }
+    a { @include button; min-height: 26px; padding: 2px 12px; }
+  }
+
+  .recent-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 18px 16px;
+    padding: 16px;
+    background: $hi;
+    @include sunken;
+  }
+
+  .post-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: $ink;
+    text-decoration: none;
+
+    .card-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      padding: 3px;
+      background: $hi;
+      border: 1px solid $shadow;
+    }
+    .card-body { display: flex; flex-direction: column; align-items: center; padding-top: 6px; }
+    .card-title { order: 1; margin: 0; padding: 1px 3px; @include ui(14px, 700); line-height: 1.3; }
+    .card-date { order: 2; margin-top: 3px; @include ui(13px); color: $muted-w; }
+    .card-excerpt { display: none; }
+
+    &:hover .card-title,
+    &:focus-visible .card-title { background: $navy; color: $hi; }
+    &:focus-visible { outline: none; .card-title { outline: 1px dotted $hi; outline-offset: -1px; } }
+    &:hover .card-image,
+    &:focus-visible .card-image { border-color: $navy; background: $navy; }
+  }
+}
