@@ -267,7 +267,7 @@ shared structure with `--vp-font`, `--vp-ink`, `--vp-muted`, `--vp-bg`,
 `--vp-line`, `--vp-hover`, `--vp-accent`, `--vp-radius`, `--vp-shadow`.
 /views/ is `article.page > div.vg > (div.vg-intro, ul.vg-list > li.vg-item
 (.is-current) > a.vg-shot > img + div.vg-body > (.vg-current, h2.vg-name,
-.vg-swatches, p.vg-desc, p.vg-links > a.vg-try + a.vg-css))`.
+.vg-swatches, p.vg-desc, p.vg-links > a.vg-try))`.
 
 ## Text that differs from your branch
 

@@ -170,5 +170,4 @@
     @include hard-shadow(3px);
     &:hover { background: $ink; color: $hazard; @include hard-shadow(5px); }
   }
-  .vg-css { @include label(0.74rem); }
 }
