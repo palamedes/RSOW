@@ -2,7 +2,8 @@
 layout: default
 ---
 {%- assign featured_image = page.image | default: site.default_image -%}
-{%- assign words = content | number_of_words -%}
+{%- comment -%} a closing "Sources and notes" section (long reads) isn't reading time {%- endcomment -%}
+{%- assign words = content | split: 'id="sources-and-notes"' | first | number_of_words -%}
 {%- assign minutes = words | divided_by: 250 -%}
 {%- if minutes < 1 %}{%- assign minutes = 1 -%}{%- endif -%}
 {%- comment -%} `audio_narrator: human` marks a recording read by Jason himself

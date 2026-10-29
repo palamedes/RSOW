@@ -11,11 +11,12 @@
     .card-longform-time   "31 min read"
 
   The minutes are the post hero's own sum (_layouts/post.html: words / 250,
-  at least 1), so the card and the post it opens always agree.
+  at least 1, not counting a closing "Sources and notes" section), so the
+  card and the post it opens always agree.
 
   Params:
     post   the post (required)
 {%- endcomment -%}
-{%- assign lf_min = include.post.content | number_of_words | divided_by: 250 -%}
+{%- assign lf_min = include.post.content | split: 'id="sources-and-notes"' | first | number_of_words | divided_by: 250 -%}
 {%- if lf_min < 1 %}{% assign lf_min = 1 %}{% endif -%}
 <p class="card-longform"><span class="card-longform-label">Long Read</span><span class="card-longform-sep" aria-hidden="true"> · </span><span class="card-longform-time">{{ lf_min }} min read</span></p>
