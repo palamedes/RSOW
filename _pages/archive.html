@@ -90,10 +90,26 @@ full_width: true
   <div class="arc-wrap arc-grid-wrap">
     <p class="arc-meta" id="archive-count">Showing all {{ listed.size }} posts</p>
 
-    <div class="post-grid" id="archive-grid">
-      {% for post in listed %}
-      {% include post-card.html post=post %}
-      {% endfor %}
+    {%- comment -%}
+      Grouped by year: .arc-year (data-year) holds the year's heading
+      (.arc-year-label, a view-extra) and its cards (.arc-year-list). In
+      Default both wrappers are display:contents, so the cards are still one
+      grid. The filter script finds every .post-card-wrap inside
+      #archive-grid and shows or hides it; syncYears() then hides a year
+      whose cards are all hidden (filtered out, or not loaded yet).
+    {%- endcomment %}
+    <div class="post-grid arc-list" id="archive-grid">
+      {%- assign by_year = listed | group_by_exp: "p", "p.date | date: '%Y'" %}
+      {%- for year in by_year %}
+      <div class="arc-year" data-year="{{ year.name }}">
+        <h2 class="view-extra arc-year-label" id="arc-year-{{ year.name }}"><span>{{ year.name }}</span></h2>
+        <div class="arc-year-list">
+          {%- for post in year.items %}
+          {% include post-card.html post=post variant="row" %}
+          {%- endfor %}
+        </div>
+      </div>
+      {%- endfor %}
     </div>
     {% include card-narration.html %}
 
@@ -123,13 +139,18 @@ full_width: true
   var toolbar = document.getElementById('arc-toolbar');
   var gridWrap = grid.parentElement;
 
+  var years = Array.prototype.slice.call(grid.querySelectorAll('.arc-year'));
   var total = cards.length;
   // Each filter is a list of checked values; empty means no restriction.
   // Within a list any value may match; across lists everything must.
   var activeTopics = [];
   var activeTags = [];
-  var batchSize = 8;
-  var initialLoad = 16;
+  // How many cards show at first and per scroll. A design sets its own with
+  // --arc-initial / --arc-batch on #arc (a list of one-line rows wants more
+  // than a grid of photo cards); these are Default's.
+  var arcStyle = getComputedStyle(root);
+  var initialLoad = parseInt(arcStyle.getPropertyValue('--arc-initial'), 10) || 16;
+  var batchSize = parseInt(arcStyle.getPropertyValue('--arc-batch'), 10) || 8;
   var visibleCount = 0;
 
   function anyIn(have, want){
@@ -161,12 +182,21 @@ full_width: true
     grid.style.display = shown === 0 ? 'none' : '';
   }
 
+  // A year group shows only while at least one of its cards does. Inline
+  // style, so it wins over whatever display a design gives .arc-year.
+  function syncYears(){
+    var shown = {};
+    cards.forEach(function(c){ if(c.style.display !== 'none') shown[c.dataset.year] = true; });
+    years.forEach(function(y){ y.style.display = shown[y.dataset.year] ? '' : 'none'; });
+  }
+
   function render(count){
     var filtered = getFiltered();
     cards.forEach(function(c){ c.style.display = 'none'; });
     visibleCount = Math.min(count, filtered.length);
     for(var i = 0; i < visibleCount; i++){ filtered[i].style.display = ''; }
     updateMeta(filtered.length);
+    syncYears();
   }
 
   function loadMore(){
@@ -175,6 +205,7 @@ full_width: true
     var next = Math.min(visibleCount + batchSize, filtered.length);
     for(var i = visibleCount; i < next; i++){ filtered[i].style.display = ''; }
     visibleCount = next;
+    syncYears();
   }
 
   // when filtering/clearing while scrolled into the grid, pull the view back

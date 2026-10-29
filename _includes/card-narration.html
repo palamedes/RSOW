@@ -19,8 +19,22 @@
     var wrap = btn.closest('.post-card-wrap');
     if (!wrap) return;
     tip.textContent = text;
+    tip.style.left = '';
     wrap.appendChild(tip);
-    tip.style.top = Math.max(4, btn.offsetTop - tip.offsetHeight - 7) + 'px';
+    // A design can centre the tip over the chip with `--tip-place: center`
+    // on .card-tip: it is kept inside the card so it can't push the page
+    // sideways on a phone, and --tip-arrow keeps the arrow on the chip.
+    // Otherwise it pins to the card's right edge, on the chip's row.
+    if (getComputedStyle(tip).getPropertyValue('--tip-place').trim() === 'center') {
+      var wr = wrap.getBoundingClientRect(), br = btn.getBoundingClientRect();
+      var w = tip.offsetWidth, mid = br.left - wr.left + br.width / 2;
+      var left = Math.min(Math.max(mid - w / 2, 0), Math.max(0, wr.width - w));
+      tip.style.left = left + 'px';
+      tip.style.setProperty('--tip-arrow', Math.round(mid - left) + 'px');
+      tip.style.top = (br.top - wr.top - tip.offsetHeight - 7) + 'px';
+    } else {
+      tip.style.top = Math.max(4, btn.offsetTop - tip.offsetHeight - 7) + 'px';
+    }
     tip.classList.add('is-visible');
   }
   function hide() {

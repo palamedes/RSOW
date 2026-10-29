@@ -43,9 +43,11 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     var dataEl = document.getElementById('ai-notes-data');
-    var btn = document.querySelector('.post-ainotes-btn');
+    // Every design gets two toggles in the markup (one in the post's hero,
+    // one at the top of the article) and shows one; drive them all.
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.post-ainotes-btn'));
     var content = document.querySelector('.post-content');
-    if (!dataEl || !btn || !content) return;
+    if (!dataEl || !btns.length || !content) return;
 
     var notes;
     try { notes = JSON.parse(dataEl.textContent); } catch (e) { return; }
@@ -111,16 +113,17 @@
       });
     }
 
-    var lead = btn.querySelector('.post-ainotes-lead');
-    var labelOff = lead ? lead.textContent : '';
-
     function setOn(next) {
       on = next;
       if (on && !built) { build(); built = true; }
       content.classList.toggle('ai-notes-on', on);
-      btn.classList.toggle('is-on', on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (lead) lead.textContent = on ? 'Hide AI Notes' : labelOff;
+      btns.forEach(function (btn) {
+        var lead = btn.querySelector('.post-ainotes-lead');
+        if (lead && !lead.hasAttribute('data-label-off')) lead.setAttribute('data-label-off', lead.textContent);
+        btn.classList.toggle('is-on', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (lead) lead.textContent = on ? 'Hide AI Notes' : lead.getAttribute('data-label-off');
+      });
     }
 
     // A note marked `always: true` (like a crisis line on a post about
@@ -130,6 +133,8 @@
 
     // Notes always start closed on each page load — the reader must click to
     // open them; the state deliberately does not persist across pages.
-    btn.addEventListener('click', function () { setOn(!on); });
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () { setOn(!on); });
+    });
   });
 })();
