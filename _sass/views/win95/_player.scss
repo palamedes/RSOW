@@ -202,3 +202,7 @@ body.has-rsow-player.has-rsow-wave { padding-bottom: $taskbar-h + $player-h-wave
     &:active { background-position: calc(50% + 1px) calc(50% + 1px); }
   }
 }
+
+// a maximized window stops above Media Player too
+body.has-rsow-player .w95-win.is-max { bottom: $taskbar-h + $player-h !important; }
+body.has-rsow-player.has-rsow-wave .w95-win.is-max { bottom: $taskbar-h + $player-h-wave !important; }

@@ -77,4 +77,4 @@
   fonts: "https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=VT323&display=swap"
   swatches: ["#008080", "#c0c0c0", "#000080", "#ffffe1"]
   schemes: false
-  ready: false
+  ready: true

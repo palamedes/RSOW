@@ -48,6 +48,7 @@
     [".home-hero", "About Jason Ellis", "user"],
     [".home-body", heading(".recent-posts-heading", "Most Recent Blog Posts"), "folder-open"],
     [".post", heading(".post-hero-title", "Document", " - WordPad"), "wordpad"],
+    [".post-comments", "Comments", "mail"],
     [".recent-posts", heading("h3", "Recent Posts"), "folder-open"],
     [".arc:not(.tc)", "Exploring - Blog", "folder-open"],
     [".arc.tc", function (el) { return el.querySelector(".tc-cloud--tag") ? "Exploring - Tags" : "Exploring - Topics"; }, "folder-open"],
@@ -128,8 +129,10 @@
       setMax(w, !node.classList.contains("is-max"));
     });
     task.addEventListener("click", function () { onTask(w); });
-    node.addEventListener("pointerdown", function () { activate(w); });
-    node.addEventListener("focusin", function () { activate(w); });
+    // the innermost window takes it (the comments sit inside WordPad)
+    function mine(e) { return e.target.closest && e.target.closest(".w95-win") === node; }
+    node.addEventListener("pointerdown", function (e) { if (mine(e)) activate(w); });
+    node.addEventListener("focusin", function (e) { if (mine(e)) activate(w); });
     bar.addEventListener("pointerdown", function (e) { startDrag(w, e); });
     if (io) io.observe(node);
   }
@@ -187,6 +190,11 @@
   }
 
   function onTask(w) {
+    quietUntil = Date.now() + 900;   // let the scroll settle before the observer picks
+    // a window inside another (the comments, in WordPad) comes back with it
+    var outer = w.el.parentElement && w.el.parentElement.closest(".w95-win");
+    var host = outer && wins.filter(function (x) { return x.el === outer; })[0];
+    if (host && isHidden(host)) restore(host);
     if (isHidden(w)) { restore(w); return; }
     if (w.el.classList.contains("is-active") && inView(w.el)) { hide(w, "min"); return; }
     activate(w);
@@ -243,7 +251,9 @@
   }
   // As you scroll, the window across the upper middle of the screen is
   // the active one (blue title bar); the others go grey.
+  var quietUntil = 0;
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
+    if (Date.now() < quietUntil) return;
     for (var i = 0; i < entries.length; i++) {
       if (!entries[i].isIntersecting) continue;
       for (var j = 0; j < wins.length; j++) {

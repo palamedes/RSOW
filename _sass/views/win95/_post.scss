@@ -340,22 +340,12 @@ $measure: 648px;   // about 68 characters of 19px Times
     &:active { padding: 0 4px; }
   }
 
-  // ── Comments: a group box under the page ──
+  // ── Comments: a window of their own, under the page ──
   .post-comments {
-    position: relative;
-    margin: 22px 6px 6px;
-    padding: 22px 14px 14px;
-    @include etched;
-    &::before {
-      content: "Comments";
-      position: absolute;
-      top: -9px;
-      left: 10px;
-      padding: 0 4px;
-      background: $face;
-      @include ui(14px);
-    }
-    iframe { background: $hi; }
+    margin: 14px 4px 4px;
+    padding-bottom: 8px;
+    > .giscus, > iframe, .giscus-frame { margin: 6px 6px 0; }
+    iframe { width: calc(100% - 12px); background: $hi; }
   }
 
   // ── Legacy comments: the old blog's thread, as a chat ──
