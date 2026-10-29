@@ -1,0 +1,842 @@
+// ════════════════════════════════════════════════════════════════
+//  Broadsheet — the front page (index.html), the story cards it and
+//  /archive/ and /about/ share (_includes/post-card.html), and the
+//  "More From the Blog" row under a post.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+// ════════════════ FRONT PAGE ════════════════
+// One 12-column grid with real gutters, so every column is the same width.
+// The hairlines live in the gutters: a story's ::before is the vertical rule
+// to its left, its ::after fills the gutter in the row rule above it.
+// Which stories start a row is spelled out per breakpoint below.
+
+// On the shared HTML (index.html) the grid is .home itself: .home-body and
+// .post-grid are display:contents, so the editor's box (.home-hero), the
+// section rail (.recent-posts-head), the cards and the rules between them
+// are all its items. Default's blue rule (.sub-hero) isn't printed.
+.home {
+  --fp-gap: 2.3rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--fp-gap);
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+
+  .home-body,
+  .post-grid,
+  .hero-inner { display: contents; }
+
+  .post-grid > .post-card-wrap {
+    padding: 1.15rem 0 1.35rem;
+  }
+}
+.sub-hero { display: none; }
+
+// section rail over the lead
+.recent-posts-head {
+  grid-column: 1 / 10;
+  grid-row: 1;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  padding: 0.85rem 0 0.7rem;
+  margin-right: calc(var(--fp-gap) / -2);
+  padding-right: calc(var(--fp-gap) / 2);
+  border-bottom: 1px solid var(--ink);
+
+  .ainotes-explain-btn { margin-left: auto; align-self: center; }
+}
+.fp-head-kicker {
+  margin: 0;
+  @include label(0.72rem, 0.18em);
+  font-weight: 700;
+  color: var(--red);
+}
+.recent-posts-heading {
+  margin: 0;
+  font-family: var(--f-head);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0;
+  color: var(--ink);
+}
+
+// lead story: half the page, beside the second story
+.home .post-grid > .post-card-wrap--lead {
+  grid-column: 1 / 7;
+  grid-row: 2;
+}
+.home .post-grid > .post-card-wrap--second {
+  grid-column: 7 / 10;
+  grid-row: 2;
+  @include gutter-rule;
+}
+
+// the editor's box: the right-hand column, from the top, behind an ink rule
+.home-hero {
+  position: relative;
+  grid-column: 10 / 13;
+  grid-row: 1 / span 2;
+  padding: 0.85rem 0 1.35rem;
+  @include gutter-rule(var(--ink));
+}
+
+// a full-width rule over the row of four
+.fp-rule {
+  grid-column: 1 / -1;
+  height: 0;
+  border-top: 1px solid var(--ink);
+}
+
+// a row of four
+.home .post-grid > .post-card-wrap--standard {
+  grid-column: span 3;
+  @include gutter-rule;
+  &:nth-child(4n + 1 of .post-card-wrap--standard) { @include no-gutter-rule; }
+}
+
+// In Brief
+.fp-briefs-label {
+  grid-column: 1 / -1;
+  margin: 0.4rem 0 0;
+  @include double-rule(3px, 2px);
+  padding-top: 0.65rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--hair);
+  font-family: var(--f-head);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ink);
+}
+.home .post-grid > .post-card-wrap--brief {
+  grid-column: span 4;
+  @include gutter-rule;
+  &:nth-child(3n + 1 of .post-card-wrap--brief) { @include no-gutter-rule; }
+  &:nth-child(n + 4 of .post-card-wrap--brief) { @include row-rule; }
+  &:nth-child(3n + 1 of .post-card-wrap--brief) { @include no-row-rule-fill; }
+}
+
+@media (max-width: 1100px) {
+  .recent-posts-head { grid-column: 1 / -1; margin-right: 0; padding-right: 0; }
+  .home .post-grid > .post-card-wrap--lead { grid-column: 1 / -1; grid-row: 2; }
+  .home .post-grid > .post-card-wrap--second {
+    grid-column: 1 / 7;
+    grid-row: 3;
+    border-top: 1px solid var(--ink);
+    @include no-gutter-rule;
+  }
+  .home-hero {
+    grid-column: 7 / -1;
+    grid-row: 3;
+    padding-top: 1.15rem;
+    @include row-rule(var(--ink));
+  }
+  .home .post-grid > .post-card-wrap--standard {
+    grid-column: span 6;
+    &:nth-child(n of .post-card-wrap--standard) { @include gutter-rule; }
+    &:nth-child(2n + 1 of .post-card-wrap--standard) { @include no-gutter-rule; }
+    &:nth-child(n + 3 of .post-card-wrap--standard) { @include row-rule; }
+    &:nth-child(2n + 1 of .post-card-wrap--standard) { @include no-row-rule-fill; }
+  }
+  .home .post-grid > .post-card-wrap--brief {
+    grid-column: span 6;
+    &:nth-child(n of .post-card-wrap--brief) { @include gutter-rule; border-top: 0; &::after { content: none; } }
+    &:nth-child(2n + 1 of .post-card-wrap--brief) { @include no-gutter-rule; }
+    &:nth-child(n + 3 of .post-card-wrap--brief) { @include row-rule; }
+    &:nth-child(2n + 1 of .post-card-wrap--brief) { @include no-row-rule-fill; }
+  }
+}
+
+@media (max-width: 700px) {
+  .home { grid-template-columns: minmax(0, 1fr); column-gap: 0; }
+  .recent-posts-head, .fp-briefs-label, .fp-rule, .home .view-more { grid-column: 1; }
+  .home .post-grid > .post-card-wrap,
+  .home > .home-hero {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  // one column: no gutters, so no gutter rules (matching the weight of the
+  // `:nth-child(… of …)` selectors above)
+  .home .post-grid > .post-card-wrap:nth-child(n of .post-card-wrap),
+  .home > .home-hero:nth-child(n of .home-hero) {
+    &::before, &::after { content: none; }
+  }
+  .home .post-grid > .post-card-wrap { padding: 1.1rem 0 1.2rem; }
+  .home .post-grid > .post-card-wrap--second,
+  .home .post-grid > .post-card-wrap--standard:nth-child(n of .post-card-wrap--standard) { border-top: 1px solid var(--ink); }
+  .home .post-grid > .post-card-wrap--brief:nth-child(n of .post-card-wrap--brief) { border-top: 1px solid var(--hair); }
+  .home .post-grid > .fp-briefs-label + .post-card-wrap--brief:nth-child(n of .post-card-wrap--brief) { border-top: 0; }
+  .fp-rule { display: none; }
+  .home > .home-hero {
+    order: 3;          // after the lead and the second story
+    padding: 1.15rem 0 1.35rem;
+    border-top: 3px double var(--ink);
+  }
+  .recent-posts-head { order: 0; }
+  .home .post-grid > .post-card-wrap--lead { order: 1; }
+  .home .post-grid > .post-card-wrap--second { order: 2; }
+  .home .post-grid > .post-card-wrap--standard,
+  .fp-briefs-label,
+  .home .post-grid > .post-card-wrap--brief { order: 4; }
+  .home .view-more { order: 5; }
+}
+
+// ── the editor's box ──
+.home .home-hero {
+  .fp-editor-label {
+    margin: 0 0 0.75rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--ink);
+    @include label(0.7rem, 0.18em);
+    font-weight: 700;
+    color: var(--red);
+  }
+  .hero-photo {
+    margin: 0 0 0.85rem;
+    background: #050505;
+    border-bottom: 3px solid var(--ink);
+  }
+  .profile-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.06);
+  }
+  .hero-text { text-align: left; }
+  .hero-name {
+    margin: 0 0 0.35rem;
+    font-family: var(--f-head);
+    font-weight: 900;
+    font-size: clamp(1.9rem, 1.2rem + 1vw, 2.35rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  // site name and tagline set as one running sentence
+  .hero-site-name,
+  .hero-tagline {
+    display: inline;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+  .hero-site-name {
+    font-weight: 700;
+    color: var(--ink);
+    &::after { content: " \2014  "; font-weight: 400; }
+  }
+  .hero-tagline {
+    font-style: italic;
+    color: var(--ink-2);
+  }
+  .fp-editor-more {
+    display: block;
+    width: max-content;
+    margin-top: 0.9rem;
+    padding-top: 0.5rem;
+    @include label(0.72rem, 0.14em);
+    font-weight: 700;
+    color: var(--red);
+    border-top: 1px solid var(--hair);
+    &::after { content: " \2192"; }
+    &:hover { color: var(--ink); }
+  }
+  // "Inside This Edition": the rest of the paper, with dot leaders
+  .fp-inside {
+    margin-top: 1.6rem;
+    padding: 0.7rem 0.85rem 0.45rem;
+    border: 1px solid var(--ink);
+    outline: 1px solid var(--ink);
+    outline-offset: 3px;
+    ul { list-style: none; margin: 0; }
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      padding: 0.32rem 0;
+      border-top: 1px solid var(--hair-2);
+      &::after { content: none; }
+    }
+    a {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      flex: 1;
+      min-width: 0;
+      color: var(--ink);
+      &::after {
+        content: "";
+        flex: 1;
+        min-width: 1rem;
+        border-bottom: 1px dotted var(--ink-3);
+        transform: translateY(-0.25em);
+      }
+      &:hover .fp-inside-name { color: var(--red); text-decoration: underline; text-decoration-thickness: 1px; }
+    }
+  }
+  .fp-inside-label {
+    margin: 0 0 0.35rem;
+    text-align: center;
+    font-family: var(--f-head);
+    font-weight: 800;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .fp-inside-name { font-family: var(--f-head); font-weight: 700; font-size: 1.02rem; }
+  .fp-inside-note { font-size: 0.78rem; font-style: italic; color: var(--ink-3); white-space: nowrap; }
+  .fp-inside-pg {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--red);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (min-width: 701px) and (max-width: 1100px) {
+    .hero-photo { max-width: 14rem; }
+  }
+  @media (max-width: 700px) {
+    .fp-inside { margin-top: 1.4rem; }
+  }
+  // phones: photo beside the name and domain, the tagline full width below
+  @media (max-width: 700px) {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    grid-template-areas:
+      "label label"
+      "photo name"
+      "photo site"
+      "tag   tag"
+      "more  more"
+      "inside inside";
+    grid-template-rows: auto auto 1fr auto auto auto;
+    column-gap: 1rem;
+    .hero-text { display: contents; }
+    .fp-editor-label { grid-area: label; }
+    .hero-photo { grid-area: photo; margin: 0 0 0.8rem; align-self: start; border-bottom-width: 2px; }
+    .hero-name { grid-area: name; align-self: end; font-size: 1.8rem; margin-top: 0.4rem; }
+    .hero-site-name {
+      grid-area: site;
+      display: block;
+      font-size: 0.92rem;
+      overflow-wrap: anywhere;
+      &::after { content: none; }
+    }
+    .hero-tagline { grid-area: tag; display: block; font-size: 1rem; }
+    .fp-editor-more { grid-area: more; }
+    .fp-inside { grid-area: inside; }
+  }
+}
+
+// ════════════════ STORY CARDS ════════════════
+// _includes/post-card.html. Shared by the front page (lead / second /
+// standard / brief), the archive (row) and /about/ (standard).
+//
+// The shared card is the photo (.card-figure), then .card-body with the
+// kicker, the meta row, the headline and the excerpt. The paper sets a
+// story as kicker, headline, photo, byline and dateline, excerpt: the body
+// is display:contents and `order` puts the parts back in that sequence
+// (the grid-area layouts below place them by name anyway).
+.post-card-wrap {
+  position: relative;
+  display: flex;
+  min-width: 0;
+
+  .post-card .card-body { display: contents; }
+  .card-kicker  { order: 1; }
+  .card-title   { order: 2; }
+  .card-figure  { order: 3; }
+  .card-meta    { order: 4; }
+  .card-excerpt { order: 5; }
+}
+
+// Dates in newspaper (AP) style everywhere: "Dec. 8, 2026", "March 3,
+// 2026". _includes/date.html carries every form; print the AP month only.
+.date-text,
+.date-m-full,
+.date-m-abbr { display: none; }
+
+.post-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+
+  // The headline is the real link; this stretches its hit area over the
+  // whole story so the story still behaves like one big link.
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+    &::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    &:hover { color: inherit; }
+    &:focus-visible { outline: none; }
+    &:focus-visible::after { outline: 2px solid var(--red); outline-offset: 4px; }
+  }
+  &:hover .card-title a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+  }
+
+  .card-kicker {
+    margin: 0 0 0.35rem;
+    @include label(0.68rem, 0.16em);
+    font-weight: 700;
+    color: var(--red);
+  }
+
+  .card-title {
+    margin: 0 0 0.6rem;
+    font-family: var(--f-head);
+    font-weight: 700;
+    font-size: 1.28rem;
+    line-height: 1.13;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+
+  // the photo, printed: a fine halftone screen over a slightly flattened image
+  .card-figure {
+    position: relative;
+    margin: 0 0 0.6rem;
+    overflow: hidden;
+    background: var(--paper-3);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(27,24,19,0.55) 0 0.6px, transparent 1.1px) 0 0 / 3px 3px;
+      mix-blend-mode: multiply;
+      opacity: 0.32;
+      transition: opacity 0.25s ease;
+    }
+  }
+  .card-image {
+    display: block;
+    width: 100%;
+    height: auto; // the img's width/height attributes are for layout reservation only
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    filter: saturate(0.88) contrast(1.03) sepia(0.06);
+    transition: filter 0.25s ease;
+  }
+  &:hover {
+    .card-figure::after { opacity: 0; }
+    .card-image { filter: none; }
+  }
+
+  .card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.55rem;
+    min-height: 1.15rem;
+    margin: 0 0 0.45rem;
+    @include label(0.66rem, 0.1em);
+    font-weight: 500;
+    color: var(--ink-3);
+  }
+  .card-byline {
+    font-weight: 700;
+    color: var(--ink-2);
+  }
+  .card-date {
+    padding-left: 0.55rem;
+    border-left: 1px solid var(--hair);
+  }
+
+  .card-excerpt {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+}
+
+// ── lead ──
+.post-card--lead {
+  .card-kicker { font-size: 0.74rem; }
+  .card-title {
+    font-size: clamp(2.05rem, 0.6rem + 3.4vw, 3.75rem);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -0.018em;
+    margin-bottom: 0.95rem;
+    text-wrap: balance;
+  }
+  .card-figure { margin-bottom: 0.5rem; }
+  .card-meta {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--hair);
+  }
+  .card-excerpt {
+    font-size: 1.04rem;
+    line-height: 1.55;
+    color: var(--ink);
+    column-count: 2;
+    column-gap: 1.6rem;
+    column-rule: 1px solid var(--hair);
+    &::first-letter {
+      float: left;
+      font-family: var(--f-head);
+      font-weight: 900;
+      font-size: 3.55em;
+      line-height: 0.82;
+      padding: 0.06em 0.08em 0 0;
+      color: var(--red);
+      @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+        float: none;
+        padding: 0 0.1em 0 0;
+        font-size: inherit;
+        line-height: inherit;
+        -webkit-initial-letter: 3;
+        initial-letter: 3;
+      }
+    }
+    @media (max-width: 560px) { column-count: 1; }
+  }
+}
+
+// tablet: the lead's photo on the left, its text running beside it
+@media (min-width: 701px) and (max-width: 1100px) {
+  .home .post-card--lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    grid-template-areas:
+      "kicker kicker"
+      "title  title"
+      "figure meta"
+      "figure excerpt";
+    grid-template-rows: auto auto auto 1fr;
+    column-gap: 1.6rem;
+    .card-kicker  { grid-area: kicker; }
+    .card-title   { grid-area: title; }
+    .card-figure  { grid-area: figure; margin: 0; align-self: start; }
+    .card-meta    { grid-area: meta; }
+    .card-excerpt { grid-area: excerpt; column-count: 1; }
+  }
+}
+
+// ── second ──
+// It carries the lead stories' long excerpt (.card-excerpt-more); a column
+// this narrow prints about nine lines of it.
+.post-card--second {
+  .card-title { font-size: clamp(1.45rem, 1rem + 0.8vw, 1.8rem); line-height: 1.08; }
+  .card-excerpt {
+    font-size: 1rem;
+    color: var(--ink);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 9;
+    line-clamp: 9;
+    overflow: hidden;
+    @media (max-width: 700px) { -webkit-line-clamp: 7; line-clamp: 7; }
+  }
+}
+
+// ── brief: headline-led, a small photo tucked to the right ──
+.post-card--brief {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 6.25rem;
+  grid-template-areas:
+    "kicker  figure"
+    "title   figure"
+    "meta    figure"
+    "excerpt excerpt";
+  column-gap: 0.9rem;
+  align-content: start;
+  .card-kicker  { grid-area: kicker; }
+  .card-title   { grid-area: title; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .card-figure  { grid-area: figure; margin: 0.15rem 0 0.5rem; align-self: start; }
+  .card-meta    { grid-area: meta; align-self: end; }
+  .card-excerpt {
+    grid-area: excerpt;
+    font-size: 0.92rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    @media (max-width: 700px) { -webkit-line-clamp: 3; line-clamp: 3; }
+  }
+}
+
+@media (max-width: 700px) {
+  // stories after the lead: compact, with the photo beside the headline
+  .home .post-card--second,
+  .home .post-card--standard {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    grid-template-areas:
+      "kicker  figure"
+      "title   figure"
+      "meta    figure"
+      "excerpt excerpt";
+    column-gap: 0.9rem;
+    align-content: start;
+    .card-kicker  { grid-area: kicker; }
+    .card-title   { grid-area: title; font-size: 1.22rem; }
+    .card-figure  { grid-area: figure; margin: 0.15rem 0 0.5rem; align-self: start; }
+    .card-meta    { grid-area: meta; align-self: end; }
+    .card-excerpt { grid-area: excerpt; }
+  }
+}
+
+// ── Narration chip on a card ────────────────────────────
+// AI narration: an ink-outlined tab. Read by Jason: solid red. It rides above
+// .card-link's stretched hit area so its own clicks land.
+.card-listen {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  padding: 0.14rem 0.45rem 0.14rem 0.25rem;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
+  color: var(--ink);
+  background: var(--paper);
+  font: inherit;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover, &.is-playing { background: var(--ink); color: var(--paper); }
+  &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  &--human {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    &:hover, &.is-playing { background: var(--red-dk); border-color: var(--red-dk); color: #fff; }
+  }
+
+  &.is-error {
+    background: var(--paper);
+    border-color: var(--red);
+    border-style: dashed;
+    color: var(--red);
+    cursor: default;
+  }
+}
+
+.card-listen-ico {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: currentColor;
+  &::before {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent var(--paper);
+  }
+}
+.card-listen:hover .card-listen-ico::before,
+.card-listen.is-playing .card-listen-ico::before { border-left-color: var(--ink); }
+.card-listen--human .card-listen-ico::before { border-left-color: var(--red); }
+.card-listen--human:hover .card-listen-ico::before,
+.card-listen--human.is-playing .card-listen-ico::before { border-left-color: var(--red-dk); }
+.card-listen.is-error .card-listen-ico::before { border-left-color: var(--paper); }
+// play triangle → pause bars
+.card-listen.is-playing .card-listen-ico::before {
+  width: 5px; height: 6px;
+  margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(var(--ink), var(--ink)) left / 2px 100% no-repeat,
+    linear-gradient(var(--ink), var(--ink)) right / 2px 100% no-repeat;
+}
+.card-listen--human.is-playing .card-listen-ico::before {
+  background:
+    linear-gradient(var(--red-dk), var(--red-dk)) left / 2px 100% no-repeat,
+    linear-gradient(var(--red-dk), var(--red-dk)) right / 2px 100% no-repeat;
+}
+
+.card-listen-lead {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;   // stops the timer digits jittering
+  white-space: nowrap;
+}
+
+// ── Tooltip: says out loud whose voice this is ──────────
+.post-card-wrap {
+  .card-tip {
+    position: absolute;
+    z-index: 5;
+    right: 0.75rem;
+    padding: 0.3rem 0.55rem;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--f-text);
+    font-size: 0.74rem;
+    font-style: italic;
+    line-height: 1.25;
+    text-transform: none;
+    white-space: nowrap;
+    box-shadow: 3px 3px 0 rgba(27,24,19,0.18);
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.13s ease, transform 0.13s ease;
+    pointer-events: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 14px;
+      border: 5px solid transparent;
+      border-top-color: var(--ink);
+    }
+    &.is-visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 380px) { white-space: normal; max-width: 12rem; }
+  }
+}
+
+// ── View all posts: "continued in the archive" ──────────
+.view-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0 2.5rem;
+  border-top: 3px double var(--ink);
+
+  a {
+    margin-top: 1.4rem;
+    display: inline-block;
+    padding: 0.6rem 2.2rem;
+    border: 1px solid var(--ink);
+    outline: 1px solid var(--ink);
+    outline-offset: 3px;
+    @include label(0.8rem, 0.18em);
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--paper);
+    transition: background 0.15s ease, color 0.15s ease;
+    &:hover { background: var(--ink); color: var(--paper); }
+    &:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  }
+  .view-more-note {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--ink-3);
+  }
+}
+
+// on the front page it closes the grid, across every column
+.home .view-more {
+  grid-column: 1 / -1;
+  margin-top: 1.5rem;
+}
+
+// ── Pagination ──────────────────────────────────────────
+.pagination {
+  margin: 0.5rem 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  a { @include label(0.78rem); color: var(--ink); &:hover { color: var(--red); } }
+  .page-info { font-size: 0.8rem; font-style: italic; color: var(--ink-3); }
+}
+
+// ════════════════ "MORE FROM" (under a post) ════════════════
+.recent-posts {
+  padding: 1rem 0 2.5rem;
+
+  .recent-posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 0;
+    @include double-rule(3px, 2px);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--ink);
+
+    h3 {
+      margin: 0.35rem 0 0;
+      font-family: var(--f-head);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    a {
+      @include label(0.72rem, 0.14em);
+      font-weight: 700;
+      color: var(--red);
+      &::after { content: " \2192"; }
+      &:hover { color: var(--ink); }
+    }
+  }
+
+  .recent-posts-grid {
+    --fp-gap: 2.3rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--fp-gap);
+
+    > .post-card {
+      padding: 1.1rem 0 0.4rem;
+      @include gutter-rule;
+      &:first-child::before { content: none; }
+      text-decoration: none;
+      &:hover .card-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.14em; }
+      &:focus-visible { outline: 2px solid var(--red); outline-offset: 4px; }
+    }
+    .card-image { margin-bottom: 0.6rem; }
+    .card-body { display: flex; flex-direction: column; }
+    .card-date {
+      order: 2;
+      padding: 0;
+      border: 0;
+      margin-bottom: 0.4rem;
+      @include label(0.66rem, 0.1em);
+      font-weight: 500;
+      color: var(--ink-3);
+    }
+    .card-title { order: 1; font-size: 1.2rem; }
+    .card-excerpt { order: 3; font-size: 0.93rem; }
+
+    @media (max-width: 760px) {
+      grid-template-columns: minmax(0, 1fr);
+      > .post-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 7rem;
+        column-gap: 0.9rem;
+        padding: 1rem 0;
+        border-top: 1px solid var(--hair);
+        &::before { content: none; }
+        &:first-child { border-top: 0; }
+        .card-image { grid-column: 2; grid-row: 1; margin: 0.2rem 0 0; }
+        .card-body { grid-column: 1; grid-row: 1; }
+      }
+    }
+  }
+}

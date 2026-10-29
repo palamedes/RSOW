@@ -1,0 +1,55 @@
+// ════════════════════════════════════════════════════════════════
+//  Broadsheet — the special sections inside the paper.
+//  /explain/, /games/, /investments/ and /palamedes-…/ keep their own
+//  layouts and widgets (their partials only had their palette variables
+//  retuned to newsprint). This just reprints their dark heroes in ink
+//  instead of navy, so they read as section fronts of the same paper.
+// ════════════════════════════════════════════════════════════════
+
+.exp .exp-hero,
+.gam .gam-hero,
+.inv .inv-hero,
+.pal .pal-hero,
+.pal .pal-outro,
+.pal .pal-quote-band {
+  background: var(--ink) var(--grain);
+}
+
+.exp .exp-hero,
+.gam .gam-hero,
+.inv .inv-hero,
+.pal .pal-hero {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--ink);
+  border-bottom: 3px solid var(--red);
+  box-shadow: 0 -4px 0 var(--paper), 0 -5px 0 var(--ink);
+}
+
+// the blue glows and blueprint grids behind them
+.exp .exp-hero-bg,
+.gam .gam-hero-bg,
+.pal .pal-hero-bg { display: none; }
+
+// titles were a white-to-blue gradient clipped to the text: print them flat
+.exp .exp-title,
+.gam .gam-title,
+.pal .pal-name {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: #f5f1e6;
+}
+
+// primary buttons on the ink grounds: red, darkening on hover
+.gam .gam-btn-primary,
+.pal .pal-btn-primary {
+  border-radius: 0;
+  &:hover { background: var(--red-dk); border-color: var(--red-dk); }
+}
+.gam .gam-btn,
+.pal .pal-btn { border-radius: 0; }
+
+// the Drip Fund's intro band was white fading to a cold blue
+.inv .inv-manifesto { background: transparent; }
+
+// let the chart cards shrink inside their grid on the narrowest phones
+.inv .inv-chart-card { min-width: 0; }
