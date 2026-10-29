@@ -285,32 +285,55 @@ $po-text: 44rem;       // body measure, ~68 characters
 
     p { margin-bottom: 1.05em; }
 
-    // drop cap and a small-caps lead-in on the opening paragraph
+    // ── The drop cap and the small-caps lead-in on the opening paragraph ──
+    // A clean three-line cap for any letter: its cap height runs from the
+    // first line's cap height down to the third line's baseline.
+    //
+    // A first paragraph shorter than the cap (Mount Stupid's is two lines)
+    // still makes room for all three, so the cap never cuts into the next
+    // paragraph. 1.62 is the line height above.
+    > p:first-of-type { min-height: calc(3 * 1.62em); }
+
+    > p:first-of-type::first-line {
+      font-variant-caps: all-small-caps;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    // The fallback (Firefox): a float sized from the two fonts' metrics.
+    // Source Serif's cap height is 0.670 em, so at a 1.62 line height the
+    // first line's cap height sits 0.49 em down and the third baseline
+    // 4.40 em down: 3.91 em apart, which takes Playfair (cap height 0.708)
+    // at 5.52 em. Firefox wraps a floated first letter tight round its ink
+    // (so a J's tail clears line four), and the 0.49 em margin (0.089 of
+    // the cap's em) drops its top to the first line's cap height. An engine
+    // that floats the whole line box instead lands in the same place with
+    // the 0.585 line height (Playfair's ascent and descent: 1.082, 0.251).
     > p:first-of-type::first-letter {
       float: left;
-      margin: -0.02em 0.1em -0.1em -0.02em;
+      margin: 0.089em 0.045em 0 -0.02em;
       font-family: var(--f-head);
       font-weight: 800;
-      font-size: 5.3em;
-      line-height: 0.74;
+      font-size: 5.52em;
+      line-height: 0.585;
+      // the lead-in's small caps would otherwise carry into the cap: a
+      // small-cap glyph in a box sized for a capital came out two lines
+      // tall and sunk to the bottom (the old "J" bug)
+      font-variant-caps: normal;
+      letter-spacing: 0;
       color: var(--red);
     }
-    // Where the browser can size a cap to span exactly three lines, let it:
-    // that keeps letters with descenders (J, Q) out of the fourth line.
+    // Where the browser sizes a cap to three lines itself, let it. It wraps
+    // the text round the glyph's ink, so a J's or Q's tail clears line four.
     @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
       > p:first-of-type::first-letter {
         float: none;
-        margin: 0 0.12em 0 0;
+        margin: 0 0.2em 0 0;
         font-size: inherit;
         line-height: inherit;
         -webkit-initial-letter: 3;
         initial-letter: 3;
       }
-    }
-    > p:first-of-type::first-line {
-      font-variant-caps: all-small-caps;
-      letter-spacing: 0.05em;
-      font-weight: 600;
     }
 
     // crossheads
@@ -846,11 +869,8 @@ $po-text: 44rem;       // body measure, ~68 characters
   @media (max-width: 600px) {
     .post-hero { padding-top: 1.6rem; }
     .post-hero-cats::before, .post-hero-cats::after { width: 1.2rem; margin: 0 0.5rem; }
+    // (the drop cap is sized in ems of the text, so it follows along)
     .post-content { font-size: 1.1rem; }
-    .post-content > p:first-of-type::first-letter { font-size: 4.6em; }
-    @supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
-      .post-content > p:first-of-type::first-letter { font-size: inherit; }
-    }
     .post-tags-label { flex-basis: 100%; }
     .post-tags .post-tags-all { margin-left: 0; flex-basis: 100%; margin-top: 0.3rem; }
   }
