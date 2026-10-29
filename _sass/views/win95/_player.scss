@@ -1,0 +1,208 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the narration player (_includes/audio-player.html) as
+//  Media Player, docked above the taskbar: a title bar with its close
+//  box, a black display with the waveform in phosphor green, and square
+//  buttons. --wave-* are read by the player script for the waveform.
+// ════════════════════════════════════════════════════════════════
+
+$player-h: 104px;          // title + display + buttons
+$player-h-wave: 116px;
+
+body.has-rsow-player { padding-bottom: $taskbar-h + $player-h; }
+body.has-rsow-player.has-rsow-wave { padding-bottom: $taskbar-h + $player-h-wave; }
+
+.rsow-player {
+  --wave-lit: #00ff00;
+  --wave-loaded: rgba(0, 255, 0, 0.42);
+  --wave-rest: rgba(0, 255, 0, 0.2);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: $taskbar-h;
+  z-index: 990;
+  display: flex;
+  flex-direction: column;
+  padding: 3px;
+  background: $face;
+  color: $ink;
+  @include raised-window;
+  @include ui(14px);
+
+  &[hidden] { display: none; }
+  &.is-human { --wave-lit: #ffd800; --wave-loaded: rgba(255, 216, 0, 0.45); --wave-rest: rgba(255, 216, 0, 0.2); }
+  &.is-error { --wave-lit: #ff4040; }
+
+  // the title bar
+  &::before {
+    content: "Media Player";
+    @include titlebar;
+    order: -1;
+    height: 24px;
+    line-height: 24px;
+    padding-left: 26px;
+    font-size: 14px;
+    background: icon("speaker") 5px center / 16px 16px no-repeat, linear-gradient(90deg, $navy, $title-to);
+  }
+
+  // ── the display: a black, sunken track with the waveform ──
+  .rsow-scrub {
+    position: relative;
+    height: 16px;
+    margin: 4px 6px 2px;
+    background: #000;
+    cursor: pointer;
+    touch-action: none;
+    border: 2px solid;
+    border-color: $shadow $hi $hi $shadow;
+    &:focus-visible { outline: 1px dotted $ink; outline-offset: 2px; }
+  }
+  .rsow-scrub-buffered {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: rgba(0, 255, 0, 0.18);
+  }
+  .rsow-scrub-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 0;
+    background: var(--wave-lit);
+  }
+  // the slider's thumb: a little raised button
+  .rsow-scrub-knob {
+    position: absolute;
+    right: -5px;
+    top: -4px;
+    width: 10px;
+    height: calc(100% + 8px);
+    background: $face;
+    @include raised;
+  }
+  .rsow-wave { display: none; }
+  &.has-wave {
+    .rsow-scrub { height: 28px; }
+    .rsow-wave { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
+    .rsow-scrub-buffered { display: none; }
+    .rsow-scrub-fill { background: transparent; }
+    .rsow-scrub-knob { width: 2px; right: -1px; top: 0; height: 100%; background: $hi; box-shadow: none; }
+  }
+
+  // ── the buttons ──
+  .rsow-bar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 6px 3px;
+  }
+  .rsow-btn {
+    flex: none;
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 28px;
+    padding: 0;
+    border: 0;
+    background: $face;
+    color: $ink;
+    cursor: pointer;
+    @include raised;
+    &:active { @include pressed; }
+    &:focus-visible { @include focus-rect(-4px); }
+  }
+  .rsow-play-ico {
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 6px 0 6px 9px;
+    border-color: transparent transparent transparent $ink;
+  }
+  &.is-playing .rsow-play { @include pressed; }
+  &.is-playing .rsow-play-ico {
+    width: 9px;
+    height: 11px;
+    margin: 0;
+    border: 0;
+    background: linear-gradient($ink, $ink) left / 3px 100% no-repeat, linear-gradient($ink, $ink) right / 3px 100% no-repeat;
+  }
+  .rsow-skip {
+    position: relative;
+    svg { width: 18px; height: 18px; }
+    @media (max-width: 420px) { display: none; }
+  }
+  .rsow-skip-n {
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 7px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .rsow-meta {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    margin-left: 6px;
+    padding: 0 8px;
+    height: 26px;
+    @include shallow;
+  }
+  .rsow-badge {
+    flex: none;
+    padding: 0 5px;
+    background: $navy;
+    color: $hi;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+  &.is-human .rsow-badge { background: #804000; }
+  .rsow-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: $ink;
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+    &:focus-visible { outline: 1px dotted $ink; }
+  }
+
+  .rsow-time {
+    flex: none;
+    height: 26px;
+    padding: 0 8px;
+    line-height: 26px;
+    background: #000;
+    color: var(--wave-lit);
+    font-family: $mono;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    border: 2px solid;
+    border-color: $shadow $hi $hi $shadow;
+    line-height: 22px;
+    @media (max-width: 400px) { display: none; }
+  }
+
+  // the close box rides in the title bar
+  .rsow-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 20px;
+    height: 18px;
+    background: $face glyph("close") center / 8px 7px no-repeat;
+    svg { display: none; }
+    &:active { background-position: calc(50% + 1px) calc(50% + 1px); }
+  }
+}
+
+// a maximized window stops above Media Player too
+body.has-rsow-player .w95-win.is-max { bottom: $taskbar-h + $player-h !important; }
+body.has-rsow-player.has-rsow-wave .w95-win.is-max { bottom: $taskbar-h + $player-h-wave !important; }

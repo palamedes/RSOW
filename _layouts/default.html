@@ -43,9 +43,12 @@
     design's font and stylesheet <link>s with document.write, so they are
     parser-inserted and render-blocking like ordinary <link>s: no flash of
     the wrong design. The key -> files map comes from _data/views.yml, so a
-    new design never means editing this.
+    new design never means editing this. A design with a `script:` also gets
+    that one file as a deferred <script id="view-js"> (no other design loads
+    it); it runs after the page is parsed and must leave the page whole
+    without it.
 
-    ?v= is the build timestamp. The stylesheets are served with
+    ?v= is the build timestamp (on the script too). The stylesheets are served with
     cache-control: max-age=600 and no fingerprint in the filename, so without
     this a browser can hold a stale stylesheet for ten minutes after a deploy
     and render new markup against old CSS.
@@ -53,9 +56,9 @@
   {%- assign view_default = site.data.views | where: "key", "default" | first %}
   <script>(function(){var V={
     {%- for v in site.data.views -%}
-    {{ v.key | jsonify }}:[{{ v.stylesheet | relative_url | jsonify }},{{ v.fonts | default: "" | jsonify }},{% if v.schemes %}1{% else %}0{% endif %}]{% unless forloop.last %},{% endunless %}
+    {{ v.key | jsonify }}:[{{ v.stylesheet | relative_url | jsonify }},{{ v.fonts | default: "" | jsonify }},{% if v.schemes %}1{% else %}0{% endif %}{% if v.script %},{{ v.script | relative_url | jsonify }}{% endif %}]{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
-    },K='rsow.view',d=document.documentElement,k='default',q=null,u=null,s;try{u=new URLSearchParams(location.search);q=u.get('view')}catch(e){}if(q&&V.hasOwnProperty(q)){k=q;try{localStorage.setItem(K,q)}catch(e){}u.delete('view');s=u.toString().replace(/%2C/g,',');try{history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash)}catch(e){}}else{try{s=localStorage.getItem(K);if(s&&V.hasOwnProperty(s))k=s}catch(e){}}d.setAttribute('data-view',k);if(V[k][2]){try{s=localStorage.getItem('rsow.theme');if(s==='light'||s==='dark')d.setAttribute('data-theme',s)}catch(e){}}function a(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}document.write((V[k][1]?'<link href="'+a(V[k][1])+'" rel="stylesheet">':'')+'<link rel="stylesheet" id="view-css" href="'+a(V[k][0])+'?v={{ site.time | date: '%s' }}">')})();</script>
+    },K='rsow.view',d=document.documentElement,k='default',q=null,u=null,s;try{u=new URLSearchParams(location.search);q=u.get('view')}catch(e){}if(q&&V.hasOwnProperty(q)){k=q;try{localStorage.setItem(K,q)}catch(e){}u.delete('view');s=u.toString().replace(/%2C/g,',');try{history.replaceState(history.state,'',location.pathname+(s?'?'+s:'')+location.hash)}catch(e){}}else{try{s=localStorage.getItem(K);if(s&&V.hasOwnProperty(s))k=s}catch(e){}}d.setAttribute('data-view',k);if(V[k][2]){try{s=localStorage.getItem('rsow.theme');if(s==='light'||s==='dark')d.setAttribute('data-theme',s)}catch(e){}}function a(x){return String(x).replace(/&/g,'&amp;').replace(/"/g,'&quot;')}document.write((V[k][1]?'<link href="'+a(V[k][1])+'" rel="stylesheet">':'')+'<link rel="stylesheet" id="view-css" href="'+a(V[k][0])+'?v={{ site.time | date: '%s' }}">'+(V[k][3]?'<script id="view-js" src="'+a(V[k][3])+'?v={{ site.time | date: '%s' }}" defer><\/script>':''))})();</script>
   <noscript>
     <link href="{{ view_default.fonts }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ view_default.stylesheet | relative_url }}?v={{ site.time | date: '%s' }}">

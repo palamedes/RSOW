@@ -1,0 +1,176 @@
+@use "sass:list";
+@use "kit" as *;
+@use "icons";
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the windows. Existing blocks of the shared HTML become
+//  windows: a 3D frame, a title bar and the three buttons. The list
+//  below is the CSS half; assets/js/views/win95.js has the same list
+//  (keep them in step) and adds the real title bar with working
+//  Minimize / Maximize / Close buttons, the task buttons and dragging.
+//
+//  Without the script each window draws its own title bar (::before),
+//  with its icon and buttons as pictures, and everything stays visible.
+//  With it, the window gets .w95-win and a .w95-titlebar child, and the
+//  stand-in goes away.
+// ════════════════════════════════════════════════════════════════
+
+// selector                          title (no-script)              icon
+$windows: (
+  ".home-hero":                      ("About Jason Ellis", "user"),
+  ".home-body":                      ("Most Recent Blog Posts", "folder-open"),
+  ".post":                           ("Document - WordPad", "wordpad"),
+  ".post-comments":                  ("Comments", "mail"),
+  ".recent-posts":                   ("Recent Posts", "folder-open"),
+  ".arc:not(.tc)":                   ("Exploring - Blog", "folder-open"),
+  ".arc.tc":                         ("Exploring - Topics", "folder-open"),
+  ".abt-hero":                       ("Jason Ellis Properties", "user"),
+  ".abt-names-section":              ("Who's Writing", "user"),
+  ".abt-timeline-section":           ("A Life in Chapters", "calendar"),
+  ".abt-maker-section":              ("Off the Clock", "tools"),
+  ".abt-writing-section":            ("In My Own Words", "folder-open"),
+  ".abt-gallery-section":            ("A Few Snapshots", "picture"),
+  ".abt-outro":                      ("RandomStringOfWords", "info"),
+  ".site-content article.page:not(.page-bare)": ("RandomStringOfWords", "notepad"),
+  ".site-content .archive":          ("RandomStringOfWords", "folder-open"),
+  ".gam":                            ("Games", "joystick"),
+  ".inv":                            ("The Drip Fund", "chart"),
+  ".exp":                            ("Explainers", "help"),
+  ".pal":                            ("Palamedes", "doc"),
+  ".bld":                            ("Build", "tools"),
+  ".photo-desk":                     ("Photos - Paint", "paint"),
+  ".footer-about":                   ("About Me", "user"),
+);
+
+@each $sel, $w in $windows {
+  #{$sel} {
+    @include window;
+  }
+  #{$sel}:not(.w95-win) {
+    @include fallback-titlebar(list.nth($w, 1), list.nth($w, 2));
+  }
+}
+// a few titles the no-script bar can tell apart with :has()
+.arc.tc:has(.tc-cloud--tag):not(.w95-win)::before { content: "Exploring - Tags"; }
+.site-content article.page:has(.vg):not(.w95-win)::before { content: "Display Properties"; background-image: icon("computer"), glyph("titlebuttons"), linear-gradient(90deg, $navy, $title-to); }
+
+// ── The script's title bar ──────────────────────────────
+.w95-titlebar {
+  @include titlebar;
+  position: relative;
+  z-index: 2;
+
+  .w95-title-ico {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    @include ico("doc", 16px);
+  }
+  .w95-title-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    // stop short of the pale end of the gradient, so the white title
+    // keeps AA contrast however long it is
+    max-width: calc(100% - 96px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.w95-tbtns {
+  flex: none;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding-left: 6px;
+}
+
+.w95-tbtn {
+  flex: none;
+  width: 20px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: $face center / auto no-repeat;
+  cursor: pointer;
+  @include raised;
+
+  &:active { @include pressed; background-position: calc(50% + 1px) calc(50% + 1px); }
+  &:focus-visible { outline: 1px dotted $ink; outline-offset: -4px; }
+
+  &--min     { background-image: glyph("min"); background-position: 6px 11px; &:active { background-position: 7px 12px; } }
+  &--max     { background-image: glyph("max"); }
+  &--restore { background-image: glyph("restore"); }
+  &--close   { margin-left: 2px; background-image: glyph("close"); }
+}
+
+// the icon each window (and its task button) carries
+@each $name, $url in icons.$icons {
+  .w95-titlebar .w95-title-ico[data-icon="#{$name}"],
+  .w95-task .w95-task-ico[data-icon="#{$name}"] { background-image: icon($name); }
+}
+
+// Display Properties' close box (the picker; the script adds it)
+.w95-picker-close {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 3;
+}
+
+// ── States ──────────────────────────────────────────────
+.w95-win { position: relative; }
+
+// a window you've minimized or closed (its task button brings it back)
+.w95-win.is-min,
+.w95-win.is-closed { display: none !important; }
+
+// inactive windows: grey title bars, like the real thing
+.w95-win:not(.is-active) > .w95-titlebar {
+  background: linear-gradient(90deg, $idle-from, $idle-to);
+}
+
+// maximized: the whole desktop above the taskbar, scrolling inside
+.w95-win.is-max {
+  position: fixed !important;
+  inset: 0 0 $taskbar-h 0 !important;
+  z-index: 950 !important;
+  width: auto !important;
+  max-width: none !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: auto;
+  overscroll-behavior: contain;
+  @include scrollbars;
+
+  > .w95-titlebar {
+    position: sticky;
+    top: -3px;
+    margin-top: -3px;
+    border-top: 3px solid $face;
+    height: 29px;
+    box-sizing: border-box;
+  }
+}
+html.w95-has-max { overflow: hidden; }
+
+// dragging (wide screens; the script sets left/top on the window)
+@media (min-width: $drag-bp) {
+  .w95-win.is-draggable > .w95-titlebar { cursor: default; }
+  .w95-win.is-dragging { user-select: none; }
+  .w95-win.is-dragging > .w95-titlebar { cursor: move; }
+}
+
+// The minimize/restore animation: an outline flying between the window
+// and its task button (the script draws it; none for reduced motion).
+.w95-zoom {
+  position: fixed;
+  z-index: 1500;
+  pointer-events: none;
+  border: 2px solid $navy;
+  background: linear-gradient(90deg, rgba(0, 0, 128, 0.35), rgba(16, 132, 208, 0.35));
+  transition-property: left, top, width, height;
+  transition-duration: 0.22s;
+  transition-timing-function: steps(7, end);
+}

@@ -1,0 +1,356 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — AI Notes and word notes as tooltips: yellow (#ffffe1),
+//  a black hairline and a hard shadow. The "What are AI Notes?" box
+//  is a dialog with a default button.
+//
+//  assets/js/ai-notes.js wraps each anchored phrase in .ai-note-anchor
+//  and adds an <aside class="ai-note"> after its paragraph;
+//  assets/js/word-notes.js underlines .word-note and shows .word-card.
+// ════════════════════════════════════════════════════════════════
+
+@mixin tooltip {
+  background: $tip;
+  color: $ink;
+  border: 1px solid $ink;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+// ── The toggle (WordPad's format bar has it) ────────────
+.post-ainotes-btn {
+  @include button;
+  min-height: 34px;
+  padding: 3px 12px 3px 8px;
+  .post-ainotes-ico { display: inline-flex; width: 18px; height: 18px; color: $navy; svg { width: 18px; height: 18px; } }
+  &:active { padding: 4px 11px 2px 9px; }
+  // on: held down, like a toggle on a toolbar
+  &.is-on, &[aria-pressed="true"] {
+    @include pressed;
+    background-color: $face;
+    background-image: conic-gradient(#fff 25%, transparent 0 50%, #fff 0 75%, transparent 0);
+    background-size: 2px 2px;
+    padding: 4px 11px 2px 9px;
+  }
+}
+
+// ── The notes ──────────────────────────────────────────
+.post-content {
+  .ai-note { display: none; }
+  &.ai-notes-on .ai-note,
+  .ai-note--always { display: block; }
+  &:not(.ai-notes-on) .ai-note--always .ai-note-num { display: none; }
+
+  .ai-note {
+    position: relative;
+    margin: 4px 0 1.3em;
+    padding: 9px 12px 10px 40px;
+    @include tooltip;
+    font-family: $ui;
+    font-size: 14px;
+    line-height: 1.5;
+
+    // the balloon's tail, pointing back up at the paragraph
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 22px;
+      border: solid transparent;
+    }
+    &::before { top: -13px; border-width: 0 0 12px 12px; border-bottom-color: $ink; }
+    &::after { top: -11px; left: 23px; border-width: 0 0 11px 10px; border-bottom-color: $tip; }
+  }
+
+  .ai-note-avatar {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    color: $navy;
+    svg { width: 20px; height: 20px; }
+  }
+  .ai-note-body { min-width: 0; }
+  .ai-note .ai-note-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 8px;
+    margin: 0 0 4px;
+  }
+  .ai-note-num { font-weight: 700; color: $navy; }
+  .ai-note-head-label { font-weight: 700; }
+  .ai-note-verdict {
+    margin-left: auto;
+    padding: 0 6px;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+    color: $muted;
+  }
+  .ai-note-verdict--true,
+  .ai-note-verdict--accurate      { color: #006000; }
+  .ai-note-verdict--mostly-true   { color: #3d5c00; }
+  .ai-note-verdict--needs-context,
+  .ai-note-verdict--partly-true,
+  .ai-note-verdict--mixed         { color: #7a4f00; }
+  .ai-note-verdict--misleading    { color: #9a3d00; }
+  .ai-note-verdict--false,
+  .ai-note-verdict--mostly-false  { color: #a00000; }
+  .ai-note-verdict--random-fact,
+  .ai-note-verdict--fun-fact,
+  .ai-note-verdict--context,
+  .ai-note-verdict--background,
+  .ai-note-verdict--fyi           { color: $navy; }
+
+  .ai-note .ai-note-text { margin: 0 0 6px; }
+  .ai-note .ai-note-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px 6px;
+    margin: 0;
+    font-size: 13px;
+    color: $muted;
+    a { color: $link; }
+  }
+  .ai-note-src-label { font-weight: 700; }
+
+  // the phrase a note hangs off
+  &.ai-notes-on .ai-note-anchor {
+    background: #ffff80;
+    box-shadow: 0 0 0 1px #ffff80;
+    cursor: help;
+  }
+  &.ai-notes-on .ai-note-anchor::after {
+    content: attr(data-ai-note);
+    margin-left: 2px;
+    font-family: $ui;
+    font-size: 0.6em;
+    font-weight: 700;
+    vertical-align: super;
+    line-height: 0;
+    color: $navy;
+  }
+
+  // the footnote about the notes: a little Help box
+  .ai-notes-about { display: none; }
+  &.ai-notes-on .ai-notes-about {
+    display: block;
+    clear: both;
+    margin: 2.2rem 0 0;
+    padding: 12px 14px 12px 54px;
+    background: $face icon("info") 12px 12px / 32px 32px no-repeat;
+    image-rendering: auto;
+    @include raised-window;
+    font-family: $ui;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .ai-notes-about-head {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+  .ai-notes-about-ico { display: none; }
+  .ai-notes-about p { margin: 0; }
+}
+
+// ── "What are AI Notes?" ────────────────────────────────
+.ainotes-explain-btn.is-demo { pointer-events: none; cursor: default; vertical-align: middle; }
+
+.ainotes-modal {
+  margin: auto;
+  width: min(34rem, calc(100vw - 16px));
+  max-height: min(86vh, 44rem);
+  padding: 3px;
+  border: 0;
+  border-radius: 0;
+  background: $face;
+  color: $ink;
+  @include raised-window;
+  overflow: hidden;
+  &::backdrop { background: rgba(0, 0, 0, 0.25); }
+  &[open] { display: flex; flex-direction: column; }
+}
+
+.ainotes-modal-head {
+  @include titlebar;
+  padding-left: 4px;
+  .ainotes-ico { display: inline-flex; width: 18px; height: 18px; color: $hi; svg { width: 18px; height: 18px; } }
+  h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.ainotes-modal-close {
+  flex: none;
+  width: 20px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: $face glyph("close") center / 8px 7px no-repeat;
+  cursor: pointer;
+  @include raised;
+  svg { display: none; }
+  &:active { @include pressed; }
+  &:focus-visible { outline: 1px dotted $ink; outline-offset: -4px; }
+}
+
+.ainotes-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 14px 16px 6px 62px;
+  background: icon("info") 16px 14px / 32px 32px no-repeat;
+  @include ui(14px);
+  line-height: 1.55;
+  @include scrollbars;
+  p { margin: 0 0 10px; }
+}
+.ainotes-modal-how {
+  position: relative;
+  margin: 16px 0 14px;
+  padding: 16px 12px 6px;
+  @include etched;
+  .ainotes-modal-how-lead {
+    position: absolute;
+    top: -9px;
+    left: 8px;
+    margin: 0;
+    padding: 0 4px;
+    background: $face;
+  }
+}
+.ainotes-modal-demo { margin: 8px 0; }
+.ainotes-modal-honest strong { font-weight: 700; }
+
+.ainotes-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 12px 10px;
+}
+.ainotes-modal-ok {
+  @include button;
+  @include button-default;
+  min-width: 88px;
+}
+
+// ── Word notes ─────────────────────────────────────────
+.word-note {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: $navy;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+  cursor: help;
+  &:hover, &.is-open { background: $tip; }
+  &:focus { outline: none; }
+  &:focus-visible { outline: 1px dotted $ink; outline-offset: 2px; }
+}
+
+.word-card {
+  position: absolute;
+  z-index: 1200;
+  width: 330px;
+  max-width: calc(100vw - 20px);
+  @include tooltip;
+  @include ui(14px);
+  line-height: 1.5;
+  text-align: left;
+  &[hidden] { display: none; }
+
+  .word-card__body {
+    padding: 10px 12px 12px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    @include scrollbars;
+  }
+  // the tail toward the word (above by default; flipped when below)
+  &::after {
+    content: "";
+    position: absolute;
+    left: var(--arrow-x, 50%);
+    bottom: -7px;
+    width: 12px;
+    height: 12px;
+    margin-left: -6px;
+    background: $tip;
+    border-right: 1px solid $ink;
+    border-bottom: 1px solid $ink;
+    transform: rotate(45deg);
+  }
+  // below the word, the tail meets the card's little title bar
+  &.is-below::after {
+    top: -7px;
+    bottom: auto;
+    border: 0;
+    border-left: 1px solid $ink;
+    border-top: 1px solid $ink;
+    background: $navy;
+  }
+  p { margin: 0; }
+  svg { display: block; }
+}
+
+.word-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: -10px -12px 8px;
+  padding: 0 6px 0 4px;
+  height: 22px;
+  background: linear-gradient(90deg, $navy, $title-deep);
+  color: $hi;
+}
+.word-card__label,
+.word-card__topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  svg { width: 14px; height: 14px; flex: none; }
+}
+.word-card__topic { font-weight: 400; }
+.word-card__word {
+  font-family: $serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.word-card__meta { margin-top: 2px !important; font-size: 13px; font-style: italic; color: $muted; }
+.word-card__say { font-style: normal; }
+.word-card__dot { margin: 0 6px; font-style: normal; }
+.word-card__fig {
+  margin: 8px 0 0;
+  padding: 4px;
+  background: $hi;
+  border: 1px solid $shadow;
+  img { display: block; width: 100%; height: auto; }
+}
+.word-card__def { margin-top: 6px !important; font-size: 14px; }
+.word-card__origin {
+  margin-top: 8px !important;
+  padding-top: 6px;
+  border-top: 1px solid $shadow;
+  font-size: 13px;
+  color: $muted;
+  span { margin-right: 4px; font-weight: 700; color: $ink; }
+}
+.word-notes-sr { display: none; }
+
+@media print {
+  .word-note { text-decoration: none; background: none; }
+  .word-card { display: none !important; }
+}

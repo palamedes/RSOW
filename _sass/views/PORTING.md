@@ -17,6 +17,8 @@ point it at the shared hooks below.
   passes; add `giscus_theme:` if you made one.
 - `assets/images/views/<key>/` (optional): images your CSS uses.
 - `assets/images/views/<key>.webp`: the gallery shot, made by the check tool.
+- `assets/js/views/<key>.js` (optional): one small script for the design,
+  listed as `script:` in its views.yml entry (see below).
 
 Don't edit the shared templates (`_layouts`, `_includes`, `index.html`,
 `_pages`), the shared partials in `_sass/` (Default must not move; copy one
@@ -268,6 +270,27 @@ shared structure with `--vp-font`, `--vp-ink`, `--vp-muted`, `--vp-bg`,
 /views/ is `article.page > div.vg > (div.vg-intro, ul.vg-list > li.vg-item
 (.is-current) > a.vg-shot > img + div.vg-body > (.vg-current, h2.vg-name,
 .vg-swatches, p.vg-desc, p.vg-links > a.vg-try))`.
+
+## A design's own script (optional)
+
+A design may ship one small vanilla JS file: `assets/js/views/<key>.js`,
+named in its views.yml entry as `script: /assets/js/views/<key>.js`. The
+loader in `<head>` writes it as `<script id="view-js" src="…?v=<build>"
+defer>` only while that design is active, so Default and the others never
+load it (the check tool fails if a design's script is missing, or if any
+page loads another design's). Rules:
+
+- Progressive enhancement only. Without it every page shows all its content
+  and works; style the un-scripted state first, then let the script add a
+  class (on `<html>`, say) for what it changes.
+- It runs once per real page load. The narration player's soft navigation
+  replaces `main.site-content` and then dispatches `rsow:navigated` on
+  `document`: redo whatever you did inside `<main>`, and don't duplicate
+  what lives outside it (the header, the footer).
+- Reuse the shared behaviour rather than replacing it (the nav toggle, the
+  picker): click the existing buttons or listen to them.
+- No third-party code, no storage beyond sessionStorage (localStorage only
+  through the design preference), and respect `prefers-reduced-motion`.
 
 ## Text that differs from your branch
 

@@ -19,6 +19,13 @@
 #                before first paint
 #   giscus_theme optional: a CSS file for the comments box (giscus); the
 #                default is /assets/css/giscus-imessage.css
+#   script       optional: one small JS file the design adds (e.g.
+#                /assets/js/views/<key>.js). The loader adds it as a deferred
+#                <script id="view-js"> only while this design is active, with
+#                the same ?v= stamp as the stylesheet. Progressive
+#                enhancement only: every page must work and show all its
+#                content without it, and it must survive the narration
+#                player's soft navigation (listen for "rsow:navigated").
 #   ready        false keeps a design out of the picker, the gallery and the
 #                check tool while it's being built; ?view=<key> still loads
 #                it for previewing
@@ -59,5 +66,15 @@
   giscus_theme: /assets/css/views/zine-giscus.css
   fonts: "https://fonts.googleapis.com/css2?family=Anton&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
   swatches: ["#ffe600", "#111111", "#d6121a", "#f3efe6"]
+  schemes: false
+  ready: true
+
+- key: win95
+  name: Windows 95
+  description: "The whole site as a 1995 desktop: teal, a Start menu, and windows you can minimize, maximize, close and drag."
+  stylesheet: /assets/css/views/win95.css
+  script: /assets/js/views/win95.js
+  fonts: "https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=VT323&display=swap"
+  swatches: ["#008080", "#c0c0c0", "#000080", "#ffffe1"]
   schemes: false
   ready: true

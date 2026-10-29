@@ -1,0 +1,98 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the desktop: where the windows sit, and the icons down
+//  its left edge on a wide screen (the site's name, then the footer's
+//  "Sections" list, a view-extra).
+// ════════════════════════════════════════════════════════════════
+
+// Wrappers whose children are laid out directly.
+.hero-photo,
+.card-figure,
+.snap,
+.colophon { display: contents; }
+
+// ── Where the windows go ────────────────────────────────
+.site-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: $desk-w + 48px;
+  margin: 0 auto;
+  padding: 24px 24px 8px;
+  &:focus { outline: none; }
+
+  > .site-wrapper { display: contents; }
+  @media (max-width: 760px) { gap: 14px; padding: 10px 8px 4px; }
+}
+
+// the home page and the post are a few windows each
+.home,
+.post {
+  min-width: 0;
+}
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media (max-width: 760px) { gap: 14px; }
+}
+.sub-hero { display: none; }
+
+// ── Desktop icons ───────────────────────────────────────
+// 32px icon, a label under it in white; selected (focused) = a navy label.
+@mixin desktop-icon($name) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 84px;
+  padding: 4px 2px;
+  color: $hi;
+  text-decoration: none;
+  text-align: center;
+  @include ui(13px);
+  line-height: 1.2;
+  text-shadow: none;
+
+  &::before {
+    content: "";
+    width: 32px;
+    height: 32px;
+    @include ico($name, 32px);
+  }
+  &:hover { color: $hi; }
+  &:hover > span, &:hover { text-decoration: none; }
+  &:focus-visible {
+    outline: none;
+    background: none;
+  }
+}
+
+@media (min-width: $icons-bp) {
+  // the site's name: "My Computer"
+  .site-header .site-title {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    width: 84px;
+    height: auto;
+    @include desktop-icon("computer");
+    background: none;
+    box-shadow: none !important;
+    &::before { @include ico("computer", 32px); }
+    .site-title-short { display: none; }
+    .site-title-long {
+      display: block;
+      padding: 1px 2px;
+    }
+    .site-title-line { display: block; }
+    &:focus-visible .site-title-long,
+    &:active .site-title-long {
+      background: $navy;
+      outline: 1px dotted $hi;
+    }
+  }
+}
