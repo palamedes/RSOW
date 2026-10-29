@@ -1,0 +1,138 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Quiet — long reads: the card of a long-form post (`longform: true`;
+//  post-card-wrap--longform / post-card--longform and the .card-longform
+//  badge, _includes/card-longform.html).
+//
+//  Set apart by typography, not colour: a framed entry on the inset paper
+//  with room around it, a small-caps "a long read · 31 min read" over a
+//  big italic title, the post's description (.card-dek) as an italic
+//  standfirst in place of the excerpt, and the date moved to the foot like
+//  a byline. In the archive's one-line rows and under a post it's the
+//  same label and italic title, kept to their size.
+// ════════════════════════════════════════════════════════════════
+
+// "a long read · 31 min read", in the label face, terracotta then muted
+@mixin lf-label($size: 0.98rem) {
+  display: block;
+  @include smallcaps($size);
+  color: var(--muted);
+  .card-longform-label { color: var(--accent); }
+  .card-longform-label::before { content: "A "; }
+}
+
+// ── The list (home, /about/): a framed entry ──
+.post-card-wrap--longform:not(.post-card-wrap--row) {
+  margin: 1.6rem 0;
+
+  .post-card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    gap: 0 2.6rem;
+    align-items: center;
+    padding: 2.4rem 2.5rem 2.5rem;
+    border: 1px solid var(--rule-2);
+    border-radius: 2px;
+    background: var(--paper-2);
+    box-shadow: inset 0 0 0 5px var(--paper-2), inset 0 0 0 6px var(--rule);
+
+    .card-image {
+      grid-column: 2;
+      grid-row: 1;
+      margin-top: 0;
+      border-radius: 3px;
+      box-shadow: var(--shadow);
+    }
+    .card-body {
+      display: grid;
+      grid-template-areas: "label" "title" "dek" "excerpt" "meta";
+    }
+    .card-longform {
+      grid-area: label;
+      @include lf-label(1rem);
+      margin-bottom: 0.65rem;
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 1.6rem;
+        margin-right: 0.6rem;
+        vertical-align: 0.32em;
+        border-top: 1px solid var(--accent);
+      }
+    }
+    .card-title {
+      grid-area: title;
+      margin-bottom: 0.75rem;
+      font-size: clamp(1.9rem, 1.4rem + 1.6vw, 2.6rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      text-wrap: pretty;
+    }
+    .card-dek {
+      grid-area: dek;
+      margin: 0 0 1.1rem;
+      font-size: 1.2rem;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--ink-2);
+    }
+    // the description says it better than the opening lines
+    .card-dek + .card-excerpt { display: none; }
+    .card-excerpt {
+      grid-area: excerpt;
+      margin-bottom: 1.1rem;
+      font-size: 1.12rem;
+      -webkit-line-clamp: 4;
+    }
+    .card-meta {
+      grid-area: meta;
+      margin: 0;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--rule-2);
+    }
+  }
+}
+// the entry above it drops its hairline: the frame takes over
+.post-card-wrap:has(+ .post-card-wrap--longform:not(.post-card-wrap--row)) .post-card { border-bottom-color: transparent; }
+
+@media (max-width: 720px) {
+  .post-card-wrap--longform:not(.post-card-wrap--row) .post-card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.4rem 1.3rem 1.5rem;
+    .card-image { grid-column: 1; grid-row: 1; margin-bottom: 1.2rem; }
+    .card-body { grid-row: 2; }
+    .card-title { font-size: 1.85rem; }
+    .card-dek { font-size: 1.1rem; }
+  }
+}
+@media (max-width: 480px) {
+  // phones hide the list's photos below the lead; a long read keeps its own
+  .post-card-wrap--longform:not(.post-card-wrap--row) {
+    margin: 1.2rem 0;
+    .post-card .card-image { display: block; }
+  }
+}
+
+// ── /archive/ rows: the label under an italic title ──
+.post-card-wrap--longform.post-card-wrap--row .post-card {
+  .card-title { font-style: italic; }
+  .card-longform {
+    grid-column: 2;
+    grid-row: 2;
+    @include lf-label(0.9rem);
+    margin: 0.1rem 0 0;
+  }
+  @media (max-width: 520px) {
+    // the listen chip drops to row 2 there; the label goes under it
+    .card-longform { grid-row: 3; }
+  }
+}
+
+// ── Recent Posts under a post ──
+.recent-posts .post-card--longform {
+  .card-body { display: flex; flex-direction: column; }
+  .card-longform { order: -1; @include lf-label(0.9rem); margin-bottom: 0.2rem; }
+  .card-title { font-style: italic; }
+}

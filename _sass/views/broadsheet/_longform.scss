@@ -1,0 +1,169 @@
+// ════════════════════════════════════════════════════════════════
+//  Broadsheet — long reads: the card of a long-form post (`longform:
+//  true`; post-card-wrap--longform / post-card--longform and the
+//  .card-longform badge, _includes/card-longform.html).
+//
+//  A special report: the story is boxed in a double rule on the darker
+//  newsprint, under an ink banner, "SPECIAL REPORT" over "Long Read ·
+//  31 min read" (the badge itself). It keeps whatever slot it lands in
+//  (lead, second, a column of four, In Brief, an archive line), so the
+//  front page's grid never moves; the lead also gets its description as a
+//  standfirst and, with a column of four, a "Continued inside" jump line.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+$lf-pad: 0.95rem;
+
+// ── The box and its banner ──
+.post-card--longform {
+  background: var(--paper-2);
+  border: 1px solid var(--ink);
+  box-shadow: inset 0 0 0 3px var(--paper-2), inset 0 0 0 4px var(--ink);
+  padding: 0 $lf-pad $lf-pad;
+
+  .card-longform {
+    order: 0;                   // above the kicker (1) and everything else
+    margin: 0 (-$lf-pad) 0.85rem;
+    padding: 0.5rem 0.75rem 0.55rem;
+    background: var(--ink);
+    color: var(--paper);
+    text-align: center;
+    font-family: var(--f-text);
+    font-size: 0.84rem;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-transform: none;
+    &::before {
+      content: "Special Report" / "";
+      display: block;
+      margin: 0 -0.26em 0.12rem 0;   // the tracking's tail, so it centres
+      font-family: var(--f-head);
+      font-size: 1.08rem;
+      font-style: normal;
+      font-weight: 800;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+    }
+  }
+  .card-longform-label { font-weight: 600; }
+
+  .card-kicker { color: var(--red-dk); }   // 7.9:1 on the darker paper
+}
+
+// ── Lead: a standfirst, and the jump line ──
+.post-card--lead.post-card--longform {
+  padding: 0 1.3rem 1.25rem;
+  .card-longform { margin: 0 -1.3rem 1rem; padding: 0.65rem 1rem 0.7rem; font-size: 0.92rem; }
+  .card-longform::before { font-size: 1.35rem; letter-spacing: 0.32em; margin-right: -0.32em; }
+  .card-dek {
+    order: 2;                   // after the headline (the DOM breaks the tie)
+    margin: -0.35rem 0 1rem;
+    font-size: clamp(1.1rem, 1rem + 0.35vw, 1.3rem);
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+}
+.post-card--lead.post-card--longform .card-excerpt::after,
+.post-card--standard.post-card--longform .card-excerpt::after {
+  content: "Continued inside \2192" / "";
+  display: block;
+  margin-top: 0.55rem;
+  @include label(0.68rem, 0.16em);
+  font-weight: 700;
+  color: var(--red-dk);
+}
+
+// ── Slots that are grids: a banner row on top ──
+// In Brief
+.post-card--brief.post-card--longform {
+  grid-template-areas:
+    "badge   badge"
+    "kicker  figure"
+    "title   figure"
+    "meta    figure"
+    "excerpt excerpt";
+  .card-longform { grid-area: badge; }
+}
+// phones: a long read drops the small-photo layout and runs full width
+@media (max-width: 700px) {
+  .home .post-card--second.post-card--longform,
+  .home .post-card--standard.post-card--longform,
+  .post-card--brief.post-card--longform {
+    display: flex;
+    flex-direction: column;
+    .card-figure, .card-meta { align-self: stretch; }
+    .card-figure { margin: 0 0 0.6rem; }
+    .card-title { font-size: 1.45rem; }
+  }
+}
+// the lead on a tablet: photo left, text beside it
+@media (min-width: 701px) and (max-width: 1100px) {
+  .home .post-card--lead.post-card--longform {
+    grid-template-areas:
+      "badge  badge"
+      "kicker kicker"
+      "title  title"
+      "dek    dek"
+      "figure meta"
+      "figure excerpt";
+    grid-template-rows: auto auto auto auto auto 1fr;
+    .card-longform { grid-area: badge; }
+    .card-dek { grid-area: dek; }
+  }
+}
+
+// ── /archive/: a boxed line in the index ──
+.arc .post-card--row.post-card--longform {
+  grid-template-areas:
+    "badge badge  badge"
+    "meta  kicker figure"
+    "meta  title  figure"
+    "meta  excerpt figure";
+  grid-template-rows: auto auto auto 1fr;
+  margin: 0.9rem 0;
+  padding: 0 $lf-pad $lf-pad;
+  .card-longform { grid-area: badge; }
+
+  @media (max-width: 620px) {
+    grid-template-areas:
+      "badge badge  badge"
+      "meta  kicker figure"
+      "meta  title  figure"
+      "meta  excerpt excerpt";
+  }
+}
+// the box draws its own rules; the line under it would double them
+.arc .post-card-wrap--row.post-card-wrap--longform { border-bottom: 0; }
+
+// ── "More From" under a post: boxed, the banner over the photo ──
+.recent-posts .recent-posts-grid > .post-card.post-card--longform {
+  border: 1px solid var(--ink);   // over the phone list's hairlines
+  margin: 1.1rem 0 0.4rem;
+  padding: 0 $lf-pad $lf-pad;
+
+  .card-body { display: contents; }
+  .card-longform { order: -1; }
+  .card-image { order: 0; }
+
+  @media (max-width: 760px) {
+    margin: 0.9rem 0;
+    grid-template-areas:
+      "badge   badge"
+      "kicker  figure"
+      "title   figure"
+      "date    figure"
+      "excerpt figure";
+    grid-template-rows: auto auto auto auto 1fr;
+    .card-longform { grid-area: badge; }
+    .card-kicker { grid-area: kicker; }
+    .card-image { grid-area: figure; }
+    .card-title { grid-area: title; }
+    .card-date { grid-area: date; }
+    .card-excerpt { grid-area: excerpt; }
+  }
+}

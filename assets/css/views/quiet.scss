@@ -21,6 +21,7 @@
   ".post-tags-sep",
   ".arc-year-label",
   ".post-card--row .date-parts",
+  ".post-card:not(.post-card--row) .card-dek",   // a long read's standfirst
 ));
 @use "views/picker";
 
@@ -43,4 +44,5 @@
 @use "palamedes";
 @use "games";
 @use "views/quiet/special";
+@use "views/quiet/longform";
 @use "views/quiet/views";

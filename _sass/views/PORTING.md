@@ -169,6 +169,24 @@ div.post-card-wrap.post-card-wrap--<slot>[data-year data-categories data-tags �
                        words 26–64, just before the "...")
 ```
 
+**Long reads** (Windows 95 and any later design: style these). A post with
+`longform: true` (a long-form feature) adds
+`post-card-wrap--longform` on the wrapper (every slot class and `data-*`
+stays), `post-card--longform` on the card, and, right after `h2.card-title`,
+`p.card-longform > span.card-longform-label` "Long Read" +
+`span.card-longform-sep` " · " (aria-hidden) + `span.card-longform-time`
+"31 min read" (`_includes/card-longform.html`; the post hero's sum), then
+`p.card-dek` (extra: the description). The Recent Posts card under a post
+(`a.post-card`) gets `post-card--longform` and the same badge after its
+title. The badge isn't an extra: it shows everywhere, and a design that
+ignores it gets a small bold uppercase label (a `:where()` rule in
+`_sass/views/_extras.scss`). Make the card look clearly different in your
+design, in any home slot, on /archive/ and under a post. If it spans a
+full grid row, give the grid `grid-auto-flow: row dense` so the next cards
+fill the hole before it. Each design keeps its rules in
+`_sass/views/<key>/_longform.scss` (Default's: `_sass/_longform.scss`). To
+see one, add `longform: true` to a post for a local build, then restore it.
+
 Slots: home as above, `row` on /archive/, `standard` on /about/. Broadsheet's
 order (kicker, title, figure, meta, excerpt): `.card-body { display: contents }`
 and `order` on the parts. Zine's `.card-sticker` → `.card-kicker`. Excerpt

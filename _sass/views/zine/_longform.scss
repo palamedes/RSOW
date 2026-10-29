@@ -1,0 +1,196 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Zine — long reads: the card of a long-form post (`longform: true`;
+//  post-card-wrap--longform / post-card--longform and the .card-longform
+//  badge, _includes/card-longform.html).
+//
+//  A feature poster: a full-width sheet of hazard-yellow stock across the
+//  wall (photo left, headline right, like the lead), taped up twice, with
+//  the badge slapped over the photo's corner as a red "LONG READ" starburst.
+//  Everything small on the yellow is black. Under a post it keeps its slot
+//  and is just the yellow sheet with the starburst.
+// ════════════════════════════════════════════════════════════════
+
+$burst: polygon(50% 0%, 58% 13%, 71% 4%, 74% 19%, 89% 15%, 86% 30%, 100% 33%, 91% 45%, 100% 57%, 87% 63%, 93% 78%, 78% 79%, 76% 94%, 63% 87%, 54% 100%, 45% 88%, 32% 96%, 28% 82%, 13% 85%, 16% 70%, 2% 64%, 11% 52%, 0% 41%, 13% 34%, 8% 20%, 23% 18%, 25% 4%, 39% 11%);
+
+// The starburst: the badge itself, "LONG READ" over "31 MIN READ". It
+// overhangs the card's corner, so the card shows its overflow, and it lets
+// clicks through to the card's link underneath.
+@mixin lf-burst($size: 136px, $off: -30px, $time: 0.64rem) {
+  position: absolute;
+  z-index: 3;
+  top: $off;
+  left: $off;
+  width: $size;
+  height: $size;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: $red;
+  color: #fff;
+  clip-path: $burst;
+  transform: rotate(-12deg);
+  pointer-events: none;
+
+  .card-longform-label {
+    display: block;
+    max-width: 5ch;
+    font-family: $display;
+    font-size: $size * 0.2;
+    font-weight: 400;
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .card-longform-sep { display: none; }
+  .card-longform-time {
+    display: block;
+    max-width: 7ch;
+    margin-top: 0.25rem;
+    @include label($time);
+    line-height: 1.1;
+  }
+}
+
+// What a sheet of yellow stock changes on a flyer
+@mixin lf-yellow-sheet {
+  background: $hazard;
+  overflow: visible;
+
+  .card-date { color: $ink; }                       // red on yellow is too faint
+  .card-kicker { background: $red; color: #fff; }   // never a yellow sticker
+  .card-excerpt { color: $ink; }
+}
+// the marker sweep is yellow; on yellow stock it's a black one
+.post-card--longform:hover .card-link,
+.post-card--longform .card-link:focus-visible {
+  background: $ink;
+  color: $hazard;
+  box-shadow: 0 0 0 2px $ink;
+}
+
+// ── The wall (home, /archive/, /about/): a full-width poster ──
+// A full-row card leaves a hole in the row before it; the next flyers fill it.
+.post-grid:has(.post-card-wrap--longform) { grid-auto-flow: row dense; }
+
+// (this outranks the slot and rhythm rules in _layout.scss, even the 3rd card's)
+.post-grid .post-card-wrap.post-card-wrap--longform:nth-child(n of .post-card-wrap--longform) {
+  grid-column: 1 / -1;
+  --tilt: 0.45deg;
+  margin: 0.4rem 0 1rem;
+
+  // extra tape: a long strip over the top, a corner held down at the bottom
+  &::before { @include tape(170px, 30px, 2.5deg); top: -15px; left: 54%; right: auto; }
+  &:not(.post-card-wrap--lead)::after { @include tape(92px, 26px, -36deg); top: auto; bottom: -6px; right: -26px; }
+
+  .post-card {
+    flex-direction: row;
+    border-width: 4px;
+    @include lf-yellow-sheet;
+    @include hard-shadow(11px);
+  }
+  &:hover .post-card { @include hard-shadow(14px); }
+
+  .card-image {
+    flex: none;
+    width: 54%;
+    align-self: stretch;
+    aspect-ratio: auto;
+    min-height: 100%;
+    border-bottom: 0;
+    border-right: 4px solid $ink;
+  }
+  .card-body {
+    position: static;           // the starburst hangs off the card's corner
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.2rem 2.4rem 2.3rem;
+  }
+  .card-kicker {
+    position: static;
+    align-self: flex-start;
+    margin: 0 0 1rem;
+    font-size: 0.78rem;
+    padding: 0.36rem 0.65rem 0.3rem;
+    transform: rotate(-3deg);
+  }
+  .card-date { font-size: 0.74rem; }
+  .card-title {
+    font-size: clamp(2.2rem, 1rem + 2.6vw, 3.6rem);
+    line-height: 0.96;
+    margin-bottom: 1rem;
+  }
+  .card-excerpt { font-size: 1.15rem; line-height: 1.55; }
+  .card-longform { @include lf-burst(146px, -26px, 0.72rem); }
+
+  @media (max-width: 800px) {
+    .post-card { flex-direction: column; }
+    .card-image {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      min-height: 0;
+      border-right: 0;
+      border-bottom: 4px solid $ink;
+    }
+    .card-body { padding: 1.3rem 1.25rem 1.5rem; }
+  }
+  @media (max-width: 540px) {
+    margin-top: 0.4rem !important;   // over the phone wall's reset
+    &::before { width: 120px; left: 40%; }
+    &:not(.post-card-wrap--lead)::after { right: -8px; }
+    .card-longform { @include lf-burst(108px, -18px, 0.6rem); }
+    .card-title { font-size: 2.1rem; }
+    .card-excerpt { font-size: 1.05rem; }
+  }
+}
+
+// The 2nd and 3rd flyers are a pair of half-sheets (_layout.scss). When the
+// long read is one of them, the other becomes an ordinary third-width flyer,
+// so every row still adds up and dense placement leaves no gap.
+@media (min-width: 1101px) {
+  .home .post-grid:has(> .post-card-wrap--longform:is(:nth-child(2 of .post-card-wrap), :nth-child(3 of .post-card-wrap)))
+    > .post-card-wrap:is(:nth-child(2 of .post-card-wrap), :nth-child(3 of .post-card-wrap)):not(.post-card-wrap--longform) {
+    grid-column: span 2;
+  }
+}
+
+// /archive/ packs its flyers smaller (by id); the poster keeps its size
+#archive-grid .post-card-wrap--longform {
+  .card-body { padding: 2.2rem 2.4rem 2.3rem; }
+  .card-title { font-size: clamp(2rem, 1rem + 2.2vw, 3.2rem); }
+  .card-excerpt { font-size: 1.08rem; -webkit-line-clamp: 4; line-clamp: 4; }
+  @media (max-width: 800px) {
+    .card-body { padding: 1.3rem 1.25rem 1.5rem; }
+    .card-title { font-size: 2rem; }
+  }
+}
+
+// ── Recent Posts under a post: the same slot, yellow, with the starburst ──
+// (outranking the per-slot sticker colours in _layout.scss)
+.recent-posts .recent-posts-grid > .post-card.post-card--longform {
+  @include lf-yellow-sheet;
+  .card-body { position: static; }
+  .card-kicker {
+    position: static;
+    display: table;
+    margin: 0 0 0.65rem;
+    transform: rotate(-3deg);
+  }
+  .card-longform { @include lf-burst(112px, -24px, 0.6rem); }
+  &:hover .card-title,
+  &:focus-visible .card-title {
+    background: $ink;
+    color: $hazard;
+    box-shadow: 0 0 0 2px $ink;
+  }
+  @media (max-width: 540px) {
+    .card-longform { @include lf-burst(108px, -14px, 0.6rem); }
+  }
+}
