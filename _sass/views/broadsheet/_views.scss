@@ -199,13 +199,17 @@
   line-height: 1.5;
   color: var(--ink-2);
 }
-// "You're looking at it", stamped on in red ink
+// "You're looking at it", stamped in red ink on the corner of the proof
+// (out of the flow, so the names across the row stay level)
+.vg-body { position: relative; }
 .vg-item.is-current .vg-current {
-  margin-bottom: 0.3rem;
+  position: absolute;
+  top: -1.05rem;
+  right: 0.5rem;
   padding: 0.15rem 0.55rem;
   border: 1.5px solid var(--red);
   border-radius: 0;
-  background: transparent;
+  background: var(--paper);
   color: var(--red);
   @include label(0.64rem, 0.16em);
   font-weight: 800;
