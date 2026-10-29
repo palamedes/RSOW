@@ -205,7 +205,9 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
 {%- comment -%}
   The post just newer than this one, then the two (or three) just older, so
   the reader can go either way in time. Each card is one link; its
-  .card-kicker (first topic) is a view-extra.
+  .card-kicker (first topic) is a view-extra. A long-form post's card
+  (`longform: true`) adds post-card--longform and, after the title, the
+  "Long Read" badge (_includes/card-longform.html).
 {%- endcomment -%}
 {%- assign found = false -%}
 {%- assign newer1 = nil -%}
@@ -235,7 +237,7 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
     </div>
     <div class="recent-posts-grid">
       {%- for r in picks %}
-      <a class="post-card" href="{{ r.url | relative_url }}">
+      <a class="post-card{% if r.longform %} post-card--longform{% endif %}" href="{{ r.url | relative_url }}">
         {% assign card_img = r.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ r.image_alt | default: r.title | strip_html | escape }}">
         <div class="card-body">
           {%- assign r_kicker = r.categories | first -%}
@@ -244,6 +246,9 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
           {%- endif %}
           {% include date.html date=r.date class="card-date" month="full" %}
           <h2 class="card-title">{{ r.title }}</h2>
+          {%- if r.longform %}
+          {% include card-longform.html post=r %}
+          {%- endif %}
           <p class="card-excerpt">{{ r.excerpt | strip_html | truncatewords: 15 }}</p>
         </div>
       </a>
