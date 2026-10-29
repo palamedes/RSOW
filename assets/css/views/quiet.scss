@@ -1,0 +1,46 @@
+---
+---
+// Quiet, by Claude: a reading-first literary journal with a light/dark
+// toggle. One stylesheet for the whole site, loaded instead of main.css when
+// a visitor picks it (_data/views.yml). Its partials live in
+// _sass/views/quiet/; the special pages it leaves alone come from _sass/.
+
+// The view-extras Quiet shows (everything else marked .view-extra stays
+// hidden); see _sass/views/_extras.scss for the full list.
+@use "views/extras" with ($show: (
+  ".site-title-long",
+  ".nav-ext",
+  ".theme-toggle",
+  ".footer-feed",
+  ".back-to-top-text",
+  ".post-hero-cat-sep",
+  ".post-dek",
+  ".post-hero-by",
+  ".post-hero-date .date-parts",
+  ".post-actions--hero",
+  ".post-tags-sep",
+  ".arc-year-label",
+  ".post-card--row .date-parts",
+));
+@use "views/picker";
+
+@use "views/quiet/base";
+@use "views/quiet/layout";
+@use "adventure";
+@use "scorched";
+@use "paradroid";
+@use "investments";
+@use "views/quiet/about";
+@use "views/quiet/archive";
+@use "views/quiet/tags";
+@use "build";
+@use "views/quiet/post";
+@use "views/quiet/player";
+@use "views/quiet/ai-notes";
+@use "views/quiet/word-notes";
+@use "views/quiet/clapback";
+@use "explain";
+@use "palamedes";
+@use "games";
+@use "views/quiet/special";
+@use "views/quiet/views";

@@ -1,0 +1,419 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  AI Notes — sourced factual context a reader can switch on per post.
+//  assets/js/ai-notes.js wraps the anchored phrase in .ai-note-anchor and
+//  inserts an <aside class="ai-note"> after its paragraph.
+//
+//  Narrow screens: a quiet inset under the paragraph.
+//  Wide screens: true marginalia — .post-content becomes a two-column grid
+//  while notes are on, and each note sits in the right margin beside the
+//  paragraph it annotates.
+// ════════════════════════════════════════════════════════════════
+
+// ── The toggle (post header) and the explainer pill (home) ──
+.post .post-hero .post-actions {
+  display: flex;
+  margin: 0;
+}
+
+.post-ainotes-btn,
+.ainotes-explain-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.38rem 0.9rem 0.38rem 0.65rem;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-2);
+  @include ui(0.92rem, 500);
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+
+  .post-ainotes-ico,
+  .ainotes-ico {
+    display: inline-flex;
+    width: 17px;
+    height: 17px;
+    color: var(--hl-ink);
+    svg { width: 17px; height: 17px; }
+  }
+
+  &:hover { border-color: var(--hl-ink); color: var(--ink); }
+}
+
+// on the home page it sits on the running head, so it's smaller still
+.recent-posts-head .ainotes-explain-btn {
+  padding: 0.22rem 0.75rem 0.22rem 0.55rem;
+  font-size: 0.85rem;
+}
+
+.post-ainotes-btn.is-on {
+  background: var(--hl);
+  border-color: color-mix(in srgb, var(--hl-ink) 45%, transparent);
+  color: var(--ink);
+}
+
+// ── Injected notes ──
+.post-content {
+  .ai-note { display: none; }
+  // `always: true` notes show with AI Notes off too, minus their number
+  &:not(.ai-notes-on) .ai-note--always .ai-note-num { display: none; }
+
+  .ai-note {
+    position: relative;
+    margin: -0.25em 0 1.5em;
+    padding: 0.8rem 1.1rem 0.9rem 1rem;
+    background: var(--paper-2);
+    border-left: 2px solid var(--hl-ink);
+    border-radius: 0 4px 4px 0;
+    font-family: $serif;
+    font-size: 0.8em;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+  &.ai-notes-on .ai-note,
+  .ai-note--always { display: block; }
+
+  // the little robot rides at the start of the head line
+  .ai-note-avatar {
+    position: absolute;
+    left: 0.95rem;
+    top: 0.72rem;
+    width: 24px;
+    height: 24px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--hl);
+    color: var(--hl-ink);
+    svg { width: 16px; height: 16px; }
+  }
+
+  .ai-note-body { min-width: 0; }
+
+  .ai-note .ai-note-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.5rem;
+    min-height: 24px;
+    margin: 0 0 0.35rem;
+    padding-left: 2.05rem;
+  }
+
+  .ai-note-num {
+    font-family: $sans;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-variant-numeric: lining-nums;
+    color: var(--hl-ink);
+  }
+
+  .ai-note-head-label {
+    @include smallcaps(0.92rem);
+    color: var(--muted);
+  }
+
+  // The verdict: a word, coloured along the true → false spectrum.
+  .ai-note-verdict {
+    margin-left: auto;
+    @include smallcaps(0.92rem);
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .ai-note-verdict--true,
+  .ai-note-verdict--accurate      { color: var(--v-true); }
+  .ai-note-verdict--mostly-true   { color: var(--v-mostly); }
+  .ai-note-verdict--needs-context,
+  .ai-note-verdict--partly-true,
+  .ai-note-verdict--mixed         { color: var(--v-mixed); }
+  .ai-note-verdict--misleading    { color: var(--v-mislead); }
+  .ai-note-verdict--false,
+  .ai-note-verdict--mostly-false  { color: var(--v-false); }
+  .ai-note-verdict--random-fact,
+  .ai-note-verdict--fun-fact,
+  .ai-note-verdict--context,
+  .ai-note-verdict--background,
+  .ai-note-verdict--fyi           { color: var(--ai); }
+
+  .ai-note .ai-note-text { margin: 0 0 0.5rem; }
+
+  .ai-note .ai-note-sources {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.2rem 0.4rem;
+    margin: 0;
+    @include ui(0.82rem, 400);
+    line-height: 1.4;
+    color: var(--muted);
+
+    a {
+      color: var(--ink-2);
+      text-decoration: underline;
+      text-decoration-color: var(--rule-2);
+      text-underline-offset: 0.18em;
+      &:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    }
+  }
+
+  .ai-note-src-label {
+    @include smallcaps(0.88rem);
+    margin-right: 0.1rem;
+    color: var(--muted);
+  }
+
+  .ai-note-src-sep { color: var(--faint); }
+
+  // ── The anchored phrase inside the prose ──
+  .ai-note-anchor { transition: background-color 0.15s ease; }
+
+  &.ai-notes-on .ai-note-anchor {
+    background: var(--hl);
+    border-radius: 2px;
+    box-shadow: 0 0 0 2px var(--hl);
+    cursor: help;
+  }
+
+  &.ai-notes-on .ai-note-anchor::after {
+    content: attr(data-ai-note);
+    margin-left: 2px;
+    font-family: $sans;
+    font-size: 0.6em;
+    font-weight: 700;
+    font-variant-numeric: lining-nums;
+    vertical-align: super;
+    line-height: 0;
+    color: var(--hl-ink);
+  }
+
+  // ── Footer explainer (shown only while notes are toggled on) ──
+  .ai-notes-about { display: none; }
+  &.ai-notes-on .ai-notes-about {
+    display: block;
+    margin: 2.5rem 0 0.5rem;
+    padding: 1.1rem 0 0;
+    border-top: 1px solid var(--rule);
+    color: var(--muted);
+    font-size: 0.8em;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  .ai-notes-about-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.4rem;
+    @include smallcaps(0.95rem);
+    font-style: normal;
+    color: var(--ink-2);
+  }
+
+  .ai-notes-about-ico {
+    display: grid;
+    place-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--hl);
+    color: var(--hl-ink);
+    svg { width: 14px; height: 14px; }
+  }
+
+  .ai-notes-about p { margin: 0; }
+  .ai-notes-about strong { font-style: normal; font-weight: 600; color: var(--ink-2); }
+}
+
+// ── Marginalia on wide screens ──
+// The column keeps its exact width: the grid grows to the right by the
+// notes column. Spacing that used to collapse between blocks is trimmed
+// back so the text doesn't shift when the notes come on.
+@media (min-width: 1280px) {
+  .post .post-content.ai-notes-on {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 15.5rem;
+    column-gap: 3rem;
+    align-items: start;
+    margin-right: -18.5rem;
+
+    > * { grid-column: 1; }
+
+    > h2 { margin-top: 1.36em; }
+    > h3 { margin-top: 0.86em; }
+    > blockquote { margin-top: 0.45em; }
+    > hr { margin-top: 1.35em; }
+    > .post-figure, > figure { margin-top: 1.15em; }
+
+    // A note spans the next several rows so its height is absorbed by the
+    // paragraphs beside it instead of stretching them apart.
+    > .ai-note {
+      grid-column: 2;
+      grid-row: span 7;
+      display: block;
+      margin: 0.3rem 0 1.25rem;
+      padding: 0.6rem 0 0;
+      background: none;
+      border-left: 0;
+      border-top: 1px solid var(--hl-ink);
+      border-radius: 0;
+      font-size: 0.74em;
+      line-height: 1.48;
+    }
+    > .ai-note .ai-note-avatar { display: none; }
+    > .ai-note .ai-note-head { margin-bottom: 0.25rem; padding-left: 0; min-height: 0; }
+    > .ai-note .ai-note-sources { font-size: 0.8rem; }
+  }
+}
+
+
+// ── "What are AI Notes?" explainer dialog ──
+// Opened from the pill on the home page. Native <dialog>, so Esc and focus
+// trapping come free; the JS only adds open, close, and click-outside.
+.ainotes-explain-btn.is-demo {
+  cursor: default;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.ainotes-modal {
+  // The `* { margin: 0 }` reset beats the UA's auto margins that centre a
+  // modal <dialog>, so restore them.
+  margin: auto;
+  width: min(36rem, calc(100vw - 2rem));
+  max-height: min(85vh, 46rem);
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--ink);
+  box-shadow: 0 30px 80px -24px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+
+  &::backdrop {
+    background: rgba(20, 18, 16, 0.55);
+    backdrop-filter: blur(2px);
+  }
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    animation: ainotes-modal-in 0.18s ease-out;
+  }
+}
+
+@keyframes ainotes-modal-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ainotes-modal[open] { animation: none; }
+}
+
+.ainotes-modal-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.15rem 1.35rem 0.9rem;
+  border-bottom: 1px solid var(--rule);
+
+  .ainotes-ico {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--hl);
+    color: var(--hl-ink);
+    svg { width: 18px; height: 18px; }
+  }
+
+  h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-family: $serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+    color: var(--ink);
+  }
+}
+
+.ainotes-modal-close {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  svg { width: 16px; height: 16px; }
+  &:hover { color: var(--ink); border-color: var(--rule-2); }
+}
+
+.ainotes-modal-body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 1.15rem 1.35rem 1.25rem;
+  font-family: $serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+
+  p { margin: 0 0 0.9rem; }
+  p:last-child { margin-bottom: 0; }
+  strong { font-weight: 650; color: var(--ink); }
+}
+
+.ainotes-modal-how {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1.1rem;
+  border-left: 2px solid var(--hl-ink);
+  border-radius: 0 4px 4px 0;
+  background: var(--paper-2);
+
+  .ainotes-modal-how-lead {
+    margin-bottom: 0.4rem;
+    @include smallcaps(0.98rem);
+    color: var(--ink);
+  }
+}
+
+.ainotes-modal-demo { margin: 0.7rem 0 0.8rem; }
+
+.ainotes-modal-honest {
+  padding-left: 1rem;
+  border-left: 1px solid var(--rule-2);
+  font-style: italic;
+  strong { font-style: normal; }
+}
+
+.ainotes-modal-foot {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.85rem 1.35rem;
+  border-top: 1px solid var(--rule);
+}
+
+.ainotes-modal-ok {
+  padding: 0.45rem 1.3rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  @include ui(0.92rem, 500);
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.85; }
+}

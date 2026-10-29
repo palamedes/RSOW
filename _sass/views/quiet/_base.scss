@@ -1,0 +1,198 @@
+@use "tokens" as *;
+
+// ── Themes ──────────────────────────────────────────────
+:root { @include light-tokens; }
+:root[data-theme="dark"] { @include dark-tokens; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include dark-tokens; }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background-color: var(--paper);
+  // hanging punctuation where the browser supports it (Safari)
+  hanging-punctuation: first allow-end last;
+}
+
+body {
+  font-family: $serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink);
+  background-color: var(--paper);
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  font-variant-numeric: oldstyle-nums proportional-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+::selection { background: var(--select); color: inherit; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+  &:hover { color: var(--accent); }
+}
+
+:focus-visible { @include focus-ring; }
+
+// Body links: ink with a thin terracotta underline, set low so it clears
+// the descenders. Hover warms the whole word.
+.page a, .post-content a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  &:hover { color: var(--accent); text-decoration-color: var(--accent); }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre, code, kbd, samp {
+  font-family: $mono;
+  font-size: 0.82em;
+  font-variant-numeric: normal;
+}
+
+pre {
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  border-radius: 4px;
+  line-height: 1.55;
+}
+
+code {
+  background: var(--paper-2);
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  margin: 1.6em 0;
+  padding: 0 0 0 1.4em;
+  border-left: 1px solid var(--accent);
+  color: var(--ink-2);
+  font-style: italic;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 1.5rem 0 0.5rem;
+  font-family: $serif;
+  line-height: 1.15;
+  font-weight: 500;
+  color: var(--ink);
+  text-wrap: balance;
+}
+
+p, ul, ol {
+  margin-bottom: 1rem;
+}
+
+p { text-wrap: pretty; }
+
+strong, b {
+  font-weight: 700;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  margin: 2.5rem 0;
+}
+
+table { font-variant-numeric: lining-nums tabular-nums; }
+
+input, button, select, textarea { font: inherit; color: inherit; }
+
+// ::highlight:: — see _plugins/highlighter.rb, which turns `::text::` into
+// <mark class="hl">. A soft marker swipe, translucent so the words read
+// through it, kept on every line when it wraps.
+mark.hl {
+  background: linear-gradient(
+    100deg,
+    transparent 0.4%,
+    color-mix(in srgb, var(--hl) 92%, transparent) 2.4%,
+    color-mix(in srgb, var(--hl) 75%, transparent) 50%,
+    color-mix(in srgb, var(--hl) 92%, transparent) 94%,
+    transparent 99.4%
+  );
+  color: inherit;
+  padding: 0.1em 0.3em 0.15em;
+  margin: 0 -0.18em;
+  border-radius: 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+// The global `* { padding: 0 }` reset kills list indentation; restore it
+// for body content so bullets/numbers sit indented under their text.
+// Skip lists that already opt into an explicit indent (e.g. .ml-4 on the
+// resume), otherwise the padding stacks on top of their margin.
+.page, .post-content {
+  ul:not(.ml-4), ol:not(.ml-4) {
+    padding-left: 1.4em;
+  }
+  li { margin-bottom: 0.35em; }
+  li::marker { color: var(--accent); }
+  ol li::marker { font-variant-numeric: oldstyle-nums; }
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 2000;
+  padding: 0.5rem 0.9rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 3px;
+  @include ui(0.9rem, 500);
+  &:focus { top: 1rem; color: var(--paper); }
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.mb-0 { margin-bottom: 0 !important; }
+.mt-0 { margin-top: 0 !important; }
+.ml-4 { margin-left: 2rem !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -43,7 +43,7 @@
   fonts: "https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..800;1,400..800&family=Alegreya+SC:wght@500&family=Alegreya+Sans:wght@400;500;700&display=swap"
   swatches: ["#faf8f3", "#1f1d1a", "#9a3b24", "#3b5878"]
   schemes: true
-  ready: false
+  ready: true
 
 - key: broadsheet
   name: Broadsheet

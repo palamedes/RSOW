@@ -1,0 +1,94 @@
+@use "tokens" as *;
+
+// ════════════════ TAG AND TOPIC CLOUDS (/tags/, /topics/) ════════════════
+// Both pages open with the archive's header (_includes/archive-hero.html);
+// this is the body underneath. _plugins/tags.rb orders the words center-out
+// and sizes them; here they're set like an index in the back of a book —
+// type only, the bigger subjects darker, the rarer ones in grey italic.
+// --tc-nudge (a few px, fixed per tag) knocks the baseline around so it
+// reads as a scatter rather than lines of text.
+
+.tc-head {
+  max-width: 880px;
+  margin: 2.6rem auto 0;
+  text-align: center;
+  h2 {
+    margin: 0 0 0.4rem;
+    @include smallcaps(1.05rem);
+    color: var(--ink);
+  }
+  p {
+    margin: 0;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-2);
+  }
+  a {
+    font-style: normal;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 0.2em;
+    &:hover { color: var(--accent); }
+  }
+}
+
+.tc-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem 1.2rem;
+  max-width: 880px;
+  margin: 2rem auto 1rem;
+  padding: 2.4rem 0.5rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: $serif;
+}
+
+.tc-tag {
+  position: relative;
+  display: inline-block;
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  white-space: nowrap;
+  transform: translateY(var(--tc-nudge, 0px));
+  transition: color 0.15s ease;
+  &:hover, &:focus-visible {
+    color: var(--accent);
+    .tc-count { opacity: 1; }
+  }
+}
+// darker as the subject gets bigger; the rare ones recede into grey italic
+.tc-tier-4 { color: var(--ink); font-weight: 600; }
+.tc-tier-3 { color: var(--ink); }
+.tc-tier-2 { color: var(--ink-2); font-weight: 400; }
+.tc-tier-1 { color: var(--muted); font-weight: 400; font-style: italic; }
+
+// the count shows on hover, as a small superior figure
+.tc-count {
+  font-family: $sans;
+  font-size: 0.42em;
+  font-weight: 500;
+  font-style: normal;
+  font-variant-numeric: lining-nums;
+  vertical-align: super;
+  margin-left: 0.15em;
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+@media (hover: none) {
+  .tc-count { opacity: 1; color: var(--muted); }
+}
+
+@media (max-width: 620px) {
+  .tc-cloud { padding: 1.6rem 0; gap: 0.45rem 0.85rem; margin-left: 1rem; margin-right: 1rem; }
+  .tc-head { margin: 1.8rem 1rem 0; }
+}
+
+// Only fifteen or so topics, so space them out more than the tags.
+.tc-cloud--topic { gap: 1rem 2rem; padding: 3rem 1rem; }
