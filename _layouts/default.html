@@ -141,7 +141,6 @@
           <div class="social-icons">
             {% include social-icons.html %}
           </div>
-          {% include view-picker.html %}
           <button type="button" class="view-extra theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Dark theme" title="Switch between light and dark">
             <svg class="theme-ico theme-ico-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5a8.5 8.5 0 1 0 10.8 10.8z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
             <svg class="theme-ico theme-ico-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -173,8 +172,6 @@
       </div>
     </div>
   </div>
-
-  {% include views-script.html %}
 
   <script>
     // Mobile nav. The six links wrap into three stacked rows on a phone, so
@@ -527,8 +524,8 @@
       <div class="site-wrapper">
         <div class="footer-bottom-inner">
           <p class="footer-copy">&copy; 1997 by Random String of Words on RSOW.com</p>
+          {% include view-picker.html %}
           <nav class="footer-links" aria-label="Footer">
-            <a class="footer-views" href="{{ '/views/' | relative_url }}">Select a design</a>
             <a class="view-extra footer-feed" href="{{ '/feed.xml' | relative_url }}">Subscribe by RSS</a>
           </nav>
           <a href="#" class="back-to-top" aria-label="Back to top"><span class="view-extra back-to-top-text">Back to top </span><span class="back-to-top-ico" aria-hidden="true">&#9650;</span></a>
@@ -536,6 +533,8 @@
       </div>
     </div>
   </footer>
+
+  {% include views-script.html %}
 
   {% include audio-player.html %}
   {%- comment -%}

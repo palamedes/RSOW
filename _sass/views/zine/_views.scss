@@ -29,13 +29,8 @@
   --vp-shadow: 6px 6px 0 0 #{$ink};
 }
 
-// ── The picker: a yellow sticker at the end of the social row ──
-.site-header {
-  .view-picker {
-    grid-area: picker;
-    justify-self: end;
-  }
-
+// ── The picker: a yellow sticker slapped on the back cover ──
+.footer-bottom {
   .view-picker-btn {
     gap: 0.4rem;
     height: 32px;
@@ -48,34 +43,11 @@
     box-shadow: 2px 2px 0 0 $ink;
     transform: rotate(-1.5deg);
     transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
-    &:hover, &[aria-expanded="true"] { background: $ink; color: $hazard; transform: none; }
-    &:focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+    &:hover, &[aria-expanded="true"] { background: $sheet; color: $ink; transform: none; }
+    &:focus-visible { outline: 3px solid $hazard; outline-offset: 3px; }
   }
   .view-picker-ico { width: 16px; height: 16px; }
-  .view-picker-menu { top: calc(100% + 10px); }
-
-  // phones: the last thing in the menu panel, its list opening underneath
-  @media (max-width: 960px) {
-    .view-picker {
-      justify-self: stretch;
-      flex-wrap: wrap;
-      margin: 0.5rem 0 0.6rem;
-    }
-    .view-picker-btn {
-      height: 44px;
-      padding: 0 0.9rem;
-      font-size: 0.86rem;
-      transform: none;
-      box-shadow: 3px 3px 0 0 $ink;
-    }
-    .view-picker-menu {
-      position: static;
-      flex-basis: 100%;
-      width: auto;
-      max-width: none;
-      margin: 0.9rem 6px 0 0;
-    }
-  }
+  .view-picker-menu { bottom: calc(100% + 10px); }
   @media (prefers-reduced-motion: reduce) { .view-picker-btn { transition: none; } }
 }
 

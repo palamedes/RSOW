@@ -43,10 +43,10 @@
   // view-extras Zine doesn't show are display:none, so they take no cell).
   .header-inner {
     display: grid;
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto 1fr auto;
     grid-template-areas:
-      "logo nav    nav    nav"
-      "logo resume social picker";
+      "logo nav    nav"
+      "logo resume social";
     align-items: center;
     column-gap: 1.25rem;
     row-gap: 0.7rem;
@@ -271,8 +271,7 @@
         "logo   toggle"
         "resume resume"
         "nav    nav"
-        "social social"
-        "picker picker";
+        "social social";
       row-gap: 0;
       padding: 0.8rem 0 0.75rem;
     }
@@ -304,8 +303,7 @@
       .social-icon { width: 40px; height: 40px; svg { width: 18px; height: 18px; } }
     }
     .header-inner:not(.is-nav-open) .nav-links,
-    .header-inner:not(.is-nav-open) .social-icons,
-    .header-inner:not(.is-nav-open) .view-picker { display: none; }
+    .header-inner:not(.is-nav-open) .social-icons { display: none; }
   }
 
   @media (max-width: 420px) {
@@ -1648,7 +1646,10 @@
     margin: 0 auto 0 0;
   }
 
-  a {
+  // (not the picker's list, which keeps its own colours)
+  .footer-copy a,
+  .footer-links a,
+  .back-to-top {
     color: $hazard;
     text-decoration: underline;
     text-underline-offset: 3px;
@@ -1656,7 +1657,7 @@
     &:focus-visible { outline-color: $hazard; }
   }
 
-  // "Select a design" and the RSS link
+  // the RSS link
   .footer-links {
     display: flex;
     flex-wrap: wrap;

@@ -9,7 +9,7 @@
 //
 //    --vp-font      font for the menu and gallery labels   (inherit)
 //    --vp-ink       menu text                               (#222)
-//    --vp-muted     "by …", labels                          (#666)
+//    --vp-muted     the menu's heading and "About" link     (#666)
 //    --vp-bg        menu / gallery card background          (#fff)
 //    --vp-line      borders and hairlines                   (#ddd)
 //    --vp-hover     item hover / focus wash                 (rgba(0,0,0,.05))
@@ -57,20 +57,24 @@ main.site-content:focus { outline: none; }
   &:focus-visible { outline: 2px solid var(--vp-accent, #2673da); outline-offset: 2px; }
 }
 .view-picker-ico { width: 1.15em; height: 1.15em; flex-shrink: 0; }
+// points up: the list opens upward, from the foot of the page
 .view-picker-caret {
   width: 0;
   height: 0;
   border-style: solid;
-  border-width: 0.32em 0.27em 0;
-  border-color: currentColor transparent transparent;
+  border-width: 0 0.27em 0.32em;
+  border-color: transparent transparent currentColor;
   transition: transform 0.15s ease;
 }
 .view-picker-btn[aria-expanded="true"] .view-picker-caret { transform: rotate(180deg); }
 @media (prefers-reduced-motion: reduce) { .view-picker-caret { transition: none; } }
 
+// Opens upward from the button, right edges aligned. The script slides it
+// sideways (the `translate` property) when that would run off either edge
+// of the screen.
 .view-picker-menu {
   position: absolute;
-  top: calc(100% + 6px);
+  bottom: calc(100% + 6px);
   right: 0;
   z-index: 1100;
   width: max-content;

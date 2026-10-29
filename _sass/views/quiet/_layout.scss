@@ -204,11 +204,10 @@ $nav-bp: 1179px;   // the full header (with the design picker) needs ~1170px
       margin-left: -6px;
       .social-icon { width: 34px; height: 34px; svg { width: 17px; height: 17px; } }
     }
-    .view-picker { order: 6; flex-basis: 100%; flex-wrap: wrap; padding: 0 0 0.9rem; }
     .resume-slot { order: 7; flex-basis: 100%; padding-bottom: 0.9rem; &:empty { display: none; } }
 
     .header-inner:not(.is-nav-open) {
-      .nav-links, .social-icons, .resume-slot, .view-picker { display: none; }
+      .nav-links, .social-icons, .resume-slot { display: none; }
     }
   }
 
