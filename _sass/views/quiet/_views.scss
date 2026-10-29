@@ -86,7 +86,6 @@
 .vg-item { box-shadow: none; }
 .vg-shot img { opacity: var(--img-dim); }
 .vg .vg-name { font-family: $serif; font-weight: 500; font-size: 1.6rem; }
-.vg .vg-by { @include smallcaps(0.95rem); }
 .vg .vg-desc { font-size: 1.05rem; line-height: 1.5; color: var(--ink-2); }
 .vg-current { @include smallcaps(0.85rem); }
 .vg-item.is-current .vg-current { background: var(--accent); color: var(--paper); letter-spacing: 0.06em; }

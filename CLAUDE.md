@@ -33,7 +33,7 @@ Link text says where it goes ("More about me", "View all posts"), never a bare
 
 Visitors can switch the whole site between designs, after the CSS Zen
 Garden: **one HTML, many stylesheets**. `_data/views.yml` lists them (key,
-name, designer, stylesheet, Google Fonts URL, swatches, `schemes` for a
+name, stylesheet, Google Fonts URL, swatches, `schemes` for a
 light/dark toggle, `ready`). The inline loader in `_layouts/default.html`
 `<head>` picks the design before first paint (`?view=<key>`, else the saved
 choice, else Default) and writes only that design's fonts and stylesheet.

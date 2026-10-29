@@ -149,7 +149,6 @@
   font-size: 1.75rem;
   line-height: 1.05;
 }
-.vg .vg-by { @include label(0.72rem); color: $grey; }
 .vg-item.is-current .vg-current {
   @include rubber-stamp($red, -3deg);
   background: none;

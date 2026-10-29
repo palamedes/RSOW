@@ -259,15 +259,15 @@ Style `#view-picker` (`.view-picker-btn` with `.view-picker-ico`,
 `.view-picker-label` "Design", `.view-picker-caret`; `.view-picker-menu >
 .view-picker-head + ul.view-picker-list > li > a.view-picker-item(.is-current) >
 .view-picker-swatches + .view-picker-text > .view-picker-name +
-.view-picker-check`, then `a.view-picker-more`; the picker shows no "by"
-credit, which lives only on /views/) so it
+.view-picker-check`, then `a.view-picker-more`; designs carry no "by"
+credit anywhere) so it
 belongs to your design, and on phones put it in the menu panel (see
 `_sass/views/_default.scss` and `_sass/views/quiet/_views.scss`). Theme the
 shared structure with `--vp-font`, `--vp-ink`, `--vp-muted`, `--vp-bg`,
 `--vp-line`, `--vp-hover`, `--vp-accent`, `--vp-radius`, `--vp-shadow`.
 /views/ is `article.page > div.vg > (div.vg-intro, ul.vg-list > li.vg-item
 (.is-current) > a.vg-shot > img + div.vg-body > (.vg-current, h2.vg-name,
-p.vg-by, .vg-swatches, p.vg-desc, p.vg-links > a.vg-try + a.vg-css))`.
+.vg-swatches, p.vg-desc, p.vg-links > a.vg-try + a.vg-css))`.
 
 ## Text that differs from your branch
 

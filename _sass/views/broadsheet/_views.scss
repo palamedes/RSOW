@@ -181,11 +181,6 @@
   font-weight: 800;
   line-height: 1.05;
 }
-.vg .vg-by {
-  @include label(0.68rem, 0.16em);
-  font-weight: 700;
-  color: var(--red);
-}
 .vg-swatches {
   width: 4.5rem;
   height: 0.65rem;
