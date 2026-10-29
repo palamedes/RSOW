@@ -1,0 +1,116 @@
+// ════════════════════════════════════════════════════════════════
+//  Quiet — design tokens.
+//
+//  Everything colour-related is a CSS custom property so one stylesheet
+//  serves both themes. The light set is the default; the dark set applies
+//  when the reader's system prefers dark (and they haven't picked light
+//  with the header toggle), or when they've picked dark. The toggle writes
+//  data-theme="light|dark" on <html> before first paint (see default.html).
+//
+//  Pages whose own stylesheets assume a light page (games, investments,
+//  explainers…) re-apply the light set on main.site-content.is-light-only.
+// ════════════════════════════════════════════════════════════════
+
+$serif: "Alegreya", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+$serif-sc: "Alegreya SC", "Alegreya", Palatino, Georgia, serif;
+$sans: "Alegreya Sans", "Gill Sans", "Gill Sans MT", "Segoe UI", system-ui, sans-serif;
+$mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+// widths
+$measure: 34em;          // the reading column (≈66ch of Alegreya at 21px)
+$wide: 1080px;           // home list, archive
+$shell: 1180px;          // header + footer
+
+@mixin light-tokens {
+  --paper:      #faf8f3;   // the page
+  --paper-2:    #f3efe6;   // insets, asides
+  --paper-3:    #ebe5d8;   // pressed / hover wash
+  --card:       #fffdf8;   // raised surfaces: menus, dialogs
+  --ink:        #1f1d1a;   // text
+  --ink-2:      #47423b;   // secondary text
+  --muted:      #6b6358;   // metadata (5.5:1 on paper)
+  --faint:      #a59c8e;   // decoration only, never text
+  --rule:       #e2dbcd;   // hairlines
+  --rule-2:     #d2c9b7;   // stronger hairlines, input borders
+  --accent:     #9a3b24;   // terracotta, used sparingly
+  --accent-2:   #7c2d19;   // accent hover
+  --accent-wash: rgba(154, 59, 36, 0.08);
+  --ai:         #3b5878;   // narration read by AI (slate)
+  --human:      #8a5d0c;   // narration read by Jason (ochre)
+  --hl:         #f5e6b4;   // AI-note anchor wash
+  --hl-ink:     #6e5208;
+  --select:     rgba(154, 59, 36, 0.16);
+  --img-dim:    1;          // photos at full strength on paper
+  --shadow:     0 1px 2px rgba(31, 29, 26, 0.05), 0 12px 32px -18px rgba(31, 29, 26, 0.28);
+  --player-bg:  #1f1d1a;
+  --player-ink: #f3eee5;
+  --player-dim: rgba(243, 238, 229, 0.66);
+  --wave-ai:    #9db8d6;
+  --wave-human: #e2b45c;
+  --v-true:     #2e6a3c;   // AI Note verdicts, true → false
+  --v-mostly:   #4b6a1f;
+  --v-mixed:    #85590a;
+  --v-mislead:  #a0470f;
+  --v-false:    #a3261d;
+  color-scheme: light;
+}
+
+@mixin dark-tokens {
+  --paper:      #191715;
+  --paper-2:    #211f1c;
+  --paper-3:    #2b2824;
+  --card:       #24211e;
+  --ink:        #ece6db;
+  --ink-2:      #cbc3b6;
+  --muted:      #a2998c;
+  --faint:      #6f685e;
+  --rule:       #35312c;
+  --rule-2:     #4a443d;
+  --accent:     #e39a7e;
+  --accent-2:   #f1b49c;
+  --accent-wash: rgba(227, 154, 126, 0.1);
+  --ai:         #a3bdd9;
+  --human:      #e0b25a;
+  --hl:         rgba(224, 178, 90, 0.2);
+  --hl-ink:     #e8c77e;
+  --select:     rgba(227, 154, 126, 0.24);
+  --img-dim:    0.9;        // photos a touch softer at night
+  --shadow:     0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 36px -18px rgba(0, 0, 0, 0.7);
+  --player-bg:  #24211e;
+  --player-ink: #ece6db;
+  --player-dim: rgba(236, 230, 219, 0.66);
+  --wave-ai:    #a3bdd9;
+  --wave-human: #e0b25a;
+  --v-true:     #8fc79d;
+  --v-mostly:   #b9d08a;
+  --v-mixed:    #e0b25a;
+  --v-mislead:  #eea070;
+  --v-false:    #f0928a;
+  color-scheme: dark;
+}
+
+// Small caps the honest way: Alegreya SC draws real small capitals for
+// lowercase letters, so labels are lowercased and set in it.
+@mixin smallcaps($size: 0.9rem) {
+  font-family: $serif-sc;
+  font-weight: 500;
+  font-size: $size;
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  font-variant-numeric: oldstyle-nums;
+}
+
+// The quiet sans for interface labels: buttons, filters, the player.
+@mixin ui($size: 0.9rem, $weight: 500) {
+  font-family: $sans;
+  font-size: $size;
+  font-weight: $weight;
+  letter-spacing: 0.01em;
+  font-variant-numeric: lining-nums;
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}

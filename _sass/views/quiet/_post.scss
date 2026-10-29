@@ -1,0 +1,992 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Single post — Quiet. A title page, then one reading column.
+//  Scoped under `.post`. The column is 34em of 21px Alegreya (about
+//  66 characters a line); the title block shares its left edge.
+//
+//  On the shared HTML: the hero's own AI Notes toggle and listen button
+//  sit in .post-hero-tools, a row of its own under the byline; the
+//  in-article toggle is hidden. The date is set from its .date-parts with
+//  the month in full.
+// ════════════════════════════════════════════════════════════════
+
+$col: 39rem;               // ≈68 characters of 21.5px Alegreya
+$col-pad: 1.5rem;
+
+.post {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // ════════════════ TITLE PAGE ════════════════
+  .post-hero {
+    padding: 4.75rem 0 2.4rem;
+    @media (max-width: 640px) { padding: 2.6rem 0 1.6rem; }
+  }
+  .post-hero-inner {
+    max-width: calc(#{$col} + #{$col-pad * 2});
+    margin: 0 auto;
+    padding: 0 $col-pad;
+    @media (max-width: 600px) { padding: 0 1rem; }
+  }
+  .post-hero-bg { display: none; }
+
+  .post-hero-cats {
+    margin: 0 0 1.1rem;
+    @include smallcaps(1rem);
+    color: var(--accent);
+    a { color: var(--accent); &:hover { color: var(--accent-2); text-decoration: underline; text-underline-offset: 0.2em; } }
+    .post-hero-cat-sep { color: var(--muted); font-family: $serif; text-transform: none; font-style: italic; }
+  }
+
+  .post-hero-title {
+    margin: 0 -7rem 1.1rem 0;      // may run past the column on the right
+    @media (max-width: 1100px) { margin-right: 0; }
+    font-size: clamp(2.3rem, 1.5rem + 3vw, 3.55rem);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .post-dek {
+    margin: 0 0 1.6rem;
+    max-width: 34em;
+    font-size: clamp(1.18rem, 1.08rem + 0.45vw, 1.42rem);
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  // The byline runs as text, not a flex row: in the shared HTML each dot
+  // is its own element, and a line may only break before a dot (the zero-
+  // width space), so a dot always travels with the item after it.
+  .post-hero-meta {
+    display: block;
+    white-space: nowrap;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+    @include smallcaps(0.98rem);
+    color: var(--muted);
+    .post-hero-author { color: var(--ink); }
+    .post-hero-date .date-text,
+    .post-hero-date .date-m-abbr,
+    .post-hero-date .date-m-ap { display: none; }
+    .post-hero-dot {
+      color: var(--faint);
+      margin: 0 0.2rem 0 0.55rem;   // (the break before it eats the source space)
+      &::before { content: "\200B"; white-space: normal; }
+    }
+    // Clickable (it toggles playback) but deliberately still reads as text.
+    .post-hero-listen-note {
+      color: var(--ai);
+      cursor: pointer;
+      border-bottom: 1px dotted currentColor;
+      &.is-human { color: var(--human); }
+      &:hover { border-bottom-style: solid; }
+      &:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+      // the headphones emoji (Default's) stays out of this byline: it's the
+      // note's first letter, set at nothing, and the space after it is
+      // indented out of the box
+      display: inline-block;
+      line-height: 1.25;      // no taller than the line it sits on
+      text-indent: -0.26em;
+      &::first-letter { font-size: 0; }
+    }
+  }
+
+  // Listen + AI Notes: two quiet buttons under the byline.
+  // (The row breaks out of the byline's flex line and its small caps.)
+  .post-hero-tools {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.25rem;
+    white-space: normal;
+    line-height: 1.6;
+    font-family: $serif;
+    text-transform: none;
+    letter-spacing: normal;
+    .post-listen-group { order: -1; }
+  }
+  .post-content > .post-actions { display: none; }
+
+  // ════════════════ LISTEN BUTTON ════════════════
+  .post-listen-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  // elapsed / total, beside the button while it plays
+  .post-listen-time {
+    @include ui(0.88rem, 500);
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--ai);
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
+  .post-listen-time--human { color: var(--human); }
+
+  .post-listen {
+    --c: var(--ai);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.3rem 1.1rem 0.3rem 0.3rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    color: var(--c);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+    &:hover { border-color: var(--c); background: color-mix(in srgb, var(--c) 8%, transparent); }
+    &:focus-visible { outline: 2px solid var(--c); outline-offset: 3px; }
+  }
+  // Play triangle → pause bars when .is-playing, drawn in the paper colour
+  // on a disc of the button's colour.
+  .post-listen-ico {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: var(--c);
+    &::before {
+      content: "";
+      width: 0; height: 0;
+      margin-left: 3px;
+      border-style: solid;
+      border-width: 6px 0 6px 10px;
+      border-color: transparent transparent transparent var(--paper);
+    }
+    // a single soft ring after load, as a nudge — gone once it plays
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      animation: post-listen-pulse 2.6s ease-out 1s 2;
+    }
+  }
+  .post-listen.is-playing .post-listen-ico {
+    &::before {
+      width: 10px; height: 12px;
+      margin-left: 0;
+      border: 0;
+      background:
+        linear-gradient(var(--paper), var(--paper)) left / 3.5px 100% no-repeat,
+        linear-gradient(var(--paper), var(--paper)) right / 3.5px 100% no-repeat;
+    }
+    &::after { animation: none; }
+  }
+  @keyframes post-listen-pulse {
+    0%        { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 45%, transparent); }
+    80%, 100% { box-shadow: 0 0 0 10px color-mix(in srgb, var(--c) 0%, transparent); }
+  }
+  .post-listen-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .post-listen-lead {
+    @include ui(1rem, 700);
+    white-space: nowrap;
+  }
+  .post-listen-sub {
+    @include smallcaps(0.82rem);
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+  // Jason's own voice: ochre instead of slate, so it's never mistaken for TTS.
+  .post-listen--human { --c: var(--human); }
+  .post-listen.is-error {
+    --c: #b3261e;
+    cursor: default;
+    .post-listen-ico::after { animation: none; }
+  }
+
+  // ════════════════ THE COLUMN ════════════════
+  .post-wrap {
+    max-width: calc(#{$col} + #{$col-pad * 2});
+    margin: 0 auto;
+    padding: 0 $col-pad;
+    @media (max-width: 600px) { padding: 0 1rem; }
+  }
+  .post-article {
+    margin: 0;
+    padding: 0;
+  }
+
+  .post-content {
+    font-size: 1.34rem;            // 21.5px
+    line-height: 1.64;
+    color: var(--ink);
+    margin-bottom: 0;
+    @media (max-width: 600px) { font-size: 1.1875rem; line-height: 1.62; }
+
+    > :first-child { margin-top: 0; }
+
+    p, ul, ol { margin: 0 0 1.05em; }
+
+    h2 {
+      margin: 2.1em 0 0.55em;
+      font-size: 1.42em;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.008em;
+    }
+    h3 {
+      margin: 1.8em 0 0.4em;
+      font-size: 1.12em;
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.3;
+    }
+    h4, h5, h6 {
+      margin: 1.6em 0 0.3em;
+      @include smallcaps(0.95em);
+      color: var(--ink-2);
+    }
+
+    strong, b { font-weight: 650; color: var(--ink); }
+
+    blockquote {
+      margin: 1.5em 0 1.5em 0;
+      padding-left: 1.2em;
+      font-size: 0.97em;
+      p:last-child { margin-bottom: 0; }
+    }
+
+    hr {
+      height: auto;
+      background: none;
+      margin: 2.4em auto;
+      text-align: center;
+      &::before {
+        content: "*\2003*\2003*";
+        color: var(--faint);
+        font-size: 1.1em;
+        letter-spacing: 0;
+      }
+    }
+
+    img { border-radius: 3px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      font-size: 0.82em;
+      th, td { padding: 0.45em 0.6em; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+      thead th { @include ui(0.92em, 600); color: var(--muted); border-bottom-color: var(--rule-2); }
+    }
+
+    iframe, video { max-width: 100%; }
+  }
+
+  // "Will ChatGPT steal our programming jobs" post: the AI-generated copy is
+  // tinted (matching the original), the author's inline replies stay in the
+  // body colour so the two voices are easy to tell apart.
+  .post-content .ai-said { color: var(--ai); }
+
+  // ── The lead image ──
+  // Across the top of the column, a little wider than the text on big
+  // screens, soft corners, no frame. A <figure> when the post has an
+  // image_caption, a bare <img> straight in .post-content when it doesn't.
+  .post-body-figure,
+  .post-content > .post-body-img {
+    --lead-w: min(100vw - 3rem, 46rem);
+    width: var(--lead-w);
+    max-width: none;
+    margin: 0 0 2.6rem calc((100% - var(--lead-w)) / 2);
+    @media (max-width: 600px) {
+      --lead-w: calc(100% + 2rem);
+      margin: 0 0 1.8rem -1rem;
+    }
+  }
+  .post-body-figure .post-body-img,
+  .post-content > .post-body-img {
+    float: none;
+    display: block;
+    height: auto;
+    aspect-ratio: auto;
+    border-radius: 4px;
+    border: 0;
+    box-shadow: none;
+    cursor: zoom-in;
+    opacity: var(--img-dim);
+    @media (max-width: 600px) { border-radius: 0; }
+  }
+  .post-body-figure .post-body-img {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  // In-body "key" images (the cruise post) still float right beside the text.
+  .post-content .post-body-img:not(.post-body-figure .post-body-img):not(.post-content > .post-body-img) {
+    float: right;
+    width: 50%;
+    max-width: 50%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    cursor: zoom-in;
+    clear: right;
+    margin: 0.35rem 0 1.1rem 1.6rem;
+    border-radius: 3px;
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      max-width: none;
+      margin: 0 0 1.2rem;
+    }
+  }
+
+  // Shared caption style: the lead caption and figure.html captions.
+  .post-body-cap,
+  .post-figure-cap {
+    max-width: $col;
+    margin: 0.7rem auto 0;
+    padding: 0 1rem;
+    font-size: 1rem;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--muted);
+    text-align: center;
+    strong { font-style: normal; font-weight: 600; color: var(--ink-2); }
+  }
+
+  // figure.html: an in-body image with a visible caption. Full width by
+  // default; align="right"/"left" floats it beside the text at half width.
+  .post-figure {
+    margin: 2.2em auto;
+    .post-figure-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      border: 1px solid var(--rule);
+      cursor: zoom-in;
+    }
+  }
+  .post-figure--right,
+  .post-figure--left {
+    width: 45%;
+    margin-top: 0.35rem;
+    margin-bottom: 1.1rem;
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      margin: 1.2rem 0;
+    }
+    .post-figure-cap { text-align: left; padding: 0; }
+  }
+  .post-figure--right { float: right; clear: right; margin-left: 1.6rem; }
+  .post-figure--left  { float: left;  clear: left;  margin-right: 1.6rem; }
+
+  // Full-width photo inside the article body.
+  .post-photo {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: auto;
+    margin: 2em 0;
+    border-radius: 4px;
+    cursor: zoom-in;
+  }
+
+  // a small mark where the essay ends (generated: the shared HTML has no
+  // element for it). grid-column keeps it in the text column while AI Notes
+  // turn .post-content into a two-column grid.
+  .post-content::after {
+    content: "";
+    display: block;
+    clear: both;
+    grid-column: 1;
+    width: 2.5rem;
+    margin: 2.6rem 0 0;
+    border-top: 1px solid var(--accent);
+  }
+
+  // ════════════════ FILED UNDER / TAGGED ════════════════
+  .post-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-top: 1.1rem;
+    font-size: 1.08rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+
+    .post-tags-row { margin: 0; }
+    .post-tags-label {
+      @include smallcaps(0.95rem);
+      color: var(--muted);
+      margin-right: 0.4rem;
+    }
+    a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--rule-2);
+      text-underline-offset: 0.2em;
+      &:hover { color: var(--accent); text-decoration-color: var(--accent); }
+    }
+    .post-tag { font-style: italic; }
+    .post-tags-sep { color: var(--muted); }
+    .post-tags-all {
+      margin-left: 0.8rem;
+      @include ui(0.92rem, 500);
+      color: var(--muted);
+      text-decoration: none;
+      &:hover { color: var(--accent); }
+    }
+  }
+
+  // ════════════════ GISCUS COMMENTS ════════════════
+  .post-comments {
+    margin-top: 3rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  // ════════════════ PHOTO-SET GALLERIES (cruise post) ════════════════
+  // Each labeled photo set becomes a captioned grid of square thumbnails
+  // that open the site lightbox. `clear: both` keeps grids from colliding
+  // with a right-floated .post-body-img "key" image.
+  .cruise-set {
+    clear: both;
+    margin: 1.4rem 0 1.6rem;
+  }
+  .cruise-setcap {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 0 0 0.55rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--accent);
+    a { color: var(--accent); }
+  }
+  .cruise-note {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--muted);
+    margin: -0.25rem 0 0.55rem;
+    padding-left: 0.6rem;
+  }
+  .cruise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 6px;
+  }
+  .cruise-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 3px;
+    cursor: pointer;
+    background: var(--paper-3);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px -8px rgba(0,0,0,0.45);
+      filter: brightness(1.04);
+    }
+  }
+  .cruise-setlabel {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 1.4rem 0 0.4rem;
+    padding-left: 0.6rem;
+    border-left: 3px solid var(--rule-2);
+    .cruise-nopics { font-weight: 400; font-style: italic; color: var(--muted); }
+  }
+
+  // ════════════════ LEGACY COMMENTS (iMessage-style) ════════════════
+  // The old blog's comment thread, rendered as a chat: the author's
+  // replies ("me") are blue bubbles on the right, everyone else's are
+  // grey bubbles on the left.
+  .legacy-comments {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  .lc-heading {
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.2rem;
+    color: var(--ink);
+  }
+  .lc-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 1.4rem;
+  }
+  .lc-thread {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .lc-row {
+    display: flex;
+    flex-direction: column;
+    max-width: 82%;
+    @media (max-width: 600px) { max-width: 92%; }
+    &.them { align-self: flex-start; align-items: flex-start; }
+    &.me   { align-self: flex-end;   align-items: flex-end; }
+    // group consecutive bubbles from the same side a little tighter
+    & + &.them, & + &.me { margin-top: -0.35rem; }
+  }
+  .lc-meta {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin: 0 0.55rem 0.22rem;
+    .lc-name { font-weight: 700; color: var(--ink-2); }
+  }
+  .me .lc-meta .lc-name { color: var(--accent); }
+  .lc-bubble {
+    position: relative;
+    padding: 0.6rem 0.9rem;
+    border-radius: 18px;
+    line-height: 1.42;
+    font-size: 1.02rem;
+    word-wrap: break-word;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.06);
+    p { margin: 0 0 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+  }
+  .them .lc-bubble {
+    background: var(--paper-3);
+    color: var(--ink);
+    border-bottom-left-radius: 5px;
+  }
+  .me .lc-bubble {
+    background: var(--accent);
+    color: var(--paper);
+    border-bottom-right-radius: 5px;
+    a { color: inherit; text-decoration: underline; }
+  }
+
+  // ════════════════ AI SLOP-O-VISION BAND ════════════════
+  // Full-width dark band that breaks out of the .post-article
+  // padding (2.5rem desktop / 1.5rem mobile) to run edge-to-edge.
+  .slop-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem -2.5rem;
+    padding: 2.4rem 2.5rem 2.6rem;
+    border-radius: 2px;
+    color: #e9edf6;
+    background:
+      radial-gradient(130% 150% at 12% 0%, #1c2946 0%, transparent 55%),
+      linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #1a1030 100%);
+    @media (max-width: 600px) {
+      margin: 2rem -1.5rem;
+      padding: 1.8rem 1.5rem 2rem;
+    }
+    // faint scan-grid texture, faded top-down
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+    }
+    > * { position: relative; z-index: 1; }
+  }
+  .slop-eyebrow {
+    display: inline-block;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #9fb4e6;
+    background: rgba(120,150,220,0.12);
+    border: 1px solid rgba(140,170,235,0.28);
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+  }
+  .slop-title {
+    margin: 0.85rem 0 0.35rem;
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #fff;
+    @media (max-width: 600px) { font-size: 1.4rem; }
+  }
+  .slop-sub {
+    margin: 0 0 1.4rem;
+    max-width: 100%;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #aeb9cf;
+  }
+  .slop-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.7rem;
+    @media (max-width: 720px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  .slop-voice {
+    --v: #4a9aff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.7rem 0.8rem;
+    text-align: center;
+    font: inherit;
+    color: #e9edf6;
+    cursor: pointer;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--v) 10%, #0f1626);
+    border: 1px solid color-mix(in srgb, var(--v) 30%, transparent);
+    transition: transform 0.15s ease, box-shadow 0.2s ease,
+                border-color 0.2s ease, background 0.2s ease;
+    &:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--v) 55%, transparent);
+      box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--v) 70%, transparent);
+    }
+    &:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--v) 70%, #fff);
+      outline-offset: 2px;
+    }
+    &.is-playing {
+      background: color-mix(in srgb, var(--v) 18%, #0f1626);
+      border-color: color-mix(in srgb, var(--v) 65%, transparent);
+      box-shadow: 0 0 0 1px color-mix(in srgb, var(--v) 45%, transparent),
+                  0 10px 28px -12px color-mix(in srgb, var(--v) 80%, transparent);
+    }
+  }
+  .sv-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1.15;
+    color: #fff;
+  }
+  .sv-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+  }
+  .sv-style {
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: color-mix(in srgb, var(--v) 55%, #9aa7c2);
+  }
+  .sv-eq {
+    flex: none;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+    opacity: 0.35;
+    i {
+      display: block;
+      width: 3px;
+      height: 4px;
+      border-radius: 1px;
+      background: var(--v);
+    }
+  }
+  .slop-voice.is-playing .sv-eq {
+    opacity: 1;
+    i { animation: slopEq 0.7s ease-in-out infinite; }
+    i:nth-child(2) { animation-delay: 0.15s; }
+    i:nth-child(3) { animation-delay: 0.3s; }
+    i:nth-child(4) { animation-delay: 0.45s; }
+  }
+  .sv-ctrl {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--v);
+    &::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      border-style: solid;
+      border-width: 6px 0 6px 10px;
+      border-color: transparent transparent transparent #0b1120;
+    }
+  }
+  .slop-voice.is-playing .sv-ctrl::before {
+    width: 9px;
+    height: 11px;
+    margin-left: 0;
+    border: 0;
+    background:
+      linear-gradient(#0b1120, #0b1120) left / 3px 100% no-repeat,
+      linear-gradient(#0b1120, #0b1120) right / 3px 100% no-repeat;
+  }
+  .slop-now {
+    margin-top: 1.1rem;
+    min-height: 1.2em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: #cbd6ee;
+  }
+  .slop-fineprint {
+    margin: 1.2rem 0 0;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.76rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: #7f8aa3;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slop-voice { transition: none; }
+    .slop-voice:hover { transform: none; }
+    .slop-voice.is-playing .sv-eq i { animation: none; height: 10px; }
+  }
+
+  // ════════════════ EMISSIONS DATA TABLE ════════════════
+  // Dark breakout band (same edge-to-edge trick as .slop-band) that
+  // frames the land-area-flattened emissions table as a real table.
+  .post-content .emit-band {
+    position: relative;
+    overflow: hidden;
+    margin: 2.5rem -2.5rem;
+    padding: 2rem 2.5rem 1.6rem;
+    border-radius: 2px;
+    color: #e9edf6;
+    background:
+      radial-gradient(130% 150% at 12% 0%, #1c2946 0%, transparent 55%),
+      linear-gradient(135deg, #0d1220 0%, #131a2c 55%, #101a30 100%);
+    @media (max-width: 600px) {
+      margin: 2rem -1.5rem;
+      padding: 1.6rem 1.5rem 1.4rem;
+    }
+    // faint scan-grid texture, faded top-down (matches .slop-band)
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 30px 30px;
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+      mask-image: radial-gradient(120% 100% at 50% 0%, #000 25%, transparent 90%);
+    }
+    > * { position: relative; z-index: 1; }
+  }
+  .post-content .emit-eyebrow {
+    display: block;
+    margin-bottom: 1.1rem;
+    font-size: 0.66rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: #9fb4e6;
+  }
+  // horizontal scroll on narrow screens so the table never squishes
+  .post-content .emit-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-content .emit-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+    font-variant-numeric: tabular-nums;
+
+    thead th {
+      padding: 0 0.7rem 0.7rem;
+      text-align: right;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #8fa3cc;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; }
+
+    tbody th,
+    tbody td {
+      padding: 0.72rem 0.7rem;
+      text-align: right;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      white-space: nowrap;
+    }
+    tbody th {
+      text-align: left;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    tbody td { color: #c6d1e8; }
+    tbody tr:last-child th,
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody tr:hover td,
+    tbody tr:hover th { background: rgba(255,255,255,0.03); }
+
+    // the "money" column — the whole point of the table
+    .emit-key {
+      color: #eaf1ff;
+      font-weight: 700;
+    }
+    thead .emit-key { color: #bcd0ff; }
+
+    // France's per-km² — the "would you look at that" cell
+    .emit-flag {
+      background: rgba(240,196,64,0.20);
+      box-shadow: inset 0 0 0 1px rgba(240,196,64,0.45);
+      color: #ffe9a6;
+      border-radius: 3px;
+    }
+
+    // China: the elephant eating the curtains
+    .emit-standout th,
+    .emit-standout td {
+      background: rgba(226,59,59,0.12);
+    }
+    .emit-standout th { color: #ffd7d7; }
+    .emit-standout .emit-key { color: #ff9f9f; }
+  }
+  .post-content .emit-source {
+    display: block;
+    margin-top: 0.95rem;
+    font-size: 0.72rem;
+    font-style: italic;
+    color: #7f8aa3;
+  }
+}
+
+@keyframes slopEq {
+  0%, 100% { height: 4px; }
+  50%      { height: 15px; }
+}
+
+// The two dark data bands (AI slop, emissions) used to break out of the old
+// article card's padding. Here they break out of the column by a gutter, and
+// only by the page margin on a phone so nothing scrolls sideways.
+.post .slop-band,
+.post .post-content .emit-band {
+  margin-left: -2rem;
+  margin-right: -2rem;
+  border-radius: 6px;
+  font-family: $sans;
+  font-variant-numeric: lining-nums;
+  @media (max-width: 900px) { margin-left: 0; margin-right: 0; }
+  @media (max-width: 600px) { margin-left: -1rem; margin-right: -1rem; border-radius: 0; }
+}
+.post .post-content .emit-band .emit-table { font-variant-numeric: lining-nums tabular-nums; }
+
+// ════════════════ RECENT POSTS (under each post) ════════════════
+.recent-posts {
+  padding: 4rem 0 0;
+
+  > .site-wrapper { max-width: 1040px; }
+
+  .recent-posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: 1.6rem;
+    border-bottom: 1px solid var(--ink);
+
+    h2, h3 {
+      margin: 0;
+      @include smallcaps(1.02rem);
+      color: var(--ink);
+    }
+    a {
+      @include ui(0.95rem, 500);
+      color: var(--ink-2);
+      &:hover { color: var(--accent); }
+    }
+  }
+
+  .recent-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.25rem;
+    @media (max-width: 820px) { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  .post-card {
+    display: block;
+    color: inherit;
+
+    .card-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: 3px;
+      background: var(--paper-3);
+      opacity: var(--img-dim);
+      margin-bottom: 0.9rem;
+    }
+    .card-body { display: block; }
+    .card-date {
+      display: block;
+      margin-bottom: 0.25rem;
+      @include smallcaps(0.9rem);
+      color: var(--muted);
+    }
+    .card-title {
+      display: block;
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--ink);
+      transition: color 0.15s ease;
+    }
+    .card-excerpt {
+      display: block;
+      margin: 0.4rem 0 0;
+      font-size: 1.02rem;
+      line-height: 1.5;
+      color: var(--ink-2);
+    }
+    &:hover .card-title { color: var(--accent); }
+
+    @media (max-width: 820px) {
+      display: grid;
+      grid-template-columns: 6.5rem minmax(0, 1fr);
+      gap: 0 1.1rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--rule);
+      .card-image { margin: 0.2rem 0 0; }
+      .card-excerpt { display: none; }
+    }
+  }
+}

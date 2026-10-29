@@ -1,0 +1,240 @@
+// ════════════════════════════════════════════════════════════════
+//  The design system's own furniture, shared by every design:
+//    the "Select a Design" picker (_includes/view-picker.html)
+//    the gallery at /views/ (_pages/views.html)
+//    the skip link
+//  This is structure only. A design themes it with custom properties
+//  (set them on :root, or on .view-picker / .vg for just those) and adds
+//  whatever else makes it belong:
+//
+//    --vp-font      font for the menu and gallery labels   (inherit)
+//    --vp-ink       menu text                               (#222)
+//    --vp-muted     "by …", labels                          (#666)
+//    --vp-bg        menu / gallery card background          (#fff)
+//    --vp-line      borders and hairlines                   (#ddd)
+//    --vp-hover     item hover / focus wash                 (rgba(0,0,0,.05))
+//    --vp-accent    the current design's mark, focus rings  (#2673da)
+//    --vp-radius    corner radius                           (6px)
+//    --vp-shadow    the menu's shadow                       (soft drop)
+// ════════════════════════════════════════════════════════════════
+
+// ── Skip link ───────────────────────────────────────────
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 2000;
+  padding: 0.5rem 0.9rem;
+  background: var(--vp-ink, #1c2330);
+  color: var(--vp-bg, #fff);
+  font-family: var(--vp-font, inherit);
+  font-size: 0.85rem;
+  border-radius: 3px;
+  text-decoration: none;
+  &:focus { top: 0.6rem; color: var(--vp-bg, #fff); }
+}
+main.site-content:focus { outline: none; }
+
+// ── The picker ──────────────────────────────────────────
+.view-picker {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.view-picker-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.25em 0.4em;
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: var(--vp-radius, 6px);
+  cursor: pointer;
+  white-space: nowrap;
+  &:focus-visible { outline: 2px solid var(--vp-accent, #2673da); outline-offset: 2px; }
+}
+.view-picker-ico { width: 1.15em; height: 1.15em; flex-shrink: 0; }
+.view-picker-caret {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0.32em 0.27em 0;
+  border-color: currentColor transparent transparent;
+  transition: transform 0.15s ease;
+}
+.view-picker-btn[aria-expanded="true"] .view-picker-caret { transform: rotate(180deg); }
+@media (prefers-reduced-motion: reduce) { .view-picker-caret { transition: none; } }
+
+.view-picker-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 1100;
+  width: max-content;
+  min-width: 15rem;
+  max-width: min(21rem, calc(100vw - 2rem));
+  padding: 0.4rem;
+  text-align: left;
+  font-family: var(--vp-font, inherit);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--vp-ink, #222);
+  background: var(--vp-bg, #fff);
+  border: 1px solid var(--vp-line, #ddd);
+  border-radius: var(--vp-radius, 6px);
+  box-shadow: var(--vp-shadow, 0 10px 28px rgba(0, 0, 0, 0.16));
+  &[hidden] { display: none; }
+}
+
+.view-picker-head {
+  margin: 0.25rem 0.5rem 0.35rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--vp-muted, #666);
+}
+
+.view-picker-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li { margin: 0; padding: 0; }
+}
+
+.view-picker-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: calc(var(--vp-radius, 6px) - 2px);
+  color: inherit;
+  text-decoration: none;
+  &:hover, &:focus-visible { background: var(--vp-hover, rgba(0, 0, 0, 0.05)); color: inherit; }
+  &:focus-visible { outline: 2px solid var(--vp-accent, #2673da); outline-offset: -2px; }
+}
+
+// a small screenshot of the design (assets/images/views/thumbs/, made by
+// _tools/view-check.py --thumbs)
+.view-picker-shot {
+  display: block;
+  flex-shrink: 0;
+  width: 4.5rem;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 3px;
+  background: var(--vp-line, #ddd);
+  box-shadow: 0 0 0 1px var(--vp-line, rgba(0, 0, 0, 0.18));
+}
+
+.view-picker-text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.view-picker-name { font-weight: 700; }
+
+// the current design: a check mark at the end of its row
+.view-picker-check { width: 1rem; flex-shrink: 0; }
+.view-picker-item.is-current .view-picker-check::before {
+  content: "";
+  display: block;
+  width: 0.35rem;
+  height: 0.7rem;
+  margin: 0 auto 0.15rem;
+  border: solid var(--vp-accent, #2673da);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.view-picker-more {
+  display: block;
+  margin: 0.3rem 0 0;
+  padding: 0.5rem 0.5rem 0.25rem;
+  border-top: 1px solid var(--vp-line, #ddd);
+  font-size: 0.8rem;
+  color: var(--vp-muted, #666);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  &:hover { color: var(--vp-ink, #222); }
+}
+
+// ── The gallery (/views/) ───────────────────────────────
+.vg-intro { max-width: 46rem; }
+
+// (selectors strong enough to beat a design's `.page ul` / `.page li`)
+.vg ul.vg-list:not(.ml-4) {
+  list-style: none;
+  margin: 2rem 0 1rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 1.75rem;
+}
+
+.vg .vg-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--vp-bg, #fff);
+  border: 1px solid var(--vp-line, #ddd);
+  border-radius: var(--vp-radius, 6px);
+  overflow: hidden;
+}
+
+.vg-shot {
+  display: block;
+  border-bottom: 1px solid var(--vp-line, #ddd);
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    object-position: top;
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
+.vg-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  padding: 1rem 1.15rem 1.15rem;
+}
+.vg .vg-name { margin: 0; font-size: 1.35rem; line-height: 1.2; }
+.vg .vg-desc { margin: 0.25rem 0 0.5rem; }
+.vg-current { display: none; }
+.vg-item.is-current .vg-current {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-bg, #fff);
+  background: var(--vp-accent, #2673da);
+  border-radius: 999px;
+}
+.vg .vg-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.25rem;
+  margin: auto 0 0;
+}
+.vg-swatches {
+  display: flex;
+  gap: 0;
+  width: 4rem;
+  height: 0.6rem;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  span { flex: 1; }
+}

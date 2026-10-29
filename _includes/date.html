@@ -1,0 +1,25 @@
+{%- comment -%}
+  A date every design can set its own way.
+
+  .date-text is the plain date, one string, in the form `month` asks for:
+    full   December 8, 2026     (default)
+    abbr   Dec 8, 2026
+  .date-parts (a view-extra) is the same date in pieces, for a design that
+  sets it differently: all three month forms, then the day and the year.
+    .date-m-full  December
+    .date-m-abbr  Dec
+    .date-m-ap    Dec.   newspaper (AP) style: Jan. Feb. Aug. Sept. Oct.
+                         Nov. Dec., the rest spelled out
+    .date-d       8
+    .date-y       , 2026
+  A design that shows .date-parts hides .date-text and the month forms it
+  doesn't want, and can set the day large or drop the year (an archive's
+  year headings already say it). The datetime attribute always carries the
+  full date.
+
+  Usage: {% include date.html date=post.date class="card-date" month="abbr" %}
+{%- endcomment -%}
+{%- assign dt_i = include.date | date: "%-m" | minus: 1 -%}
+{%- assign dt_ap = "Jan.,Feb.,March,April,May,June,July,Aug.,Sept.,Oct.,Nov.,Dec." | split: "," -%}
+{%- if include.month == "abbr" %}{% assign dt_fmt = "%b %-d, %Y" %}{% else %}{% assign dt_fmt = "%B %-d, %Y" %}{% endif -%}
+<time{% if include.class %} class="{{ include.class }}"{% endif %} datetime="{{ include.date | date_to_xmlschema }}"><span class="date-text">{{ include.date | date: dt_fmt }}</span><span class="view-extra date-parts"><span class="date-m date-m-full">{{ include.date | date: "%B" }}</span><span class="date-m date-m-abbr">{{ include.date | date: "%b" }}</span><span class="date-m date-m-ap">{{ dt_ap[dt_i] }}</span> <span class="date-d">{{ include.date | date: "%-d" }}</span><span class="date-y">, {{ include.date | date: "%Y" }}</span></span></time>

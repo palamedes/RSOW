@@ -1,0 +1,468 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Blog archive — /archive (and the header the tag and topic clouds
+//  share). Scoped under `.arc`. A black poster band up top, a sticky
+//  bar of chunky stamped filters, then the wall of flyers (the shared
+//  .post-grid / .post-card in _layout.scss), packed tighter here.
+// ════════════════════════════════════════════════════════════════
+
+// Shared height for the toolbar controls (topic, tag, search) so they line
+// up exactly; set explicitly rather than left to intrinsic content.
+$arc-control-h: 2.75rem;
+
+// Topic and Tag are two-thirds of an even third each (thirds minus the two
+// 1rem gaps); search takes the rest. The floor keeps "Topic: Conspiracy
+// Theory" from clipping on mid-size screens.
+$arc-control-w: calc((100% - 2rem) / 3 * 2 / 3);
+$arc-control-w-min: 12rem;
+
+.arc {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .arc-wrap {
+    max-width: $wrap;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    @media (max-width: 600px) { padding: 0 1rem; }
+  }
+
+  // ════════════════ HERO ════════════════
+  .arc-hero {
+    position: relative;
+    background-color: $ink;
+    background-image: $grain;
+    color: $sheet;
+    padding: 2.8rem 0 2.6rem;
+    overflow: hidden;
+    border-bottom: 4px solid $ink;
+  }
+  .arc-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    @include halftone(rgba(255, 230, 0, 0.75), 13px, 3px);
+    -webkit-mask-image: radial-gradient(circle at 100% 100%, #000 0%, rgba(0,0,0,0.5) 22%, transparent 55%);
+    mask-image: radial-gradient(circle at 100% 100%, #000 0%, rgba(0,0,0,0.5) 22%, transparent 55%);
+    opacity: 0.55;
+  }
+  .arc-hero-inner {
+    position: relative;
+    // a big rubber stamp across the empty right side of the band
+    &::after {
+      content: "Back\A issues" / "";
+      white-space: pre;
+      position: absolute;
+      right: 2.5rem;
+      top: 50%;
+      padding: 0.5rem 1.1rem 0.35rem;
+      border: 6px solid $hazard;
+      outline: 2px solid $hazard;
+      outline-offset: 5px;
+      color: $hazard;
+      font-family: $display;
+      font-size: 4.2rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-align: center;
+      transform: translateY(-50%) rotate(-9deg);
+      opacity: 0.9;
+      pointer-events: none;
+      @media (max-width: 1100px) { display: none; }
+    }
+  }
+  .arc-eyebrow {
+    display: inline-block;
+    @include label(0.72rem);
+    color: #fff;
+    background: $red;
+    padding: 0.3rem 0.55rem 0.26rem;
+    margin: 0 0 1rem;
+    transform: rotate(-1.5deg);
+  }
+  .arc-hero h1 {
+    @include poster(clamp(2.6rem, 1.2rem + 4.4vw, 5.2rem));
+    line-height: 0.92;
+    margin: 0 0 0.9rem;
+    color: $hazard;
+    max-width: 16ch;
+  }
+  .arc-sub {
+    max-width: 40rem;
+    font-family: $serif;
+    font-size: 1.12rem;
+    line-height: 1.55;
+    color: #e9e4d8;
+    margin: 0 0 1.8rem;
+  }
+  // the four counters, as stickers
+  .arc-stats {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1rem;
+    li {
+      display: flex;
+      &:nth-child(odd) { transform: rotate(-1.5deg); }
+      &:nth-child(even) { transform: rotate(1.2deg); }
+    }
+    .arc-stat-link {
+      display: flex;
+      align-items: baseline;
+      gap: 0.45rem;
+    }
+    li:not(:has(a)) {
+      align-items: baseline;
+      gap: 0.45rem;
+      padding: 0.45rem 0.8rem 0.4rem;
+      background: $sheet;
+      border: 3px solid $sheet;
+      color: $ink;
+    }
+    strong {
+      font-family: $display;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1;
+    }
+    span {
+      @include label(0.68rem);
+    }
+  }
+
+  // ════════════════ STICKY TOOLBAR ════════════════
+  .arc-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background-color: $paper;
+    background-image: $grain;
+    border-bottom: 4px solid $ink;
+    transition: box-shadow 0.2s ease;
+    &.is-stuck { box-shadow: 0 6px 0 0 rgba(17, 17, 17, 0.12); }
+  }
+  .arc-toolbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.5rem 0.95rem;
+    flex-wrap: wrap;
+  }
+  // ════════════════ TOPIC / TAG DROPDOWNS ════════════════
+  .arc-topic {
+    position: relative;
+    flex: 0 1 $arc-control-w;
+    min-width: $arc-control-w-min;
+  }
+  .arc-topic-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: 100%;
+    height: $arc-control-h;
+    padding: 0 0.7rem 0 0.85rem;
+    font-family: $mono;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: $ink;
+    background: $sheet;
+    border: 3px solid $ink;
+    border-radius: 0;
+    box-shadow: 4px 4px 0 0 $ink;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+    &:hover { background: $hazard; transform: translate(-1px, -1px); box-shadow: 5px 5px 0 0 $ink; }
+    &:focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+  }
+  .arc-topic-lead {
+    color: $grey;
+    &::after { content: ":"; }
+  }
+  // Truncate rather than blow out the control if a future category name is
+  // longer than the box; min-width:0 is what lets it shrink inside the flex row.
+  .arc-topic-value {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .arc-topic-caret {
+    width: 0;
+    height: 0;
+    margin-left: auto;
+    flex: 0 0 auto;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7px solid currentColor;
+    transition: transform 0.15s ease;
+  }
+  .arc-topic-trigger[aria-expanded="true"] {
+    background: $hazard;
+    .arc-topic-caret { transform: rotate(180deg); }
+  }
+  // a selection is on: the trigger turns black
+  .arc-topic.is-filtered .arc-topic-trigger {
+    background: $ink;
+    color: $hazard;
+    box-shadow: 4px 4px 0 0 $red;
+    .arc-topic-lead { color: $sheet; }
+  }
+
+  .arc-topic-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    height: 1.4rem;
+    min-width: 1.4rem;
+    padding: 0 0.35rem;
+    font-family: $mono;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    background: $red;
+  }
+  .arc-topic.is-filtered .arc-topic-count { background: $hazard; color: $ink; }
+
+  .arc-topic-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    z-index: 40;
+    width: 100%;
+    min-width: 250px;
+    max-height: min(60vh, 440px);
+    overflow-y: auto;
+    background: $sheet;
+    border: 3px solid $ink;
+    box-shadow: 7px 7px 0 0 $ink;
+    padding: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    scrollbar-color: $ink transparent;
+
+    &[hidden] { display: none; }
+  }
+  .arc-topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    font-family: $mono;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-align: left;
+    color: $ink;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 0.5rem 0.6rem;
+    cursor: pointer;
+    &:hover { background: $hazard; }
+    &:focus-visible { outline: 3px solid $red; outline-offset: -3px; }
+    &.is-active {
+      background: $ink;
+      color: $hazard;
+      font-weight: 700;
+    }
+  }
+  .arc-topic-item-count {
+    font-family: $mono;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    color: $grey;
+  }
+  .arc-topic-item.is-active .arc-topic-item-count { color: $sheet; }
+
+  .arc-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    min-width: 13rem;
+  }
+  .arc-search-ico {
+    position: absolute;
+    left: 0.8rem;
+    color: $ink;
+    pointer-events: none;
+  }
+  .arc-search input {
+    width: 100%;
+    height: $arc-control-h;
+    line-height: 1;
+    padding: 0 2.2rem 0 2.4rem;
+    font-family: $mono;
+    font-size: 0.85rem;
+    color: $ink;
+    border: 3px solid $ink;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: inset 3px 3px 0 0 rgba(17, 17, 17, 0.08);
+    &::placeholder { color: $grey; opacity: 1; }
+    &:focus {
+      outline: 3px solid $red;
+      outline-offset: 3px;
+      background: #fffbd1;
+    }
+  }
+  .arc-search-clear {
+    position: absolute;
+    right: 0.55rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid $ink;
+    border-radius: 0;
+    background: $hazard;
+    color: $ink;
+    font-size: 1.05rem;
+    line-height: 1;
+    cursor: pointer;
+    &:hover { background: $ink; color: $hazard; }
+    &[hidden] { display: none; }
+  }
+
+  // ════════════════ RESULTS ════════════════
+  .arc-grid-wrap { padding-top: 0.5rem; }
+  .arc-meta {
+    display: inline-block;
+    margin: 1.6rem 0 0;
+    padding: 0.3rem 0.55rem 0.26rem;
+    @include label(0.72rem);
+    color: $red;
+    border: 2px solid $red;
+    transform: rotate(-1deg);
+  }
+
+  // The cut-and-paste index: flyers packed tighter than on the home page,
+  // headlines a size down, blurbs clipped to three lines.
+  #archive-grid {
+    padding-top: 1.8rem;
+    gap: 2.2rem 1.5rem;
+    .card-title { font-size: 1.32rem; }
+    .card-excerpt {
+      font-size: 0.94rem;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+      overflow: hidden;
+    }
+    .card-body { padding: 0.85rem 0.9rem 1rem; }
+  }
+
+  // ════════════════ EMPTY STATE ════════════════
+  .arc-empty {
+    text-align: center;
+    padding: 3.5rem 1rem 4rem;
+    &[hidden] { display: none; }
+    .arc-empty-ico { display: block; margin: 0 auto 0.9rem; color: $ink; }
+    h2 {
+      @include poster(2rem);
+      display: inline-block;
+      color: $ink;
+      background: $hazard;
+      padding: 0.25rem 0.6rem 0.18rem;
+      border: 3px solid $ink;
+      transform: rotate(-1.5deg);
+      margin: 0 0 1rem;
+    }
+    p { font-family: $serif; font-size: 1.08rem; color: #2b2b2b; margin: 0 0 1.4rem; }
+  }
+  .arc-empty-reset {
+    @include stamp-button($ink, $hazard);
+    box-shadow: 4px 4px 0 0 $red;
+    &:hover { box-shadow: 6px 6px 0 0 $red; }
+  }
+}
+
+// ════════════════ MULTI-SELECT ITEMS ════════════════
+// Value items in the Topic and Tag menus are checkboxes: a square box before
+// the name, crossed through with a tick when checked.
+.arc .arc-topic-item[role="menuitemcheckbox"] {
+  .arc-topic-item-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    &::before {
+      content: "";
+      flex: none;
+      width: 1rem;
+      height: 1rem;
+      border: 2px solid $ink;
+      background: #fff center / 0.75rem no-repeat;
+    }
+  }
+  &.is-active {
+    background: $hazard;
+    color: $ink;
+    .arc-topic-item-name::before {
+      background-color: $ink;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.3 6.2l2.4 2.4 5-5.2' fill='none' stroke='%23ffe600' stroke-width='2.2' stroke-linecap='square'/%3E%3C/svg%3E");
+    }
+    .arc-topic-item-count { color: $ink; }
+  }
+  &:hover { background: #fff4a0; }
+  &.is-active:hover { background: $hazard; }
+}
+
+// ════════════════ TAG FILTER ════════════════
+.arc .arc-tag-cloud-link {
+  display: block;
+  margin-top: 0.3rem;
+  padding: 0.6rem 0.7rem 0.5rem;
+  border-top: 2px dashed $ink;
+  @include label(0.74rem);
+  color: $ink;
+  text-decoration: underline;
+  text-decoration-color: $red;
+  text-decoration-thickness: 2px;
+  &:hover { background: $hazard; }
+}
+// the posts / topics / tags counters link to their pages
+.arc .arc-stat-link {
+  padding: 0.45rem 0.8rem 0.4rem;
+  background: $sheet;
+  border: 3px solid $sheet;
+  color: $ink;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 0 $red;
+  transition: background-color 0.12s ease;
+  &:hover, &:focus-visible { background: $hazard; border-color: $hazard; color: $ink; }
+  &:focus-visible { outline: 3px solid $hazard; outline-offset: 3px; }
+  // the page you're on (archive, topics or tags)
+  &.is-current {
+    background: $hazard;
+    border-color: $hazard;
+    strong { text-decoration: none; }
+  }
+}
+
+@media (max-width: 620px) {
+  .arc .arc-toolbar-inner { gap: 0.7rem; padding: 0.75rem 1rem 0.85rem; }
+  .arc .arc-search { flex-basis: 100%; min-width: 0; order: 2; }
+  .arc .arc-topic  { flex: 1 1 0; min-width: 0; order: 1; }
+  .arc .arc-tagpick { order: 1; }
+  .arc .arc-topic-trigger { font-size: 0.72rem; padding: 0 0.5rem 0 0.6rem; }
+  // the menu would otherwise overflow the right edge on a narrow phone
+  .arc .arc-topic-menu { min-width: 0; width: calc(200% + 0.7rem); }
+  .arc .arc-tagpick .arc-topic-menu { left: auto; right: 0; }
+  .arc .arc-stats strong { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arc *, .arc-toolbar { transition: none !important; scroll-behavior: auto !important; }
+}

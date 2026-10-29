@@ -1,0 +1,49 @@
+---
+---
+// Windows 95, by Claude: the whole site as a Windows 95 desktop. A teal
+// desktop, a taskbar with a Start menu (the site nav), and every block a
+// window with a title bar you can minimize, maximize, close and drag
+// (assets/js/views/win95.js; without it the windows simply stay open).
+// One stylesheet for the whole site, loaded instead of main.css when a
+// visitor picks it (_data/views.yml). Its partials live in
+// _sass/views/win95/; the special pages keep their own, from _sass/.
+
+// The view-extras Windows 95 shows (everything else marked .view-extra
+// stays hidden); see _sass/views/_extras.scss for the full list.
+@use "views/extras" with ($show: (
+  ".site-title-long",               // the desktop icon's label
+  ".nav-ext",                       // Etsy's ↗ in the Start menu
+  ".colophon-sections",             // the desktop icons down the left
+  ".photo-desk-head",               // Paint's menu bar and tool box
+  ".footer-feed",                   // Subscribe by RSS
+  ".back-to-top-text",              // "Back to top"
+  ".fp-editor-more",                // the button in the About dialog
+  ".post-actions--hero",            // AI Notes on WordPad's format bar
+  ".post-card--row .card-kicker",   // the archive's Type column
+  ".post-card--row .date-parts",    // ...and its Modified column
+  ".arc-year-label",                // the archive's year folders
+));
+@use "views/picker";
+
+@use "views/win95/base";
+@use "views/win95/windows";
+@use "views/win95/taskbar";
+@use "views/win95/desktop";
+@use "views/win95/front";
+@use "views/win95/footer";
+@use "views/win95/archive";
+@use "views/win95/about";
+@use "views/win95/post";
+@use "views/win95/notes";
+@use "views/win95/player";
+@use "adventure";
+@use "scorched";
+@use "paradroid";
+@use "investments";
+@use "build";
+@use "clapback";
+@use "explain";
+@use "palamedes";
+@use "games";
+@use "views/win95/special";
+@use "views/win95/views";

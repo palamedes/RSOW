@@ -1,0 +1,46 @@
+---
+---
+// Zine, by Claude: a photocopied punk zine. Hazard yellow, ransom-note
+// letters, tape and flyers slapped on a wall; loud chrome around a calm
+// reading column. One stylesheet for the whole site, loaded instead of
+// main.css when a visitor picks it (_data/views.yml). Its partials live in
+// _sass/views/zine/ (from the redesign/zine branch, pointed at the shared
+// HTML); the special pages it leaves alone come from _sass/.
+
+// The view-extras Zine shows (everything else marked .view-extra stays
+// hidden); see _sass/views/_extras.scss for the full list.
+@use "views/extras" with ($show: (
+  ".site-title-long",     // the ransom-note logo
+  ".nav-toggle-label",    // "Menu" on the phone button
+  ".ticker",              // "Hot off the press" crawl under the header
+  ".hero-stamp",          // "Strong opinions inside" rubber stamp
+  ".card-kicker",         // the topic sticker on each flyer
+  ".post-hero-by",        // "By Jason Ellis"
+  ".post-hero-art",       // the cover, photocopied into the poster
+  ".footer-stamp",        // "Free / Take one / No. N"
+  ".footer-feed",         // Subscribe by RSS
+  ".back-to-top-text",    // "Back to top"
+));
+@use "views/picker";
+
+@use "views/zine/base";
+@use "views/zine/layout";
+@use "adventure";
+@use "scorched";
+@use "paradroid";
+@use "views/zine/investments";
+@use "views/zine/about";
+@use "views/zine/archive";
+@use "views/zine/tags";
+@use "build";
+@use "views/zine/post";
+@use "views/zine/player";
+@use "views/zine/ai-notes";
+@use "views/zine/word-notes";
+@use "views/zine/clapback";
+@use "views/zine/explain";
+@use "views/zine/palamedes";
+@use "views/zine/games";
+@use "views/zine/bridge";
+@use "views/zine/longform";
+@use "views/zine/views";

@@ -1,0 +1,173 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Zine on the shared HTML: the wrappers it doesn't need, and the design
+//  system's own furniture (the "Select a Design" picker, /views/) cut and
+//  pasted to match. The view-extras Zine shows are listed in
+//  assets/css/views/zine.scss.
+// ════════════════════════════════════════════════════════════════
+
+// Wrappers whose children Zine lays out directly. (.hero-photo, .snap and
+// .footer-about-photo are real boxes here, the pasted-up prints, and
+// .post-hero-tools is handled in _post.scss.) On /archive/ the year groups
+// melt away, so the flyers are one wall again.
+.card-figure,
+.arc-year,
+.arc-year-list,
+.colophon,
+.photo-desk { display: contents; }
+
+:root {
+  --vp-font: #{$mono};
+  --vp-ink: #{$ink};
+  --vp-muted: #{$grey};
+  --vp-bg: #{$sheet};
+  --vp-line: #{$ink};
+  --vp-hover: #{$hazard};
+  --vp-accent: #{$red};
+  --vp-radius: 0;
+  --vp-shadow: 6px 6px 0 0 #{$ink};
+}
+
+// ── The picker: a yellow sticker at the end of the social row ──
+.site-header {
+  .view-picker {
+    grid-area: picker;
+    justify-self: end;
+  }
+
+  .view-picker-btn {
+    gap: 0.4rem;
+    height: 32px;
+    padding: 0 0.6rem;
+    @include label(0.72rem);
+    color: $ink;
+    background: $hazard;
+    border: 2px solid $ink;
+    border-radius: 0;
+    box-shadow: 2px 2px 0 0 $ink;
+    transform: rotate(-1.5deg);
+    transition: background-color 0.12s ease, color 0.12s ease, transform 0.12s ease;
+    &:hover, &[aria-expanded="true"] { background: $ink; color: $hazard; transform: none; }
+    &:focus-visible { outline: 3px solid $red; outline-offset: 3px; }
+  }
+  .view-picker-ico { width: 16px; height: 16px; }
+  .view-picker-menu { top: calc(100% + 10px); }
+
+  // phones: the last thing in the menu panel, its list opening underneath
+  @media (max-width: 960px) {
+    .view-picker {
+      justify-self: stretch;
+      flex-wrap: wrap;
+      margin: 0.5rem 0 0.6rem;
+    }
+    .view-picker-btn {
+      height: 44px;
+      padding: 0 0.9rem;
+      font-size: 0.86rem;
+      transform: none;
+      box-shadow: 3px 3px 0 0 $ink;
+    }
+    .view-picker-menu {
+      position: static;
+      flex-basis: 100%;
+      width: auto;
+      max-width: none;
+      margin: 0.9rem 6px 0 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) { .view-picker-btn { transition: none; } }
+}
+
+.view-picker-menu { border-width: 3px; padding: 0.45rem; }
+.view-picker-head {
+  @include label(0.7rem);
+  margin: 0.2rem 0.45rem 0.45rem;
+  color: $ink;
+}
+.view-picker-item {
+  gap: 0.8rem;
+  &:focus-visible { outline: 3px solid $red; outline-offset: -3px; }
+  // the design you're looking at: a black stamp, like the nav's "you are here"
+  &.is-current,
+  &.is-current:hover {
+    background: $ink;
+    color: $hazard;
+  }
+  &.is-current:focus-visible { outline-color: $hazard; }
+  &.is-current .view-picker-check::before { border-color: $hazard; }
+}
+.view-picker-shot {
+  border: 2px solid $ink;
+  border-radius: 0;
+  box-shadow: none;
+  transform: rotate(-2deg);
+}
+.view-picker-name {
+  font-family: $display;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+.view-picker-more {
+  margin-top: 0.45rem;
+  padding: 0.55rem 0.45rem 0.3rem;
+  border-top: 2px dashed $ink;
+  @include label(0.7rem);
+  color: $ink;
+  text-decoration-color: $red;
+  text-decoration-thickness: 2px;
+  &:hover { color: $ink; background: $hazard; }
+}
+
+// ── /views/: each design a flyer taped to the sheet ─────
+.vg-intro p:first-child { font-size: 1.12em; }
+
+.vg ul.vg-list:not(.ml-4) { gap: 2.6rem 2rem; margin-top: 2.6rem; }
+
+.vg .vg-item {
+  position: relative;
+  overflow: visible;
+  border: 3px solid $ink;
+  @include hard-shadow(7px);
+  transform: rotate(-0.8deg);
+  &:nth-child(even) { transform: rotate(0.7deg); }
+  &::before { @include tape(92px, 24px, -3deg); top: -12px; left: calc(50% - 46px); }
+}
+
+.page .vg-shot {
+  border-bottom: 3px solid $ink;
+  text-decoration: none;
+  &:hover { background: none; }
+}
+
+.vg .vg-name {
+  margin: 0.15rem 0 0.35rem;
+  font-size: 1.75rem;
+  line-height: 1.05;
+}
+.vg-item.is-current .vg-current {
+  @include rubber-stamp($red, -3deg);
+  background: none;
+  border-radius: 0;
+}
+.vg-swatches {
+  width: 5rem;
+  height: 0.8rem;
+  border: 2px solid $ink;
+  border-radius: 0;
+  box-shadow: none;
+}
+.vg .vg-desc { font-size: 1.02rem; line-height: 1.55; color: #2b2b2b; }
+
+.page .vg-links {
+  .vg-try {
+    @include stamp-button($hazard, $ink);
+    padding: 0.5rem 0.95rem;
+    font-size: 0.76rem;
+    @include hard-shadow(3px);
+    &:hover { background: $ink; color: $hazard; @include hard-shadow(5px); }
+  }
+}

@@ -1,0 +1,265 @@
+@use "kit" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Windows 95 — the design system's own furniture: the "Design" picker
+//  becomes Display Properties (a dialog over the tray, with the monitor
+//  that previews whichever scheme you point at), and /views/ a window of
+//  monitors.
+// ════════════════════════════════════════════════════════════════
+
+:root {
+  --vp-font: #{$ui};
+  --vp-ink: #{$ink};
+  --vp-muted: #{$muted};
+  --vp-bg: #{$hi};
+  --vp-line: #{$shadow};
+  --vp-hover: #{$navy};
+  --vp-accent: #{$navy};
+  --vp-radius: 0;
+  --vp-shadow: none;
+}
+
+.skip-link {
+  @include button;
+  border-radius: 0;
+  &:focus { top: 8px; color: $ink; }
+}
+
+// ── In the tray ─────────────────────────────────────────
+.site-header .view-picker-btn {
+  height: 26px;
+  gap: 5px;
+  padding: 0 7px 0 5px;
+  border-radius: 0;
+  @include ui(14px);
+  color: $ink;
+  .view-picker-ico { display: none; }
+  &::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    @include ico("computer", 16px);
+  }
+  .view-picker-caret { display: none; }
+  &:hover { @include raised; }
+  &[aria-expanded="true"] { @include pressed; }
+  &:focus-visible { @include focus-rect(-3px); }
+}
+
+// ── Display Properties ──────────────────────────────────
+.site-header .view-picker-menu {
+  position: fixed;
+  top: auto;
+  left: auto;
+  right: 4px;
+  bottom: $taskbar-h + 4px;
+  z-index: 1200;
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  min-width: 0;
+  max-width: calc(100vw - 8px);
+  max-height: calc(100vh - #{$taskbar-h} - 8px);
+  overflow-y: auto;
+  padding: 3px 3px 12px;
+  border: 0;
+  border-radius: 0;
+  background: $face;
+  @include raised-window;
+  @include scrollbars;
+  @include ui(14px);
+  color: $ink;
+  &[hidden] { display: none; }
+
+  // the "Appearance" tab
+  &::before {
+    content: "Appearance";
+    order: -1;
+    align-self: flex-start;
+    position: relative;
+    z-index: 2;
+    margin: 6px 0 0 8px;
+    padding: 4px 12px 4px;
+    background: $face;
+    box-shadow: inset 1px 1px $hi, inset 2px 2px $light, inset -1px 0 $dark, inset -2px 0 $shadow;
+  }
+  // the tab's page: a raised panel around the monitor and the list
+  &::after {
+    content: "";
+    position: absolute;
+    top: 64px;
+    left: 9px;
+    right: 9px;
+    bottom: 56px;
+    @include raised-window;
+    pointer-events: none;
+  }
+}
+
+.site-header .view-picker-head {
+  order: -2;
+  @include titlebar;
+  margin: 0;
+  padding-left: 26px;
+  padding-right: 32px;
+  background: icon("computer") 5px center / 16px 16px no-repeat, linear-gradient(90deg, $navy, $title-to);
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: $hi;
+  font-size: 15px;
+}
+
+// "Scheme:" — the list box, with the monitor above it
+.site-header .view-picker-list {
+  position: relative;
+  margin: 186px 22px 0;
+  padding: 2px;
+  background: $hi;
+  @include sunken;
+
+  &::before {
+    content: "Scheme:";
+    position: absolute;
+    left: 0;
+    top: -22px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - 90px);
+    top: -172px;
+    width: 180px;
+    height: 138px;
+    background: glyph("monitor") center / 180px 138px no-repeat;
+  }
+}
+
+.site-header .view-picker-item {
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 0;
+  color: $ink;
+  &:hover, &:focus-visible { background: transparent; color: $ink; }
+  &:focus-visible { outline: 1px dotted $ink; outline-offset: -2px; }
+  &.is-current { background: $navy; color: $hi; }
+  &.is-current:focus-visible { outline-color: $hi; }
+}
+.site-header .view-picker-name { font-weight: 400; }
+.site-header .view-picker-item.is-current .view-picker-check::before { border-color: $hi; }
+
+// The screenshots all sit in the monitor's screen: the current scheme's,
+// or the one you're pointing at.
+.site-header .view-picker-shot {
+  position: absolute;
+  z-index: 1;
+  top: -162px;
+  left: calc(50% - 72px);
+  width: 144px;
+  height: 90px;
+  border-radius: 0;
+  box-shadow: none;
+  background: #000;
+  visibility: hidden;
+}
+.site-header .view-picker-item.is-current .view-picker-shot { visibility: visible; }
+.site-header .view-picker-list:has(.view-picker-item:hover, .view-picker-item:focus-visible) {
+  .view-picker-item.is-current .view-picker-shot { visibility: hidden; }
+  .view-picker-item:is(:hover, :focus-visible) .view-picker-shot { visibility: visible; }
+}
+
+.site-header .view-picker-more {
+  @include button;
+  align-self: flex-end;
+  margin: 26px 12px 0 0;
+  border-top: 0;
+  font-size: 14px;
+  color: $ink;
+  &:hover { color: $ink; }
+}
+
+// ── /views/: a window of monitors ───────────────────────
+.vg-intro { max-width: 46rem; }
+
+.vg ul.vg-list:not(.ml-4) {
+  gap: 22px;
+  margin-top: 1.5rem;
+}
+
+.vg .vg-item {
+  padding: 12px 12px 14px;
+  background: $face;
+  border: 0;
+  border-radius: 0;
+  @include etched;
+  overflow: visible;
+  &.is-current { box-shadow: inset 0 0 0 2px $navy; }
+}
+
+// the screenshot in a monitor of its own
+.vg-shot {
+  position: relative;
+  margin: 0 6px 22px;
+  padding: 10px 10px 16px;
+  border: 0;
+  background: $face;
+  @include raised-window;
+  img {
+    border: 2px solid;
+    border-color: $shadow $hi $hi $shadow;
+    background: #000;
+  }
+  // the power light
+  &::before {
+    content: "";
+    position: absolute;
+    right: 14px;
+    bottom: 5px;
+    width: 6px;
+    height: 3px;
+    background: #00c000;
+  }
+  // the stand
+  &::after {
+    content: "";
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 100%;
+    height: 14px;
+    background: $face;
+    @include raised;
+  }
+}
+
+.vg-body { padding: 4px 4px 0; gap: 6px; }
+.site-content .vg .vg-name {
+  margin: 0;
+  font-family: $pixel;
+  font-size: 22px;
+  font-weight: 700;
+  color: $ink;
+}
+.vg-swatches {
+  width: 5rem;
+  height: 14px;
+  border-radius: 0;
+  box-shadow: none;
+  border: 1px solid $ink;
+  span + span { border-left: 1px solid $ink; }
+}
+.vg .vg-desc { @include ui(15px); line-height: 1.5; }
+.vg-item.is-current .vg-current {
+  padding: 1px 6px;
+  border-radius: 0;
+  background: $navy;
+  color: $hi;
+  @include ui(12px, 700);
+  letter-spacing: 0.02em;
+  text-transform: none;
+  &::before { content: "\2713  "; }
+}
+.page .vg-links .vg-try {
+  @include button;
+  color: $ink;
+  text-decoration: none;
+}

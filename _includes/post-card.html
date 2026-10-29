@@ -1,5 +1,5 @@
 {%- comment -%}
-  Shared post card for the home grid and the /archive/ grid.
+  Shared post card: the home page, /archive/ and /about/, in every design.
 
   The narration chip is a real button on the date row, so the card can no longer
   be one big <a> (a button nested in an anchor is invalid, and its clicks would
@@ -9,20 +9,54 @@
 
   The filter/search data lives on the wrapper because the archive script shows
   and hides that element.
+
+  One card for every design (see _data/views.yml): it carries everything any
+  design shows, in Default's order; a design hides what it doesn't use and
+  reorders the rest (.card-figure and .card-body can be display:contents).
+    .card-figure     wraps the thumbnail (display:contents in Default)
+    .card-kicker     the first topic, a kicker or a sticker (view-extra)
+    .card-byline     "By Jason Ellis" (view-extra)
+    .card-date       _includes/date.html: "December 8, 2026", plus the
+                     date in pieces (.date-parts, a view-extra)
+    .card-excerpt-more  words 26-64 of the excerpt, inside .card-excerpt
+                     just before the "..." (view-extra; only with long=true)
+
+  A long-form post (front matter `longform: true`) also gets
+  post-card-wrap--longform on the wrapper, post-card--longform on the card
+  and, after the title, the "Long Read · 31 min read" badge
+  (_includes/card-longform.html, shown in every design) and its
+  description as .card-dek (view-extra). Other cards are unchanged.
+
+  Params:
+    post     the post (required)
+    variant  the slot it fills, as post-card-wrap--<variant> and
+             post-card--<variant>: lead (the home page's first), second,
+             standard (the default), brief (home page 7+), row (/archive/)
+    eager    load the thumbnail eagerly (the first one above the fold)
+    long     also carry .card-excerpt-more (the home page's lead stories)
 {%- endcomment -%}
 {%- assign card_img = include.post.thumb | default: site.data.default_thumb -%}
+{%- assign card_v = include.variant | default: "standard" -%}
+{%- assign card_kicker = include.post.categories | first -%}
 {%- assign card_human = false -%}
 {%- if include.post.audio_narrator == 'human' %}{%- assign card_human = true -%}{%- endif -%}
-<div class="post-card-wrap"
+{%- assign card_text = include.post.excerpt | strip_html -%}
+{%- assign card_ex = card_text | truncatewords: 25 -%}
+<div class="post-card-wrap post-card-wrap--{{ card_v }}{% if include.post.longform %} post-card-wrap--longform{% endif %}"
+     data-year="{{ include.post.date | date: '%Y' }}"
      data-categories="{{ include.post.categories | join: ',' }}"
      data-tags="{{ include.post.tags | join: '|' | escape }}"
      data-title="{{ include.post.title | strip_html | escape | downcase }}"
      data-search="{{ include.post.title | strip_html | escape | downcase }} {{ include.post.excerpt | strip_html | escape | downcase | truncatewords: 30 }}">
-  <div class="post-card">
-    <img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480"{% unless include.eager %} loading="lazy"{% endunless %} decoding="async" alt="{{ include.post.image_alt | default: include.post.title | strip_html | escape }}">
+  <article class="post-card post-card--{{ card_v }}{% if include.post.longform %} post-card--longform{% endif %}">
+    <div class="card-figure"><img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480"{% unless include.eager %} loading="lazy"{% endunless %} decoding="async" alt="{{ include.post.image_alt | default: include.post.title | strip_html | escape }}"></div>
     <div class="card-body">
+      {%- if card_kicker %}
+      <p class="view-extra card-kicker">{{ card_kicker }}</p>
+      {%- endif %}
       <div class="card-meta">
-        <span class="card-date">{{ include.post.date | date: "%B %-d, %Y" }}</span>
+        <span class="view-extra card-byline">By Jason Ellis</span>
+        {% include date.html date=include.post.date class="card-date" month="full" %}
         {%- if include.post.audio %}
         <button type="button"
                 class="card-listen{% if card_human %} card-listen--human{% endif %}"
@@ -41,7 +75,20 @@
       <h2 class="card-title">
         <a class="card-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a>
       </h2>
-      <p class="card-excerpt">{{ include.post.excerpt | strip_html | truncatewords: 25 }}</p>
+      {%- if include.post.longform %}
+      {% include card-longform.html post=include.post %}
+      {%- if include.post.description %}
+      <p class="view-extra card-dek">{{ include.post.description }}</p>
+      {%- endif %}
+      {%- endif %}
+      {%- assign card_words = card_text | split: " " -%}
+      {%- if include.long and card_words.size > 25 %}
+      {%- assign card_cut = card_ex.size | minus: 3 -%}
+      {%- assign card_more = card_words | slice: 25, 39 | join: " " %}
+      <p class="card-excerpt">{{ card_ex | slice: 0, card_cut }}<span class="view-extra card-excerpt-more"> {{ card_more }}</span>...</p>
+      {%- else %}
+      <p class="card-excerpt">{{ card_ex }}</p>
+      {%- endif %}
     </div>
-  </div>
+  </article>
 </div>

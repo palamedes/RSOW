@@ -1,0 +1,127 @@
+// ════════════════════════════════════════════════════════════════
+//  Zine kit: the photocopied-flyer vocabulary every partial shares.
+//  Paper, black ink, hazard yellow and one signal red; hard offset
+//  shadows (never a blur), tape strips, halftone screens, rubber
+//  stamps. `@use "kit" as *;` in a partial to get all of it.
+//
+//  Contrast notes (WCAG): ink on yellow 14.9:1; white on red 5.3:1;
+//  red on paper 4.6:1. Red on yellow is only 4.2:1, so it's kept to
+//  big display type. Anything small on yellow is black.
+// ════════════════════════════════════════════════════════════════
+
+$ink:    #111111;
+$paper:  #f3efe6;   // the wall: warm newsprint
+$sheet:  #fffdf7;   // a fresh sheet pasted on it
+$hazard: #ffe600;
+$red:    #d6121a;
+$grey:   #595959;   // quiet text, 6:1 on paper
+$tape:   rgba(236, 226, 186, 0.82);
+
+$display: "Anton", Impact, "Haettenschweiler", "Arial Narrow Bold", sans-serif;
+$mono:    "Space Mono", "Courier New", Courier, monospace;
+$serif:   "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+$sans:    system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+$wrap: 1180px;
+
+// Photocopier grain: fractal noise baked into a tiny SVG tile. Purely CSS,
+// no image request.
+$grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+
+// Hard, flat drop shadow: a second sheet of black under the first.
+@mixin hard-shadow($x: 6px, $y: $x, $c: $ink) {
+  box-shadow: $x $y 0 0 $c;
+}
+
+// A dot screen. Stack it under a mask to make it fade like a real halftone.
+@mixin halftone($c: rgba(17, 17, 17, 0.22), $size: 9px, $dot: 1.5px) {
+  background-image: radial-gradient(circle, $c $dot, transparent calc(#{$dot} + 0.7px));
+  background-size: $size $size;
+}
+
+// Masking tape. Use on an absolutely positioned ::before / ::after.
+@mixin tape($w: 96px, $h: 26px, $rot: -4deg) {
+  content: "";
+  position: absolute;
+  width: $w;
+  height: $h;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 45%),
+    $tape;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12);
+  // torn ends
+  clip-path: polygon(3% 0, 97% 0, 100% 18%, 96% 36%, 100% 54%, 96% 72%, 100% 90%, 97% 100%,
+                     3% 100%, 0 82%, 4% 64%, 0 46%, 4% 28%, 0 10%);
+  transform: rotate($rot);
+  pointer-events: none;
+  z-index: 4;
+}
+
+// Small mono label: dates, kickers, counters.
+@mixin label($size: 0.72rem) {
+  font-family: $mono;
+  font-size: $size;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+// Chunky stamped button: thick border, hard shadow, presses down on click.
+@mixin stamp-button($bg: $sheet, $fg: $ink) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 1.15rem;
+  font-family: $mono;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  text-decoration: none;
+  color: $fg;
+  background: $bg;
+  border: 3px solid $ink;
+  border-radius: 0;
+  @include hard-shadow(4px);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+  &:hover {
+    background: $hazard;
+    color: $ink;
+    text-decoration: none;
+    transform: translate(-2px, -2px);
+    @include hard-shadow(6px);
+  }
+  &:active {
+    transform: translate(3px, 3px);
+    @include hard-shadow(1px);
+  }
+  &:focus-visible {
+    outline: 3px solid $red;
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) { transition: none; }
+}
+
+// Rubber stamp: outlined, uppercase, a little crooked, a little worn.
+@mixin rubber-stamp($c: $red, $rot: -3deg) {
+  display: inline-block;
+  @include label(0.7rem);
+  color: $c;
+  border: 2px solid currentColor;
+  padding: 0.15rem 0.45rem 0.1rem;
+  transform: rotate($rot);
+}
+
+// Display headline face.
+@mixin poster($size: 2rem) {
+  font-family: $display;
+  font-weight: 400;
+  font-size: $size;
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+}

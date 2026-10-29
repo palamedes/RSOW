@@ -1,0 +1,34 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  The site's "apps" — the games arcade, the Drip Fund, explainers, the
+//  Palamedes reference, /build/ — carry their own stylesheets, drawn for a
+//  light page in a sans. Inside the Quiet shell they keep that identity:
+//  their own sans-serif UI at the size it was designed for, lining
+//  figures for the numbers, and (in dark mode) a light page under them,
+//  because their colours are fixed. See .is-light-only in default.html.
+// ════════════════════════════════════════════════════════════════
+
+main.site-content.is-light-only {
+  @include light-tokens;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.gam, .inv, .exp, .pal, .bld {
+  font-family: $sans;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  font-variant-numeric: lining-nums;
+}
+
+// Their headings pick up the site's serif, which ties them to the shell;
+// their stylesheets ask for 700–800, which in Alegreya reads as shouting,
+// so the weight is settled at a book-ish 600.
+.gam, .inv, .exp, .pal, .bld {
+  :is(h1, h2, h3, h4, h5, h6) {
+    font-weight: 600 !important;
+    letter-spacing: -0.005em;
+  }
+}

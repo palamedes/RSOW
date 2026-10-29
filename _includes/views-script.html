@@ -1,0 +1,129 @@
+{%- comment -%}
+  Behaviour for the design system (_data/views.yml). Lives outside <main>,
+  so it runs once per real page load and survives the narration player's
+  soft navigation, as does the design the loader in <head> picked.
+
+  - The "Select a Design" picker (_includes/view-picker.html): open/close,
+    Escape, arrow keys, outside click, the current design marked. Picking a
+    design reloads this same page as ?view=<key>; the loader saves the choice
+    and takes the parameter back out of the address bar.
+  - The light/dark toggle, for designs with `schemes: true` (it is a
+    view-extra, so only those designs show it). The choice is stored as
+    rsow.theme and applied before first paint by the loader.
+  - A design's own comments theme (`giscus_theme`), sent to the giscus frame
+    once it says hello.
+{%- endcomment -%}
+<script>
+  (function () {
+    var root = document.documentElement;
+    var view = root.getAttribute("data-view") || "default";
+
+    // ── Select a Design ──────────────────────────────────
+    var wrap = document.getElementById("view-picker");
+    var btn = document.getElementById("view-picker-btn");
+    var menu = document.getElementById("view-picker-menu");
+    if (wrap && btn && menu) {
+      var items = Array.prototype.slice.call(menu.querySelectorAll(".view-picker-item"));
+      items.forEach(function (a) {
+        var on = a.getAttribute("data-view") === view;
+        a.classList.toggle("is-current", on);
+        if (on) a.setAttribute("aria-current", "true");
+      });
+
+      var isOpen = function () { return btn.getAttribute("aria-expanded") === "true"; };
+      var setOpen = function (open, focusBtn) {
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+        menu.hidden = !open;
+        wrap.classList.toggle("is-open", open);
+        if (!open && focusBtn) btn.focus();
+      };
+
+      btn.addEventListener("click", function () {
+        var open = !isOpen();
+        setOpen(open);
+        if (open) {
+          var first = menu.querySelector(".view-picker-item.is-current") || items[0];
+          if (first) first.focus();
+        }
+      });
+
+      items.forEach(function (a, i) {
+        a.addEventListener("click", function (e) {
+          var key = a.getAttribute("data-view");
+          e.preventDefault();
+          if (key === view) { setOpen(false, true); return; }
+          try { localStorage.setItem("rsow.view", key); } catch (err) {}
+          var u = new URL(location.href);
+          u.searchParams.set("view", key);
+          location.replace(u.toString());
+        });
+        a.addEventListener("keydown", function (e) {
+          var next = null;
+          if (e.key === "ArrowDown") next = items[(i + 1) % items.length];
+          else if (e.key === "ArrowUp") next = items[(i - 1 + items.length) % items.length];
+          else if (e.key === "Home") next = items[0];
+          else if (e.key === "End") next = items[items.length - 1];
+          if (next) { e.preventDefault(); next.focus(); }
+        });
+      });
+
+      // Escape is handled here, on the way up, so the mobile menu (which
+      // listens on document) knows to stay open: preventDefault marks it.
+      wrap.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && isOpen()) {
+          e.preventDefault();
+          setOpen(false, true);
+        }
+      });
+      document.addEventListener("click", function (e) {
+        if (isOpen() && !wrap.contains(e.target)) setOpen(false);
+      });
+      wrap.addEventListener("focusout", function (e) {
+        if (isOpen() && e.relatedTarget && !wrap.contains(e.relatedTarget)) setOpen(false);
+      });
+    }
+
+    // ── Light / dark ─────────────────────────────────────
+    var toggle = document.getElementById("theme-toggle");
+    if (toggle) {
+      var mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+      var effective = function () {
+        var t = root.getAttribute("data-theme");
+        if (t === "light" || t === "dark") return t;
+        return mq && mq.matches ? "dark" : "light";
+      };
+      var paint = function () {
+        toggle.setAttribute("aria-pressed", effective() === "dark" ? "true" : "false");
+      };
+      toggle.addEventListener("click", function () {
+        var next = effective() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("rsow.theme", next); } catch (e) {}
+        paint();
+        document.dispatchEvent(new CustomEvent("rsow:theme"));
+      });
+      if (mq) {
+        if (mq.addEventListener) mq.addEventListener("change", paint);
+        else if (mq.addListener) mq.addListener(paint);
+      }
+      paint();
+    }
+
+    // ── Comments theme ───────────────────────────────────
+    var themes = {
+      {%- for v in site.data.views -%}{%- if v.giscus_theme %}
+      {{ v.key | jsonify }}: {{ v.giscus_theme | absolute_url | jsonify }},
+      {%- endif -%}{%- endfor %}
+    };
+    var gtheme = themes[view];
+    if (gtheme) {
+      window.addEventListener("message", function (e) {
+        if (e.origin !== "https://giscus.app") return;
+        var frame = document.querySelector("iframe.giscus-frame");
+        if (!frame || frame.getAttribute("data-view-theme") === gtheme) return;
+        frame.setAttribute("data-view-theme", gtheme);
+        frame.contentWindow.postMessage({ giscus: { setConfig: { theme: gtheme } } }, "https://giscus.app");
+      });
+    }
+  })();
+</script>

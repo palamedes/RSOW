@@ -1,0 +1,55 @@
+// ════════════════════════════════════════════════════════════════
+//  View-extras: the hooks in the shared HTML that only some designs use.
+//
+//  Every design @use's this first. An element marked .view-extra is
+//  display:none (!important, so no stray rule can reveal one by accident)
+//  unless the design lists it in $show:
+//
+//    @use "views/extras" with ($show: (
+//      ".post-dek",
+//      ".post-tags-sep",
+//      ".post-card--row .date-m-abbr",   // any selector, contextual too
+//    ));
+//
+//  A listed extra gets its normal display (a <p> is a block, a <span>
+//  inline); style it like anything else. Default lists nothing.
+//
+//  The extras, by template (see each template's header comment):
+//    default.html   .mast-rail-vol .mast-rail-date .mast-ear .mast-dateline
+//                   .site-title-long .nav-toggle-label .nav-ext
+//                   .theme-toggle .ticker .photo-desk-head .footer-stamp
+//                   .colophon-sections .colophon-note .footer-feed
+//                   .back-to-top-text
+//    index.html     .fp-editor-label .fp-editor-more .hero-stamp .fp-inside
+//                   .fp-head-kicker .fp-rule .fp-briefs-label .view-more-note
+//    post-card      .card-kicker .card-byline .card-excerpt-more .card-dek
+//                   (.card-dek: a long read's description)
+//    date.html      .date-parts (month forms, day, year as spans)
+//    post.html      .post-hero-cat-sep .post-dek .post-hero-by
+//                   .post-actions--hero .post-hero-art .post-tags-sep
+//                   .post-comments-head .post-comments-sub; .card-kicker on
+//                   the Recent Posts cards
+//    archive.html   .arc-year-label
+// ════════════════════════════════════════════════════════════════
+@use "sass:list";
+
+$show: () !default;
+
+@if list.length($show) == 0 {
+  .view-extra { display: none !important; }
+} @else {
+  .view-extra:not(#{list.join((), $show, $separator: comma)}) { display: none !important; }
+}
+
+// The "Long Read · 31 min read" badge on a long-form post's card
+// (_includes/card-longform.html) is not an extra: it shows in every design.
+// A design that doesn't dress it still prints a small bold label over the
+// excerpt; :where() keeps this at zero specificity, so any rule wins.
+:where(.card-longform) {
+  margin: 0 0 0.4em;
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}

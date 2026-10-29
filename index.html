@@ -4,35 +4,85 @@ pagination:
   enabled: true
 full_width: true
 ---
+{%- comment -%}
+  The home page, the same HTML in every design (_data/views.yml).
+
+  .home-hero: who this is (and the page's h1). Its view-extras: a label
+  over it (.fp-editor-label), a link to /about/ (.fp-editor-more), a rubber
+  stamp (.hero-stamp, decoration) and the "Inside This Edition" box
+  (.fp-inside). .hero-photo wraps the portrait (display:contents in Default).
+
+  .post-grid: the cards. Each gets a slot (post-card-wrap--<variant>):
+  lead (1), second (2), standard (3-6), brief (7+); the lead stories also
+  carry a longer excerpt. Two view-extras sit between them: .fp-rule (before
+  the third card, decoration) and the "In Brief" heading .fp-briefs-label
+  (before the seventh). Count with :nth-child(n of .post-card-wrap) rather
+  than plain :nth-child.
+{%- endcomment -%}
 <div class="home">
   <section class="home-hero">
     <div class="hero-inner">
-      <img class="profile-image" src="{{ '/assets/images/profile.webp' | relative_url }}" width="250" height="250" alt="Jason Ellis">
+      <p class="view-extra fp-editor-label">From the Editor&rsquo;s Desk</p>
+      <div class="hero-photo">
+        <img class="profile-image" src="{{ '/assets/images/profile.webp' | relative_url }}" width="250" height="250" alt="Jason Ellis">
+      </div>
       <div class="hero-text">
         <h1 class="hero-name">Jason Ellis</h1>
         <p class="hero-site-name">RandomStringOfWords.com</p>
         <p class="hero-tagline">a space for sharing ideas, reflections, and the occasional strong opinion. If you're here, you're probably curious about something I've built, said, or am working on. Either way, I'm glad you found your way here.</p>
+        <a class="view-extra fp-editor-more" href="{{ '/about/' | relative_url }}">More about the editor</a>
       </div>
+      <p class="view-extra hero-stamp" aria-hidden="true">Strong<br>opinions<br>inside</p>
+      {%- assign inside_listed = site.posts | where_exp: "p", "p.archive != false" %}
+      <nav class="view-extra fp-inside" aria-label="Inside this edition">
+        <p class="fp-inside-label">Inside This Edition</p>
+        <ul>
+          <li><a href="{{ '/archive/' | relative_url }}"><span class="fp-inside-name">The Archive</span><span class="fp-inside-note">{{ inside_listed.size }} stories</span></a><span class="fp-inside-pg" aria-hidden="true">A2</span></li>
+          <li><a href="{{ '/topics/' | relative_url }}"><span class="fp-inside-name">Topics</span></a><span class="fp-inside-pg" aria-hidden="true">A3</span></li>
+          <li><a href="{{ '/explain/' | relative_url }}"><span class="fp-inside-name">Explainers</span></a><span class="fp-inside-pg" aria-hidden="true">B1</span></li>
+          <li><a href="{{ '/games/' | relative_url }}"><span class="fp-inside-name">Games</span></a><span class="fp-inside-pg" aria-hidden="true">C1</span></li>
+          <li><a href="{{ '/investments/' | relative_url }}"><span class="fp-inside-name">Investments</span></a><span class="fp-inside-pg" aria-hidden="true">D1</span></li>
+        </ul>
+      </nav>
     </div>
   </section>
 
   <div class="sub-hero" aria-hidden="true"></div>
 
-  <div class="site-wrapper">
+  <div class="site-wrapper home-body">
     <div class="recent-posts-head">
+      <p class="view-extra fp-head-kicker">The Front Page</p>
       <h2 class="recent-posts-heading">Most Recent Blog Posts</h2>
       {% include ai-notes-explainer.html %}
     </div>
     <div class="post-grid">
       {%- comment -%} the paginator already leaves out posts marked `index: false` (_plugins/listing_flags.rb) {%- endcomment %}
       {% for post in paginator.posts %}
-      {% include post-card.html post=post eager=forloop.first %}
+        {%- assign long = false -%}
+        {%- if forloop.index <= 2 %}{% assign long = true %}{% endif -%}
+        {%- if forloop.index == 1 -%}
+          {%- assign slot = "lead" -%}
+        {%- elsif forloop.index == 2 -%}
+          {%- assign slot = "second" -%}
+        {%- elsif forloop.index <= 6 -%}
+          {%- assign slot = "standard" -%}
+        {%- else -%}
+          {%- assign slot = "brief" -%}
+        {%- endif -%}
+        {%- if forloop.index == 3 %}
+      <div class="view-extra fp-rule" aria-hidden="true"></div>
+        {%- endif %}
+        {%- if forloop.index == 7 %}
+      <h2 class="view-extra fp-briefs-label">In Brief</h2>
+        {%- endif %}
+      {% include post-card.html post=post variant=slot eager=forloop.first long=long %}
       {% endfor %}
     </div>
     {% include card-narration.html %}
 
     <div class="view-more">
       <a href="{{ '/archive/' | relative_url }}">View all posts</a>
+      <span class="view-extra view-more-note">Continued in the archive</span>
     </div>
 
   </div>

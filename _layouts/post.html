@@ -2,7 +2,8 @@
 layout: default
 ---
 {%- assign featured_image = page.image | default: site.default_image -%}
-{%- assign words = content | number_of_words -%}
+{%- comment -%} a closing "Sources and notes" section (long reads) isn't reading time {%- endcomment -%}
+{%- assign words = content | split: 'id="sources-and-notes"' | first | number_of_words -%}
 {%- assign minutes = words | divided_by: 250 -%}
 {%- if minutes < 1 %}{%- assign minutes = 1 -%}{%- endif -%}
 {%- comment -%} `audio_narrator: human` marks a recording read by Jason himself
@@ -12,6 +13,19 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
 {%- if page.audio_narrator == 'human' %}{%- assign audio_human = true -%}{%- endif -%}
 {%- if audio_human %}{%- assign audio_lead = 'Read by me' -%}{%- else %}{%- assign audio_lead = 'AI narration' -%}{%- endif -%}
 
+{%- comment -%}
+  The same HTML in every design (_data/views.yml). Hooks in the hero:
+    .post-hero-cat-sep   " & " between topics (view-extra)
+    .post-dek            the post's description as a standfirst (view-extra)
+    .post-hero-by        "By " before the author (view-extra)
+    .post-hero-date      _includes/date.html ("Dec 8, 2026" by default)
+    .post-hero-tools     wraps the hero's AI Notes toggle (.post-actions--hero,
+                         a view-extra) and the listen button; display:contents
+                         in Default. The in-article .post-actions holds the
+                         other AI Notes toggle; a design shows one of the two.
+    .post-hero-art       the lead image again, for a design that puts it in
+                         the hero (view-extra; same file, so no extra download)
+{%- endcomment %}
 <div class="post">
   <header class="post-hero">
     <div class="post-hero-bg" aria-hidden="true"></div>
@@ -20,37 +34,73 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
         {% if page.categories.size > 0 %}
         <div class="post-hero-cats">
           {% for cat in page.categories %}
-          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
+          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>{% unless forloop.last %}<span class="view-extra post-hero-cat-sep" aria-hidden="true"> &amp; </span>{% endunless %}
           {% endfor %}
         </div>
         {% endif %}
         <h1 class="post-hero-title">{{ page.title }}</h1>
+        {%- if page.description %}
+        <p class="view-extra post-dek">{{ page.description }}</p>
+        {%- endif %}
         <div class="post-hero-meta">
-          <span class="post-hero-author">Jason Ellis</span>
-          <span class="post-hero-dot">&middot;</span>
-          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
-          <span class="post-hero-dot">&middot;</span>
-          <span>{{ minutes }} min read</span>
+          <span class="post-hero-author"><span class="view-extra post-hero-by">By </span>Jason Ellis</span>
+          <span class="post-hero-dot" aria-hidden="true">&middot;</span>
+          {% include date.html date=page.date class="post-hero-date" month="abbr" %}
+          <span class="post-hero-dot" aria-hidden="true">&middot;</span>
+          <span class="post-hero-read">{{ minutes }} min read</span>
           {% if page.audio %}
-          <span class="post-hero-dot">&middot;</span>
+          <span class="post-hero-dot" aria-hidden="true">&middot;</span>
           <span class="post-hero-listen-note{% if audio_human %} is-human{% endif %}" role="button" tabindex="0" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">🎧 {% if page.audio_length %}{{ page.audio_length }}{% else %}{{ minutes }} min{% endif %} listen</span>
-          {%- comment -%} The listen button: right end of the byline row. The
-          player script rewrites .post-listen-lead ("Pause" while playing,
-          data-idle-label otherwise); .post-listen-sub is static and keeps the
-          AI / read-by-me distinction visible in every state. {%- endcomment %}
-          <div class="post-listen-group">
-            <span class="post-listen-time{% if audio_human %} post-listen-time--human{% endif %}" hidden>0:00 / 0:00</span>
-            <button type="button" class="post-listen{% if audio_human %} post-listen--human{% endif %}" aria-pressed="false" aria-label="{% if audio_human %}Listen to Jason reading this article aloud{% else %}Listen to an AI-read version of this article{% endif %}" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-idle-label="Listen now" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">
-              <span class="post-listen-ico" aria-hidden="true"></span>
-              <span class="post-listen-text">
-                <span class="post-listen-lead">Listen now</span>
-                <span class="post-listen-sub">{{ audio_lead }}</span>
-              </span>
-            </button>
-          </div>
           {% endif %}
+          {%- if page.ai_notes or page.audio %}
+          <div class="post-hero-tools">
+            {%- comment -%} The hero's AI Notes toggle (a view-extra); the
+            in-article one is below. assets/js/ai-notes.js drives every
+            .post-ainotes-btn on the page. {%- endcomment %}
+            {%- if page.ai_notes %}
+            <div class="view-extra post-actions post-actions--hero">
+              <button type="button" class="post-ainotes-btn" aria-pressed="false" aria-label="Toggle AI-generated factual notes on this article">
+                <span class="post-ainotes-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="9.5" cy="13.5" r="1.4" fill="currentColor"/><circle cx="14.5" cy="13.5" r="1.4" fill="currentColor"/><line x1="12" y1="4" x2="12" y2="8" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="3" r="1.4" fill="currentColor"/></svg></span>
+                <span class="post-ainotes-lead">Click for AI Notes</span>
+              </button>
+            </div>
+            {%- endif %}
+            {%- if page.audio %}
+            {%- comment -%} The listen button: right end of the byline row. The
+            player script rewrites .post-listen-lead ("Pause" while playing,
+            data-idle-label otherwise); .post-listen-sub is static and keeps the
+            AI / read-by-me distinction visible in every state. {%- endcomment %}
+            <div class="post-listen-group">
+              <span class="post-listen-time{% if audio_human %} post-listen-time--human{% endif %}" hidden>0:00 / 0:00</span>
+              <button type="button" class="post-listen{% if audio_human %} post-listen--human{% endif %}" aria-pressed="false" aria-label="{% if audio_human %}Listen to Jason reading this article aloud{% else %}Listen to an AI-read version of this article{% endif %}" title="{% if audio_human %}Read aloud by Jason — not AI{% else %}AI-generated narration{% endif %}" data-idle-label="Listen now" data-audio="{{ page.audio | relative_url }}" data-audio-title="{{ page.title | strip_html | escape }}" data-audio-url="{{ page.url | relative_url }}" data-audio-narrator="{% if audio_human %}human{% else %}ai{% endif %}">
+                <span class="post-listen-ico" aria-hidden="true"></span>
+                <span class="post-listen-text">
+                  <span class="post-listen-lead">Listen now</span>
+                  <span class="post-listen-sub">{{ audio_lead }}</span>
+                </span>
+              </button>
+            </div>
+            {%- endif %}
+          </div>
+          {%- endif %}
         </div>
       </div>
+      {%- comment -%}
+        The lead image a second time, for a design that pastes it into the
+        hero (a view-extra). Same file as the one in the article, so it costs
+        no second download. It carries gallery-thumb, so clicking it opens the
+        lightbox; image_caption, when set, rides under it.
+      {%- endcomment -%}
+      {%- assign featured_alt = page.image_alt | default: page.title -%}
+      {%- assign featured_size = featured_image | image_size %}
+      <figure class="view-extra post-hero-art">
+        <span class="post-hero-print">
+          <img class="post-hero-img gallery-thumb" src="{{ featured_image | relative_url }}" alt="{{ featured_alt | strip_html | escape }}" data-full="{{ featured_image | relative_url }}"{% if page.image_caption %} data-caption="{{ page.image_caption | escape }}"{% endif %}{% if featured_size %} width="{{ featured_size[0] }}" height="{{ featured_size[1] }}"{% endif %} decoding="async">
+        </span>
+        {%- if page.image_caption %}
+        <figcaption class="post-body-cap">{{ page.image_caption }}</figcaption>
+        {%- endif %}
+      </figure>
     </div>
   </header>
 
@@ -71,14 +121,14 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
           (falls back to the title); image_caption is an optional line shown
           under it and in the lightbox. No caption means no figcaption at all.
         {%- endcomment -%}
-        {%- assign featured_alt = page.image_alt | default: page.title -%}
+        {%- capture featured_dims %}{% if featured_size %} width="{{ featured_size[0] }}" height="{{ featured_size[1] }}"{% endif %}{% endcapture -%}
         {%- if page.image_caption %}
         <figure class="post-body-figure">
-          <img class="post-body-img" src="{{ featured_image | relative_url }}" alt="{{ featured_alt | strip_html | escape }}" data-caption="{{ page.image_caption | escape }}">
+          <img class="post-body-img" src="{{ featured_image | relative_url }}"{{ featured_dims }} alt="{{ featured_alt | strip_html | escape }}" data-caption="{{ page.image_caption | escape }}">
           <figcaption class="post-body-cap">{{ page.image_caption }}</figcaption>
         </figure>
         {%- else %}
-        <img class="post-body-img" src="{{ featured_image | relative_url }}" alt="{{ featured_alt | strip_html | escape }}">
+        <img class="post-body-img" src="{{ featured_image | relative_url }}"{{ featured_dims }} alt="{{ featured_alt | strip_html | escape }}">
         {%- endif %}
         {{ content }}
         {% if page.ai_notes %}
@@ -100,7 +150,7 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
         <div class="post-tags-row">
           <span class="post-tags-label">Topic</span>
           {% for cat in page.categories %}
-          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>
+          <a href="{{ '/archive/' | relative_url }}#{{ cat | uri_escape }}">{{ cat }}</a>{% unless forloop.last %}<span class="view-extra post-tags-sep">, </span>{% endunless %}
           {% endfor %}
         </div>
         {% endif %}
@@ -108,7 +158,7 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
         <div class="post-tags-row post-tags-row--tags">
           <span class="post-tags-label">Tags</span>
           {% for tag in page.tags %}
-          <a class="post-tag" href="{{ '/archive/' | relative_url }}?tag={{ tag | uri_escape | replace: '&', '%26' }}">{{ tag }}</a>
+          <a class="post-tag" href="{{ '/archive/' | relative_url }}?tag={{ tag | uri_escape | replace: '&', '%26' }}">{{ tag }}</a>{% unless forloop.last %}<span class="view-extra post-tags-sep">, </span>{% endunless %}
           {% endfor %}
           <a class="post-tags-all" href="{{ '/tags/' | relative_url }}">All tags &rarr;</a>
         </div>
@@ -129,6 +179,8 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
     {%- assign gc = site.giscus -%}
     {%- if page.allow_comments != false and gc and gc.repo_id != "" and gc.category_id != "" -%}
     <section class="post-comments" aria-label="Comments">
+      <h2 class="view-extra post-comments-head">Letters to the Editor</h2>
+      <p class="view-extra post-comments-sub">Agree, disagree, or set me straight. The comments are open.</p>
       <script src="https://giscus.app/client.js"
         data-repo="{{ gc.repo }}"
         data-repo-id="{{ gc.repo_id }}"
@@ -151,6 +203,33 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
   </div>
 </div>
 
+{%- comment -%}
+  The post just newer than this one, then the two (or three) just older, so
+  the reader can go either way in time. Each card is one link; its
+  .card-kicker (first topic) is a view-extra. A long-form post's card
+  (`longform: true`) adds post-card--longform and, after the title, the
+  "Long Read" badge (_includes/card-longform.html).
+{%- endcomment -%}
+{%- assign found = false -%}
+{%- assign newer1 = nil -%}
+{%- assign older1 = nil -%}
+{%- assign older2 = nil -%}
+{%- assign older3 = nil -%}
+{%- for p in site.posts -%}
+  {%- if found -%}
+    {%- if older1 == nil -%}{%- assign older1 = p -%}
+    {%- elsif older2 == nil -%}{%- assign older2 = p -%}
+    {%- elsif older3 == nil -%}{%- assign older3 = p -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- if p.url == page.url -%}{%- assign found = true -%}{%- endif -%}
+  {%- unless found -%}{%- assign newer1 = p -%}{%- endunless -%}
+{%- endfor -%}
+{%- assign picks = "" | split: "" -%}
+{%- if newer1 -%}{%- assign picks = picks | push: newer1 -%}{%- endif -%}
+{%- if older1 -%}{%- assign picks = picks | push: older1 -%}{%- endif -%}
+{%- if older2 -%}{%- assign picks = picks | push: older2 -%}{%- endif -%}
+{%- if newer1 == nil and older3 -%}{%- assign picks = picks | push: older3 -%}{%- endif %}
 <section class="recent-posts">
   <div class="site-wrapper">
     <div class="recent-posts-header">
@@ -158,62 +237,23 @@ and the aria text so the two kinds of narration are never confused. {%- endcomme
       <a href="{{ '/archive/' | relative_url }}">See All</a>
     </div>
     <div class="recent-posts-grid">
-      {% assign all_posts = site.posts %}
-      {% assign found = false %}
-      {% assign newer1 = nil %}
-      {% assign older1 = nil %}
-      {% assign older2 = nil %}
-      {% assign older3 = nil %}
-      {% for p in all_posts %}
-        {% if found %}
-          {% if older1 == nil %}{% assign older1 = p %}
-          {% elsif older2 == nil %}{% assign older2 = p %}
-          {% elsif older3 == nil %}{% assign older3 = p %}
-          {% endif %}
-        {% endif %}
-        {% if p.url == page.url %}{% assign found = true %}{% endif %}
-        {% unless found %}{% assign newer1 = p %}{% endunless %}
-      {% endfor %}
-      {% if newer1 %}
-      <a class="post-card" href="{{ newer1.url | relative_url }}">
-        {% assign card_img = newer1.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ newer1.image_alt | default: newer1.title | strip_html | escape }}">
+      {%- for r in picks %}
+      <a class="post-card{% if r.longform %} post-card--longform{% endif %}" href="{{ r.url | relative_url }}">
+        {% assign card_img = r.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ r.image_alt | default: r.title | strip_html | escape }}">
         <div class="card-body">
-          <span class="card-date">{{ newer1.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ newer1.title }}</h2>
-          <p class="card-excerpt">{{ newer1.excerpt | strip_html | truncatewords: 15 }}</p>
+          {%- assign r_kicker = r.categories | first -%}
+          {%- if r_kicker %}
+          <p class="view-extra card-kicker">{{ r_kicker }}</p>
+          {%- endif %}
+          {% include date.html date=r.date class="card-date" month="full" %}
+          <h2 class="card-title">{{ r.title }}</h2>
+          {%- if r.longform %}
+          {% include card-longform.html post=r %}
+          {%- endif %}
+          <p class="card-excerpt">{{ r.excerpt | strip_html | truncatewords: 15 }}</p>
         </div>
       </a>
-      {% endif %}
-      {% if older1 %}
-      <a class="post-card" href="{{ older1.url | relative_url }}">
-        {% assign card_img = older1.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ older1.image_alt | default: older1.title | strip_html | escape }}">
-        <div class="card-body">
-          <span class="card-date">{{ older1.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ older1.title }}</h2>
-          <p class="card-excerpt">{{ older1.excerpt | strip_html | truncatewords: 15 }}</p>
-        </div>
-      </a>
-      {% endif %}
-      {% if older2 %}
-      <a class="post-card" href="{{ older2.url | relative_url }}">
-        {% assign card_img = older2.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ older2.image_alt | default: older2.title | strip_html | escape }}">
-        <div class="card-body">
-          <span class="card-date">{{ older2.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ older2.title }}</h2>
-          <p class="card-excerpt">{{ older2.excerpt | strip_html | truncatewords: 15 }}</p>
-        </div>
-      </a>
-      {% endif %}
-      {% if newer1 == nil and older3 %}
-      <a class="post-card" href="{{ older3.url | relative_url }}">
-        {% assign card_img = older3.thumb | default: site.data.default_thumb %}<img class="card-image" src="{{ card_img | relative_url }}" width="720" height="480" loading="lazy" decoding="async" alt="{{ older3.image_alt | default: older3.title | strip_html | escape }}">
-        <div class="card-body">
-          <span class="card-date">{{ older3.date | date: "%B %-d, %Y" }}</span>
-          <h2 class="card-title">{{ older3.title }}</h2>
-          <p class="card-excerpt">{{ older3.excerpt | strip_html | truncatewords: 15 }}</p>
-        </div>
-      </a>
-      {% endif %}
+      {%- endfor %}
     </div>
   </div>
 </section>

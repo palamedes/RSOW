@@ -1,0 +1,104 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Quiet on the shared HTML: the wrappers it doesn't need, and the design
+//  system's own furniture (the picker, /views/) set in Quiet's voice.
+//  The view-extras Quiet shows are listed in assets/css/views/quiet.scss.
+// ════════════════════════════════════════════════════════════════
+
+// Wrappers whose children Quiet lays out directly. (.post-hero-tools,
+// .arc-year and .arc-year-list are real boxes here, styled in _post.scss
+// and _archive.scss.)
+.hero-photo,
+.card-figure,
+.snap,
+.footer-about-photo,
+.colophon,
+.photo-desk { display: contents; }
+
+:root {
+  --vp-font: #{$sans};
+  --vp-ink: var(--ink);
+  --vp-muted: var(--muted);
+  --vp-bg: var(--card);
+  --vp-line: var(--rule);
+  --vp-hover: var(--paper-2);
+  --vp-accent: var(--accent);
+  --vp-radius: 6px;
+  --vp-shadow: var(--shadow);
+}
+
+// ── The picker: a ring like the theme toggle beside it ──
+.site-header {
+  .view-picker-btn {
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 1px solid var(--rule-2);
+    border-radius: 50%;
+    color: var(--ink-2);
+    transition: color 0.15s ease, border-color 0.15s ease;
+    &:hover, &[aria-expanded="true"] { color: var(--accent); border-color: var(--accent); }
+    &:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  }
+  .view-picker-ico { width: 17px; height: 17px; }
+  .view-picker-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .view-picker-caret { display: none; }
+
+  // in the phone panel: a plain labelled row, the list opening under it
+  @media (max-width: 1179px) {
+    .view-picker-btn {
+      width: auto;
+      height: auto;
+      gap: 0.5rem;
+      padding: 0.4rem 0.95rem 0.4rem 0.75rem;
+      border-radius: 999px;
+      @include ui(0.98rem, 500);
+    }
+    .view-picker-label { position: static; width: auto; height: auto; clip: auto; }
+    .view-picker-caret { display: block; }
+    .view-picker-menu {
+      position: static;
+      flex-basis: 100%;
+      width: auto;
+      max-width: none;
+      margin-top: 0.6rem;
+      box-shadow: none;
+    }
+  }
+}
+
+.view-picker-head { @include smallcaps(0.85rem); }
+.view-picker-name { font-family: $serif; font-size: 1.12rem; font-weight: 500; }
+.view-picker-item.is-current .view-picker-name { color: var(--accent); }
+
+// ── /views/ ─────────────────────────────────────────────
+.vg-intro p:first-child { font-size: 1.12em; }
+.vg-list { gap: 2rem; }
+.vg-item { box-shadow: none; }
+.vg-shot img { opacity: var(--img-dim); }
+.vg .vg-name { font-family: $serif; font-weight: 500; font-size: 1.6rem; }
+.vg .vg-desc { font-size: 1.05rem; line-height: 1.5; color: var(--ink-2); }
+.vg-current { @include smallcaps(0.85rem); }
+.vg-item.is-current .vg-current { background: var(--accent); color: var(--paper); letter-spacing: 0.06em; }
+.page .vg-links a {
+  @include ui(0.98rem, 500);
+  color: var(--ink);
+  text-decoration-color: var(--rule-2);
+  &:hover { color: var(--accent); text-decoration-color: var(--accent); }
+}
+.page .vg-links .vg-try {
+  padding: 0.35rem 1rem;
+  border: 1px solid var(--rule-2);
+  border-radius: 999px;
+  text-decoration: none;
+  &:hover { border-color: var(--accent); }
+}

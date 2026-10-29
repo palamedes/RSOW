@@ -1,0 +1,399 @@
+@use "tokens" as *;
+
+// ════════════════════════════════════════════════════════════════
+//  Blog archive — /archive/ (and the shared header on /tags/ and
+//  /topics/). Scoped under `.arc`. A table of contents: a quiet
+//  header, a slim sticky filter line, then every post by year.
+// ════════════════════════════════════════════════════════════════
+
+$arc-w: 880px;
+$arc-control-h: 2.4rem;
+
+.arc {
+  // a list of one-line rows: show plenty at once (read by the archive script)
+  --arc-initial: 60;
+  --arc-batch: 40;
+  *, *::before, *::after { box-sizing: border-box; }
+
+  .arc-wrap {
+    max-width: $arc-w;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    @media (max-width: 600px) { padding: 0 1rem; }
+  }
+
+  // ════════════════ HEADER ════════════════
+  .arc-hero {
+    position: relative;
+    padding: 4.5rem 0 2.25rem;
+    @media (max-width: 600px) { padding: 2.6rem 0 1.6rem; }
+  }
+  .arc-hero-bg { display: none; }
+  .arc-hero-inner { position: relative; }
+  .arc-eyebrow {
+    margin: 0 0 0.9rem;
+    @include smallcaps(1rem);
+    color: var(--accent);
+  }
+  .arc-hero h1 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(2.3rem, 1.6rem + 2.6vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1.04;
+    letter-spacing: -0.016em;
+    color: var(--ink);
+  }
+  .arc-sub {
+    max-width: 34em;
+    margin: 0 0 1.6rem;
+    font-size: clamp(1.15rem, 1.05rem + 0.4vw, 1.35rem);
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--ink-2);
+  }
+
+  // posts · first entry · topics · tags — a line of figures, not tiles
+  .arc-stats {
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0 0;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 2rem;
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+    }
+    strong {
+      font-family: $serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--ink);
+      font-variant-numeric: oldstyle-nums;
+    }
+    span {
+      @include smallcaps(0.95rem);
+      color: var(--muted);
+    }
+  }
+
+  // ════════════════ FILTER LINE ════════════════
+  .arc-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: color-mix(in srgb, var(--paper) 92%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: box-shadow 0.2s ease;
+    &.is-stuck { box-shadow: 0 10px 24px -20px rgba(31, 29, 26, 0.5); }
+  }
+  .arc-toolbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem 1.5rem;
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  // ════════════════ TOPIC / TAG DROPDOWNS ════════════════
+  // Text-like triggers: "Topic All 287 ▾". The count is the number of posts
+  // the current choice covers.
+  .arc-topic {
+    position: relative;
+    flex: 0 0 auto;
+  }
+  .arc-topic-trigger {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    height: $arc-control-h;
+    padding: 0 0.15rem;
+    @include ui(1rem, 500);
+    line-height: $arc-control-h;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    &:hover { color: var(--accent); }
+  }
+  .arc-topic-lead {
+    @include smallcaps(0.95rem);
+    color: var(--muted);
+  }
+  .arc-topic-value {
+    max-width: 12rem;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .arc-topic-caret {
+    align-self: center;
+    width: 0;
+    height: 0;
+    flex: 0 0 auto;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid currentColor;
+    opacity: 0.6;
+    transition: transform 0.15s ease;
+  }
+  .arc-topic-trigger[aria-expanded="true"] {
+    color: var(--accent);
+    .arc-topic-caret { transform: rotate(180deg); }
+  }
+  // a value is chosen: the trigger keeps a terracotta underline
+  .arc-topic.is-filtered .arc-topic-trigger {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .arc-topic-count {
+    font-family: $sans;
+    font-size: 0.82rem;
+    font-weight: 500;
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--muted);
+  }
+
+  .arc-topic-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 40;
+    width: 17rem;
+    max-height: min(60vh, 420px);
+    overflow-y: auto;
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    padding: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    &[hidden] { display: none; }
+  }
+  .arc-topic-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    @include ui(0.95rem, 400);
+    text-align: left;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    padding: 0.42rem 0.6rem;
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease;
+    &:hover { background: var(--paper-2); color: var(--accent); }
+    &:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    &.is-active { font-weight: 600; color: var(--accent); }
+  }
+  .arc-topic-item-count {
+    font-size: 0.8rem;
+    font-variant-numeric: lining-nums tabular-nums;
+    color: var(--muted);
+  }
+
+  // ════════════════ SEARCH ════════════════
+  .arc-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1 1 14rem;
+    min-width: 12rem;
+    margin-left: auto;
+    max-width: 22rem;
+  }
+  .arc-search-ico {
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    pointer-events: none;
+  }
+  .arc-search input {
+    width: 100%;
+    height: $arc-control-h;
+    padding: 0 1.8rem 0 1.6rem;
+    @include ui(1rem, 400);
+    line-height: 1;
+    color: var(--ink);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--rule-2);
+    border-radius: 0;
+    transition: border-color 0.15s ease;
+    &::placeholder { color: var(--muted); font-style: italic; font-family: $serif; font-size: 1.05rem; }
+    &:focus { outline: none; border-bottom-color: var(--accent); }
+    &:focus-visible { outline: none; box-shadow: 0 1px 0 0 var(--accent); }
+  }
+  .arc-search-clear {
+    position: absolute;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem;
+    height: 1.4rem;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    &:hover { color: var(--accent); }
+    &[hidden] { display: none; }
+  }
+
+  // ════════════════ RESULTS ════════════════
+  .arc-grid-wrap { padding-top: 0.5rem; }
+  .arc-meta {
+    margin: 1.4rem 0 0.4rem;
+    @include smallcaps(0.95rem);
+    color: var(--muted);
+  }
+
+  // Years: the numeral in the margin, the posts beside it.
+  .arc-list { padding: 0; }
+  .arc-year {
+    display: grid;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    gap: 0 1.5rem;
+    padding-top: 1.6rem;
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+      padding-top: 1.4rem;
+    }
+  }
+  // a year with nothing left after filtering folds away
+  .arc-year:not(:has(.post-card-wrap:not([style*="none"]))) { display: none; }
+
+  .arc-year-label {
+    position: sticky;
+    top: 4.5rem;
+    align-self: start;
+    margin: 0;
+    padding-top: 0.35rem;
+    font-family: $serif;
+    font-size: 2.1rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--muted);
+    font-variant-numeric: oldstyle-nums;
+    @media (max-width: 640px) {
+      position: static;
+      font-size: 1.6rem;
+      padding: 0 0 0.4rem;
+      border-bottom: 1px solid var(--ink);
+    }
+  }
+  .arc-year-list {
+    border-top: 1px solid var(--ink);
+    @media (max-width: 640px) { border-top: 0; }
+  }
+
+  // ════════════════ EMPTY STATE ════════════════
+  .arc-empty {
+    text-align: center;
+    padding: 3.5rem 1rem 3rem;
+    &[hidden] { display: none; }
+    .arc-empty-ico { display: block; margin: 0 auto 0.8rem; color: var(--faint); }
+    h2 { font-size: 1.6rem; font-weight: 500; color: var(--ink); margin: 0 0 0.4rem; }
+    p { color: var(--ink-2); font-style: italic; margin: 0 0 1.25rem; font-size: 1.15rem; }
+  }
+  .arc-empty-reset {
+    @include ui(0.95rem, 500);
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 0.45rem 1.3rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    &:hover { background: var(--ink); color: var(--paper); }
+  }
+}
+
+// ════════════════ MULTI-SELECT ITEMS ════════════════
+// Value items are checkboxes: a small box before the name, ticked when on.
+.arc .arc-topic-item[role="menuitemcheckbox"] {
+  .arc-topic-item-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    &::before {
+      content: "";
+      flex: none;
+      width: 0.9rem;
+      height: 0.9rem;
+      border: 1px solid var(--rule-2);
+      border-radius: 3px;
+      background: transparent center / 0.7rem no-repeat;
+      transition: background-color 0.12s ease, border-color 0.12s ease;
+    }
+  }
+  &.is-active {
+    font-weight: 500;
+    color: var(--ink);
+    .arc-topic-item-name::before {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2.5 6.2l2.3 2.3 4.7-5' fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    }
+    .arc-topic-item-count { color: var(--accent); }
+  }
+  &:hover { background: var(--paper-2); }
+}
+
+// ════════════════ TAG FILTER EXTRAS ════════════════
+.arc .arc-tag-cloud-link {
+  display: block;
+  margin-top: 0.2rem;
+  padding: 0.55rem 0.6rem 0.4rem;
+  border-top: 1px solid var(--rule);
+  @include ui(0.92rem, 500);
+  color: var(--ink-2);
+  text-decoration: none;
+  &:hover { color: var(--accent); }
+}
+// the posts / topics / tags figures link between the three pages
+.arc .arc-stat-link {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  &:hover strong, &:focus-visible strong { color: var(--accent); }
+  &.is-current strong {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.22em;
+  }
+}
+
+@media (max-width: 640px) {
+  .arc .arc-toolbar-inner { gap: 0.2rem 1.2rem; }
+  .arc .arc-search { flex-basis: 100%; max-width: none; min-width: 0; margin-left: 0; order: 2; }
+  // menus drop from the filter line itself, inset from both edges
+  .arc .arc-toolbar-inner { position: relative; }
+  .arc .arc-topic { position: static; }
+  .arc .arc-topic-menu { left: 1rem; right: 1rem; width: auto; top: 3rem; }
+}
+@media (max-width: 380px) {
+  .arc .arc-topic-value { max-width: 6.5rem; }
+}

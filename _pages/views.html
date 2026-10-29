@@ -1,0 +1,49 @@
+---
+layout: page
+title: Select a Design
+description: "Every design on this site is the same HTML in a different stylesheet, a tribute to Dave Shea's CSS Zen Garden. Pick the one you like and it follows you."
+permalink: /views/
+---
+{%- comment -%}
+  The gallery of designs, an homage to the CSS Zen Garden's design list.
+  Everything here comes from _data/views.yml (ready designs only); the
+  screenshots are made by `uv run --quiet _tools/view-check.py --thumbs`.
+  Styled by _sass/views/_picker.scss plus each design's own touches.
+{%- endcomment -%}
+{%- assign vg_list = site.data.views | where: "ready", true -%}
+<div class="vg">
+  <div class="vg-intro">
+    <p>Every design on this site is the exact same HTML. The words, the links and the shape of every page never change; only the stylesheet does. Pick one below and the whole site, every post and every page, gets dressed in it. This browser remembers your pick until you choose another, and you can switch any time from the <strong>Design</strong> menu.</p>
+    <p>It's my tribute to Dave Shea's <a href="https://csszengarden.com/">CSS Zen Garden</a>, which back in 2003 showed a whole generation of web designers, me included, what CSS could really do: one plain page of HTML, restyled hundreds of times by designers around the world. Same idea here, just with more rants.</p>
+    <p>I'll keep adding designs for the fun of it.</p>
+  </div>
+
+  <ul class="vg-list">
+    {%- for v in vg_list %}
+    <li class="vg-item" data-view="{{ v.key }}">
+      <a class="vg-shot" href="{{ '/' | relative_url }}?view={{ v.key }}" tabindex="-1" aria-hidden="true"><img src="{{ '/assets/images/views/' | append: v.key | append: '.webp' | relative_url }}" width="720" height="450" loading="lazy" decoding="async" alt=""></a>
+      <div class="vg-body">
+        <span class="vg-current">You're looking at it</span>
+        <h2 class="vg-name">{{ v.name }}</h2>
+        <span class="vg-swatches" aria-hidden="true">{% for c in v.swatches %}<span style="background:{{ c }}"></span>{% endfor %}</span>
+        <p class="vg-desc">{{ v.description }}</p>
+        <p class="vg-links">
+          <a class="vg-try" href="{{ '/' | relative_url }}?view={{ v.key }}" data-view="{{ v.key }}">Try {{ v.name }}</a>
+        </p>
+      </div>
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
+<script>
+  // Mark the design you're looking at (the loader set <html data-view>).
+  (function () {
+    var view = document.documentElement.getAttribute('data-view') || 'default';
+    document.querySelectorAll('.vg-item').forEach(function (li) {
+      var on = li.getAttribute('data-view') === view;
+      li.classList.toggle('is-current', on);
+      var a = li.querySelector('.vg-try');
+      if (on && a) a.setAttribute('aria-current', 'true');
+    });
+  })();
+</script>
