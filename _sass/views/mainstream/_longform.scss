@@ -1,0 +1,213 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — long reads: the card of a long-form post
+//  (`longform: true`; post-card-wrap--longform / post-card--longform and
+//  the .card-longform badge, _includes/card-longform.html).
+//
+//  A network's Special Report: the card turns navy and black, white
+//  type, and the badge becomes a chyron over the foot of the photo, a red
+//  SPECIAL REPORT tab and "Long Read · 31 min read" in gold. It keeps
+//  whatever slot it lands in (lead, the rail, In Brief, an archive line,
+//  Recent Posts), so the grid never moves; where there's room it adds
+//  the post's description (.card-dek) in place of the excerpt.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+$lf-pad: 1rem;
+
+// ── The card ──
+.post-card--longform {
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgba(29, 58, 120, 0.55), transparent 60%),
+    linear-gradient(165deg, var(--navy) 0%, #070d1f 100%);
+  color: #fff;
+  border-top: 4px solid var(--gold);
+
+  .card-figure { margin: 0; }
+  .card-body {
+    padding: 0 $lf-pad 1.1rem;
+    // the chyron first, then the kicker and time, the headline, the dek
+    grid-template-areas:
+      "badge   badge"
+      "kicker  meta"
+      "title   title"
+      "dek     dek"
+      "excerpt excerpt";
+  }
+
+  // the chyron: a red SPECIAL REPORT tab, then the badge's own words in gold
+  .card-longform {
+    grid-area: badge;
+    justify-self: start;
+    position: relative;     // paints over the photo's foot
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    max-width: calc(100% + #{$lf-pad});
+    margin: -1.05rem 0 0.75rem (-$lf-pad);
+    background: var(--black);
+    @include label(0.62rem, 0.12em);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold);
+    &::before {
+      content: "Special Report" / "";
+      display: flex;
+      align-items: center;
+      padding: 0.4rem 0.55rem 0.34rem $lf-pad;
+      background: var(--red);
+      font-family: var(--f-head);
+      font-size: 1.02rem;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 0.03em;
+      color: #fff;
+      white-space: nowrap;
+    }
+  }
+  .card-longform-label,
+  .card-longform-time { display: flex; align-items: center; white-space: nowrap; }
+  .card-longform-label { padding-left: 0.6rem; min-height: 1.9em; }
+  .card-longform-sep { display: flex; align-items: center; padding: 0 0.3rem; color: rgba(245, 179, 1, 0.6); }
+  .card-longform-time { padding-right: 0.6rem; min-height: 1.9em; color: #fff; }
+
+  .card-kicker { color: var(--red-hi); }
+  .card-meta { color: var(--on-dark-3); }
+  .card-kicker + .card-meta .card-date { border-left-color: rgba(255, 255, 255, 0.2); }
+  .card-title { color: #fff; }
+  &:hover .card-title { color: #fff; }
+  .card-excerpt { color: var(--on-dark-2); }
+  .card-dek {
+    grid-area: dek;
+    margin: -0.1rem 0 0.4rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--on-dark-2);
+  }
+  // the dek says it better than the first 25 words
+  .card-dek ~ .card-excerpt { display: none; }
+
+  .card-link:focus-visible::after { outline-color: var(--gold); }
+  .card-listen:not(.card-listen--human) { background: rgba(255, 255, 255, 0.14); &:hover, &.is-playing { background: rgba(255, 255, 255, 0.24); } }
+}
+
+// ── Lead: the full report treatment ──
+.post-card--lead.post-card--longform {
+  .card-figure::after { content: none; }    // the gold rule on top replaces the red one
+  .card-body { padding: 0 1.4rem 1.4rem; }
+  .card-longform { margin-left: -1.4rem; margin-top: -1.25rem; font-size: 0.74rem; }
+  .card-longform::before { font-size: 1.45rem; padding: 0.45rem 0.8rem 0.4rem 1.4rem; }
+  @media (max-width: 700px) {
+    .card-body { padding: 0 1rem 1.2rem; }
+    .card-longform { margin-left: -1rem; margin-top: -1.05rem; font-size: 0.62rem; }
+    .card-longform::before { font-size: 1.1rem; padding: 0.4rem 0.55rem 0.34rem 1rem; }
+  }
+  .card-dek { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.22rem); margin-bottom: 0.6rem; }
+  // a jump line, as a report's "watch now"
+  .card-body::after {
+    content: "Read the full report \203A" / "";
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 2px;
+    @include cond(700);
+    font-size: 1.02rem;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: background 0.12s ease, border-color 0.12s ease;
+  }
+  &:hover .card-body::after { background: var(--red); border-color: var(--red); }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  // the tablet's photo-beside-text lead: the chyron goes back to the top
+  .home .post-card--lead.post-card--longform {
+    padding: 1.2rem;
+    border-bottom: 0;
+    .card-body { padding: 0; }
+    .card-longform { margin: 0 0 0.75rem; font-size: 0.62rem; }
+    .card-longform::before { font-size: 1.1rem; padding: 0.4rem 0.55rem 0.34rem 0.7rem; }
+  }
+}
+
+// ── The left rail's headline list: no photo, so the chyron leads ──
+.home .post-grid > .post-card-wrap--standard.post-card-wrap--longform {
+  padding: 0;
+  margin: 0.75rem 0 0.5rem;
+  border-bottom: 0;
+  .card-body { padding: 0.75rem $lf-pad 0.9rem; }
+  .card-longform { margin: -0.75rem 0 0.7rem (-$lf-pad); }
+  .card-dek { display: none; }
+}
+// the desktop rail is too narrow for the whole chyron: the tab and the
+// minutes show, "Long Read ·" stays for screen readers
+@media (min-width: 1101px) {
+  .home .post-card--standard.post-card--longform,
+  .home .post-card--second.post-card--longform {
+    .card-longform-label,
+    .card-longform-sep { @include visually-hidden; }
+    .card-longform-time { padding-left: 0.6rem; }
+  }
+}
+.home .post-grid > .post-card-wrap--second.post-card-wrap--longform { border-bottom: 0; padding-bottom: 0.6rem; }
+.post-card--second.post-card--longform .card-dek {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+// ── In Brief ──
+.post-card--brief.post-card--longform .card-dek {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+@media (max-width: 700px) {
+  // phones: a long read drops the small-photo row and runs full width
+  .home .post-card--brief.post-card--longform {
+    display: flex;
+    flex-direction: column;
+    .card-figure { margin: 0; }
+    .card-title { font-size: 1.25rem; }
+  }
+  .home .post-grid > .post-card-wrap--brief.post-card-wrap--longform { border-bottom: 0; padding: 0.9rem 0 0.4rem; }
+}
+
+// ── /archive/: a navy line in the index ──
+.arc .post-card-wrap--row.post-card-wrap--longform {
+  border-bottom: 0;
+  margin: 0.6rem 0;
+}
+.arc .post-card--row.post-card--longform {
+  padding: 1rem;
+  .card-body { padding-bottom: 0; }
+  .card-longform { margin: -1rem 0 0.7rem (-$lf-pad); }
+  .card-dek { margin-top: 0; }
+}
+
+// ── Recent Posts under a post ──
+.recent-posts .recent-posts-grid > .post-card.post-card--longform {
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgba(29, 58, 120, 0.55), transparent 60%),
+    linear-gradient(165deg, var(--navy) 0%, #070d1f 100%);
+  .card-body { background: none; }
+  .card-date { color: var(--on-dark-3); }
+  .card-kicker + .card-date { border-left-color: rgba(255, 255, 255, 0.2); }
+  .card-title, &:hover .card-title { color: #fff; }
+  .card-excerpt { color: var(--on-dark-2); }
+
+  @media (max-width: 760px) {
+    .card-longform { margin-top: 0; margin-left: -0.9rem; }
+    // a narrow column beside the photo: the tab and the minutes
+    .card-longform-label,
+    .card-longform-sep { @include visually-hidden; }
+    .card-longform-time { padding-left: 0.6rem; }
+  }
+}

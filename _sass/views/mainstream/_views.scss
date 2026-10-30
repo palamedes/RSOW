@@ -1,0 +1,225 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media on the shared HTML: the wrappers it doesn't need,
+//  and the design system's own furniture (the skip link, the picker,
+//  /views/) dressed for the network. The view-extras it shows are listed
+//  in assets/css/views/mainstream.scss.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+// Wrappers whose children Mainstream lays out directly. (.hero-photo,
+// .card-figure, .snap, .arc-year, .arc-year-list, .colophon and
+// .photo-desk are real boxes here, styled in their partials.)
+.post-hero-tools { display: inline-flex; }
+.footer-about-photo { display: contents; }
+
+:root {
+  --vp-font: var(--f-text);
+  --vp-ink: var(--ink);
+  --vp-muted: var(--ink-3);
+  --vp-bg: #fff;
+  --vp-line: var(--line);
+  --vp-hover: var(--bg-2);
+  --vp-accent: var(--red);
+  --vp-radius: 2px;
+  --vp-shadow: 0 18px 44px rgba(4, 7, 16, 0.45);
+}
+
+// the skip link: a red tab
+.skip-link {
+  background: var(--red);
+  color: #fff;
+  border-radius: 0 0 2px 2px;
+  @include label(0.76rem, 0.12em);
+  padding: 0.6rem 1rem;
+  &:focus { color: #fff; outline: 2px solid #fff; outline-offset: -4px; }
+}
+
+// ── The picker: an outlined button in the bottom bar ──
+.footer-bottom {
+  .view-picker-btn {
+    gap: 0.45rem;
+    padding: 0.38rem 0.75rem 0.38rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 2px;
+    @include label(0.68rem, 0.12em);
+    color: #fff;
+    background: none;
+    transition: background 0.12s ease, border-color 0.12s ease;
+    &:hover, &[aria-expanded="true"] { background: var(--red); border-color: var(--red); color: #fff; }
+    &:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  }
+  .view-picker-ico { width: 16px; height: 16px; color: var(--red-hi); }
+  .view-picker-btn:hover .view-picker-ico,
+  .view-picker-btn[aria-expanded="true"] .view-picker-ico { color: #fff; }
+  .view-picker-caret { border-width: 0 0.32em 0.38em; }
+
+  // the list: white, a navy head and a red rule, opening upward
+  .view-picker-menu {
+    bottom: calc(100% + 10px);
+    min-width: 17rem;
+    padding: 0 0 0.35rem;
+    border: 0;
+    border-top: 4px solid var(--red);
+    overflow: hidden;
+  }
+}
+
+.view-picker-head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.3rem;
+  padding: 0.6rem 0.8rem 0.55rem;
+  background: var(--navy);
+  @include cond(800);
+  font-size: 1.05rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  &::before { @include live-dot(0.45rem, var(--red-hi)); }
+}
+.view-picker-list { padding: 0 0.35rem; }
+.view-picker-list li + li .view-picker-item { box-shadow: 0 -1px 0 var(--line-2); }
+.view-picker-item {
+  position: relative;
+  padding: 0.5rem 0.5rem;
+  border-radius: 0;
+  &:hover .view-picker-name { color: var(--red); }
+}
+.view-picker-shot {
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+.view-picker-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+.view-picker-item.is-current {
+  background: var(--red-lt);
+  .view-picker-name { color: var(--red-dk); }
+  &::before {
+    content: "";
+    position: absolute;
+    left: -0.35rem;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--red);
+  }
+}
+.view-picker-more {
+  margin: 0.3rem 0.35rem 0;
+  padding: 0.55rem 0.5rem 0.25rem;
+  border-top: 1px solid var(--line);
+  @include label(0.68rem, 0.12em);
+  font-weight: 800;
+  color: var(--red);
+  text-decoration: none;
+  &::after { content: " \203A"; font-size: 1.2em; }
+  &:hover { color: var(--red-dk); text-decoration: underline; text-underline-offset: 3px; }
+}
+
+// ── /views/: the network's other channels ───────────────
+// The page runs wider than an ordinary one, so three fit across.
+.page:has(> .vg) { max-width: 74rem; }
+
+.vg-intro {
+  max-width: 48rem;
+  p:first-child {
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+}
+
+.vg ul.vg-list:not(.ml-4) {
+  gap: 1.75rem;
+  margin-top: 2.4rem;
+}
+.vg .vg-item {
+  position: relative;
+  background: #fff;
+  border: 0;
+  border-radius: 0;
+  border-top: 4px solid var(--navy-2);
+  box-shadow: 0 1px 3px rgba(6, 10, 22, 0.12), 0 8px 24px rgba(6, 10, 22, 0.06);
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+  &:hover { box-shadow: 0 2px 4px rgba(6, 10, 22, 0.12), 0 14px 32px rgba(6, 10, 22, 0.14); }
+}
+.vg .vg-item.is-current { border-top-color: var(--red); }
+.page .vg-shot {
+  border: 0;
+  text-decoration: none;
+  overflow: hidden;
+  background: none;
+  img { transition: transform 0.35s ease; }
+  &:hover { background: none; }
+  &:hover img { transform: scale(1.03); }
+}
+.vg-body { padding: 1rem 1.15rem 1.2rem; gap: 0.35rem; }
+.vg .vg-name {
+  margin: 0;
+  padding: 0;
+  @include cond(800);
+  font-size: 1.85rem;
+  line-height: 1;
+  text-transform: uppercase;
+  &::before { content: none; }
+}
+.vg-swatches {
+  width: 5rem;
+  height: 0.55rem;
+  margin: 0.15rem 0 0.1rem;
+  border-radius: 0;
+}
+.vg .vg-desc {
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+// "You're looking at it": a LIVE tag over the corner of the screenshot
+.vg-item.is-current .vg-current {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.6rem;
+  border-radius: 2px;
+  background: var(--red);
+  color: #fff;
+  @include label(0.64rem, 0.12em);
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(6, 10, 22, 0.3);
+  &::before { @include live-dot(0.4rem, #fff); }
+}
+.page .vg-links {
+  gap: 0.75rem 1.4rem;
+  padding-top: 0.6rem;
+  a {
+    @include label(0.72rem, 0.12em);
+    font-weight: 800;
+    color: var(--red);
+    text-decoration: none;
+    &:hover { color: var(--red-dk); background: none; }
+  }
+  .vg-try {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 2px;
+    background: var(--navy-2);
+    color: #fff;
+    transition: background 0.12s ease;
+    &::after { content: "\203A"; font-size: 1.3em; line-height: 0.7; }
+    &:hover { background: var(--red); color: #fff; }
+  }
+  .vg-try[aria-current] { background: var(--red); }
+}

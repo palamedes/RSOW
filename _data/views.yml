@@ -78,3 +78,12 @@
   swatches: ["#008080", "#c0c0c0", "#000080", "#ffffe1"]
   schemes: false
   ready: true
+
+- key: mainstream
+  name: Mainstream Media
+  description: "A 24-hour cable-news website: a navy header bar, a red BREAKING crawl, dense headline grids and Special Report long reads."
+  stylesheet: /assets/css/views/mainstream.css
+  fonts: "https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Libre+Franklin:ital,wght@0,400..900;1,400..700&display=swap"
+  swatches: ["#0b1a3a", "#cc0a1e", "#ffffff", "#0a0b0e"]
+  schemes: false
+  ready: true

@@ -1,0 +1,100 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — the special sections.
+//  /explain/, /games/, /investments/ and /palamedes-…/ keep their own
+//  layouts and widgets (their partials here only had their palettes
+//  retuned: red for the site blue, the network's inks and greys). This
+//  sets their heroes as studio backdrops, navy into black under a red
+//  rule, with condensed broadcast titles, so they read as shows on the
+//  same network.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+.exp .exp-hero,
+.gam .gam-hero,
+.inv .inv-hero,
+.pal .pal-hero {
+  background:
+    radial-gradient(60% 120% at 100% 0%, rgba(29, 58, 120, 0.7), transparent 60%),
+    linear-gradient(120deg, #070d1f 0%, var(--navy) 45%, var(--navy-2) 100%);
+  border-bottom: 4px solid var(--red);
+}
+.pal .pal-outro,
+.pal .pal-quote-band {
+  background: linear-gradient(120deg, #070d1f 0%, var(--navy) 55%, var(--navy-2) 100%);
+}
+
+// the blue glows behind them: a faint studio grid, no glow
+.exp .exp-hero-bg,
+.gam .gam-hero-bg,
+.pal .pal-hero-bg { background: none; }
+
+// titles were a white-to-blue gradient clipped to the text: set them flat,
+// in the broadcast face
+.exp .exp-title,
+.gam .gam-title,
+.inv .inv-hero h1,
+.pal .pal-name {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: #fff;
+  font-family: var(--f-head);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+// the small labels over the titles: a red tab
+.exp .exp-eyebrow,
+.gam .gam-eyebrow,
+.inv .inv-eyebrow,
+.pal .pal-eyebrow {
+  display: inline-block;
+  padding: 0.3rem 0.6rem;
+  background: var(--red);
+  color: #fff;
+  letter-spacing: 0.08em;
+}
+
+// the scoreboards' figures in the broadcast face (the Drip Fund keeps its
+// monospaced ticker numbers)
+.gam .gam-kpi .gam-kpi-val,
+.pal .pal-kpi .pal-kpi-val {
+  font-family: var(--f-head);
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 0.95;
+}
+.gam .gam-kpi,
+.inv .inv-kpi,
+.pal .pal-kpi { border-radius: 2px; }
+
+// buttons: square-cornered, red, darkening on hover
+.gam .gam-btn,
+.pal .pal-btn,
+.inv .inv-btn { border-radius: 2px; }
+.gam .gam-btn-primary,
+.pal .pal-btn-primary {
+  &:hover { background: var(--red-dk); border-color: var(--red-dk); }
+}
+
+// section heads inside the pages, in the broadcast face
+.exp .exp-section-title,
+.gam .gam-section-title,
+.inv .inv-section-title,
+.pal .pal-section-title,
+.gam .gam-h2,
+.inv .inv-h2,
+.pal .pal-h2 {
+  font-family: var(--f-head);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+// the Drip Fund's intro band was white fading to a cold blue
+.inv .inv-manifesto { background: transparent; }
+
+// let the chart cards shrink inside their grid on the narrowest phones
+.inv .inv-chart-card { min-width: 0; }

@@ -1,0 +1,215 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — base.
+//  The site as a 24-hour cable-news website: a navy-and-black header
+//  bar, a red BREAKING crawl, dense headline grids on white, red
+//  kickers and timestamps everywhere. Loud chrome around a clean,
+//  highly readable article column.
+//
+//  Type (Google Fonts)
+//    --f-head  Barlow Condensed — headlines, the wordmark, the nav,
+//              section bars, numerals: heavy, condensed, upright
+//    --f-text  Libre Franklin — body copy, card headlines, labels, UI
+//
+//  Colour (contrast on white)
+//    --ink    #0f1218  18.6:1  text
+//    --ink-2  #353c49  10.9:1  secondary text
+//    --ink-3  #5b6472   6.0:1  timestamps, captions, muted labels
+//    --red    #cc0a1e   5.8:1  kickers, links, bars (white on it 5.8:1)
+//    --navy   #0b1a3a          the header band, special reports
+//    --red-hi #ff5a63          red text on navy or black (5.6:1)
+// ════════════════════════════════════════════════════════════════
+
+:root {
+  --bg:     #ffffff;
+  --bg-2:   #f2f4f7;   // panels, wells, hover washes
+  --bg-3:   #e3e7ed;   // image placeholders, pressed states
+  --ink:    #0f1218;
+  --ink-2:  #353c49;
+  --ink-3:  #5b6472;
+  --line:   #d5dae2;   // hairlines (decorative, never text)
+  --line-2: #e8ebf0;   // the faintest rules
+  --red:    #cc0a1e;
+  --red-dk: #a3000f;
+  --red-lt: #fde9eb;   // a wash of the red, for highlights
+  --red-hi: #ff5a63;   // red that reads on navy and black
+  --navy:   #0b1a3a;
+  --navy-2: #12295a;
+  --navy-3: #1d3a78;
+  --black:  #0a0b0e;
+  --gold:   #f5b301;   // special reports only
+  --on-dark:   #ffffff;
+  --on-dark-2: #c3cad6;   // 10.4:1 on navy
+  --on-dark-3: #8b93a1;   //  5.6:1 on navy
+
+  --f-head: "Barlow Condensed", "Roboto Condensed", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  --f-text: "Libre Franklin", "Franklin Gothic Book", "Helvetica Neue", Arial, sans-serif;
+  --f-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+  --page-w:  1320px;
+  --gutter:  1.5rem;
+  --measure: 46rem;     // the article column
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--f-text);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.12s ease;
+  &:hover { color: var(--red); text-decoration: none; }
+}
+
+// One focus style everywhere: a red ring.
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
+
+// Body links: ink with a red underline that fills in on hover.
+.page a, .post-content a {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: color 0.12s ease, background-color 0.12s ease;
+  &:hover { color: var(--red-dk); background-color: var(--red-lt); }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+pre, code {
+  font-family: var(--f-mono);
+  font-size: 0.86em;
+}
+
+pre {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--navy-2);
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+}
+
+code {
+  background: var(--bg-2);
+  padding: 0.1em 0.3em;
+  border-radius: 2px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  border-left: 4px solid var(--red);
+  padding-left: 1.1rem;
+  color: var(--ink-2);
+  margin: 1.2rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--f-head);
+  margin: 1.5rem 0 0.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+p, ul, ol {
+  margin-bottom: 1rem;
+}
+
+strong, b {
+  font-weight: 700;
+}
+
+hr {
+  border: 0;
+  height: 4px;
+  margin: 2.4rem 0;
+  // a red block and a hairline, like the section bars
+  background:
+    linear-gradient(var(--red), var(--red)) left center / 3.2rem 4px no-repeat,
+    linear-gradient(var(--line), var(--line)) left center / 100% 1px no-repeat;
+}
+
+::selection {
+  background: var(--navy-2);
+  color: #fff;
+}
+
+// ::highlight:: (_plugins/highlighter.rb turns `::text::` into <mark
+// class="hl">): a yellow on-screen highlight, the kind a graphics desk
+// drops behind a quote.
+mark.hl {
+  background: linear-gradient(transparent 8%, #ffe45c 8%, #ffe45c 92%, transparent 92%);
+  color: inherit;
+  padding: 0 0.15em;
+  margin: 0 -0.05em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+// The global `* { padding: 0 }` reset kills list indentation; restore it
+// for body content (skip lists that set their own, like .ml-4 on the resume).
+.page, .post-content {
+  ul:not(.ml-4), ol:not(.ml-4) {
+    padding-left: 1.5rem;
+  }
+  li::marker { color: var(--red); font-weight: 700; }
+}
+
+.mb-0 { margin-bottom: 0 !important; }
+.mt-0 { margin-top: 0 !important; }
+.ml-4 { margin-left: 2rem !important; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes ms-live {
+  0%   { box-shadow: 0 0 0 0 rgba(204, 10, 30, 0.65); }
+  70%  { box-shadow: 0 0 0 0.45rem rgba(204, 10, 30, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(204, 10, 30, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+  }
+}

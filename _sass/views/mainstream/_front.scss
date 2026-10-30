@@ -1,0 +1,839 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — the home page (index.html), the story cards it,
+//  /archive/ and /about/ share (_includes/post-card.html), and the
+//  "Recent Posts" row under a post.
+// ════════════════════════════════════════════════════════════════
+
+@use "mixins" as *;
+
+// ════════════════ HOME PAGE ════════════════
+// A network front: one 12-column grid. On a desktop the second story and
+// the next four headlines run down the left rail, the lead sits in the
+// middle with a huge headline, and the editor rides the right rail as an
+// on-air anchor with a lower third. Then "In Brief", a dense grid of
+// cards, and the archive button.
+//
+// On the shared HTML the grid is .home itself: .home-body, .post-grid and
+// .hero-inner's parents are display:contents, so the anchor box
+// (.home-hero), the section bar (.recent-posts-head), the cards and the In
+// Brief heading are all its items. Rows 2-6 are the rail; row 7 takes up
+// the slack when the lead or the anchor runs longer than the rail.
+.home {
+  --g: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: auto auto auto auto auto auto 1fr;
+  column-gap: var(--g);
+  max-width: var(--page-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 1rem;
+
+  .home-body,
+  .post-grid { display: contents; }
+}
+.sub-hero { display: none; }
+
+// ── the section bar over everything ──
+.recent-posts-head {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin: 1.6rem 0 1.2rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 3.2rem;
+    height: 4px;
+    background: var(--red);
+  }
+
+  .ainotes-explain-btn { margin-left: auto; }
+}
+.recent-posts-heading {
+  margin: 0;
+  @include cond(800);
+  font-size: 1.75rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+// ── where each slot sits (desktop) ──
+.home .post-grid > .post-card-wrap--lead {
+  grid-column: 4 / 10;
+  grid-row: 2 / 8;
+}
+.home .post-grid > .post-card-wrap--second {
+  grid-column: 1 / 4;
+  grid-row: 2;
+}
+// the next four headlines stack under the second story (auto-placed down
+// the left rail, rows 3 to 6)
+.home .post-grid > .post-card-wrap--standard {
+  grid-column: 1 / 4;
+}
+.home > .home-hero {
+  grid-column: 10 / 13;
+  grid-row: 2 / 8;
+}
+.fp-briefs-label {
+  grid-column: 1 / -1;
+}
+.home .post-grid > .post-card-wrap--brief {
+  grid-column: span 4;
+}
+.home .view-more { grid-column: 1 / -1; }
+
+// tablet: the lead across the top, the rail and the anchor side by side
+@media (max-width: 1100px) {
+  .home { grid-template-rows: auto auto auto auto auto auto auto 1fr; }
+  .home .post-grid > .post-card-wrap--lead { grid-column: 1 / -1; grid-row: 2; }
+  .home .post-grid > .post-card-wrap--second { grid-column: 1 / 8; grid-row: 3; }
+  .home .post-grid > .post-card-wrap--standard { grid-column: 1 / 8; }
+  .home > .home-hero { grid-column: 8 / 13; grid-row: 3 / 9; }
+  .home .post-grid > .post-card-wrap--brief { grid-column: span 6; }
+}
+
+// phones: one column, in reading order, the anchor after the headlines
+@media (max-width: 700px) {
+  .home { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; column-gap: 0; }
+  .recent-posts-head,
+  .fp-briefs-label,
+  .home .view-more,
+  .home .post-grid > .post-card-wrap,
+  .home .post-grid > .post-card-wrap:nth-child(n of .post-card-wrap),
+  .home > .home-hero {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .recent-posts-head { order: 0; margin-top: 1.25rem; }
+  .home .post-grid > .post-card-wrap--lead { order: 1; }
+  .home .post-grid > .post-card-wrap--second { order: 2; }
+  .home .post-grid > .post-card-wrap--standard { order: 3; }
+  .home > .home-hero { order: 4; }
+  .fp-briefs-label,
+  .home .post-grid > .post-card-wrap--brief { order: 5; }
+  .home .view-more { order: 6; }
+}
+
+// ════════════════ THE ANCHOR (the editor, on air) ════════════════
+// The portrait as a studio shot with a LIVE bug, the name and the domain
+// set over its foot as a lower third, the tagline underneath.
+.home .home-hero {
+  align-self: start;
+  min-width: 0;
+  padding: 0.85rem 0.85rem 1rem;
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(29, 58, 120, 0.6), transparent 60%),
+    linear-gradient(170deg, var(--navy) 0%, #070d1f 100%);
+  border-top: 4px solid var(--red);
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr auto auto auto auto;
+    grid-template-areas:
+      "label"
+      "photo"
+      "name"
+      "site"
+      "tag"
+      "more";
+  }
+  .hero-text { display: contents; }
+
+  .fp-editor-label {
+    grid-area: label;
+    position: relative;
+    margin: 0 0 0.6rem;
+    padding-left: 0.7rem;
+    @include cond(800);
+    font-size: 1.15rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--red);
+    }
+  }
+
+  .hero-photo {
+    grid-row: 2 / 5;
+    grid-column: 1;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: var(--navy);
+    // the LIVE bug, top left
+    &::before {
+      content: "Live" / "";
+      position: absolute;
+      z-index: 1;
+      top: 0.7rem;
+      left: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.24rem 0.55rem 0.22rem 1.4rem;
+      background:
+        radial-gradient(circle, var(--red-hi) 0 0.24rem, transparent 0.27rem) 0.5rem 50% / 0.6rem 0.6rem no-repeat,
+        rgba(6, 10, 22, 0.78);
+      border-radius: 2px;
+      @include label(0.66rem, 0.16em);
+      font-weight: 800;
+      color: #fff;
+    }
+    // a soft shade at the foot, under the lower third
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 45% 0 0;
+      background: linear-gradient(180deg, transparent, rgba(6, 10, 22, 0.7));
+      pointer-events: none;
+    }
+  }
+  .profile-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  // the lower third: the name on navy, the domain on red, over the photo
+  .hero-name,
+  .hero-site-name {
+    position: relative;
+    z-index: 1;
+    grid-column: 1;
+    justify-self: start;
+    max-width: calc(100% - 1.4rem);
+    margin: 0 0 0 0.7rem;
+  }
+  .hero-name {
+    grid-row: 3;
+    padding: 0.35rem 0.75rem 0.3rem;
+    background: var(--navy);
+    border-left: 5px solid var(--red);
+    @include cond(800);
+    font-size: 1.9rem;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .hero-site-name {
+    grid-row: 4;
+    margin-bottom: 0.9rem;
+    padding: 0.28rem 0.75rem 0.3rem;
+    background: var(--red);
+    border-left: 5px solid var(--red-dk);
+    @include label(0.68rem, 0.1em);
+    font-weight: 800;
+    color: #fff;
+    overflow-wrap: anywhere;
+  }
+  .hero-tagline {
+    grid-area: tag;
+    margin: 0.85rem 0 0.7rem;
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--on-dark-2);
+    &::first-letter { text-transform: uppercase; }
+  }
+  .fp-editor-more {
+    grid-area: more;
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    @include label(0.72rem, 0.12em);
+    color: #fff;
+    &::after { content: "\203A"; font-size: 1.35em; line-height: 0.7; color: var(--red-hi); }
+    &:hover { color: #fff; text-decoration: underline; text-decoration-color: var(--red-hi); text-underline-offset: 3px; }
+    &:focus-visible { outline-color: #fff; }
+  }
+
+  @media (max-width: 700px) {
+    margin: 1rem 0 0.5rem;
+  }
+}
+
+// ════════════════ STORY CARDS ════════════════
+// _includes/post-card.html: the photo (.card-figure), then .card-body with
+// the kicker, the meta row, the headline and the excerpt. The body is a
+// small grid: the red kicker and the timestamp share the first line, the
+// headline and the rest run under them.
+.post-card-wrap {
+  position: relative;
+  display: flex;
+  min-width: 0;
+}
+
+// Timestamps: "Dec 8, 2026" (the date in pieces, short month)
+.card-date .date-text,
+.card-date .date-m-full,
+.card-date .date-m-ap { display: none; }
+
+.post-card {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+
+  // The headline is the real link; this stretches its hit area over the
+  // whole card so the card still behaves like one big link.
+  .card-link {
+    color: inherit;
+    text-decoration: none;
+    &::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+    &:hover { color: inherit; }
+    &:focus-visible { outline: none; }
+    &:focus-visible::after { outline: 2px solid var(--red); outline-offset: 3px; }
+  }
+  &:hover .card-title {
+    color: var(--red-dk);
+  }
+  &:hover .card-title a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.16em;
+  }
+
+  .card-figure {
+    position: relative;
+    display: block;
+    margin: 0 0 0.7rem;
+    overflow: hidden;
+    background: var(--bg-3);
+  }
+  .card-image {
+    display: block;
+    width: 100%;
+    height: auto; // the img's width/height attributes are for layout reservation only
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+  &:hover .card-image { transform: scale(1.03); }
+
+  .card-body {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-areas:
+      "kicker meta"
+      "title  title"
+      "badge  badge"
+      "dek    dek"
+      "excerpt excerpt";
+    align-content: start;
+    align-items: center;
+  }
+
+  .card-kicker {
+    grid-area: kicker;
+    margin: 0 0.6rem 0.3rem 0;
+    @include label(0.68rem, 0.1em);
+    font-weight: 800;
+    color: var(--red);
+  }
+
+  .card-meta {
+    grid-area: meta;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.3rem 0.55rem;
+    min-width: 0;
+    min-height: 1.2rem;
+    margin: 0 0 0.3rem;
+    @include label(0.64rem, 0.08em);
+    font-weight: 600;
+    color: var(--ink-3);
+  }
+  // a hairline between the kicker and the timestamp
+  .card-kicker + .card-meta .card-date {
+    padding-left: 0.6rem;
+    border-left: 1px solid var(--line);
+  }
+  .card-date {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .card-title {
+    grid-area: title;
+    margin: 0.1rem 0 0.45rem;
+    font-family: var(--f-text);
+    font-weight: 760;
+    font-size: 1.12rem;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-wrap: pretty;
+    transition: color 0.12s ease;
+  }
+
+  .card-excerpt {
+    grid-area: excerpt;
+    margin: 0;
+    font-size: 0.94rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+  }
+}
+
+// ── lead: a big photo and a huge headline ──
+.post-card--lead {
+  .card-figure { margin-bottom: 0.9rem; }
+  .card-figure::after {
+    // a red rule under the photo
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 5px;
+    background: var(--red);
+  }
+  .card-kicker { font-size: 0.76rem; }
+  .card-meta { font-size: 0.7rem; }
+  .card-title {
+    margin: 0.2rem 0 0.75rem;
+    @include cond(800);
+    font-size: clamp(2.35rem, 1.2rem + 2.6vw, 3.7rem);
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+  }
+  .card-excerpt {
+    font-size: 1.04rem;
+    line-height: 1.55;
+    color: var(--ink-2);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+// ── second: the top of the left rail ──
+.post-card-wrap--second {
+  padding-bottom: 0.95rem;
+  margin-bottom: 0.15rem;
+  border-bottom: 1px solid var(--line);
+}
+.post-card--second {
+  .card-title { font-size: 1.32rem; line-height: 1.16; }
+  .card-excerpt {
+    font-size: 0.92rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+  }
+}
+
+// ── standard: the headline list down the left rail ──
+// No photos: a red square, the kicker and time, the headline.
+.home .post-grid > .post-card-wrap--standard {
+  flex-direction: column;
+  padding: 0.8rem 0 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+// "The Latest", over the first of them
+.home .post-grid > .post-card-wrap--standard:nth-child(1 of .post-card-wrap--standard)::before {
+  content: "The Latest" / "";
+  display: block;
+  margin: 0.35rem 0 0.75rem;
+  padding-left: 0.7rem;
+  background: linear-gradient(var(--red), var(--red)) left center / 4px 100% no-repeat;
+  @include cond(800);
+  font-size: 1.15rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.home .post-card--standard {
+  .card-figure { display: none; }
+  .card-excerpt { display: none; }
+  .card-title {
+    margin-bottom: 0;
+    font-size: 1.02rem;
+    line-height: 1.28;
+  }
+}
+
+// ── In Brief: the dense grid ──
+.fp-briefs-label {
+  @include section-bar(1.75rem);
+  margin: 2.6rem 0 1.2rem;
+}
+.home .post-grid > .post-card-wrap--brief {
+  padding-bottom: 1.5rem;
+}
+.post-card--brief {
+  .card-title { font-size: 1.12rem; }
+  .card-excerpt {
+    font-size: 0.9rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+// tablet: the lead's photo on the left, its headline beside it
+@media (min-width: 701px) and (max-width: 1100px) {
+  .home .post-card--lead {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    column-gap: 1.5rem;
+    align-items: start;
+    padding-bottom: 1.4rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--line);
+    .card-figure { margin: 0; }
+    .card-title { font-size: clamp(2.2rem, 1rem + 2.6vw, 2.9rem); }
+  }
+}
+
+// phones: the second story and In Brief as media rows, photo at the right
+@media (max-width: 700px) {
+  .home .post-grid > .post-card-wrap--lead { padding-bottom: 1.1rem; border-bottom: 1px solid var(--line); }
+  .post-card--lead .card-title { font-size: 2.35rem; }
+  .post-card--lead .card-excerpt { -webkit-line-clamp: 3; line-clamp: 3; }
+  .home .post-grid > .post-card-wrap--second { padding-top: 1rem; }
+
+  .home .post-card--brief {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 7.5rem;
+    column-gap: 0.9rem;
+    align-items: start;
+    .card-figure { grid-column: 2; grid-row: 1; margin: 0.15rem 0 0; }
+    .card-body { grid-column: 1; grid-row: 1; }
+    .card-title { font-size: 1.02rem; margin-bottom: 0; }
+    .card-excerpt { display: none; }
+  }
+  .home .post-grid > .post-card-wrap--brief {
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .fp-briefs-label { margin: 1.4rem 0 0.2rem; }
+}
+
+// ── Narration chip on a card ────────────────────────────
+// AI narration: a navy pill. Read by Jason: red. It rides above
+// .card-link's stretched hit area so its own clicks land.
+.card-listen {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: auto;
+  padding: 0.12rem 0.5rem 0.12rem 0.22rem;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #fff;
+  background: var(--navy-2);
+  font: inherit;
+  transition: background 0.12s ease;
+
+  &:hover, &.is-playing { background: var(--navy); }
+  &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+  &--human {
+    background: var(--red);
+    &:hover, &.is-playing { background: var(--red-dk); }
+  }
+
+  &.is-error {
+    background: var(--bg);
+    box-shadow: inset 0 0 0 1px var(--red);
+    color: var(--red);
+    cursor: default;
+  }
+}
+
+.card-listen-ico {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background: #fff;
+  &::before {
+    content: "";
+    width: 0; height: 0;
+    margin-left: 2px;
+    border-style: solid;
+    border-width: 3px 0 3px 5px;
+    border-color: transparent transparent transparent var(--navy-2);
+  }
+}
+.card-listen--human .card-listen-ico::before { border-left-color: var(--red); }
+.card-listen.is-error .card-listen-ico { background: var(--red); }
+.card-listen.is-error .card-listen-ico::before { border-left-color: #fff; }
+// play triangle → pause bars
+.card-listen.is-playing .card-listen-ico::before {
+  width: 5px; height: 6px;
+  margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(var(--navy), var(--navy)) left / 2px 100% no-repeat,
+    linear-gradient(var(--navy), var(--navy)) right / 2px 100% no-repeat;
+}
+.card-listen--human.is-playing .card-listen-ico::before {
+  background:
+    linear-gradient(var(--red-dk), var(--red-dk)) left / 2px 100% no-repeat,
+    linear-gradient(var(--red-dk), var(--red-dk)) right / 2px 100% no-repeat;
+}
+
+.card-listen-lead {
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;   // stops the timer digits jittering
+  white-space: nowrap;
+}
+
+// ── Tooltip: says out loud whose voice this is ──────────
+.post-card-wrap {
+  .card-tip {
+    position: absolute;
+    z-index: 5;
+    right: 0.5rem;
+    padding: 0.32rem 0.6rem;
+    background: var(--black);
+    color: #fff;
+    border-radius: 2px;
+    font-family: var(--f-text);
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-transform: none;
+    white-space: nowrap;
+    box-shadow: 0 6px 16px rgba(6, 10, 22, 0.25);
+    opacity: 0;
+    transform: translateY(2px);
+    transition: opacity 0.13s ease, transform 0.13s ease;
+    pointer-events: none;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      right: 14px;
+      border: 5px solid transparent;
+      border-top-color: var(--black);
+    }
+    &.is-visible { opacity: 1; transform: translateY(0); }
+    @media (max-width: 380px) { white-space: normal; max-width: 12rem; }
+  }
+}
+
+// ── View all posts ──────────────────────────────────────
+.view-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 0 3rem;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.8rem 2.2rem;
+    background: var(--navy-2);
+    border-radius: 2px;
+    @include cond(700);
+    font-size: 1.2rem;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: background 0.12s ease;
+    &::after { content: "\203A"; font-size: 1.4em; line-height: 0.6; color: var(--red-hi); }
+    &:hover { background: var(--red); color: #fff; }
+    &:hover::after { color: #fff; }
+  }
+}
+.home .view-more {
+  margin-top: 0.4rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--line);
+}
+
+// ── Pagination ──────────────────────────────────────────
+.pagination {
+  margin: 0.5rem 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  a { @include label(0.78rem); color: var(--red); &:hover { color: var(--red-dk); } }
+  .page-info { @include label(0.72rem); color: var(--ink-3); }
+}
+
+// ════════════════ RECENT POSTS (under a post) ════════════════
+.recent-posts {
+  padding: 2.2rem 0 3rem;
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
+
+  .recent-posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    margin-bottom: 1.3rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 3.2rem;
+      height: 4px;
+      background: var(--red);
+    }
+
+    h3 {
+      margin: 0;
+      @include cond(800);
+      font-size: 1.75rem;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      @include label(0.72rem, 0.12em);
+      color: var(--red);
+      &::after { content: "\203A"; font-size: 1.35em; line-height: 0.7; }
+      &:hover { color: var(--red-dk); text-decoration: underline; text-underline-offset: 3px; }
+    }
+  }
+
+  .recent-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+
+    > .post-card {
+      background: var(--bg);
+      box-shadow: 0 1px 2px rgba(6, 10, 22, 0.08);
+      text-decoration: none;
+      overflow: hidden;
+      transition: box-shadow 0.15s ease;
+      &:hover { box-shadow: 0 6px 18px rgba(6, 10, 22, 0.14); }
+      &:hover .card-title { color: var(--red-dk); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.16em; }
+      &:hover .card-image { transform: scale(1.03); }
+      &:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+    }
+    .card-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .card-body {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      grid-template-areas:
+        "kicker date"
+        "title  title"
+        "badge  badge"
+        "excerpt excerpt";
+      align-content: start;
+      align-items: center;
+      padding: 0.85rem 1rem 1.1rem;
+      position: relative;
+      background: var(--bg);
+    }
+    > .post-card--longform .card-body {
+      grid-template-areas:
+        "badge  badge"
+        "kicker date"
+        "title  title"
+        "excerpt excerpt";
+    }
+    .card-kicker {
+      grid-area: kicker;
+      margin: 0 0.6rem 0.3rem 0;
+      @include label(0.68rem, 0.1em);
+      font-weight: 800;
+      color: var(--red);
+    }
+    .card-date {
+      grid-area: date;
+      margin: 0 0 0.3rem;
+      @include label(0.64rem, 0.08em);
+      font-weight: 600;
+      color: var(--ink-3);
+    }
+    .card-kicker + .card-date { padding-left: 0.6rem; border-left: 1px solid var(--line); }
+    .card-title {
+      grid-area: title;
+      margin: 0.1rem 0 0.45rem;
+      font-family: var(--f-text);
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.22;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+    .card-excerpt {
+      grid-area: excerpt;
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--ink-2);
+    }
+
+    @media (max-width: 760px) {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.75rem;
+      > .post-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 7rem;
+        align-items: start;
+        .card-image { grid-column: 2; grid-row: 1; margin: 0.85rem 0.85rem 0.85rem 0; width: auto; }
+        .card-body { grid-column: 1; grid-row: 1; padding: 0.8rem 0.9rem; background: none; }
+        .card-excerpt { display: none; }
+        .card-title { font-size: 1rem; margin-bottom: 0; }
+      }
+    }
+  }
+}

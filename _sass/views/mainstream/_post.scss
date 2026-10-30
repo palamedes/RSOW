@@ -1,0 +1,861 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — a single article, scoped under `.post`.
+//  A red kicker, a huge condensed headline, the dek, a byline row with
+//  the author's headshot, then the lead photo across the page and the
+//  body in a clean, readable column. Below: topic and tag chips, the
+//  comments, and Recent Posts.
+// ════════════════════════════════════════════════════════════════
+
+$po-text: 46rem;       // the reading column: ~70 characters
+$po-wide: 68rem;       // the lead photo
+
+@use "mixins" as *;
+
+.post {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  // ════════════════ HEAD ════════════════
+  .post-hero {
+    padding: 2.2rem var(--gutter) 0;
+  }
+  .post-hero-bg { display: none; }
+  .post-hero-inner {
+    max-width: $po-wide;
+    margin: 0 auto;
+  }
+  // the text shares the reading column's left edge, and may run as far
+  // right as the photo
+  .post-hero-text {
+    margin-left: max(0px, calc((100% - #{$po-text}) / 2));
+  }
+
+  // kicker: the post's topics, red capitals after a red bar
+  .post-hero-cats {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.3rem 0;
+    margin-bottom: 0.8rem;
+    &::before {
+      content: "";
+      width: 4px;
+      height: 1.05rem;
+      margin-right: 0.6rem;
+      background: var(--red);
+    }
+    a {
+      @include label(0.8rem, 0.12em);
+      font-weight: 800;
+      color: var(--red);
+      text-decoration: none;
+      // between topics (the shared " & " separator stays hidden)
+      & ~ a::before {
+        content: "";
+        display: inline-block;
+        width: 1px;
+        height: 0.8em;
+        margin: 0 0.65rem;
+        vertical-align: -0.05em;
+        background: var(--line);
+      }
+      &:hover { color: var(--red-dk); text-decoration: underline; text-underline-offset: 3px; }
+    }
+  }
+
+  .post-hero-title {
+    margin: 0 0 1rem;
+    @include cond(800);
+    font-size: clamp(2.5rem, 1.1rem + 3.6vw, 4.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  // dek: the post's description
+  .post-dek {
+    max-width: $po-text;
+    margin: 0 0 1.4rem;
+    font-size: clamp(1.1rem, 1rem + 0.4vw, 1.3rem);
+    font-weight: 400;
+    line-height: 1.45;
+    color: var(--ink-2);
+    text-wrap: pretty;
+  }
+
+  // ── byline: headshot, "By Jason Ellis", then the date and times ──
+  .post-hero-meta {
+    position: relative;
+    max-width: $po-text;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+    min-height: 4.2rem;
+    padding: 0.75rem 0 0.75rem 3.65rem;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    // the headshot: the footer's portrait, already on every page
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.75rem;
+      width: 2.85rem;
+      height: 2.85rem;
+      border-radius: 50%;
+      background: var(--bg-3) url("/assets/images/footer-profile.jpg") center 30% / cover no-repeat;
+      box-shadow: 0 0 0 2px var(--bg), 0 0 0 3.5px var(--red);
+    }
+    .post-hero-author {
+      flex-basis: 100%;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    .post-hero-by { font-weight: 500; color: var(--ink-2); }
+    .post-hero-author + .post-hero-dot { display: none; }
+    .post-hero-dot { color: var(--line); font-weight: 700; }
+    .post-hero-date::before { content: "Published "; }
+    // Clickable (it toggles playback) but deliberately still looks like text.
+    .post-hero-listen-note {
+      color: var(--ink-2);
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: underline dotted var(--ink-3);
+      text-underline-offset: 0.2em;
+      &:hover { color: var(--red); }
+    }
+    .post-hero-listen-note.is-human { color: var(--red); }
+  }
+
+  .post-hero-tools {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-left: auto;
+  }
+  @media (max-width: 760px) {
+    .post-hero-tools { flex-basis: 100%; margin: 0.5rem 0 0; }
+  }
+
+  // AI Notes: the toggle rides in the byline row (.post-actions--hero);
+  // the in-article one stays hidden
+  .post-actions {
+    display: inline-flex;
+    margin: 0;
+  }
+  .post-content > .post-actions { display: none; }
+
+  // ── the lead photo: across the page, a red rule under it ──
+  .post-hero-art {
+    display: block;
+    margin: 1.6rem 0 0;
+  }
+  .post-hero-print {
+    display: block;
+    position: relative;
+    background: var(--bg-3);
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 5px;
+      background: var(--red);
+    }
+  }
+  .post-hero-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+  }
+  .post-hero-art .post-body-cap {
+    max-width: $po-text;
+    margin: 0.55rem auto 0;
+  }
+  // the in-article copy of the lead photo isn't needed
+  .post-content > .post-body-img,
+  .post-content > .post-body-figure { display: none; }
+
+  // ════════════════ LISTEN BUTTON ════════════════
+  // The narration's call to action, at the right of the byline. AI
+  // narration is navy; Jason reading it himself is red, so the two are never
+  // confused. The bottom player bar lives in _includes/audio-player.html.
+  .post-listen-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    @media (max-width: 760px) { .post-listen-time { order: 1; } }
+  }
+  // elapsed / total, beside the button while it plays
+  .post-listen-time {
+    font-size: 0.78rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+    white-space: nowrap;
+    &[hidden] { display: none; }
+  }
+  .post-listen-time--human { color: var(--red); }
+
+  .post-listen {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.28rem 0.95rem 0.28rem 0.28rem;
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: 0;
+    cursor: pointer;
+    color: #fff;
+    background: var(--navy-2);
+    transition: background 0.12s ease;
+    &:hover { background: var(--navy); }
+    &:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+  }
+  // play triangle → pause bars when .is-playing, drawn in currentColor
+  .post-listen-ico {
+    position: relative;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 50%;
+    background: #fff;
+    color: var(--navy-2);
+    &::before {
+      content: "";
+      width: 0; height: 0;
+      margin-left: 3px;
+      border-style: solid;
+      border-width: 6px 0 6px 10px;
+      border-color: transparent transparent transparent currentColor;
+    }
+    // a ring that pulses out a few times after load, as a nudge to press play
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      animation: post-listen-pulse 2.4s ease-out 0.8s 4;
+    }
+  }
+  .post-listen.is-playing .post-listen-ico {
+    &::before {
+      width: 10px; height: 12px;
+      margin-left: 0;
+      border: 0;
+      background:
+        linear-gradient(currentColor, currentColor) left / 3.5px 100% no-repeat,
+        linear-gradient(currentColor, currentColor) right / 3.5px 100% no-repeat;
+    }
+    &::after { animation: none; }
+  }
+  @keyframes post-listen-pulse {
+    0%        { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8); }
+    80%, 100% { box-shadow: 0 0 0 9px rgba(255, 255, 255, 0); }
+  }
+  .post-listen-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .post-listen-lead {
+    @include cond(700);
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+  .post-listen-sub {
+    font-size: 0.58rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .post-listen--human {
+    background: var(--red);
+    &:hover { background: var(--red-dk); }
+    .post-listen-ico { color: var(--red); }
+  }
+  .post-listen.is-error {
+    color: var(--red);
+    background: var(--bg);
+    box-shadow: inset 0 0 0 1px var(--red);
+    cursor: default;
+    .post-listen-ico { background: var(--red); color: #fff; }
+    .post-listen-ico::after { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .post-listen { transition: none; }
+    .post-listen-ico::after { animation: none; }
+  }
+
+  // ════════════════ THE ARTICLE ════════════════
+  .post-wrap {
+    max-width: var(--page-w);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .post-article {
+    max-width: $po-text;
+    margin: 2rem auto 0;
+  }
+
+  .post-content {
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: #1a1e26;
+
+    > :first-child { margin-top: 0; }
+
+    p { margin-bottom: 1.3em; }
+
+    // the opening paragraph a touch larger, like a wire-story lede
+    > p:first-of-type {
+      font-size: 1.1em;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    // crossheads
+    h2 {
+      position: relative;
+      margin: 2.6rem 0 0.9rem;
+      padding-top: 0.85rem;
+      @include cond(800);
+      font-size: 2rem;
+      line-height: 1.05;
+      text-wrap: balance;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3rem;
+        height: 4px;
+        background: var(--red);
+      }
+    }
+    h3 {
+      margin: 2rem 0 0.5rem;
+      font-family: var(--f-text);
+      font-weight: 800;
+      font-size: 1.28rem;
+      line-height: 1.25;
+    }
+    h4 {
+      margin: 1.6rem 0 0.4rem;
+      @include label(0.86rem, 0.1em);
+      font-weight: 800;
+      color: var(--red);
+    }
+
+    // quotes: a big red quotation mark, a red bar, a grey panel
+    blockquote {
+      position: relative;
+      margin: 2rem 0;
+      padding: 1.15rem 1.4rem 1.15rem 3.7rem;
+      background: var(--bg-2);
+      border-left: 5px solid var(--red);
+      font-size: 1.04em;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--ink);
+      &::before {
+        content: "\201C" / "";
+        position: absolute;
+        left: 0.85rem;
+        top: 0.55rem;
+        font-family: var(--f-head);
+        font-size: 4.6rem;
+        font-weight: 900;
+        line-height: 0.85;
+        color: var(--red);
+      }
+      p:last-child { margin-bottom: 0; }
+    }
+    // a one-paragraph quote is a pull quote: bigger, heavier, condensed
+    blockquote:has(> p:only-child) {
+      padding: 0.6rem 0 0.7rem 3.7rem;
+      background: none;
+      border-left: 0;
+      border-top: 4px solid var(--ink);
+      border-bottom: 1px solid var(--line);
+      &::before { top: 0.75rem; }
+      > p {
+        @include cond(700);
+        font-size: 1.55em;
+        line-height: 1.18;
+        color: var(--ink);
+      }
+    }
+
+    li { margin-bottom: 0.45em; }
+
+    img { max-width: 100%; height: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9em;
+      th, td { padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--line); text-align: left; }
+      th { @include label(0.72rem, 0.08em); background: var(--navy); color: #fff; border-bottom: 0; }
+      tr:nth-child(even) td { background: var(--bg-2); }
+    }
+  }
+
+  // "Will ChatGPT steal our programming jobs" post: the AI-generated copy is
+  // tinted, the author's inline replies stay in ink so the voices separate.
+  .post-content .ai-said { color: #1d4fa3; }
+
+  // captions: the cover caption and figure.html captions
+  .post-body-cap,
+  .post-figure-cap {
+    margin-top: 0.5rem;
+    font-size: 0.84rem;
+    line-height: 1.45;
+    color: var(--ink-3);
+    text-align: left;
+    strong { color: var(--ink); }
+  }
+
+  // figure.html: an in-body image with a visible caption
+  .post-figure {
+    clear: both;
+    margin: 2rem 0;
+    .post-figure-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+  }
+  .post-figure--right,
+  .post-figure--left {
+    width: 45%;
+    margin-top: 0.35rem;
+    margin-bottom: 1.1rem;
+    @media (max-width: 600px) {
+      float: none;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+  }
+  .post-figure--right { float: right; clear: right; margin-left: 1.6rem; }
+  .post-figure--left  { float: left;  clear: left;  margin-right: 1.6rem; }
+
+  // legacy WordPress-era alignments in old posts
+  .pull-right, .alignright { float: right; margin: 0.3rem 0 1rem 1.4rem; max-width: 45%; }
+  .pull-left, .alignleft { float: left; margin: 0.3rem 1.4rem 1rem 0; max-width: 45%; }
+  .aligncenter { display: block; margin-left: auto; margin-right: auto; }
+
+  // Full-width photo inside the article body.
+  .post-photo {
+    display: block;
+    clear: both;
+    width: 100%;
+    height: auto;
+    margin: 1.8rem 0;
+  }
+
+  // ════════════════ PHOTO-SET GALLERIES (cruise post) ════════════════
+  .cruise-set {
+    clear: both;
+    margin: 1.4rem 0 1.6rem;
+  }
+  .cruise-setcap {
+    margin: 0 0 0.5rem;
+    padding-left: 0.6rem;
+    border-left: 4px solid var(--red);
+    @include label(0.8rem, 0.1em);
+    font-weight: 800;
+    color: var(--ink);
+    a { color: var(--red); }
+  }
+  .cruise-note {
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin: -0.2rem 0 0.55rem;
+  }
+  .cruise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+    gap: 4px;
+  }
+  .cruise-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0;
+    cursor: pointer;
+    background: var(--bg-3);
+    transition: filter 0.15s ease;
+    &:hover { filter: brightness(1.08); }
+  }
+  .cruise-setlabel {
+    margin: 1.4rem 0 0.4rem;
+    @include label(0.8rem, 0.1em);
+    font-weight: 800;
+    color: var(--ink);
+    .cruise-nopics { font-weight: 500; text-transform: none; letter-spacing: 0; color: var(--ink-3); }
+  }
+
+  // ════════════════ TOPICS AND TAGS: chips ════════════════
+  .post-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 2.5rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+  }
+  .post-tags-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .post-tags-label {
+    flex: 0 0 4.2rem;
+    @include label(0.68rem, 0.12em);
+    font-weight: 800;
+    color: var(--ink-3);
+  }
+  .post-tags-row a {
+    display: inline-block;
+    padding: 0.28rem 0.65rem;
+    background: var(--bg-2);
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background 0.12s ease, color 0.12s ease;
+    &:hover { background: var(--navy-2); color: #fff; }
+  }
+  .post-tags-row:not(.post-tags-row--tags) a {
+    background: var(--red);
+    color: #fff;
+    @include label(0.7rem, 0.1em);
+    font-weight: 800;
+    padding: 0.36rem 0.7rem;
+    &:hover { background: var(--red-dk); }
+  }
+  .post-tags .post-tags-all {
+    margin-left: auto;
+    background: none;
+    padding-left: 0;
+    padding-right: 0;
+    @include label(0.68rem, 0.1em);
+    font-weight: 800;
+    color: var(--red);
+    &:hover { background: none; color: var(--red-dk); text-decoration: underline; text-underline-offset: 3px; }
+  }
+
+  // ════════════════ COMMENTS (giscus) ════════════════
+  .post-comments {
+    max-width: $po-text;
+    margin: 3rem auto 0;
+    &::before {
+      content: "Comments" / "";
+      @include section-bar(1.75rem);
+      margin-bottom: 0.8rem;
+    }
+  }
+  .post-comments-sub {
+    margin: 0 0 1.25rem;
+    font-size: 0.95rem;
+    color: var(--ink-3);
+  }
+
+  // ════════════════ LEGACY COMMENTS ════════════════
+  // The old blog's comment thread, as a reader-comment stream: the
+  // writer's name in bold over the text, the author's replies indented
+  // with a red rule.
+  .legacy-comments {
+    margin-top: 2.5rem;
+  }
+  .lc-heading {
+    @include section-bar(1.75rem);
+    margin: 0 0 0.6rem;
+    border: 0;
+    &::before { content: none; }
+  }
+  .lc-note {
+    font-size: 0.92rem;
+    color: var(--ink-3);
+    margin: 0 0 1.2rem;
+  }
+  .lc-thread {
+    display: flex;
+    flex-direction: column;
+  }
+  .lc-row {
+    display: flex;
+    flex-direction: column;
+    padding: 0.85rem 0;
+    border-top: 1px solid var(--line);
+    &.me {
+      margin-left: 2rem;
+      padding-left: 1rem;
+      border-top: 0;
+      border-left: 4px solid var(--red);
+      @media (max-width: 600px) { margin-left: 0.75rem; }
+    }
+  }
+  .lc-meta {
+    margin: 0 0 0.25rem;
+    @include label(0.66rem, 0.08em);
+    font-weight: 600;
+    color: var(--ink-3);
+    .lc-name { font-weight: 800; color: var(--ink); }
+  }
+  .me .lc-meta .lc-name { color: var(--red); }
+  .lc-bubble {
+    font-size: 1rem;
+    line-height: 1.6;
+    p { margin: 0 0 0.5rem; }
+    p:last-child { margin-bottom: 0; }
+  }
+
+  // ════════════════ AI SLOP-O-VISION BAND ════════════════
+  // A studio panel: navy ground, white type, red when a voice is on air.
+  .slop-band {
+    position: relative;
+    margin: 2.5rem 0;
+    padding: 1.8rem 1.6rem 1.9rem;
+    color: #fff;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    border-top: 4px solid var(--red);
+    @media (max-width: 600px) { padding: 1.5rem 1.1rem 1.6rem; }
+  }
+  .slop-eyebrow {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    background: var(--red);
+    @include label(0.66rem, 0.14em);
+    font-weight: 800;
+    color: #fff;
+  }
+  .slop-title {
+    margin: 0.85rem 0 0.35rem;
+    padding: 0;
+    @include cond(800);
+    font-size: 2.1rem;
+    line-height: 1;
+    color: #fff;
+    &::before { content: none; }
+    @media (max-width: 600px) { font-size: 1.7rem; }
+  }
+  .slop-sub {
+    margin: 0 0 1.3rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--on-dark-2);
+  }
+  .slop-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    @media (max-width: 720px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 420px) { grid-template-columns: 1fr; }
+  }
+  .slop-voice {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    padding: 0.85rem 0.7rem;
+    text-align: center;
+    font: inherit;
+    color: #fff;
+    cursor: pointer;
+    background: var(--navy);
+    border: 0;
+    transition: background 0.12s ease;
+    &:hover { background: var(--navy-3); }
+    &:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+    &.is-playing { background: var(--red); }
+  }
+  .sv-name {
+    @include cond(700);
+    font-size: 1.1rem;
+    line-height: 1.1;
+    color: #fff;
+  }
+  .sv-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 0.15rem;
+  }
+  .sv-style {
+    font-size: 0.76rem;
+    color: var(--on-dark-2);
+  }
+  .slop-voice.is-playing .sv-style { color: #fff; }
+  .sv-eq {
+    flex: none;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 16px;
+    opacity: 0.35;
+    i {
+      display: block;
+      width: 3px;
+      height: 4px;
+      background: #fff;
+    }
+  }
+  .slop-voice.is-playing .sv-eq {
+    opacity: 1;
+    i { animation: slopEq 0.7s ease-in-out infinite; }
+    i:nth-child(2) { animation-delay: 0.15s; }
+    i:nth-child(3) { animation-delay: 0.3s; }
+    i:nth-child(4) { animation-delay: 0.45s; }
+  }
+  .sv-ctrl {
+    flex: none;
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #fff;
+    &::before {
+      content: "";
+      width: 0;
+      height: 0;
+      margin-left: 2px;
+      border-style: solid;
+      border-width: 6px 0 6px 10px;
+      border-color: transparent transparent transparent var(--navy);
+    }
+  }
+  .slop-voice.is-playing .sv-ctrl::before {
+    width: 9px;
+    height: 11px;
+    margin-left: 0;
+    border: 0;
+    background:
+      linear-gradient(var(--red), var(--red)) left / 3px 100% no-repeat,
+      linear-gradient(var(--red), var(--red)) right / 3px 100% no-repeat;
+  }
+  .slop-now {
+    margin-top: 1rem;
+    min-height: 1.2em;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .slop-fineprint {
+    margin: 1.1rem 0 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--on-dark-2);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slop-voice { transition: none; }
+    .slop-voice.is-playing .sv-eq i { animation: none; height: 10px; }
+  }
+
+  // ════════════════ EMISSIONS DATA TABLE ════════════════
+  // A graphics-desk data table: a navy header, zebra rows, red for the point.
+  .post-content .emit-band {
+    margin: 2.5rem 0;
+    padding: 0.9rem 0 0.4rem;
+    border-top: 4px solid var(--ink);
+  }
+  .post-content .emit-eyebrow {
+    display: block;
+    margin-bottom: 0.7rem;
+    @include label(0.74rem, 0.12em);
+    font-weight: 800;
+    color: var(--red);
+  }
+  .post-content .emit-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .post-content .emit-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+
+    thead th {
+      padding: 0.5rem 0.6rem;
+      text-align: right;
+      @include label(0.62rem, 0.06em);
+      font-weight: 800;
+      color: #fff;
+      background: var(--navy);
+      white-space: nowrap;
+    }
+    thead th:first-child { text-align: left; }
+    tbody th,
+    tbody td {
+      padding: 0.55rem 0.6rem;
+      text-align: right;
+      border-bottom: 1px solid var(--line-2);
+      white-space: nowrap;
+    }
+    tbody th { text-align: left; font-weight: 800; color: var(--ink); text-transform: none; letter-spacing: 0; font-size: 0.9rem; background: none; }
+    tbody td { color: var(--ink-2); }
+    tbody tr:nth-child(even) td, tbody tr:nth-child(even) th { background: var(--bg-2); }
+    tbody tr:hover td,
+    tbody tr:hover th { background: var(--bg-3); }
+
+    .emit-key { color: var(--ink); font-weight: 800; }
+    thead .emit-key { color: #fff; }
+    .emit-flag { background: var(--red-lt); color: var(--red-dk); box-shadow: inset 0 0 0 1px var(--red); }
+    .emit-standout th,
+    .emit-standout td { background: rgba(204, 10, 30, 0.07); }
+    .emit-standout th { color: var(--red-dk); }
+    .emit-standout .emit-key { color: var(--red); }
+  }
+  .post-content .emit-source {
+    display: block;
+    margin-top: 0.7rem;
+    font-size: 0.78rem;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 600px) {
+    .post-hero { padding-top: 1.5rem; }
+    .post-content { font-size: 1.07rem; }
+    .post-content blockquote { padding-left: 3rem; &::before { left: 0.6rem; font-size: 3.8rem; } }
+    .post-content blockquote:has(> p:only-child) { padding-left: 2.8rem; > p { font-size: 1.35em; } }
+    .post-tags-label { flex-basis: 100%; }
+    .post-tags .post-tags-all { margin-left: 0; flex-basis: 100%; margin-top: 0.3rem; }
+  }
+}
+
+@keyframes slopEq {
+  0%, 100% { height: 4px; }
+  50%      { height: 15px; }
+}

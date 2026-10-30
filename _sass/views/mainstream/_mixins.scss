@@ -1,0 +1,65 @@
+// ════════════════════════════════════════════════════════════════
+//  Mainstream Media — shared mixins. `@use "mixins" as *;` in a partial.
+// ════════════════════════════════════════════════════════════════
+
+// Small UI labels: Libre Franklin, bold, uppercase, lightly tracked. The
+// second argument is the tracking a newspaper would use; a cable-news site
+// sets its labels tighter, so it's halved.
+@mixin label($size: 0.72rem, $track: 0.12em) {
+  font-family: var(--f-text);
+  font-size: $size;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: $track * 0.5;
+  text-transform: uppercase;
+}
+
+// The broadcast face: Barlow Condensed, heavy and upright, for headlines,
+// section bars, the nav and anything that wants to shout.
+@mixin cond($weight: 800) {
+  font-family: var(--f-head);
+  font-weight: $weight;
+  font-style: normal;
+  letter-spacing: 0;
+}
+
+// A section bar: the heading in heavy condensed capitals, a red block
+// under its first letters and a hairline running out to the edge.
+// (Drawn with backgrounds, so it works on a pseudo-element too.)
+@mixin section-bar($size: 1.55rem) {
+  display: block;
+  margin: 0;
+  padding: 0 0 0.6rem;
+  background:
+    linear-gradient(var(--red), var(--red)) left bottom / 3.2rem 4px no-repeat,
+    linear-gradient(var(--line), var(--line)) left bottom / 100% 1px no-repeat;
+  @include cond(800);
+  font-size: $size;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+// The little red "live" dot, pulsing (still under reduced motion).
+@mixin live-dot($size: 0.5rem, $color: var(--red)) {
+  content: "";
+  display: inline-block;
+  flex: none;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background: $color;
+  box-shadow: 0 0 0 0 rgba(204, 10, 30, 0.6);
+  animation: ms-live 1.8s ease-out infinite;
+  @media (prefers-reduced-motion: reduce) { animation: none; }
+}
+
+// Out of sight, still read aloud.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
