@@ -1,0 +1,68 @@
+---
+---
+// Mainstream Media, by Claude: the site as a 24-hour cable-news website.
+// A navy-and-black header bar with a broadcast wordmark, a red BREAKING
+// crawl, a dense front of headlines with red kickers and timestamps, the
+// editor on air with a lower third, and Special Report cards for the long
+// reads, around a clean, readable article column. One stylesheet for the
+// whole site, loaded instead of main.css when a visitor picks it
+// (_data/views.yml). Its partials live in _sass/views/mainstream/; the
+// special pages it leaves alone come from _sass/.
+
+// The view-extras Mainstream shows (everything else marked .view-extra
+// stays hidden); see _sass/views/_extras.scss for the full list.
+@use "views/extras" with ($show: (
+  // header: the date on the top rail, the wordmark, "Menu", Etsy's ↗
+  ".mast-rail-date",
+  ".site-title-long",
+  ".nav-toggle-label",
+  ".nav-ext",
+  // the BREAKING crawl under the header
+  ".ticker",
+  // footer: the photo desk's head, the sitemap, RSS, "Back to top"
+  ".photo-desk-head",
+  ".colophon-sections",
+  ".footer-feed",
+  ".back-to-top-text",
+  // home: the anchor's label and link
+  ".fp-editor-label",
+  ".fp-editor-more",
+  ".fp-briefs-label",
+  // story cards: the red kicker, timestamps in pieces, a long read's dek
+  ".card-kicker",
+  ".card-date .date-parts",
+  ".card-dek",
+  // the article: dek, "By", the AI Notes toggle in the byline, the lead
+  // photo across the page, the comments' line
+  ".post-dek",
+  ".post-hero-by",
+  ".post-actions--hero",
+  ".post-hero-art",
+  ".post-comments-sub",
+  // the archive's year bars
+  ".arc-year-label",
+));
+@use "views/picker";
+
+@use "views/mainstream/base";
+@use "views/mainstream/layout";
+@use "views/mainstream/front";
+@use "adventure";
+@use "scorched";
+@use "paradroid";
+@use "views/mainstream/investments";
+@use "views/mainstream/about";
+@use "views/mainstream/archive";
+@use "views/mainstream/tags";
+@use "build";
+@use "views/mainstream/post";
+@use "views/mainstream/player";
+@use "views/mainstream/ai-notes";
+@use "views/mainstream/word-notes";
+@use "clapback";
+@use "views/mainstream/explain";
+@use "views/mainstream/palamedes";
+@use "views/mainstream/games";
+@use "views/mainstream/special";
+@use "views/mainstream/longform";
+@use "views/mainstream/views";
