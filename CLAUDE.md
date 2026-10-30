@@ -41,7 +41,8 @@ light/dark toggle, an optional `script`, `ready`). The inline loader in
 `_layouts/default.html` `<head>` picks the design before first paint
 (`?view=<key>`, else the saved choice, else Default) and writes only that
 design's fonts and stylesheet (and its script, if it has one).
-The header's "Design" menu (`_includes/view-picker.html`) and `/views/`
+The "Select a design" menu at the foot of every page
+(`_includes/view-picker.html`, in the footer's bottom bar) and `/views/`
 (`_pages/views.html`) list the ready ones; both read `views.yml`.
 
 - **One HTML.** Templates never branch on the design. A design changes only

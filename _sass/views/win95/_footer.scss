@@ -194,7 +194,10 @@
   }
   .footer-copy { margin: 0 auto 0 0; }
   .footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
-  a { color: $hi; text-decoration: underline; &:hover { color: $tip; } &:focus-visible { outline-color: $hi; } }
+  // (not the picker's Display Properties, which keeps its own colours)
+  .footer-copy a,
+  .footer-links a,
+  .back-to-top { color: $hi; text-decoration: underline; &:hover { color: $tip; } &:focus-visible { outline-color: $hi; } }
   .footer-feed {
     display: inline-flex;
     align-items: center;

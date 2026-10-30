@@ -1,12 +1,14 @@
 {%- comment -%}
-  Behaviour for the design system (_data/views.yml). Lives outside <main>,
-  so it runs once per real page load and survives the narration player's
-  soft navigation, as does the design the loader in <head> picked.
+  Behaviour for the design system (_data/views.yml). Included after the
+  footer and outside <main>, so it runs once per real page load and survives
+  the narration player's soft navigation, as does the design the loader in
+  <head> picked.
 
-  - The "Select a Design" picker (_includes/view-picker.html): open/close,
-    Escape, arrow keys, outside click, the current design marked. Picking a
-    design reloads this same page as ?view=<key>; the loader saves the choice
-    and takes the parameter back out of the address bar.
+  - The "Select a design" picker (_includes/view-picker.html, in the
+    footer): open/close, Escape, arrow keys, outside click, the current
+    design marked, the list kept on screen. Picking a design reloads this
+    same page as ?view=<key>; the loader saves the choice and takes the
+    parameter back out of the address bar.
   - The light/dark toggle, for designs with `schemes: true` (it is a
     view-extra, so only those designs show it). The choice is stored as
     rsow.theme and applied before first paint by the loader.
@@ -31,10 +33,24 @@
       });
 
       var isOpen = function () { return btn.getAttribute("aria-expanded") === "true"; };
+      // keep the open list on screen: slide it sideways if it would run off
+      // either edge (on a phone the button can sit anywhere in the footer)
+      // (with `translate`, which works however a design anchors the list
+      // and leaves its `transform` alone)
+      var fit = function () {
+        menu.style.translate = "";
+        var r = menu.getBoundingClientRect();
+        var vw = document.documentElement.clientWidth;
+        var dx = 0;
+        if (r.right > vw - 8) dx = vw - 8 - r.right;
+        if (r.left + dx < 8) dx = 8 - r.left;
+        if (dx) menu.style.translate = Math.round(dx) + "px 0";
+      };
       var setOpen = function (open, focusBtn) {
         btn.setAttribute("aria-expanded", open ? "true" : "false");
         menu.hidden = !open;
         wrap.classList.toggle("is-open", open);
+        if (open) fit();
         if (!open && focusBtn) btn.focus();
       };
 
@@ -67,8 +83,8 @@
         });
       });
 
-      // Escape is handled here, on the way up, so the mobile menu (which
-      // listens on document) knows to stay open: preventDefault marks it.
+      // Escape is handled here, on the way up, and marked with
+      // preventDefault so nothing listening on document acts on it too.
       wrap.addEventListener("keydown", function (e) {
         if (e.key === "Escape" && isOpen()) {
           e.preventDefault();

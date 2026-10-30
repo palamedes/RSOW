@@ -20,12 +20,13 @@ a design with a light/dark toggle). It fails, loudly, when
     stylesheet is loaded alongside it), or <html data-view> is wrong
   - a design with a `script:` didn't load it, or any design's page loads
     another design's script (a design without one must load none)
-  - the picker can't be reached (on a phone, through the menu)
+  - the picker isn't in the footer, or (on the home page, where it's
+    opened) its list doesn't show, runs off the screen or is covered
   - Default shows any .view-extra
   - a page throws a JavaScript error
 
-Screenshots (the first screenful of each page) go to OUT_DIR, default
-/tmp/rsow-view-check. --thumbs also remakes the /views/ gallery's
+Screenshots (the first screenful of each page, plus the home page's foot
+with the picker open) go to OUT_DIR, default /tmp/rsow-view-check. --thumbs also remakes the /views/ gallery's
 screenshots, assets/images/views/<key>.webp (720x450), from the home page,
 and the picker's small ones, assets/images/views/thumbs/<key>.webp (144x90).
 
@@ -83,7 +84,7 @@ HOOKS_JS = r"""
   const out = { missing: [], sheets: [], extras: [] };
   const need = {
     "main.site-content": q("main.site-content") === 1,
-    "#view-picker": q("#view-picker") === 1 && q("#view-picker-btn") === 1 && q("#view-picker-menu") === 1,
+    "#view-picker (in the footer)": q("footer #view-picker") === 1 && q("#view-picker") === 1 && q("#view-picker-btn") === 1 && q("#view-picker-menu") === 1,
     "#site-nav": q("#site-nav") === 1,
     "#nav-toggle": q("#nav-toggle") === 1,
     "#resume-slot": q("#resume-slot") === 1,
@@ -152,6 +153,19 @@ async () => {
     if (!pending.length) break;
     await new Promise(r => setTimeout(r, 100));
   }
+}
+"""
+
+# The picker's list, once opened: on screen, and on top of whatever is there.
+PICKER_JS = r"""
+() => {
+  const m = document.getElementById("view-picker-menu");
+  if (!m || m.hidden) return { open: false };
+  const r = m.getBoundingClientRect();
+  const W = document.documentElement.clientWidth, H = window.innerHeight;
+  const pts = [[r.left + 12, r.top + 12], [r.right - 12, r.top + 12], [r.left + r.width / 2, r.top + r.height / 2], [r.left + 12, r.bottom - 12]];
+  const covered = pts.some(([x, y]) => { const e = document.elementFromPoint(x, y); return !e || !m.contains(e); });
+  return { open: r.width > 0 && r.height > 0, left: r.left, right: r.right, top: r.top, bottom: r.bottom, W, H, covered };
 }
 """
 
@@ -305,21 +319,33 @@ def main():
                             where = page.evaluate(OVERFLOW_JS)
                             problems.append(f"scrolls sideways ({info['scrollW']}px > {info['innerW']}px): "
                                             + "; ".join(f"{sel} +{dx}px" for dx, sel in where))
-                        # The picker: visible, or reachable through the phone menu.
+                        # The picker, at the foot of the page: visible on every page;
+                        # on the home page, opened and photographed.
                         btn = page.locator("#view-picker-btn")
                         if not btn.is_visible():
-                            if page.locator("#nav-toggle").is_visible():
-                                page.click("#nav-toggle")
-                                page.wait_for_timeout(100)
-                            if not btn.is_visible():
-                                problems.append("the design picker can't be reached")
-                            else:
-                                page.click("#nav-toggle")
+                            problems.append("the design picker isn't visible")
                         if errors:
                             problems.append("JavaScript errors: " + " | ".join(errors[:3]))
                         shot = os.path.join(a.out, f"{key}{'-' + theme if theme else ''}-{w}-{slug(path)}.png")
                         page.add_style_tag(content=FREEZE_CSS)
                         page.screenshot(path=shot, full_page=a.full)
+                        if path == "/" and btn.is_visible():
+                            btn.scroll_into_view_if_needed()
+                            btn.click()
+                            page.wait_for_timeout(200)
+                            pk = page.evaluate(PICKER_JS)
+                            if not pk["open"]:
+                                problems.append("the design picker's list didn't open")
+                            else:
+                                if pk["left"] < 0 or pk["right"] > pk["W"] or pk["top"] < 0 or pk["bottom"] > pk["H"]:
+                                    problems.append("the design picker's list runs off the screen "
+                                                    f"({round(pk['left'])},{round(pk['top'])} to {round(pk['right'])},{round(pk['bottom'])} in {pk['W']}x{pk['H']})")
+                                if pk["covered"]:
+                                    problems.append("the design picker's list is covered or clipped")
+                            page.screenshot(path=shot.replace(".png", "-picker.png"))
+                            page.keyboard.press("Escape")
+                            page.wait_for_timeout(100)
+                            page.evaluate("() => window.scrollTo(0, 0)")
                         for pr in problems:
                             failures.append(f"{tag}: {pr}")
                         print(f"  {'FAIL' if problems else 'ok  '} {tag}", flush=True)

@@ -25,12 +25,12 @@
   &:focus { top: 8px; color: $ink; }
 }
 
-// ── In the tray ─────────────────────────────────────────
-.site-header .view-picker-btn {
-  height: 26px;
-  gap: 5px;
-  padding: 0 7px 0 5px;
-  border-radius: 0;
+// ── On the desktop, beside the small print: a real button ──
+.footer-bottom .view-picker-btn {
+  @include button;
+  gap: 6px;
+  min-height: 28px;
+  padding: 2px 10px 2px 6px;
   @include ui(14px);
   color: $ink;
   .view-picker-ico { display: none; }
@@ -41,13 +41,12 @@
     @include ico("computer", 16px);
   }
   .view-picker-caret { display: none; }
-  &:hover { @include raised; }
   &[aria-expanded="true"] { @include pressed; }
-  &:focus-visible { @include focus-rect(-3px); }
+  &:focus-visible { @include focus-rect(-4px); }
 }
 
 // ── Display Properties ──────────────────────────────────
-.site-header .view-picker-menu {
+.view-picker .view-picker-menu {
   position: fixed;
   top: auto;
   left: auto;
@@ -96,7 +95,7 @@
   }
 }
 
-.site-header .view-picker-head {
+.view-picker .view-picker-head {
   order: -2;
   @include titlebar;
   margin: 0;
@@ -110,7 +109,7 @@
 }
 
 // "Scheme:" — the list box, with the monitor above it
-.site-header .view-picker-list {
+.view-picker .view-picker-list {
   position: relative;
   margin: 186px 22px 0;
   padding: 2px;
@@ -134,7 +133,7 @@
   }
 }
 
-.site-header .view-picker-item {
+.view-picker .view-picker-item {
   gap: 8px;
   padding: 4px 6px;
   border-radius: 0;
@@ -144,12 +143,12 @@
   &.is-current { background: $navy; color: $hi; }
   &.is-current:focus-visible { outline-color: $hi; }
 }
-.site-header .view-picker-name { font-weight: 400; }
-.site-header .view-picker-item.is-current .view-picker-check::before { border-color: $hi; }
+.view-picker .view-picker-name { font-weight: 400; }
+.view-picker .view-picker-item.is-current .view-picker-check::before { border-color: $hi; }
 
 // The screenshots all sit in the monitor's screen: the current scheme's,
 // or the one you're pointing at.
-.site-header .view-picker-shot {
+.view-picker .view-picker-shot {
   position: absolute;
   z-index: 1;
   top: -162px;
@@ -161,13 +160,13 @@
   background: #000;
   visibility: hidden;
 }
-.site-header .view-picker-item.is-current .view-picker-shot { visibility: visible; }
-.site-header .view-picker-list:has(.view-picker-item:hover, .view-picker-item:focus-visible) {
+.view-picker .view-picker-item.is-current .view-picker-shot { visibility: visible; }
+.view-picker .view-picker-list:has(.view-picker-item:hover, .view-picker-item:focus-visible) {
   .view-picker-item.is-current .view-picker-shot { visibility: hidden; }
   .view-picker-item:is(:hover, :focus-visible) .view-picker-shot { visibility: visible; }
 }
 
-.site-header .view-picker-more {
+.view-picker .view-picker-more {
   @include button;
   align-self: flex-end;
   margin: 26px 12px 0 0;

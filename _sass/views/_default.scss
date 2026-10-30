@@ -29,52 +29,25 @@
   --vp-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
-// ── Picker in the header ────────────────────────────────
-// Sits after the social icons and reads like the nav links beside it.
-.site-header {
+// ── Picker in the footer ────────────────────────────────
+// In the bottom bar, where the "Select a design" link used to be, and as
+// quiet as the bar's other links.
+.footer-bottom {
   .view-picker-btn {
-    font-size: 0.8rem;
-    font-weight: 400;
-    line-height: 1;
-    padding: 0.3rem 0.4rem;   // no taller than the 28px social icons
-    color: #696969;
-    &:hover { color: #2673da; }
+    padding: 0.2rem 0.3rem;
+    font-size: inherit;
+    line-height: 1.2;
+    color: #bbb;
+    &:hover, &[aria-expanded="true"] { color: #fff; }
   }
-
-  // Narrow desktops: just the palette, so the bar keeps to one line down to
-  // ~900px; in the last sliver above the phone breakpoint it takes a row of
-  // its own, on the right.
-  @media (max-width: 999px) and (min-width: 861px) {
-    .view-picker { margin-left: auto; }
-    .view-picker-label, .view-picker-caret { display: none; }
-  }
-
-  // Phones: the bar keeps title, icons and the hamburger; the picker joins
-  // the links in the panel (the same breakpoint as the nav), on its own row.
-  @media (max-width: 860px) {
-    .view-picker {
-      order: 7;
-      flex-basis: 100%;
-      flex-wrap: wrap;
-      padding: 0.35rem 0 0.25rem;
-      border-top: 1px solid #f0f2f4;
-    }
-    .header-inner:not(.is-nav-open) .view-picker { display: none; }
-    .view-picker-btn { font-size: 0.95rem; padding: 0.4rem 0.25rem; }
-    .view-picker-menu {
-      position: static;
-      flex-basis: 100%;
-      width: auto;
-      max-width: none;
-      margin: 0.25rem 0 0.5rem;
-      box-shadow: none;
-    }
-  }
+  .view-picker-ico { width: 1.35em; height: 1.35em; }
 }
 
 // ── Footer ──────────────────────────────────────────────
+// Default shows none of the footer nav's links (they're design extras), so
+// it stays out of the row: copy, picker, back to top.
 .footer-bottom .footer-links {
-  display: flex;
+  display: contents;
   flex-wrap: wrap;
   gap: 0.25rem 1rem;
 

@@ -95,7 +95,6 @@ children, in this order, are all direct (grid them with areas and `order`):
 | `button#nav-toggle.nav-toggle > .nav-toggle-bars + span.nav-toggle-label` (extra, text "Menu") | `.nav-toggle-label` ("Sections": swap with `font-size:0` + `::before`, it's aria-hidden) | `.nav-toggle-word` → `.nav-toggle-label` |
 | `nav#site-nav.nav-links > a[data-section]`; Etsy link has `span.nav-ext` (extra, ↗) | same; `.nav-ext` | — |
 | `#resume-slot`, `.social-icons` | were in `.mast-rail-tools`: place them in the rail row instead | same |
-| `#view-picker` (the picker) | new: style it | new: style it |
 | `button#theme-toggle.theme-toggle` (extra; Quiet only) | hide | hide |
 
 No `.masthead`, `.mast-rail`, `.mast-plate`, `.mast-rail-tools` wrappers:
@@ -122,9 +121,11 @@ ul.ticker-track.ticker-copy` (zine's `zine-ticker*` → `ticker*`). Then
   No. N"), then `nav.colophon-sections` and `div.colophon-note` (extras,
   broadsheet; `.colophon-rss` inside).
 - `.footer-bottom > .site-wrapper > .footer-bottom-inner > p.footer-copy +
-  nav.footer-links > (a.footer-views "Select a design" + a.footer-feed
-  (extra, RSS)) + a.back-to-top > (span.back-to-top-text (extra) "Back to
-  top " + span.back-to-top-ico ▲)`.
+  div#view-picker (the picker, below) + nav.footer-links > a.footer-feed
+  (extra, RSS) + a.back-to-top > (span.back-to-top-text (extra) "Back to
+  top " + span.back-to-top-ico ▲)`. Scope footer link colours to
+  `.footer-copy a`, `.footer-links a` and `.back-to-top`, not every `a` in
+  `.footer-bottom`, or they'll repaint the picker's list.
 
 Zine: `.footer-about-snap` → `.footer-about-photo`; `.zine-hazard` isn't an
 element, draw it as `.site-footer::before`. Order the footer's parts with
@@ -275,14 +276,18 @@ Broadsheet's eyebrow "The Morgue · …" isn't in the markup: `.arc-eyebrow::bef
 
 ## The picker and /views/
 
-Style `#view-picker` (`.view-picker-btn` with `.view-picker-ico`,
-`.view-picker-label` "Design", `.view-picker-caret`; `.view-picker-menu >
-.view-picker-head + ul.view-picker-list > li > a.view-picker-item(.is-current) >
-img.view-picker-shot + .view-picker-text > .view-picker-name +
-.view-picker-check`, then `a.view-picker-more`; designs carry no "by"
-credit anywhere) so it
-belongs to your design, and on phones put it in the menu panel (see
-`_sass/views/_default.scss` and `_sass/views/quiet/_views.scss`). Theme the
+The picker lives in the footer's bottom bar (it left the header on
+2026-10-29). Style `#view-picker` (`.view-picker-btn` with `.view-picker-ico`
+(a palette), `.view-picker-label` "Select a design", `.view-picker-caret`
+(points up); `.view-picker-menu > .view-picker-head + ul.view-picker-list >
+li > a.view-picker-item(.is-current) > img.view-picker-shot +
+.view-picker-text > .view-picker-name + .view-picker-check`, then
+`a.view-picker-more` "About these designs"; designs carry no "by" credit
+anywhere) so it belongs to your design. The list opens upward
+(`bottom: calc(100% + 6px); right: 0`), and the script slides it sideways
+with the `translate` property when it would run off the screen, so don't
+set `translate` on it yourself (`transform` is fine). See
+`_sass/views/_default.scss` and each design's `_views.scss`. Theme the
 shared structure with `--vp-font`, `--vp-ink`, `--vp-muted`, `--vp-bg`,
 `--vp-line`, `--vp-hover`, `--vp-accent`, `--vp-radius`, `--vp-shadow`.
 /views/ is `article.page > div.vg > (div.vg-intro, ul.vg-list > li.vg-item

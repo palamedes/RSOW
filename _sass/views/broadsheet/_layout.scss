@@ -69,8 +69,7 @@ $nav-bp: 860px;
   .mast-rail-date { display: none; }
 
   .resume-slot,
-  .social-icons,
-  .view-picker { order: 1; }
+  .social-icons { order: 1; }
 
   .social-icons {
     display: flex;
@@ -319,7 +318,7 @@ $nav-bp: 860px;
       }
     }
     .header-inner:not(.is-nav-open) {
-      .nav-links, .view-picker { display: none; }
+      .nav-links { display: none; }
     }
   }
 
@@ -594,13 +593,10 @@ $nav-bp: 860px;
     margin: 0;
     font-style: italic;
   }
-  // "Select a design", then back to top, at the right
-  .footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-    margin-left: auto;
-  }
+  // "Select a design", then back to top, at the right (the footer nav's
+  // links are all design extras Broadsheet leaves out)
+  .view-picker { margin-left: auto; }
+  .footer-links { display: contents; }
   .footer-links a,
   .back-to-top {
     @include label(0.68rem, 0.16em);

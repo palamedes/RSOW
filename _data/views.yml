@@ -1,10 +1,10 @@
 # Designs ("views"): one set of HTML, many stylesheets, after Dave Shea's
 # CSS Zen Garden. Every page is the same markup; a visitor picks the
-# stylesheet from the "Design" menu in the header or from /views/.
+# stylesheet from the "Select a design" menu in the footer or from /views/.
 #
 # Everything here feeds three places, so adding a design never means
 # editing them: the loader in _layouts/default.html <head>, the picker in
-# the header, and the gallery at /views/. CLAUDE.md ("Designs (views)") has
+# the footer, and the gallery at /views/. CLAUDE.md ("Designs (views)") has
 # the how-to; _sass/views/ holds the stylesheets.
 #
 #   key          what ?view=<key> and the saved choice use; also the

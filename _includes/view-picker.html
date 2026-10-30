@@ -1,20 +1,22 @@
 {%- comment -%}
-  "Select a Design": the header's design switcher, an homage to the CSS Zen
-  Garden's design list. A disclosure button and a small list of links, one
-  per ready design in _data/views.yml. Each link is a real ?view=<key> URL
-  (it works with nothing but the loader in <head>); the script in
-  _includes/views-script.html keeps you on the page you're reading, marks the
-  current design and handles the keyboard.
+  "Select a design": the design switcher at the foot of every page, an
+  homage to the CSS Zen Garden's design list. A disclosure button and a
+  small list of links that opens upward, one per ready design in
+  _data/views.yml. Each link is a real ?view=<key> URL (it works with nothing
+  but the loader in <head>); the script in _includes/views-script.html keeps
+  you on the page you're reading, marks the current design, keeps the list
+  on screen and handles the keyboard.
 
-  It lives in the header, outside <main>, so the narration player's soft
-  navigation never touches it. Every design styles it (the structure is
-  _sass/views/_picker.scss, themed with --vp-* custom properties).
+  It lives in the footer's bottom bar, outside <main>, so the narration
+  player's soft navigation never touches it. Every design styles it (the
+  structure is _sass/views/_picker.scss, themed with --vp-* custom
+  properties).
 {%- endcomment -%}
 {%- assign vp_list = site.data.views | where: "ready", true -%}
 <div class="view-picker" id="view-picker">
-  <button type="button" class="view-picker-btn" id="view-picker-btn" aria-expanded="false" aria-controls="view-picker-menu" title="Select a design">
+  <button type="button" class="view-picker-btn" id="view-picker-btn" aria-expanded="false" aria-controls="view-picker-menu">
     <svg class="view-picker-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0 0 18c1.1 0 1.8-.8 1.8-1.7 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.7 1.7-1.7h2.1A4.9 4.9 0 0 0 21 10.6C21 6.4 17 3 12 3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="11.5" r="1.3" fill="currentColor"/><circle cx="10" cy="7.6" r="1.3" fill="currentColor"/><circle cx="14.4" cy="7.6" r="1.3" fill="currentColor"/><circle cx="17" cy="11" r="1.3" fill="currentColor"/></svg>
-    <span class="view-picker-label">Design</span>
+    <span class="view-picker-label">Select a design</span>
     <span class="view-picker-caret" aria-hidden="true"></span>
   </button>
   <div class="view-picker-menu" id="view-picker-menu" hidden>

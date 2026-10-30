@@ -33,13 +33,8 @@
   padding: 0.55rem 1rem;
 }
 
-// ── The picker: a small-caps tab at the end of the top rail ──
-.site-header {
-  .view-picker {
-    margin-left: 0.75rem;
-    padding-left: 0.75rem;
-    border-left: 1px solid var(--hair);
-  }
+// ── The picker: a small-caps tab in the bottom rule, before the RSS link ──
+.footer-bottom {
   .view-picker-btn {
     gap: 0.4rem;
     padding: 0.25rem 0.15rem;
@@ -51,46 +46,14 @@
     &:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
   }
   .view-picker-ico { width: 15px; height: 15px; }
-  .view-picker-caret { border-width: 0.4em 0.32em 0; }
+  .view-picker-caret { border-width: 0 0.32em 0.4em; }
 
   // the list: a boxed notice on the paper, with the hard shadow the other
   // menus (resume, archive filters) cast
   .view-picker-menu {
-    top: calc(100% + 8px);
+    bottom: calc(100% + 8px);
     min-width: 16rem;
     padding: 0.55rem 0.55rem 0.45rem;
-  }
-
-  // phones: the picker is the last row of the Sections panel
-  @media (max-width: 860px) {
-    .view-picker {
-      order: 7;
-      flex: 0 0 100%;
-      flex-wrap: wrap;
-      margin: 0;
-      padding: 0;
-      border-left: 0;
-    }
-    .view-picker-btn {
-      flex: 0 0 100%;
-      justify-content: center;
-      min-height: 2.75rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.18em;
-      color: var(--ink);
-      &:focus-visible { outline-offset: -3px; }
-    }
-    .view-picker-ico { width: 17px; height: 17px; }
-    .view-picker-menu {
-      position: static;
-      flex: 0 0 100%;
-      width: auto;
-      max-width: none;
-      margin: 0 0 0.9rem;
-      box-shadow: none;
-      outline: 1px solid var(--ink);
-      outline-offset: 2px;
-    }
   }
 }
 
