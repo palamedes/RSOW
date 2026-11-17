@@ -93,7 +93,7 @@ children, in this order, are all direct (grid them with areas and `order`):
 | `a.site-title > span.site-title-short` (Default's "RSOW.com \| Home": hide it) + `span.site-title-long` (extra) `> span.site-title-line > span.stw.stw-random/-string/-of/-words` ("Words" has one span per letter) | `.site-title` text | `.zl-line` → `.site-title-line`, `.zl` → `.stw`, `.zl-random` → `.stw-random`, `.zl-string`, `.zl-of`, `.zl-words` likewise |
 | `div.mast-dateline` (extra) `> .mast-dl-est/-date/-motto/-site` | same | — |
 | `button#nav-toggle.nav-toggle > .nav-toggle-bars + span.nav-toggle-label` (extra, text "Menu") | `.nav-toggle-label` ("Sections": swap with `font-size:0` + `::before`, it's aria-hidden) | `.nav-toggle-word` → `.nav-toggle-label` |
-| `nav#site-nav.nav-links > a[data-section]`; Etsy link has `span.nav-ext` (extra, ↗) | same; `.nav-ext` | — |
+| `nav#site-nav.nav-links > a[data-section]`, then the Tools menu `div.nav-menu > button.nav-menu-btn[aria-expanded] + div.nav-menu-list#nav-tools > a[data-section]` (Explainers, Games, Investments, Laser Library). The Etsy store is a `.social-icon` now. | give the button your link styles (`a, .nav-menu-btn`); theme the panel with `--nav-menu-bg/-line/-radius/-shadow`; `@include navmenu.flat` in your phone menu (`_sass/views/_navmenu.scss`) | — |
 | `#resume-slot`, `.social-icons` | were in `.mast-rail-tools`: place them in the rail row instead | same |
 | `button#theme-toggle.theme-toggle` (extra; Quiet only) | hide | hide |
 
