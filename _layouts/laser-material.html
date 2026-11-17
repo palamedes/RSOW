@@ -11,6 +11,8 @@ full_width: true
 {%- endcomment -%}
 {%- assign sheet = site.data.laser[page.material] -%}
 {%- assign vkeys = page.validated | map: "key" -%}
+{%- comment -%} Tests whose photo isn't a fair color reference (colors: false). {%- endcomment -%}
+{%- assign nocolor = page.tests | where: "colors", false | map: "id" -%}
 {%- assign source = site.data.laser.source -%}
 {%- assign done = sheet | where: "status", "done" -%}
 {%- assign unrun = sheet | where: "status", "not run" -%}
@@ -41,8 +43,10 @@ full_width: true
       <ol class="lzr-validated">
         {%- for v in page.validated %}
           {%- assign parts = v.key | split: "|" %}
-          {%- assign hit = sheet | where: "power", parts[0] | where: "speed", parts[1] | where: "frequency", parts[2] | where: "q_pulse", parts[3] | where: "interval", parts[4] | where: "passes", parts[5] | last %}
-        <li><span class="lzr-sw" style="--sw: {{ hit.hex }}" aria-hidden="true"></span><strong>{{ v.name | default: hit.color }}</strong>{% if v.name %} <span class="lzr-note">{{ hit.color }}</span>{% endif %}{% if hit.relief == "Raised" %}, raised{% endif %}<br>{{ parts[0] }}% · {{ parts[1] }} mm/s<br>{{ parts[2] }} kHz · {{ parts[3] }} ns · {{ parts[4] }} mm{% if parts[5] != "1" %} · {{ parts[5] }} passes{% endif %}</li>
+          {%- assign hits = sheet | where: "power", parts[0] | where: "speed", parts[1] | where: "frequency", parts[2] | where: "q_pulse", parts[3] | where: "interval", parts[4] | where: "passes", parts[5] %}
+          {%- assign hit = nil %}{% for h in hits %}{% unless nocolor contains h.test %}{% assign hit = h %}{% endunless %}{% endfor %}
+          {%- assign latest = hits | last %}
+        <li><span class="lzr-sw" style="--sw: {{ hit.hex }}" aria-hidden="true"></span><strong>{{ v.name | default: hit.color }}</strong>{% if v.name %} <span class="lzr-note">{{ hit.color }}</span>{% endif %}{% if latest.relief == "Raised" %}, raised{% endif %}<br>{{ parts[0] }}% · {{ parts[1] }} mm/s<br>{{ parts[2] }} kHz · {{ parts[3] }} ns · {{ parts[4] }} mm{% if parts[5] != "1" %} · {{ parts[5] }} passes{% endif %}</li>
         {%- endfor %}
       </ol>
     </div>

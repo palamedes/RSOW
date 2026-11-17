@@ -192,4 +192,26 @@ tests:
       - "Some pairs came out nearly identical this time, such as the two whites at 5% 400 mm/s (0.01 and 0.02 mm) and 8% 400 vs 80% 200 mm/s. The next version of the pattern can swap one of each pair."
       - "**Four came out raised** (▲), all 88.89 ns or 80 ns golds at 40 mm/s or slower: 40% with 70, 90 and 100 kHz at 88.89 ns, and 30% at 53 mm/s with 80 ns. The other 21 are flat."
       - "The 1.6 mm bold labels are readable."
+  - id: standard-pattern-3
+    title: "Standard pattern, run 3"
+    kind: pattern
+    status: complete
+    slate: "#8b8376"   # bare slate in this photo
+    # Shot at a steep angle under the machine's lamp: the slate's sheen
+    # makes bare slate read bright, so this photo's colors aren't used.
+    # The designer keeps run 2's colors and takes relief from here.
+    colors: false
+    x: { key: col, label: "Column", unit: "", values: [1, 2, 3, 4, 5] }
+    y: { key: row, label: "Row", unit: "", values: [1, 2, 3] }
+    fixed:
+      - { label: "Squares", value: "10 mm" }
+      - { label: "Labels", value: "LightBurn H 3 mm" }
+      - { label: "From", value: "the designer's LightBurn file" }
+    photo: /assets/images/laser/slate-standard-pattern-3.webp
+    photo_alt: "A slate tile on the laser bed with the 15 validated colors in three rows of five, each labelled with large settings text that runs into its neighbors."
+    notes:
+      - "The 15 validated colors. **The user's verdict: the set is exactly right.**"
+      - "Only Antique Gold and Gold came out raised (▲). Wheat and Honey, raised on run 2, were flat this time."
+      - "The photo was taken at an angle under the machine's lamp. The slate's sheen reads brighter than the matte marks, so these swatches look darker than the colors really are; the designer keeps run 2's colors."
+      - "The labels came out about 1.5 times the planned size and ran into each other. With one text shape per line, LightBurn's height (H) is about the full font size, and each line is centered on its point. The designer now draws and places them that way, with a default of 2.5 mm."
 ---

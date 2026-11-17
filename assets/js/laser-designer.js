@@ -174,19 +174,18 @@
     function keyOf(c) { return [c.power, c.speed, c.frequency, c.q_pulse, c.interval, c.passes].join('|'); }
     // Saved patterns from before kept the test's id in front.
     function keyFix(k) { var p = String(k).split('|'); return p.length === 7 ? p.slice(1).join('|') : String(k); }
-    var testTitle = {}, testSlate = {}, testOrder = {};
-    (data.tests || []).forEach(function (t, i) { testTitle[t.id] = t.title; testSlate[t.id] = t.slate; testOrder[t.id] = i; });
-    // Each photo was exposed differently. Scaling a photo so its bare slate
-    // matches the designer's surface puts every test on the same footing.
-    function lum(c) {
-      var l = c.map(function (v) { v /= 255; return v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92; });
-      return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
-    }
-    function scaled(c, g) {
-      return c.map(function (v) {
-        v /= 255; v = v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92;
-        v = Math.min(1, v * g);
-        return Math.round(255 * (v > 0.0031308 ? 1.055 * Math.pow(v, 1 / 2.4) - 0.055 : 12.92 * v));
+    var testTitle = {}, testSlate = {}, testOrder = {}, testColors = {};
+    (data.tests || []).forEach(function (t, i) {
+      testTitle[t.id] = t.title; testSlate[t.id] = t.slate; testOrder[t.id] = i; testColors[t.id] = t.colors !== false;
+    });
+    // Each photo was shot in different light. Bare slate is neutral, so
+    // scaling each channel until a photo's bare slate matches the designer's
+    // surface corrects both its exposure and its color cast.
+    function toLin(v) { v /= 255; return v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92; }
+    function balanced(c, slate) {
+      return c.map(function (v, i) {
+        var x = Math.min(1, toLin(v) * toLin(SURFACE[i]) / Math.max(1e-4, toLin(slate[i])));
+        return Math.round(255 * (x > 0.0031308 ? 1.055 * Math.pow(x, 1 / 2.4) - 0.055 : 12.92 * x));
       });
     }
 
@@ -196,18 +195,24 @@
     // slow. It ignores the galvo's jumps, so treat it as a comparison.
     // When a setting was measured more than once, the newest test wins (the
     // standard pattern re-runs settings from the earlier grids).
-    var newest = {};
+    // A test whose photo isn't a fair color reference (front matter
+    // `colors: false`) still gives the newest relief.
+    var newest = {}, relief = {};
     (data.cells || []).forEach(function (c) {
       if (c.status !== 'done') return;
-      var k = keyOf(c), seen = newest[k];
+      var k = keyOf(c), r = relief[k];
+      if (c.relief && (!r || (testOrder[c.test] || 0) >= (testOrder[r.test] || 0))) relief[k] = c;
+      if (!testColors[c.test]) return;
+      var seen = newest[k];
       if (!seen || (testOrder[c.test] || 0) >= (testOrder[seen.test] || 0)) newest[k] = c;
     });
     var settings = Object.keys(newest).map(function (k) { return newest[k]; }).filter(function (c) {
       return c.hex && c.color && c.color !== 'No mark' && c.finish !== 'Melted';
     }).map(function (c) {
       c.photoHex = c.hex;
+      if (relief[keyOf(c)]) c.relief = relief[keyOf(c)].relief;
       var raw = hexRgb(c.hex), slate = testSlate[c.test];
-      c.rgb = slate ? scaled(raw, lum(SURFACE) / lum(hexRgb(slate))) : raw;
+      c.rgb = slate ? balanced(raw, hexRgb(slate)) : raw;
       c.hex = rgbHex(c.rgb);
       c.lab = rgbLab(c.rgb);
       var rate = (parseFloat(c.speed) || 0) * (parseFloat(c.interval) || 0) / (parseFloat(c.passes) || 1);
@@ -696,13 +701,14 @@
       if (g.name === 'White' || g.name === 'Pale grey') g.shades.forEach(function (sh) { whites.push(sh.rep); });
     });
     whites.sort(function (a, b) { return b.lab[0] - a.lab[0]; });
-    // th is LightBurn's text height (H). Measured on run 2, H 1.6 mm burned
-    // letters whose em was about 1 mm, so the preview uses em = H × 0.63.
-    var P = { items: [], cols: 5, sq: 10, gap: 2, rowGap: 1, th: 3, field: parseFloat(data.lens) || 100, text: whites[0] || null };
-    var EM_PER_H = 0.63;
-    // v2: new defaults (bigger labels, the 15-color standard), so older
-    // saved patterns don't carry the small labels forward.
-    var STORE = 'rsow.laser.pattern.v2.' + (data.material || 'material');
+    // th is LightBurn's text height (H). Run 3 (one text shape per line,
+    // H 3) burned letters with a 2.95 mm em, so for a single line H is about
+    // the font size, and LightBurn centred each line on its point (Av="1").
+    var P = { items: [], cols: 5, sq: 10, gap: 2, rowGap: 1, th: 2.5, field: parseFloat(data.lens) || 100, text: whites[0] || null };
+    var EM_PER_H = 0.98, MIDLINE = 0.36;   // a line's middle sits 0.36 em above its baseline
+    // v3: recalibrated labels, so saved patterns don't carry the oversized
+    // ones forward.
+    var STORE = 'rsow.laser.pattern.v3.' + (data.material || 'material');
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) {}
     if (!saved) standardPattern();
@@ -917,13 +923,14 @@
         out += '    <Shape Type="Rect" CutIndex="' + i + '" W="' + num(P.sq) + '" H="' + num(P.sq) + '" Cr="0">\n' +
           '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.sy) + '</XForm>\n    </Shape>\n';
       });
-      // One single-line text shape per line. On run 2, Av="1" put the text's
-      // bottom at the XForm point, so each line is placed by its baseline.
+      // One single-line text shape per line, centred on its point (Av="1"),
+      // which run 3 showed is the line's middle, about 0.36 em above its
+      // baseline.
       if (P.text) Lo.cells.forEach(function (cell) {
         cell.lines.forEach(function (l, li) {
           out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,75,0,0,0,0,0" Str="' + xmlEsc(l) +
             '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Bold="1" Weld="1">\n' +
-            '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.base + li * Lo.pitch) + '</XForm>\n    </Shape>\n';
+            '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.base + li * Lo.pitch - MIDLINE * Lo.em) + '</XForm>\n    </Shape>\n';
         });
       });
       var notes = String(data.title || '') + ' test pattern from ' + (data.page || 'the laser materials library') + '\n' +
