@@ -424,28 +424,28 @@ standard-pattern-1,Sand,#d4caaa,Matte,Raised,,,36.7,67,100,80,0.1,1,100,done,,,5
 standard-pattern-1,Sand,#d0c4a0,Matte,Raised,,,30,40,100,80,0.1,1,100,done,,,5,3
 standard-pattern-1,Sand,#c7b995,Matte,Raised,,,40,40,100,88.89,0.1,1,100,done,,,5,4
 standard-pattern-1,Sand,#d1c29d,Matte,Raised,,,36.7,40,100,80,0.1,1,100,done,,,5,5
-standard-pattern-2,White,#dcdad6,Matte,,,,5,400,70,350,0.02,1,100,done,,,1,1
-standard-pattern-2,White,#dddbd5,Matte,,,,5,400,70,350,0.01,1,100,done,,,1,2
-standard-pattern-2,Cream,#e1d9c4,Matte,,,,40,40,50,50,0.1,1,100,done,,,1,3
-standard-pattern-2,Cream,#e4dbbc,Matte,,,,40,40,50,88.89,0.1,1,100,done,,,1,4
-standard-pattern-2,Sand,#e4d8b5,Matte,,,,40,40,30,166.67,0.1,1,100,done,,,1,5
-standard-pattern-2,White,#d7d4cc,Matte,,,,20,160,100,80,0.1,1,100,done,,,2,1
-standard-pattern-2,Pale grey,#cec9c1,Matte,,,,12,400,70,350,0.05,1,100,done,,,2,2
-standard-pattern-2,Cream,#dcd4bd,Matte,,,,26.7,80,100,80,0.1,1,100,done,,,2,3
-standard-pattern-2,Cream,#dbd0b3,Matte,,,,50,40,20,200,0.1,1,100,done,,,2,4
-standard-pattern-2,Sand,#d4c49e,Matte,,,,40,40,70,88.89,0.1,1,100,done,,,2,5
-standard-pattern-2,Pale grey,#cdcdca,Matte,,,,10,120,100,80,0.1,1,100,done,,,3,1
-standard-pattern-2,Pale grey,#afafac,Matte,,,,8,400,70,350,0.1,1,100,done,,,3,2
-standard-pattern-2,Cream,#c7bda8,Matte,,,,90,76,20,200,0.1,1,100,done,,,3,3
-standard-pattern-2,Sand,#cfc19d,Matte,,,,30,53,100,80,0.1,1,100,done,,,3,4
-standard-pattern-2,Tan,#b8a47e,Matte,,,,40,40,90,88.89,0.1,1,100,done,,,3,5
-standard-pattern-2,Pale grey,#b8b5ab,Matte,,,,50,76,20,200,0.1,1,100,done,,,4,1
-standard-pattern-2,Pale grey,#afafad,Matte,,,,80,200,20,200,0.1,1,100,done,,,4,2
-standard-pattern-2,Warm grey,#bab19f,Matte,,,,100,93,20,200,0.1,1,100,done,,,4,3
-standard-pattern-2,Warm grey,#bcb3a1,Matte,,,,50,58,20,200,0.1,1,100,done,,,4,4
-standard-pattern-2,Tan,#ac9774,Matte,,,,40,40,100,88.89,0.1,1,100,done,,,4,5
-standard-pattern-2,Pale grey,#a7aeb4,Matte,,,,4,400,70,350,0.1,1,100,done,,,5,1
-standard-pattern-2,Pale grey,#a9acae,Matte,,,,10,76,20,200,0.1,1,100,done,,,5,2
-standard-pattern-2,Pale grey,#beb8b1,Matte,,,,80,129,20,200,0.1,1,100,done,,,5,3
-standard-pattern-2,Pale grey,#b8b0a7,Matte,,,,100,129,20,200,0.1,1,100,done,,,5,4
-standard-pattern-2,Cream,#dbcdb1,Matte,,,,100,58,20,200,0.1,1,100,done,,,5,5
+standard-pattern-2,White,#dcdad6,Matte,Flat,,,5,400,70,350,0.02,1,100,done,,,1,1
+standard-pattern-2,White,#dddbd5,Matte,Flat,,,5,400,70,350,0.01,1,100,done,,,1,2
+standard-pattern-2,Cream,#e1d9c4,Matte,Flat,,,40,40,50,50,0.1,1,100,done,,,1,3
+standard-pattern-2,Cream,#e4dbbc,Matte,Flat,,,40,40,50,88.89,0.1,1,100,done,,,1,4
+standard-pattern-2,Sand,#e4d8b5,Matte,Flat,,,40,40,30,166.67,0.1,1,100,done,,,1,5
+standard-pattern-2,White,#d7d4cc,Matte,Flat,,,20,160,100,80,0.1,1,100,done,,,2,1
+standard-pattern-2,Pale grey,#cec9c1,Matte,Flat,,,12,400,70,350,0.05,1,100,done,,,2,2
+standard-pattern-2,Cream,#dcd4bd,Matte,Flat,,,26.7,80,100,80,0.1,1,100,done,,,2,3
+standard-pattern-2,Cream,#dbd0b3,Matte,Flat,,,50,40,20,200,0.1,1,100,done,,,2,4
+standard-pattern-2,Sand,#d4c49e,Matte,Raised,,,40,40,70,88.89,0.1,1,100,done,,,2,5
+standard-pattern-2,Pale grey,#cdcdca,Matte,Flat,,,10,120,100,80,0.1,1,100,done,,,3,1
+standard-pattern-2,Pale grey,#afafac,Matte,Flat,,,8,400,70,350,0.1,1,100,done,,,3,2
+standard-pattern-2,Cream,#c7bda8,Matte,Flat,,,90,76,20,200,0.1,1,100,done,,,3,3
+standard-pattern-2,Sand,#cfc19d,Matte,Raised,,,30,53,100,80,0.1,1,100,done,,,3,4
+standard-pattern-2,Tan,#b8a47e,Matte,Raised,,,40,40,90,88.89,0.1,1,100,done,,,3,5
+standard-pattern-2,Pale grey,#b8b5ab,Matte,Flat,,,50,76,20,200,0.1,1,100,done,,,4,1
+standard-pattern-2,Pale grey,#afafad,Matte,Flat,,,80,200,20,200,0.1,1,100,done,,,4,2
+standard-pattern-2,Warm grey,#bab19f,Matte,Flat,,,100,93,20,200,0.1,1,100,done,,,4,3
+standard-pattern-2,Warm grey,#bcb3a1,Matte,Flat,,,50,58,20,200,0.1,1,100,done,,,4,4
+standard-pattern-2,Tan,#ac9774,Matte,Raised,,,40,40,100,88.89,0.1,1,100,done,,,4,5
+standard-pattern-2,Pale grey,#a7aeb4,Matte,Flat,,,4,400,70,350,0.1,1,100,done,,,5,1
+standard-pattern-2,Pale grey,#a9acae,Matte,Flat,,,10,76,20,200,0.1,1,100,done,,,5,2
+standard-pattern-2,Pale grey,#beb8b1,Matte,Flat,,,80,129,20,200,0.1,1,100,done,,,5,3
+standard-pattern-2,Pale grey,#b8b0a7,Matte,Flat,,,100,129,20,200,0.1,1,100,done,,,5,4
+standard-pattern-2,Cream,#dbcdb1,Matte,Flat,,,100,58,20,200,0.1,1,100,done,,,5,5

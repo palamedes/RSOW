@@ -644,10 +644,13 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     &.is-raised::before { content: "▲"; position: absolute; left: 3px; bottom: 2px; font-size: 0.6rem; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
     &[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 0 2px #fff, 0 0 0 4px $lzr-gold-d; }
   }
+  // the validated chart: 5 across, the same rows as the designer and the
+  // standard pattern (3 rows for 15)
   .lzr-validated {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 0.8rem;
+    @media (max-width: 640px) { gap: 0.4rem; li { font-size: 0.68rem; } }
     list-style: none;
     padding: 0;
     margin: 1rem 0 0;

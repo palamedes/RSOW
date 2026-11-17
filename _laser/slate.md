@@ -40,26 +40,28 @@ groups:
   - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
   - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
 # Validated colors: settings proven on this machine, in chart order (lightest
-# row first, each row neutral to warm), as power|speed|frequency|q_pulse|
-# interval|passes. They're the designer's main palette and get a ✓ here.
+# row first, each row neutral to warm). key is power|speed|frequency|q_pulse|
+# interval|passes; name is the color's own name (unique, unlike the broad
+# families in the tab's color column). They're the designer's main palette
+# and get a ✓ here.
 # The user approved run 2 of the standard pattern v2 and chose these 15 of its
 # 25 as the default set (2026-11-17).
 validated:
-  - "10|120|100|80|0.1|1"
-  - "5|400|70|350|0.02|1"
-  - "40|40|50|50|0.1|1"
-  - "40|40|50|88.89|0.1|1"
-  - "40|40|30|166.67|0.1|1"
-  - "50|76|20|200|0.1|1"
-  - "100|129|20|200|0.1|1"
-  - "90|76|20|200|0.1|1"
-  - "30|53|100|80|0.1|1"
-  - "40|40|70|88.89|0.1|1"
-  - "80|200|20|200|0.1|1"
-  - "10|76|20|200|0.1|1"
-  - "4|400|70|350|0.1|1"
-  - "40|40|100|88.89|0.1|1"
-  - "40|40|90|88.89|0.1|1"
+  - { key: "10|120|100|80|0.1|1", name: "Frost" }
+  - { key: "5|400|70|350|0.02|1", name: "Chalk" }
+  - { key: "40|40|50|50|0.1|1", name: "Ivory" }
+  - { key: "40|40|50|88.89|0.1|1", name: "Butter" }
+  - { key: "40|40|30|166.67|0.1|1", name: "Straw" }
+  - { key: "50|76|20|200|0.1|1", name: "Pebble" }
+  - { key: "100|129|20|200|0.1|1", name: "Taupe" }
+  - { key: "90|76|20|200|0.1|1", name: "Oatmeal" }
+  - { key: "30|53|100|80|0.1|1", name: "Wheat" }
+  - { key: "40|40|70|88.89|0.1|1", name: "Honey" }
+  - { key: "80|200|20|200|0.1|1", name: "Ash" }
+  - { key: "10|76|20|200|0.1|1", name: "Smoke" }
+  - { key: "4|400|70|350|0.1|1", name: "Steel" }
+  - { key: "40|40|100|88.89|0.1|1", name: "Antique Gold" }
+  - { key: "40|40|90|88.89|0.1|1", name: "Gold" }
 # The designer's standard test pattern, v3 (2026-11-17): the 15 validated
 # colors, row by row as power|speed|frequency|q_pulse|interval|passes, laid
 # out as a chart (lightest row first, each row neutral to warm).
@@ -188,5 +190,6 @@ tests:
       - "The standard pattern v2: run 1's distinct colors plus settings from earlier grids that fill its gaps, laid out as a chart. **All 25 are now validated colors.**"
       - "The new settings came out close to their predictions at the light end (the whites and pale yellows). The greys along the bottom came out much lighter than run 1 suggested: 100% at 129 mm/s was dark grey-brown on run 1 and light grey here, so results vary from tile to tile, most at the dark end."
       - "Some pairs came out nearly identical this time, such as the two whites at 5% 400 mm/s (0.01 and 0.02 mm) and 8% 400 vs 80% 200 mm/s. The next version of the pattern can swap one of each pair."
+      - "**Four came out raised** (▲), all 88.89 ns or 80 ns golds at 40 mm/s or slower: 40% with 70, 90 and 100 kHz at 88.89 ns, and 30% at 53 mm/s with 80 ns. The other 21 are flat."
       - "The 1.6 mm bold labels are readable."
 ---

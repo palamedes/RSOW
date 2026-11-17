@@ -222,8 +222,14 @@
     // Validated settings (front matter `validated`), flagged before the
     // shades are built so a validated setting can stand for its shade.
     var VALID = {};
-    (data.validated || []).forEach(function (k, i) { VALID[keyFix(k)] = i + 1; });
-    settings.forEach(function (c) { c.validated = VALID[keyOf(c)] || 0; });
+    var VNAME = {};
+    (data.validated || []).forEach(function (v, i) {
+      var k = keyFix(typeof v === 'string' ? v : v.key);
+      VALID[k] = i + 1;
+      if (v && v.name) VNAME[k] = v.name;
+    });
+    // c.name: a validated color's own name, else its broad color family
+    settings.forEach(function (c) { c.validated = VALID[keyOf(c)] || 0; c.name = VNAME[keyOf(c)] || ''; });
 
     // At most seven colors, light to dark: the material's `groups`, each
     // combining palette colors that look alike. Inside a color, settings
@@ -370,8 +376,8 @@
         p.innerHTML = '<strong>Bare ' + esc(String(data.title || '').toLowerCase()) + '</strong>: no laser. Click an area to clear it.';
         return p;
       }
-      p.innerHTML = (a.validated ? '<span class="lzr-ok">✓ Validated</span> ' : '') + '<strong>' + esc(a.group) + '</strong>' +
-        (a.color !== a.group ? ' · ' + esc(a.color) : '') + (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') +
+      p.innerHTML = (a.validated ? '<span class="lzr-ok">✓ Validated</span> ' : '') + '<strong>' + esc(a.name || a.group) + '</strong>' +
+        (a.name ? ' · ' + esc(a.group) : (a.color !== a.group ? ' · ' + esc(a.color) : '')) + (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') +
         (a.relief ? ', ' + esc(a.relief.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
         '<br>' + esc(a.label) + '<br><span class="lzr-note">From ' + esc(a.from) + (a.notes ? '. ' + esc(a.notes) : '') + '</span>';
       return p;
@@ -391,8 +397,8 @@
           vb.style.setProperty('--sw', c.hex);
           var on = S.mode === 'pattern' ? P.items.indexOf(c) >= 0 : c === S.active;
           vb.setAttribute('aria-pressed', on ? 'true' : 'false');
-          vb.title = c.group + ' · ' + c.label + ' (' + secsText(c.secs) + ')';
-          vb.setAttribute('aria-label', c.group + ': ' + c.label);
+          vb.title = (c.name || c.group) + ' · ' + c.label + ' (' + secsText(c.secs) + ')';
+          vb.setAttribute('aria-label', (c.name || c.group) + ': ' + c.label);
           vg.appendChild(vb);
         });
         var bare = document.createElement('button');
@@ -433,7 +439,7 @@
         var sw = swatch(c.hex); if (c.finish === 'Satin') sw.classList.add('is-satin');
         b.appendChild(sw);
         var t = document.createElement('span'); t.className = 'lzr-shade-set';
-        t.textContent = (c.validated ? '✓ ' : '') + c.short + (c.relief === 'Raised' ? ' · raised' : '') + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
+        t.textContent = (c.validated ? '✓ ' + c.name + ' · ' : '') + c.short + (c.relief === 'Raised' ? ' · raised' : '') + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
         b.appendChild(t);
         var tm = document.createElement('span'); tm.className = 'lzr-shade-time'; tm.textContent = secsText(c.secs);
         b.appendChild(tm);
@@ -665,7 +671,7 @@
       function pct(n) { var v = n / total * 100; return (v < 0.1 && v > 0 ? '<0.1' : v.toFixed(1)) + '%'; }
       used.forEach(function (u) {
         var s = u.s, tr = document.createElement('tr');
-        tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.group || s.color) + (s.group && s.group !== s.color ? ' <span class="lzr-note">(' + esc(s.color) + ')</span>' : '') + '</td>' +
+        tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.name || s.group || s.color) + (s.name ? ' <span class="lzr-note">(' + esc(s.group) + ')</span>' : (s.group && s.group !== s.color ? ' <span class="lzr-note">(' + esc(s.color) + ')</span>' : '')) + '</td>' +
           '<td>' + esc(s.finish || '') + (s.relief === 'Raised' ? ', raised' : '') + '</td><td>' + esc(s.power) + '%</td><td>' + esc(s.speed) + ' mm/s</td>' +
           '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.interval) + ' mm</td><td>' + esc(s.passes) + '</td><td>' + secsText(s.secs) + '</td>' +
           '<td>' + esc(s.from) + '</td><td>' + pct(u.area) + '</td>';
@@ -716,7 +722,7 @@
     var textSel = root.querySelector('[data-pat="text"]');
     whites.forEach(function (c) {
       var o = document.createElement('option');
-      o.value = keyOf(c); o.textContent = c.group + ' · ' + c.short + ' (' + secsText(c.secs) + ')';
+      o.value = keyOf(c); o.textContent = (c.name || c.group) + ' · ' + c.short + ' (' + secsText(c.secs) + ')';
       textSel.appendChild(o);
     });
     if (P.text) textSel.value = keyOf(P.text);
@@ -784,7 +790,7 @@
       P.items.forEach(function (c, i) {
         var li = document.createElement('li');
         li.appendChild(swatch(c.hex));
-        var t = document.createElement('span'); t.textContent = c.group + ' · ' + c.label + (c.relief === 'Raised' ? ' · raised' : '');
+        var t = document.createElement('span'); t.textContent = (c.name || c.group) + ' · ' + c.label + (c.relief === 'Raised' ? ' · raised' : '');
         li.appendChild(t);
         var x = document.createElement('button');
         x.type = 'button'; x.className = 'lzr-textbtn'; x.dataset.act = 'pat-remove'; x.dataset.i = i;
@@ -904,7 +910,7 @@
         '<LightBurnProject AppVersion="1.6.00" FormatVersion="1" MaterialHeight="0" MirrorX="False" MirrorY="False">\n';
       Lo.cells.forEach(function (cell, i) {
         var c = cell.c;
-        out += cutSetting(i, c.group + ' ' + c.power + '% ' + c.speed, c, 0);
+        out += cutSetting(i, c.name ? c.name : c.group + ' ' + c.power + '% ' + c.speed, c, 0);
       });
       if (P.text) out += cutSetting(n, 'Labels', P.text, 1);
       Lo.cells.forEach(function (cell, i) {
