@@ -276,7 +276,29 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     white-space: nowrap;
   }
   .lzr-table tr.is-avoid td { background: #fdf3f1; }
-  .lzr-cell.is-favorite { position: relative; }
+  .lzr-cell.is-favorite, .lzr-cell.is-raised { position: relative; }
+  // Raised: the surface lifted (embossed) instead of just marking
+  .lzr-cell.is-raised::before {
+    content: "▲";
+    position: absolute;
+    left: 2px;
+    bottom: 1px;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  }
+  .lzr-cell-key.is-raised { position: relative; --sw: #c9bc98; }
+  .lzr-cell-key.is-raised::before {
+    content: "▲";
+    position: absolute;
+    left: 1px;
+    bottom: 0;
+    font-size: 0.55rem;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  }
   .lzr-cell.is-favorite::after {
     content: "★";
     position: absolute;

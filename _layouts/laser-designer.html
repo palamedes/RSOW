@@ -123,8 +123,6 @@ full_width: true
   </section>
 
 </div>
-{%- assign tests = "" | split: "" -%}
-{%- for t in m.tests %}{% assign tests = tests | push: t.id | push: t.title %}{% endfor %}
 <script type="application/json" id="lzr-designer-data">
 {
   "material": {{ page.material | jsonify }},
@@ -136,7 +134,7 @@ full_width: true
   "palette": {{ m.palette | jsonify }},
   "groups": {{ m.groups | jsonify }},
   "pattern": {{ m.pattern | jsonify }},
-  "tests": {{ tests | jsonify }},
+  "tests": {{ m.tests | jsonify }},
   "cells": {{ sheet | jsonify }}
 }
 </script>

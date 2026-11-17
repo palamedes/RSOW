@@ -60,7 +60,7 @@ full_width: true
                 {%- assign t = page.tests | where: "id", r.test | first %}
                 <tr{% if r.finish == "Melted" %} class="is-avoid"{% endif %}>
                   <td><span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span><a href="#{{ r.test }}">{{ t.title | default: r.test }}</a>{% if r.favorite == "Yes" %} <span class="lzr-fav" title="Favorite">★<span class="lzr-vh"> Favorite</span></span>{% endif %}</td>
-                  <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{% if r.finish == "Melted" %}<span class="lzr-avoid">Melted: damages slate</span>{% else %}{{ r.finish }}{% endif %}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td>
+                  <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{% if r.finish == "Melted" %}<span class="lzr-avoid">Melted: damages slate</span>{% else %}{{ r.finish }}{% if r.relief == "Raised" %}, raised{% endif %}{% endif %}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td>
                 </tr>
               {%- endfor %}
               </tbody>
@@ -89,7 +89,7 @@ full_width: true
       <div class="lzr-test-body">
         <figure class="lzr-grid-fig">
           <table class="lzr-grid">
-            <caption>{{ t.y.label }} ({{ t.y.unit }}) down, {{ t.x.label | downcase }} ({{ t.x.unit }}) across, laid out like the tile</caption>
+            <caption>{% if t.kind == "pattern" %}Laid out like the tile; each square's settings are in its tooltip and in the tab below{% else %}{{ t.y.label }} ({{ t.y.unit }}) down, {{ t.x.label | downcase }} ({{ t.x.unit }}) across, laid out like the tile{% endif %}</caption>
             <thead>
               <tr>
                 <td class="lzr-corner"><span class="lzr-vh">{{ t.y.label }} by {{ t.x.label }}</span></td>
@@ -106,14 +106,15 @@ full_width: true
                 {%- for x in t.x.values %}
                   {%- assign c = yrows | where: t.x.key, x | first %}
                   {%- assign where_txt = t.x.label | append: " " | append: x | append: xsep | append: t.x.unit | append: ", " | append: ylab | append: " " | append: y | append: ysep | append: t.y.unit %}
+                  {%- if t.kind == "pattern" and c %}{% assign where_txt = c.power | append: "% · " | append: c.speed | append: " mm/s · " | append: c.frequency | append: " kHz · " | append: c.q_pulse | append: " ns · " | append: c.interval | append: " mm" %}{% endif %}
                   {%- if c == nil or c.status == "not run" %}
                 <td class="lzr-cell is-unrun" title="Not run · {{ where_txt }}"><span class="lzr-vh">Not run</span></td>
                   {%- else %}
                     {%- assign fin = c.finish | downcase %}
                     {%- if fin == "melted" %}{% assign fin_txt = "melted (damages slate)" %}{% else %}{% assign fin_txt = fin %}{% endif %}
                     {%- assign chex = c.hex | default: "" %}
-                    {%- capture extra %}{% if c.quality %}, quality {{ c.quality }}/10{% endif %}{% if c.favorite == "Yes" %}, favorite{% endif %}{% endcapture %}
-                <td class="lzr-cell{% if chex == "" %} is-blank{% endif %}{% if fin != '' and fin != 'matte' %} is-{{ fin }}{% endif %}{% if c.favorite == "Yes" %} is-favorite{% endif %}" data-color="{{ c.color }}"{% if chex != "" %} style="--sw: {{ chex }}"{% endif %} title="{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }} · {{ where_txt }}"><span class="lzr-vh">{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }}</span></td>
+                    {%- capture extra %}{% if c.relief == "Raised" %}, raised{% elsif c.relief == "Flat" %}, flat{% endif %}{% if c.quality %}, quality {{ c.quality }}/10{% endif %}{% if c.favorite == "Yes" %}, favorite{% endif %}{% endcapture %}
+                <td class="lzr-cell{% if chex == "" %} is-blank{% endif %}{% if fin != '' and fin != 'matte' %} is-{{ fin }}{% endif %}{% if c.favorite == "Yes" %} is-favorite{% endif %}{% if c.relief == "Raised" %} is-raised{% endif %}" data-color="{{ c.color }}"{% if chex != "" %} style="--sw: {{ chex }}"{% endif %} title="{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }} · {{ where_txt }}"><span class="lzr-vh">{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }}</span></td>
                   {%- endif %}
                 {%- endfor %}
               </tr>
@@ -123,6 +124,10 @@ full_width: true
           <figcaption>
             <span class="lzr-key"><span class="lzr-cell-key is-satin" aria-hidden="true"></span>Satin: slight gloss, the limit</span>
             <span class="lzr-key"><span class="lzr-cell-key is-melted" aria-hidden="true"></span>Melted: raised or bubbled, damages slate</span>
+            {%- assign t_raised = trows | where: "relief", "Raised" %}
+            {%- if t_raised.size > 0 %}
+            <span class="lzr-key"><span class="lzr-cell-key is-raised" aria-hidden="true"></span>Raised</span>
+            {%- endif %}
             {%- assign t_unrun = trows | where: "status", "not run" %}
             {%- if t_unrun.size > 0 %}
             <span class="lzr-key"><span class="lzr-cell-key is-unrun" aria-hidden="true"></span>Not run</span>
@@ -153,14 +158,14 @@ full_width: true
         <summary>Show all {{ sheet | size }} rows</summary>
         <div class="lzr-scroll">
         <table class="lzr-table">
-          <thead><tr><th scope="col">Test</th><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Quality</th><th scope="col">Favorite</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Passes</th><th scope="col">Lens</th><th scope="col">Safety</th><th scope="col">Notes</th></tr></thead>
+          <thead><tr><th scope="col">Test</th><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Relief</th><th scope="col">Quality</th><th scope="col">Favorite</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Passes</th><th scope="col">Lens</th><th scope="col">Safety</th><th scope="col">Notes</th></tr></thead>
           <tbody>
           {%- for r in sheet %}
             {%- assign rhex = r.hex | default: "" %}{%- assign rcolor = r.color | default: "" %}
             <tr{% if r.status == "not run" %} class="is-unrun"{% elsif r.finish == "Melted" %} class="is-avoid"{% endif %}>
               <td>{{ r.test }}</td>
               <td>{% if rcolor != "" %}<span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span>{{ r.color }}{% if rhex != "" %} <code>{{ rhex }}</code>{% endif %}{% else %}—{% endif %}</td>
-              <td>{{ r.finish | default: "—" }}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td><td>{% if r.favorite == "Yes" %}★ Yes{% else %}—{% endif %}</td>
+              <td>{{ r.finish | default: "—" }}</td><td>{{ r.relief | default: "—" }}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td><td>{% if r.favorite == "Yes" %}★ Yes{% else %}—{% endif %}</td>
               <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{{ r.passes }}</td><td>{% if r.lens %}{{ r.lens }} mm{% else %}—{% endif %}</td>
               <td>{{ r.safety }}</td><td>{{ r.notes }}</td>
             </tr>

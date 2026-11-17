@@ -170,17 +170,45 @@
     function role(r) { return root.querySelector('[data-role="' + r + '"]'); }
 
     var SURFACE = hexRgb(data.surface);
-    var testTitle = {};
-    for (var ti = 0; ti + 1 < (data.tests || []).length; ti += 2) testTitle[data.tests[ti]] = data.tests[ti + 1];
+    // A setting's identity, whichever test measured it.
+    function keyOf(c) { return [c.power, c.speed, c.frequency, c.q_pulse, c.interval, c.passes].join('|'); }
+    // Saved patterns from before kept the test's id in front.
+    function keyFix(k) { var p = String(k).split('|'); return p.length === 7 ? p.slice(1).join('|') : String(k); }
+    var testTitle = {}, testSlate = {}, testOrder = {};
+    (data.tests || []).forEach(function (t, i) { testTitle[t.id] = t.title; testSlate[t.id] = t.slate; testOrder[t.id] = i; });
+    // Each photo was exposed differently. Scaling a photo so its bare slate
+    // matches the designer's surface puts every test on the same footing.
+    function lum(c) {
+      var l = c.map(function (v) { v /= 255; return v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92; });
+      return 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+    }
+    function scaled(c, g) {
+      return c.map(function (v) {
+        v /= 255; v = v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92;
+        v = Math.min(1, v * g);
+        return Math.round(255 * (v > 0.0031308 ? 1.055 * Math.pow(v, 1 / 2.4) - 0.055 : 12.92 * v));
+      });
+    }
 
     // Usable settings: ran, have a color and swatch, and don't melt the material.
     // secs is the time to cover one square centimetre: 100 mm² ÷ (speed ×
     // line interval ÷ passes). A fine interval at a high speed can still be
     // slow. It ignores the galvo's jumps, so treat it as a comparison.
-    var settings = (data.cells || []).filter(function (c) {
-      return c.status === 'done' && c.hex && c.color && c.color !== 'No mark' && c.finish !== 'Melted';
+    // When a setting was measured more than once, the newest test wins (the
+    // standard pattern re-runs settings from the earlier grids).
+    var newest = {};
+    (data.cells || []).forEach(function (c) {
+      if (c.status !== 'done') return;
+      var k = keyOf(c), seen = newest[k];
+      if (!seen || (testOrder[c.test] || 0) >= (testOrder[seen.test] || 0)) newest[k] = c;
+    });
+    var settings = Object.keys(newest).map(function (k) { return newest[k]; }).filter(function (c) {
+      return c.hex && c.color && c.color !== 'No mark' && c.finish !== 'Melted';
     }).map(function (c) {
-      c.rgb = hexRgb(c.hex);
+      c.photoHex = c.hex;
+      var raw = hexRgb(c.hex), slate = testSlate[c.test];
+      c.rgb = slate ? scaled(raw, lum(SURFACE) / lum(hexRgb(slate))) : raw;
+      c.hex = rgbHex(c.rgb);
       c.lab = rgbLab(c.rgb);
       var rate = (parseFloat(c.speed) || 0) * (parseFloat(c.interval) || 0) / (parseFloat(c.passes) || 1);
       c.secs = rate > 0 ? 100 / rate : Infinity;
@@ -329,7 +357,7 @@
         var sw = swatch(c.hex); if (c.finish === 'Satin') sw.classList.add('is-satin');
         b.appendChild(sw);
         var t = document.createElement('span'); t.className = 'lzr-shade-set';
-        t.textContent = c.short + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
+        t.textContent = c.short + (c.relief === 'Raised' ? ' · raised' : '') + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
         b.appendChild(t);
         var tm = document.createElement('span'); tm.className = 'lzr-shade-time'; tm.textContent = secsText(c.secs);
         b.appendChild(tm);
@@ -343,7 +371,7 @@
       }
       var a = S.active, p = document.createElement('p'); p.className = 'lzr-active';
       p.innerHTML = '<strong>' + esc(a.group) + '</strong>' + (a.color !== a.group ? ' · ' + esc(a.color) : '') +
-        (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
+        (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') + (a.relief ? ', ' + esc(a.relief.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
         '<br>' + esc(a.label) + '<br><span class="lzr-note">From ' + esc(a.from) + (a.notes ? '. ' + esc(a.notes) : '') + '</span>';
       pick.appendChild(p);
     }
@@ -566,7 +594,7 @@
       used.forEach(function (u) {
         var s = u.s, tr = document.createElement('tr');
         tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.group || s.color) + (s.group && s.group !== s.color ? ' <span class="lzr-note">(' + esc(s.color) + ')</span>' : '') + '</td>' +
-          '<td>' + esc(s.finish || '') + '</td><td>' + esc(s.power) + '%</td><td>' + esc(s.speed) + ' mm/s</td>' +
+          '<td>' + esc(s.finish || '') + (s.relief === 'Raised' ? ', raised' : '') + '</td><td>' + esc(s.power) + '%</td><td>' + esc(s.speed) + ' mm/s</td>' +
           '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.interval) + ' mm</td><td>' + esc(s.passes) + '</td><td>' + secsText(s.secs) + '</td>' +
           '<td>' + esc(s.from) + '</td><td>' + pct(u.area) + '</td>';
         planBody.appendChild(tr);
@@ -583,7 +611,6 @@
     // LightBurn project (.lbrn2): one layer per square plus one for the
     // labels. LightBurn has 30 layers, so a pattern holds 29 shades.
     var MAX_SWATCHES = 29;
-    var keyOf = function (c) { return [c.test, c.power, c.speed, c.frequency, c.q_pulse, c.interval, c.passes].join('|'); };
     var byKey = {};
     settings.forEach(function (c) { byKey[keyOf(c)] = c; });
     var whites = [];
@@ -591,7 +618,7 @@
       if (g.name === 'White' || g.name === 'Pale grey') g.shades.forEach(function (sh) { whites.push(sh.rep); });
     });
     whites.sort(function (a, b) { return b.lab[0] - a.lab[0]; });
-    var P = { items: [], cols: 6, sq: 8, gap: 3, th: 1.2, field: parseFloat(data.lens) || 100, text: whites[0] || null };
+    var P = { items: [], cols: 5, sq: 8, gap: 2.5, th: 1.6, field: parseFloat(data.lens) || 100, text: whites[0] || null };
     var STORE = 'rsow.laser.pattern.' + (data.material || 'material');
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) {}
@@ -599,8 +626,8 @@
     try {
       if (saved) {
         ['cols', 'sq', 'gap', 'th', 'field'].forEach(function (k) { if (+saved[k] > 0) P[k] = +saved[k]; });
-        P.items = (saved.items || []).map(function (k) { return byKey[k]; }).filter(Boolean).slice(0, MAX_SWATCHES);
-        if (saved.text && byKey[saved.text]) P.text = byKey[saved.text];
+        P.items = (saved.items || []).map(function (k) { return byKey[keyFix(k)]; }).filter(Boolean).slice(0, MAX_SWATCHES);
+        if (saved.text && byKey[keyFix(saved.text)]) P.text = byKey[keyFix(saved.text)];
       }
     } catch (e) {}
     function savePattern() {
@@ -661,7 +688,7 @@
     function standardPattern() {
       var d = data.pattern || {};
       if (+d.cols > 0) P.cols = +d.cols;
-      P.items = (d.cells || []).map(function (k) { return byKey[k]; }).filter(Boolean).slice(0, MAX_SWATCHES);
+      P.items = (d.cells || []).map(function (k) { return byKey[keyFix(k)]; }).filter(Boolean).slice(0, MAX_SWATCHES);
     }
     function patternChanged() {
       savePattern();
@@ -676,7 +703,7 @@
       P.items.forEach(function (c, i) {
         var li = document.createElement('li');
         li.appendChild(swatch(c.hex));
-        var t = document.createElement('span'); t.textContent = c.group + ' · ' + c.label;
+        var t = document.createElement('span'); t.textContent = c.group + ' · ' + c.label + (c.relief === 'Raised' ? ' · raised' : '');
         li.appendChild(t);
         var x = document.createElement('button');
         x.type = 'button'; x.className = 'lzr-textbtn'; x.dataset.act = 'pat-remove'; x.dataset.i = i;
@@ -686,28 +713,31 @@
       });
     }
 
+    // Three short lines: power and speed (mm/s), frequency and Q-pulse,
+    // line interval (and passes). Short lines let the text be large.
     function labelLines(c) {
-      return [c.power + '% ' + c.speed + 'mm/s',
-        c.frequency + 'k ' + c.q_pulse + 'ns ' + c.interval + (c.passes && c.passes !== '1' ? ' x' + c.passes : '')];
+      return [c.power + '% ' + c.speed, c.frequency + 'k ' + c.q_pulse + 'ns',
+        c.interval + 'mm' + (c.passes && c.passes !== '1' ? ' x' + c.passes : '')];
     }
     // Layout in millimetres, y down from the top-left corner. LightBurn's
     // text height is about a capital's height; an em is about 1.4 of it.
     var measure = document.createElement('canvas').getContext('2d');
-    var FONT = 'Arial, Helvetica, sans-serif';
+    var FONT = 'bold {size}px Arial, Helvetica, sans-serif';
+    function font(px) { return FONT.replace('{size}', px); }
     function patternLayout() {
       var em = P.th * 1.4, lineH = em * 1.15, pad = Math.max(0.5, P.th * 0.5), margin = 2;
-      measure.font = '100px ' + FONT;
+      measure.font = font(100);
       var labelW = 0;
       P.items.forEach(function (c) {
         labelLines(c).forEach(function (l) { labelW = Math.max(labelW, measure.measureText(l).width / 100 * em); });
       });
       var cols = Math.max(1, Math.min(P.cols, P.items.length)), rows = Math.ceil(P.items.length / cols);
-      var cellW = Math.max(P.sq, labelW), cellH = P.sq + pad + 2 * lineH;
+      var cellW = Math.max(P.sq, labelW), cellH = P.sq + pad + 3 * lineH;
       var W = cols * cellW + (cols - 1) * P.gap + 2 * margin, H = rows * cellH + (rows - 1) * P.gap + 2 * margin;
       var cells = P.items.map(function (c, i) {
         var col = i % cols, row = Math.floor(i / cols);
         var cx = margin + col * (cellW + P.gap) + cellW / 2, top = margin + row * (cellH + P.gap);
-        return { c: c, cx: cx, sy: top + P.sq / 2, ly: top + P.sq + pad + lineH, lines: labelLines(c) };
+        return { c: c, cx: cx, sy: top + P.sq / 2, ly: top + P.sq + pad + 1.5 * lineH, lines: labelLines(c) };
       });
       return { W: W, H: H, em: em, lineH: lineH, cells: cells };
     }
@@ -734,9 +764,9 @@
       var tx = tc.getContext('2d', { willReadFrequently: true });
       tx.fillStyle = '#fff'; tx.fillRect(0, 0, w, h);
       tx.fillStyle = '#000'; tx.textAlign = 'center'; tx.textBaseline = 'middle';
-      tx.font = (Lo.em * k) + 'px ' + FONT;
+      tx.font = font(Lo.em * k);
       Lo.cells.forEach(function (cell) {
-        cell.lines.forEach(function (l, i) { tx.fillText(l, cell.cx * k, (cell.ly + (i - 0.5) * Lo.lineH) * k); });
+        cell.lines.forEach(function (l, i) { tx.fillText(l, cell.cx * k, (cell.ly + (i - 1) * Lo.lineH) * k); });
       });
       var td = tx.getImageData(0, 0, w, h).data, tid = regions.length, tarea = 0;
       for (var i = 0, j = 0; i < w * h; i++, j += 4) if (td[j] < 128 && labels[i] === 0) { labels[i] = tid; tarea++; }
@@ -797,8 +827,8 @@
           '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.sy) + '</XForm>\n    </Shape>\n';
       });
       if (P.text) Lo.cells.forEach(function (cell) {
-        out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,50,0,0,0,0,0" Str="' + xmlEsc(cell.lines.join('\n')) +
-          '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Weld="1">\n' +
+        out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,75,0,0,0,0,0" Str="' + xmlEsc(cell.lines.join('\n')) +
+          '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Bold="1" Weld="1">\n' +
           '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.ly) + '</XForm>\n    </Shape>\n';
       });
       var notes = String(data.title || '') + ' test pattern from ' + (data.page || 'the laser materials library') + '\n' +

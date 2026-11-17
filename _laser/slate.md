@@ -40,37 +40,39 @@ groups:
   - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
   - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
 # The designer's standard test pattern (the user's 5 × 5, 2026-11-17), row
-# by row. Each is a row of the tab: test|power|speed|frequency|q_pulse|interval|passes.
+# by row, as power|speed|frequency|q_pulse|interval|passes. The designer uses the
+# newest measurement of each setting.
 pattern:
   cols: 5
   cells:
-    - "interval-power-1|5|400|70|350|0.02|1"
-    - "interval-power-1|5|400|70|350|0.04|1"
-    - "interval-power-1|8|400|70|350|0.1|1"
-    - "interval-power-1|5|400|70|350|0.08|1"
-    - "interval-power-1|12|400|70|350|0.05|1"
-    - "power-speed-2|13.3|160|100|80|0.1|1"
-    - "interval-power-1|4|400|70|350|0.1|1"
-    - "interval-power-1|4|400|70|350|0.09|1"
-    - "power-speed-1|80|200|20|200|0.1|1"
-    - "freq-qpulse-1|40|40|10|205.56|0.1|1"
-    - "power-speed-1|90|76|20|200|0.1|1"
-    - "power-speed-1|100|93|20|200|0.1|1"
-    - "power-speed-1|100|76|20|200|0.1|1"
-    - "freq-qpulse-1|40|40|90|50|0.1|1"
-    - "power-speed-1|50|40|20|200|0.1|1"
-    - "power-speed-1|100|129|20|200|0.1|1"
-    - "power-speed-1|80|58|20|200|0.1|1"
-    - "power-speed-2|30|53|100|80|0.1|1"
-    - "power-speed-1|60|93|20|200|0.1|1"
-    - "power-speed-1|80|129|20|200|0.1|1"
-    - "freq-qpulse-1|40|40|80|88.89|0.1|1"
-    - "power-speed-2|36.7|67|100|80|0.1|1"
-    - "power-speed-2|30|40|100|80|0.1|1"
-    - "freq-qpulse-1|40|40|100|88.89|0.1|1"
-    - "power-speed-2|36.7|40|100|80|0.1|1"
+    - "5|400|70|350|0.02|1"
+    - "5|400|70|350|0.04|1"
+    - "8|400|70|350|0.1|1"
+    - "5|400|70|350|0.08|1"
+    - "12|400|70|350|0.05|1"
+    - "13.3|160|100|80|0.1|1"
+    - "4|400|70|350|0.1|1"
+    - "4|400|70|350|0.09|1"
+    - "80|200|20|200|0.1|1"
+    - "40|40|10|205.56|0.1|1"
+    - "90|76|20|200|0.1|1"
+    - "100|93|20|200|0.1|1"
+    - "100|76|20|200|0.1|1"
+    - "40|40|90|50|0.1|1"
+    - "50|40|20|200|0.1|1"
+    - "100|129|20|200|0.1|1"
+    - "80|58|20|200|0.1|1"
+    - "30|53|100|80|0.1|1"
+    - "60|93|20|200|0.1|1"
+    - "80|129|20|200|0.1|1"
+    - "40|40|80|88.89|0.1|1"
+    - "36.7|67|100|80|0.1|1"
+    - "30|40|100|80|0.1|1"
+    - "40|40|100|88.89|0.1|1"
+    - "36.7|40|100|80|0.1|1"
 tests:
   - id: power-speed-1
+    slate: "#7f8688"   # bare slate in this photo
     title: "Power × Speed at 200 ns"
     status: complete
     x: { key: power, label: "Power", unit: "%", values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] }
@@ -87,6 +89,7 @@ tests:
       - "JPT rates this source for full output at 200 ns only above 75 kHz; below that, power drops. At 20 kHz, expect roughly a quarter of rated power at most (20 ÷ 75)."
       - "**Satin is the limit.** At 40 mm/s, 60% (and 90–100% at 58 mm/s) gives a slight satin gloss, which is as far as to push slate. At 70% the melting starts to raise the surface, the damage point, and from 80% up it bubbles."
   - id: freq-qpulse-1
+    slate: "#6b7070"   # bare slate in this photo
     title: "Frequency × Q-pulse"
     status: stopped
     x: { key: frequency, label: "Frequency", unit: "kHz", values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] }
@@ -104,6 +107,7 @@ tests:
       - "This source fires only 16 fixed pulse widths (listed under [the laser](/laser/#the-laser)), so in-between values like 88.89 ns probably snap to one of them. The 127.78 and 166.67 ns rows came out nearly identical, which fits both landing on 150 ns."
       - "At 10 kHz every pulse width barely marked, and 50 ns left no visible mark."
   - id: power-speed-2
+    slate: "#6b6a6c"   # bare slate in this photo
     title: "Power × Speed at 80 ns"
     status: complete
     x: { key: power, label: "Power", unit: "%", values: [10, 13.3, 16.7, 20, 23.3, 26.7, 30, 33.3, 36.7, 40] }
@@ -122,6 +126,7 @@ tests:
       - "LightBurn rounds the labels: power steps are 3.33% and speed steps 13.3 mm/s."
       - "The photo's light falls off from top to bottom, so these colors were evened out against the 10% column before naming them."
   - id: interval-power-1
+    slate: "#797675"   # bare slate in this photo
     title: "Interval × Power at 350 ns"
     status: complete
     x: { key: power, label: "Power", unit: "%", values: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
@@ -137,4 +142,22 @@ tests:
       - "**No damage, and the whitest marks so far**, at the finest intervals (0.01–0.02 mm) and low power. Vendor \"white\" recipes for slate use 0.02–0.05 mm; this grid tested that, starting from Thunder Laser's settings."
       - "Everything here stays a neutral grey-white, with none of the warmth (cream, tan, gold) the other grids reach. The hottest cell, 12% at 0.01 mm, is about 3 J/mm², well under where slate starts to melt."
       - "At 3% the slate barely marks. At the finest intervals, 8–10% reads a touch greyer than 4–6%; that may be the light in the photo."
+  - id: standard-pattern-1
+    title: "Standard pattern, run 1"
+    kind: pattern
+    status: complete
+    slate: "#888888"   # bare slate in this photo
+    x: { key: col, label: "Column", unit: "", values: [1, 2, 3, 4, 5] }
+    y: { key: row, label: "Row", unit: "", values: [1, 2, 3, 4, 5] }
+    fixed:
+      - { label: "Squares", value: "8 mm" }
+      - { label: "Labels", value: "1.2 mm" }
+      - { label: "From", value: "the designer's LightBurn file" }
+    photo: /assets/images/laser/slate-standard-pattern-1.webp
+    photo_alt: "A slate tile with the standard 5 by 5 test pattern: rows of white and pale grey squares at the top, greys, then creams and beiges, and light golds along the bottom, each with two lines of small settings text underneath."
+    notes:
+      - "The designer's standard pattern, run from its LightBurn file. Each square repeats a setting from an earlier grid, and all 25 sit in one evenly lit photo, so **the designer now uses these colors for these settings**."
+      - "Several came out quite differently from their first grids. The golds along the bottom are lighter than predicted, the 10 kHz grey (row 2) is much lighter, and 100% at 129 mm/s (row 4) is darker. Uneven light in the earlier photos skewed them."
+      - "**Seven came out raised** (marked ▲): 40% at 40 mm/s with 50 ns at 90 kHz, and the five golds along the bottom plus the 30% at 53 mm/s gold above them, all 80–89 ns at 80–100 kHz. The rest are flat."
+      - "The 1.2 mm labels came out too thin and faint to read. The designer now defaults to 1.6 mm bold, on three lines."
 ---
