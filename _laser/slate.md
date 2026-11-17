@@ -198,8 +198,9 @@ tests:
     status: complete
     slate: "#8b8376"   # bare slate in this photo
     # Shot at a steep angle under the machine's lamp: the slate's sheen
-    # makes bare slate read bright, so this photo's colors aren't used.
-    # The designer keeps run 2's colors and takes relief from here.
+    # makes bare slate read bright, so this photo's colors aren't used. Its
+    # rows in the tab carry run 2's colors; the designer takes relief from
+    # here.
     colors: false
     x: { key: col, label: "Column", unit: "", values: [1, 2, 3, 4, 5] }
     y: { key: row, label: "Row", unit: "", values: [1, 2, 3] }
@@ -212,6 +213,6 @@ tests:
     notes:
       - "The 15 validated colors. **The user's verdict: the set is exactly right.**"
       - "Only Antique Gold and Gold came out raised (▲). Wheat and Honey, raised on run 2, were flat this time."
-      - "The photo was taken at an angle under the machine's lamp. The slate's sheen reads brighter than the matte marks, so these swatches look darker than the colors really are; the designer keeps run 2's colors."
+      - "The light in this photo was odd (an angle under the machine's lamp, where the slate's sheen reads brighter than the matte marks), so **these swatches use run 2's colors** for the same settings, not colors read off the photo."
       - "The labels came out about 1.5 times the planned size and ran into each other. With one text shape per line, LightBurn's height (H) is about the full font size, and each line is centered on its point. The designer now draws and places them that way, with a default of 2.5 mm."
 ---
