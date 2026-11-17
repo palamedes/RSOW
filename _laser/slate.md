@@ -39,6 +39,36 @@ groups:
   - { name: "Beige", hint: "Greyish to light beige.", colors: ["Warm grey", "Beige"] }
   - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
   - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
+# The designer's standard test pattern (the user's 5 × 5, 2026-11-17), row
+# by row. Each is a row of the tab: test|power|speed|frequency|q_pulse|interval|passes.
+pattern:
+  cols: 5
+  cells:
+    - "interval-power-1|5|400|70|350|0.02|1"
+    - "interval-power-1|5|400|70|350|0.04|1"
+    - "interval-power-1|8|400|70|350|0.1|1"
+    - "interval-power-1|5|400|70|350|0.08|1"
+    - "interval-power-1|12|400|70|350|0.05|1"
+    - "power-speed-2|13.3|160|100|80|0.1|1"
+    - "interval-power-1|4|400|70|350|0.1|1"
+    - "interval-power-1|4|400|70|350|0.09|1"
+    - "power-speed-1|80|200|20|200|0.1|1"
+    - "freq-qpulse-1|40|40|10|205.56|0.1|1"
+    - "power-speed-1|90|76|20|200|0.1|1"
+    - "power-speed-1|100|93|20|200|0.1|1"
+    - "power-speed-1|100|76|20|200|0.1|1"
+    - "freq-qpulse-1|40|40|90|50|0.1|1"
+    - "power-speed-1|50|40|20|200|0.1|1"
+    - "power-speed-1|100|129|20|200|0.1|1"
+    - "power-speed-1|80|58|20|200|0.1|1"
+    - "power-speed-2|30|53|100|80|0.1|1"
+    - "power-speed-1|60|93|20|200|0.1|1"
+    - "power-speed-1|80|129|20|200|0.1|1"
+    - "freq-qpulse-1|40|40|80|88.89|0.1|1"
+    - "power-speed-2|36.7|67|100|80|0.1|1"
+    - "power-speed-2|30|40|100|80|0.1|1"
+    - "freq-qpulse-1|40|40|100|88.89|0.1|1"
+    - "power-speed-2|36.7|40|100|80|0.1|1"
 tests:
   - id: power-speed-1
     title: "Power × Speed at 200 ns"

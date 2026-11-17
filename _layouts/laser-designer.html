@@ -79,7 +79,7 @@ full_width: true
               <button type="button" class="lzr-btn-quiet" data-act="pat-sort-speed">Sort by speed</button>
               <button type="button" class="lzr-btn-quiet" data-act="pat-clear">Clear</button>
             </p>
-            <p><button type="button" class="lzr-btn-quiet" data-act="pat-starter">Start from two ramps: slate → white, slate → gold</button></p>
+            <p><button type="button" class="lzr-btn-quiet" data-act="pat-default">Start over from the standard pattern</button></p>
             <div class="lzr-pat-fields">
               <label class="lzr-field">Columns <input type="number" min="1" max="10" step="1" data-pat="cols"></label>
               <label class="lzr-field">Square (mm) <input type="number" min="3" max="40" step="0.5" data-pat="sq"></label>
@@ -135,6 +135,7 @@ full_width: true
   "page": {{ page.url | absolute_url | jsonify }},
   "palette": {{ m.palette | jsonify }},
   "groups": {{ m.groups | jsonify }},
+  "pattern": {{ m.pattern | jsonify }},
   "tests": {{ tests | jsonify }},
   "cells": {{ sheet | jsonify }}
 }

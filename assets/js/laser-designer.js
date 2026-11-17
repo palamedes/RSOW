@@ -525,7 +525,7 @@
         case 'pat-clear': P.items = []; patternChanged(); break;
         case 'pat-remove': P.items.splice(+b.dataset.i, 1); patternChanged(); break;
         case 'pat-lbrn': downloadLbrn(); break;
-        case 'pat-starter': starterSet(); break;
+        case 'pat-default': standardPattern(); syncFields(); patternChanged(); break;
       }
     });
 
@@ -593,8 +593,10 @@
     whites.sort(function (a, b) { return b.lab[0] - a.lab[0]; });
     var P = { items: [], cols: 6, sq: 8, gap: 3, th: 1.2, field: parseFloat(data.lens) || 100, text: whites[0] || null };
     var STORE = 'rsow.laser.pattern.' + (data.material || 'material');
+    var saved = null;
+    try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) {}
+    if (!saved) standardPattern();
     try {
-      var saved = JSON.parse(localStorage.getItem(STORE) || 'null');
       if (saved) {
         ['cols', 'sq', 'gap', 'th', 'field'].forEach(function (k) { if (+saved[k] > 0) P[k] = +saved[k]; });
         P.items = (saved.items || []).map(function (k) { return byKey[k]; }).filter(Boolean).slice(0, MAX_SWATCHES);
@@ -615,7 +617,8 @@
     });
     if (P.text) textSel.value = keyOf(P.text);
     var fields = root.querySelectorAll('input[data-pat]');
-    for (var fi = 0; fi < fields.length; fi++) fields[fi].value = P[fields[fi].dataset.pat];
+    function syncFields() { for (var fi = 0; fi < fields.length; fi++) fields[fi].value = P[fields[fi].dataset.pat]; }
+    syncFields();
     root.addEventListener('change', function (e) {
       var el = e.target;
       if (!el.dataset || !el.dataset.pat) return;
@@ -653,32 +656,12 @@
         function (a, b) { return groupIndex(a) - groupIndex(b) || b.lab[0] - a.lab[0]; });
       patternChanged();
     }
-    // The starter: two ramps that fill the pattern. Almost slate up to the
-    // whitest shade, then almost slate through the warm colors to gold
-    // (by how warm each shade is).
-    function starterSet() {
-      var all = [];
-      groups.forEach(function (g) { g.shades.forEach(function (sh) { all.push(sh.rep); }); });
-      function chroma(c) { return Math.sqrt(c.lab[1] * c.lab[1] + c.lab[2] * c.lab[2]); }
-      var neutral = all.filter(function (c) { return ['Light grey', 'Pale grey', 'White'].indexOf(c.group) >= 0; })
-        .sort(function (a, b) { return a.lab[0] - b.lab[0]; });
-      var warm = all.filter(function (c) { return ['Cream', 'Beige', 'Tan', 'Gold'].indexOf(c.group) >= 0; })
-        .sort(function (a, b) { return chroma(a) - chroma(b); });
-      function spread(list, n) {
-        if (list.length <= n) return list.slice();
-        var out = [];
-        for (var i = 0; i < n; i++) {
-          var c = list[Math.round(i * (list.length - 1) / (n - 1))];
-          if (out.indexOf(c) < 0) out.push(c);
-        }
-        return out;
-      }
-      var a = spread(neutral, 14);
-      // the second ramp starts near slate too: the darkest grey not already used
-      var start = neutral.filter(function (c) { return a.indexOf(c) < 0; })[0];
-      var b = (start ? [start] : []).concat(spread(warm, MAX_SWATCHES - a.length - (start ? 1 : 0)));
-      P.items = a.concat(b).slice(0, MAX_SWATCHES);
-      patternChanged();
+    // The material's standard pattern (front matter `pattern`), used until
+    // someone saves their own, and by "Start over".
+    function standardPattern() {
+      var d = data.pattern || {};
+      if (+d.cols > 0) P.cols = +d.cols;
+      P.items = (d.cells || []).map(function (k) { return byKey[k]; }).filter(Boolean).slice(0, MAX_SWATCHES);
     }
     function patternChanged() {
       savePattern();
