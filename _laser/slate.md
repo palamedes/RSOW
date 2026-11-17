@@ -28,6 +28,17 @@ palette:
   - { name: "Bronze", hex: "#8d7d59", hint: "Deep golden brown. Only the 80 ns grid gets it without melting, right at the limit." }
   - { name: "Dark bronze", hex: "#786447", hint: "The darkest. Only from settings that melt and damage the slate." }
   - { name: "No mark", hex: "", hint: "Nothing visible." }
+# The designer offers at most seven colors: these groups, light to dark,
+# each combining palette colors that look alike. Dark bronze isn't here
+# because only settings that melt slate make it.
+groups:
+  - { name: "White", hint: "The brightest marks.", colors: ["White", "Off-white"] }
+  - { name: "Pale grey", hint: "Cool, nearly white.", colors: ["Pale grey"] }
+  - { name: "Light grey", hint: "Soft grey, down to barely there.", colors: ["Light grey", "Faint grey"] }
+  - { name: "Cream", hint: "Soft, warm white.", colors: ["Cream", "Sand"] }
+  - { name: "Beige", hint: "Greyish to light beige.", colors: ["Warm grey", "Beige"] }
+  - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
+  - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
 tests:
   - id: power-speed-1
     title: "Power × Speed at 200 ns"

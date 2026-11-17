@@ -20,6 +20,27 @@
     if (!/^[0-9a-f]{6}$/i.test(h)) return [111, 116, 117];
     return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)];
   }
+  function rgbHex(c) {
+    return '#' + c.map(function (v) { return ('0' + Math.round(v).toString(16)).slice(-2); }).join('');
+  }
+  function medianRgb(list) {
+    return [0, 1, 2].map(function (k) {
+      var v = list.map(function (c) { return c.rgb[k]; }).sort(function (a, b) { return a - b; });
+      return v[v.length >> 1];
+    });
+  }
+  function rgbLab(c) {
+    var l = c.map(function (v) { v /= 255; return v > 0.04045 ? Math.pow((v + 0.055) / 1.055, 2.4) : v / 12.92; });
+    var x = (0.4124 * l[0] + 0.3576 * l[1] + 0.1805 * l[2]) / 0.95047;
+    var y = 0.2126 * l[0] + 0.7152 * l[1] + 0.0722 * l[2];
+    var z = (0.0193 * l[0] + 0.1192 * l[1] + 0.9505 * l[2]) / 1.08883;
+    function f(t) { return t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116; }
+    return [116 * f(y) - 16, 500 * (f(x) - f(y)), 200 * (f(y) - f(z))];
+  }
+  function deltaE(a, b) {
+    var d0 = a[0] - b[0], d1 = a[1] - b[1], d2 = a[2] - b[2];
+    return Math.sqrt(d0 * d0 + d1 * d1 + d2 * d2);
+  }
   function dist2(a, b) {
     var d0 = a[0] - b[0], d1 = a[1] - b[1], d2 = a[2] - b[2];
     return d0 * d0 + d1 * d1 + d2 * d2;
@@ -153,31 +174,75 @@
     for (var ti = 0; ti + 1 < (data.tests || []).length; ti += 2) testTitle[data.tests[ti]] = data.tests[ti + 1];
 
     // Usable settings: ran, have a color and swatch, and don't melt the material.
+    // secs is the time to cover one square centimetre: 100 mm² ÷ (speed ×
+    // line interval ÷ passes). A fine interval at a high speed can still be
+    // slow. It ignores the galvo's jumps, so treat it as a comparison.
     var settings = (data.cells || []).filter(function (c) {
       return c.status === 'done' && c.hex && c.color && c.color !== 'No mark' && c.finish !== 'Melted';
     }).map(function (c) {
       c.rgb = hexRgb(c.hex);
+      c.lab = rgbLab(c.rgb);
+      var rate = (parseFloat(c.speed) || 0) * (parseFloat(c.interval) || 0) / (parseFloat(c.passes) || 1);
+      c.secs = rate > 0 ? 100 / rate : Infinity;
       c.label = c.power + '% · ' + c.speed + ' mm/s · ' + c.frequency + ' kHz · ' + c.q_pulse + ' ns · ' +
         c.interval + ' mm' + (c.passes && c.passes !== '1' ? ' · ' + c.passes + ' passes' : '');
+      c.short = c.power + '% · ' + c.speed + ' mm/s · ' + c.interval + ' mm';
       c.from = testTitle[c.test] || c.test;
       return c;
     });
-    var families = (data.palette || []).map(function (f) {
-      var list = settings.filter(function (c) { return c.color === f.name; });
-      return { name: f.name, hex: f.hex, hint: f.hint, list: list };
-    }).filter(function (f) { return f.list.length; });
-    families.forEach(function (f) { f.pick = recommend(f); });
 
-    // Favourite first, then the best quality grade, then the setting closest
-    // to the family's typical swatch.
-    function recommend(f) {
-      var list = f.list.filter(function (c) { return c.favorite === 'Yes'; });
-      if (!list.length) list = f.list;
+    // At most seven colors, light to dark: the material's `groups`, each
+    // combining palette colors that look alike. Inside a color, settings
+    // within SAME_SHADE of each other count as one shade.
+    var SAME_SHADE = 4;   // CIE76 ΔE: a difference you'd barely see side by side
+    var groupDefs = (data.groups && data.groups.length) ? data.groups :
+      (data.palette || []).map(function (f) { return { name: f.name, hint: f.hint, colors: [f.name] }; });
+    var groups = groupDefs.map(function (g) {
+      var list = settings.filter(function (c) { return (g.colors || []).indexOf(c.color) >= 0; });
+      list.forEach(function (c) { c.group = g.name; });
+      return { name: g.name, hint: g.hint, list: list };
+    }).filter(function (g) { return g.list.length; });
+    groups.forEach(function (g) {
+      g.hex = rgbHex(medianRgb(g.list));
+      g.shades = shadesOf(g.list);
+    });
+
+    function shadesOf(list) {
+      var shades = [];
+      list.slice().sort(function (a, b) { return b.lab[0] - a.lab[0]; }).forEach(function (c) {
+        for (var i = 0; i < shades.length; i++) {
+          if (deltaE(shades[i].seed, c.lab) < SAME_SHADE) { shades[i].list.push(c); return; }
+        }
+        shades.push({ seed: c.lab, list: [c] });
+      });
+      shades.forEach(function (sh) { sh.rep = recommend(sh.list); });
+      return shades;
+    }
+    // A shade's setting: a favourite first, then the best quality grade,
+    // then the fastest.
+    function recommend(list) {
+      var pool = list.filter(function (c) { return c.favorite === 'Yes'; });
+      if (!pool.length) pool = list;
       var best = null, bq = 0;
-      list.forEach(function (c) { var q = parseFloat(c.quality) || 0; if (q > bq) { bq = q; best = c; } });
+      pool.forEach(function (c) { var q = parseFloat(c.quality) || 0; if (q > bq) { bq = q; best = c; } });
       if (best) return best;
-      var target = hexRgb(f.hex);
-      return list.slice().sort(function (a, b) { return dist2(a.rgb, target) - dist2(b.rgb, target); })[0];
+      return pool.slice().sort(function (a, b) { return a.secs - b.secs; })[0];
+    }
+    function ordered(g) {
+      var list = g.shades.slice();
+      if (S.order === 'speed') list.sort(function (a, b) { return a.rep.secs - b.rep.secs; });
+      else list.sort(function (a, b) { return b.seed[0] - a.seed[0] || a.rep.secs - b.rep.secs; });
+      return list;
+    }
+    // Picking a color: the fastest shade when ordering by speed, otherwise
+    // its most common shade.
+    function defaultShade(g) {
+      if (S.order === 'speed') return ordered(g)[0];
+      return g.shades.slice().sort(function (a, b) { return b.list.length - a.list.length; })[0];
+    }
+    function secsText(n) {
+      if (!isFinite(n)) return '—';
+      return '≈ ' + (n < 10 ? n.toFixed(1) : Math.round(n)) + ' s/cm²';
     }
 
     var canvas = role('canvas'), ctx = canvas.getContext('2d');
@@ -185,10 +250,10 @@
     var S = {
       w: 0, h: 0, lum: null, noise: null, labels: null, regions: [], assign: [], undo: [],
       view: 'material', hover: -1, name: 'design',
-      active: null, family: null
+      active: null, group: null, order: 'color', shown: []
     };
-    var startFamily = families.filter(function (f) { return f.name === 'Off-white'; })[0] || families[0];
-    if (startFamily) { S.family = startFamily.name; S.active = startFamily.pick; }
+    var startGroup = groups[0];
+    if (startGroup) { S.group = startGroup.name; S.active = defaultShade(startGroup).rep; }
 
     // ── palette ──────────────────────────────────────────
     var pal = role('palette'), pick = role('settings');
@@ -199,60 +264,74 @@
       s.setAttribute('aria-hidden', 'true');
       return s;
     }
-    function palButton(name, hex, familyKey) {
+    function palButton(name, hex, key) {
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'lzr-pal-btn'; b.dataset.family = familyKey;
+      b.type = 'button'; b.className = 'lzr-pal-btn'; b.dataset.group = key;
       b.appendChild(swatch(hex));
       b.appendChild(document.createTextNode(name));
       return b;
     }
+    function findGroup(name) { return groups.filter(function (g) { return g.name === name; })[0]; }
+    groups.forEach(function (g) { pal.appendChild(palButton(g.name, g.hex, g.name)); });
     pal.appendChild(palButton('Bare ' + String(data.title || '').toLowerCase(), data.surface, '__bare'));
-    families.forEach(function (f) { pal.appendChild(palButton(f.name, f.hex, f.name)); });
     pal.addEventListener('click', function (e) {
       var b = e.target.closest('.lzr-pal-btn');
       if (!b) return;
-      if (b.dataset.family === '__bare') { S.family = '__bare'; S.active = null; }
-      else {
-        var f = families.filter(function (x) { return x.name === b.dataset.family; })[0];
-        S.family = f.name; S.active = f.pick;
-      }
+      if (b.dataset.group === '__bare') { S.group = '__bare'; S.active = null; }
+      else { var g = findGroup(b.dataset.group); S.group = g.name; S.active = defaultShade(g).rep; }
       drawPalette();
     });
     pick.addEventListener('click', function (e) {
-      var b = e.target.closest('.lzr-chip');
-      if (!b) return;
-      var f = families.filter(function (x) { return x.name === S.family; })[0];
-      if (f) { S.active = f.list[+b.dataset.i]; drawPalette(); }
+      var o = e.target.closest('[data-order]');
+      if (o) {
+        S.order = o.dataset.order;
+        var g = findGroup(S.group);
+        if (g && S.order === 'speed') S.active = defaultShade(g).rep;
+        drawPalette();
+        return;
+      }
+      var b = e.target.closest('.lzr-shade');
+      if (b) { S.active = S.shown[+b.dataset.i].rep; drawPalette(); }
     });
     function drawPalette() {
       var btns = pal.querySelectorAll('.lzr-pal-btn');
-      for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', btns[i].dataset.family === S.family ? 'true' : 'false');
+      for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', btns[i].dataset.group === S.group ? 'true' : 'false');
       pick.textContent = '';
-      if (S.family === '__bare') {
+      if (S.group === '__bare') {
         var p0 = document.createElement('p'); p0.className = 'lzr-active';
         p0.innerHTML = '<strong>Bare ' + esc(String(data.title || '').toLowerCase()) + '</strong>: no laser. Click an area to clear it.';
         pick.appendChild(p0);
         return;
       }
-      var f = families.filter(function (x) { return x.name === S.family; })[0];
-      if (!f) return;
-      var h = document.createElement('p'); h.className = 'lzr-note';
-      h.textContent = f.list.length > 1 ? f.list.length + ' settings make ' + f.name.toLowerCase() + '. Pick one:' : 'One setting makes ' + f.name.toLowerCase() + ':';
-      pick.appendChild(h);
-      var chips = document.createElement('div'); chips.className = 'lzr-chips';
-      f.list.forEach(function (c, i) {
-        var b = document.createElement('button');
-        b.type = 'button'; b.className = 'lzr-chip' + (c.finish === 'Satin' ? ' is-satin' : '');
-        b.dataset.i = i;
-        b.style.setProperty('--sw', c.hex);
-        b.title = c.label + ' (' + c.from + ')' + (c.favorite === 'Yes' ? ' ★' : '');
-        b.setAttribute('aria-label', f.name + ': ' + c.label);
+      var g = findGroup(S.group);
+      if (!g) return;
+      var head = document.createElement('div'); head.className = 'lzr-pick-head';
+      head.innerHTML = '<p class="lzr-note">' + g.shades.length + (g.shades.length === 1 ? ' shade' : ' shades') +
+        ' of ' + esc(g.name.toLowerCase()) + ', from ' + g.list.length + (g.list.length === 1 ? ' setting' : ' settings') + '.</p>' +
+        '<div class="lzr-seg lzr-seg-sm" role="group" aria-label="Order shades by">' +
+        '<button type="button" data-order="color" aria-pressed="' + (S.order === 'color') + '">Color</button>' +
+        '<button type="button" data-order="speed" aria-pressed="' + (S.order === 'speed') + '">Fastest</button></div>';
+      pick.appendChild(head);
+      var box = document.createElement('div'); box.className = 'lzr-shades';
+      S.shown = ordered(g);
+      S.shown.forEach(function (sh, i) {
+        var c = sh.rep, b = document.createElement('button');
+        b.type = 'button'; b.className = 'lzr-shade'; b.dataset.i = i;
         b.setAttribute('aria-pressed', c === S.active ? 'true' : 'false');
-        chips.appendChild(b);
+        b.title = c.label + ' (' + c.from + ')' + (sh.list.length > 1 ? '. ' + (sh.list.length - 1) + ' similar settings make almost the same shade.' : '');
+        var sw = swatch(c.hex); if (c.finish === 'Satin') sw.classList.add('is-satin');
+        b.appendChild(sw);
+        var t = document.createElement('span'); t.className = 'lzr-shade-set';
+        t.textContent = c.short + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
+        b.appendChild(t);
+        var tm = document.createElement('span'); tm.className = 'lzr-shade-time'; tm.textContent = secsText(c.secs);
+        b.appendChild(tm);
+        box.appendChild(b);
       });
-      pick.appendChild(chips);
+      pick.appendChild(box);
       var a = S.active, p = document.createElement('p'); p.className = 'lzr-active';
-      p.innerHTML = '<strong>' + esc(a.color) + '</strong>' + (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') +
+      p.innerHTML = '<strong>' + esc(a.group) + '</strong>' + (a.color !== a.group ? ' · ' + esc(a.color) : '') +
+        (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
         '<br>' + esc(a.label) + '<br><span class="lzr-note">From ' + esc(a.from) + (a.notes ? '. ' + esc(a.notes) : '') + '</span>';
       pick.appendChild(p);
     }
@@ -307,7 +386,7 @@
       var seg = segment(S.lum, S.w, S.h, +thr.value, inv.checked);
       S.labels = seg.labels; S.regions = seg.regions; S.undo = []; S.hover = -1;
       // Start with every dark area in the chosen color and the rest bare.
-      var start = S.active || (startFamily && startFamily.pick) || null;
+      var start = S.active || (startGroup && defaultShade(startGroup).rep) || null;
       S.assign = S.regions.map(function (r) { return r.alive && r.ink ? start : null; });
       octx.clearRect(0, 0, S.w, S.h);
       render();
@@ -450,7 +529,7 @@
     function plan() {
       planBody.textContent = '';
       if (!S.labels) {
-        planBody.innerHTML = '<tr><td colspan="10">Upload an image to start.</td></tr>';
+        planBody.innerHTML = '<tr><td colspan="11">Upload an image to start.</td></tr>';
         return;
       }
       var total = S.w * S.h, used = [], bare = 0;
@@ -467,15 +546,15 @@
       function pct(n) { var v = n / total * 100; return (v < 0.1 && v > 0 ? '<0.1' : v.toFixed(1)) + '%'; }
       used.forEach(function (u) {
         var s = u.s, tr = document.createElement('tr');
-        tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.color) + '</td>' +
+        tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.group || s.color) + (s.group && s.group !== s.color ? ' <span class="lzr-note">(' + esc(s.color) + ')</span>' : '') + '</td>' +
           '<td>' + esc(s.finish || '') + '</td><td>' + esc(s.power) + '%</td><td>' + esc(s.speed) + ' mm/s</td>' +
-          '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.interval) + ' mm</td><td>' + esc(s.passes) + '</td>' +
+          '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.interval) + ' mm</td><td>' + esc(s.passes) + '</td><td>' + secsText(s.secs) + '</td>' +
           '<td>' + esc(s.from) + '</td><td>' + pct(u.area) + '</td>';
         planBody.appendChild(tr);
       });
       var tb = document.createElement('tr');
       tb.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(data.surface) + '" aria-hidden="true"></span>Bare ' +
-        esc(String(data.title || '').toLowerCase()) + '</td><td colspan="8">No laser</td><td>' + pct(bare) + '</td>';
+        esc(String(data.title || '').toLowerCase()) + '</td><td colspan="9">No laser</td><td>' + pct(bare) + '</td>';
       planBody.appendChild(tb);
     }
   }

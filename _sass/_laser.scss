@@ -496,19 +496,44 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     &[aria-pressed="true"] { background: #fff; border-color: $lzr-gold-d; box-shadow: 0 0 0 1px $lzr-gold-d; }
   }
   .lzr-pick { margin-top: 0.8rem; }
-  .lzr-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 0.4rem 0 0.6rem; }
-  .lzr-chip {
-    width: 1.6rem;
-    height: 1.6rem;
-    padding: 0;
-    border: 0;
-    border-radius: 4px;
-    background-color: var(--sw, #999);
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
-    cursor: pointer;
-    &.is-satin { background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 60%); }
-    &[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 0 2px #fff, 0 0 0 4px $lzr-gold-d; }
+  .lzr-pick-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.3rem 0.6rem;
+    .lzr-note { margin: 0; font-size: 0.84rem; }
   }
+  .lzr-seg-sm button { font-size: 0.8rem; padding: 0.25rem 0.6rem; }
+  .lzr-shades {
+    display: grid;
+    gap: 4px;
+    max-height: 19rem;
+    overflow-y: auto;
+    margin: 0.5rem 0 0.7rem;
+    padding: 2px;
+  }
+  .lzr-shade {
+    display: grid;
+    grid-template-columns: 1.6rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.45rem;
+    text-align: left;
+    background: $lzr-paper;
+    border: 1px solid $lzr-line;
+    border-radius: 6px;
+    font: inherit;
+    font-size: 0.8rem;
+    color: $lzr-ink;
+    cursor: pointer;
+    .lzr-sw { width: 1.6rem; height: 1.6rem; }
+    .lzr-sw.is-satin { background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 60%); }
+    &:hover { border-color: $lzr-gold; }
+    &[aria-pressed="true"] { background: #fff; border-color: $lzr-gold-d; box-shadow: 0 0 0 1px $lzr-gold-d; }
+  }
+  .lzr-shade-set { color: $lzr-body; overflow-wrap: anywhere; }
+  .lzr-shade-time { font-weight: 700; white-space: nowrap; color: $lzr-ink; }
   .lzr-active { font-size: 0.88rem; line-height: 1.45; strong { color: $lzr-ink; } }
   .lzr-field { display: block; font-size: 0.88rem; input { display: block; width: 100%; margin-top: 0.3rem; } }
   .lzr-check { display: flex; align-items: center; gap: 0.4rem; font-size: 0.88rem; margin-top: 0.5rem; }
