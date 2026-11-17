@@ -81,11 +81,11 @@ full_width: true
 
         <section class="lzr-plan" aria-labelledby="lzr-plan-h">
           <h2 id="lzr-plan-h">Layer plan</h2>
-          <p class="lzr-note">One LightBurn layer per color, run like the tests: {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" }} lens, 0.1 mm interval, 1 pass. Area is the share of the whole image.</p>
+          <p class="lzr-note">One LightBurn layer per color, with that row's settings and a {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" }} lens, like the tests. Area is the share of the whole image.</p>
           <div class="lzr-scroll">
             <table class="lzr-table">
-              <thead><tr><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">From</th><th scope="col">Area</th></tr></thead>
-              <tbody data-role="plan"><tr><td colspan="8">Upload an image to start.</td></tr></tbody>
+              <thead><tr><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Passes</th><th scope="col">From</th><th scope="col">Area</th></tr></thead>
+              <tbody data-role="plan"><tr><td colspan="10">Upload an image to start.</td></tr></tbody>
             </table>
           </div>
         </section>

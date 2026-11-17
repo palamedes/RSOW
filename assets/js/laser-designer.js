@@ -157,7 +157,8 @@
       return c.status === 'done' && c.hex && c.color && c.color !== 'No mark' && c.finish !== 'Melted';
     }).map(function (c) {
       c.rgb = hexRgb(c.hex);
-      c.label = c.power + '% · ' + c.speed + ' mm/s · ' + c.frequency + ' kHz · ' + c.q_pulse + ' ns';
+      c.label = c.power + '% · ' + c.speed + ' mm/s · ' + c.frequency + ' kHz · ' + c.q_pulse + ' ns · ' +
+        c.interval + ' mm' + (c.passes && c.passes !== '1' ? ' · ' + c.passes + ' passes' : '');
       c.from = testTitle[c.test] || c.test;
       return c;
     });
@@ -449,7 +450,7 @@
     function plan() {
       planBody.textContent = '';
       if (!S.labels) {
-        planBody.innerHTML = '<tr><td colspan="8">Upload an image to start.</td></tr>';
+        planBody.innerHTML = '<tr><td colspan="10">Upload an image to start.</td></tr>';
         return;
       }
       var total = S.w * S.h, used = [], bare = 0;
@@ -468,12 +469,13 @@
         var s = u.s, tr = document.createElement('tr');
         tr.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(s.hex) + '" aria-hidden="true"></span>' + esc(s.color) + '</td>' +
           '<td>' + esc(s.finish || '') + '</td><td>' + esc(s.power) + '%</td><td>' + esc(s.speed) + ' mm/s</td>' +
-          '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.from) + '</td><td>' + pct(u.area) + '</td>';
+          '<td>' + esc(s.frequency) + ' kHz</td><td>' + esc(s.q_pulse) + ' ns</td><td>' + esc(s.interval) + ' mm</td><td>' + esc(s.passes) + '</td>' +
+          '<td>' + esc(s.from) + '</td><td>' + pct(u.area) + '</td>';
         planBody.appendChild(tr);
       });
       var tb = document.createElement('tr');
       tb.innerHTML = '<td><span class="lzr-sw lzr-sw-sm" style="--sw: ' + esc(data.surface) + '" aria-hidden="true"></span>Bare ' +
-        esc(String(data.title || '').toLowerCase()) + '</td><td colspan="6">No laser</td><td>' + pct(bare) + '</td>';
+        esc(String(data.title || '').toLowerCase()) + '</td><td colspan="8">No laser</td><td>' + pct(bare) + '</td>';
       planBody.appendChild(tb);
     }
   }

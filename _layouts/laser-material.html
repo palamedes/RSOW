@@ -53,14 +53,14 @@ full_width: true
             <p class="lzr-hint">{{ fam.hint }}</p>
             <div class="lzr-scroll">
             <table class="lzr-table">
-              <thead><tr><th scope="col">Test</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Finish</th><th scope="col">Quality</th></tr></thead>
+              <thead><tr><th scope="col">Test</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Finish</th><th scope="col">Quality</th></tr></thead>
               <tbody>
               {%- for r in hits %}
                 {%- assign rhex = r.hex | default: "" %}
                 {%- assign t = page.tests | where: "id", r.test | first %}
                 <tr{% if r.finish == "Melted" %} class="is-avoid"{% endif %}>
                   <td><span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span><a href="#{{ r.test }}">{{ t.title | default: r.test }}</a>{% if r.favorite == "Yes" %} <span class="lzr-fav" title="Favorite">★<span class="lzr-vh"> Favorite</span></span>{% endif %}</td>
-                  <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{% if r.finish == "Melted" %}<span class="lzr-avoid">Melted: damages slate</span>{% else %}{{ r.finish }}{% endif %}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td>
+                  <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{% if r.finish == "Melted" %}<span class="lzr-avoid">Melted: damages slate</span>{% else %}{{ r.finish }}{% endif %}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td>
                 </tr>
               {%- endfor %}
               </tbody>

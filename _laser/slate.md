@@ -16,7 +16,8 @@ summary: >-
 palette:
   - { name: "Faint grey", hex: "#8c908d", hint: "Barely there." }
   - { name: "Light grey", hex: "#a3a4a3", hint: "A soft, light grey." }
-  - { name: "Pale grey", hex: "#afaea7", hint: "Cool, nearly white." }
+  - { name: "Pale grey", hex: "#bab9b4", hint: "Cool, nearly white." }
+  - { name: "White", hex: "#d9d4ce", hint: "The brightest mark: a fine line interval at low power." }
   - { name: "Warm grey", hex: "#b1af9e", hint: "Light grey with a hint of beige." }
   - { name: "Off-white", hex: "#c3bfaf", hint: "The closest to white." }
   - { name: "Cream", hex: "#ccc5ad", hint: "Soft, warm white." }
@@ -79,4 +80,20 @@ tests:
       - "40% at 40 mm/s also ran in the frequency × Q-pulse grid (88.89 ns, 100 kHz), where it came out a lighter, undamaged gold. So 88.89 ns may not have run as 80 ns; a different tile and the heat that grid built up could also explain it."
       - "LightBurn rounds the labels: power steps are 3.33% and speed steps 13.3 mm/s."
       - "The photo's light falls off from top to bottom, so these colors were evened out against the 10% column before naming them."
+  - id: interval-power-1
+    title: "Interval × Power at 350 ns"
+    status: complete
+    x: { key: power, label: "Power", unit: "%", values: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+    y: { key: interval, label: "Interval", unit: "mm", values: ["0.1", "0.09", "0.08", "0.07", "0.06", "0.05", "0.04", "0.03", "0.02", "0.01"] }
+    fixed:
+      - { label: "Speed", value: "400 mm/s" }
+      - { label: "Frequency", value: "70 kHz" }
+      - { label: "Q-pulse", value: "350 ns" }
+      - { label: "Passes", value: "1" }
+    photo: /assets/images/laser/slate-interval-power.webp
+    photo_alt: "The slate tile with the interval × power grid: power 3 to 12 percent across, line interval 0.1 to 0.01 mm down. Everything is a soft grey, getting whiter toward the finest intervals at the bottom; the 3 percent column barely shows."
+    notes:
+      - "**No damage, and the whitest marks so far**, at the finest intervals (0.01–0.02 mm) and low power. Vendor \"white\" recipes for slate use 0.02–0.05 mm; this grid tested that, starting from Thunder Laser's settings."
+      - "Everything here stays a neutral grey-white, with none of the warmth (cream, tan, gold) the other grids reach. The hottest cell, 12% at 0.01 mm, is about 3 J/mm², well under where slate starts to melt."
+      - "At 3% the slate barely marks. At the finest intervals, 8–10% reads a touch greyer than 4–6%; that may be the light in the photo."
 ---
