@@ -28,7 +28,7 @@ full_width: true
         <li><strong>{{ unrun | size }}</strong> not run yet</li>
         {%- endif %}
       </ul>
-      <p><a class="lzr-btn" href="{{ csv_url }}" download>Download the {{ page.title | downcase }} tab (CSV)</a></p>
+      <p><a class="lzr-btn" href="{{ page.url | append: 'designer/' | relative_url }}">Design with {{ page.title | downcase }}</a> <a class="lzr-btn lzr-btn-ghost" href="{{ csv_url }}" download>Download the {{ page.title | downcase }} tab (CSV)</a></p>
     </div>
   </header>
 

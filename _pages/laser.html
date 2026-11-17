@@ -37,7 +37,7 @@ image: /assets/images/laser/slate-power-speed.jpg
             <span class="lzr-material-name">{{ m.title }}</span>
           </a>
           <p>{{ m.summary }}</p>
-          <p class="lzr-material-meta">{{ m.tests | size }} test grids · {{ done | size }} settings</p>
+          <p class="lzr-material-meta">{{ m.tests | size }} test grids · {{ done | size }} settings · <a href="{{ m.url | append: 'designer/' | relative_url }}">Open the designer</a></p>
           <p class="lzr-swatches" aria-hidden="true">
             {%- for fam in m.palette %}{% if fam.hex != "" %}<span class="lzr-sw" style="--sw: {{ fam.hex }}" title="{{ fam.name }}"></span>{% endif %}{% endfor -%}
           </p>

@@ -1,34 +1,35 @@
 ---
 title: "Slate"
 material: slate
+surface: "#6f7475"
 description: "Fiber laser test grids on slate: power, speed, frequency and pulse width, and the color each setting makes, from faint grey to gold and bronze."
 image: /assets/images/laser/slate-power-speed.jpg
 image_alt: "A slate tile engraved with a 10 by 10 laser test grid, grey at the fast, low-power corner and glossy gold at the slow, high-power corner."
 card_image: /assets/images/laser/slate-power-speed.webp
 summary: >-
-  Low energy turns slate a soft grey and nearly white. More takes it to cream
-  and tan with a slight satin sheen, which is as far as to push it. Past that
-  it melts: the surface rises, then bubbles into glossy bronze, and both
-  damage the slate.
+  Low energy turns slate a soft grey and nearly white. More takes it through
+  beige and tan to gold, which an 80 ns pulse reaches without melting. Push
+  past a slight satin sheen and it melts: the surface rises, then bubbles
+  into glossy bronze, and both damage the slate.
 # The color families used in this material's tab (the "color" column), light
 # to dark. hex is a typical swatch from the sampled cells.
 palette:
   - { name: "Faint grey", hex: "#8c908d", hint: "Barely there." }
-  - { name: "Light grey", hex: "#9b9d97", hint: "A soft, light grey." }
-  - { name: "Pale grey", hex: "#afb1ac", hint: "Cool, nearly white." }
-  - { name: "Warm grey", hex: "#aeaf9e", hint: "Light grey with a hint of beige." }
+  - { name: "Light grey", hex: "#a3a4a3", hint: "A soft, light grey." }
+  - { name: "Pale grey", hex: "#afaea7", hint: "Cool, nearly white." }
+  - { name: "Warm grey", hex: "#b1af9e", hint: "Light grey with a hint of beige." }
   - { name: "Off-white", hex: "#c3bfaf", hint: "The closest to white." }
   - { name: "Cream", hex: "#ccc5ad", hint: "Soft, warm white." }
-  - { name: "Beige", hex: "#bbb091", hint: "Light beige." }
+  - { name: "Beige", hex: "#afa58c", hint: "Light beige." }
   - { name: "Sand", hex: "#c4b796", hint: "Pale golden beige." }
-  - { name: "Tan", hex: "#b2a27e", hint: "Light brown. Half the settings that reach it melt the slate." }
-  - { name: "Gold", hex: "#a5926a", hint: "Golden brown. Most settings that reach it melt the slate; one doesn't." }
-  - { name: "Bronze", hex: "#8d7d59", hint: "Glossy brown. Only from settings that melt and damage the slate." }
+  - { name: "Tan", hex: "#b0a07d", hint: "Light brown." }
+  - { name: "Gold", hex: "#a2906c", hint: "Golden brown. The 80 ns grid gets it without melting." }
+  - { name: "Bronze", hex: "#8d7d59", hint: "Deep golden brown. Only the 80 ns grid gets it without melting, right at the limit." }
   - { name: "Dark bronze", hex: "#786447", hint: "The darkest. Only from settings that melt and damage the slate." }
   - { name: "No mark", hex: "", hint: "Nothing visible." }
 tests:
   - id: power-speed-1
-    title: "Power × Speed"
+    title: "Power × Speed at 200 ns"
     status: complete
     x: { key: power, label: "Power", unit: "%", values: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] }
     y: { key: speed, label: "Speed", unit: "mm/s", values: [200, 182, 164, 147, 129, 111, 93, 76, 58, 40] }
@@ -60,4 +61,22 @@ tests:
       - "In the 127.78 and 166.67 ns rows, 50 kHz is the damage point: melting raises the surface. From 60 kHz up it bubbles into a glossy finish. At 205.56 ns the damage starts at 40 kHz. The satin cells just before them (40 kHz, and 30 kHz at 205.56 ns) are the limit."
       - "This source fires only 16 fixed pulse widths (listed under [the laser](/laser/#the-laser)), so in-between values like 88.89 ns probably snap to one of them. The 127.78 and 166.67 ns rows came out nearly identical, which fits both landing on 150 ns."
       - "At 10 kHz every pulse width barely marked, and 50 ns left no visible mark."
+  - id: power-speed-2
+    title: "Power × Speed at 80 ns"
+    status: complete
+    x: { key: power, label: "Power", unit: "%", values: [10, 13.3, 16.7, 20, 23.3, 26.7, 30, 33.3, 36.7, 40] }
+    y: { key: speed, label: "Speed", unit: "mm/s", values: [160, 147, 133, 120, 107, 93, 80, 67, 53, 40] }
+    fixed:
+      - { label: "Frequency", value: "100 kHz" }
+      - { label: "Q-pulse", value: "80 ns" }
+      - { label: "Interval", value: "0.1 mm" }
+      - { label: "Passes", value: "1" }
+    photo: /assets/images/laser/slate-power-speed-80ns.webp
+    photo_alt: "The slate tile with the 80 ns power × speed grid: power 10 to 40 percent across, speed 40 to 160 mm/s down. It runs from light grey at the fast, low-power corner through beige to gold at the slow, high-power corner, with a few dark specks."
+    notes:
+      - "**No damage.** Planned so every cell got less energy than 40% at 40 mm/s, which came out a little burned and slightly melted: the limit for this grid."
+      - "The best safe range so far: light grey through beige and tan to gold, all matte."
+      - "40% at 40 mm/s also ran in the frequency × Q-pulse grid (88.89 ns, 100 kHz), where it came out a lighter, undamaged gold. So 88.89 ns may not have run as 80 ns; a different tile and the heat that grid built up could also explain it."
+      - "LightBurn rounds the labels: power steps are 3.33% and speed steps 13.3 mm/s."
+      - "The photo's light falls off from top to bottom, so these colors were evened out against the 10% column before naming them."
 ---

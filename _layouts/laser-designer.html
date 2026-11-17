@@ -1,0 +1,110 @@
+---
+layout: default
+full_width: true
+---
+{%- comment -%}
+  A material's designer (/laser/<material>/designer/, made by
+  _plugins/laser_sheets.rb). Upload a silhouette, click its areas to color
+  them with that material's tested settings, and preview the result on the
+  material. assets/js/laser-designer.js does all of it in the browser; the
+  image is never uploaded anywhere. Settings that melt the material
+  (finish "Melted") aren't offered.
+{%- endcomment -%}
+{%- assign m = site.laser | where: "material", page.material | first -%}
+{%- assign sheet = site.data.laser[page.material] -%}
+{%- assign source = site.data.laser.source -%}
+<div class="lzr" id="lzr">
+
+  <header class="lzr-hero lzr-hero-sm">
+    <div class="lzr-wrap">
+      <p class="lzr-eyebrow"><a href="{{ '/laser/' | relative_url }}">Laser Materials Library</a> · <a href="{{ m.url | relative_url }}">{{ m.title }}</a></p>
+      <h1>{{ m.title }} Designer</h1>
+      <p class="lzr-lede">Upload a silhouette, pick a color from the {{ m.title | downcase }} tests, and click the parts of the design you want in that color. The preview shows roughly how it will come out, and the layer plan gives the settings for each color.</p>
+      <p class="lzr-note">It all runs in your browser. Your image never leaves this page.</p>
+    </div>
+  </header>
+
+  <section class="lzr-band">
+    <div class="lzr-wrap">
+      <noscript><p class="lzr-note"><strong>The designer needs JavaScript.</strong> The <a href="{{ m.url | relative_url }}">{{ m.title | downcase }} test results</a> work without it.</p></noscript>
+
+      <div class="lzr-designer" id="lzr-designer" data-state="empty">
+        <div class="lzr-stage">
+          <div class="lzr-drop">
+            <p class="lzr-drop-title">Drop a silhouette here</p>
+            <p class="lzr-note">A black-and-white image works best: PNG, JPG, WebP or SVG.</p>
+            <p>
+              <label class="lzr-btn">Choose an image<input type="file" accept="image/*" class="lzr-vh" data-role="file"></label>
+              <button type="button" class="lzr-textbtn" data-act="sample">or try a sample</button>
+            </p>
+            <p class="lzr-error" data-role="error" hidden></p>
+          </div>
+          <div class="lzr-canvas-wrap">
+            <canvas class="lzr-canvas" data-role="canvas" role="img" aria-label="Preview of the design"></canvas>
+            <canvas class="lzr-overlay" data-role="overlay" aria-hidden="true"></canvas>
+          </div>
+          <div class="lzr-stage-bar">
+            <div class="lzr-seg" role="group" aria-label="Preview">
+              <button type="button" data-view="material" aria-pressed="true">On {{ m.title | downcase }}</button>
+              <button type="button" data-view="flat" aria-pressed="false">Flat colors</button>
+            </div>
+            <button type="button" class="lzr-textbtn" data-act="undo" disabled>Undo</button>
+            <button type="button" class="lzr-textbtn" data-act="download">Download preview</button>
+            <button type="button" class="lzr-textbtn" data-act="new">New image</button>
+          </div>
+          <p class="lzr-note lzr-status" data-role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="lzr-tools">
+          <div class="lzr-tool">
+            <h2>Colors</h2>
+            <p class="lzr-note">Pick a color, then click areas of the design. Settings that melt {{ m.title | downcase }} aren't offered.</p>
+            <div class="lzr-pal" data-role="palette"></div>
+            <div class="lzr-pick" data-role="settings"></div>
+          </div>
+          <div class="lzr-tool">
+            <h3>Fill everything at once</h3>
+            <p>
+              <button type="button" class="lzr-btn-quiet" data-act="fill-dark">All dark areas</button>
+              <button type="button" class="lzr-btn-quiet" data-act="fill-light">All light areas</button>
+            </p>
+          </div>
+          <div class="lzr-tool">
+            <h3>Reading the image</h3>
+            <label class="lzr-field">Light/dark cut-off <span data-role="threshold-value"></span>
+              <input type="range" min="1" max="254" value="128" data-role="threshold">
+            </label>
+            <label class="lzr-check"><input type="checkbox" data-role="invert"> Swap dark and light</label>
+            <p class="lzr-note">Changing these starts the coloring over.</p>
+          </div>
+        </div>
+
+        <section class="lzr-plan" aria-labelledby="lzr-plan-h">
+          <h2 id="lzr-plan-h">Layer plan</h2>
+          <p class="lzr-note">One LightBurn layer per color, run like the tests: {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" }} lens, 0.1 mm interval, 1 pass. Area is the share of the whole image.</p>
+          <div class="lzr-scroll">
+            <table class="lzr-table">
+              <thead><tr><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">From</th><th scope="col">Area</th></tr></thead>
+              <tbody data-role="plan"><tr><td colspan="8">Upload an image to start.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+{%- assign tests = "" | split: "" -%}
+{%- for t in m.tests %}{% assign tests = tests | push: t.id | push: t.title %}{% endfor %}
+<script type="application/json" id="lzr-designer-data">
+{
+  "material": {{ page.material | jsonify }},
+  "title": {{ m.title | jsonify }},
+  "surface": {{ m.surface | default: "#6f7475" | jsonify }},
+  "sample": {{ '/assets/laser/sample-silhouette.svg' | relative_url | jsonify }},
+  "palette": {{ m.palette | jsonify }},
+  "tests": {{ tests | jsonify }},
+  "cells": {{ sheet | jsonify }}
+}
+</script>
+<script defer src="{{ '/assets/js/laser-designer.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
