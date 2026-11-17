@@ -20,7 +20,7 @@ image: /assets/images/laser/slate-power-speed.jpg
       <p class="lzr-eyebrow">{{ source.name }} · {{ source.kind }}</p>
       <h1>Laser Materials Library</h1>
       <p class="lzr-lede">Test grids from my fiber laser, one material at a time. Every cell is a setting, and every setting gets a color, so I can design pieces in color and know what the laser will actually give me.</p>
-      <p class="lzr-note">Unless a test says otherwise: 0.1 mm line interval, 1 pass, run from LightBurn.</p>
+      <p class="lzr-note">Unless a test says otherwise: 100 mm lens, 0.1 mm line interval, 1 pass, run from LightBurn.</p>
     </div>
   </header>
 
@@ -44,7 +44,7 @@ image: /assets/images/laser/slate-power-speed.jpg
         </li>
         {%- endfor %}
       </ul>
-      <p class="lzr-note">More materials as I test them.</p>
+      <p class="lzr-note">More materials as I test them. Each one gets its own tab with the same columns; here's <a href="{{ '/assets/laser/material-template.csv' | relative_url }}" download>a blank template</a>.</p>
     </div>
   </section>
 

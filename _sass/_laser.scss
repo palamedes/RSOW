@@ -118,7 +118,7 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   // ── color finder ─────────────────────────────────────
   .lzr-finder {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
     gap: 0.6rem;
     margin-top: 1.2rem;
   }
@@ -146,7 +146,8 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     summary:focus-visible { outline: 2px solid $lzr-gold-d; outline-offset: 2px; border-radius: 8px; }
     .lzr-sw { width: 2rem; height: 2rem; }
   }
-  .lzr-family-name { flex: 1; }
+  .lzr-family-name { flex: 1; min-width: 0; }
+  .lzr-family-name .lzr-avoid { display: table; margin-top: 0.2rem; }
   .lzr-family-n {
     font-size: 0.78rem;
     font-weight: 700;
@@ -252,13 +253,38 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
   .lzr-cell { height: clamp(1.6rem, calc((100vw - 6rem) / 11.5), 2.75rem); padding: 0; }
   .lzr-cell.is-blank { background-color: #5d6160; }
-  .is-textured {
-    background-image: radial-gradient(rgba(0, 0, 0, 0.22) 0.9px, transparent 1.2px);
-    background-size: 5px 5px;
+  // Satin: a slight gloss, the most slate should get.
+  .is-satin {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 60%);
   }
-  .is-glossy {
-    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 40%,
-                                      rgba(255, 255, 255, 0.28) 58%, rgba(255, 255, 255, 0) 74%);
+  // Bubbled: melting that damages the slate. Bubbles plus a red corner.
+  .is-bubbled {
+    background-image:
+      linear-gradient(225deg, #c0392b 0 6px, transparent 6px),
+      radial-gradient(circle, rgba(255, 255, 255, 0.45) 1px, transparent 1.6px);
+    background-size: auto, 6px 6px;
+  }
+  .lzr-fav { color: $lzr-gold-d; }
+  .lzr-avoid {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #9b2c1f;
+    background: #fbe3df;
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+    white-space: nowrap;
+  }
+  .lzr-table tr.is-avoid td { background: #fdf3f1; }
+  .lzr-cell.is-favorite { position: relative; }
+  .lzr-cell.is-favorite::after {
+    content: "★";
+    position: absolute;
+    top: 0;
+    right: 2px;
+    font-size: 0.7rem;
+    line-height: 1.2;
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
   }
   .is-unrun {
     background: repeating-linear-gradient(45deg, #ebe8e2 0 4px, $lzr-paper 4px 8px);
@@ -275,6 +301,7 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
   .lzr-key { display: inline-flex; align-items: center; gap: 0.35rem; }
   .lzr-cell-key { display: inline-block; width: 1rem; height: 1rem; --sw: #b8ab88; }
+  .lzr-cell-key.is-bubbled { width: 1.1rem; height: 1.1rem; --sw: #8d7d59; }
   .lzr-cell-key.is-unrun { background-color: transparent; }
 
   // The finder's highlight (assets/js/laser.js sets data-active-color).

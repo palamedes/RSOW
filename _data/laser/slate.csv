@@ -1,201 +1,201 @@
-test,power,speed,frequency,q_pulse,interval,passes,color,hex,finish,status,notes
-power-speed-1,10,200,20,200,0.1,1,Faint grey,#899195,Matte,done,
-power-speed-1,20,200,20,200,0.1,1,Faint grey,#868b89,Matte,done,
-power-speed-1,30,200,20,200,0.1,1,Faint grey,#8b8f8d,Matte,done,
-power-speed-1,40,200,20,200,0.1,1,Faint grey,#909492,Matte,done,
-power-speed-1,50,200,20,200,0.1,1,Light grey,#979b97,Matte,done,
-power-speed-1,60,200,20,200,0.1,1,Light grey,#919590,Matte,done,
-power-speed-1,70,200,20,200,0.1,1,Light grey,#9da09b,Matte,done,
-power-speed-1,80,200,20,200,0.1,1,Light grey,#959690,Matte,done,
-power-speed-1,90,200,20,200,0.1,1,Light grey,#9b9c95,Matte,done,
-power-speed-1,100,200,20,200,0.1,1,Light grey,#9e9d93,Matte,done,
-power-speed-1,10,182,20,200,0.1,1,Faint grey,#878d8f,Matte,done,
-power-speed-1,20,182,20,200,0.1,1,Faint grey,#868b89,Matte,done,
-power-speed-1,30,182,20,200,0.1,1,Faint grey,#878c8a,Matte,done,
-power-speed-1,40,182,20,200,0.1,1,Faint grey,#8e9290,Matte,done,
-power-speed-1,50,182,20,200,0.1,1,Faint grey,#929591,Matte,done,
-power-speed-1,60,182,20,200,0.1,1,Faint grey,#919490,Matte,done,
-power-speed-1,70,182,20,200,0.1,1,Light grey,#999c96,Matte,done,
-power-speed-1,80,182,20,200,0.1,1,Light grey,#9b9d97,Matte,done,
-power-speed-1,90,182,20,200,0.1,1,Light grey,#a3a49c,Matte,done,
-power-speed-1,100,182,20,200,0.1,1,Light grey,#a4a49c,Matte,done,
-power-speed-1,10,164,20,200,0.1,1,Faint grey,#888f90,Matte,done,
-power-speed-1,20,164,20,200,0.1,1,Faint grey,#898d8d,Matte,done,
-power-speed-1,30,164,20,200,0.1,1,Faint grey,#868a87,Matte,done,
-power-speed-1,40,164,20,200,0.1,1,Faint grey,#8c908c,Matte,done,
-power-speed-1,50,164,20,200,0.1,1,Faint grey,#8f908c,Matte,done,
-power-speed-1,60,164,20,200,0.1,1,Faint grey,#91948f,Matte,done,
-power-speed-1,70,164,20,200,0.1,1,Light grey,#999c96,Matte,done,
-power-speed-1,80,164,20,200,0.1,1,Light grey,#9fa098,Matte,done,
-power-speed-1,90,164,20,200,0.1,1,Light grey,#a2a299,Matte,done,
-power-speed-1,100,164,20,200,0.1,1,Warm grey,#aaa89c,Matte,done,
-power-speed-1,10,147,20,200,0.1,1,Faint grey,#8c9192,Matte,done,
-power-speed-1,20,147,20,200,0.1,1,Faint grey,#838784,Matte,done,
-power-speed-1,30,147,20,200,0.1,1,Faint grey,#90938f,Matte,done,
-power-speed-1,40,147,20,200,0.1,1,Faint grey,#919390,Matte,done,
-power-speed-1,50,147,20,200,0.1,1,Faint grey,#959690,Matte,done,
-power-speed-1,60,147,20,200,0.1,1,Light grey,#989a94,Matte,done,
-power-speed-1,70,147,20,200,0.1,1,Light grey,#a1a199,Matte,done,
-power-speed-1,80,147,20,200,0.1,1,Light grey,#9c9c92,Matte,done,
-power-speed-1,90,147,20,200,0.1,1,Warm grey,#aaa79a,Matte,done,
-power-speed-1,100,147,20,200,0.1,1,Warm grey,#adab9b,Matte,done,
-power-speed-1,10,129,20,200,0.1,1,Faint grey,#898d8e,Matte,done,
-power-speed-1,20,129,20,200,0.1,1,Faint grey,#8a8e8c,Matte,done,
-power-speed-1,30,129,20,200,0.1,1,Faint grey,#888b86,Matte,done,
-power-speed-1,40,129,20,200,0.1,1,Faint grey,#8e908b,Matte,done,
-power-speed-1,50,129,20,200,0.1,1,Faint grey,#91938d,Matte,done,
-power-speed-1,60,129,20,200,0.1,1,Light grey,#9c9c94,Matte,done,
-power-speed-1,70,129,20,200,0.1,1,Light grey,#a0a096,Matte,done,
-power-speed-1,80,129,20,200,0.1,1,Warm grey,#a7a597,Matte,done,
-power-speed-1,90,129,20,200,0.1,1,Warm grey,#a29f8f,Matte,done,
-power-speed-1,100,129,20,200,0.1,1,Warm grey,#b7b3a1,Matte,done,
-power-speed-1,10,111,20,200,0.1,1,Faint grey,#8a8f8e,Matte,done,
-power-speed-1,20,111,20,200,0.1,1,Faint grey,#919491,Matte,done,
-power-speed-1,30,111,20,200,0.1,1,Faint grey,#8d8d87,Matte,done,
-power-speed-1,40,111,20,200,0.1,1,Faint grey,#9b9c97,Matte,done,
-power-speed-1,50,111,20,200,0.1,1,Light grey,#92948c,Matte,done,
-power-speed-1,60,111,20,200,0.1,1,Light grey,#9e9f97,Matte,done,
-power-speed-1,70,111,20,200,0.1,1,Warm grey,#9e9c8f,Matte,done,
-power-speed-1,80,111,20,200,0.1,1,Warm grey,#b2af9e,Matte,done,
-power-speed-1,90,111,20,200,0.1,1,Warm grey,#bcb9a7,Matte,done,
-power-speed-1,100,111,20,200,0.1,1,Off-white,#c0bba8,Matte,done,
-power-speed-1,10,93,20,200,0.1,1,Faint grey,#8b8c88,Matte,done,
-power-speed-1,20,93,20,200,0.1,1,Faint grey,#8e9291,Matte,done,
-power-speed-1,30,93,20,200,0.1,1,Faint grey,#929187,Matte,done,
-power-speed-1,40,93,20,200,0.1,1,Faint grey,#8e908b,Matte,done,
-power-speed-1,50,93,20,200,0.1,1,Light grey,#9a9c95,Matte,done,
-power-speed-1,60,93,20,200,0.1,1,Warm grey,#9e9a8a,Matte,done,
-power-speed-1,70,93,20,200,0.1,1,Warm grey,#bab49f,Matte,done,
-power-speed-1,80,93,20,200,0.1,1,Off-white,#c3bfab,Matte,done,
-power-speed-1,90,93,20,200,0.1,1,Cream,#cac5b1,Matte,done,
-power-speed-1,100,93,20,200,0.1,1,Cream,#ccc5ad,Matte,done,
-power-speed-1,10,76,20,200,0.1,1,Light grey,#90999d,Matte,done,
-power-speed-1,20,76,20,200,0.1,1,Faint grey,#919491,Matte,done,
-power-speed-1,30,76,20,200,0.1,1,Light grey,#979b98,Matte,done,
-power-speed-1,40,76,20,200,0.1,1,Light grey,#9ba29f,Matte,done,
-power-speed-1,50,76,20,200,0.1,1,Pale grey,#a8ada6,Matte,done,
-power-speed-1,60,76,20,200,0.1,1,Warm grey,#b9b7a7,Matte,done,
-power-speed-1,70,76,20,200,0.1,1,Off-white,#bcbaaa,Matte,done,
-power-speed-1,80,76,20,200,0.1,1,Cream,#c5c0a9,Matte,done,
-power-speed-1,90,76,20,200,0.1,1,Cream,#d3cdb4,Matte,done,
-power-speed-1,100,76,20,200,0.1,1,Cream,#ccc3a6,Matte,done,
-power-speed-1,10,58,20,200,0.1,1,Light grey,#989ea0,Matte,done,
-power-speed-1,20,58,20,200,0.1,1,Light grey,#9a9d97,Matte,done,
-power-speed-1,30,58,20,200,0.1,1,Light grey,#a5a59b,Matte,done,
-power-speed-1,40,58,20,200,0.1,1,Warm grey,#adb0a6,Matte,done,
-power-speed-1,50,58,20,200,0.1,1,Cream,#c4bba0,Matte,done,
-power-speed-1,60,58,20,200,0.1,1,Cream,#cbc6b0,Matte,done,
-power-speed-1,70,58,20,200,0.1,1,Cream,#c7c0a6,Matte,done,
-power-speed-1,80,58,20,200,0.1,1,Beige,#bdb293,Matte,done,
-power-speed-1,90,58,20,200,0.1,1,Beige,#baae90,Textured,done,
-power-speed-1,100,58,20,200,0.1,1,Tan,#ac9e80,Textured,done,
-power-speed-1,10,40,20,200,0.1,1,Light grey,#9ea2a2,Matte,done,
-power-speed-1,20,40,20,200,0.1,1,Light grey,#a5a59c,Matte,done,
-power-speed-1,30,40,20,200,0.1,1,Warm grey,#b7b4a1,Matte,done,
-power-speed-1,40,40,20,200,0.1,1,Cream,#c6bfa4,Matte,done,
-power-speed-1,50,40,20,200,0.1,1,Sand,#bbb090,Matte,done,
-power-speed-1,60,40,20,200,0.1,1,Tan,#b0a282,Textured,done,
-power-speed-1,70,40,20,200,0.1,1,Tan,#a19373,Textured,done,
-power-speed-1,80,40,20,200,0.1,1,Gold,#948669,Glossy,done,"Metallic sheen, melted crust"
-power-speed-1,90,40,20,200,0.1,1,Gold,#928366,Glossy,done,"Metallic sheen, melted crust"
-power-speed-1,100,40,20,200,0.1,1,Bronze,#8d7e62,Glossy,done,"Metallic sheen, melted crust"
-freq-qpulse-1,40,40,10,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,20,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,30,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,40,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,50,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,400,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,20,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,30,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,40,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,50,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,361.11,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,20,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,30,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,40,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,50,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,322.22,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,20,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,30,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,40,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,50,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,283.33,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,20,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,30,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,40,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,50,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,244.44,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,205.56,0.1,1,Faint grey,#7c7f7b,Matte,done,
-freq-qpulse-1,40,40,20,205.56,0.1,1,Cream,#c8c2ad,Matte,done,
-freq-qpulse-1,40,40,30,205.56,0.1,1,Sand,#c3b796,Textured,done,
-freq-qpulse-1,40,40,40,205.56,0.1,1,Tan,#b19f7b,Textured,done,
-freq-qpulse-1,40,40,50,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,60,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,70,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,80,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,90,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,100,205.56,0.1,1,,,,not run,"Not run: test stopped (slate cracking, very hot)"
-freq-qpulse-1,40,40,10,166.67,0.1,1,Faint grey,#787a77,Matte,done,
-freq-qpulse-1,40,40,20,166.67,0.1,1,Warm grey,#b0afa1,Matte,done,
-freq-qpulse-1,40,40,30,166.67,0.1,1,Cream,#cdc4a7,Matte,done,
-freq-qpulse-1,40,40,40,166.67,0.1,1,Sand,#bfb18f,Textured,done,
-freq-qpulse-1,40,40,50,166.67,0.1,1,Tan,#b3a27c,Textured,done,
-freq-qpulse-1,40,40,60,166.67,0.1,1,Gold,#a5926a,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,70,166.67,0.1,1,Bronze,#937d59,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,80,166.67,0.1,1,Bronze,#857151,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,90,166.67,0.1,1,Dark bronze,#796447,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,100,166.67,0.1,1,Dark bronze,#786448,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,10,127.78,0.1,1,Faint grey,#797b78,Matte,done,
-freq-qpulse-1,40,40,20,127.78,0.1,1,Warm grey,#b1b1a4,Matte,done,
-freq-qpulse-1,40,40,30,127.78,0.1,1,Cream,#cfc5a7,Matte,done,
-freq-qpulse-1,40,40,40,127.78,0.1,1,Sand,#c4b695,Textured,done,
-freq-qpulse-1,40,40,50,127.78,0.1,1,Tan,#b6a480,Textured,done,
-freq-qpulse-1,40,40,60,127.78,0.1,1,Gold,#a6926b,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,70,127.78,0.1,1,Bronze,#96825f,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,80,127.78,0.1,1,Bronze,#847050,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,90,127.78,0.1,1,Dark bronze,#79664a,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,100,127.78,0.1,1,Dark bronze,#746147,Glossy,done,"Melted, bubbled and glossy"
-freq-qpulse-1,40,40,10,88.89,0.1,1,Faint grey,#787c7b,Matte,done,
-freq-qpulse-1,40,40,20,88.89,0.1,1,Light grey,#9d9f9a,Matte,done,
-freq-qpulse-1,40,40,30,88.89,0.1,1,Off-white,#bcbbaf,Matte,done,
-freq-qpulse-1,40,40,40,88.89,0.1,1,Off-white,#d2cdb9,Matte,done,
-freq-qpulse-1,40,40,50,88.89,0.1,1,Cream,#d7d0b5,Matte,done,
-freq-qpulse-1,40,40,60,88.89,0.1,1,Sand,#d0c5a2,Matte,done,
-freq-qpulse-1,40,40,70,88.89,0.1,1,Sand,#c8ba96,Matte,done,
-freq-qpulse-1,40,40,80,88.89,0.1,1,Tan,#bdab84,Matte,done,
-freq-qpulse-1,40,40,90,88.89,0.1,1,Tan,#b5a27a,Matte,done,
-freq-qpulse-1,40,40,100,88.89,0.1,1,Gold,#a9956d,Matte,done,
-freq-qpulse-1,40,40,10,50,0.1,1,No mark,,Matte,done,No visible mark
-freq-qpulse-1,40,40,20,50,0.1,1,Light grey,#9b9f9c,Matte,done,
-freq-qpulse-1,40,40,30,50,0.1,1,Pale grey,#b6b6b2,Matte,done,
-freq-qpulse-1,40,40,40,50,0.1,1,Off-white,#c6c3b6,Matte,done,
-freq-qpulse-1,40,40,50,50,0.1,1,Off-white,#ccc7b4,Matte,done,
-freq-qpulse-1,40,40,60,50,0.1,1,Cream,#d1ccb4,Matte,done,
-freq-qpulse-1,40,40,70,50,0.1,1,Cream,#d4ccb0,Matte,done,
-freq-qpulse-1,40,40,80,50,0.1,1,Sand,#d0c5a2,Matte,done,
-freq-qpulse-1,40,40,90,50,0.1,1,Sand,#cabb96,Matte,done,
-freq-qpulse-1,40,40,100,50,0.1,1,Sand,#c0b089,Matte,done,
+test,color,hex,finish,quality,favorite,power,speed,frequency,q_pulse,interval,passes,lens,status,safety,notes
+power-speed-1,Faint grey,#899195,Matte,,,10,200,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#868b89,Matte,,,20,200,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8b8f8d,Matte,,,30,200,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#909492,Matte,,,40,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#979b97,Matte,,,50,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#919590,Matte,,,60,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9da09b,Matte,,,70,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#959690,Matte,,,80,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9b9c95,Matte,,,90,200,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9e9d93,Matte,,,100,200,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#878d8f,Matte,,,10,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#868b89,Matte,,,20,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#878c8a,Matte,,,30,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8e9290,Matte,,,40,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#929591,Matte,,,50,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#919490,Matte,,,60,182,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#999c96,Matte,,,70,182,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9b9d97,Matte,,,80,182,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a3a49c,Matte,,,90,182,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a4a49c,Matte,,,100,182,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#888f90,Matte,,,10,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#898d8d,Matte,,,20,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#868a87,Matte,,,30,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8c908c,Matte,,,40,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8f908c,Matte,,,50,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#91948f,Matte,,,60,164,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#999c96,Matte,,,70,164,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9fa098,Matte,,,80,164,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a2a299,Matte,,,90,164,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#aaa89c,Matte,,,100,164,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8c9192,Matte,,,10,147,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#838784,Matte,,,20,147,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#90938f,Matte,,,30,147,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#919390,Matte,,,40,147,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#959690,Matte,,,50,147,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#989a94,Matte,,,60,147,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a1a199,Matte,,,70,147,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9c9c92,Matte,,,80,147,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#aaa79a,Matte,,,90,147,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#adab9b,Matte,,,100,147,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#898d8e,Matte,,,10,129,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8a8e8c,Matte,,,20,129,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#888b86,Matte,,,30,129,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8e908b,Matte,,,40,129,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#91938d,Matte,,,50,129,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9c9c94,Matte,,,60,129,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a0a096,Matte,,,70,129,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#a7a597,Matte,,,80,129,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#a29f8f,Matte,,,90,129,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#b7b3a1,Matte,,,100,129,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8a8f8e,Matte,,,10,111,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#919491,Matte,,,20,111,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8d8d87,Matte,,,30,111,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#9b9c97,Matte,,,40,111,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#92948c,Matte,,,50,111,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9e9f97,Matte,,,60,111,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#9e9c8f,Matte,,,70,111,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#b2af9e,Matte,,,80,111,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#bcb9a7,Matte,,,90,111,20,200,0.1,1,100,done,,
+power-speed-1,Off-white,#c0bba8,Matte,,,100,111,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8b8c88,Matte,,,10,93,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8e9291,Matte,,,20,93,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#929187,Matte,,,30,93,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#8e908b,Matte,,,40,93,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9a9c95,Matte,,,50,93,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#9e9a8a,Matte,,,60,93,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#bab49f,Matte,,,70,93,20,200,0.1,1,100,done,,
+power-speed-1,Off-white,#c3bfab,Matte,,,80,93,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#cac5b1,Matte,,,90,93,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#ccc5ad,Matte,,,100,93,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#90999d,Matte,,,10,76,20,200,0.1,1,100,done,,
+power-speed-1,Faint grey,#919491,Matte,,,20,76,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#979b98,Matte,,,30,76,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9ba29f,Matte,,,40,76,20,200,0.1,1,100,done,,
+power-speed-1,Pale grey,#a8ada6,Matte,,,50,76,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#b9b7a7,Matte,,,60,76,20,200,0.1,1,100,done,,
+power-speed-1,Off-white,#bcbaaa,Matte,,,70,76,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#c5c0a9,Matte,,,80,76,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#d3cdb4,Matte,,,90,76,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#ccc3a6,Matte,,,100,76,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#989ea0,Matte,,,10,58,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9a9d97,Matte,,,20,58,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a5a59b,Matte,,,30,58,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#adb0a6,Matte,,,40,58,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#c4bba0,Matte,,,50,58,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#cbc6b0,Matte,,,60,58,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#c7c0a6,Matte,,,70,58,20,200,0.1,1,100,done,,
+power-speed-1,Beige,#bdb293,Matte,,,80,58,20,200,0.1,1,100,done,,
+power-speed-1,Beige,#baae90,Satin,,,90,58,20,200,0.1,1,100,done,,
+power-speed-1,Tan,#ac9e80,Satin,,,100,58,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#9ea2a2,Matte,,,10,40,20,200,0.1,1,100,done,,
+power-speed-1,Light grey,#a5a59c,Matte,,,20,40,20,200,0.1,1,100,done,,
+power-speed-1,Warm grey,#b7b4a1,Matte,,,30,40,20,200,0.1,1,100,done,,
+power-speed-1,Cream,#c6bfa4,Matte,,,40,40,20,200,0.1,1,100,done,,
+power-speed-1,Sand,#bbb090,Matte,,,50,40,20,200,0.1,1,100,done,,
+power-speed-1,Tan,#b0a282,Satin,,,60,40,20,200,0.1,1,100,done,,
+power-speed-1,Tan,#a19373,Satin,,,70,40,20,200,0.1,1,100,done,,
+power-speed-1,Gold,#948669,Bubbled,,,80,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
+power-speed-1,Gold,#928366,Bubbled,,,90,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
+power-speed-1,Bronze,#8d7e62,Bubbled,,,100,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
+freq-qpulse-1,,,,,,40,40,10,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,20,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,30,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,40,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,50,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,10,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,20,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,30,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,40,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,50,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,361.11,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,10,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,20,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,30,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,40,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,50,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,322.22,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,10,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,20,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,30,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,40,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,50,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,283.33,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,10,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,20,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,30,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,40,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,50,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,244.44,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,Faint grey,#7c7f7b,Matte,,,40,40,10,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#c8c2ad,Matte,,,40,40,20,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#c3b796,Satin,,,40,40,30,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#b19f7b,Satin,,,40,40,40,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,,,,,,40,40,50,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,60,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,70,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,80,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,90,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,,,,,,40,40,100,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
+freq-qpulse-1,Faint grey,#787a77,Matte,,,40,40,10,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Warm grey,#b0afa1,Matte,,,40,40,20,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#cdc4a7,Matte,,,40,40,30,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#bfb18f,Satin,,,40,40,40,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#b3a27c,Satin,,,40,40,50,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Gold,#a5926a,Bubbled,,,40,40,60,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Bronze,#937d59,Bubbled,,,40,40,70,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Bronze,#857151,Bubbled,,,40,40,80,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Dark bronze,#796447,Bubbled,,,40,40,90,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Dark bronze,#786448,Bubbled,,,40,40,100,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Faint grey,#797b78,Matte,,,40,40,10,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Warm grey,#b1b1a4,Matte,,,40,40,20,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#cfc5a7,Matte,,,40,40,30,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#c4b695,Satin,,,40,40,40,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#b6a480,Satin,,,40,40,50,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Gold,#a6926b,Bubbled,,,40,40,60,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Bronze,#96825f,Bubbled,,,40,40,70,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Bronze,#847050,Bubbled,,,40,40,80,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Dark bronze,#79664a,Bubbled,,,40,40,90,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Dark bronze,#746147,Bubbled,,,40,40,100,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Faint grey,#787c7b,Matte,,,40,40,10,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Light grey,#9d9f9a,Matte,,,40,40,20,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Off-white,#bcbbaf,Matte,,,40,40,30,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Off-white,#d2cdb9,Matte,,,40,40,40,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#d7d0b5,Matte,,,40,40,50,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#d0c5a2,Matte,,,40,40,60,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#c8ba96,Matte,,,40,40,70,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#bdab84,Matte,,,40,40,80,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#b5a27a,Matte,,,40,40,90,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Gold,#a9956d,Matte,,,40,40,100,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,No mark,,,,,40,40,10,50,0.1,1,100,done,"Test stopped: cracking, heat",No visible mark
+freq-qpulse-1,Light grey,#9b9f9c,Matte,,,40,40,20,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Pale grey,#b6b6b2,Matte,,,40,40,30,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Off-white,#c6c3b6,Matte,,,40,40,40,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Off-white,#ccc7b4,Matte,,,40,40,50,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#d1ccb4,Matte,,,40,40,60,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Cream,#d4ccb0,Matte,,,40,40,70,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#d0c5a2,Matte,,,40,40,80,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#cabb96,Matte,,,40,40,90,50,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Sand,#c0b089,Matte,,,40,40,100,50,0.1,1,100,done,"Test stopped: cracking, heat",
