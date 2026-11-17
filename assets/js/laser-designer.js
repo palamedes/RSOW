@@ -219,6 +219,12 @@
       return c;
     });
 
+    // Validated settings (front matter `validated`), flagged before the
+    // shades are built so a validated setting can stand for its shade.
+    var VALID = {};
+    (data.validated || []).forEach(function (k, i) { VALID[keyFix(k)] = i + 1; });
+    settings.forEach(function (c) { c.validated = VALID[keyOf(c)] || 0; });
+
     // At most seven colors, light to dark: the material's `groups`, each
     // combining palette colors that look alike. Inside a color, settings
     // within SAME_SHADE of each other count as one shade.
@@ -250,6 +256,7 @@
     // then the fastest.
     function recommend(list) {
       var pool = list.filter(function (c) { return c.favorite === 'Yes'; });
+      if (!pool.length) pool = list.filter(function (c) { return c.validated; });
       if (!pool.length) pool = list;
       var best = null, bq = 0;
       pool.forEach(function (c) { var q = parseFloat(c.quality) || 0; if (q > bq) { bq = q; best = c; } });
@@ -284,6 +291,15 @@
     var startGroup = groups[0];
     if (startGroup) { S.group = startGroup.name; S.active = defaultShade(startGroup).rep; }
 
+    // Validated colors: settings proven on this machine (front matter
+    // `validated`, in chart order). When there are any they're the main
+    // picker, laid out as a chart; every tested setting stays under "All
+    // tested".
+    var validList = settings.filter(function (c) { return c.validated; })
+      .sort(function (a, b) { return a.validated - b.validated; });
+    S.palMode = validList.length ? 'validated' : 'all';
+    if (validList.length) { S.active = validList[0]; S.group = validList[0].group; }
+
     // ── palette ──────────────────────────────────────────
     var pal = role('palette'), pick = role('settings');
     function swatch(hex) {
@@ -303,6 +319,17 @@
     function findGroup(name) { return groups.filter(function (g) { return g.name === name; })[0]; }
     groups.forEach(function (g) { pal.appendChild(palButton(g.name, g.hex, g.name)); });
     pal.appendChild(palButton('Bare ' + String(data.title || '').toLowerCase(), data.surface, '__bare'));
+    var palMode = role('pal-mode');
+    if (validList.length) {
+      palMode.hidden = false;
+      palMode.querySelector('[data-pal="validated"]').textContent = 'Validated (' + validList.length + ')';
+    }
+    palMode.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-pal]');
+      if (!b) return;
+      S.palMode = b.dataset.pal;
+      drawPalette();
+    });
     pal.addEventListener('click', function (e) {
       var b = e.target.closest('.lzr-pal-btn');
       if (!b) return;
@@ -320,22 +347,71 @@
         return;
       }
       if (e.target.closest('[data-act="pat-add-all"]')) { addAll(findGroup(S.group)); return; }
+      if (e.target.closest('[data-act="pat-add-valid"]')) { addList(validList); return; }
+      var v = e.target.closest('.lzr-valid');
+      if (v) {
+        if (v.dataset.v === 'bare') { S.group = '__bare'; S.active = null; }
+        else {
+          S.active = validList[+v.dataset.v]; S.group = S.active.group;
+          if (S.mode === 'pattern') togglePattern(S.active);
+        }
+        drawPalette();
+        return;
+      }
       var b = e.target.closest('.lzr-shade');
       if (!b) return;
       S.active = S.shown[+b.dataset.i].rep;
       if (S.mode === 'pattern') togglePattern(S.active);
       drawPalette();
     });
+    function describeActive() {
+      var a = S.active, p = document.createElement('p'); p.className = 'lzr-active';
+      if (!a) {
+        p.innerHTML = '<strong>Bare ' + esc(String(data.title || '').toLowerCase()) + '</strong>: no laser. Click an area to clear it.';
+        return p;
+      }
+      p.innerHTML = (a.validated ? '<span class="lzr-ok">✓ Validated</span> ' : '') + '<strong>' + esc(a.group) + '</strong>' +
+        (a.color !== a.group ? ' · ' + esc(a.color) : '') + (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') +
+        (a.relief ? ', ' + esc(a.relief.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
+        '<br>' + esc(a.label) + '<br><span class="lzr-note">From ' + esc(a.from) + (a.notes ? '. ' + esc(a.notes) : '') + '</span>';
+      return p;
+    }
     function drawPalette() {
+      var ms = palMode.querySelectorAll('[data-pal]');
+      for (var m = 0; m < ms.length; m++) ms[m].setAttribute('aria-pressed', ms[m].dataset.pal === S.palMode ? 'true' : 'false');
+      pal.hidden = S.palMode === 'validated';
       var btns = pal.querySelectorAll('.lzr-pal-btn');
       for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', btns[i].dataset.group === S.group ? 'true' : 'false');
       pick.textContent = '';
-      if (S.group === '__bare') {
-        var p0 = document.createElement('p'); p0.className = 'lzr-active';
-        p0.innerHTML = '<strong>Bare ' + esc(String(data.title || '').toLowerCase()) + '</strong>: no laser. Click an area to clear it.';
-        pick.appendChild(p0);
+      if (S.palMode === 'validated') {
+        var vg = document.createElement('div'); vg.className = 'lzr-valid-grid';
+        validList.forEach(function (c, vi) {
+          var vb = document.createElement('button');
+          vb.type = 'button'; vb.className = 'lzr-valid' + (c.relief === 'Raised' ? ' is-raised' : ''); vb.dataset.v = vi;
+          vb.style.setProperty('--sw', c.hex);
+          var on = S.mode === 'pattern' ? P.items.indexOf(c) >= 0 : c === S.active;
+          vb.setAttribute('aria-pressed', on ? 'true' : 'false');
+          vb.title = c.group + ' · ' + c.label + ' (' + secsText(c.secs) + ')';
+          vb.setAttribute('aria-label', c.group + ': ' + c.label);
+          vg.appendChild(vb);
+        });
+        var bare = document.createElement('button');
+        bare.type = 'button'; bare.className = 'lzr-valid is-bare'; bare.dataset.v = 'bare';
+        bare.style.setProperty('--sw', data.surface);
+        bare.setAttribute('aria-pressed', S.mode !== 'pattern' && !S.active ? 'true' : 'false');
+        bare.title = 'Bare ' + String(data.title || '').toLowerCase() + ': no laser';
+        bare.setAttribute('aria-label', bare.title);
+        vg.appendChild(bare);
+        pick.appendChild(vg);
+        if (S.mode === 'pattern') {
+          var av = document.createElement('p');
+          av.innerHTML = '<button type="button" class="lzr-btn-quiet" data-act="pat-add-valid">Add all ' + validList.length + ' validated colors</button>';
+          pick.appendChild(av);
+        }
+        pick.appendChild(describeActive());
         return;
       }
+      if (S.group === '__bare') { pick.appendChild(describeActive()); return; }
       var g = findGroup(S.group);
       if (!g) return;
       var head = document.createElement('div'); head.className = 'lzr-pick-head';
@@ -357,7 +433,7 @@
         var sw = swatch(c.hex); if (c.finish === 'Satin') sw.classList.add('is-satin');
         b.appendChild(sw);
         var t = document.createElement('span'); t.className = 'lzr-shade-set';
-        t.textContent = c.short + (c.relief === 'Raised' ? ' · raised' : '') + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
+        t.textContent = (c.validated ? '✓ ' : '') + c.short + (c.relief === 'Raised' ? ' · raised' : '') + (sh.list.length > 1 ? ' (+' + (sh.list.length - 1) + ')' : '');
         b.appendChild(t);
         var tm = document.createElement('span'); tm.className = 'lzr-shade-time'; tm.textContent = secsText(c.secs);
         b.appendChild(tm);
@@ -369,11 +445,7 @@
         all.innerHTML = '<button type="button" class="lzr-btn-quiet" data-act="pat-add-all">Add all ' + S.shown.length + ' shades</button>';
         pick.appendChild(all);
       }
-      var a = S.active, p = document.createElement('p'); p.className = 'lzr-active';
-      p.innerHTML = '<strong>' + esc(a.group) + '</strong>' + (a.color !== a.group ? ' · ' + esc(a.color) : '') +
-        (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') + (a.relief ? ', ' + esc(a.relief.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
-        '<br>' + esc(a.label) + '<br><span class="lzr-note">From ' + esc(a.from) + (a.notes ? '. ' + esc(a.notes) : '') + '</span>';
-      pick.appendChild(p);
+      pick.appendChild(describeActive());
     }
     function esc(s) {
       return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
@@ -665,6 +737,10 @@
       if (i >= 0) P.items.splice(i, 1);
       else if (P.items.length >= MAX_SWATCHES) { status.textContent = 'A pattern holds ' + MAX_SWATCHES + ' shades: LightBurn has 30 layers and the labels use one.'; return; }
       else P.items.push(c);
+      patternChanged();
+    }
+    function addList(list) {
+      list.forEach(function (c) { if (P.items.indexOf(c) < 0 && P.items.length < MAX_SWATCHES) P.items.push(c); });
       patternChanged();
     }
     function addAll(g) {

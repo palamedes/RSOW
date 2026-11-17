@@ -39,6 +39,11 @@ groups:
   - { name: "Beige", hint: "Greyish to light beige.", colors: ["Warm grey", "Beige"] }
   - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
   - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
+# Validated colors: settings proven on this machine, in chart order (lightest
+# row first, each row neutral to warm), as power|speed|frequency|q_pulse|
+# interval|passes. They're the designer's main palette and get a ✓ here.
+# Filled in once a standard-pattern run confirms them.
+validated: []
 # The designer's standard test pattern, v2 (2026-11-17), row by row as
 # power|speed|frequency|q_pulse|interval|passes. 25 colors at least ΔE 4
 # apart: run 1's distinct ones plus the tested settings that fill its gaps.

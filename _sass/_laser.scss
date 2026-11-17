@@ -617,3 +617,42 @@ $lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   }
   .lzr-field select { display: block; width: 100%; margin-top: 0.3rem; font: inherit; font-size: 0.82rem; padding: 0.25rem; }
 }
+
+// ── validated colors (designer picker, slate page chart) ──
+.lzr {
+  .lzr-ok { font-size: 0.72rem; font-weight: 700; color: #1f6b3a; background: #dff2e5; border-radius: 999px; padding: 0.1rem 0.45rem; white-space: nowrap; }
+  .lzr-pal-mode { margin-top: 0.5rem; }
+  // the hidden attribute wins over these elements' own display
+  [hidden] { display: none !important; }
+  .lzr-valid-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+    margin: 0.7rem 0;
+  }
+  .lzr-valid {
+    position: relative;
+    aspect-ratio: 1;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: var(--sw, #999);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    &.is-bare { grid-column: 1 / -1; aspect-ratio: auto; height: 1.6rem; font-size: 0.78rem; color: #fff; }
+    &.is-bare::after { content: "Bare slate"; }
+    &.is-raised::before { content: "▲"; position: absolute; left: 3px; bottom: 2px; font-size: 0.6rem; color: #fff; text-shadow: 0 0 2px rgba(0, 0, 0, 0.8); }
+    &[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.25), 0 0 0 2px #fff, 0 0 0 4px $lzr-gold-d; }
+  }
+  .lzr-validated {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+    gap: 0.8rem;
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+    li { font-size: 0.78rem; color: $lzr-body; line-height: 1.35; }
+    .lzr-sw { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 6px; margin-bottom: 0.35rem; }
+    strong { color: $lzr-ink; }
+  }
+}

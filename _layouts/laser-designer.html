@@ -67,6 +67,10 @@ full_width: true
           <div class="lzr-tool">
             <h2>Colors</h2>
             <p class="lzr-note">Pick a color, then a shade, then click areas of the design. Order the shades by color or by speed to find the fastest. Settings that melt {{ m.title | downcase }} aren't offered.</p>
+            <div class="lzr-seg lzr-seg-sm lzr-pal-mode" data-role="pal-mode" role="group" aria-label="Which colors" hidden>
+              <button type="button" data-pal="validated" aria-pressed="true">Validated</button>
+              <button type="button" data-pal="all" aria-pressed="false">All tested</button>
+            </div>
             <div class="lzr-pal" data-role="palette"></div>
             <div class="lzr-pick" data-role="settings"></div>
           </div>
@@ -134,6 +138,7 @@ full_width: true
   "palette": {{ m.palette | jsonify }},
   "groups": {{ m.groups | jsonify }},
   "pattern": {{ m.pattern | jsonify }},
+  "validated": {{ m.validated | jsonify }},
   "tests": {{ m.tests | jsonify }},
   "cells": {{ sheet | jsonify }}
 }

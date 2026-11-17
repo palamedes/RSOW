@@ -32,6 +32,22 @@ full_width: true
     </div>
   </header>
 
+  {%- if page.validated and page.validated.size > 0 %}
+  <section class="lzr-band" aria-labelledby="lzr-valid-h">
+    <div class="lzr-wrap">
+      <h2 id="lzr-valid-h">Validated colors</h2>
+      <p class="lzr-note">Settings proven on this machine, each confirmed by a standard-pattern run. They're the designer's main palette. Swatches are from the photos.</p>
+      <ol class="lzr-validated">
+        {%- for k in page.validated %}
+          {%- assign parts = k | split: "|" %}
+          {%- assign hit = sheet | where: "power", parts[0] | where: "speed", parts[1] | where: "frequency", parts[2] | where: "q_pulse", parts[3] | where: "interval", parts[4] | where: "passes", parts[5] | last %}
+        <li><span class="lzr-sw" style="--sw: {{ hit.hex }}" aria-hidden="true"></span><strong>{{ hit.color }}</strong>{% if hit.relief == "Raised" %}, raised{% endif %}<br>{{ parts[0] }}% · {{ parts[1] }} mm/s<br>{{ parts[2] }} kHz · {{ parts[3] }} ns · {{ parts[4] }} mm{% if parts[5] != "1" %} · {{ parts[5] }} passes{% endif %}</li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </section>
+  {%- endif %}
+
   <section class="lzr-band" aria-labelledby="lzr-finder-h">
     <div class="lzr-wrap">
       <h2 id="lzr-finder-h">Find a color</h2>
@@ -58,8 +74,9 @@ full_width: true
               {%- for r in hits %}
                 {%- assign rhex = r.hex | default: "" %}
                 {%- assign t = page.tests | where: "id", r.test | first %}
+                {%- capture rkey %}{{ r.power }}|{{ r.speed }}|{{ r.frequency }}|{{ r.q_pulse }}|{{ r.interval }}|{{ r.passes }}{% endcapture %}
                 <tr{% if r.finish == "Melted" %} class="is-avoid"{% endif %}>
-                  <td><span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span><a href="#{{ r.test }}">{{ t.title | default: r.test }}</a>{% if r.favorite == "Yes" %} <span class="lzr-fav" title="Favorite">★<span class="lzr-vh"> Favorite</span></span>{% endif %}</td>
+                  <td><span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span><a href="#{{ r.test }}">{{ t.title | default: r.test }}</a>{% if page.validated contains rkey %} <span class="lzr-ok">✓ Validated</span>{% endif %}{% if r.favorite == "Yes" %} <span class="lzr-fav" title="Favorite">★<span class="lzr-vh"> Favorite</span></span>{% endif %}</td>
                   <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{% if r.finish == "Melted" %}<span class="lzr-avoid">Melted: damages slate</span>{% else %}{{ r.finish }}{% if r.relief == "Raised" %}, raised{% endif %}{% endif %}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td>
                 </tr>
               {%- endfor %}
@@ -113,7 +130,8 @@ full_width: true
                     {%- assign fin = c.finish | downcase %}
                     {%- if fin == "melted" %}{% assign fin_txt = "melted (damages slate)" %}{% else %}{% assign fin_txt = fin %}{% endif %}
                     {%- assign chex = c.hex | default: "" %}
-                    {%- capture extra %}{% if c.relief == "Raised" %}, raised{% elsif c.relief == "Flat" %}, flat{% endif %}{% if c.quality %}, quality {{ c.quality }}/10{% endif %}{% if c.favorite == "Yes" %}, favorite{% endif %}{% endcapture %}
+                    {%- capture ckey %}{{ c.power }}|{{ c.speed }}|{{ c.frequency }}|{{ c.q_pulse }}|{{ c.interval }}|{{ c.passes }}{% endcapture %}
+                    {%- capture extra %}{% if page.validated contains ckey %}, validated{% endif %}{% if c.relief == "Raised" %}, raised{% elsif c.relief == "Flat" %}, flat{% endif %}{% if c.quality %}, quality {{ c.quality }}/10{% endif %}{% if c.favorite == "Yes" %}, favorite{% endif %}{% endcapture %}
                 <td class="lzr-cell{% if chex == "" %} is-blank{% endif %}{% if fin != '' and fin != 'matte' %} is-{{ fin }}{% endif %}{% if c.favorite == "Yes" %} is-favorite{% endif %}{% if c.relief == "Raised" %} is-raised{% endif %}" data-color="{{ c.color }}"{% if chex != "" %} style="--sw: {{ chex }}"{% endif %} title="{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }} · {{ where_txt }}"><span class="lzr-vh">{{ c.color }}{% if fin != '' %}, {{ fin_txt }}{% endif %}{{ extra }}</span></td>
                   {%- endif %}
                 {%- endfor %}
@@ -162,9 +180,10 @@ full_width: true
           <tbody>
           {%- for r in sheet %}
             {%- assign rhex = r.hex | default: "" %}{%- assign rcolor = r.color | default: "" %}
+            {%- capture skey %}{{ r.power }}|{{ r.speed }}|{{ r.frequency }}|{{ r.q_pulse }}|{{ r.interval }}|{{ r.passes }}{% endcapture %}
             <tr{% if r.status == "not run" %} class="is-unrun"{% elsif r.finish == "Melted" %} class="is-avoid"{% endif %}>
               <td>{{ r.test }}</td>
-              <td>{% if rcolor != "" %}<span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span>{{ r.color }}{% if rhex != "" %} <code>{{ rhex }}</code>{% endif %}{% else %}—{% endif %}</td>
+              <td>{% if rcolor != "" %}<span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span>{{ r.color }}{% if rhex != "" %} <code>{{ rhex }}</code>{% endif %}{% if page.validated contains skey %} <span class="lzr-ok">✓</span>{% endif %}{% else %}—{% endif %}</td>
               <td>{{ r.finish | default: "—" }}</td><td>{{ r.relief | default: "—" }}</td><td>{% if r.quality %}{{ r.quality }}/10{% else %}—{% endif %}</td><td>{% if r.favorite == "Yes" %}★ Yes{% else %}—{% endif %}</td>
               <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{{ r.passes }}</td><td>{% if r.lens %}{{ r.lens }} mm{% else %}—{% endif %}</td>
               <td>{{ r.safety }}</td><td>{{ r.notes }}</td>
