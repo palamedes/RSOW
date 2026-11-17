@@ -1,0 +1,169 @@
+---
+layout: default
+full_width: true
+---
+{%- comment -%}
+  One material in the laser materials library (/laser/<material>/).
+  The page's front matter describes its test grids and color families; the
+  cells come from the material's tab, _data/laser/<material>.csv, which is
+  also published as /laser/<material>.csv. assets/js/laser.js adds the
+  color finder's highlighting; everything reads without it.
+{%- endcomment -%}
+{%- assign sheet = site.data.laser[page.material] -%}
+{%- assign source = site.data.laser.source -%}
+{%- assign done = sheet | where: "status", "done" -%}
+{%- assign unrun = sheet | where: "status", "not run" -%}
+{%- assign csv_url = "/laser/" | append: page.material | append: ".csv" | relative_url -%}
+<div class="lzr" id="lzr">
+
+  <header class="lzr-hero">
+    <div class="lzr-wrap">
+      <p class="lzr-eyebrow"><a href="{{ '/laser/' | relative_url }}">Laser Materials Library</a> · {{ source.name }}</p>
+      <h1>{{ page.title }}</h1>
+      <p class="lzr-lede">{{ page.summary }}</p>
+      <ul class="lzr-stats">
+        <li><strong>{{ page.tests | size }}</strong> test grids</li>
+        <li><strong>{{ done | size }}</strong> settings tested</li>
+        {%- if unrun.size > 0 %}
+        <li><strong>{{ unrun | size }}</strong> not run yet</li>
+        {%- endif %}
+      </ul>
+      <p><a class="lzr-btn" href="{{ csv_url }}" download>Download the {{ page.title | downcase }} tab (CSV)</a></p>
+    </div>
+  </header>
+
+  <section class="lzr-band" aria-labelledby="lzr-finder-h">
+    <div class="lzr-wrap">
+      <h2 id="lzr-finder-h">Find a color</h2>
+      <p class="lzr-note">Open a color to see every setting that made it; the matching cells light up in the grids below. The swatches are sampled from phone photos, so they're close, not exact.</p>
+      <div class="lzr-finder">
+        {%- for fam in page.palette %}
+          {%- assign hits = sheet | where: "color", fam.name %}
+          {%- if hits.size == 0 %}{% continue %}{% endif %}
+        <details class="lzr-family" data-color="{{ fam.name }}">
+          <summary>
+            <span class="lzr-sw{% if fam.hex == "" %} is-blank{% endif %}"{% if fam.hex != "" %} style="--sw: {{ fam.hex }}"{% endif %} aria-hidden="true"></span>
+            <span class="lzr-family-name">{{ fam.name }}</span>
+            <span class="lzr-family-n">{{ hits | size }}</span>
+          </summary>
+          <div class="lzr-recipes">
+            <p class="lzr-hint">{{ fam.hint }}</p>
+            <div class="lzr-scroll">
+            <table class="lzr-table">
+              <thead><tr><th scope="col">Test</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Finish</th></tr></thead>
+              <tbody>
+              {%- for r in hits %}
+                {%- assign rhex = r.hex | default: "" %}
+                {%- assign t = page.tests | where: "id", r.test | first %}
+                <tr>
+                  <td><span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span><a href="#{{ r.test }}">{{ t.title | default: r.test }}</a></td>
+                  <td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.finish }}</td>
+                </tr>
+              {%- endfor %}
+              </tbody>
+            </table>
+            </div>
+          </div>
+        </details>
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+
+  {%- for t in page.tests %}
+  {%- assign trows = sheet | where: "test", t.id %}
+  {%- assign ylab = t.y.label %}
+  {%- assign xsep = " " %}{% if t.x.unit == "%" %}{% assign xsep = "" %}{% endif %}
+  {%- assign ysep = " " %}{% if t.y.unit == "%" %}{% assign ysep = "" %}{% endif %}
+  <section class="lzr-test" id="{{ t.id }}" aria-labelledby="{{ t.id }}-h">
+    <div class="lzr-wrap">
+      <h2 id="{{ t.id }}-h">{{ t.title }}{% if t.status == "stopped" %} <span class="lzr-flag">Stopped early</span>{% endif %}</h2>
+      <ul class="lzr-fixed" aria-label="Settings held fixed">
+        {%- for f in t.fixed %}
+        <li><span>{{ f.label }}</span> {{ f.value }}</li>
+        {%- endfor %}
+      </ul>
+      <div class="lzr-test-body">
+        <figure class="lzr-grid-fig">
+          <table class="lzr-grid">
+            <caption>{{ t.y.label }} ({{ t.y.unit }}) down, {{ t.x.label | downcase }} ({{ t.x.unit }}) across, laid out like the tile</caption>
+            <thead>
+              <tr>
+                <td class="lzr-corner"><span class="lzr-vh">{{ t.y.label }} by {{ t.x.label }}</span></td>
+                {%- for x in t.x.values %}
+                <th scope="col">{{ x }}</th>
+                {%- endfor %}
+              </tr>
+            </thead>
+            <tbody>
+            {%- for y in t.y.values %}
+              {%- assign yrows = trows | where: t.y.key, y %}
+              <tr>
+                <th scope="row">{{ y }}</th>
+                {%- for x in t.x.values %}
+                  {%- assign c = yrows | where: t.x.key, x | first %}
+                  {%- assign where_txt = t.x.label | append: " " | append: x | append: xsep | append: t.x.unit | append: ", " | append: ylab | append: " " | append: y | append: ysep | append: t.y.unit %}
+                  {%- if c == nil or c.status == "not run" %}
+                <td class="lzr-cell is-unrun" title="Not run · {{ where_txt }}"><span class="lzr-vh">Not run</span></td>
+                  {%- else %}
+                    {%- assign fin = c.finish | downcase %}
+                    {%- assign chex = c.hex | default: "" %}
+                <td class="lzr-cell{% if chex == "" %} is-blank{% endif %}{% if fin != '' and fin != 'matte' %} is-{{ fin }}{% endif %}" data-color="{{ c.color }}"{% if chex != "" %} style="--sw: {{ chex }}"{% endif %} title="{{ c.color }}{% if fin != '' %}, {{ fin }}{% endif %} · {{ where_txt }}"><span class="lzr-vh">{{ c.color }}{% if fin != '' %}, {{ fin }}{% endif %}</span></td>
+                  {%- endif %}
+                {%- endfor %}
+              </tr>
+            {%- endfor %}
+            </tbody>
+          </table>
+          <figcaption>
+            <span class="lzr-key"><span class="lzr-cell-key is-textured" aria-hidden="true"></span>Textured</span>
+            <span class="lzr-key"><span class="lzr-cell-key is-glossy" aria-hidden="true"></span>Glossy</span>
+            {%- assign t_unrun = trows | where: "status", "not run" %}
+            {%- if t_unrun.size > 0 %}
+            <span class="lzr-key"><span class="lzr-cell-key is-unrun" aria-hidden="true"></span>Not run</span>
+            {%- endif %}
+          </figcaption>
+        </figure>
+        <figure class="lzr-photo">
+          <img src="{{ t.photo | relative_url }}" alt="{{ t.photo_alt }}" width="720" height="960" loading="lazy" decoding="async">
+          <figcaption>The tile itself.</figcaption>
+        </figure>
+      </div>
+      {%- if t.notes %}
+      <ul class="lzr-notes">
+        {%- for n in t.notes %}
+        <li>{{ n | markdownify | remove: "<p>" | remove: "</p>" | strip }}</li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+  </section>
+  {%- endfor %}
+
+  <section class="lzr-band" aria-labelledby="lzr-sheet-h">
+    <div class="lzr-wrap">
+      <h2 id="lzr-sheet-h">The {{ page.title | downcase }} tab</h2>
+      <p class="lzr-note">Every cell from every grid, one row each. <a href="{{ csv_url }}" download>Download it as a CSV</a> to open in a spreadsheet.</p>
+      <details class="lzr-sheet">
+        <summary>Show all {{ sheet | size }} rows</summary>
+        <div class="lzr-scroll">
+        <table class="lzr-table">
+          <thead><tr><th scope="col">Test</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Passes</th><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Notes</th></tr></thead>
+          <tbody>
+          {%- for r in sheet %}
+            {%- assign rhex = r.hex | default: "" %}{%- assign rcolor = r.color | default: "" %}
+            <tr{% if r.status == "not run" %} class="is-unrun"{% endif %}>
+              <td>{{ r.test }}</td><td>{{ r.power }}%</td><td>{{ r.speed }} mm/s</td><td>{{ r.frequency }} kHz</td><td>{{ r.q_pulse }} ns</td><td>{{ r.interval }} mm</td><td>{{ r.passes }}</td>
+              <td>{% if rcolor != "" %}<span class="lzr-sw lzr-sw-sm{% if rhex == "" %} is-blank{% endif %}"{% if rhex != "" %} style="--sw: {{ rhex }}"{% endif %} aria-hidden="true"></span>{{ r.color }}{% if rhex != "" %} <code>{{ rhex }}</code>{% endif %}{% else %}—{% endif %}</td>
+              <td>{{ r.finish | default: "—" }}</td><td>{{ r.notes }}</td>
+            </tr>
+          {%- endfor %}
+          </tbody>
+        </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+</div>
+<script defer src="{{ '/assets/js/laser.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

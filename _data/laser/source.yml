@@ -1,0 +1,39 @@
+# The laser behind every test in the materials library (/laser/).
+# Specs are from JPT's user manual for the E-series M7 MOPA sources
+# (YDFLP-E-80&100-M7-M-R), 100 W column.
+name: "100W JPT MOPA EM7"
+kind: "MOPA fiber laser"
+software: "LightBurn"
+manual:
+  title: "JPT YDFLP-E-80&100-M7-M-R User Manual"
+  url: "https://cdn.shopify.com/s/files/1/2222/7859/files/YDFLP-E-80W100W-M7-M-R_User_Manual.pdf"
+specs:
+  - label: "Average power"
+    value: "100 W"
+  - label: "Wavelength"
+    value: "1064 nm"
+  - label: "Maximum pulse energy"
+    value: "1.5 mJ"
+  - label: "Frequency range"
+    value: "1–4,000 kHz"
+  - label: "Pulse widths"
+    value: "16 fixed steps from 2 to 500 ns, plus CW"
+# Full power arrives only above the cut-off frequency for each pulse width;
+# below it, JPT says output power drops. cutoff and max are in kHz.
+pulse_widths:
+  - { ns: 2, cutoff: 2960, max: 4000 }
+  - { ns: 4, cutoff: 2160, max: 4000 }
+  - { ns: 6, cutoff: 1400, max: 4000 }
+  - { ns: 9, cutoff: 960, max: 4000 }
+  - { ns: 13, cutoff: 680, max: 3000 }
+  - { ns: 20, cutoff: 420, max: 3000 }
+  - { ns: 30, cutoff: 300, max: 3000 }
+  - { ns: 45, cutoff: 250, max: 2000 }
+  - { ns: 60, cutoff: 200, max: 2000 }
+  - { ns: 80, cutoff: 180, max: 2000 }
+  - { ns: 100, cutoff: 160, max: 1000 }
+  - { ns: 150, cutoff: 95, max: 1000 }
+  - { ns: 200, cutoff: 75, max: 1000 }
+  - { ns: 250, cutoff: 70, max: 900 }
+  - { ns: 350, cutoff: 67, max: 600 }
+  - { ns: 500, cutoff: 67, max: 500 }

@@ -1,0 +1,76 @@
+---
+layout: default
+title: "Laser Materials Library"
+description: "Test grids from my 100W JPT MOPA fiber laser, one material at a time, with the color every setting makes, so I can design in color and get it right."
+permalink: /laser/
+full_width: true
+image: /assets/images/laser/slate-power-speed.jpg
+---
+{%- comment -%}
+  The fiber laser materials library. One page per material (_laser/*.md,
+  layout laser-material); each material's tab is _data/laser/<material>.csv.
+  The laser's specs are _data/laser/source.yml.
+{%- endcomment -%}
+{%- assign source = site.data.laser.source -%}
+{%- assign materials = site.laser | sort: "title" -%}
+<div class="lzr" id="lzr">
+
+  <header class="lzr-hero">
+    <div class="lzr-wrap">
+      <p class="lzr-eyebrow">{{ source.name }} · {{ source.kind }}</p>
+      <h1>Laser Materials Library</h1>
+      <p class="lzr-lede">Test grids from my fiber laser, one material at a time. Every cell is a setting, and every setting gets a color, so I can design pieces in color and know what the laser will actually give me.</p>
+      <p class="lzr-note">Unless a test says otherwise: 0.1 mm line interval, 1 pass, run from LightBurn.</p>
+    </div>
+  </header>
+
+  <section class="lzr-band" aria-labelledby="lzr-materials-h">
+    <div class="lzr-wrap">
+      <h2 id="lzr-materials-h">Materials</h2>
+      <ul class="lzr-materials">
+        {%- for m in materials %}
+          {%- assign sheet = site.data.laser[m.material] %}
+          {%- assign done = sheet | where: "status", "done" %}
+        <li class="lzr-material">
+          <a href="{{ m.url | relative_url }}">
+            <img src="{{ m.card_image | default: m.image | relative_url }}" alt="" width="720" height="960" loading="lazy" decoding="async">
+            <span class="lzr-material-name">{{ m.title }}</span>
+          </a>
+          <p>{{ m.summary }}</p>
+          <p class="lzr-material-meta">{{ m.tests | size }} test grids · {{ done | size }} settings</p>
+          <p class="lzr-swatches" aria-hidden="true">
+            {%- for fam in m.palette %}{% if fam.hex != "" %}<span class="lzr-sw" style="--sw: {{ fam.hex }}" title="{{ fam.name }}"></span>{% endif %}{% endfor -%}
+          </p>
+        </li>
+        {%- endfor %}
+      </ul>
+      <p class="lzr-note">More materials as I test them.</p>
+    </div>
+  </section>
+
+  <section class="lzr-band" id="the-laser" aria-labelledby="lzr-laser-h">
+    <div class="lzr-wrap">
+      <h2 id="lzr-laser-h">The laser</h2>
+      <p>A {{ source.name }}, a MOPA fiber laser. MOPA means the pulse width can change as well as the frequency, which is a big part of how it makes different colors on the same material.</p>
+      <dl class="lzr-specs">
+        {%- for s in source.specs %}
+        <div><dt>{{ s.label }}</dt><dd>{{ s.value }}</dd></div>
+        {%- endfor %}
+      </dl>
+      <h3>Pulse widths and full-power frequencies</h3>
+      <p>The source runs only these pulse widths. Each reaches full power only above its cut-off frequency; below it, output drops. That's worth knowing before reading any grid run at a low frequency.</p>
+      <div class="lzr-scroll">
+      <table class="lzr-table lzr-pulses">
+        <thead><tr><th scope="col">Pulse width</th><th scope="col">Full power from</th><th scope="col">Highest frequency</th></tr></thead>
+        <tbody>
+        {%- for p in source.pulse_widths %}
+          <tr><td>{{ p.ns }} ns</td><td>{{ p.cutoff }} kHz</td><td>{{ p.max }} kHz</td></tr>
+        {%- endfor %}
+        </tbody>
+      </table>
+      </div>
+      <p class="lzr-note">Source: <a href="{{ source.manual.url }}">{{ source.manual.title }}</a> (100 W model).</p>
+    </div>
+  </section>
+
+</div>

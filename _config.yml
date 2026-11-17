@@ -102,6 +102,11 @@ collections:
   # No pages of their own: items come and go.
   tt_inventory:
     output: false
+  # /laser/ — the fiber laser materials library. One file per material; its
+  # test grids read that material's tab, _data/laser/<material>.csv.
+  laser:
+    output: true
+    permalink: /laser/:name/
 
 defaults:
   - scope:
@@ -128,6 +133,11 @@ defaults:
       type: tt_work
     values:
       layout: tt-work
+  - scope:
+      path: ""
+      type: laser
+    values:
+      layout: laser-material
   - scope:
       path: ""
       type: build_work

@@ -1,0 +1,341 @@
+// ════════════════════════════════════════════════════════════════
+//  Laser Materials Library — /laser/ and /laser/<material>/
+//  A workshop sheet: a slate-dark header, then paper. Everything is
+//  scoped under `.lzr`, and the pages ride .is-light-only (default.html)
+//  so dark-mode designs keep them on paper. Swatch colors come in as
+//  --sw on each element, straight from the material's tab.
+// ════════════════════════════════════════════════════════════════
+
+$lzr-ink:    #1d2124;
+$lzr-body:   #3b4043;
+$lzr-muted:  #676c6f;
+$lzr-line:   #e2ded6;
+$lzr-paper:  #f6f4ef;
+$lzr-card:   #ffffff;
+$lzr-slate:  #2b3134;
+$lzr-gold:   #c39a4a;
+$lzr-gold-d: #85642a;
+$lzr-mono:   "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+
+.lzr {
+  color: $lzr-body;
+  background: $lzr-paper;
+  overflow-x: clip;
+  line-height: 1.55;
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  a { color: $lzr-gold-d; text-underline-offset: 0.15em; }
+  a:hover { color: $lzr-ink; }
+
+  h1, h2, h3 { color: $lzr-ink; line-height: 1.2; }
+  h2 { font-size: 1.55rem; margin: 0 0 0.6rem; }
+  h3 { font-size: 1.1rem; margin: 1.8rem 0 0.4rem; }
+
+  .lzr-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  .lzr-vh {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .lzr-note { color: $lzr-muted; font-size: 0.92rem; max-width: 46rem; }
+
+  // ── header ───────────────────────────────────────────
+  .lzr-hero {
+    background:
+      radial-gradient(120% 140% at 85% 0%, rgba(195, 154, 74, 0.16), transparent 55%),
+      linear-gradient(160deg, #353c40, $lzr-slate 60%, #22272a);
+    color: #e9e6df;
+    padding: 3rem 0 2.6rem;
+
+    h1 { color: #fff; font-size: clamp(2rem, 5vw, 3rem); margin: 0.2rem 0 0.7rem; }
+    a { color: #e8c983; }
+    a:hover { color: #fff; }
+    .lzr-note { color: #b9b6ae; }
+  }
+  .lzr-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: $lzr-gold;
+    margin: 0;
+  }
+  .lzr-lede { font-size: 1.12rem; max-width: 44rem; margin: 0 0 1rem; }
+
+  .lzr-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.2rem;
+    font-size: 0.92rem;
+    strong { color: #fff; font-size: 1.25rem; margin-right: 0.2rem; }
+  }
+  .lzr-btn {
+    display: inline-block;
+    background: $lzr-gold;
+    color: $lzr-ink !important;
+    font-weight: 700;
+    font-size: 0.92rem;
+    text-decoration: none;
+    padding: 0.55rem 1rem;
+    border-radius: 6px;
+  }
+  .lzr-btn:hover { background: #d8b064; }
+
+  // ── sections ─────────────────────────────────────────
+  .lzr-band, .lzr-test { padding: 2.6rem 0; }
+  .lzr-test { background: $lzr-card; border-top: 1px solid $lzr-line; border-bottom: 1px solid $lzr-line; }
+  .lzr-test + .lzr-test { border-top: 0; }
+
+  // ── swatches ─────────────────────────────────────────
+  .lzr-sw {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 4px;
+    background: var(--sw, #6a6e6d);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+    vertical-align: middle;
+    flex: none;
+  }
+  .lzr-sw.is-blank {
+    background: #6a6e6d;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), inset 0 0 0 3px rgba(255, 255, 255, 0.25);
+  }
+  .lzr-sw-sm { width: 0.95rem; height: 0.95rem; border-radius: 3px; margin-right: 0.45rem; }
+
+  // ── color finder ─────────────────────────────────────
+  .lzr-finder {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+  .lzr-family {
+    background: $lzr-card;
+    border: 1px solid $lzr-line;
+    border-radius: 8px;
+
+    &[open] {
+      grid-column: 1 / -1;
+      border-color: $lzr-gold;
+      box-shadow: 0 0 0 1px $lzr-gold;
+    }
+    summary {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.55rem 0.7rem;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+      color: $lzr-ink;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary:focus-visible { outline: 2px solid $lzr-gold-d; outline-offset: 2px; border-radius: 8px; }
+    .lzr-sw { width: 2rem; height: 2rem; }
+  }
+  .lzr-family-name { flex: 1; }
+  .lzr-family-n {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: $lzr-muted;
+    background: $lzr-paper;
+    border-radius: 999px;
+    padding: 0.1rem 0.5rem;
+  }
+  .lzr-recipes { padding: 0 0.8rem 0.8rem; }
+  .lzr-hint { margin: 0 0 0.5rem; color: $lzr-muted; font-size: 0.9rem; }
+
+  // ── tables ───────────────────────────────────────────
+  .lzr-scroll { overflow-x: auto; max-width: 100%; }
+  .lzr-table {
+    border-collapse: collapse;
+    font-size: 0.86rem;
+    min-width: 100%;
+    background: $lzr-card;
+
+    th, td {
+      text-align: left;
+      padding: 0.4rem 0.65rem;
+      border-bottom: 1px solid $lzr-line;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    th { color: $lzr-ink; font-weight: 700; background: $lzr-paper; }
+    td:last-child { white-space: normal; min-width: 8rem; }
+    tr.is-unrun td { color: #9a9d9f; }
+    code { font-family: $lzr-mono; font-size: 0.8em; color: $lzr-muted; }
+  }
+  .lzr-pulses { min-width: 0; td:last-child { min-width: 0; } }
+
+  .lzr-sheet {
+    margin-top: 1rem;
+    summary { cursor: pointer; font-weight: 700; color: $lzr-gold-d; margin-bottom: 0.8rem; }
+  }
+
+  // ── a test grid ──────────────────────────────────────
+  .lzr-flag {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8a3b12;
+    background: #fbe7d6;
+    border-radius: 999px;
+    padding: 0.2rem 0.6rem;
+    margin-left: 0.3rem;
+  }
+  .lzr-fixed {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.4rem;
+    li {
+      font-size: 0.86rem;
+      background: $lzr-paper;
+      border: 1px solid $lzr-line;
+      border-radius: 999px;
+      padding: 0.2rem 0.7rem;
+      color: $lzr-ink;
+      font-weight: 600;
+    }
+    span { color: $lzr-muted; font-weight: 400; margin-right: 0.15rem; }
+  }
+  .lzr-test-body {
+    display: grid;
+    gap: 1.6rem;
+    align-items: start;
+    @media (min-width: 900px) { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  }
+  .lzr-grid-fig, .lzr-photo { margin: 0; min-width: 0; }
+
+  .lzr-grid {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 3px;
+    font-size: 0.7rem;
+
+    caption {
+      caption-side: top;
+      text-align: left;
+      font-size: 0.82rem;
+      color: $lzr-muted;
+      padding-bottom: 0.4rem;
+    }
+    // Column labels sit under the grid, like they do on the tile.
+    thead { display: table-footer-group; }
+    th { font-weight: 600; color: $lzr-muted; padding: 0.15rem 0; text-align: center; }
+    th[scope="row"], .lzr-corner { width: 2.9rem; text-align: right; padding-right: 0.35rem; }
+  }
+  .lzr-cell, .lzr-cell-key {
+    background-color: var(--sw, #6a6e6d);
+    border-radius: 3px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+    transition: opacity 0.15s, box-shadow 0.15s;
+  }
+  .lzr-cell { height: clamp(1.6rem, calc((100vw - 6rem) / 11.5), 2.75rem); padding: 0; }
+  .lzr-cell.is-blank { background-color: #5d6160; }
+  .is-textured {
+    background-image: radial-gradient(rgba(0, 0, 0, 0.22) 0.9px, transparent 1.2px);
+    background-size: 5px 5px;
+  }
+  .is-glossy {
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 40%,
+                                      rgba(255, 255, 255, 0.28) 58%, rgba(255, 255, 255, 0) 74%);
+  }
+  .is-unrun {
+    background: repeating-linear-gradient(45deg, #ebe8e2 0 4px, $lzr-paper 4px 8px);
+    box-shadow: inset 0 0 0 1px $lzr-line;
+  }
+
+  .lzr-grid-fig figcaption {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: 0.8rem;
+    color: $lzr-muted;
+    margin: 0.6rem 0 0 3rem;
+  }
+  .lzr-key { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .lzr-cell-key { display: inline-block; width: 1rem; height: 1rem; --sw: #b8ab88; }
+  .lzr-cell-key.is-unrun { background-color: transparent; }
+
+  // The finder's highlight (assets/js/laser.js sets data-active-color).
+  &[data-active-color] .lzr-cell:not(.is-unrun) { opacity: 0.16; }
+  &[data-active-color] .lzr-cell.is-match {
+    opacity: 1;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 0 2px $lzr-gold-d;
+  }
+
+  .lzr-photo {
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(20, 24, 26, 0.18);
+    }
+    figcaption { font-size: 0.8rem; color: $lzr-muted; margin-top: 0.5rem; }
+    @media (min-width: 900px) { max-width: 26rem; }
+  }
+
+  .lzr-notes {
+    margin: 1.6rem 0 0;
+    padding-left: 1.2rem;
+    max-width: 48rem;
+    li { margin-bottom: 0.45rem; }
+  }
+
+  // ── landing ──────────────────────────────────────────
+  .lzr-materials {
+    list-style: none;
+    padding: 0;
+    margin: 1.2rem 0;
+    display: grid;
+    gap: 1.2rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  }
+  .lzr-material {
+    background: $lzr-card;
+    border: 1px solid $lzr-line;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 0.9rem;
+
+    > a { display: block; color: $lzr-ink; text-decoration: none; }
+    img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+    p { margin: 0.4rem 1rem 0; font-size: 0.92rem; }
+  }
+  .lzr-material-name { display: block; font-size: 1.3rem; font-weight: 700; padding: 0.8rem 1rem 0; }
+  .lzr-material > a:hover .lzr-material-name { color: $lzr-gold-d; text-decoration: underline; }
+  .lzr-material .lzr-material-meta { color: $lzr-muted; font-size: 0.82rem; }
+  .lzr-material .lzr-swatches { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 0.7rem; }
+  .lzr-swatches .lzr-sw { width: 1.15rem; height: 1.15rem; border-radius: 3px; }
+
+  .lzr-specs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    gap: 0.6rem;
+    margin: 1.2rem 0 0;
+    div { background: $lzr-card; border: 1px solid $lzr-line; border-radius: 8px; padding: 0.6rem 0.8rem; }
+    dt { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: $lzr-muted; }
+    dd { margin: 0.15rem 0 0; font-weight: 700; color: $lzr-ink; }
+  }
+}
