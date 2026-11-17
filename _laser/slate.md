@@ -42,40 +42,45 @@ groups:
 # Validated colors: settings proven on this machine, in chart order (lightest
 # row first, each row neutral to warm), as power|speed|frequency|q_pulse|
 # interval|passes. They're the designer's main palette and get a ✓ here.
-# Filled in once a standard-pattern run confirms them.
-validated: []
-# The designer's standard test pattern, v2 (2026-11-17), row by row as
-# power|speed|frequency|q_pulse|interval|passes. 25 colors at least ΔE 4
-# apart: run 1's distinct ones plus the tested settings that fill its gaps.
-# Laid out as a chart: lightest row first, each row neutral to warm.
+# The user approved run 2 of the standard pattern v2 and chose these 15 of its
+# 25 as the default set (2026-11-17).
+validated:
+  - "10|120|100|80|0.1|1"
+  - "5|400|70|350|0.02|1"
+  - "40|40|50|50|0.1|1"
+  - "40|40|50|88.89|0.1|1"
+  - "40|40|30|166.67|0.1|1"
+  - "50|76|20|200|0.1|1"
+  - "100|129|20|200|0.1|1"
+  - "90|76|20|200|0.1|1"
+  - "30|53|100|80|0.1|1"
+  - "40|40|70|88.89|0.1|1"
+  - "80|200|20|200|0.1|1"
+  - "10|76|20|200|0.1|1"
+  - "4|400|70|350|0.1|1"
+  - "40|40|100|88.89|0.1|1"
+  - "40|40|90|88.89|0.1|1"
+# The designer's standard test pattern, v3 (2026-11-17): the 15 validated
+# colors, row by row as power|speed|frequency|q_pulse|interval|passes, laid
+# out as a chart (lightest row first, each row neutral to warm).
 pattern:
   cols: 5
   cells:
-    - "5|400|70|350|0.02|1"   # #c6c6c3 measured
-    - "5|400|70|350|0.01|1"   # #dddad2 predicted
-    - "40|40|50|50|0.1|1"   # #d3ceba predicted
-    - "40|40|50|88.89|0.1|1"   # #ded7bb predicted
-    - "40|40|30|166.67|0.1|1"   # #d4cbad predicted
-    - "20|160|100|80|0.1|1"   # #b9bdc1 predicted
-    - "12|400|70|350|0.05|1"   # #c6c3b9 measured
-    - "26.7|80|100|80|0.1|1"   # #bfb8a9 predicted
-    - "50|40|20|200|0.1|1"   # #c6bda3 measured
-    - "40|40|70|88.89|0.1|1"   # #cfc19b predicted
-    - "10|120|100|80|0.1|1"   # #a9adb1 predicted
-    - "8|400|70|350|0.1|1"   # #b9b7b1 measured
-    - "90|76|20|200|0.1|1"   # #b5ae99 measured
-    - "30|53|100|80|0.1|1"   # #b4ab8d measured
-    - "40|40|90|88.89|0.1|1"   # #bba87e predicted
-    - "50|76|20|200|0.1|1"   # #929690 predicted
-    - "80|200|20|200|0.1|1"   # #a4a39b measured
-    - "100|93|20|200|0.1|1"   # #a19a88 measured
-    - "50|58|20|200|0.1|1"   # #aba38b predicted
-    - "40|40|100|88.89|0.1|1"   # #a99d7e measured
-    - "4|400|70|350|0.1|1"   # #8b8c8b measured
-    - "10|76|20|200|0.1|1"   # #7d8588 predicted
-    - "80|129|20|200|0.1|1"   # #928e85 measured
-    - "100|129|20|200|0.1|1"   # #7e7b71 measured
-    - "100|58|20|200|0.1|1"   # #96896f predicted
+    - "10|120|100|80|0.1|1"   # #cdcdca (run 2)
+    - "5|400|70|350|0.02|1"   # #dcdad6 (run 2)
+    - "40|40|50|50|0.1|1"   # #e1d9c4 (run 2)
+    - "40|40|50|88.89|0.1|1"   # #e4dbbc (run 2)
+    - "40|40|30|166.67|0.1|1"   # #e4d8b5 (run 2)
+    - "50|76|20|200|0.1|1"   # #b8b5ab (run 2)
+    - "100|129|20|200|0.1|1"   # #b8b0a7 (run 2)
+    - "90|76|20|200|0.1|1"   # #c7bda8 (run 2)
+    - "30|53|100|80|0.1|1"   # #cfc19d (run 2)
+    - "40|40|70|88.89|0.1|1"   # #d4c49e (run 2)
+    - "80|200|20|200|0.1|1"   # #afafad (run 2)
+    - "10|76|20|200|0.1|1"   # #a9acae (run 2)
+    - "4|400|70|350|0.1|1"   # #a7aeb4 (run 2)
+    - "40|40|100|88.89|0.1|1"   # #ac9774 (run 2)
+    - "40|40|90|88.89|0.1|1"   # #b8a47e (run 2)
 tests:
   - id: power-speed-1
     slate: "#7f8688"   # bare slate in this photo
@@ -166,4 +171,22 @@ tests:
       - "Several came out quite differently from their first grids. The golds along the bottom are lighter than predicted, the 10 kHz grey (row 2) is much lighter, and 100% at 129 mm/s (row 4) is darker. Uneven light in the earlier photos skewed them."
       - "**Seven came out raised** (marked ▲): 40% at 40 mm/s with 50 ns at 90 kHz, and the five golds along the bottom plus the 30% at 53 mm/s gold above them, all 80–89 ns at 80–100 kHz. The rest are flat."
       - "The 1.2 mm labels came out too thin and faint to read. The designer now defaults to 1.6 mm bold, on three lines."
+  - id: standard-pattern-2
+    title: "Standard pattern, run 2"
+    kind: pattern
+    status: complete
+    slate: "#73736e"   # bare slate in this photo
+    x: { key: col, label: "Column", unit: "", values: [1, 2, 3, 4, 5] }
+    y: { key: row, label: "Row", unit: "", values: [1, 2, 3, 4, 5] }
+    fixed:
+      - { label: "Squares", value: "8 mm" }
+      - { label: "Labels", value: "1.6 mm bold" }
+      - { label: "From", value: "the designer's LightBurn file" }
+    photo: /assets/images/laser/slate-standard-pattern-2.webp
+    photo_alt: "A slate tile with the second standard pattern: 25 squares in five rows, whites and pale yellows at the top through creams and golds, with light greys down the left, each with three lines of readable settings text underneath."
+    notes:
+      - "The standard pattern v2: run 1's distinct colors plus settings from earlier grids that fill its gaps, laid out as a chart. **All 25 are now validated colors.**"
+      - "The new settings came out close to their predictions at the light end (the whites and pale yellows). The greys along the bottom came out much lighter than run 1 suggested: 100% at 129 mm/s was dark grey-brown on run 1 and light grey here, so results vary from tile to tile, most at the dark end."
+      - "Some pairs came out nearly identical this time, such as the two whites at 5% 400 mm/s (0.01 and 0.02 mm) and 8% 400 vs 80% 200 mm/s. The next version of the pattern can swap one of each pair."
+      - "The 1.6 mm bold labels are readable."
 ---

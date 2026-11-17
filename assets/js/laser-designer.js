@@ -690,21 +690,26 @@
       if (g.name === 'White' || g.name === 'Pale grey') g.shades.forEach(function (sh) { whites.push(sh.rep); });
     });
     whites.sort(function (a, b) { return b.lab[0] - a.lab[0]; });
-    var P = { items: [], cols: 5, sq: 8, gap: 2.5, th: 1.6, field: parseFloat(data.lens) || 100, text: whites[0] || null };
-    var STORE = 'rsow.laser.pattern.' + (data.material || 'material');
+    // th is LightBurn's text height (H). Measured on run 2, H 1.6 mm burned
+    // letters whose em was about 1 mm, so the preview uses em = H × 0.63.
+    var P = { items: [], cols: 5, sq: 10, gap: 2, rowGap: 1, th: 3, field: parseFloat(data.lens) || 100, text: whites[0] || null };
+    var EM_PER_H = 0.63;
+    // v2: new defaults (bigger labels, the 15-color standard), so older
+    // saved patterns don't carry the small labels forward.
+    var STORE = 'rsow.laser.pattern.v2.' + (data.material || 'material');
     var saved = null;
     try { saved = JSON.parse(localStorage.getItem(STORE) || 'null'); } catch (e) {}
     if (!saved) standardPattern();
     try {
       if (saved) {
-        ['cols', 'sq', 'gap', 'th', 'field'].forEach(function (k) { if (+saved[k] > 0) P[k] = +saved[k]; });
+        ['cols', 'sq', 'gap', 'rowGap', 'th', 'field'].forEach(function (k) { if (+saved[k] > 0) P[k] = +saved[k]; });
         P.items = (saved.items || []).map(function (k) { return byKey[keyFix(k)]; }).filter(Boolean).slice(0, MAX_SWATCHES);
         if (saved.text && byKey[keyFix(saved.text)]) P.text = byKey[keyFix(saved.text)];
       }
     } catch (e) {}
     function savePattern() {
       try {
-        localStorage.setItem(STORE, JSON.stringify({ items: P.items.map(keyOf), cols: P.cols, sq: P.sq, gap: P.gap, th: P.th, field: P.field, text: P.text ? keyOf(P.text) : null }));
+        localStorage.setItem(STORE, JSON.stringify({ items: P.items.map(keyOf), cols: P.cols, sq: P.sq, gap: P.gap, rowGap: P.rowGap, th: P.th, field: P.field, text: P.text ? keyOf(P.text) : null }));
       } catch (e) {}
     }
 
@@ -800,22 +805,26 @@
     var measure = document.createElement('canvas').getContext('2d');
     var FONT = 'bold {size}px Arial, Helvetica, sans-serif';
     function font(px) { return FONT.replace('{size}', px); }
+    // Layout in millimetres, y down from the top-left corner. Each label is
+    // three lines; line i's baseline sits at `base + i × pitch` below its
+    // square.
     function patternLayout() {
-      var em = P.th * 1.4, lineH = em * 1.15, pad = Math.max(0.5, P.th * 0.5), margin = 2;
+      var em = P.th * EM_PER_H, pitch = em * 1.05, cap = em * 0.72, pad = 0.6, margin = 2;
       measure.font = font(100);
       var labelW = 0;
       P.items.forEach(function (c) {
         labelLines(c).forEach(function (l) { labelW = Math.max(labelW, measure.measureText(l).width / 100 * em); });
       });
       var cols = Math.max(1, Math.min(P.cols, P.items.length)), rows = Math.ceil(P.items.length / cols);
-      var cellW = Math.max(P.sq, labelW), cellH = P.sq + pad + 3 * lineH;
-      var W = cols * cellW + (cols - 1) * P.gap + 2 * margin, H = rows * cellH + (rows - 1) * P.gap + 2 * margin;
+      var labelH = cap + 2 * pitch + em * 0.25;
+      var cellW = Math.max(P.sq, labelW), cellH = P.sq + pad + labelH;
+      var W = cols * cellW + (cols - 1) * P.gap + 2 * margin, H = rows * cellH + (rows - 1) * P.rowGap + 2 * margin;
       var cells = P.items.map(function (c, i) {
         var col = i % cols, row = Math.floor(i / cols);
-        var cx = margin + col * (cellW + P.gap) + cellW / 2, top = margin + row * (cellH + P.gap);
-        return { c: c, cx: cx, sy: top + P.sq / 2, ly: top + P.sq + pad + 1.5 * lineH, lines: labelLines(c) };
+        var cx = margin + col * (cellW + P.gap) + cellW / 2, top = margin + row * (cellH + P.rowGap);
+        return { c: c, cx: cx, sy: top + P.sq / 2, base: top + P.sq + pad + cap, lines: labelLines(c) };
       });
-      return { W: W, H: H, em: em, lineH: lineH, cells: cells };
+      return { W: W, H: H, em: em, pitch: pitch, cells: cells };
     }
 
     function buildPattern() {
@@ -839,10 +848,10 @@
       var tc = document.createElement('canvas'); tc.width = w; tc.height = h;
       var tx = tc.getContext('2d', { willReadFrequently: true });
       tx.fillStyle = '#fff'; tx.fillRect(0, 0, w, h);
-      tx.fillStyle = '#000'; tx.textAlign = 'center'; tx.textBaseline = 'middle';
+      tx.fillStyle = '#000'; tx.textAlign = 'center'; tx.textBaseline = 'alphabetic';
       tx.font = font(Lo.em * k);
       Lo.cells.forEach(function (cell) {
-        cell.lines.forEach(function (l, i) { tx.fillText(l, cell.cx * k, (cell.ly + (i - 1) * Lo.lineH) * k); });
+        cell.lines.forEach(function (l, i) { tx.fillText(l, cell.cx * k, (cell.base + i * Lo.pitch) * k); });
       });
       var td = tx.getImageData(0, 0, w, h).data, tid = regions.length, tarea = 0;
       for (var i = 0, j = 0; i < w * h; i++, j += 4) if (td[j] < 128 && labels[i] === 0) { labels[i] = tid; tarea++; }
@@ -902,10 +911,14 @@
         out += '    <Shape Type="Rect" CutIndex="' + i + '" W="' + num(P.sq) + '" H="' + num(P.sq) + '" Cr="0">\n' +
           '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.sy) + '</XForm>\n    </Shape>\n';
       });
+      // One single-line text shape per line. On run 2, Av="1" put the text's
+      // bottom at the XForm point, so each line is placed by its baseline.
       if (P.text) Lo.cells.forEach(function (cell) {
-        out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,75,0,0,0,0,0" Str="' + xmlEsc(cell.lines.join('\n')) +
-          '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Bold="1" Weld="1">\n' +
-          '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.ly) + '</XForm>\n    </Shape>\n';
+        cell.lines.forEach(function (l, li) {
+          out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,75,0,0,0,0,0" Str="' + xmlEsc(l) +
+            '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Bold="1" Weld="1">\n' +
+            '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.base + li * Lo.pitch) + '</XForm>\n    </Shape>\n';
+        });
       });
       var notes = String(data.title || '') + ' test pattern from ' + (data.page || 'the laser materials library') + '\n' +
         n + ' shades, one layer each, plus a Labels layer.\n' +
