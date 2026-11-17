@@ -40,6 +40,8 @@ full_width: true
     <div class="lzr-wrap">
       <h2 id="lzr-valid-h">Validated colors</h2>
       <p class="lzr-note">Settings proven on this machine, each confirmed by a standard-pattern run. They're the designer's main palette. Swatches are from the photos.</p>
+      <p><a class="lzr-btn" href="{{ '/laser/' | append: page.material | append: '-validated-colors.clb' | relative_url }}" download>Download for LightBurn's Material Library (.clb)</a></p>
+      <p class="lzr-note">In LightBurn, open the Library window, click <strong>Load</strong> and pick the file. Each color is an entry under {{ page.title }} › Validated colors, with its power, speed, frequency, Q-pulse, interval and passes.</p>
       <ol class="lzr-validated">
         {%- for v in page.validated %}
           {%- assign parts = v.key | split: "|" %}
