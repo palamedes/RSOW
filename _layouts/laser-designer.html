@@ -19,7 +19,7 @@ full_width: true
     <div class="lzr-wrap">
       <p class="lzr-eyebrow"><a href="{{ '/laser/' | relative_url }}">Laser Materials Library</a> · <a href="{{ m.url | relative_url }}">{{ m.title }}</a></p>
       <h1>{{ m.title }} Designer</h1>
-      <p class="lzr-lede">Upload a silhouette, pick a color from the {{ m.title | downcase }} tests, and click the parts of the design you want in that color. The preview shows roughly how it will come out, and the layer plan gives the settings for each color.</p>
+      <p class="lzr-lede">Color a design: upload a silhouette, pick colors from the {{ m.title | downcase }} tests, and click the parts you want in each. Or make a test pattern: pick the shades you want to try and download a LightBurn file with a labelled square for each. The preview shows roughly how it will come out.</p>
       <p class="lzr-note">It all runs in your browser. Your image never leaves this page.</p>
     </div>
   </header>
@@ -28,8 +28,16 @@ full_width: true
     <div class="lzr-wrap">
       <noscript><p class="lzr-note"><strong>The designer needs JavaScript.</strong> The <a href="{{ m.url | relative_url }}">{{ m.title | downcase }} test results</a> work without it.</p></noscript>
 
-      <div class="lzr-designer" id="lzr-designer" data-state="empty">
+      <div class="lzr-designer" id="lzr-designer" data-state="empty" data-mode="image" data-pstate="empty">
+        <div class="lzr-seg lzr-modes" role="group" aria-label="What to make">
+          <button type="button" data-mode="image" aria-pressed="true">Color a design</button>
+          <button type="button" data-mode="pattern" aria-pressed="false">Make a test pattern</button>
+        </div>
         <div class="lzr-stage">
+          <div class="lzr-pattern-empty">
+            <p class="lzr-drop-title">Pick the shades to test</p>
+            <p class="lzr-note">Choose a color on the right, then click its shades to add them. Each becomes a square with its settings engraved underneath, ready to run from LightBurn.</p>
+          </div>
           <div class="lzr-drop">
             <p class="lzr-drop-title">Drop a silhouette here</p>
             <p class="lzr-note">A black-and-white image works best: PNG, JPG, WebP or SVG.</p>
@@ -48,9 +56,9 @@ full_width: true
               <button type="button" data-view="material" aria-pressed="true">On {{ m.title | downcase }}</button>
               <button type="button" data-view="flat" aria-pressed="false">Flat colors</button>
             </div>
-            <button type="button" class="lzr-textbtn" data-act="undo" disabled>Undo</button>
+            <button type="button" class="lzr-textbtn lzr-only-image" data-act="undo" disabled>Undo</button>
             <button type="button" class="lzr-textbtn" data-act="download">Download preview</button>
-            <button type="button" class="lzr-textbtn" data-act="new">New image</button>
+            <button type="button" class="lzr-textbtn lzr-only-image" data-act="new">New image</button>
           </div>
           <p class="lzr-note lzr-status" data-role="status" aria-live="polite"></p>
         </div>
@@ -62,14 +70,35 @@ full_width: true
             <div class="lzr-pal" data-role="palette"></div>
             <div class="lzr-pick" data-role="settings"></div>
           </div>
-          <div class="lzr-tool">
+          <div class="lzr-tool lzr-only-pattern">
+            <h3>Test pattern <span class="lzr-note" data-role="pat-count"></span></h3>
+            <p class="lzr-note">Click shades above to add or remove them. Up to 29: LightBurn allows 30 layers, and the labels use one.</p>
+            <ol class="lzr-pat-list" data-role="pat-list"></ol>
+            <p>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-sort-color">Sort by color</button>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-sort-speed">Sort by speed</button>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-clear">Clear</button>
+            </p>
+            <p><button type="button" class="lzr-btn-quiet" data-act="pat-starter">Start from two ramps: slate → white, slate → gold</button></p>
+            <div class="lzr-pat-fields">
+              <label class="lzr-field">Columns <input type="number" min="1" max="10" step="1" data-pat="cols"></label>
+              <label class="lzr-field">Square (mm) <input type="number" min="3" max="40" step="0.5" data-pat="sq"></label>
+              <label class="lzr-field">Gap (mm) <input type="number" min="0.5" max="20" step="0.5" data-pat="gap"></label>
+              <label class="lzr-field">Label height (mm) <input type="number" min="0.6" max="6" step="0.1" data-pat="th"></label>
+              <label class="lzr-field">Lens field (mm) <input type="number" min="20" max="600" step="1" data-pat="field"></label>
+            </div>
+            <label class="lzr-field">Labels engraved with <select data-pat="text"></select></label>
+            <p><button type="button" class="lzr-btn" data-act="pat-lbrn">Download for LightBurn</button></p>
+            <p class="lzr-note" data-role="pat-summary"></p>
+          </div>
+          <div class="lzr-tool lzr-only-image">
             <h3>Fill everything at once</h3>
             <p>
               <button type="button" class="lzr-btn-quiet" data-act="fill-dark">All dark areas</button>
               <button type="button" class="lzr-btn-quiet" data-act="fill-light">All light areas</button>
             </p>
           </div>
-          <div class="lzr-tool">
+          <div class="lzr-tool lzr-only-image">
             <h3>Reading the image</h3>
             <label class="lzr-field">Light/dark cut-off <span data-role="threshold-value"></span>
               <input type="range" min="1" max="254" value="128" data-role="threshold">
@@ -102,6 +131,8 @@ full_width: true
   "title": {{ m.title | jsonify }},
   "surface": {{ m.surface | default: "#6f7475" | jsonify }},
   "sample": {{ '/assets/laser/sample-silhouette.svg' | relative_url | jsonify }},
+  "lens": {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" | jsonify }},
+  "page": {{ page.url | absolute_url | jsonify }},
   "palette": {{ m.palette | jsonify }},
   "groups": {{ m.groups | jsonify }},
   "tests": {{ tests | jsonify }},

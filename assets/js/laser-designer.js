@@ -250,7 +250,8 @@
     var S = {
       w: 0, h: 0, lum: null, noise: null, labels: null, regions: [], assign: [], undo: [],
       view: 'material', hover: -1, name: 'design',
-      active: null, group: null, order: 'color', shown: []
+      active: null, group: null, order: 'color', shown: [],
+      mode: 'image', image: null
     };
     var startGroup = groups[0];
     if (startGroup) { S.group = startGroup.name; S.active = defaultShade(startGroup).rep; }
@@ -290,8 +291,12 @@
         drawPalette();
         return;
       }
+      if (e.target.closest('[data-act="pat-add-all"]')) { addAll(findGroup(S.group)); return; }
       var b = e.target.closest('.lzr-shade');
-      if (b) { S.active = S.shown[+b.dataset.i].rep; drawPalette(); }
+      if (!b) return;
+      S.active = S.shown[+b.dataset.i].rep;
+      if (S.mode === 'pattern') togglePattern(S.active);
+      drawPalette();
     });
     function drawPalette() {
       var btns = pal.querySelectorAll('.lzr-pal-btn');
@@ -317,7 +322,9 @@
       S.shown.forEach(function (sh, i) {
         var c = sh.rep, b = document.createElement('button');
         b.type = 'button'; b.className = 'lzr-shade'; b.dataset.i = i;
-        b.setAttribute('aria-pressed', c === S.active ? 'true' : 'false');
+        var inPat = S.mode === 'pattern' && P.items.indexOf(c) >= 0;
+        b.setAttribute('aria-pressed', (S.mode === 'pattern' ? inPat : c === S.active) ? 'true' : 'false');
+        if (inPat) b.classList.add('is-in');
         b.title = c.label + ' (' + c.from + ')' + (sh.list.length > 1 ? '. ' + (sh.list.length - 1) + ' similar settings make almost the same shade.' : '');
         var sw = swatch(c.hex); if (c.finish === 'Satin') sw.classList.add('is-satin');
         b.appendChild(sw);
@@ -329,6 +336,11 @@
         box.appendChild(b);
       });
       pick.appendChild(box);
+      if (S.mode === 'pattern') {
+        var all = document.createElement('p');
+        all.innerHTML = '<button type="button" class="lzr-btn-quiet" data-act="pat-add-all">Add all ' + S.shown.length + ' shades</button>';
+        pick.appendChild(all);
+      }
       var a = S.active, p = document.createElement('p'); p.className = 'lzr-active';
       p.innerHTML = '<strong>' + esc(a.group) + '</strong>' + (a.color !== a.group ? ' · ' + esc(a.color) : '') +
         (a.finish ? ', ' + esc(a.finish.toLowerCase()) : '') + ' · ' + secsText(a.secs) +
@@ -338,7 +350,6 @@
     function esc(s) {
       return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
     }
-    drawPalette();
 
     // ── loading an image ─────────────────────────────────
     var fileIn = role('file'), err = role('error'), status = role('status');
@@ -365,6 +376,7 @@
     });
 
     function ingest(im, name) {
+      if (S.mode !== 'image') setMode('image');
       var nw = im.naturalWidth || im.width || MAX_SIDE, nh = im.naturalHeight || im.height || MAX_SIDE;
       var s = MAX_SIDE / Math.max(nw, nh), w = Math.max(1, Math.round(nw * s)), h = Math.max(1, Math.round(nh * s));
       var c = document.createElement('canvas'); c.width = w; c.height = h;
@@ -424,7 +436,7 @@
       var n = 0;
       for (var r = 0; r < S.regions.length; r++) if (S.regions[r].alive) n++;
       canvas.setAttribute('aria-label', 'Preview of the design ' + (S.view === 'material' ? 'on ' + String(data.title || '').toLowerCase() : 'in flat colors') + ', ' + n + ' areas');
-      status.textContent = n + ' areas. Click one to color it.';
+      status.textContent = S.mode === 'pattern' ? patternSummary() : n + ' areas. Click one to color it.';
       $('[data-act="undo"]').disabled = !S.undo.length;
       plan();
     }
@@ -459,13 +471,13 @@
       octx.putImageData(img, r.x0, r.y0);
     }
     canvas.addEventListener('pointermove', function (e) {
-      if (!S.labels) return;
+      if (!S.labels || S.mode !== 'image') return;
       pending = regionAt(e);
       if (!hoverFrame) hoverFrame = requestAnimationFrame(function () { hoverFrame = 0; showHover(pending); });
     });
     canvas.addEventListener('pointerleave', function () { pending = -1; showHover(-1); });
     canvas.addEventListener('click', function (e) {
-      if (!S.labels) return;
+      if (!S.labels || S.mode !== 'image') return;
       var id = regionAt(e);
       if (id < 0 || S.assign[id] === S.active) return;
       S.undo.push([[id, S.assign[id]]]);
@@ -485,8 +497,9 @@
 
     // ── buttons ──────────────────────────────────────────
     root.addEventListener('click', function (e) {
-      var b = e.target.closest('[data-act], [data-view]');
+      var b = e.target.closest('[data-act], [data-view], [data-mode]');
       if (!b || !root.contains(b)) return;
+      if (b.dataset.mode && b.tagName === 'BUTTON') { setMode(b.dataset.mode); return; }
       if (b.dataset.view) {
         S.view = b.dataset.view;
         var vs = root.querySelectorAll('[data-view]');
@@ -507,6 +520,12 @@
           status.textContent = ''; plan();
           break;
         case 'download': download(); break;
+        case 'pat-sort-color': sortPattern('color'); break;
+        case 'pat-sort-speed': sortPattern('speed'); break;
+        case 'pat-clear': P.items = []; patternChanged(); break;
+        case 'pat-remove': P.items.splice(+b.dataset.i, 1); patternChanged(); break;
+        case 'pat-lbrn': downloadLbrn(); break;
+        case 'pat-starter': starterSet(); break;
       }
     });
 
@@ -518,7 +537,7 @@
         if (!blob) return;
         var a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
-        a.download = S.name + '-on-' + (data.material || 'material') + '.png';
+        a.download = (S.mode === 'pattern' ? 'test-pattern' : S.name) + '-on-' + (data.material || 'material') + '.png';
         document.body.appendChild(a); a.click(); a.remove();
         setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
       }, 'image/png');
@@ -529,7 +548,7 @@
     function plan() {
       planBody.textContent = '';
       if (!S.labels) {
-        planBody.innerHTML = '<tr><td colspan="11">Upload an image to start.</td></tr>';
+        planBody.innerHTML = '<tr><td colspan="11">' + (S.mode === 'pattern' ? 'Add shades to build a pattern.' : 'Upload an image to start.') + '</td></tr>';
         return;
       }
       var total = S.w * S.h, used = [], bare = 0;
@@ -557,6 +576,287 @@
         esc(String(data.title || '').toLowerCase()) + '</td><td colspan="9">No laser</td><td>' + pct(bare) + '</td>';
       planBody.appendChild(tb);
     }
+
+    // ── test pattern ─────────────────────────────────────
+    // A grid of squares, one per chosen shade, each labelled with its
+    // settings, for proving the shades on real material. It downloads as a
+    // LightBurn project (.lbrn2): one layer per square plus one for the
+    // labels. LightBurn has 30 layers, so a pattern holds 29 shades.
+    var MAX_SWATCHES = 29;
+    var keyOf = function (c) { return [c.test, c.power, c.speed, c.frequency, c.q_pulse, c.interval, c.passes].join('|'); };
+    var byKey = {};
+    settings.forEach(function (c) { byKey[keyOf(c)] = c; });
+    var whites = [];
+    groups.forEach(function (g) {
+      if (g.name === 'White' || g.name === 'Pale grey') g.shades.forEach(function (sh) { whites.push(sh.rep); });
+    });
+    whites.sort(function (a, b) { return b.lab[0] - a.lab[0]; });
+    var P = { items: [], cols: 6, sq: 8, gap: 3, th: 1.2, field: parseFloat(data.lens) || 100, text: whites[0] || null };
+    var STORE = 'rsow.laser.pattern.' + (data.material || 'material');
+    try {
+      var saved = JSON.parse(localStorage.getItem(STORE) || 'null');
+      if (saved) {
+        ['cols', 'sq', 'gap', 'th', 'field'].forEach(function (k) { if (+saved[k] > 0) P[k] = +saved[k]; });
+        P.items = (saved.items || []).map(function (k) { return byKey[k]; }).filter(Boolean).slice(0, MAX_SWATCHES);
+        if (saved.text && byKey[saved.text]) P.text = byKey[saved.text];
+      }
+    } catch (e) {}
+    function savePattern() {
+      try {
+        localStorage.setItem(STORE, JSON.stringify({ items: P.items.map(keyOf), cols: P.cols, sq: P.sq, gap: P.gap, th: P.th, field: P.field, text: P.text ? keyOf(P.text) : null }));
+      } catch (e) {}
+    }
+
+    var textSel = root.querySelector('[data-pat="text"]');
+    whites.forEach(function (c) {
+      var o = document.createElement('option');
+      o.value = keyOf(c); o.textContent = c.group + ' · ' + c.short + ' (' + secsText(c.secs) + ')';
+      textSel.appendChild(o);
+    });
+    if (P.text) textSel.value = keyOf(P.text);
+    var fields = root.querySelectorAll('input[data-pat]');
+    for (var fi = 0; fi < fields.length; fi++) fields[fi].value = P[fields[fi].dataset.pat];
+    root.addEventListener('change', function (e) {
+      var el = e.target;
+      if (!el.dataset || !el.dataset.pat) return;
+      if (el.dataset.pat === 'text') P.text = byKey[el.value] || P.text;
+      else {
+        var v = parseFloat(el.value), lo = parseFloat(el.min), hi = parseFloat(el.max);
+        if (!(v > 0)) { el.value = P[el.dataset.pat]; return; }
+        v = Math.min(hi, Math.max(lo, v));
+        if (el.dataset.pat === 'cols') v = Math.round(v);
+        P[el.dataset.pat] = v; el.value = v;
+      }
+      patternChanged();
+    });
+
+    function togglePattern(c) {
+      var i = P.items.indexOf(c);
+      if (i >= 0) P.items.splice(i, 1);
+      else if (P.items.length >= MAX_SWATCHES) { status.textContent = 'A pattern holds ' + MAX_SWATCHES + ' shades: LightBurn has 30 layers and the labels use one.'; return; }
+      else P.items.push(c);
+      patternChanged();
+    }
+    function addAll(g) {
+      if (!g) return;
+      ordered(g).forEach(function (sh) {
+        if (P.items.indexOf(sh.rep) < 0 && P.items.length < MAX_SWATCHES) P.items.push(sh.rep);
+      });
+      patternChanged();
+    }
+    function groupIndex(c) {
+      for (var i = 0; i < groups.length; i++) if (groups[i].name === c.group) return i;
+      return groups.length;
+    }
+    function sortPattern(by) {
+      P.items.sort(by === 'speed' ? function (a, b) { return a.secs - b.secs; } :
+        function (a, b) { return groupIndex(a) - groupIndex(b) || b.lab[0] - a.lab[0]; });
+      patternChanged();
+    }
+    // The starter: two ramps that fill the pattern. Almost slate up to the
+    // whitest shade, then almost slate through the warm colors to gold
+    // (by how warm each shade is).
+    function starterSet() {
+      var all = [];
+      groups.forEach(function (g) { g.shades.forEach(function (sh) { all.push(sh.rep); }); });
+      function chroma(c) { return Math.sqrt(c.lab[1] * c.lab[1] + c.lab[2] * c.lab[2]); }
+      var neutral = all.filter(function (c) { return ['Light grey', 'Pale grey', 'White'].indexOf(c.group) >= 0; })
+        .sort(function (a, b) { return a.lab[0] - b.lab[0]; });
+      var warm = all.filter(function (c) { return ['Cream', 'Beige', 'Tan', 'Gold'].indexOf(c.group) >= 0; })
+        .sort(function (a, b) { return chroma(a) - chroma(b); });
+      function spread(list, n) {
+        if (list.length <= n) return list.slice();
+        var out = [];
+        for (var i = 0; i < n; i++) {
+          var c = list[Math.round(i * (list.length - 1) / (n - 1))];
+          if (out.indexOf(c) < 0) out.push(c);
+        }
+        return out;
+      }
+      var a = spread(neutral, 14);
+      // the second ramp starts near slate too: the darkest grey not already used
+      var start = neutral.filter(function (c) { return a.indexOf(c) < 0; })[0];
+      var b = (start ? [start] : []).concat(spread(warm, MAX_SWATCHES - a.length - (start ? 1 : 0)));
+      P.items = a.concat(b).slice(0, MAX_SWATCHES);
+      patternChanged();
+    }
+    function patternChanged() {
+      savePattern();
+      drawPatternList();
+      if (S.mode === 'pattern') { drawPalette(); buildPattern(); }
+    }
+
+    var patList = role('pat-list'), patCount = role('pat-count'), patSummary = role('pat-summary');
+    function drawPatternList() {
+      patCount.textContent = '(' + P.items.length + ' of ' + MAX_SWATCHES + ')';
+      patList.textContent = '';
+      P.items.forEach(function (c, i) {
+        var li = document.createElement('li');
+        li.appendChild(swatch(c.hex));
+        var t = document.createElement('span'); t.textContent = c.group + ' · ' + c.label;
+        li.appendChild(t);
+        var x = document.createElement('button');
+        x.type = 'button'; x.className = 'lzr-textbtn'; x.dataset.act = 'pat-remove'; x.dataset.i = i;
+        x.setAttribute('aria-label', 'Remove ' + c.group + ' ' + c.short); x.textContent = '×';
+        li.appendChild(x);
+        patList.appendChild(li);
+      });
+    }
+
+    function labelLines(c) {
+      return [c.power + '% ' + c.speed + 'mm/s',
+        c.frequency + 'k ' + c.q_pulse + 'ns ' + c.interval + (c.passes && c.passes !== '1' ? ' x' + c.passes : '')];
+    }
+    // Layout in millimetres, y down from the top-left corner. LightBurn's
+    // text height is about a capital's height; an em is about 1.4 of it.
+    var measure = document.createElement('canvas').getContext('2d');
+    var FONT = 'Arial, Helvetica, sans-serif';
+    function patternLayout() {
+      var em = P.th * 1.4, lineH = em * 1.15, pad = Math.max(0.5, P.th * 0.5), margin = 2;
+      measure.font = '100px ' + FONT;
+      var labelW = 0;
+      P.items.forEach(function (c) {
+        labelLines(c).forEach(function (l) { labelW = Math.max(labelW, measure.measureText(l).width / 100 * em); });
+      });
+      var cols = Math.max(1, Math.min(P.cols, P.items.length)), rows = Math.ceil(P.items.length / cols);
+      var cellW = Math.max(P.sq, labelW), cellH = P.sq + pad + 2 * lineH;
+      var W = cols * cellW + (cols - 1) * P.gap + 2 * margin, H = rows * cellH + (rows - 1) * P.gap + 2 * margin;
+      var cells = P.items.map(function (c, i) {
+        var col = i % cols, row = Math.floor(i / cols);
+        var cx = margin + col * (cellW + P.gap) + cellW / 2, top = margin + row * (cellH + P.gap);
+        return { c: c, cx: cx, sy: top + P.sq / 2, ly: top + P.sq + pad + lineH, lines: labelLines(c) };
+      });
+      return { W: W, H: H, em: em, lineH: lineH, cells: cells };
+    }
+
+    function buildPattern() {
+      if (!P.items.length) {
+        root.dataset.pstate = 'empty'; S.labels = null; S.regions = []; patSummary.textContent = ''; plan();
+        return;
+      }
+      root.dataset.pstate = 'ready';
+      var Lo = patternLayout(), k = Math.max(4, Math.min(40, 900 / Math.max(Lo.W, Lo.H)));
+      var w = Math.round(Lo.W * k), h = Math.round(Lo.H * k), labels = new Int32Array(w * h);
+      var regions = [{ id: 0, ink: 0, area: 0, x0: 0, y0: 0, x1: w - 1, y1: h - 1, alive: true }];
+      var assign = [null];
+      Lo.cells.forEach(function (cell, i) {
+        var id = i + 1, x0 = Math.round((cell.cx - P.sq / 2) * k), y0 = Math.round((cell.sy - P.sq / 2) * k);
+        var x1 = Math.round((cell.cx + P.sq / 2) * k) - 1, y1 = Math.round((cell.sy + P.sq / 2) * k) - 1;
+        for (var y = y0; y <= y1; y++) for (var x = x0; x <= x1; x++) labels[y * w + x] = id;
+        regions.push({ id: id, ink: 1, area: (x1 - x0 + 1) * (y1 - y0 + 1), x0: x0, y0: y0, x1: x1, y1: y1, alive: true });
+        assign.push(cell.c);
+      });
+      // the labels, drawn with the browser's font and read back as a mask
+      var tc = document.createElement('canvas'); tc.width = w; tc.height = h;
+      var tx = tc.getContext('2d', { willReadFrequently: true });
+      tx.fillStyle = '#fff'; tx.fillRect(0, 0, w, h);
+      tx.fillStyle = '#000'; tx.textAlign = 'center'; tx.textBaseline = 'middle';
+      tx.font = (Lo.em * k) + 'px ' + FONT;
+      Lo.cells.forEach(function (cell) {
+        cell.lines.forEach(function (l, i) { tx.fillText(l, cell.cx * k, (cell.ly + (i - 0.5) * Lo.lineH) * k); });
+      });
+      var td = tx.getImageData(0, 0, w, h).data, tid = regions.length, tarea = 0;
+      for (var i = 0, j = 0; i < w * h; i++, j += 4) if (td[j] < 128 && labels[i] === 0) { labels[i] = tid; tarea++; }
+      regions.push({ id: tid, ink: 1, area: tarea, x0: 0, y0: 0, x1: w - 1, y1: h - 1, alive: true });
+      assign.push(P.text);
+      regions[0].area = w * h - tarea - regions.slice(1, -1).reduce(function (t, r) { return t + r.area; }, 0);
+      S.w = w; S.h = h; S.labels = labels; S.regions = regions; S.assign = assign; S.undo = [];
+      S.noise = makeNoise(w, h); S.textArea = tarea / (k * k); S.layout = Lo;
+      canvas.width = overlay.width = w; canvas.height = overlay.height = h;
+      octx.clearRect(0, 0, w, h);
+      render();
+      patSummary.textContent = patternSummary();
+    }
+    function patternSummary() {
+      var Lo = S.layout;
+      if (!Lo || !P.items.length) return '';
+      var secs = P.items.reduce(function (t, c) { return t + P.sq * P.sq / 100 * c.secs; }, 0) + (P.text ? S.textArea / 100 * P.text.secs : 0);
+      return P.items.length + (P.items.length === 1 ? ' square' : ' squares') + ', ' + Lo.W.toFixed(0) + ' × ' + Lo.H.toFixed(0) +
+        ' mm, centered on a ' + P.field + ' mm field. Roughly ' + Math.max(1, Math.round(secs / 60)) + ' min of lasering.';
+    }
+
+    function xmlEsc(v) {
+      return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/\n/g, '&#10;');
+    }
+    function num(v) { return String(Math.round(v * 10000) / 10000); }
+    // One Scan (fill) layer per setting. Fiber settings as LightBurn writes
+    // them: frequency in Hz, QPulseWidth in ns, interval in mm.
+    function cutSetting(index, name, c, priority) {
+      var pw = parseFloat(c.power) || 0;
+      return '    <CutSetting type="Scan">\n' +
+        '        <index Value="' + index + '"/>\n' +
+        '        <name Value="' + xmlEsc(name) + '"/>\n' +
+        '        <minPower Value="' + pw + '"/>\n' +
+        '        <maxPower Value="' + pw + '"/>\n' +
+        '        <maxPower2 Value="' + pw + '"/>\n' +
+        '        <speed Value="' + (parseFloat(c.speed) || 0) + '"/>\n' +
+        '        <frequency Value="' + Math.round((parseFloat(c.frequency) || 0) * 1000) + '"/>\n' +
+        '        <QPulseWidth Value="' + (parseFloat(c.q_pulse) || 0) + '"/>\n' +
+        '        <interval Value="' + (parseFloat(c.interval) || 0.1) + '"/>\n' +
+        '        <numPasses Value="' + (parseInt(c.passes, 10) || 1) + '"/>\n' +
+        '        <priority Value="' + priority + '"/>\n' +
+        '    </CutSetting>\n';
+    }
+    function lbrnXml() {
+      var Lo = patternLayout(), cx0 = P.field / 2, cy0 = P.field / 2, n = Lo.cells.length;
+      // LightBurn's Y axis points up, and a rectangle's XForm is its centre.
+      function X(x) { return num(cx0 + x - Lo.W / 2); }
+      function Y(y) { return num(cy0 + Lo.H / 2 - y); }
+      var out = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+        '<LightBurnProject AppVersion="1.6.00" FormatVersion="1" MaterialHeight="0" MirrorX="False" MirrorY="False">\n';
+      Lo.cells.forEach(function (cell, i) {
+        var c = cell.c;
+        out += cutSetting(i, c.group + ' ' + c.power + '% ' + c.speed, c, 0);
+      });
+      if (P.text) out += cutSetting(n, 'Labels', P.text, 1);
+      Lo.cells.forEach(function (cell, i) {
+        out += '    <Shape Type="Rect" CutIndex="' + i + '" W="' + num(P.sq) + '" H="' + num(P.sq) + '" Cr="0">\n' +
+          '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.sy) + '</XForm>\n    </Shape>\n';
+      });
+      if (P.text) Lo.cells.forEach(function (cell) {
+        out += '    <Shape Type="Text" CutIndex="' + n + '" Font="Arial,-1,100,5,50,0,0,0,0,0" Str="' + xmlEsc(cell.lines.join('\n')) +
+          '" H="' + num(P.th) + '" LS="0" LnS="0" Ah="1" Av="1" Weld="1">\n' +
+          '        <XForm>1 0 0 1 ' + X(cell.cx) + ' ' + Y(cell.ly) + '</XForm>\n    </Shape>\n';
+      });
+      var notes = String(data.title || '') + ' test pattern from ' + (data.page || 'the laser materials library') + '\n' +
+        n + ' shades, one layer each, plus a Labels layer.\n' +
+        'Centered on a ' + P.field + ' mm field: check it sits where you want before running, and that each label is under its square.';
+      out += '    <Notes ShowOnLoad="1" Notes="' + xmlEsc(notes) + '"/>\n</LightBurnProject>\n';
+      return out;
+    }
+    function downloadLbrn() {
+      if (!P.items.length) { status.textContent = 'Add some shades first.'; return; }
+      var blob = new Blob([lbrnXml()], { type: 'application/xml' });
+      var a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = (data.material || 'material') + '-test-pattern.lbrn2';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+    }
+
+    // ── switching between a design and a pattern ─────────
+    var IMAGE_KEYS = ['w', 'h', 'lum', 'noise', 'labels', 'regions', 'assign', 'undo', 'name'];
+    function setMode(m) {
+      if (m === S.mode) return;
+      var ms = root.querySelectorAll('button[data-mode]');
+      for (var i = 0; i < ms.length; i++) ms[i].setAttribute('aria-pressed', ms[i].dataset.mode === m ? 'true' : 'false');
+      if (m === 'pattern') {
+        S.image = {};
+        IMAGE_KEYS.forEach(function (key) { S.image[key] = S[key]; });
+        S.mode = 'pattern'; root.dataset.mode = 'pattern';
+        drawPalette(); drawPatternList(); buildPattern();
+      } else {
+        S.mode = 'image'; root.dataset.mode = 'image';
+        if (S.image) IMAGE_KEYS.forEach(function (key) { S[key] = S.image[key]; });
+        S.hover = -1;
+        if (S.labels) { canvas.width = overlay.width = S.w; canvas.height = overlay.height = S.h; octx.clearRect(0, 0, S.w, S.h); render(); }
+        else { status.textContent = ''; plan(); }
+        drawPalette();
+      }
+    }
+
+    drawPalette();
+    drawPatternList();
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
