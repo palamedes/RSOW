@@ -8,7 +8,8 @@ card_image: /assets/images/laser/slate-power-speed.webp
 summary: >-
   Low energy turns slate a soft grey and nearly white. More takes it to cream
   and tan with a slight satin sheen, which is as far as to push it. Past that
-  it bubbles into glossy bronze, and that damages the slate.
+  it melts: the surface rises, then bubbles into glossy bronze, and both
+  damage the slate.
 # The color families used in this material's tab (the "color" column), light
 # to dark. hex is a typical swatch from the sampled cells.
 palette:
@@ -20,10 +21,10 @@ palette:
   - { name: "Cream", hex: "#ccc5ad", hint: "Soft, warm white." }
   - { name: "Beige", hex: "#bbb091", hint: "Light beige." }
   - { name: "Sand", hex: "#c4b796", hint: "Pale golden beige." }
-  - { name: "Tan", hex: "#b2a27e", hint: "Light brown, often with a satin sheen." }
-  - { name: "Gold", hex: "#a5926a", hint: "Golden brown. Most settings that reach it bubble the slate; one doesn't." }
-  - { name: "Bronze", hex: "#8d7d59", hint: "Glossy brown. Only from settings that bubble and damage the slate." }
-  - { name: "Dark bronze", hex: "#786447", hint: "The darkest. Only from settings that bubble and damage the slate." }
+  - { name: "Tan", hex: "#b2a27e", hint: "Light brown. Half the settings that reach it melt the slate." }
+  - { name: "Gold", hex: "#a5926a", hint: "Golden brown. Most settings that reach it melt the slate; one doesn't." }
+  - { name: "Bronze", hex: "#8d7d59", hint: "Glossy brown. Only from settings that melt and damage the slate." }
+  - { name: "Dark bronze", hex: "#786447", hint: "The darkest. Only from settings that melt and damage the slate." }
   - { name: "No mark", hex: "", hint: "Nothing visible." }
 tests:
   - id: power-speed-1
@@ -41,7 +42,7 @@ tests:
     notes:
       - "LightBurn rounds the speed labels. The real steps are 17.8 mm/s apart (57.78, 75.56, 93.33 and so on)."
       - "JPT rates this source for full output at 200 ns only above 75 kHz; below that, power drops. At 20 kHz, expect roughly a quarter of rated power at most (20 ÷ 75)."
-      - "**Satin is the limit.** At 40 mm/s, 60–70% (and 90–100% at 58 mm/s) gives a slight satin gloss, which is as far as to push slate. From 80% up at 40 mm/s it bubbles and damages the tile."
+      - "**Satin is the limit.** At 40 mm/s, 60% (and 90–100% at 58 mm/s) gives a slight satin gloss, which is as far as to push slate. At 70% the melting starts to raise the surface, the damage point, and from 80% up it bubbles."
   - id: freq-qpulse-1
     title: "Frequency × Q-pulse"
     status: stopped
@@ -56,7 +57,7 @@ tests:
     photo_alt: "The slate tile with the frequency × Q-pulse grid: frequency 10 to 100 kHz across, pulse width 50 to 400 ns up. The bottom four rows and part of the fifth are marked, from light grey to glossy bronze; the rest never ran."
     notes:
       - "**Stopped partway.** The slate started cracking and got very hot, so I stopped it. LightBurn ran the grid from the bottom row up, so everything from 205.56 ns at 50 kHz onward never ran."
-      - "From 60 kHz up, the 127.78 and 166.67 ns rows bubbled into a glossy finish, which damages slate. The 40–50 kHz cells in those rows (satin) are the limit."
+      - "In the 127.78 and 166.67 ns rows, 50 kHz is the damage point: melting raises the surface. From 60 kHz up it bubbles into a glossy finish. At 205.56 ns the damage starts at 40 kHz. The satin cells just before them (40 kHz, and 30 kHz at 205.56 ns) are the limit."
       - "This source fires only 16 fixed pulse widths (listed under [the laser](/laser/#the-laser)), so in-between values like 88.89 ns probably snap to one of them. The 127.78 and 166.67 ns rows came out nearly identical, which fits both landing on 150 ns."
       - "At 10 kHz every pulse width barely marked, and 50 ns left no visible mark."
 ---

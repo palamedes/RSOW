@@ -95,10 +95,10 @@ power-speed-1,Warm grey,#b7b4a1,Matte,,,30,40,20,200,0.1,1,100,done,,
 power-speed-1,Cream,#c6bfa4,Matte,,,40,40,20,200,0.1,1,100,done,,
 power-speed-1,Sand,#bbb090,Matte,,,50,40,20,200,0.1,1,100,done,,
 power-speed-1,Tan,#b0a282,Satin,,,60,40,20,200,0.1,1,100,done,,
-power-speed-1,Tan,#a19373,Satin,,,70,40,20,200,0.1,1,100,done,,
-power-speed-1,Gold,#948669,Bubbled,,,80,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
-power-speed-1,Gold,#928366,Bubbled,,,90,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
-power-speed-1,Bronze,#8d7e62,Bubbled,,,100,40,20,200,0.1,1,100,done,Damages slate,Bubbled: damages slate
+power-speed-1,Tan,#a19373,Melted,,,70,40,20,200,0.1,1,100,done,Damages slate,Raised by melting: the damage point
+power-speed-1,Gold,#948669,Melted,,,80,40,20,200,0.1,1,100,done,Damages slate,Bubbled
+power-speed-1,Gold,#928366,Melted,,,90,40,20,200,0.1,1,100,done,Damages slate,Bubbled
+power-speed-1,Bronze,#8d7e62,Melted,,,100,40,20,200,0.1,1,100,done,Damages slate,Bubbled
 freq-qpulse-1,,,,,,40,40,10,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
 freq-qpulse-1,,,,,,40,40,20,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
 freq-qpulse-1,,,,,,40,40,30,400,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
@@ -152,7 +152,7 @@ freq-qpulse-1,,,,,,40,40,100,244.44,0.1,1,100,not run,"Not run: test stopped (cr
 freq-qpulse-1,Faint grey,#7c7f7b,Matte,,,40,40,10,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Cream,#c8c2ad,Matte,,,40,40,20,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Sand,#c3b796,Satin,,,40,40,30,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
-freq-qpulse-1,Tan,#b19f7b,Satin,,,40,40,40,205.56,0.1,1,100,done,"Test stopped: cracking, heat",
+freq-qpulse-1,Tan,#b19f7b,Melted,,,40,40,40,205.56,0.1,1,100,done,"Test stopped: cracking, heat",Raised by melting: the damage point
 freq-qpulse-1,,,,,,40,40,50,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
 freq-qpulse-1,,,,,,40,40,60,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
 freq-qpulse-1,,,,,,40,40,70,205.56,0.1,1,100,not run,"Not run: test stopped (cracking, heat)",
@@ -163,22 +163,22 @@ freq-qpulse-1,Faint grey,#787a77,Matte,,,40,40,10,166.67,0.1,1,100,done,"Test st
 freq-qpulse-1,Warm grey,#b0afa1,Matte,,,40,40,20,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Cream,#cdc4a7,Matte,,,40,40,30,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Sand,#bfb18f,Satin,,,40,40,40,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
-freq-qpulse-1,Tan,#b3a27c,Satin,,,40,40,50,166.67,0.1,1,100,done,"Test stopped: cracking, heat",
-freq-qpulse-1,Gold,#a5926a,Bubbled,,,40,40,60,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Bronze,#937d59,Bubbled,,,40,40,70,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Bronze,#857151,Bubbled,,,40,40,80,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Dark bronze,#796447,Bubbled,,,40,40,90,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Dark bronze,#786448,Bubbled,,,40,40,100,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Tan,#b3a27c,Melted,,,40,40,50,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Raised by melting: the damage point
+freq-qpulse-1,Gold,#a5926a,Melted,,,40,40,60,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Bronze,#937d59,Melted,,,40,40,70,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Bronze,#857151,Melted,,,40,40,80,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Dark bronze,#796447,Melted,,,40,40,90,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Dark bronze,#786448,Melted,,,40,40,100,166.67,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
 freq-qpulse-1,Faint grey,#797b78,Matte,,,40,40,10,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Warm grey,#b1b1a4,Matte,,,40,40,20,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Cream,#cfc5a7,Matte,,,40,40,30,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Sand,#c4b695,Satin,,,40,40,40,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
-freq-qpulse-1,Tan,#b6a480,Satin,,,40,40,50,127.78,0.1,1,100,done,"Test stopped: cracking, heat",
-freq-qpulse-1,Gold,#a6926b,Bubbled,,,40,40,60,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Bronze,#96825f,Bubbled,,,40,40,70,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Bronze,#847050,Bubbled,,,40,40,80,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Dark bronze,#79664a,Bubbled,,,40,40,90,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
-freq-qpulse-1,Dark bronze,#746147,Bubbled,,,40,40,100,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled: damages slate
+freq-qpulse-1,Tan,#b6a480,Melted,,,40,40,50,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Raised by melting: the damage point
+freq-qpulse-1,Gold,#a6926b,Melted,,,40,40,60,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Bronze,#96825f,Melted,,,40,40,70,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Bronze,#847050,Melted,,,40,40,80,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Dark bronze,#79664a,Melted,,,40,40,90,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
+freq-qpulse-1,Dark bronze,#746147,Melted,,,40,40,100,127.78,0.1,1,100,done,"Test stopped: cracking, heat",Bubbled
 freq-qpulse-1,Faint grey,#787c7b,Matte,,,40,40,10,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Light grey,#9d9f9a,Matte,,,40,40,20,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
 freq-qpulse-1,Off-white,#bcbbaf,Matte,,,40,40,30,88.89,0.1,1,100,done,"Test stopped: cracking, heat",
