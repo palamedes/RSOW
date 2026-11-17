@@ -39,37 +39,38 @@ groups:
   - { name: "Beige", hint: "Greyish to light beige.", colors: ["Warm grey", "Beige"] }
   - { name: "Tan", hint: "Light brown.", colors: ["Tan"] }
   - { name: "Gold", hint: "Golden to deep golden brown.", colors: ["Gold", "Bronze"] }
-# The designer's standard test pattern (the user's 5 × 5, 2026-11-17), row
-# by row, as power|speed|frequency|q_pulse|interval|passes. The designer uses the
-# newest measurement of each setting.
+# The designer's standard test pattern, v2 (2026-11-17), row by row as
+# power|speed|frequency|q_pulse|interval|passes. 25 colors at least ΔE 4
+# apart: run 1's distinct ones plus the tested settings that fill its gaps.
+# Laid out as a chart: lightest row first, each row neutral to warm.
 pattern:
   cols: 5
   cells:
-    - "5|400|70|350|0.02|1"
-    - "5|400|70|350|0.04|1"
-    - "8|400|70|350|0.1|1"
-    - "5|400|70|350|0.08|1"
-    - "12|400|70|350|0.05|1"
-    - "13.3|160|100|80|0.1|1"
-    - "4|400|70|350|0.1|1"
-    - "4|400|70|350|0.09|1"
-    - "80|200|20|200|0.1|1"
-    - "40|40|10|205.56|0.1|1"
-    - "90|76|20|200|0.1|1"
-    - "100|93|20|200|0.1|1"
-    - "100|76|20|200|0.1|1"
-    - "40|40|90|50|0.1|1"
-    - "50|40|20|200|0.1|1"
-    - "100|129|20|200|0.1|1"
-    - "80|58|20|200|0.1|1"
-    - "30|53|100|80|0.1|1"
-    - "60|93|20|200|0.1|1"
-    - "80|129|20|200|0.1|1"
-    - "40|40|80|88.89|0.1|1"
-    - "36.7|67|100|80|0.1|1"
-    - "30|40|100|80|0.1|1"
-    - "40|40|100|88.89|0.1|1"
-    - "36.7|40|100|80|0.1|1"
+    - "5|400|70|350|0.02|1"   # #c6c6c3 measured
+    - "5|400|70|350|0.01|1"   # #dddad2 predicted
+    - "40|40|50|50|0.1|1"   # #d3ceba predicted
+    - "40|40|50|88.89|0.1|1"   # #ded7bb predicted
+    - "40|40|30|166.67|0.1|1"   # #d4cbad predicted
+    - "20|160|100|80|0.1|1"   # #b9bdc1 predicted
+    - "12|400|70|350|0.05|1"   # #c6c3b9 measured
+    - "26.7|80|100|80|0.1|1"   # #bfb8a9 predicted
+    - "50|40|20|200|0.1|1"   # #c6bda3 measured
+    - "40|40|70|88.89|0.1|1"   # #cfc19b predicted
+    - "10|120|100|80|0.1|1"   # #a9adb1 predicted
+    - "8|400|70|350|0.1|1"   # #b9b7b1 measured
+    - "90|76|20|200|0.1|1"   # #b5ae99 measured
+    - "30|53|100|80|0.1|1"   # #b4ab8d measured
+    - "40|40|90|88.89|0.1|1"   # #bba87e predicted
+    - "50|76|20|200|0.1|1"   # #929690 predicted
+    - "80|200|20|200|0.1|1"   # #a4a39b measured
+    - "100|93|20|200|0.1|1"   # #a19a88 measured
+    - "50|58|20|200|0.1|1"   # #aba38b predicted
+    - "40|40|100|88.89|0.1|1"   # #a99d7e measured
+    - "4|400|70|350|0.1|1"   # #8b8c8b measured
+    - "10|76|20|200|0.1|1"   # #7d8588 predicted
+    - "80|129|20|200|0.1|1"   # #928e85 measured
+    - "100|129|20|200|0.1|1"   # #7e7b71 measured
+    - "100|58|20|200|0.1|1"   # #96896f predicted
 tests:
   - id: power-speed-1
     slate: "#7f8688"   # bare slate in this photo
