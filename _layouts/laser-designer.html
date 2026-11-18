@@ -1,0 +1,147 @@
+---
+layout: default
+full_width: true
+---
+{%- comment -%}
+  A material's designer (/laser/<material>/designer/, made by
+  _plugins/laser_sheets.rb). Upload a silhouette, click its areas to color
+  them with that material's tested settings, and preview the result on the
+  material. assets/js/laser-designer.js does all of it in the browser; the
+  image is never uploaded anywhere. Settings that melt the material
+  (finish "Melted") aren't offered.
+{%- endcomment -%}
+{%- assign m = site.laser | where: "material", page.material | first -%}
+{%- assign sheet = site.data.laser[page.material] -%}
+{%- assign source = site.data.laser.source -%}
+<div class="lzr" id="lzr">
+
+  <header class="lzr-hero lzr-hero-sm">
+    <div class="lzr-wrap">
+      <p class="lzr-eyebrow"><a href="{{ '/laser/' | relative_url }}">Laser Materials Library</a> · <a href="{{ m.url | relative_url }}">{{ m.title }}</a></p>
+      <h1>{{ m.title }} Designer</h1>
+      <p class="lzr-lede">Color a design: upload a silhouette, pick colors from the {{ m.title | downcase }} tests, and click the parts you want in each. Or make a test pattern: pick the shades you want to try and download a LightBurn file with a labelled square for each. The preview shows roughly how it will come out.</p>
+      <p class="lzr-note">It all runs in your browser. Your image never leaves this page.</p>
+    </div>
+  </header>
+
+  <section class="lzr-band">
+    <div class="lzr-wrap">
+      <noscript><p class="lzr-note"><strong>The designer needs JavaScript.</strong> The <a href="{{ m.url | relative_url }}">{{ m.title | downcase }} test results</a> work without it.</p></noscript>
+
+      <div class="lzr-designer" id="lzr-designer" data-state="empty" data-mode="image" data-pstate="empty">
+        <div class="lzr-seg lzr-modes" role="group" aria-label="What to make">
+          <button type="button" data-mode="image" aria-pressed="true">Color a design</button>
+          <button type="button" data-mode="pattern" aria-pressed="false">Make a test pattern</button>
+        </div>
+        <div class="lzr-stage">
+          <div class="lzr-pattern-empty">
+            <p class="lzr-drop-title">Pick the shades to test</p>
+            <p class="lzr-note">Choose a color on the right, then click its shades to add them. Each becomes a square with its settings engraved underneath, ready to run from LightBurn.</p>
+          </div>
+          <div class="lzr-drop">
+            <p class="lzr-drop-title">Drop a silhouette here</p>
+            <p class="lzr-note">A black-and-white image works best: PNG, JPG, WebP or SVG.</p>
+            <p>
+              <label class="lzr-btn">Choose an image<input type="file" accept="image/*" class="lzr-vh" data-role="file"></label>
+              <button type="button" class="lzr-textbtn" data-act="sample">or try a sample</button>
+            </p>
+            <p class="lzr-error" data-role="error" hidden></p>
+          </div>
+          <div class="lzr-canvas-wrap">
+            <canvas class="lzr-canvas" data-role="canvas" role="img" aria-label="Preview of the design"></canvas>
+            <canvas class="lzr-overlay" data-role="overlay" aria-hidden="true"></canvas>
+          </div>
+          <div class="lzr-stage-bar">
+            <div class="lzr-seg" role="group" aria-label="Preview">
+              <button type="button" data-view="material" aria-pressed="true">On {{ m.title | downcase }}</button>
+              <button type="button" data-view="flat" aria-pressed="false">Flat colors</button>
+            </div>
+            <button type="button" class="lzr-textbtn lzr-only-image" data-act="undo" disabled>Undo</button>
+            <button type="button" class="lzr-textbtn" data-act="download">Download preview</button>
+            <button type="button" class="lzr-textbtn lzr-only-image" data-act="new">New image</button>
+          </div>
+          <p class="lzr-note lzr-status" data-role="status" aria-live="polite"></p>
+        </div>
+
+        <div class="lzr-tools">
+          <div class="lzr-tool">
+            <h2>Colors</h2>
+            <p class="lzr-note">Pick a color, then a shade, then click areas of the design. Order the shades by color or by speed to find the fastest. Settings that melt {{ m.title | downcase }} aren't offered.</p>
+            <div class="lzr-seg lzr-seg-sm lzr-pal-mode" data-role="pal-mode" role="group" aria-label="Which colors" hidden>
+              <button type="button" data-pal="validated" aria-pressed="true">Validated</button>
+              <button type="button" data-pal="all" aria-pressed="false">All tested</button>
+            </div>
+            <div class="lzr-pal" data-role="palette"></div>
+            <div class="lzr-pick" data-role="settings"></div>
+          </div>
+          <div class="lzr-tool lzr-only-pattern">
+            <h3>Test pattern <span class="lzr-note" data-role="pat-count"></span></h3>
+            <p class="lzr-note">Click shades above to add or remove them. Up to 29: LightBurn allows 30 layers, and the labels use one.</p>
+            <ol class="lzr-pat-list" data-role="pat-list"></ol>
+            <p>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-sort-color">Sort by color</button>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-sort-speed">Sort by speed</button>
+              <button type="button" class="lzr-btn-quiet" data-act="pat-clear">Clear</button>
+            </p>
+            <p><button type="button" class="lzr-btn-quiet" data-act="pat-default">Start over from the standard pattern</button></p>
+            <div class="lzr-pat-fields">
+              <label class="lzr-field">Columns <input type="number" min="1" max="10" step="1" data-pat="cols"></label>
+              <label class="lzr-field">Square (mm) <input type="number" min="3" max="40" step="0.5" data-pat="sq"></label>
+              <label class="lzr-field">Column gap (mm) <input type="number" min="0.5" max="20" step="0.5" data-pat="gap"></label>
+              <label class="lzr-field">Row gap (mm) <input type="number" min="0.5" max="20" step="0.5" data-pat="rowGap"></label>
+              <label class="lzr-field">Label size (LightBurn H, mm) <input type="number" min="1" max="8" step="0.1" data-pat="th"></label>
+              <label class="lzr-field">Lens field (mm) <input type="number" min="20" max="600" step="1" data-pat="field"></label>
+            </div>
+            <label class="lzr-field">Labels engraved with <select data-pat="text"></select></label>
+            <p><button type="button" class="lzr-btn" data-act="pat-lbrn">Download for LightBurn</button></p>
+            <p class="lzr-note" data-role="pat-summary"></p>
+          </div>
+          <div class="lzr-tool lzr-only-image">
+            <h3>Fill everything at once</h3>
+            <p>
+              <button type="button" class="lzr-btn-quiet" data-act="fill-dark">All dark areas</button>
+              <button type="button" class="lzr-btn-quiet" data-act="fill-light">All light areas</button>
+            </p>
+          </div>
+          <div class="lzr-tool lzr-only-image">
+            <h3>Reading the image</h3>
+            <label class="lzr-field">Light/dark cut-off <span data-role="threshold-value"></span>
+              <input type="range" min="1" max="254" value="128" data-role="threshold">
+            </label>
+            <label class="lzr-check"><input type="checkbox" data-role="invert"> Swap dark and light</label>
+            <p class="lzr-note">Changing these starts the coloring over.</p>
+          </div>
+        </div>
+
+        <section class="lzr-plan" aria-labelledby="lzr-plan-h">
+          <h2 id="lzr-plan-h">Layer plan</h2>
+          <p class="lzr-note">One LightBurn layer per color, with that row's settings and a {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" }} lens, like the tests. Time is a rough figure per square centimetre (speed × interval, ignoring jumps between lines); area is the share of the whole image.</p>
+          <div class="lzr-scroll">
+            <table class="lzr-table">
+              <thead><tr><th scope="col">Color</th><th scope="col">Finish</th><th scope="col">Power</th><th scope="col">Speed</th><th scope="col">Frequency</th><th scope="col">Q-pulse</th><th scope="col">Interval</th><th scope="col">Passes</th><th scope="col">Time</th><th scope="col">From</th><th scope="col">Area</th></tr></thead>
+              <tbody data-role="plan"><tr><td colspan="11">Upload an image to start.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script type="application/json" id="lzr-designer-data">
+{
+  "material": {{ page.material | jsonify }},
+  "title": {{ m.title | jsonify }},
+  "surface": {{ m.surface | default: "#6f7475" | jsonify }},
+  "sample": {{ '/assets/laser/sample-silhouette.svg' | relative_url | jsonify }},
+  "lens": {{ source.specs | where: "label", "Lens" | map: "value" | first | default: "100 mm" | jsonify }},
+  "page": {{ page.url | absolute_url | jsonify }},
+  "palette": {{ m.palette | jsonify }},
+  "groups": {{ m.groups | jsonify }},
+  "pattern": {{ m.pattern | jsonify }},
+  "validated": {{ m.validated | jsonify }},
+  "tests": {{ m.tests | jsonify }},
+  "cells": {{ sheet | jsonify }}
+}
+</script>
+<script defer src="{{ '/assets/js/laser-designer.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>

@@ -70,6 +70,9 @@ PAGES = [
     "/explain/",
     "/games/",
     "/investments/",
+    "/laser/",
+    "/laser/slate/",
+    "/laser/slate/designer/",
     "/hire/",
     "/404.html",
 ]

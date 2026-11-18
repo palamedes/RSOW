@@ -328,13 +328,13 @@
 
   {%- comment -%}
     Pages whose own stylesheets were drawn for a light page (the games
-    arcade, the Drip Fund, explainers, the Palamedes reference, /build/) get
-    .is-light-only, so a design with a dark mode can keep them on paper. It
-    rides on <main> itself so soft navigation carries it along. #main is the
-    skip link's target.
+    arcade, the Drip Fund, explainers, the Palamedes reference, /build/,
+    the /laser/ library) get .is-light-only, so a design with a dark mode
+    can keep them on paper. It rides on <main> itself so soft navigation
+    carries it along. #main is the skip link's target.
   {%- endcomment -%}
   {%- assign light_only = false -%}
-  {%- if page.collection == "explainers" or url_head == "/build/" or page.url == "/games/" or page.url == "/investments/" or page.url == "/explain/" or page.url == "/palamedes-historical-reference/" -%}
+  {%- if page.collection == "explainers" or url_head == "/build/" or page.url == "/games/" or page.url == "/investments/" or page.url == "/explain/" or page.url == "/palamedes-historical-reference/" or url_head == "/laser/" -%}
     {%- assign light_only = true -%}
   {%- endif %}
   <main class="site-content{% if light_only %} is-light-only{% endif %}" id="main" tabindex="-1">

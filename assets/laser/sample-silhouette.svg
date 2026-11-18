@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <!-- A sample silhouette for the laser designer: a mountain badge with
+       separate areas to color (ring, sky, sun, peaks, snowcaps, trees,
+       ground and lake). Drawn for this site. -->
+  <defs>
+    <clipPath id="inside"><circle cx="300" cy="300" r="243"/></clipPath>
+  </defs>
+  <rect width="600" height="600" fill="#fff"/>
+  <circle cx="300" cy="300" r="282" fill="#000"/>
+  <circle cx="300" cy="300" r="250" fill="#fff"/>
+  <circle cx="300" cy="300" r="266" fill="none" stroke="#fff" stroke-width="5"/>
+  <g clip-path="url(#inside)">
+    <circle cx="400" cy="185" r="52" fill="#000"/>
+    <circle cx="400" cy="185" r="36" fill="#fff"/>
+    <path d="M40,430 L205,190 L285,300 L345,225 L560,430 Z" fill="#000"/>
+    <path d="M205,190 L238,238 L222,230 L206,250 L190,228 L174,238 Z" fill="#fff"/>
+    <path d="M345,225 L378,258 L362,252 L346,268 L332,252 L316,256 Z" fill="#fff"/>
+    <path d="M30,470 Q170,438 300,452 T570,462 L570,600 L30,600 Z" fill="#000"/>
+    <ellipse cx="320" cy="515" rx="80" ry="15" fill="#fff"/>
+    <ellipse cx="300" cy="548" rx="46" ry="9" fill="#fff"/>
+    <path stroke="#fff" stroke-width="7" stroke-linejoin="round" d="M120,300 L160,372 L144,372 L172,420 L152,420 L180,466 L60,466 L88,420 L68,420 L96,372 L80,372 Z" fill="#000"/>
+    <path stroke="#fff" stroke-width="7" stroke-linejoin="round" d="M470,320 L504,382 L490,382 L514,424 L496,424 L520,466 L420,466 L444,424 L426,424 L450,382 L436,382 Z" fill="#000"/>
+  </g>
+</svg>
