@@ -5,6 +5,7 @@
 // ════════════════════════════════════════════════════════════════
 
 @use "mixins" as *;
+@use "views/navmenu";
 
 $nav-bp: 860px;
 
@@ -160,7 +161,7 @@ $nav-bp: 860px;
     flex-wrap: wrap;
     border-bottom: 1px solid var(--ink);
 
-    a {
+    a, .nav-menu-btn {
       position: relative;
       padding: 0.6rem 1.35rem 0.55rem;
       @include label(0.78rem, 0.16em);
@@ -180,6 +181,20 @@ $nav-bp: 860px;
           height: 3px;
           background: var(--red);
         }
+      }
+    }
+    // the Tools menu (views/_navmenu.scss): a column rule before it, and
+    // a newsprint panel with hairlines between its sections
+    .nav-menu { border-left: 1px solid var(--hair); }
+    .nav-menu-list {
+      --nav-menu-bg: var(--paper, #f6f1e7);
+      --nav-menu-line: var(--ink);
+      --nav-menu-radius: 0;
+      --nav-menu-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+      margin-top: 0;
+      padding: 0;
+      @media (min-width: #{$nav-bp + 1px}) {
+        a + a { border-left: 0; border-top: 1px solid var(--hair); }
       }
     }
   }
@@ -317,6 +332,8 @@ $nav-bp: 860px;
         &[aria-current]::after { left: 40%; right: 40%; bottom: 0.35rem; height: 2px; }
       }
     }
+    // the Tools menu's links join the list (views/_navmenu.scss)
+    @include navmenu.flat;
     .header-inner:not(.is-nav-open) {
       .nav-links { display: none; }
     }

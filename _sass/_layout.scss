@@ -1,3 +1,5 @@
+@use "views/navmenu";
+
 // Narration chip colours, mirroring the post hero: blue = AI read,
 // amber = read by Jason. Deeper than the hero tints so they hold up against a
 // photo thumbnail instead of a dark gradient.
@@ -52,12 +54,14 @@ $card-listen-me-h: #d18d17;
     flex-wrap: wrap;
     gap: 1.25rem;
 
-    a {
+    a, .nav-menu-btn {
       font-size: 0.8rem;
       font-weight: 400;
       color: #696969;
       &:hover { color: #2673da; }
     }
+    // the open Tools panel (views/_navmenu.scss); phones list the links flat
+    @media (min-width: 861px) { .nav-menu-list a { font-size: 0.85rem; } }
   }
 
   .social-icons {
@@ -157,6 +161,8 @@ $card-listen-me-h: #d18d17;
       }
     }
 
+    // the Tools menu's links join the list (views/_navmenu.scss)
+    @include navmenu.flat;
     .header-inner:not(.is-nav-open) .nav-links { display: none; }
   }
 

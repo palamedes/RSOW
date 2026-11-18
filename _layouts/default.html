@@ -86,6 +86,7 @@
   {%- elsif nav_seg == "explain" %}{% assign nav_sec = "/explain/" %}
   {%- elsif nav_seg == "games" %}{% assign nav_sec = "/games/" %}
   {%- elsif nav_seg == "investments" %}{% assign nav_sec = "/investments/" %}
+  {%- elsif nav_seg == "laser" %}{% assign nav_sec = "/laser/" %}
   {%- endif -%}
   {%- comment -%} Broadsheet's edition line: the volume is years since 1997 in
   Roman numerals and the number is the day of the year, so every daily build
@@ -130,12 +131,21 @@
           <nav class="nav-links" id="site-nav" aria-label="Site">
             <a href="{{ '/about/' | relative_url }}" data-section="/about/"{% if nav_sec == "/about/" %} aria-current="{% if nav_path == '/about/' %}page{% else %}true{% endif %}"{% endif %}>About Me</a>
             <a href="{{ '/archive/' | relative_url }}" data-section="/archive/ /post/ /tags/ /topics/ /category/ /tag/"{% if nav_sec == "/archive/" %} aria-current="{% if nav_path == '/archive/' %}page{% else %}true{% endif %}"{% endif %}>Blog</a>
-            <a href="{{ '/explain/' | relative_url }}" data-section="/explain/"{% if nav_sec == "/explain/" %} aria-current="{% if nav_path == '/explain/' %}page{% else %}true{% endif %}"{% endif %}>Explainers</a>
-            <a href="{{ '/games/' | relative_url }}" data-section="/games/"{% if nav_sec == "/games/" %} aria-current="{% if nav_path == '/games/' %}page{% else %}true{% endif %}"{% endif %}>Games</a>
-            <a href="{{ '/investments/' | relative_url }}" data-section="/investments/"{% if nav_sec == "/investments/" %} aria-current="{% if nav_path == '/investments/' %}page{% else %}true{% endif %}"{% endif %}>Investments</a>
+            {%- comment -%} Explainers, Games, Investments and the Laser Library share one
+            Tools menu (_sass/views/_navmenu.scss). Without JavaScript it opens on
+            hover or focus; the script below makes the button toggle it. Phone
+            menus flatten it into plain links. {%- endcomment %}
+            <div class="nav-menu">
+              <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="nav-tools">Tools<span class="nav-menu-caret" aria-hidden="true"></span></button>
+              <div class="nav-menu-list" id="nav-tools">
+                <a href="{{ '/explain/' | relative_url }}" data-section="/explain/"{% if nav_sec == "/explain/" %} aria-current="{% if nav_path == '/explain/' %}page{% else %}true{% endif %}"{% endif %}>Explainers</a>
+                <a href="{{ '/games/' | relative_url }}" data-section="/games/"{% if nav_sec == "/games/" %} aria-current="{% if nav_path == '/games/' %}page{% else %}true{% endif %}"{% endif %}>Games</a>
+                <a href="{{ '/investments/' | relative_url }}" data-section="/investments/"{% if nav_sec == "/investments/" %} aria-current="{% if nav_path == '/investments/' %}page{% else %}true{% endif %}"{% endif %}>Investments</a>
+                <a href="{{ '/laser/' | relative_url }}" data-section="/laser/"{% if nav_sec == "/laser/" %} aria-current="{% if nav_path == '/laser/' %}page{% else %}true{% endif %}"{% endif %}>Laser Library</a>
+              </div>
+            </div>
             <!-- <a href="{{ '/rv-10/' | relative_url }}">RV-10</a> -->
             <!-- <a href="{{ '/bicolline/' | relative_url }}">Bicolline</a> -->
-            <a href="https://www.etsy.com/shop/CJWOODTREASURES" target="_blank" rel="noopener">Etsy Store<span class="view-extra nav-ext" aria-hidden="true">&#8599;</span></a>
           </nav>
           <div id="resume-slot" class="resume-slot"></div>
           <div class="social-icons">
@@ -177,6 +187,36 @@
     // Mobile nav. The six links wrap into three stacked rows on a phone, so
     // below the breakpoint they collapse behind the hamburger; above it the
     // button is display:none and none of this matters.
+    // The Tools menu: the button toggles the panel. Registered before the
+    // phone panel's handlers so Escape closes the menu first.
+    (function () {
+      var menu = document.querySelector("#site-nav .nav-menu");
+      var btn = menu && menu.querySelector(".nav-menu-btn");
+      if (!btn) return;
+      menu.classList.add("is-js");
+      function setOpen(open) {
+        menu.classList.toggle("is-open", open);
+        btn.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+      btn.addEventListener("click", function () {
+        setOpen(btn.getAttribute("aria-expanded") !== "true");
+      });
+      document.addEventListener("click", function (e) {
+        if (!menu.contains(e.target)) setOpen(false);
+      });
+      menu.addEventListener("focusout", function (e) {
+        if (e.relatedTarget && !menu.contains(e.relatedTarget)) setOpen(false);
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && btn.getAttribute("aria-expanded") === "true") {
+          e.preventDefault();
+          setOpen(false);
+          btn.focus();
+        }
+      });
+      document.addEventListener("rsow:navigated", function () { setOpen(false); });
+    })();
+
     (function () {
       var toggle = document.getElementById("nav-toggle");
       var inner = toggle && toggle.closest(".header-inner");

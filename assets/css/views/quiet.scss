@@ -24,6 +24,7 @@
   ".post-card:not(.post-card--row) .card-dek",   // a long read's standfirst
 ));
 @use "views/picker";
+@use "views/navmenu";
 
 @use "views/quiet/base";
 @use "views/quiet/layout";

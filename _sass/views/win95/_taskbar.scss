@@ -1,4 +1,5 @@
 @use "kit" as *;
+@use "views/navmenu";
 
 // ════════════════════════════════════════════════════════════════
 //  Windows 95 — the taskbar. The site header, fixed along the bottom
@@ -146,6 +147,14 @@
   a[href$="/games/"]::before       { background-image: icon("joystick"); }
   a[href$="/investments/"]::before { background-image: icon("chart"); }
   a[href*="etsy.com"]::before      { background-image: icon("globe"); }
+  a[href$="/laser/"]::before       { background-image: icon("paint"); }
+
+  // The Start menu lists the Tools links directly (views/_navmenu.scss).
+  @include navmenu.flat;
+  .nav-menu-list a:last-child {
+    margin-top: 0;
+    &::after { content: none; }
+  }
 
   // a separator above the last item, as before "Shut Down..."
   a:last-child {

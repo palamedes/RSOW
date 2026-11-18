@@ -1,0 +1,94 @@
+// ════════════════════════════════════════════════════════════════
+//  The header's Tools menu (default.html, .nav-menu): a button that
+//  opens a panel of links. Every design loads this file.
+//
+//  - Without JavaScript the panel opens on hover and keyboard focus.
+//  - With it (.is-js, set by the script in default.html) the button
+//    toggles the panel (.is-open); Escape, a click elsewhere or tabbing
+//    out closes it.
+//  - Designs theme the panel with the --nav-menu-* custom properties, and
+//    inside their phone menu flatten it into plain links:
+//
+//      @use "views/navmenu";
+//      @media (max-width: $nav-bp) { @include navmenu.flat; }
+// ════════════════════════════════════════════════════════════════
+
+// !important: a design's own link rules (which the button shares) and an
+// .is-open panel left over from a wider window mustn't undo the flattening.
+@mixin flat {
+  .nav-menu,
+  .nav-menu-list { display: contents !important; }
+  .nav-menu-btn { display: none !important; }
+}
+
+.nav-menu {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.nav-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.nav-menu-caret {
+  display: inline-block;
+  width: 0.42em;
+  height: 0.42em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  transition: transform 0.15s ease;
+}
+.nav-menu.is-open .nav-menu-caret { transform: translateY(0.1em) rotate(-135deg); }
+
+.nav-menu-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  z-index: 60;
+  min-width: 11.5rem;
+  margin-top: 0.6rem;
+  padding: 0.35rem 0;
+  transform: translateX(-50%);
+  text-align: left;
+  background: var(--nav-menu-bg, #fff);
+  border: 1px solid var(--nav-menu-line, rgba(0, 0, 0, 0.12));
+  border-radius: var(--nav-menu-radius, 6px);
+  box-shadow: var(--nav-menu-shadow, 0 10px 28px rgba(0, 0, 0, 0.16));
+
+  // Keeps the panel open while the pointer crosses the gap to it.
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+    height: 0.75rem;
+  }
+
+  a {
+    display: block;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+  }
+}
+
+.nav-menu.is-open .nav-menu-list,
+.nav-menu:not(.is-js):focus-within .nav-menu-list { display: block; }
+
+@media (hover: hover) {
+  .nav-menu:not(.is-js):hover .nav-menu-list { display: block; }
+}
