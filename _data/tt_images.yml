@@ -15,8 +15,10 @@ military-coaster-coast-guard: { widths: [480, 800, 1200, 1512], width: 1512, hei
 military-coaster-marine-corps: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 military-coaster-navy: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 new-bern-bear-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
+not-old-vintage-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 oriental-map: { widths: [480, 800, 1200, 1254], width: 1254, height: 1254, fallback: 1200, avif: true }
 oriental-map-design: { widths: [480, 800, 1200, 1219], width: 1219, height: 1219, fallback: 1200, avif: true }
+party-without-alcohol-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 purpleheart-bowl: { widths: [480, 800, 1024], width: 1024, height: 1024, fallback: 1024, avif: true }
 purpleheart-mill-round: { widths: [480, 800, 1024], width: 1024, height: 1536, fallback: 1024, avif: true }
 purpleheart-mill-tall: { widths: [480, 800, 1024], width: 1024, height: 1536, fallback: 1024, avif: true }
