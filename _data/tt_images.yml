@@ -2,6 +2,7 @@
 # name: { widths: [...], width, height (of the largest), fallback: jpg width, avif }
 ambrosia-urn: { widths: [480, 547], width: 547, height: 637, fallback: 547, avif: true }
 america-250-slate: { widths: [480, 800, 1200, 1252], width: 1252, height: 1290, fallback: 1200, avif: true }
+best-dad-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 best-mom-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 birthday-trail: { widths: [480, 800, 1054], width: 1054, height: 1492, fallback: 1054, avif: true }
 cocktail-coasters-1: { widths: [480, 800, 1200, 1588], width: 1588, height: 1588, fallback: 1200, avif: true }

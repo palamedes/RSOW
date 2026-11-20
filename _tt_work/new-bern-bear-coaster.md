@@ -4,7 +4,7 @@ seo_title: "New Bern Bear Slate Coaster, Engraved in North Carolina"
 description: "A square slate coaster for New Bern, North Carolina: the town's bear, filled with pine trees under a flight of geese, and NEW BERN in gold on a banner."
 caption: "A little hometown pride under every glass."
 order: 26
-tile: square
+tile: big
 featured: true
 buckets: [home-bar, business]
 filters: [coasters, laser-engraved, gifts]

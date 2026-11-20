@@ -3,7 +3,7 @@ title: I'm Not Old, I'm Vintage
 seo_title: "\"I'm Not Old, I'm Vintage\" Engraved Slate Coaster"
 description: "A square slate coaster for the birthday that ends in a zero: I'm not old, I'm vintage, with Vintage in gold script over a white shadow."
 caption: "Aged to perfection, like whatever's in the glass."
-order: 25
+order: 27
 tile: square
 featured: true
 buckets: [personalized]
