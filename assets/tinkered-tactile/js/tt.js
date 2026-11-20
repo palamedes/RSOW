@@ -79,14 +79,22 @@
           track.scrollTo({ left: Number(t.dataset.ttSlide) * track.clientWidth, behavior: reduceMotion ? 'auto' : 'smooth' });
         });
       });
+      // A for-sale card's per-photo buy buttons (buy_links), in photo order.
+      var card = box.closest('.tt-sale');
+      var buys = card ? $$('[data-tt-buy]', card) : [];
+      var mark = function () {
+        var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        thumbs.forEach(function (t, n) { t.setAttribute('aria-current', String(n === i)); });
+        buys.forEach(function (b, n) { b.classList.toggle('is-current', n === i); });
+      };
+      mark();
       var ticking = false;
       track.addEventListener('scroll', function () {
         if (ticking) return;
         ticking = true;
         requestAnimationFrame(function () {
           ticking = false;
-          var i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
-          thumbs.forEach(function (t, n) { t.setAttribute('aria-current', String(n === i)); });
+          mark();
         });
       }, { passive: true });
     });

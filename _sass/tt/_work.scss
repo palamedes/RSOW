@@ -1,8 +1,8 @@
 @use "tokens" as *;
 
 // ── Inner-page heads ────────────────────────────────────────────────────
-.tt-pagehead { padding: clamp(3.5rem, 2rem + 6vw, 7.5rem) 0 clamp(2.75rem, 2rem + 3vw, 4.75rem); }
-.tt-pagehead .tt-h1 { max-width: 15ch; margin-bottom: 1.4rem; }
+.tt-pagehead { padding: clamp(2.25rem, 1.25rem + 3.5vw, 4.25rem) 0 clamp(2rem, 1.5rem + 2vw, 3.25rem); }
+.tt-pagehead .tt-h1 { max-width: 18ch; margin-bottom: 1rem; font-size: clamp(2.4rem, 1.4rem + 3.4vw, 4.4rem); }
 .tt-pagehead .tt-lead { margin-bottom: 0; }
 .tt-pagehead__grid { display: grid; gap: 2.5rem; }
 @include up($bp-lg) {
@@ -17,11 +17,9 @@
   position: sticky;
   top: var(--tt-header-h);
   z-index: 20;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  background: rgba(23, 23, 20, .94);
+  // Solid: see-through, a light theme turns grey over the dark page behind it.
+  background: var(--tt-bg);
   border-block: 1px solid var(--tt-line);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
 }
 .tt-filters__inner {
   display: flex;
@@ -46,8 +44,10 @@
   cursor: pointer;
   transition: color .2s, border-color .2s, background-color .2s;
   &:hover { color: var(--tt-fg); border-color: var(--tt-fg); }
-  &[aria-pressed="true"] { background: $cream; border-color: $cream; color: $charcoal; }
+  &[aria-pressed="true"] { background: var(--tt-fg); border-color: var(--tt-fg); color: var(--tt-bg); }
 }
+// The gallery section right under the bar; it shares the bar's theme.
+.tt-filters + .tt-section { padding-top: clamp(1.5rem, 3vw, 2.5rem); }
 .tt-filter__n { margin-left: .45em; font-weight: 400; font-variant-numeric: tabular-nums; }
 .tt-gallery__empty { padding: 3rem 0; color: var(--tt-muted); }
 .tt-gallery__foot {

@@ -388,6 +388,7 @@
       color: var(--ink-2);
     }
     .abt-name-link { margin-top: auto; }
+    p a { color: var(--red); text-decoration: underline; text-underline-offset: 0.2em; &:hover { color: var(--ink); } }
   }
   .abt-craft-ico {
     font-family: var(--f-text);

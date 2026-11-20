@@ -17,6 +17,9 @@ pieces first, then anything marked sold. See _tools/README-tinkered-tactile.md.
     <p class="tt-eyebrow">For sale</p>
     <h1 class="tt-h1">On the shelf.</h1>
     <p class="tt-lead">Finished pieces, ready to go home with somebody. When one sells it&rsquo;s gone, but most of them we can make again.</p>
+    {%- if tt.market.name != "" %}
+    <p class="tt-sale-where">{% include tt/icon.html name="pin" %}<span>Prices here are online prices, plus shipping. In person, find us at our booth at the {{ tt.market.name }}{% if tt.market.when != "" %}, {{ tt.market.when }}{% endif %}.</span></p>
+    {%- endif %}
   </div>
 </section>
 

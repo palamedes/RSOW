@@ -206,6 +206,25 @@
 }
 .tt-sale__note { display: block; font-family: $sans; font-size: .78rem; font-weight: 400; color: var(--tt-faint); }
 .tt-sale__desc { margin: 0; color: var(--tt-muted); }
+.tt-sale__market {
+  display: flex;
+  align-items: flex-start;
+  gap: .45rem;
+  margin: 0;
+  font-size: .92rem;
+  color: var(--tt-fg);
+  .tt-icon { flex: none; width: 1.05rem; height: 1.05rem; margin-top: .12em; color: var(--tt-accent); }
+}
+.tt-sale-where {
+  display: flex;
+  align-items: flex-start;
+  gap: .6rem;
+  max-width: 46rem;
+  margin: 1.25rem 0 0;
+  font-size: 1rem;
+  opacity: .85;
+  .tt-icon { flex: none; width: 1.15rem; height: 1.15rem; margin-top: .15em; color: var(--tt-accent); }
+}
 .tt-sale__meta {
   display: flex;
   flex-wrap: wrap;
@@ -217,6 +236,20 @@
   color: var(--tt-faint);
 }
 .tt-sale__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin-top: auto; padding-top: .85rem; }
+// buy_links: one button per variant (the military branches), under a label
+.tt-sale__buys { flex-basis: 100%; }
+.tt-sale__buys-label {
+  @include caps(.64rem, .18em);
+  display: flex;
+  align-items: center;
+  gap: .45em;
+  margin: 0 0 .55rem;
+  color: var(--tt-muted);
+  .tt-icon { width: 1.1em; height: 1.1em; }
+}
+.tt-sale__buys-row { display: flex; flex-wrap: wrap; gap: .45rem; }
+.tt-sale__buy { min-height: 2.35rem; padding: .55em .9em; }
+.tt-sale__buy.is-current { background: var(--tt-fg); border-color: var(--tt-fg); color: var(--tt-bg); }
 .tt-sale__more { font-size: .92rem; color: var(--tt-muted); &:hover { color: var(--tt-fg); } }
 .tt-sale--sold .tt-sale__slide img { filter: grayscale(.55) contrast(.95); }
 .tt-sale--sold .tt-sale__price { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--tt-faint); }
