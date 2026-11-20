@@ -24,9 +24,11 @@ purpleheart-bowl: { widths: [480, 800, 1024], width: 1024, height: 1024, fallbac
 purpleheart-mill-round: { widths: [480, 800, 1024], width: 1024, height: 1536, fallback: 1024, avif: true }
 purpleheart-mill-tall: { widths: [480, 800, 1024], width: 1024, height: 1536, fallback: 1024, avif: true }
 purpleheart-vase: { widths: [480, 800, 1024], width: 1024, height: 1536, fallback: 1024, avif: true }
+round-coaster-bottom: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 sadie-urn: { widths: [480, 690], width: 690, height: 680, fallback: 690, avif: true }
 sadie-urn-sheet: { widths: [480, 800, 1200, 1402], width: 1402, height: 1122, fallback: 1200, avif: true }
 shop-sign: { widths: [480, 800, 1200, 1536], width: 1536, height: 1024, fallback: 1200, avif: true }
+square-coaster-bottom: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 your-design-art: { widths: [480, 800, 1200, 1254], width: 1254, height: 1254, fallback: 1200, avif: true }
 your-design-hex: { widths: [480, 800, 1000], width: 1000, height: 1000, fallback: 1000, avif: true }
 your-design-slate: { widths: [480, 800, 990], width: 990, height: 990, fallback: 990, avif: true }

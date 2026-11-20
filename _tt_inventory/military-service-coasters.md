@@ -20,7 +20,7 @@ buy_links:
 order: 10
 work: military-service-coasters
 description: "Round slate coasters with the Army, Marine Corps, Navy, Air Force or Coast Guard emblem in white and gold. Pick a branch or mix a set. Laser engraved, color and all: no paint to wash off, no coating to bubble."
-materials: "Natural slate, uncoated"
+materials: "Natural slate, uncoated, with four rubber bumpers underneath"
 images:
   - name: military-coaster-army
     alt: "A round slate coaster engraved with a United States Army emblem, with UNITED STATES and ARMY in gold"
@@ -32,4 +32,6 @@ images:
     alt: "A round slate coaster engraved with the Air Force eagle and shield"
   - name: military-coaster-coast-guard
     alt: "A round slate coaster engraved with the Coast Guard emblem"
+  - name: round-coaster-bottom
+    alt: "The back of a round slate coaster: bare slate with four rubber bumpers spaced around the edge, so it won't scratch the table"
 ---
