@@ -10,6 +10,7 @@ cocktail-coasters-2: { widths: [480, 800, 1200, 1588], width: 1588, height: 1588
 hangovers-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 horse-wolf-crest: { widths: [480, 800, 1024], width: 1024, height: 1024, fallback: 1024, avif: true }
 lady-liberty-slate: { widths: [480, 800, 1200, 1250], width: 1250, height: 1250, fallback: 1200, avif: true }
+life-happens-coffee-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 military-coaster-air-force: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 military-coaster-army: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 military-coaster-coast-guard: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
