@@ -5,6 +5,9 @@ DESCRIPTION_LIMIT = 155
 
 Jekyll::Hooks.register :site, :post_read do |site|
   (site.pages + site.documents).each do |item|
+    # Files from a collection with `output: false` (like _tt_inventory, whose
+    # description is card text) never become pages, so they have no snippet.
+    next if item.respond_to?(:write?) && !item.write?
     desc = item.data["description"].to_s.strip
     next if desc.length <= DESCRIPTION_LIMIT
     Jekyll.logger.warn "Description:", "#{item.relative_path} is #{desc.length} characters; keep it to #{DESCRIPTION_LIMIT}"

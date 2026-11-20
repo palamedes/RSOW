@@ -421,6 +421,7 @@ $abt-mono:    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
       margin: 0 0 1.1rem;
     }
     .abt-name-link { margin-top: auto; }
+    p a { color: $abt-accent; text-decoration: underline; text-underline-offset: 0.2em; &:hover { color: #1a5ab8; } }
   }
   .abt-craft-ico {
     display: inline-flex;

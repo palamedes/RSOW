@@ -400,6 +400,7 @@
       margin: 0 0 1.1rem;
     }
     .abt-name-link { margin-top: auto; align-self: flex-start; }
+    p a { color: $ink; text-decoration: underline; text-decoration-color: $red; text-decoration-thickness: 2px; text-underline-offset: 3px; &:hover { background: $hazard; } }
   }
   .abt-craft-ico {
     display: inline-flex;

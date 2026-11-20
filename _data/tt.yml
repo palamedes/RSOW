@@ -32,8 +32,16 @@ social:
 # Where "ready to buy" pieces will eventually sell. A work item can also carry
 # its own buy_url, which puts a "Buy it" button on that piece.
 shops:
-  etsy: ""
+  etsy: "https://www.etsy.com/shop/TinkeredTactile"
   ebay: ""
+
+# ── In person ───────────────────────────────────────────────────────────
+# Where people can buy in person. A for-sale item's `market_price` shows on
+# its card as "$2.50 in person at the …", and the For Sale page says that its
+# prices are online prices, plus shipping. Blank name = neither shows.
+market:
+  name: "New Bern Farmers Market"
+  when: "most Saturdays all year, unless the weather is miserable"   # shown on the For Sale page (blank shows nothing)
 
 # ── Project form ────────────────────────────────────────────────────────
 # A form-service endpoint (Formspree or similar; it needs file-upload support

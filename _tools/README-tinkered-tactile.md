@@ -104,7 +104,20 @@ images:
 ---
 ```
 
-Without a `buy_url`, the button reads "I want this one" and opens the form with
+One card that sells as several listings (the military coasters: one Etsy
+listing per branch) uses `buy_links` instead of `buy_url`. Each entry becomes
+a small button under a "Buy on Etsy" label, and the button for the photo on
+show lights up as the slider moves, so keep the images in the same order:
+
+```yaml
+buy_links:
+  - label: "Army"
+    url: "https://www.etsy.com/listing/…"
+  - label: "Navy"
+    url: "https://www.etsy.com/listing/…"
+```
+
+Without a `buy_url` or `buy_links`, the button reads "I want this one" and opens the form with
 the item filled in. When it sells, either delete the file or set
 `status: sold`, which moves it to a "Recently sold" section (price struck
 through, with a "Want one like it?" button). Plain numeric prices are also
