@@ -5,8 +5,14 @@ america-250-slate: { widths: [480, 800, 1200, 1252], width: 1252, height: 1290, 
 best-dad-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 best-mom-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 birthday-trail: { widths: [480, 800, 1054], width: 1054, height: 1492, fallback: 1054, avif: true }
+cocktail-coaster-amaretto-sour: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
+cocktail-coaster-dirty-shirley: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
+cocktail-coaster-mai-tai: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 cocktail-coasters-1: { widths: [480, 800, 1200, 1588], width: 1588, height: 1588, fallback: 1200, avif: true }
 cocktail-coasters-2: { widths: [480, 800, 1200, 1588], width: 1588, height: 1588, fallback: 1200, avif: true }
+cocktail-coaster-sex-on-the-beach: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
+cocktail-coaster-tom-collins: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
+cocktail-coaster-vodka-cranberry: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 hangovers-coaster: { widths: [480, 800, 1200, 1512], width: 1512, height: 1512, fallback: 1200, avif: true }
 horse-wolf-crest: { widths: [480, 800, 1024], width: 1024, height: 1024, fallback: 1024, avif: true }
 lady-liberty-slate: { widths: [480, 800, 1200, 1250], width: 1250, height: 1250, fallback: 1200, avif: true }
