@@ -23,4 +23,4 @@ Both lines go in gold script on white ribbon banners, with a cup and saucer betw
 
 Every bit of it is laser engraved. There's no paint: the white and the gold both come from the laser changing the stone itself, so there's nothing to wash off. We don't seal or coat them either, so there's no finish to bubble or peel. The bare slate soaks up what drips off a sweating glass.
 
-It belongs by the coffee maker, or on the desk of a coworker who isn't quite human before the first cup. We can add their name, or make it tea.
+It belongs by the coffee maker, or on the desk of a coworker who isn't quite human before the first cup. We can add their name, or make it tea. For the other end of the day there's [Life Happens, Beer Helps](/tinkered-tactile/work/life-happens-beer-coaster/).

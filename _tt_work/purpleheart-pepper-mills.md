@@ -3,7 +3,7 @@ title: Purpleheart & Spalted Maple Pepper Mills
 seo_title: "Hand-Turned Purpleheart Pepper Mills"
 description: "Hand-turned pepper mills in purpleheart, banded with spalted maple and edged in braided cord."
 caption: "Sometimes the wood gets to decide what it wants to become."
-order: 30
+order: 35
 tile: tall
 featured: true
 buckets: [woodwork, home-bar]
