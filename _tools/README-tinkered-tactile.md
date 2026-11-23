@@ -117,6 +117,9 @@ buy_links:
     url: "https://www.etsy.com/listing/…"
 ```
 
+A link that doesn't belong to one photo (the cocktail card's "Any other drink",
+the custom listing) goes last with `photo: false`, so it never lights up.
+
 Without a `buy_url` or `buy_links`, the button reads "I want this one" and opens the form with
 the item filled in. When it sells, either delete the file or set
 `status: sold`, which moves it to a "Recently sold" section (price struck
