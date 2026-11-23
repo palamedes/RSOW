@@ -4,6 +4,8 @@ One thing that's actually for sale (a file in _tt_inventory/).
 Its buy_url adds one "Buy on Etsy" (or eBay) button. A buy_links list
 (label + url each) adds a labelled row of them instead, one per variant, in
 the same order as the images; tt.js lights up the one for the photo on show.
+An entry with photo: false (the cocktail card's "Any other drink") goes after
+those and never lights up.
 {%- endcomment -%}
 {%- assign i = include.item -%}
 {%- assign tt = site.data.tt -%}
@@ -61,7 +63,7 @@ the same order as the images; tt.js lights up the one for the photo on show.
         <p class="tt-sale__buys-label" id="{{ i.slug }}-buy">{{ i_buy }} {% include tt/icon.html name="external" %}</p>
         <div class="tt-sale__buys-row">
           {%- for b in i.buy_links %}
-          <a class="tt-btn tt-btn--secondary tt-btn--sm tt-sale__buy" href="{{ b.url }}" rel="noopener" data-tt-buy><span class="tt-sr">{{ i_buy }}: </span>{{ b.label }}</a>
+          <a class="tt-btn tt-btn--secondary tt-btn--sm tt-sale__buy" href="{{ b.url }}" rel="noopener"{% unless b.photo == false %} data-tt-buy{% endunless %}><span class="tt-sr">{{ i_buy }}: </span>{{ b.label }}</a>
           {%- endfor %}
         </div>
       </div>

@@ -3,7 +3,7 @@ title: Hangovers Are Temporary
 seo_title: "\"Hangovers Are Temporary, Drunk Stories Are Forever\" Slate Coaster"
 description: "A round slate coaster that says it plainly: hangovers are temporary, drunk stories are forever. Engraved in white and gold."
 caption: "Words to live by, or at least to set a drink on."
-order: 22
+order: 24
 tile: square
 featured: true
 buckets: [home-bar]
