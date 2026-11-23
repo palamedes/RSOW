@@ -44,10 +44,13 @@ market:
   when: "most Saturdays all year, unless the weather is miserable"   # shown on the For Sale page (blank shows nothing)
 
 # ── Project form ────────────────────────────────────────────────────────
-# A form-service endpoint (Formspree or similar; it needs file-upload support
-# for the attachments). While blank, the form still renders but tells people
-# it isn't connected yet instead of pretending to send.
-form_endpoint: ""
+# Where the form posts. It's the small tt-form receiver on Jason's home server
+# (~/.local/share/tt-form/ on `home`), reached through Tailscale Funnel on port
+# 8443. It emails each submission, attachments included, and keeps a copy. It
+# answers like Formspree does ({"ok": true}, or {"errors": [{"message"}]}) and
+# only accepts this site (plus 127.0.0.1:4000 and localhost:4000 for testing).
+# Blank it to switch the form back to its "isn't connected yet" preview notice.
+form_endpoint: "https://home.tailef9ea4.ts.net:8443/tt-form"
 
 # ── Analytics ───────────────────────────────────────────────────────────
 # provider: goatcounter | plausible | ga4   (blank = no analytics at all)
