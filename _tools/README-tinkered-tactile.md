@@ -151,12 +151,23 @@ All in `_data/tt.yml`; blank values simply don't render.
 
 - **`email`, `phone`, `social.*`** — appear in the footer and beside the form.
 - **`shops.etsy`, `shops.ebay`** — the shop pages, for the structured data.
-- **`form_endpoint`** — the form posts here. Until it's set,
-  it shows "this form isn't connected yet" instead of pretending to send.
-  With [Formspree](https://formspree.io): create a form, paste its endpoint
-  (`https://formspree.io/f/xxxxxxx`), and turn on file uploads (a paid-plan
-  feature) for the attachments. The field names (`email`, `_subject`,
-  `_gotcha` honeypot) already match what Formspree expects.
+- **`form_endpoint`**: the form posts here. If it's blank, the form says
+  "this form isn't connected yet" instead of pretending to send.
+  - It points at **tt-form**, a small receiver on the home server (`home`).
+    It's reached through Tailscale Funnel on port 8443; Funnel's port 443 is
+    the eBay endpoint, so leave that alone.
+  - tt-form emails each submission to jason.ellis@yahoo.com through Yahoo
+    SMTP, attachments included. Reply-To is set to the sender, so Reply goes to
+    the customer. It also keeps a copy.
+  - Its code, config (the Yahoo app password lives there and nowhere else),
+    saved submissions and log are in `~/.local/share/tt-form/` on `home`. It
+    runs as the user service `tt-form`.
+  - It only accepts this site, plus `127.0.0.1:4000` and `localhost:4000` for
+    testing. It limits attachments to 10 MB each (jpg, png, pdf, svg) and
+    rate-limits senders.
+  - It answers like Formspree does, so the endpoint could move back to
+    [Formspree](https://formspree.io) without touching the page. The field
+    names (`email`, `_subject`, the `_gotcha` honeypot) match both.
 - **`analytics`** — `provider: goatcounter | plausible | ga4` plus `id`.
 
 ## The domain
