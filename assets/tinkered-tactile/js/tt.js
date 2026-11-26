@@ -245,6 +245,7 @@
 
   $$('[data-tt-form]').forEach(function (form) {
     var endpoint = form.getAttribute('data-endpoint') || '';
+    var opened = Date.now();   // spam check: the receiver wants _elapsed (seconds on the page), which only this script adds
     var status = $('[data-tt-status]', form);
     var success = doc.getElementById(form.getAttribute('data-success') || '');
     var params = new URLSearchParams(location.search);
@@ -393,7 +394,9 @@
         return;
       }
       form.classList.add('is-sending');
-      fetch(endpoint, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+      var data = new FormData(form);
+      data.append('_elapsed', String(Math.round((Date.now() - opened) / 1000)));
+      fetch(endpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
         .then(function (r) {
           return r.json().catch(function () { return {}; }).then(function (j) { return { ok: r.ok, json: j }; });
         })

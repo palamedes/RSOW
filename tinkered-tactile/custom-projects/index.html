@@ -28,7 +28,7 @@ optional. Links can pre-fill it: ?piece=<work slug>, ?item=<for-sale slug>,
 <section class="tt-section tt-theme-cream" id="start" aria-label="Get in touch">
   <div class="tt-wrap tt-form-wrap">
     <div>
-      <form class="tt-form" data-tt-form data-question="{{ tt.form.question }}" data-endpoint="{{ tt.form_endpoint }}"{% if tt.form_endpoint != "" %} action="{{ tt.form_endpoint }}"{% endif %} method="post" enctype="multipart/form-data" data-success="tt-success">
+      <form class="tt-form" data-tt-form data-question="{{ tt.form.question }}" data-endpoint="{{ tt.form_endpoint }}" method="post" enctype="multipart/form-data" data-success="tt-success">
         <p class="tt-note" data-tt-from hidden>{% include tt/icon.html name="spark" %}<span data-tt-from-text></span></p>
 
         <div class="tt-row-2">
@@ -101,6 +101,8 @@ optional. Links can pre-fill it: ?piece=<work slug>, ?item=<for-sale slug>,
         <div class="tt-hp" aria-hidden="true">
           <label for="tt-gotcha">Leave this empty</label>
           <input id="tt-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          <label for="tt-website">Website</label>
+          <input id="tt-website" name="website" type="text" tabindex="-1" autocomplete="off">
         </div>
         <input type="hidden" name="_subject" value="New project idea from the Tinkered Tactile site" data-tt-alt-value="Question from the Tinkered Tactile site">
 
